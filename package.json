@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "docker-image": "docker build -t portfolio .",
-    "docker-container": "docker run -p 8000:80 -d portfolio"
+    "docker-image": "docker build -t alexismelo/portfolio:latest .",
+    "docker-container": "docker run -p 8000:80 -d alexismelo/portfolio:latest"
   },
   "private": true,
   "dependencies": {
