@@ -28,10 +28,9 @@ RUN npm run build --prod
 FROM nginx:stable-alpine AS ngi
 
 # Copie de mon build vers un répertoire utilisable par nginx
-COPY --from=build /dist/docker/dist/portfolio /usr/share/nginx/html
+COPY --from=build /dist/docker/dist/portfolio/browser /usr/share/nginx/html
 
 # Copie de la config nginx pour mon projet
-# --> pas utile, la config par défaut fait le taf
 # COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposer le port utilisé par l'application dans le container
