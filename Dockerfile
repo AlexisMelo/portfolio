@@ -25,14 +25,20 @@ RUN npm run build --prod
 ### Étape 2 : Run ###
 
 # Utilisation de nginx comme serveur
-FROM nginx:1.27.0 AS ngi
+FROM nginx:stable-alpine AS ngi
 
 # Copie de mon build vers un répertoire utilisable par nginx
-COPY --from=build /dist/docker/dist/portfolio /var/www/portfolio
+COPY --from=build /dist/docker/dist/portfolio /usr/share/nginx/html
 
 # Copie de la config nginx pour mon projet
-# --> à modifier pour ne pas utiliser "default" ??
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+# --> pas utile, la config par défaut fait le taf
+# COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposer le port utilisé par l'application dans le container
 EXPOSE 80
+
+# > ChatGPT
+# L'intérêt de cette commande est de s'assurer que le conteneur reste actif aussi longtemps 
+# que Nginx est en fonctionnement. Si Nginx se terminait ou était exécuté en mode démon (background), 
+# le conteneur se terminerait immédiatement après le démarrage, car le processus principal se terminerait.
+CMD ["nginx", "-g", "daemon off;"]
