@@ -1,0 +1,13 @@
+<div class="dashed-line"></div>
+
+<div class="timeline">
+    <div class="straight-line"></div>
+
+    <div class="items">
+        @for (item of timelineItems; track item.id) {
+            <app-timeline-item-right [item]="item"></app-timeline-item-right>
+        }
+    </div>
+</div>
+
+<div class="dashed-line"></div>

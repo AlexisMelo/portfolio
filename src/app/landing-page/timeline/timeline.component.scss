@@ -1,0 +1,51 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/breakpoints.scss';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.dashed-line {
+    height: 100px;
+    position: relative;
+    border-left: 4px dashed $very-light-green;
+}
+
+.dashed-line:last-of-type {
+    margin-top: -100px;
+    z-index: -1;
+    margin-bottom: 50px;
+    height: 150px;
+}
+
+.timeline {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: -10px;
+    
+    .straight-line {
+        height: calc(100% - 20px - 100px);
+        position: absolute;
+        border-left: 4px solid $very-light-green;
+        margin-top: 20px;
+        z-index: -1;
+        margin-bottom: 100px; //équivalent environ à la taille d'un item
+    }
+
+    .items { 
+        app-timeline-item-right {
+            margin-left: 46%;
+        }
+
+        app-timeline-item-right:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+}
+

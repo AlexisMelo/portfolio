@@ -1,0 +1,22 @@
+@import '../../styles/breakpoints.scss';
+
+:host {
+    background-color: red;
+
+    .melo {    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7rem;
+        margin-bottom: 0;
+    }
+
+    .description {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+}

@@ -1,0 +1,15 @@
+@import '../../styles/breakpoints.scss';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 30px;
+    gap: 20px;
+
+    @media (min-width: $tablets) {
+        flex-direction: row;
+        gap: 40px;
+    }
+}
