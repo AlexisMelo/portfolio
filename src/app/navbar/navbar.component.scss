@@ -6,10 +6,10 @@
     align-items: center;
     justify-content: flex-end;
     padding: 30px;
-    gap: 20px;
+    gap: 30px;
+    font-size: 1.5rem;
 
     @media (min-width: $tablets) {
         flex-direction: row;
-        gap: 40px;
     }
 }

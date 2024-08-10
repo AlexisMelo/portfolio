@@ -1,0 +1,43 @@
+@import '../../../../styles/colors.scss';
+@import '../../../../styles/breakpoints.scss';
+
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.circle {
+    min-width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: $dark-green;
+    margin-top: 5px;
+}
+
+h2 {
+    margin: 0;
+}
+
+.when {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.what, .where {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.when, .what, .where {
+    @media (min-width: $tablets) {
+        white-space: nowrap;
+    }
+}
+
+.projects {
+    color: $light-green;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

@@ -5,7 +5,14 @@
 
     <div class="items">
         @for (item of timelineItems; track item.id) {
-            <app-timeline-item-right [item]="item"></app-timeline-item-right>
+            @switch (item.type) {
+                @case ('Job') {
+                    <app-timeline-item-right [item]="item"></app-timeline-item-right>
+                }
+                @case ('School') {
+                    <app-timeline-item-left [item]="item"></app-timeline-item-left>
+                }
+            }
         }
     </div>
 </div>

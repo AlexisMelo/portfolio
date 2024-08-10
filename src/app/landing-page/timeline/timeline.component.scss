@@ -16,7 +16,7 @@
 }
 
 .dashed-line:last-of-type {
-    margin-top: -100px;
+    margin-top: -130px;
     z-index: -1;
     margin-bottom: 50px;
     height: 150px;
@@ -30,19 +30,24 @@
     margin-top: -10px;
     
     .straight-line {
-        height: calc(100% - 20px - 100px);
+        height: calc(100% - 20px - 130px);
         position: absolute;
         border-left: 4px solid $very-light-green;
         margin-top: 20px;
         z-index: -1;
-        margin-bottom: 100px; //équivalent environ à la taille d'un item
     }
 
     .items { 
         app-timeline-item-right {
-            margin-left: 46%;
+            position: relative;
+            left: calc(50% - 17px); //17px = moitié taille du cercle
         }
 
+        app-timeline-item-left {
+            position: relative;
+            right: calc(50% - 17px);
+        }
+        
         app-timeline-item-right:not(:last-child) {
             margin-bottom: 50px;
         }

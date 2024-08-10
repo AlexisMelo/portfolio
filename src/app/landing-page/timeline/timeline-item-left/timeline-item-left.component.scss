@@ -1,0 +1,19 @@
+@import './timeline-item-common.scss';
+
+.infos {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+:host {
+    justify-content: flex-end;
+}
+
+.circle {
+    background-color: $light-green;
+}
+
+.when {
+    color: $light-green;
+}
