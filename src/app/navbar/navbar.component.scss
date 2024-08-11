@@ -37,7 +37,11 @@ $transition-duration: .2s;
 
         &.is-active {
             border-radius: 0;
-            border-bottom: 4px solid;
+            border-bottom: 2px solid;
+
+            @media (min-width: $tablets) {
+                border-bottom-width: 4px;
+            }
         }
 
         &:hover {
