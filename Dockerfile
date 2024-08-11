@@ -17,7 +17,7 @@ RUN npm cache clean --force
 COPY . .
 
 # Installation des dépendances
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Build du projet Angular dans le WORKDIR
 RUN npm run build --prod
