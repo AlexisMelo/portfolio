@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "short_name": "portfolio",
-  "theme_color": "#1976d2",
+  "theme_color": "#294B29",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
