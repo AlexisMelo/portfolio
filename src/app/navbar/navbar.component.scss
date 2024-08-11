@@ -4,16 +4,21 @@
 $transition-duration: .2s;
 
 :host {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    padding: 20px;
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    padding: 10px;
+
+    @media (min-width: $mobile-l) {
+        font-size: 1.5rem;   
+        padding: 20px; 
+    }
 
     @media (min-width: $tablets) {
         flex-direction: row;
@@ -26,7 +31,7 @@ $transition-duration: .2s;
         text-decoration: none;
         color: inherit;
         cursor: pointer;
-        padding: 10px;
+        padding: 5px;
         border-radius: 10px;
         background-color: white;
 
@@ -34,6 +39,10 @@ $transition-duration: .2s;
         -webkit-transition: all $transition-duration;
         -o-transition: all $transition-duration;
         -moz-transition: all $transition-duration;
+
+        @media (min-width: $mobile-m) {
+            padding: 10px;
+        }
 
         &.is-active {
             border-radius: 0;

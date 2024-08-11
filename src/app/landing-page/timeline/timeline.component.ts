@@ -14,7 +14,7 @@ export class TimelineComponent {
   /**
    * List of all items to display
    */
-  public timelineItems: Array<TimelineItem> = [{
+  private items: Array<TimelineItem> = [{
     id: 1,
     date: 2024,
     job: 'Développeur web freelance',
@@ -78,4 +78,18 @@ export class TimelineComponent {
     company: 'Lycée Napoléon',
     type: 'School'
   }]
+
+  /**
+   * Items to display, without the last
+   */
+  get timelineItems() {
+    return this.items.slice(0, -1);
+  }
+
+  /**
+   * Last item to display
+   */
+  get lastItem() {
+    return this.items.slice(-1)[0];
+  }
 }

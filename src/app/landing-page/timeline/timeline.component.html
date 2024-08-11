@@ -1,4 +1,4 @@
-<div class="dashed-line"></div>
+<div class="head-dashed-line"></div>
 
 <div class="timeline">
     <div class="straight-line"></div>
@@ -17,4 +17,17 @@
     </div>
 </div>
 
-<div class="dashed-line"></div>
+<div class="timeline">
+    <div class="tail-dashed-line"></div>
+
+    <div class="items">
+        @switch (lastItem.type) {
+            @case ('Job') {
+                <app-timeline-item-right [item]="lastItem"></app-timeline-item-right>
+            }
+            @case ('School') {
+                <app-timeline-item-left [item]="lastItem"></app-timeline-item-left>
+            }
+        }
+    </div>
+</div>
