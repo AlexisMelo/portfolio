@@ -9,6 +9,10 @@
         justify-content: center;
         font-size: 7rem;
         margin-bottom: 0;
+
+        @media (max-width: $tablets) {
+            margin-top: 0;
+        }
     }
 
     .description {
@@ -16,8 +20,12 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
         font-size: 1.5rem;
+
+        @media (min-width: $tablets) {
+            margin-bottom: 80px;
+        }
     }
 
 }

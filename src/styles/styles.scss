@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import './colors.scss';
+@import './breakpoints.scss';
 
 body, html {
     margin: 0;
@@ -11,7 +12,11 @@ body, html {
     font-weight: 300;
     font-style: normal;
     overflow-x: hidden;
-    font-size: 16px;
+    font-size: 10px;
+
+    @media (min-width: $tablets) {
+        font-size: 16px;
+    }
 }
 
 html, body { height: 100%; }

@@ -1,5 +1,6 @@
 @import '../../../styles/colors.scss';
 @import '../../../styles/breakpoints.scss';
+@import './timeline-item-left/timeline-item-common-variables.scss';
 
 :host {
     display: flex;
@@ -12,14 +13,35 @@
 .dashed-line {
     height: 100px;
     position: relative;
-    border-left: 4px dashed $very-light-green;
+    border-left: 2px dashed $very-light-green;
+    background-color: white;
+
+    @media (min-width: $tablets) {
+        border-left-width: 4px;
+    }
 }
 
 .dashed-line:last-of-type {
-    margin-top: -130px;
+    margin-top: -150px;
+    height: 150px;
     z-index: -1;
     margin-bottom: 50px;
-    height: 150px;
+
+    @media (min-width: $tablets) {
+        margin-top: -200px;
+        height: 200px;
+    }
+}
+
+.straight-line {
+    height: calc(100%);
+    position: absolute;
+    border-left: 2px solid $very-light-green;
+    z-index: -1;
+
+    @media (min-width: $tablets) {
+        border-left-width: 4px;
+    }
 }
 
 .timeline {    
@@ -29,27 +51,31 @@
     position: relative;
     margin-top: -10px;
     
-    .straight-line {
-        height: calc(100% - 20px - 130px);
-        position: absolute;
-        border-left: 4px solid $very-light-green;
-        margin-top: 20px;
-        z-index: -1;
-    }
-
     .items { 
         app-timeline-item-right {
             position: relative;
-            left: calc(50% - 17px); //17px = moitié taille du cercle
+            left: calc(50% - $small-circle-size / 2);
+
+            @media (min-width: $tablets) {
+                left: calc(50% - $big-circle-size / 2);
+            }
         }
 
         app-timeline-item-left {
             position: relative;
-            right: calc(50% - 17px);
+            right: calc(50% - $small-circle-size / 2);
+
+            @media (min-width: $tablets) {
+                right: calc(50% - $big-circle-size / 2);
+            }
         }
         
-        app-timeline-item-right:not(:last-child) {
-            margin-bottom: 50px;
+        app-timeline-item-right, app-timeline-item-left {
+            margin-bottom: 20px;
+
+            @media (min-width: $tablets) {
+                margin-bottom: 50px;
+            }
         }
     }
 }

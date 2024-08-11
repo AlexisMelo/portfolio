@@ -1,3 +1,4 @@
+@import './timeline-item-common-variables.scss';
 @import '../../../../styles/colors.scss';
 @import '../../../../styles/breakpoints.scss';
 
@@ -5,14 +6,20 @@
     display: flex;
     flex-direction: row;
     gap: 16px;
+    max-width: 50vw;
 }
 
 .circle {
-    min-width: 34px;
-    height: 34px;
+    min-width: $small-circle-size;
+    height: $small-circle-size;
     border-radius: 50%;
     background-color: $dark-green;
     margin-top: 5px;
+
+    @media (min-width: $tablets) {
+        min-width: $big-circle-size;
+        height: $big-circle-size;
+    }
 }
 
 h2 {
@@ -27,12 +34,6 @@ h2 {
 .what, .where {
     margin-bottom: 10px;
     font-size: 1.5rem;
-}
-
-.when, .what, .where {
-    @media (min-width: $tablets) {
-        white-space: nowrap;
-    }
 }
 
 .projects {
