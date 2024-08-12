@@ -1,18 +1,38 @@
 @import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+
+/* Blinking carret */
+@keyframes blink {
+    50% { opacity: 0; }
+}
 
 :host {
     background-color: red;
-
-    .melo {    
+    
+    .typewriter-container {
         display: flex;
-        align-items: center;
+        flex-direction: row;
+        align-items: baseline;
         justify-content: center;
-        font-size: 7rem;
-        margin-bottom: 0;
 
-        @media (max-width: $tablets) {
-            margin-top: 20px;
+        .melo {    
+            font-size: 7rem;
+            margin-bottom: 0;
+
+            .placeholder {
+                opacity: 0;
+                color: red;
+            }
+
+            @media (max-width: $tablets) {
+                margin-top: 20px;
+            }
         }
+
+        .blink {
+            font-size: 7rem;
+            animation: blink-caret .8s linear infinite;
+        }        
     }
 
     .description {

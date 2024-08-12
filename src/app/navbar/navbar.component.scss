@@ -32,32 +32,46 @@ $transition-duration: .2s;
         color: inherit;
         cursor: pointer;
         padding: 5px;
-        border-radius: 10px;
         background-color: white;
-
-        transition: all $transition-duration;
-        -webkit-transition: all $transition-duration;
-        -o-transition: all $transition-duration;
-        -moz-transition: all $transition-duration;
+        position: relative;
 
         @media (min-width: $mobile-m) {
             padding: 10px;
         }
 
         &.is-active {
-            border-radius: 0;
-            border-bottom: 2px solid;
 
-            @media (min-width: $tablets) {
-                border-bottom-width: 4px;
+            &:after {
+                animation: border_anim $transition-duration linear forwards;
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                border-bottom: solid 2px $green;
+
+                @media (min-width: $tablets) {
+                    border-bottom-width: 4px;
+                }
             }
         }
 
         &:hover {
-            border-radius: 0;
-            border-radius: 10px;
-            background-color: $very-light-green;
+            color: $light-green;
+
+            &:after {
+                border-color: $light-green;
+            }
         }
 
     }
+}
+
+@keyframes border_anim {
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
 }
