@@ -32,7 +32,7 @@ export class LandingPageComponent implements AfterViewInit {
   /**
    * Time for the typing effect in milliseconds
    */
-  private typingDuration = 500;
+  private typingDuration = 1000;
   
   /**
    * Adds letter to position i at the title element

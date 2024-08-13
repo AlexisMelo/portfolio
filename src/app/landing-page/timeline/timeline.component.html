@@ -1,16 +1,18 @@
 <div class="head-dashed-line"></div>
+<div class="head-dashed-line-hide"></div>
 
 <div class="timeline">
     <div class="straight-line"></div>
+    <div class="straight-line-hide"></div>
 
     <div class="items">
         @for (item of timelineItems; track item.id) {
             @switch (item.type) {
                 @case ('Job') {
-                    <app-timeline-item-right [item]="item"></app-timeline-item-right>
+                    <app-timeline-item-right class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-right>
                 }
                 @case ('School') {
-                    <app-timeline-item-left [item]="item"></app-timeline-item-left>
+                    <app-timeline-item-left class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-left>
                 }
             }
         }
@@ -19,14 +21,15 @@
 
 <div class="timeline">
     <div class="tail-dashed-line"></div>
+    <div class="tail-dashed-line-hide"></div>
 
     <div class="items">
         @switch (lastItem.type) {
             @case ('Job') {
-                <app-timeline-item-right [item]="lastItem"></app-timeline-item-right>
+                <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
             }
             @case ('School') {
-                <app-timeline-item-left [item]="lastItem"></app-timeline-item-left>
+                <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
             }
         }
     </div>

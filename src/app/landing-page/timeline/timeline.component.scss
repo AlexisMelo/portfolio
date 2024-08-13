@@ -2,6 +2,16 @@
 @import '../../../styles/breakpoints.scss';
 @import './timeline-item-left/timeline-item-common-variables.scss';
 
+$head-dashed-line-animation-duration: 0.5s;
+
+$straight-line-hide-animation-duration: 4s;
+
+$tail-dashed-line-hide-animation-delay-duration: 5s;
+
+$timeline-items-animation-delay: calc($straight-line-hide-animation-duration / 7); // 7 = nombre total d'items - 1 (le premier qui a pas besoin de delay)
+
+$timeline-items-animation-appear-duration: 0.5s;
+
 :host {
     display: flex;
     flex-direction: column;
@@ -22,11 +32,34 @@
     }
 }
 
+@keyframes uncover {
+    100% { transform: scaleY(0); }
+}
+
+.head-dashed-line-hide {
+    height: 100px;
+    position: absolute;
+    background-color: white;
+    width: 10px;
+    top: 0;
+    transform: scaleY(1);
+    transform-origin: 0 100%;
+    animation: uncover $head-dashed-line-animation-duration linear forwards;
+}
+
 .tail-dashed-line {
     @extend .head-dashed-line;
     height: 100%;
     margin-bottom: 50px;
     position: absolute;
+    margin-top: 10px;
+}
+
+.tail-dashed-line-hide {
+    @extend .head-dashed-line-hide;
+    animation-delay: $tail-dashed-line-hide-animation-delay-duration;
+    height: 100%;
+    margin-top: 10px;
 }
 
 .straight-line {
@@ -39,6 +72,13 @@
     @media (min-width: $tablets) {
         border-left-width: 4px;
     }
+}
+
+.straight-line-hide {
+    @extend .head-dashed-line-hide;
+    height: 100%;
+    animation: uncover $straight-line-hide-animation-duration linear forwards;
+    animation-delay: $head-dashed-line-animation-duration;
 }
 
 .timeline {    
@@ -79,4 +119,19 @@
 
 .timeline:last-of-type {
     margin-bottom: 50px;
+}
+
+@keyframes appear {
+    100% { opacity: 1; }
+}
+
+app-timeline-item-right, app-timeline-item-left {
+    opacity: 0;
+    animation: appear $timeline-items-animation-appear-duration ease-out forwards;
+}
+
+@for $i from 0 through 10 {
+    .timeline-item-#{$i} {
+        animation-delay: calc(calc(#{$i * ($timeline-items-animation-delay)}) + $head-dashed-line-animation-duration);
+    }
 }

@@ -1,7 +1,6 @@
 @import '../../styles/breakpoints.scss';
 @import '../../styles/colors.scss';
 
-/* Blinking carret */
 @keyframes blink {
     50% { opacity: 0; }
 }
@@ -17,7 +16,7 @@
 
         .melo {    
             font-size: 7rem;
-            margin-bottom: 0;
+            margin-bottom: 20px;
 
             .placeholder {
                 opacity: 0;
@@ -31,7 +30,7 @@
 
         .blink {
             font-size: 7rem;
-            animation: blink-caret .8s linear infinite;
+            animation: blink .8s linear infinite;
         }        
     }
 
