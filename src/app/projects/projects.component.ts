@@ -42,6 +42,4 @@ export class ProjectsComponent {
     company: 'Bosch',
     description: 'Courte description à mettre ici pour qu’on capte vraiment l’intérêt du projet et qu’on se dise que je suis super intelligent, fort et beau'
   }];
-
-  public 
 }
