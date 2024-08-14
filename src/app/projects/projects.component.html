@@ -1,1 +1,29 @@
-🌻
+<h2 class="realisations-title">
+    RÉALISATIONS. <span class="blink">_</span>
+</h2>
+
+<div class="realisations">
+    @for (project of projects; track project.id) {
+        <app-project [project]="project"></app-project>
+    }
+</div>
+
+<h2 class="contexte-title">
+    CONTEXTE. <span class="blink">_</span>
+</h2>
+
+<div class="contexte">
+    Entreprise
+
+    Perso
+
+    École
+</div>
+
+<h2 class="competences-title">
+    COMPÉTENCES. <span class="blink">_</span>
+</h2>
+
+<div class="competences">
+    PHP et mon cul
+</div>

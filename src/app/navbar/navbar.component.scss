@@ -11,12 +11,11 @@ $transition-duration: .2s;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     font-size: 1rem;
     padding: 10px;
 
     @media (min-width: $mobile-l) {
-        font-size: 1.5rem;   
         padding: 20px; 
     }
 

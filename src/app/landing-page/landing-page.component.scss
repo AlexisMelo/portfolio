@@ -1,10 +1,6 @@
 @import '../../styles/breakpoints.scss';
 @import '../../styles/colors.scss';
 
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
 :host {
     background-color: red;
     
@@ -30,7 +26,6 @@
 
         .blink {
             font-size: 7rem;
-            animation: blink .8s linear infinite;
         }        
     }
 

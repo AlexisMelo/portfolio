@@ -26,3 +26,11 @@ h1, h2, h3, h4, h5 {
     font-weight: normal;
     color: $dark-green;
 }
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.blink {
+    animation: blink .8s linear infinite;
+}
