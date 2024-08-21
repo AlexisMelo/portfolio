@@ -24,12 +24,14 @@
     <div class="tail-dashed-line-hide"></div>
 
     <div class="items">
-        @switch (lastItem.type) {
-            @case ('Job') {
-                <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
-            }
-            @case ('School') {
-                <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
+        @if (lastItem) {
+            @switch (lastItem.type) {
+                @case ('Job') {
+                    <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
+                }
+                @case ('School') {
+                    <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
+                }
             }
         }
     </div>

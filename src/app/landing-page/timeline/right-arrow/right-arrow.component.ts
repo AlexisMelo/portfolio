@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './right-arrow.component.html',
   styleUrl: './right-arrow.component.scss'
 })
-export class RightArrowComponent {
-
-}
+export class RightArrowComponent {}

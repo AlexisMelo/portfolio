@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Project } from './project.model';
 import { ProjectComponent } from "./project/project.component";
+import { ProjectsService } from './projects.service';
  
 @Component({
   selector: 'app-projects',
@@ -9,37 +10,22 @@ import { ProjectComponent } from "./project/project.component";
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent {
-  public projects: Array<Project> = [{
-    id: 1,
-    title: 'MES_Infos',
-    date: 2023,
-    type: 'Site web',
-    company: 'Bosch',
-    description: 'Courte description à mettre ici pour qu’on capte vraiment l’intérêt du projet et qu’on se dise que je suis super intelligent, fort et beau'
-  },
-  {
-    id: 2,
-    title: 'MES_Infos',
-    date: 2023,
-    type: 'Site web',
-    company: 'Bosch',
-    description: 'Courte description à mettre ici pour qu’on capte vraiment l’intérêt du projet et qu’on se dise que je suis super intelligent, fort et beau'
-  },
-  {
-    id: 3,
-    title: 'MES_Infos',
-    date: 2023,
-    type: 'Site web',
-    company: 'Bosch',
-    description: 'Courte description à mettre ici pour qu’on capte vraiment l’intérêt du projet et qu’on se dise que je suis super intelligent, fort et beau'
-  },
-  {
-    id: 4,
-    title: 'MES_Infos',
-    date: 2023,
-    type: 'Site web',
-    company: 'Bosch',
-    description: 'Courte description à mettre ici pour qu’on capte vraiment l’intérêt du projet et qu’on se dise que je suis super intelligent, fort et beau'
-  }];
+export class ProjectsComponent implements OnInit {
+  /**
+   * Liste des projets réalisés
+   */
+  public projects: Array<Project> = [];
+
+  /**
+   * Constructeur
+   * @param projectService 
+   */
+  constructor(private projectService: ProjectsService) {}
+
+  /**
+   * Implémentation de OnInit
+   */
+  ngOnInit() {
+    this.projectService.getProjects().then((projects) => this.projects = projects);
+  }
 }

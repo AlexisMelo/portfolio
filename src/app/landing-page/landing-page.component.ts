@@ -10,32 +10,32 @@ import { TimelineComponent } from './timeline/timeline.component';
 })
 export class LandingPageComponent implements AfterViewInit {
   /**
-   * HTMLElement of main title element
+   * Element HTML contenant le titre
    */
   @ViewChild("title") title?: ElementRef;
 
   /**
-   * HTMLElement of main title element
+   * Element HTML contenant le texte placeholder
    */
   @ViewChild("placeholder") placeholder?: ElementRef;
 
   /**
-   * Content of main title
+   * Contenu du titre
    */
   public titleContent: string = 'MELO.';
 
   /**
-   * Timer reference to unsubscribe once finished
+   * Référence au timer
    */
   private typewriterInterval?: number;
 
   /**
-   * Time for the typing effect in milliseconds
+   * Temps de l'effet typewriting
    */
   private typingDuration = 1000;
   
   /**
-   * Adds letter to position i at the title element
+   * Applique l'effet "typewriter" à un element
    * @param i 
    */
   private typewrite() {
@@ -53,7 +53,7 @@ export class LandingPageComponent implements AfterViewInit {
   }
 
   /**
-   * AfterViewInit implementation
+   * Implémentation de AfterViewInit
    */
   ngAfterViewInit(): void {
     this.typewrite();
