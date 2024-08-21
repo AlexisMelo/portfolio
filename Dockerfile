@@ -31,7 +31,7 @@ FROM nginx:stable-alpine AS ngi
 COPY --from=build /dist/docker/dist/portfolio/browser /usr/share/nginx/html
 
 # Copie de la config nginx pour mon projet
-# COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposer le port utilisé par l'application dans le container
 EXPOSE 80
