@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from './project.model';
 import { ProjectComponent } from "./project/project.component";
-import { ProjectsService } from './projects.service';
+import { SupabaseService } from '../shared/supabase.service';
+import { Context } from '../landing-page/timeline/context.model';
+import { Skill } from './skill.model';
  
 @Component({
   selector: 'app-projects',
@@ -17,15 +19,27 @@ export class ProjectsComponent implements OnInit {
   public projects: Array<Project> = [];
 
   /**
-   * Constructeur
-   * @param projectService 
+   * Liste des contextes
    */
-  constructor(private projectService: ProjectsService) {}
+  public contexts: Array<Context> = [];
+
+  /**
+   * Liste des skills
+   */
+  public skills: Array<Skill> = [];
+
+  /**
+   * Constructeur
+   * @param supabaseService 
+   */
+  constructor(private supabaseService: SupabaseService) {}
 
   /**
    * Implémentation de OnInit
    */
   ngOnInit() {
-    this.projectService.getProjects().then((projects) => this.projects = projects);
+    this.supabaseService.getProjects().then((projects) => this.projects = projects);
+    this.supabaseService.getContexts().then((contexts) => this.contexts = contexts);
+    this.supabaseService.getSkills().then((skills) => this.skills = skills);
   }
 }

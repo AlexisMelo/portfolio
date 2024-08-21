@@ -13,11 +13,9 @@
 </h2>
 
 <div class="contexte">
-    Entreprise
-
-    Perso
-
-    École
+    @for (context of contexts; track context.id) {
+        <div>{{context.company}}</div>
+    }
 </div>
 
 <h2 class="competences-title">
@@ -25,5 +23,7 @@
 </h2>
 
 <div class="competences">
-    PHP et mon cul
+    @for (skill of skills; track skill.id) {
+        <div>{{skill.label}}</div>
+    }
 </div>

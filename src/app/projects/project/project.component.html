@@ -1,9 +1,9 @@
 <div class="date">
-    {{ project.date }}
+    {{ project.start_date | date : 'yyyy' }} - {{ (project.end_date ? (project.end_date | date : 'yyyy') : 'Aujourd\'hui')}}
 </div>
 
 <div class="title">
-    {{ project.title }}
+    {{ project.label }}
 </div>
 
 <div class="illustration">
@@ -11,7 +11,7 @@
 </div>
 
 <div class="type">
-    {{ project.type }}
+    {{ project.project_type.label }}
 </div>
 
 <div class="description">
@@ -19,9 +19,17 @@
 </div>
 
 <div class="company">
-    {{ project.company }}
+    {{ project.context.company }}
 </div>
 
-<div class="competences">
-    React, Vue, JS, PHP +3 <app-right-arrow></app-right-arrow>
-</div>
+@if (project.skill.length > 0) {
+    <div class="competences">
+        @for(skill of project.skill; track skill.id) {
+            {{skill.label}} 
+            @if (!$last) {
+                -
+            }
+        } 
+        <app-right-arrow></app-right-arrow>
+    </div>
+}

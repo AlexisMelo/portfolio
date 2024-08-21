@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TimelineItem } from './timeline-item.model';
+import { Context } from './context.model';
 import { TimelineItemRightComponent } from './timeline-item-right/timeline-item-right.component';
 import { TimelineItemLeftComponent } from './timeline-item-left/timeline-item-left.component';
-import { LandingPageService } from '../landing-page.service';
+import { SupabaseService } from '../../shared/supabase.service';
 
 @Component({
   selector: 'app-timeline',
@@ -15,19 +15,19 @@ export class TimelineComponent {
   /**
    * Liste de tous les objets à afficher
    */
-  private items: Array<TimelineItem> = [];
+  private items: Array<Context> = [];
 
   /**
    * Constructeur
-   * @param landingPageService 
+   * @param supabaseService 
    */
-  constructor(private landingPageService: LandingPageService) {}
+  constructor(private supabaseService: SupabaseService) {}
   
   /**
    * Implémentation de OnInit
    */
   ngOnInit() {
-    this.landingPageService.getExperiences().then(experiences => {
+    this.supabaseService.getContexts().then(experiences => {
       this.items = experiences});
   }
 

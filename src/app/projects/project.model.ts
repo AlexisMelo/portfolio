@@ -1,3 +1,7 @@
+import { Context } from "../landing-page/timeline/context.model";
+import { ProjectType } from "./project-type.model";
+import { Skill } from "./skill.model";
+
 /**
  * Représente un projet
  */
@@ -10,25 +14,40 @@ export interface Project {
      /**
       * Titre du projet
       */
-     title: string;
+     label: string;
 
      /**
       * Date de début du projet
       */
-     date: number;
+     start_date: number;
+
+     /**
+      * Date de fin du projet
+      */
+     end_date: number;
 
      /**
       * Type de projet
       */
-     type: 'Site web' | 'Application bureautique';
+     type: ProjectType;
 
      /**
       * Contexte du projet
       */
-     company: string;
+     context: Context;
 
      /**
       * Description du projet
       */
      description: string;
+
+     /**
+      * Type du projet
+      */
+     project_type: ProjectType;
+
+     /**
+      * Liste des compétences utilisées dans le projet
+      */
+     skill: Array<Skill>;
 }

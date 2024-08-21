@@ -7,14 +7,14 @@
 
     <div class="items">
         @for (item of timelineItems; track item.id) {
-            @switch (item.type) {
-                @case ('Job') {
-                    <app-timeline-item-right class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-right>
-                }
-                @case ('School') {
-                    <app-timeline-item-left class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-left>
-                }
+            @if (item.context_type.label !== 'École') 
+            {
+                <app-timeline-item-right class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-right>
             }
+            @else 
+            {
+                <app-timeline-item-left class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-left>
+            }            
         }
     </div>
 </div>
@@ -25,13 +25,13 @@
 
     <div class="items">
         @if (lastItem) {
-            @switch (lastItem.type) {
-                @case ('Job') {
-                    <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
-                }
-                @case ('School') {
-                    <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
-                }
+            @if (lastItem.context_type.label !== 'École') 
+            {
+                <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
+            }
+            @else 
+            {
+                <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
             }
         }
     </div>
