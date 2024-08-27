@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Context } from '../context.model';
-import { RightArrowComponent } from "../right-arrow/right-arrow.component";
+import { RightArrowComponent } from '../right-arrow/right-arrow.component';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -8,11 +8,11 @@ import { DatePipe } from '@angular/common';
   standalone: true,
   imports: [RightArrowComponent, DatePipe],
   templateUrl: './timeline-item-right.component.html',
-  styleUrl: './timeline-item-right.component.scss'
+  styleUrl: './timeline-item-right.component.scss',
 })
 export class TimelineItemRightComponent {
   /**
    * Item to display
    */
-  @Input({required: true}) item!: Context; 
+  @Input({ required: true }) item!: Context;
 }

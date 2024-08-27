@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from './project.model';
-import { ProjectComponent } from "./project/project.component";
+import { ProjectComponent } from './project/project.component';
 import { SupabaseService } from '../shared/supabase.service';
 import { Context } from '../landing-page/timeline/context.model';
 import { Skill } from './skill.model';
- 
+
 @Component({
   selector: 'app-projects',
   standalone: true,
   imports: [ProjectComponent],
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent implements OnInit {
   /**
@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
 
   /**
    * Constructeur
-   * @param supabaseService 
+   * @param supabaseService
    */
   constructor(private supabaseService: SupabaseService) {}
 
@@ -38,8 +38,12 @@ export class ProjectsComponent implements OnInit {
    * Implémentation de OnInit
    */
   ngOnInit() {
-    this.supabaseService.getProjects().then((projects) => this.projects = projects);
-    this.supabaseService.getContexts().then((contexts) => this.contexts = contexts);
-    this.supabaseService.getSkills().then((skills) => this.skills = skills);
+    this.supabaseService
+      .getProjects()
+      .then(projects => (this.projects = projects));
+    this.supabaseService
+      .getContexts()
+      .then(contexts => (this.contexts = contexts));
+    this.supabaseService.getSkills().then(skills => (this.skills = skills));
   }
 }

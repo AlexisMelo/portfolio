@@ -8,11 +8,11 @@ import { DatePipe } from '@angular/common';
   standalone: true,
   imports: [LeftArrowComponent, DatePipe],
   templateUrl: './timeline-item-left.component.html',
-  styleUrl: './timeline-item-left.component.scss'
+  styleUrl: './timeline-item-left.component.scss',
 })
 export class TimelineItemLeftComponent {
   /**
    * Item to display
    */
-  @Input({required: true}) item!: Context; 
+  @Input({ required: true }) item!: Context;
 }

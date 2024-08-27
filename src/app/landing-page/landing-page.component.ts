@@ -6,18 +6,18 @@ import { TimelineComponent } from './timeline/timeline.component';
   standalone: true,
   imports: [TimelineComponent],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+  styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent implements AfterViewInit {
   /**
    * Element HTML contenant le titre
    */
-  @ViewChild("title") title?: ElementRef;
+  @ViewChild('title') title?: ElementRef;
 
   /**
    * Element HTML contenant le texte placeholder
    */
-  @ViewChild("placeholder") placeholder?: ElementRef;
+  @ViewChild('placeholder') placeholder?: ElementRef;
 
   /**
    * Contenu du titre
@@ -33,10 +33,10 @@ export class LandingPageComponent implements AfterViewInit {
    * Temps de l'effet typewriting
    */
   private typingDuration = 1000;
-  
+
   /**
    * Applique l'effet "typewriter" à un element
-   * @param i 
+   * @param i
    */
   private typewrite() {
     let i = 0;
@@ -45,9 +45,10 @@ export class LandingPageComponent implements AfterViewInit {
       if (i >= this.titleContent.length || !this.title || !this.placeholder) {
         clearInterval(this.typewriterInterval);
         return;
-      };
-      this.title.nativeElement.innerHTML += this.titleContent.charAt(i);    
-      this.placeholder.nativeElement.innerHTML = this.placeholder.nativeElement.innerHTML.substring(1);
+      }
+      this.title.nativeElement.innerHTML += this.titleContent.charAt(i);
+      this.placeholder.nativeElement.innerHTML =
+        this.placeholder.nativeElement.innerHTML.substring(1);
       i++;
     }, this.typingDuration / this.titleContent.length);
   }

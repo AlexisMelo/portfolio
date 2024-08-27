@@ -2,48 +2,48 @@
 @import '../../styles/colors.scss';
 
 :host {
-    background-color: red;
-    
-    .typewriter-container {
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-        justify-content: center;
+  background-color: red;
 
-        .melo {    
-            font-size: 7rem;
-            margin-bottom: 20px;
+  .typewriter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
 
-            .placeholder {
-                opacity: 0;
-                color: red;
-            }
+    .melo {
+      font-size: 7rem;
+      margin-bottom: 20px;
 
-            @media (max-width: $tablets) {
-                margin-top: 20px;
-            }
-        }
+      .placeholder {
+        opacity: 0;
+        color: red;
+      }
 
-        .blink {
-            font-size: 7rem;
-        }        
+      @media (max-width: $tablets) {
+        margin-top: 20px;
+      }
     }
 
-    .description {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 40px;
-        font-size: 1.2rem;
-        padding: 0 10px;
-        
-        @media (min-width: $mobile-m) {
-            font-size: 1.5rem;
-        }
-
-        @media (min-width: $tablets) {
-            margin-bottom: 80px;
-        }
+    .blink {
+      font-size: 7rem;
     }
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    padding: 0 10px;
+
+    @media (min-width: $mobile-m) {
+      font-size: 1.5rem;
+    }
+
+    @media (min-width: $tablets) {
+      margin-bottom: 80px;
+    }
+  }
 }

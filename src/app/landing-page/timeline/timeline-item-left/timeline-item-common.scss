@@ -3,42 +3,43 @@
 @import '../../../../styles/breakpoints.scss';
 
 :host {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    max-width: 50vw;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  max-width: 50vw;
 }
 
 .circle {
-    min-width: $small-circle-size;
-    height: $small-circle-size;
-    border-radius: 50%;
-    background-color: $dark-green;
-    margin-top: 5px;
+  min-width: $small-circle-size;
+  height: $small-circle-size;
+  border-radius: 50%;
+  background-color: $dark-green;
+  margin-top: 5px;
 
-    @media (min-width: $tablets) {
-        min-width: $big-circle-size;
-        height: $big-circle-size;
-    }
+  @media (min-width: $tablets) {
+    min-width: $big-circle-size;
+    height: $big-circle-size;
+  }
 }
 
 h2 {
-    margin: 0;
+  margin: 0;
 }
 
 .when {
-    font-size: 2.5rem;
-    margin-bottom: 5px;
+  font-size: 2.5rem;
+  margin-bottom: 5px;
 }
 
-.what, .where {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+.what,
+.where {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
 }
 
 .projects {
-    color: $light-green;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  color: $light-green;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

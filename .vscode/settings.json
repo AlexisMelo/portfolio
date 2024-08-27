@@ -2,7 +2,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "angular.enable-strict-mode-prompt": false,
-  "prettier.printWidth": 200,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

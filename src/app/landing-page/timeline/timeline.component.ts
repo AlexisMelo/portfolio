@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Context } from './context.model';
 import { TimelineItemRightComponent } from './timeline-item-right/timeline-item-right.component';
 import { TimelineItemLeftComponent } from './timeline-item-left/timeline-item-left.component';
@@ -9,9 +9,9 @@ import { SupabaseService } from '../../shared/supabase.service';
   standalone: true,
   imports: [TimelineItemRightComponent, TimelineItemLeftComponent],
   templateUrl: './timeline.component.html',
-  styleUrl: './timeline.component.scss'
+  styleUrl: './timeline.component.scss',
 })
-export class TimelineComponent {
+export class TimelineComponent implements OnInit {
   /**
    * Liste de tous les objets à afficher
    */
@@ -19,16 +19,17 @@ export class TimelineComponent {
 
   /**
    * Constructeur
-   * @param supabaseService 
+   * @param supabaseService
    */
   constructor(private supabaseService: SupabaseService) {}
-  
+
   /**
    * Implémentation de OnInit
    */
   ngOnInit() {
     this.supabaseService.getContexts().then(experiences => {
-      this.items = experiences});
+      this.items = experiences;
+    });
   }
 
   /**

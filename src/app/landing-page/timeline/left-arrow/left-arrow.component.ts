@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './left-arrow.component.html',
-  styleUrl: './left-arrow.component.scss'
+  styleUrl: './left-arrow.component.scss',
 })
 export class LeftArrowComponent {}

@@ -1,9 +1,13 @@
 <div class="infos">
-    <h2 class="when">{{item.start_date | date : 'yyyy'}}</h2>
-    <div class="what">{{item.label}}</div>
-    <div class="where">{{ item.company}}, {{ item.localization}}</div>
-    @if (item.project.length > 0) {
-        <div class="projects"><app-left-arrow></app-left-arrow> {{item.project.length}} réalisation{{item.project.length > 1 ? 's' : '' }} </div>
-    }
+  <h2 class="when">{{ item.start_date | date: 'yyyy' }}</h2>
+  <div class="what">{{ item.label }}</div>
+  <div class="where">{{ item.company }}, {{ item.localization }}</div>
+  @if (item.project.length > 0) {
+    <div class="projects">
+      <app-left-arrow></app-left-arrow> {{ item.project.length }} réalisation{{
+        item.project.length > 1 ? 's' : ''
+      }}
+    </div>
+  }
 </div>
 <div class="circle"></div>

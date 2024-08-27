@@ -2,13 +2,13 @@
  * Compétence connue
  */
 export interface Skill {
-    /**
-     * Identifiant unique
-     */
-    id: number;
+  /**
+   * Identifiant unique
+   */
+  id: number;
 
-    /**
-     * Nom de la compétence
-     */
-    label: string;
+  /**
+   * Nom de la compétence
+   */
+  label: string;
 }

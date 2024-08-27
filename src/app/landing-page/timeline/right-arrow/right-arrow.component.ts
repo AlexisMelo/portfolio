@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './right-arrow.component.html',
-  styleUrl: './right-arrow.component.scss'
+  styleUrl: './right-arrow.component.scss',
 })
 export class RightArrowComponent {}

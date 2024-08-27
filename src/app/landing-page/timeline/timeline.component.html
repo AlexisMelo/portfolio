@@ -2,37 +2,39 @@
 <div class="head-dashed-line-hide"></div>
 
 <div class="timeline">
-    <div class="straight-line"></div>
-    <div class="straight-line-hide"></div>
+  <div class="straight-line"></div>
+  <div class="straight-line-hide"></div>
 
-    <div class="items">
-        @for (item of timelineItems; track item.id) {
-            @if (item.context_type.label !== 'École') 
-            {
-                <app-timeline-item-right class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-right>
-            }
-            @else 
-            {
-                <app-timeline-item-left class="timeline-item-{{$index}}" [item]="item"></app-timeline-item-left>
-            }            
-        }
-    </div>
+  <div class="items">
+    @for (item of timelineItems; track item.id) {
+      @if (item.context_type.label !== 'École') {
+        <app-timeline-item-right
+          class="timeline-item-{{ $index }}"
+          [item]="item"></app-timeline-item-right>
+      } @else {
+        <app-timeline-item-left
+          class="timeline-item-{{ $index }}"
+          [item]="item"></app-timeline-item-left>
+      }
+    }
+  </div>
 </div>
 
 <div class="timeline">
-    <div class="tail-dashed-line"></div>
-    <div class="tail-dashed-line-hide"></div>
+  <div class="tail-dashed-line"></div>
+  <div class="tail-dashed-line-hide"></div>
 
-    <div class="items">
-        @if (lastItem) {
-            @if (lastItem.context_type.label !== 'École') 
-            {
-                <app-timeline-item-right class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-right>
-            }
-            @else 
-            {
-                <app-timeline-item-left class="timeline-item-{{timelineItems.length}}" [item]="lastItem"></app-timeline-item-left>
-            }
-        }
-    </div>
+  <div class="items">
+    @if (lastItem) {
+      @if (lastItem.context_type.label !== 'École') {
+        <app-timeline-item-right
+          class="timeline-item-{{ timelineItems.length }}"
+          [item]="lastItem"></app-timeline-item-right>
+      } @else {
+        <app-timeline-item-left
+          class="timeline-item-{{ timelineItems.length }}"
+          [item]="lastItem"></app-timeline-item-left>
+      }
+    }
+  </div>
 </div>

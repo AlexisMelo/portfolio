@@ -1,53 +1,63 @@
 import { Injectable } from '@angular/core';
-import {
-  createClient,
-  SupabaseClient,
-} from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Project } from '../projects/project.model';
 import { Context } from '../landing-page/timeline/context.model';
 import { Skill } from '../projects/skill.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SupabaseService {
   /**
    * Client pour Supabase
    */
-  private supabase: SupabaseClient
+  private supabase: SupabaseClient;
 
   /**
    * Constructeur
    */
-  constructor() { 
-    this.supabase = createClient(environment.supabaseUrl, environment.supabasePublicKey)
+  constructor() {
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabasePublicKey
+    );
   }
 
   /**
    * Obtient la liste de tous les projets
-   * @returns 
+   * @returns
    */
   public async getProjects() {
-    const { data, error } = await this.supabase.from('project').select('*, project_type(*), context(*), skill(*)').returns<Array<Project>>();
+    const { data, error } = await this.supabase
+      .from('project')
+      .select('*, project_type(*), context(*), skill(*)')
+      .returns<Array<Project>>();
     return data ?? [];
   }
 
-   /**
+  /**
    * Obtient tous les expériences pros
-   * @returns 
+   * @returns
    */
-    public async getContexts() {
-        const { data, error } = await this.supabase.from('context').select('*, context_type(*), project(*)').order('end_date', {ascending: false}).returns<Array<Context>>();
-        return data ?? [];
-    }
+  public async getContexts() {
+    const { data, error } = await this.supabase
+      .from('context')
+      .select('*, context_type(*), project(*)')
+      .order('end_date', { ascending: false })
+      .returns<Array<Context>>();
+    return data ?? [];
+  }
 
-    /**
+  /**
    * Obtient la liste de toutes les compétences
-   * @returns 
+   * @returns
    */
   public async getSkills() {
-    const { data, error } = await this.supabase.from('skill').select('*').returns<Array<Skill>>();
+    const { data, error } = await this.supabase
+      .from('skill')
+      .select('*')
+      .returns<Array<Skill>>();
     return data ?? [];
   }
 }

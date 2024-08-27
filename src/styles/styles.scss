@@ -4,33 +4,43 @@
 @import './colors.scss';
 @import './breakpoints.scss';
 
-body, html {
-    margin: 0;
-    padding: 0;
-    color: $green;
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    overflow-x: hidden;
-    font-size: 10px;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  color: $green;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  overflow-x: hidden;
+  font-size: 10px;
 
-    @media (min-width: $tablets) {
-        font-size: 16px;
-    }
+  @media (min-width: $tablets) {
+    font-size: 16px;
+  }
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
-h1, h2, h3, h4, h5 {
-    font-family: 'Limelight';
-    font-weight: normal;
-    color: $dark-green;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Limelight';
+  font-weight: normal;
+  color: $dark-green;
 }
 
 @keyframes blink {
-    50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 .blink {
-    animation: blink .8s linear infinite;
+  animation: blink 0.8s linear infinite;
 }
