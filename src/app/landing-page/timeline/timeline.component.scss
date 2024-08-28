@@ -10,7 +10,7 @@ $tail-dashed-line-hide-animation-delay-duration: 5s;
 
 $timeline-items-animation-delay: calc(
   $straight-line-hide-animation-duration / 7
-); // 7 = nombre total d'items - 1 (le premier qui a pas besoin de delay)
+); // 7 = nombre total d'items - 1 (le premier qui a pas besoin de delay) -> à rendre réactif
 
 $timeline-items-animation-appear-duration: 0.5s;
 
@@ -20,6 +20,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   align-items: center;
   justify-content: center;
   position: relative;
+  min-height: 100vh; //pour pas avoir le footer qui remonte au chargement
 }
 
 .head-dashed-line {

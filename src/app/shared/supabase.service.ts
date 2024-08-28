@@ -29,7 +29,7 @@ export class SupabaseService {
    * @returns
    */
   public async getProjects() {
-    const { data, error } = await this.supabase
+    const { data } = await this.supabase
       .from('project')
       .select('*, project_type(*), context(*), skill(*)')
       .returns<Array<Project>>();
@@ -41,7 +41,7 @@ export class SupabaseService {
    * @returns
    */
   public async getContexts() {
-    const { data, error } = await this.supabase
+    const { data } = await this.supabase
       .from('context')
       .select('*, context_type(*), project(*)')
       .order('end_date', { ascending: false })
@@ -54,7 +54,7 @@ export class SupabaseService {
    * @returns
    */
   public async getSkills() {
-    const { data, error } = await this.supabase
+    const { data } = await this.supabase
       .from('skill')
       .select('*')
       .returns<Array<Skill>>();
