@@ -1,0 +1,33 @@
+@import '../../../styles/colors.scss';
+
+$space-left-icon: 10px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid $green;
+  padding: 1rem;
+  padding-left: calc(
+    2 * $space-left-icon + 2rem
+  ); //1 rem = taille de l'icone, 20px c'est 2x le padding gauche de l'icone
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+mat-icon {
+  position: absolute;
+  bottom: 5px;
+  transform: translateY(-50%);
+  top: 50%;
+  margin-left: $space-left-icon;
+}
+
+.inputContainer {
+  position: relative;
+}

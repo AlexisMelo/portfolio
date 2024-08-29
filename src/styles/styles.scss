@@ -26,10 +26,7 @@ body {
 }
 
 h1,
-h2,
-h3,
-h4,
-h5 {
+h2 {
   font-family: 'Limelight';
   font-weight: normal;
   color: $dark-green;
@@ -43,4 +40,15 @@ h5 {
 
 .blink {
   animation: blink 0.8s linear infinite;
+}
+
+//Inclut le padding et border dans le calcul de la taille d'un élément
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }

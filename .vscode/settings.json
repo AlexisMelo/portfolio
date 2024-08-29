@@ -1,5 +1,10 @@
 {
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnType": false, // required
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange", // optional but recommended
+  "vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first,
   "editor.formatOnPaste": true,
   "angular.enable-strict-mode-prompt": false,
   "typescript.tsdk": "node_modules\\typescript\\lib",
@@ -17,5 +22,8 @@
     },
     "editor.formatOnSave": true
   },
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -1,15 +1,39 @@
-<div class="coordinates">
-  <div>
-    <h2 class="name">Alexis MELO DA SILVA</h2>
-    <div>Entreprise Individuelle</div>
-    <div>Caen, France</div>
-    <div>SIRET : 845 098 243 00015</div>
+<div class="titles">
+  <h1>Contact</h1>
+  <div>Pour un nouveau projet, de l'aide ou simplement dire bonjour 🙂</div>
+</div>
+
+<div class="contacts">
+  <div><mat-icon>location_on</mat-icon>Caen, France</div>
+
+  <div><mat-icon>call</mat-icon>06 12 15 78 26</div>
+
+  <div><mat-icon>mail</mat-icon>alexis&#64;melo.fr</div>
+</div>
+
+<form class="form" (submit)="send()">
+  <div class="input-container name">
+    <label for="name">Nom</label>
+    <input appInput class="input" id="name" type="text" />
   </div>
 
-  <div>
-    <div>
-      <div>06 12 15 78 26</div>
-      <div>alexis&#64;melo.fr</div>
-    </div>
+  <div class="input-container mail">
+    <app-input label="Mail" icon="mail">
+      <input class="input" id="mail" type="text" />
+    </app-input>
   </div>
-</div>
+
+  <div class="input-container phone">
+    <label for="phone">Téléphone</label>
+    <input appInput class="input" value="cul" id="phone" type="text" />
+  </div>
+
+  <div class="input-container message">
+    <label for="message">Message</label>
+    <textarea appInput class="input" id="message" type="text"></textarea>
+  </div>
+
+  <div class="send">
+    <button type="submit">Envoyer</button>
+  </div>
+</form>
