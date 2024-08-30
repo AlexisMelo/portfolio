@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
 })

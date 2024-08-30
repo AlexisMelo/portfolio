@@ -23,11 +23,9 @@
   justify-content: space-between;
   gap: 15px;
   margin-top: 3rem;
-  margin-bottom: 3rem;
 
   @media (min-width: $tablets) {
     flex-direction: row;
-    gap: unset;
   }
 
   div {
@@ -49,13 +47,16 @@
       background-color: $very-light-green;
     }
 
-    mat-icon {
+    mat-icon,
+    svg {
+      width: 24px;
       margin-bottom: 15px;
     }
   }
 }
 
 .form {
+  margin-top: 3rem;
   display: grid;
   gap: 20px;
   background-color: $very-light-green;
@@ -107,8 +108,14 @@
     margin-bottom: 5px;
   }
 
-  input,
-  textarea {
-    flex-grow: 1;
+  &.message app-input {
+    height: 100%;
   }
+}
+
+.socials {
+  @extend .contacts;
+
+  justify-content: center;
+  margin-bottom: 3rem;
 }
