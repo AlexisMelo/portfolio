@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponent } from '../shared/input/input.component';
 
@@ -10,7 +16,24 @@ import { InputComponent } from '../shared/input/input.component';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
-  public send() {
-    alert("ça fait rien pour l'instant désolé, juste envoie moi un mail ...");
+  /**
+   * Bouton pour confirmer le formulaire
+   */
+  @ViewChild('buttonBird') sendButton?: ElementRef;
+
+  /**
+   * Bouton pour confirmer le formulaire
+   */
+  public textBird: string = 'ENVOYER';
+
+  /**
+   * Action effectuée lors du submit du formulaire
+   * @param event
+   */
+  submit(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.sendButton?.nativeElement.classList.add('active');
+    this.textBird = 'ENVOYÉ';
   }
 }
