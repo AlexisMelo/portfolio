@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# A enlever car parfois bosch artifactory dans les dépendances = echec CI/CD. A rajouter si projet plus utilisé à Bosch
+package-lock.json
