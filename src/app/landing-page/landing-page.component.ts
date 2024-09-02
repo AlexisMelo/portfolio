@@ -22,7 +22,7 @@ export class LandingPageComponent implements AfterViewInit {
   /**
    * Contenu du titre
    */
-  public titleContent: string = 'MELO.';
+  public titleContent: string = 'MELO';
 
   /**
    * Référence au timer

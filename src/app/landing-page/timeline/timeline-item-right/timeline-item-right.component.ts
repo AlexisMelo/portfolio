@@ -12,6 +12,11 @@ import { DatePipe } from '@angular/common';
 })
 export class TimelineItemRightComponent {
   /**
+   * Date actuelle
+   */
+  public currentDate = new Date();
+
+  /**
    * Item to display
    */
   @Input({ required: true }) item!: Context;

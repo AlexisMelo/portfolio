@@ -1,6 +1,12 @@
 <div class="circle"></div>
 <div>
-  <h2 class="when">{{ item.start_date | date: 'yyyy' }}</h2>
+  <h2 class="when">
+    {{
+      item.end_date
+        ? (item.end_date | date: 'yyyy')
+        : (currentDate | date: 'yyyy')
+    }}
+  </h2>
   <div class="what">{{ item.label }}</div>
   <div class="where">{{ item.company }}, {{ item.localization }}</div>
   @if (item.project.length > 0) {

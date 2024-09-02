@@ -4,11 +4,11 @@
 :host {
   padding: 0 5vw;
 
-  @media (min-width: $mobile-m) {
+  @media (min-width: $tablets) {
     padding: 0 20vw;
   }
 
-  @media (min-width: $portable-computer) {
+  @media (min-width: $large-portable-computer) {
     padding: 0 30vw;
   }
 }
@@ -64,7 +64,7 @@
   gap: 20px;
   background-color: $very-light-green;
   border-radius: 15px;
-  padding: 15px;
+  padding: 30px 15px;
   grid-template-columns: 1fr;
 
   @media (min-width: $large-portable-computer) {
@@ -167,7 +167,7 @@ body {
     &__text {
       text-align: center;
       font-size: 1rem;
-      color: $color4Blue;
+      color: white;
       z-index: 1000;
     }
 
