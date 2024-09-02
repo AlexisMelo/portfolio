@@ -35,5 +35,19 @@ export class ContactComponent {
     event.stopPropagation();
     this.sendButton?.nativeElement.classList.add('active');
     this.textBird = 'ENVOYÉ';
+    alert(
+      'Ne fonctionne pas encore... Envoie moi plutôt un mail directement !'
+    );
+  }
+
+  /**
+   * Ouvre google maps
+   */
+  public openMaps() {
+    let win = window.open(
+      'https://www.google.fr/maps/dir/49.16524,-0.310951/14000+Caen/@47.7223104,-5.3592267,5.67z/',
+      '_blank'
+    );
+    win?.focus();
   }
 }
