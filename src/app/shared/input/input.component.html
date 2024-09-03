@@ -3,7 +3,7 @@
 </label>
 <div class="input-container" [ngClass]="{ 'left-padding': icon !== undefined }">
   @if (icon) {
-    <mat-icon fontSet="material-icons-outlined">{{ icon }}</mat-icon>
+    <mat-icon>{{ icon }}</mat-icon>
   }
   <ng-content></ng-content>
 </div>

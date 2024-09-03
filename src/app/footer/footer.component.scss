@@ -1,11 +1,75 @@
 @import '../../styles/colors.scss';
+@import '../../styles/breakpoints.scss';
 
 :host {
-  display: block;
-  height: 200px;
-  background-color: $very-light-green;
-  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  background-color: $very-light-green;
+  line-height: 150%;
+}
+
+.legal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    margin-bottom: 20px;
+    border-top: 1px solid $green;
+    width: 80vw;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  svg {
+    width: 24px;
+  }
+}
+
+.infos {
+  display: grid;
+  gap: 10px;
+  width: 90vw;
+  margin-top: 50px;
+  margin-bottom: 20px;
+
+  .agence {
+    grid-row: 1;
+  }
+
+  .contact {
+    grid-row: 2;
+  }
+
+  .identity {
+    grid-row: 3;
+  }
+
+  @media (min-width: $tablets) {
+    gap: 20px;
+    width: 80vw;
+
+    .agence {
+      grid-row: 1;
+      grid-column: 1 / 3;
+    }
+
+    .contact {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    .identity {
+      grid-row: 2;
+      grid-column: 2;
+    }
+  }
 }
