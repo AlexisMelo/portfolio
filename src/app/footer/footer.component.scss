@@ -1,4 +1,3 @@
-@import '../../styles/colors.scss';
 @import '../../styles/breakpoints.scss';
 
 :host {
@@ -8,7 +7,7 @@
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: $very-light-green;
+  background-color: var(--footerBackgroundColor);
   line-height: 150%;
 }
 
@@ -20,7 +19,8 @@
 
   div {
     margin-bottom: 20px;
-    border-top: 1px solid $green;
+    border-top: 1px solid;
+    border-color: var(--textColor);
     width: 90vw;
 
     @media (min-width: $tablets) {

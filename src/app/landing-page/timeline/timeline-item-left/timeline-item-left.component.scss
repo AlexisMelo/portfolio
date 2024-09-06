@@ -11,11 +11,11 @@
 }
 
 .circle {
-  background-color: $light-green;
+  background-color: var(--timelineLeftCircle);
 }
 
 .when {
-  color: $light-green;
+  color: var(--timelineLeftText);
 }
 
 .what,

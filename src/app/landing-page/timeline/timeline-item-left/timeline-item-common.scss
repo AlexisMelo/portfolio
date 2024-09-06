@@ -1,5 +1,4 @@
 @import './timeline-item-common-variables.scss';
-@import '../../../../styles/colors.scss';
 @import '../../../../styles/breakpoints.scss';
 
 :host {
@@ -13,7 +12,7 @@
   min-width: $small-circle-size;
   height: $small-circle-size;
   border-radius: 50%;
-  background-color: $dark-green;
+  background-color: var(--timelineCircleColor);
   margin-top: 5px;
 
   @media (min-width: $tablets) {
@@ -38,7 +37,7 @@ h2 {
 }
 
 .projects {
-  color: $light-green;
+  color: var(--timelineProject);
   display: flex;
   align-items: center;
   gap: 10px;

@@ -1,4 +1,3 @@
-@import '../../../styles/colors.scss';
 @import '../../../styles/breakpoints.scss';
 @import './timeline-item-left/timeline-item-common-variables.scss';
 
@@ -26,8 +25,9 @@ $timeline-items-animation-appear-duration: 0.5s;
 .head-dashed-line {
   height: 100px;
   position: relative;
-  border-left: 2px dashed $very-light-green;
-  background-color: white;
+  border-left: 2px dashed;
+  border-color: var(--timelineColor);
+  background-color: var(--backgroundColor);
   z-index: -1;
 
   @media (min-width: $tablets) {
@@ -44,7 +44,7 @@ $timeline-items-animation-appear-duration: 0.5s;
 .head-dashed-line-hide {
   height: 100px;
   position: absolute;
-  background-color: white;
+  background-color: var(--backgroundColor);
   width: 10px;
   top: 0;
   transform: scaleY(1);
@@ -70,7 +70,7 @@ $timeline-items-animation-appear-duration: 0.5s;
 .straight-line {
   height: 100%;
   position: absolute;
-  border-left: 2px solid $very-light-green;
+  border-left: 2px solid var(--timelineColor);
   z-index: -1;
   margin-top: 10px;
 

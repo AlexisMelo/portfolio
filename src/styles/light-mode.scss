@@ -1,0 +1,23 @@
+@import './colors.scss';
+
+@mixin light-mode() {
+  --titleColor: #{$dark-green};
+  --textColor: #{$green};
+  --backgroundColor: white;
+
+  --navbarLinksColor: #{$light-green};
+
+  --timelineCircleColor: #{$dark-green};
+  --timelineProject: #{$light-green};
+  --timelineLeftCircle: #{$light-green};
+  --timelineLeftText: #{$light-green};
+  --timelineColor: #{$very-light-green};
+
+  --footerBackgroundColor: #{$very-light-green};
+
+  --contactBackgroundColor: #{$very-light-green};
+  --birdsURL: url('../assets/birds-light-mode.svg');
+  --buttonTextColor: white;
+  --buttonBackgroundColor: #{$green};
+  --inputBackgroundColor: white;
+}

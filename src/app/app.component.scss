@@ -2,9 +2,4 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  ::ng-deep router-outlet + * {
-    animation: all 2s;
-    flex-grow: 1;
-  }
 }

@@ -1,0 +1,23 @@
+@import './colors.scss';
+
+@mixin dark-mode() {
+  --titleColor: #{$light-green};
+  --textColor: white;
+  --backgroundColor: #{$very-dark-green};
+
+  --navbarLinksColor: #{$light-green};
+
+  --timelineCircleColor: #{$light-green};
+  --timelineProject: #{$light-green};
+  --timelineLeftCircle: #{$very-light-green};
+  --timelineLeftText: #{$very-light-green};
+  --timelineColor: #{$very-light-green};
+
+  --footerBackgroundColor: #{$dark-green};
+
+  --contactBackgroundColor: #{$dark-green};
+  --birdsURL: url('../assets/birds-dark-mode.svg');
+  --buttonTextColor: white;
+  --buttonBackgroundColor: #{$light-green};
+  --inputBackgroundColor: #{$very-dark-green};
+}

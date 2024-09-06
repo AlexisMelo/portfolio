@@ -1,14 +1,12 @@
 @import '../../styles/breakpoints.scss';
-@import '../../styles/colors.scss';
 
 $transition-duration: 0.2s;
 
 :host {
+  background-color: var(--backgroundColor);
   position: sticky;
   top: 0;
-  background-color: white;
   z-index: 100;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -28,10 +26,9 @@ $transition-duration: 0.2s;
 
   a {
     text-decoration: none;
-    color: $light-green;
+    color: var(--navbarLinksColor);
     cursor: pointer;
     padding: 5px;
-    background-color: white;
     position: relative;
 
     @media (min-width: $mobile-m) {
@@ -39,7 +36,7 @@ $transition-duration: 0.2s;
     }
 
     &.is-active {
-      color: $green;
+      color: inherit;
       font-weight: 400;
 
       &:after {
@@ -49,16 +46,17 @@ $transition-duration: 0.2s;
         left: 0;
         bottom: 0;
         width: 0;
-        border-bottom: solid 1px $green;
+        border-bottom: solid 1px;
+        border-color: inherit;
       }
     }
 
     &:hover {
-      color: $green;
+      color: inherit;
       font-weight: 400;
 
       &:after {
-        border-color: $green;
+        border-color: inherit;
       }
     }
   }
@@ -70,5 +68,14 @@ $transition-duration: 0.2s;
   }
   100% {
     width: 100%;
+  }
+}
+
+.theme-toggle {
+  color: var(--navbarLinksColor);
+  cursor: pointer;
+
+  &:hover {
+    color: inherit;
   }
 }

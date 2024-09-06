@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { TimelineComponent } from './timeline/timeline.component';
+import { ThemeService } from '../shared/theme.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -33,6 +34,12 @@ export class LandingPageComponent implements AfterViewInit {
    * Temps de l'effet typewriting
    */
   private typingDuration = 1000;
+
+  /**
+   * Constructeur
+   * @param themeService
+   */
+  public constructor(public themeService: ThemeService) {}
 
   /**
    * Applique l'effet "typewriter" à un element

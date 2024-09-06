@@ -19,4 +19,13 @@
   >
 </div>
 
-<mat-icon fontSet="material-icons-outlined">light_mode</mat-icon>
+<mat-icon
+  class="theme-toggle"
+  fontSet="material-icons-outlined"
+  (click)="toggleDarkMode()">
+  @if (themeService.theme.value === 'light-mode') {
+    light_mode
+  } @else {
+    dark_mode
+  }
+</mat-icon>
