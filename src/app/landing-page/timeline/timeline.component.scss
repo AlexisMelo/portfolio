@@ -54,17 +54,16 @@ $timeline-items-animation-appear-duration: 0.5s;
 
 .tail-dashed-line {
   @extend .head-dashed-line;
-  height: 100%;
-  margin-bottom: 50px;
   position: absolute;
   margin-top: 10px;
+  height: calc(100% - 10px);
 }
 
 .tail-dashed-line-hide {
   @extend .head-dashed-line-hide;
   animation-delay: $tail-dashed-line-hide-animation-delay-duration;
-  height: 100%;
   margin-top: 10px;
+  height: calc(100% - 10px);
 }
 
 .straight-line {
@@ -121,10 +120,6 @@ $timeline-items-animation-appear-duration: 0.5s;
       }
     }
   }
-}
-
-.timeline:last-of-type {
-  margin-bottom: 50px;
 }
 
 @keyframes appear {

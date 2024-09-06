@@ -1,34 +1,9 @@
-<div class="date">
-  {{ project.start_date | date: 'yyyy' }} -
-  {{ project.end_date ? (project.end_date | date: 'yyyy') : "Aujourd'hui" }}
-</div>
+<img [src]="project.thumbnail" />
 
-<div class="title">
-  {{ project.label }}
-</div>
+<div class="top"></div>
 
-<div class="illustration"></div>
-
-<div class="type">
-  {{ project.project_type.label }}
-</div>
-
-<div class="description">
-  {{ project.description }}
-</div>
-
-<div class="company">
-  {{ project.context.company }}
-</div>
-
-@if (project.skill.length > 0) {
-  <div class="competences">
-    @for (skill of project.skill; track skill.id) {
-      {{ skill.label }}
-      @if (!$last) {
-        -
-      }
-    }
-    <app-right-arrow></app-right-arrow>
+<div class="bottom">
+  <div class="title">
+    {{ project.label }}
   </div>
-}
+</div>

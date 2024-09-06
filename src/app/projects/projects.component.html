@@ -1,12 +1,10 @@
-<h2 class="realisations-title">RÉALISATIONS. <span class="blink">_</span></h2>
-
 <div class="realisations">
   @for (project of projects; track project.id) {
     <app-project [project]="project"></app-project>
   }
 </div>
 
-<h2 class="contexte-title">CONTEXTE. <span class="blink">_</span></h2>
+<!-- <h2 class="contexte-title">CONTEXTE. <span class="blink">_</span></h2>
 
 <div class="contexte">
   @for (context of contexts; track context.id) {
@@ -20,4 +18,4 @@
   @for (skill of skills; track skill.id) {
     <div>{{ skill.label }}</div>
   }
-</div>
+</div> -->

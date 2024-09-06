@@ -50,4 +50,9 @@ export interface Project {
    * Liste des compétences utilisées dans le projet
    */
   skill: Array<Skill>;
+
+  /**
+   * Lien vers l'image d'illustration
+   */
+  thumbnail: string;
 }
