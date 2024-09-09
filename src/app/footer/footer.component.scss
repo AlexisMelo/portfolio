@@ -27,7 +27,7 @@
       width: 80vw;
     }
 
-    @media (min-width: $large-portable-computer) {
+    @media (min-width: $laptop-l) {
       width: 70vw;
     }
   }
@@ -81,7 +81,7 @@ a {
     }
   }
 
-  @media (min-width: $large-portable-computer) {
+  @media (min-width: $laptop-l) {
     gap: 30px;
     width: 70vw;
 
