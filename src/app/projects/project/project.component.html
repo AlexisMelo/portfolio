@@ -1,9 +1,22 @@
-<img [src]="project.thumbnail" />
+<div class="context">
+  <div class="company">{{ project.context.company }}</div>
+  <div class="type">{{ project.project_type.label }}</div>
+</div>
 
-<div class="top"></div>
+<div class="image">
+  <img [src]="project.thumbnail" />
+</div>
 
-<div class="bottom">
-  <div class="title">
-    {{ project.label }}
-  </div>
+<div class="title">
+  <strong>{{ project.label }}</strong>
+</div>
+
+<div class="description">
+  {{ project.description }}
+</div>
+
+<div class="go">
+  @for (skill of project.skill; track skill.id) {
+    <div>{{ skill.label }}</div>
+  }
 </div>

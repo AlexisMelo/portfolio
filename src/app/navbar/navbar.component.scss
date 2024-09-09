@@ -31,6 +31,7 @@ $transition-duration: 0.2s;
     cursor: pointer;
     padding: 5px;
     position: relative;
+    white-space: nowrap;
 
     @media (min-width: $mobile-m) {
       padding: 10px;

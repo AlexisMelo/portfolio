@@ -1,55 +1,76 @@
 @import '../../../styles/breakpoints.scss';
 
-//inspi : https://codepen.io/RemiRuc/pen/PowrNmb
-
-@mixin cardsOpen() {
-  .bottom {
-    transform: translateY(0);
-  }
-
-  .top {
-    transform: translateY(0);
-  }
-}
+//https://www.behance.net/gallery/191435897/Portfolio-Website-Design-Full-Stack-Developer?tracking_source=search_projects|developer+portfolio&l=49
 
 :host {
-  display: block;
-  width: 20vw;
-  min-width: 300px;
-  max-width: 400px;
-  height: 400px;
-  overflow: hidden;
-  position: relative;
+  padding: 30px 15px;
+  background-color: var(--projectsCardColor);
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: var(--projectBorder);
 
-  img {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
+  @media (min-width: $mobile-l) {
   }
 
-  .top,
-  .bottom {
-    transition: 0.3s;
+  .context {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    .company,
+    .type {
+      padding: 5px 10px;
+      border-radius: 25px;
+      background-color: var(--projectsCardCompanyBackground);
+      border: solid 1px var(--projectsCardCompanyBorder);
+    }
   }
 
-  .top {
-    height: 100px;
-    background-color: var(--textColor);
-    opacity: 0.5;
-    transform: translateY(-100px);
+  .image {
+    margin-top: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
-  .bottom {
-    height: 300px;
-    background-color: var(--navbarLinksColor);
-    width: 100%;
-    transform: translateY(100px);
+  .title {
+    margin-top: 15px;
+    font-size: 1.7rem;
   }
 
-  &:hover {
-    @include cardsOpen();
+  .description {
+    margin-top: 10px;
+  }
+
+  .competences {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .go {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 5px;
+
+    div {
+      padding: 5px 10px;
+      border-radius: 25px;
+      background-color: var(--projectsCardCompanyBackground);
+      border: solid 1px var(--projectsCardCompanyBorder);
+    }
   }
 }
