@@ -4,36 +4,13 @@ $gap-size: 10px;
 
 .realisations {
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  min-height: 100vh;
-  padding: 3rem 3rem;
-  column-gap: $gap-size;
-  row-gap: 2 * $gap-size;
-
-  > * {
-    width: 100%;
-  }
-
-  @media (min-width: $mobile-l) {
-    > * {
-      width: calc((100% - $gap-size) / 2);
-    }
-  }
-
-  @media (min-width: $tablets) {
-    > * {
-      width: calc((100% - 2 * $gap-size) / 3);
-    }
-  }
-
-  @media (min-width: $laptop) {
-    > * {
-      width: calc((100% - 3 * $gap-size) / 4);
-    }
-  }
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 h1 {
   text-align: center;
+
+  
 }

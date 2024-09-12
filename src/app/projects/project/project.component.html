@@ -1,22 +1,12 @@
-<div class="context">
-  <div class="company">{{ project.context.company }}</div>
-  <div class="type">{{ project.project_type.label }}</div>
-</div>
-
-<div class="image">
+<div class="icon">
   <img [src]="project.thumbnail" alt="" />
 </div>
 
-<div class="title">
-  <strong>{{ project.label }}</strong>
+<div class="label">
+  <div>{{ project.label }}</div>
+  <div>{{ project.start_date | date: 'yyyy' }}</div>
 </div>
 
-<div class="description">
-  {{ project.description }}
-</div>
-
-<div class="go">
-  @for (skill of project.skill; track skill.id) {
-    <div>{{ skill.label }}</div>
-  }
+<div class="context">
+  {{ project.context.company }} • {{ project.project_type.label }}
 </div>

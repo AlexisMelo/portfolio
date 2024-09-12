@@ -19,6 +19,7 @@ export class NavbarComponent {
   /**
    * Active / Désactive le dark mode
    */
+
   public toggleDarkMode() {
     this.themeService.toggle();
   }
