@@ -2,15 +2,14 @@
 
 //https://www.behance.net/gallery/191435897/Portfolio-Website-Design-Full-Stack-Developer?tracking_source=search_projects|developer+portfolio&l=49
 
+//https://codepen.io/steveschoger/pen/YbQXGq
+
 :host {
   padding: 30px 15px;
   background-color: var(--projectsCardColor);
   border-radius: 15px;
   border: 1px solid;
   border-color: var(--projectBorder);
-
-  @media (min-width: $mobile-l) {
-  }
 
   .context {
     display: flex;

@@ -4,7 +4,9 @@
 </div>
 
 <div class="contacts">
-  <a (click)="openMaps()"><mat-icon>location_on</mat-icon>Caen, France</a>
+  <a (click)="openMaps()" (keypress)="openMaps()" tabindex="0"
+    ><mat-icon>location_on</mat-icon>Caen, France</a
+  >
 
   <a href="tel:0612157826"><mat-icon>call</mat-icon>06 12 15 78 26</a>
 

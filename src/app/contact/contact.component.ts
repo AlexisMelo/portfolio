@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-  viewChild,
-} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponent } from '../shared/input/input.component';
 
@@ -44,7 +38,7 @@ export class ContactComponent {
    * Ouvre google maps
    */
   public openMaps() {
-    let win = window.open(
+    const win = window.open(
       'https://www.google.fr/maps/dir/49.16524,-0.310951/14000+Caen/@47.7223104,-5.3592267,5.67z/',
       '_blank'
     );
