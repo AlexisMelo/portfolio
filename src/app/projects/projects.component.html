@@ -2,7 +2,9 @@
 
 <div class="realisations">
   @for (project of projects; track project.id) {
-    <app-project [project]="project"></app-project>
+    <app-project-item
+      [project]="project"
+      [routerLink]="'projects/' + project.url"></app-project-item>
   }
 </div>
 

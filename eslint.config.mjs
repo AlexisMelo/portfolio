@@ -19,7 +19,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['projects/**/*'],
+    ignores: ['projects/**/*', 'node_modules/**/*'],
     languageOptions: {
       globals: {
         ...globals.jasmine,
@@ -47,11 +47,11 @@ export default [
     },
 
     languageOptions: {
-      ecmaVersion: 5,
+      ecmaVersion: 'latest',
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json', 'e2e/tsconfig.json'],
+        project: ['tsconfig.json'],
         createDefaultProgram: true,
       },
     },
@@ -122,11 +122,13 @@ export default [
       files: ['**/*.scss'],
     })),
   {
-    files: ['**/*.scss'],
+    files: ['*.scss'],
 
     plugins: {
       prettier,
     },
+
+    extends: {},
 
     rules: {
       'prettier/prettier': 'error',

@@ -55,4 +55,9 @@ export interface Project {
    * Lien vers l'image d'illustration
    */
   thumbnail: string;
+
+  /**
+   * URL vers les détails du projet
+   */
+  url: string;
 }

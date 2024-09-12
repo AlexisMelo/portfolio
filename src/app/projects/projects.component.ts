@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from './project.model';
-import { ProjectComponent } from './project/project.component';
 import { SupabaseService } from '../shared/supabase.service';
 import { Context } from '../landing-page/timeline/context.model';
 import { Skill } from './skill.model';
+import { ProjectItemComponent } from './project-item/project-item.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [ProjectComponent],
+  imports: [ProjectItemComponent, RouterLink],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })

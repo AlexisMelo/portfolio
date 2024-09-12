@@ -4,13 +4,13 @@ import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/rig
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-project',
+  selector: 'app-project-item',
   standalone: true,
   imports: [RightArrowComponent, DatePipe],
-  templateUrl: './project.component.html',
-  styleUrl: './project.component.scss',
+  templateUrl: './project-item.component.html',
+  styleUrl: './project-item.component.scss',
 })
-export class ProjectComponent {
+export class ProjectItemComponent {
   /**
    * Project to display
    */
