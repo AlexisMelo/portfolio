@@ -37,6 +37,22 @@ export class SupabaseService {
   }
 
   /**
+   * Obtient un projet à partir de son URL unique
+   * @param url
+   */
+  public async getProjectByUrl(url: string) {
+    const { data } = await this.supabase
+      .from('project')
+      .select('*, project_type(*), context(*), skill(*)')
+      .eq('url', url)
+      .returns<Project>()
+      .limit(1)
+      .single<Project>()
+      .throwOnError();
+    return data;
+  }
+
+  /**
    * Obtient tous les expériences pros
    * @returns
    */

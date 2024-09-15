@@ -1,10 +1,10 @@
 <h1>Réalisations</h1>
 
-<div class="realisations">
+<div [@projectList]="projects.length" class="realisations">
   @for (project of projects; track project.id) {
     <app-project-item
       [project]="project"
-      [routerLink]="'projects/' + project.url"></app-project-item>
+      [routerLink]="['/projects', project.url]"></app-project-item>
   }
 </div>
 
