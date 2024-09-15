@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../project.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { LoadingState } from 'src/app/shared/loading/loading-state.model';
 import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({

@@ -19,5 +19,11 @@ export class LoadingService {
     return { state: 'unloaded' };
   }
 
-  public createLoading(): Loading {}
+  /**
+   * Factory pour créer un statut entrain de charger
+   * @returns
+   */
+  public createLoading(): Loading {
+    return { state: 'loading' };
+  }
 }

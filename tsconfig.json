@@ -22,7 +22,8 @@
     "module": "ES2022",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["ES2022", "dom", "DOM.Iterable"]
+    "lib": ["ES2022", "dom", "DOM.Iterable"],
+    "maxNodeModuleJsDepth": 0
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

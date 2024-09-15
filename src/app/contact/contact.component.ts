@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponent } from '../shared/input/input.component';
+import { ContentService } from '../shared/content.service';
 
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,12 @@ export class ContactComponent {
   /**
    * Bouton pour confirmer le formulaire
    */
-  public textBird: string = 'ENVOYER';
+  public textBird: string = 'EN PANNE'; //'ENVOYER';
+
+  /**
+   * Gestion du contenu
+   */
+  public contentService = inject(ContentService);
 
   /**
    * Action effectuée lors du submit du formulaire

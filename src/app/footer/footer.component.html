@@ -2,14 +2,14 @@
   <div class="agence">
     <strong>MELO</strong>
     <br />
-    Développeur fullstack en freelance habitant à Caen, France.
+    {{ contentService.description }}
   </div>
   <div class="contact">
     <strong>Me contacter</strong>
     <br />
-    06 12 15 78 26
+    <a [href]="'tel:' + contentService.phone"> {{ contentService.phone }}</a>
     <br />
-    alexis&#64;melo.fr
+    <a [href]="'mailto: ' + contentService.mail">{{ contentService.mail }}</a>
     <br />
     <a href="https://www.linkedin.com/in/alexis-melo-da-silva/" target="_blank">
       <svg
@@ -29,7 +29,7 @@
     <br />
     Caen, France
     <br />
-    SIRET : 123 456 789 012345
+    SIRET : En construction...
   </div>
 </div>
 <div class="legal">

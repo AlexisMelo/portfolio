@@ -1,0 +1,42 @@
+@import '../../../styles/breakpoints.scss';
+
+:host {
+  z-index: 150;
+  color: black;
+  background-color: yellow;
+  border: solid 2px black;
+  width: 100%;
+  display: flex;
+
+  flex-direction: row;
+  white-space: nowrap;
+
+  div {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: 500;
+    animation: loop 4s linear infinite;
+
+    mat-icon {
+      margin: 0 10px;
+    }
+  }
+
+  @media (min-width: $tablets) {
+    position: absolute;
+    left: -75px;
+    top: 25x;
+    transform: rotate(320deg);
+    padding: 10px;
+    border-width: 5px;
+    width: 400px;
+  }
+}
+
+@keyframes loop {
+  100% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}

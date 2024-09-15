@@ -61,6 +61,7 @@ export class SupabaseService {
       .from('context')
       .select('*, context_type(*), project(*)')
       .order('end_date', { ascending: false })
+      .order('start_date', { ascending: false })
       .returns<Array<Context>>();
     return data ?? [];
   }

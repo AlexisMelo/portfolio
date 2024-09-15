@@ -8,10 +8,12 @@
     ><mat-icon>location_on</mat-icon>Caen, France</a
   >
 
-  <a href="tel:0612157826"><mat-icon>call</mat-icon>06 12 15 78 26</a>
+  <a [href]="'tel:' + contentService.phone"
+    ><mat-icon>call</mat-icon> {{ contentService.phone }}</a
+  >
 
-  <a href="mailto: alexis@melo.fr"
-    ><mat-icon>mail</mat-icon>alexis&#64;melo.fr</a
+  <a [href]="'mailto: ' + contentService.mail"
+    ><mat-icon>mail</mat-icon> {{ contentService.mail }}</a
   >
 </div>
 
@@ -45,7 +47,7 @@
   </div>
 
   <div class="send">
-    <button #buttonBird (click)="submit($event)" class="button-bird">
+    <!-- <button disabled #buttonBird (click)="submit($event)" class="button-bird">
       <p class="button-bird__text">{{ textBird }}</p>
       <svg
         version="1.1"
@@ -75,7 +77,8 @@
       <span class="bird--6"></span>
       <span class="bird--7"></span>
       <span class="bird--30"></span>
-    </button>
+    </button> -->
+    <button disabled>EN PANNE</button>
   </div>
 </form>
 

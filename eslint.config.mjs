@@ -6,9 +6,6 @@ import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 
-//https://stackoverflow.com/a/76204845/13770966 task pour lint tout le projet
-//https://stackoverflow.com/a/63589856/13770966 ajouter type module dans package.json
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
