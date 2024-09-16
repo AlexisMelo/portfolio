@@ -1,1 +1,36 @@
-{{ project?.label }}
+@if (project) {
+  <h1>{{ project.label }}</h1>
+
+  <div class="description">
+    {{ project.description }}
+  </div>
+
+  <div class="icon-container">
+    <div class="icon">
+      @if (project.thumbnail) {
+        <img [src]="project.thumbnail" alt="" />
+      } @else {
+        <mat-icon>apps</mat-icon>
+      }
+    </div>
+  </div>
+
+  <div class="context">
+    <div>{{ project.project_type.label }}</div>
+    <div>
+      {{ project.context.company }}
+    </div>
+  </div>
+
+  <div class="dates">
+    <div>
+      {{ project.start_date | date: 'MMMM y' }}
+    </div>
+    <div>
+      {{ project.end_date ? (project.end_date | date: 'MMMM y') : 'En cours' }}
+    </div>
+    <div>
+      {{ duration }}
+    </div>
+  </div>
+}

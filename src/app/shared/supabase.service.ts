@@ -32,6 +32,7 @@ export class SupabaseService {
     const { data } = await this.supabase
       .from('project')
       .select('*, project_type(*), context(*), skill(*)')
+      .order('end_date', { ascending: false })
       .returns<Array<Project>>();
     return data ?? [];
   }

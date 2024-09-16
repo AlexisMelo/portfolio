@@ -19,12 +19,12 @@ export interface Project {
   /**
    * Date de début du projet
    */
-  start_date: number;
+  start_date: string;
 
   /**
    * Date de fin du projet
    */
-  end_date: number;
+  end_date: string;
 
   /**
    * Type de projet

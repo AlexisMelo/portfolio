@@ -1,10 +1,16 @@
 <div class="icon">
-  <img [src]="project.thumbnail" alt="" />
+  @if (project.thumbnail) {
+    <img [src]="project.thumbnail" alt="" />
+  } @else {
+    <mat-icon>apps</mat-icon>
+  }
 </div>
 
 <div class="label">
   <div>{{ project.label }}</div>
-  <div>{{ project.start_date | date: 'yyyy' }}</div>
+  <div>
+    {{ project.end_date ? (project.end_date | date: 'yyyy') : 'En cours' }}
+  </div>
 </div>
 
 <div class="context">
