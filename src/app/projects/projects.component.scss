@@ -19,19 +19,28 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  margin: 0;
-  margin-bottom: 1rem;
-}
-
 .contexts {
   width: 90vw;
   margin: 1rem auto;
-  overflow-x: auto;
+  min-height: 140px; //Todo : pas ouf, il faudrait faire un placeholder avant le chargements des contextes
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+  }
 
   .filters {
     display: flex;
     flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
   }
 }
 

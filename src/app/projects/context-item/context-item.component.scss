@@ -10,7 +10,7 @@
   .logo {
     width: 24px;
     height: 24px;
-    border-radius: 50%;
+    border-radius: 5px;
     overflow: hidden;
     margin: 12px;
 
@@ -31,7 +31,8 @@
   &.disabled {
     color: lightgray;
 
-    .logo img {
+    .logo img,
+    .logo mat-icon {
       opacity: 0.5;
       filter: grayscale(1);
       -webkit-filter: grayscale(100%);

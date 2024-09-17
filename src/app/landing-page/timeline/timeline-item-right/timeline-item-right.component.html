@@ -10,7 +10,10 @@
   <div class="what">{{ item.label }}</div>
   <div class="where">{{ item.company }}, {{ item.localization }}</div>
   @if (item.project.length > 0) {
-    <div class="projects" [routerLink]="['projects']">
+    <div
+      class="projects"
+      [routerLink]="['projects']"
+      [queryParams]="{ contexts: item.id }">
       {{ item.project.length }} réalisation{{
         item.project.length > 1 ? 's' : ''
       }}

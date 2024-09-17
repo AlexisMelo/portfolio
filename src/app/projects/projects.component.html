@@ -1,8 +1,13 @@
 <h1>Réalisations</h1>
 
 <div class="contexts">
-  <h2>Contexte</h2>
-  <div class="filters">
+  <div class="title">
+    <h2>Contextes</h2>
+    @if (selectedContexts.length !== contexts.length) {
+      <span (click)="selectAll()">Tout sélectionner</span>
+    }
+  </div>
+  <div [@projectList]="contexts.length" class="filters">
     @for (context of contexts; track context.id) {
       <app-context-item
         [context]="context"
@@ -14,8 +19,8 @@
 
 <div class="realisations">
   <h2>Projets</h2>
-  <div [@projectList]="projects.length" class="items">
-    @for (project of projects; track project.id) {
+  <div [@projectList]="selectedProjects.length" class="items">
+    @for (project of selectedProjects; track project.id) {
       <app-project-item
         [project]="project"
         [routerLink]="['/projects', project.url]"></app-project-item>

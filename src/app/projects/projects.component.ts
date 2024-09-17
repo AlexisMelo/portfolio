@@ -4,7 +4,7 @@ import { SupabaseService } from '../shared/supabase.service';
 import { Context } from '../landing-page/timeline/context.model';
 import { Skill } from './skill.model';
 import { ProjectItemComponent } from './project-item/project-item.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   animate,
   query,
@@ -15,6 +15,7 @@ import {
 } from '@angular/animations';
 import { ContextItemComponent } from './context-item/context-item.component';
 import { IsSelectedPipe } from './is-selected.pipe';
+import { first } from 'rxjs';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -54,16 +55,13 @@ import { IsSelectedPipe } from './is-selected.pipe';
         ),
       ]),
     ]),
-    trigger('projectItem', [
-      transition(':enter', [style({ backgroundColor: 'red' })]),
-    ]),
   ],
 })
 export class ProjectsComponent implements OnInit {
   /**
    * Liste des projets réalisés
    */
-  public projects: Array<Project> = [];
+  private projects: Array<Project> = [];
 
   /**
    * Liste des contextes
@@ -91,27 +89,94 @@ export class ProjectsComponent implements OnInit {
   private isSelectedPipe = inject(IsSelectedPipe);
 
   /**
+   * Gestion de la route actuelle
+   */
+  private route = inject(ActivatedRoute);
+
+  /**
+   * Gestion du routeur
+   */
+  private router = inject(Router);
+
+  /**
    * Implémentation de OnInit
    */
   ngOnInit() {
     this.supabaseService
       .getProjects()
       .then(projects => (this.projects = projects));
+
     this.supabaseService.getContexts().then(contexts => {
       this.contexts = contexts;
       this.selectedContexts = [...this.contexts];
+      this.route.queryParamMap.pipe(first()).subscribe(params => {
+        const contexts = params.get('contexts');
+        if (!contexts) return;
+        const preselectedContexts = contexts.split(',').map(c => Number(c));
+        this.updateSelectedContexts(
+          this.contexts.filter(c => preselectedContexts.includes(c.id))
+        );
+      });
     });
+
     this.supabaseService.getSkills().then(skills => (this.skills = skills));
   }
 
+  /**
+   * Active/Désactive un contexte
+   * @param context
+   * @returns
+   */
   toggleContext(context: Context) {
+    //Si tous les contextes sont sélectionnés, on veut filtrer sur celui cliqué uniquement
+    if (this.selectedContexts.length === this.contexts.length) {
+      this.updateSelectedContexts([context]);
+      return;
+    }
+
+    //Si il est déjà sélectionné, on le déselectionne
     if (this.isSelectedPipe.transform(this.selectedContexts, context)) {
-      this.selectedContexts = this.selectedContexts.filter(
-        i => i.id !== context.id
+      this.updateSelectedContexts(
+        this.selectedContexts.filter(i => i.id !== context.id)
       );
       return;
     }
 
-    this.selectedContexts = [...this.selectedContexts, context];
+    //Si non sélectionné, sélection
+    this.updateSelectedContexts([...this.selectedContexts, context]);
+  }
+
+  /**
+   * Met à jour la liste des contextes sélectionnés
+   * @param contexts
+   */
+  private updateSelectedContexts(contexts: Array<Context>) {
+    this.selectedContexts = contexts;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        contexts:
+          this.selectedContexts.length === this.contexts.length
+            ? undefined
+            : this.selectedContexts.map(c => c.id).join(','),
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  /**
+   * Sélectionne
+   */
+  selectAll() {
+    this.updateSelectedContexts([...this.contexts]);
+  }
+
+  /**
+   * Projets à afficher
+   */
+  get selectedProjects() {
+    return this.projects.filter(p =>
+      this.isSelectedPipe.transform(this.selectedContexts, p.context)
+    );
   }
 }
