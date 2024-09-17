@@ -1,0 +1,8 @@
+<div class="logo">
+  @if (context.icon) {
+    <img [src]="context.icon" alt="" />
+  } @else {
+    <mat-icon fontSet="material-icons-outlined">work</mat-icon>
+  }
+</div>
+<div class="title">{{ context.company }}</div>

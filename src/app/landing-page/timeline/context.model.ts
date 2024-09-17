@@ -49,4 +49,9 @@ export interface Context {
    * Projets réalisés dans ce contexte
    */
   project: Array<Project>;
+
+  /**
+   * Logo
+   */
+  icon: string;
 }

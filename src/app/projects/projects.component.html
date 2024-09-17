@@ -1,11 +1,26 @@
 <h1>Réalisations</h1>
 
-<div [@projectList]="projects.length" class="realisations">
-  @for (project of projects; track project.id) {
-    <app-project-item
-      [project]="project"
-      [routerLink]="['/projects', project.url]"></app-project-item>
-  }
+<div class="contexts">
+  <h2>Contexte</h2>
+  <div class="filters">
+    @for (context of contexts; track context.id) {
+      <app-context-item
+        [context]="context"
+        [class.disabled]="!(selectedContexts | isSelected: context)"
+        (click)="toggleContext(context)"></app-context-item>
+    }
+  </div>
+</div>
+
+<div class="realisations">
+  <h2>Projets</h2>
+  <div [@projectList]="projects.length" class="items">
+    @for (project of projects; track project.id) {
+      <app-project-item
+        [project]="project"
+        [routerLink]="['/projects', project.url]"></app-project-item>
+    }
+  </div>
 </div>
 
 <!-- <h2 class="contexte-title">CONTEXTE. <span class="blink">_</span></h2>
