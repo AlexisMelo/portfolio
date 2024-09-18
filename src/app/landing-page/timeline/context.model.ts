@@ -21,9 +21,9 @@ export interface Context {
   label: string;
 
   /**
-   * Entreprise
+   * Détails du poste
    */
-  company: string;
+  description: string;
 
   /**
    * Lieu

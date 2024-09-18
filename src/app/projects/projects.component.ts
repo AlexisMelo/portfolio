@@ -13,7 +13,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { ContextItemComponent } from './context-item/context-item.component';
+import { FilterItemComponent } from './filter-item/filter-item.component';
 import { IsSelectedPipe } from './is-selected.pipe';
 import { first } from 'rxjs';
 
@@ -24,8 +24,7 @@ import { first } from 'rxjs';
   imports: [
     ProjectItemComponent,
     RouterLink,
-    ContextItemComponent,
-    ContextItemComponent,
+    FilterItemComponent,
     IsSelectedPipe,
   ],
   providers: [IsSelectedPipe],
@@ -119,7 +118,9 @@ export class ProjectsComponent implements OnInit {
       });
     });
 
-    this.supabaseService.getSkills().then(skills => (this.skills = skills));
+    this.supabaseService.getSkills().then(skills => {
+      this.skills = skills;
+    });
   }
 
   /**

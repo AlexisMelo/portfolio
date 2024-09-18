@@ -7,8 +7,8 @@
         : (currentDate | date: 'yyyy')
     }}
   </h2>
-  <div class="what">{{ item.label }}</div>
-  <div class="where">{{ item.company }}, {{ item.localization }}</div>
+  <div class="what">{{ item.description }}</div>
+  <div class="where">{{ item.label }}, {{ item.localization }}</div>
   @if (item.project.length > 0) {
     <div
       class="projects"

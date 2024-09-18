@@ -19,7 +19,7 @@ h1 {
   text-align: center;
 }
 
-.contexts {
+.filter-list {
   width: 90vw;
   margin: 1rem auto;
   min-height: 140px; //Todo : pas ouf, il faudrait faire un placeholder avant le chargements des contextes
@@ -41,6 +41,15 @@ h1 {
     flex-direction: row;
     overflow-x: auto;
     gap: 12px;
+
+    > * {
+      flex-shrink: 0;
+      width: 50px;
+
+      @media (min-width: $tablets) {
+        width: 75px;
+      }
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 <h1>Réalisations</h1>
 
-<div class="contexts">
+<div class="filter-list">
   <div class="title">
     <h2>Contextes</h2>
     @if (selectedContexts.length !== contexts.length) {
@@ -9,10 +9,21 @@
   </div>
   <div [@projectList]="contexts.length" class="filters">
     @for (context of contexts; track context.id) {
-      <app-context-item
-        [context]="context"
+      <app-filter-item
+        [item]="context"
         [class.disabled]="!(selectedContexts | isSelected: context)"
-        (click)="toggleContext(context)"></app-context-item>
+        (click)="toggleContext(context)"></app-filter-item>
+    }
+  </div>
+</div>
+
+<div class="filter-list">
+  <div class="title">
+    <h2>Outils</h2>
+  </div>
+  <div class="filters">
+    @for (skill of skills; track skill.id) {
+      <app-filter-item [item]="skill"> </app-filter-item>
     }
   </div>
 </div>

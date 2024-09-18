@@ -1,0 +1,8 @@
+<div class="logo">
+  @if (item.icon) {
+    <img [src]="item.icon" alt="" />
+  } @else {
+    <mat-icon fontSet="material-icons-outlined">work</mat-icon>
+  }
+</div>
+<div class="title">{{ item.label }}</div>
