@@ -4,7 +4,9 @@
   <div class="title">
     <h2>Contextes</h2>
     @if (selectedContexts.length !== contexts.length) {
-      <span (click)="selectAll()">Tout sélectionner</span>
+      <span (click)="selectAll()" (keypress)="selectAll()" tabindex="0"
+        >Tout sélectionner</span
+      >
     }
   </div>
   <div [@projectList]="contexts.length" class="filters">

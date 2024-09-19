@@ -3,7 +3,6 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Project } from '../projects/project.model';
 import { Context } from '../landing-page/timeline/context.model';
-import { Skill } from '../projects/skill.model';
 
 @Injectable({
   providedIn: 'root',
