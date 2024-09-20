@@ -22,4 +22,8 @@
   --inputBackgroundColor: white;
 
   --projectBackgroundColor: #{$very-light-green};
+
+  //https://m3.material.io/components/chips/specs
+  --filter-chip-border-color: #cac4d0;
+  --filter-chip-active-background-color: #{$very-light-green};
 }

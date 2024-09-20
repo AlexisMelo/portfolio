@@ -16,6 +16,7 @@ import {
 import { FilterItemComponent } from './filter-item/filter-item.component';
 import { IsSelectedPipe } from './is-selected.pipe';
 import { first } from 'rxjs';
+import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -26,12 +27,13 @@ import { first } from 'rxjs';
     RouterLink,
     FilterItemComponent,
     IsSelectedPipe,
+    FilterChipComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
   animations: [
-    trigger('projectList', [
+    trigger('stagger', [
       transition('* => *', [
         query(
           ':enter',
@@ -78,6 +80,11 @@ export class ProjectsComponent implements OnInit {
   public skills: Array<Skill> = [];
 
   /**
+   * Skills sélectionnés
+   */
+  public selectedSkills: Array<Skill> = [];
+
+  /**
    * Gestion de la base de donnée
    */
   private supabaseService = inject(SupabaseService);
@@ -120,6 +127,15 @@ export class ProjectsComponent implements OnInit {
 
     this.supabaseService.getSkills().then(skills => {
       this.skills = skills;
+      this.selectedSkills = [...this.skills];
+      this.route.queryParamMap.pipe(first()).subscribe(params => {
+        const skills = params.get('skills');
+        if (!skills) return;
+        const preselectedSkills = skills.split(',').map(s => Number(s));
+        this.updateSelectedSkills(
+          this.skills.filter(s => preselectedSkills.includes(s.id))
+        );
+      });
     });
   }
 
@@ -157,7 +173,8 @@ export class ProjectsComponent implements OnInit {
       relativeTo: this.route,
       queryParams: {
         contexts:
-          this.selectedContexts.length === this.contexts.length
+          this.selectedContexts.length === this.contexts.length ||
+          this.selectedContexts.length === 0
             ? undefined
             : this.selectedContexts.map(c => c.id).join(','),
       },
@@ -166,18 +183,74 @@ export class ProjectsComponent implements OnInit {
   }
 
   /**
-   * Sélectionne
+   * Sélectionne / Déselectionne un skill
+   * @param skill
+   * @returns
    */
-  selectAll() {
+  public toggleSkill(skill: Skill) {
+    //Si tous les skills sont sélectionnés, on veut filtrer sur celui cliqué uniquement
+    if (this.selectedSkills.length === this.skills.length) {
+      this.updateSelectedSkills([skill]);
+      return;
+    }
+
+    if (this.isSelectedPipe.transform(this.selectedSkills, skill)) {
+      this.updateSelectedSkills(
+        this.selectedSkills.filter(i => i.id !== skill.id)
+      );
+      return;
+    }
+
+    //Si non sélectionné, sélection
+    this.updateSelectedSkills([...this.selectedSkills, skill]);
+  }
+
+  /**
+   * Met à jour la liste des skills sélectionnés
+   * @param skills
+   */
+  private updateSelectedSkills(skills: Array<Skill>) {
+    this.selectedSkills = skills;
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        skills:
+          this.selectedSkills.length === this.skills.length ||
+          this.selectedSkills.length === 0
+            ? undefined
+            : this.selectedSkills.map(s => s.id).join(','),
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  /**
+   * Sélectionne tous les contextes
+   */
+  selectAllContexts() {
     this.updateSelectedContexts([...this.contexts]);
+  }
+
+  /**
+   * Sélectionne tous les skills
+   */
+  selectAllSkills() {
+    this.updateSelectedSkills([...this.skills]);
   }
 
   /**
    * Projets à afficher
    */
   get selectedProjects() {
-    return this.projects.filter(p =>
-      this.isSelectedPipe.transform(this.selectedContexts, p.context)
+    return this.projects.filter(
+      p =>
+        this.isSelectedPipe.transform(this.selectedContexts, p.context) &&
+        ((p.skill.length === 0 &&
+          this.selectedSkills.length === this.skills.length) ||
+          this.selectedSkills.some(s =>
+            this.isSelectedPipe.transform(p.skill, s)
+          ))
     );
   }
 }

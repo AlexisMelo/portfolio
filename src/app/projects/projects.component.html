@@ -1,58 +1,59 @@
 <h1>Réalisations</h1>
 
-<div class="filter-list">
+<div class="contexts">
   <div class="title">
     <h2>Contextes</h2>
     @if (selectedContexts.length !== contexts.length) {
-      <span (click)="selectAll()" (keypress)="selectAll()" tabindex="0"
+      <span
+        (click)="selectAllContexts()"
+        (keypress)="selectAllContexts()"
+        tabindex="0"
         >Tout sélectionner</span
       >
     }
   </div>
-  <div [@projectList]="contexts.length" class="filters">
+  <div [@stagger]="contexts.length" class="filters">
     @for (context of contexts; track context.id) {
       <app-filter-item
         [item]="context"
-        [class.disabled]="!(selectedContexts | isSelected: context)"
+        [active]="selectedContexts | isSelected: context"
         (click)="toggleContext(context)"></app-filter-item>
     }
   </div>
 </div>
 
-<div class="filter-list">
+<div class="tools">
   <div class="title">
     <h2>Outils</h2>
+    @if (selectedSkills.length !== skills.length) {
+      <span
+        (click)="selectAllSkills()"
+        (keypress)="selectAllSkills()"
+        tabindex="0"
+        >Tout sélectionner</span
+      >
+    }
   </div>
-  <div class="filters">
+  <div [@stagger]="skills.length" class="filters">
     @for (skill of skills; track skill.id) {
-      <app-filter-item [item]="skill"> </app-filter-item>
+      <app-filter-chip
+        [label]="skill.label"
+        [active]="selectedSkills | isSelected: skill"
+        (click)="toggleSkill(skill)">
+      </app-filter-chip>
     }
   </div>
 </div>
 
 <div class="realisations">
   <h2>Projets</h2>
-  <div [@projectList]="selectedProjects.length" class="items">
+  <div [@stagger]="selectedProjects.length" class="items">
     @for (project of selectedProjects; track project.id) {
       <app-project-item
         [project]="project"
         [routerLink]="['/projects', project.url]"></app-project-item>
+    } @empty {
+      <img class="empty" src="nothing.png" alt="Aucun projet n'a été trouvé" />
     }
   </div>
 </div>
-
-<!-- <h2 class="contexte-title">CONTEXTE. <span class="blink">_</span></h2>
-
-<div class="contexte">
-  @for (context of contexts; track context.id) {
-    <div>{{ context.company }}</div>
-  }
-</div>
-
-<h2 class="competences-title">COMPÉTENCES. <span class="blink">_</span></h2>
-
-<div class="competences">
-  @for (skill of skills; track skill.id) {
-    <div>{{ skill.label }}</div>
-  }
-</div> -->

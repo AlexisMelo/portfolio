@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FilterItem } from './filter-item.model';
 
@@ -14,4 +14,10 @@ export class FilterItemComponent {
    * Context to display
    */
   @Input({ required: true }) item!: FilterItem;
+
+  /**
+   * Est-ce que la chips doit avoir l'état "Active" ?
+   */
+  @HostBinding('class.active') @Input({ required: false }) active: boolean =
+    false;
 }
