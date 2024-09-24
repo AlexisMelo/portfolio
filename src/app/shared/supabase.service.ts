@@ -73,7 +73,8 @@ export class SupabaseService {
   public async getSkills() {
     const { data } = await this.supabase
       .from('skill')
-      .select('*, skill_type(*)');
+      .select('*, skill_type(*)')
+      .order('label');
     return data ?? [];
   }
 }

@@ -28,7 +28,7 @@ export class TimelineComponent implements OnInit {
    */
   ngOnInit() {
     this.supabaseService.getContexts().then(experiences => {
-      this.items = experiences;
+      this.items = experiences.filter(e => e.context_type.id !== 3); //On enlève les projets persos intemporels
     });
   }
 
