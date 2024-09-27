@@ -28,7 +28,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   border-left: 2px dashed;
   border-color: var(--timelineColor);
   background-color: var(--backgroundColor);
-  z-index: -1;
+  z-index: 10;
 
   @media (min-width: $tablets) {
     border-left-width: 4px;
@@ -50,6 +50,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   transform: scaleY(1);
   transform-origin: 0 100%;
   animation: uncover $head-dashed-line-animation-duration linear forwards;
+  z-index: 15;
 }
 
 .tail-dashed-line {
@@ -70,7 +71,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   height: 100%;
   position: absolute;
   border-left: 2px solid var(--timelineColor);
-  z-index: -1;
+  z-index: 10;
   margin-top: 10px;
 
   @media (min-width: $tablets) {
@@ -132,6 +133,7 @@ app-timeline-item-right,
 app-timeline-item-left {
   opacity: 0;
   animation: appear $timeline-items-animation-appear-duration ease-out forwards;
+  z-index: 20;
 }
 
 @for $i from 0 through 10 {
