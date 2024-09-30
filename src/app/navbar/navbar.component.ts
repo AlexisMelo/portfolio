@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   /**
    * Est-ce que le menu est ouvert
    */
-  @HostBinding('class.menu-opened') public menuOpened: boolean = true;
+  @HostBinding('class.menu-opened') public menuOpened: boolean = false;
 
   /**
    * Gestion du thème

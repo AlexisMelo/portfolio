@@ -1,5 +1,33 @@
-<h1>Réalisations</h1>
+<h1>Mes projets en vedette</h1>
 
+<div class="description">
+  Petite sélection des projets qui me tiennent à coeur
+</div>
+
+<div class="pinned">
+  @for (project of pinnedProjects; track project.id) {
+    <app-project-item [project]="project"></app-project-item>
+  }
+</div>
+
+<h1>Tous mes projets</h1>
+
+<div class="description">
+  Tu as l'âme d'un explorateur ? J'ajoute ici tous les projets auxquels j'ai
+  participé !
+</div>
+
+<div class="projects">
+  @for (project of selectedProjects; track project.id) {
+    <app-project-item [project]="project"></app-project-item>
+
+    @if (!$last) {
+      <br />
+    }
+  }
+</div>
+
+<!-- 
 <div class="contexts">
   <div class="title">
     <h2>Contextes</h2>
@@ -56,4 +84,4 @@
       <img class="empty" src="nothing.png" alt="Aucun projet n'a été trouvé" />
     }
   </div>
-</div>
+</div> -->

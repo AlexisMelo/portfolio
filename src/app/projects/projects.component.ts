@@ -253,4 +253,11 @@ export class ProjectsComponent implements OnInit {
           ))
     );
   }
+
+  /**
+   * Projets épinglés
+   */
+  get pinnedProjects() {
+    return this.projects.filter(p => p.pinned);
+  }
 }

@@ -60,4 +60,9 @@ export interface Project {
    * URL vers les détails du projet
    */
   url: string;
+
+  /**
+   * Est-ce que le projet doit être mis en avant sur le portfolio
+   */
+  pinned: boolean;
 }

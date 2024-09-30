@@ -7,12 +7,35 @@
 </div>
 
 <div class="label">
-  <div>{{ project.label }}</div>
+  <div>
+    <span class="project-label">{{ project.label }}</span>
+    <span class="type">{{ project.project_type.label }}</span>
+  </div>
   <div>
     {{ project.end_date ? (project.end_date | date: 'yyyy') : 'En cours' }}
   </div>
 </div>
 
-<div class="context">
-  {{ project.context.label }} • {{ project.project_type.label }}
+<div class="description">
+  {{ project.description }}
+</div>
+
+<div class="bottom">
+  <div class="context">
+    <div class="logo">
+      @if (project.context.icon) {
+        <img [src]="project.context.icon" alt="" />
+      } @else {
+        <mat-icon fontSet="material-icons-outlined">work</mat-icon>
+      }
+    </div>
+    <span class="label">
+      {{ project.context.label }}
+    </span>
+  </div>
+
+  <div class="time-spent">
+    <span class="duration"> {{ project.end_date }}</span>
+    <mat-icon fontSet="material-icons-outlined">timer</mat-icon>
+  </div>
 </div>

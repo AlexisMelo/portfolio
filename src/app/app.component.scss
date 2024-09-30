@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+app-navbar {
+  margin-bottom: 3rem;
+}
+
 app-footer {
   margin-top: 3rem;
 }
@@ -13,7 +17,7 @@ app-footer {
 app-wip {
   margin-bottom: 10px;
 
-  @media (min-width: $tablets) {
+  @media (min-width: $laptop-l) {
     margin-bottom: 0;
     position: absolute;
     left: -75px;
