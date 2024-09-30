@@ -22,16 +22,6 @@
       margin: 0 10px;
     }
   }
-
-  @media (min-width: $tablets) {
-    position: absolute;
-    left: -75px;
-    top: 25x;
-    transform: rotate(320deg);
-    padding: 10px;
-    border-width: 5px;
-    width: 400px;
-  }
 }
 
 @keyframes loop {

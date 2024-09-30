@@ -1,10 +1,12 @@
 @import '../../styles/breakpoints.scss';
 
 $transition-duration: 0.2s;
+$vertical-padding: 1rem;
+$logo-size: 3rem;
+$transition-duration: 0.3s;
 
 :host {
-  //background-color: var(--backgroundColor);
-  backdrop-filter: blur(15px);
+  background-color: var(--navbarBackgroundColor);
 
   position: sticky;
   top: 10px;
@@ -12,32 +14,35 @@ $transition-duration: 0.2s;
   margin-left: auto;
   margin-right: auto;
   border-radius: 12px;
-  max-width: 800px;
-  width: 90%;
+  max-width: 1200px;
+  width: 95%;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
+  padding: $vertical-padding 2rem;
+
+  transition:
+    border-bottom-right-radius $transition-duration ease-in,
+    border-bottom-left-radius $transition-duration ease-in;
+  transition-delay: $transition-duration;
+  transition-property: border-bottom-right-radius, border-bottom-left-radius;
+
+  //media query pour éviter que les corners restent à 0 si le menu reste ouvert ET qu'on agrandit l'écran
+  @media (max-width: $tablets) {
+    &.menu-opened {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      transition: none;
+    }
+  }
+
   .logo {
-    height: 3rem;
-    width: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: $logo-size;
+    width: $logo-size;
   }
-
-  .left-items,
-  .right-items {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 15px;
-  }
-
-  padding: 1.5rem 1rem;
 
   .theme-toggle {
     color: var(--navbarLinksColor);
@@ -49,6 +54,7 @@ $transition-duration: 0.2s;
   }
 
   a {
+    display: block;
     text-decoration: none;
     color: var(--navbarLinksColor);
     cursor: pointer;
@@ -82,6 +88,82 @@ $transition-duration: 0.2s;
 
       &:after {
         border-color: inherit;
+      }
+    }
+  }
+
+  .open-menu {
+    cursor: pointer;
+  }
+
+  .left-items,
+  .right-items {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+
+    .navbar-link {
+      display: none;
+    }
+  }
+
+  .right-items {
+    .links {
+      display: none;
+    }
+  }
+
+  > .logo {
+    display: none;
+  }
+
+  .collapsible-menu {
+    position: absolute;
+    top: calc($logo-size + 2 * $vertical-padding);
+    left: 0;
+    overflow: hidden;
+    height: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    transition: height $transition-duration ease-out;
+    width: 100%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: var(--navbarBackgroundColor);
+
+    &.opened {
+      height: 175px;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $tablets) {
+    .collapsible-menu {
+      display: none;
+    }
+
+    .logo {
+      display: block;
+    }
+
+    .open-menu {
+      display: none;
+    }
+
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .left-items,
+    .right-items {
+      .navbar-link {
+        display: block;
       }
     }
   }

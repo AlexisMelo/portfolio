@@ -1,33 +1,4 @@
-<div class="left-items">
-  <div>
-    <a
-      [routerLink]="['']"
-      [routerLinkActive]="['is-active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >À propos</a
-    >
-  </div>
-
-  <div>
-    <a [routerLink]="['projects']" [routerLinkActive]="['is-active']"
-      >Réalisations</a
-    >
-  </div>
-</div>
-
-<img
-  class="logo"
-  [src]="
-    themeService.theme.value === 'dark-mode' ? 'logo-dark.svg' : 'logo.svg'
-  "
-  alt="logo" />
-
-<div class="right-items">
-  <div>
-    <a [routerLink]="['contact']" [routerLinkActive]="['is-active']"
-      >Me contacter</a
-    >
-  </div>
+<ng-template #themeToggle>
   <mat-icon
     class="theme-toggle"
     fontSet="material-icons-outlined"
@@ -38,4 +9,66 @@
       dark_mode
     }
   </mat-icon>
+</ng-template>
+
+<ng-template #logo>
+  <img
+    [routerLink]="['']"
+    class="logo"
+    [src]="
+      themeService.theme.value === 'dark-mode' ? 'logo-dark.svg' : 'logo.svg'
+    "
+    alt="logo" />
+</ng-template>
+
+<ng-template #leftLinks>
+  <div class="navbar-link">
+    <a
+      [routerLink]="['']"
+      [routerLinkActive]="['is-active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >À propos</a
+    >
+  </div>
+
+  <div class="navbar-link">
+    <a [routerLink]="['projects']" [routerLinkActive]="['is-active']"
+      >Réalisations</a
+    >
+  </div>
+</ng-template>
+
+<ng-template #rightLinks>
+  <div class="navbar-link">
+    <a [routerLink]="['contact']" [routerLinkActive]="['is-active']"
+      >Me contacter</a
+    >
+  </div>
+</ng-template>
+
+<div class="left-items">
+  <ng-template *ngTemplateOutlet="logo"></ng-template>
+
+  <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
+</div>
+
+<ng-template class="center-logo" *ngTemplateOutlet="logo"></ng-template>
+
+<div class="right-items">
+  <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
+
+  <ng-template *ngTemplateOutlet="themeToggle"> </ng-template>
+
+  <div
+    class="open-menu"
+    (click)="toggleMenu()"
+    (keypress)="toggleMenu()"
+    tabindex="0">
+    <mat-icon> menu </mat-icon>
+  </div>
+</div>
+
+<div class="collapsible-menu" [class.opened]="this.menuOpened">
+  <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
+  <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
 </div>

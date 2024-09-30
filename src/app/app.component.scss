@@ -1,3 +1,5 @@
+@import '../styles/breakpoints.scss';
+
 :host {
   min-height: 100vh;
   display: flex;
@@ -6,4 +8,19 @@
 
 app-footer {
   margin-top: 3rem;
+}
+
+app-wip {
+  margin-bottom: 10px;
+
+  @media (min-width: $tablets) {
+    margin-bottom: 0;
+    position: absolute;
+    left: -75px;
+    top: 25x;
+    transform: rotate(320deg);
+    padding: 10px;
+    border-width: 5px;
+    width: 400px;
+  }
 }
