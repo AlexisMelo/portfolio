@@ -21,7 +21,7 @@ h1 {
 
 .pinned {
   display: grid;
-  gap: 20px;
+  gap: 10px;
   grid-template-columns: 1fr;
 
   @media (min-width: $tablets) {
@@ -38,4 +38,27 @@ h1 {
   width: 95%;
   margin: 0 auto;
   max-width: 1200px;
+  min-height: 90vh;
+}
+
+//https://stackoverflow.com/a/10399500/13770966
+.separator {
+  background-color: var(--separator-color);
+  height: 1px;
+  border: 0;
+}
+
+.filter-separator {
+  margin-top: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  app-input {
+    flex-grow: 1;
+  }
 }

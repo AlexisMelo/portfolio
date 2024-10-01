@@ -13,9 +13,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { FilterItemComponent } from './filter-item/filter-item.component';
 import { IsSelectedPipe } from './is-selected.pipe';
 import { first } from 'rxjs';
+import { InputComponent } from '../shared/input/input.component';
 import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
@@ -25,9 +25,9 @@ import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component
   imports: [
     ProjectItemComponent,
     RouterLink,
-    FilterItemComponent,
     IsSelectedPipe,
     FilterChipComponent,
+    InputComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',

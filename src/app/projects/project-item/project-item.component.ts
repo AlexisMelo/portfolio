@@ -3,11 +3,21 @@ import { Project } from '../project.model';
 import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
 import { DatePipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { DurationPipe } from '../duration.pipe';
+import { SuggestionChipComponent } from '../../shared/suggestion-chip/suggestion-chip.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-project-item',
   standalone: true,
-  imports: [RightArrowComponent, DatePipe, MatIcon],
+  imports: [
+    SuggestionChipComponent,
+    RightArrowComponent,
+    DatePipe,
+    MatIcon,
+    DurationPipe,
+    RouterLink,
+  ],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
 })

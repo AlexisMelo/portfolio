@@ -13,7 +13,7 @@ export class InputComponent {
   /**
    * Label
    */
-  @Input({ required: true }) label!: string;
+  @Input() label?: string;
 
   /**
    * Icone à afficher

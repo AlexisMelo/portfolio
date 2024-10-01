@@ -30,7 +30,7 @@
       {{ project.end_date ? (project.end_date | date: 'MMMM y') : 'En cours' }}
     </div>
     <div>
-      {{ duration }}
+      {{ project | duration }}
     </div>
   </div>
 }

@@ -1,0 +1,28 @@
+@import '../suggestion-chip/suggestion-chip.component.scss';
+
+:host {
+  cursor: pointer;
+
+  span {
+    transition-delay: 0.1s;
+    transition-property: margin-left;
+  }
+
+  mat-icon {
+    height: 1rem;
+    width: 1rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  &.active {
+    background-color: var(--filter-chip-active-background-color);
+    border-color: transparent;
+
+    span {
+      transition: none;
+      margin-left: 0;
+    }
+  }
+}

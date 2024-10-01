@@ -8,7 +8,9 @@
 
 <div class="label">
   <div>
-    <span class="project-label">{{ project.label }}</span>
+    <span class="project-label" [routerLink]="['/projects', project.url]">{{
+      project.label
+    }}</span>
     <span class="type">{{ project.project_type.label }}</span>
   </div>
   <div>
@@ -20,13 +22,21 @@
   {{ project.description }}
 </div>
 
+<div class="technologies">
+  @for (skill of project.skill; track skill.id) {
+    <app-suggestion-chip [label]="skill.label"></app-suggestion-chip>
+  }
+</div>
+
 <div class="bottom">
   <div class="context">
     <div class="logo">
       @if (project.context.icon) {
         <img [src]="project.context.icon" alt="" />
       } @else {
-        <mat-icon fontSet="material-icons-outlined">work</mat-icon>
+        <mat-icon class="work-icon" fontSet="material-icons-outlined"
+          >public</mat-icon
+        >
       }
     </div>
     <span class="label">
@@ -35,7 +45,13 @@
   </div>
 
   <div class="time-spent">
-    <span class="duration"> {{ project.end_date }}</span>
-    <mat-icon fontSet="material-icons-outlined">timer</mat-icon>
+    <span class="duration"> {{ project | duration }}</span>
+    <mat-icon class="timer-icon" fontSet="material-icons-outlined"
+      >schedule</mat-icon
+    >
   </div>
+</div>
+
+<div class="see-more" [routerLink]="['/projects', project.url]">
+  Voir plus de détails
 </div>

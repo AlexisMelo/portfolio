@@ -1,0 +1,16 @@
+:host {
+  border: 1px solid var(--filter-chip-border-color);
+  display: block;
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  position: relative;
+
+  span {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+}

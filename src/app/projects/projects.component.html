@@ -1,10 +1,10 @@
-<h1>Mes projets en vedette</h1>
+<h1>Mes projets favoris</h1>
 
 <div class="description">
   Petite sélection des projets qui me tiennent à coeur
 </div>
 
-<div class="pinned">
+<div [@stagger]="pinnedProjects.length" class="pinned">
   @for (project of pinnedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
   }
@@ -17,12 +17,25 @@
   participé !
 </div>
 
-<div class="projects">
+<div class="filters">
+  <app-input>
+    <input type="text" placeholder="Trouver un projet..." />
+  </app-input>
+  <app-filter-chip
+    [active]="selectedContexts.length < contexts.length"
+    label="Context">
+  </app-filter-chip>
+  <app-filter-chip [active]="true" label="Skill"> </app-filter-chip>
+</div>
+
+<hr class="separator filter-separator" />
+
+<div [@stagger]="selectedProjects.length" class="projects">
   @for (project of selectedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
 
     @if (!$last) {
-      <br />
+      <hr class="separator" />
     }
   }
 </div>
