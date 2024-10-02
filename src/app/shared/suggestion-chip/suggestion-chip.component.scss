@@ -1,16 +1,21 @@
 :host {
   border: 1px solid var(--filter-chip-border-color);
   display: block;
-  height: 1.7rem;
+  padding: 0;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  font-size: 0.8rem;
+  border-radius: var(--inputs-border-radius);
   position: relative;
 
   span {
     margin-left: 1rem;
     margin-right: 1rem;
     white-space: nowrap;
+  }
+
+  font-size: 0.8rem;
+
+  &.large {
+    padding: var(--inputs-padding-vertical) 0;
   }
 }

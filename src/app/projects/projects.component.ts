@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Project } from './project.model';
 import { SupabaseService } from '../shared/supabase.service';
 import { Context } from '../landing-page/timeline/context.model';
@@ -14,10 +14,11 @@ import {
   trigger,
 } from '@angular/animations';
 import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
-import { first } from 'rxjs';
+import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
 import { InputComponent } from '../shared/input/input.component';
 import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component';
 import { SelectableItem } from '../shared/is-selected/selectable-item.model';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -29,6 +30,8 @@ import { SelectableItem } from '../shared/is-selected/selectable-item.model';
     IsSelectedPipe,
     FilterChipComponent,
     InputComponent,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',
@@ -59,7 +62,7 @@ import { SelectableItem } from '../shared/is-selected/selectable-item.model';
     ]),
   ],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   /**
    * Liste des projets réalisés
    */
@@ -106,6 +109,21 @@ export class ProjectsComponent implements OnInit {
   private router = inject(Router);
 
   /**
+   * FormControl pour la recherche par mots clés
+   */
+  public filterFormControl = new FormControl('');
+
+  /**
+   * Souscription aux changements de texte
+   */
+  private filterSubscription?: Subscription;
+
+  /**
+   * Filtre pour retrouver un projet
+   */
+  private filter: string | null = null;
+
+  /**
    * Implémentation de OnInit
    */
   ngOnInit() {
@@ -138,6 +156,21 @@ export class ProjectsComponent implements OnInit {
         );
       });
     });
+
+    this.filterSubscription = this.filterFormControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe({
+        next: value => {
+          this.filter = value;
+        },
+      });
+  }
+
+  /**
+   * Implémentation de OnDestroy
+   */
+  ngOnDestroy() {
+    this.filterSubscription?.unsubscribe();
   }
 
   /**
@@ -251,8 +284,31 @@ export class ProjectsComponent implements OnInit {
           this.selectedSkills.length === this.skills.length) ||
           this.selectedSkills.some(s =>
             this.isSelectedPipe.transform(p.skill, s)
-          ))
+          )) &&
+        (!this.filter || (this.filter && this.projectMatchesFilter(p)))
     );
+  }
+
+  /**
+   * Est-ce que le projet match le filtre textuel
+   * @param project
+   */
+  private projectMatchesFilter(project: Project): boolean {
+    const filter = this.filter?.toLowerCase();
+    if (!filter) return true; //si y'a pas de filtre
+
+    if (project.label.toLowerCase().includes(filter)) return true; //nom
+    if (project.project_type.label.toLowerCase().includes(filter)) return true;
+    if (project.context.label.toLowerCase().includes(filter)) return true;
+    if (project.description.toLowerCase().includes(filter)) return true;
+    if (
+      project.skill
+        .map(s => s.label.toLowerCase())
+        .find(s => s.includes(filter)) !== undefined
+    )
+      return true;
+
+    return false;
   }
 
   /**

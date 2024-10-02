@@ -27,11 +27,6 @@ export interface Project {
   end_date: string;
 
   /**
-   * Type de projet
-   */
-  type: ProjectType;
-
-  /**
    * Contexte du projet
    */
   context: Context;

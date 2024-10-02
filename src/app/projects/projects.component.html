@@ -19,14 +19,18 @@
 
 <div class="filters">
   <app-input>
-    <input type="text" placeholder="Trouver un projet..." />
+    <input
+      type="text"
+      placeholder="Trouver un projet..."
+      [formControl]="filterFormControl" />
   </app-input>
   <app-filter-chip
     [active]="selectedContexts.length < contexts.length"
     label="Contexte"
     [options]="contexts"
     [selectedOptions]="selectedContexts"
-    (selected)="select($event)">
+    (selected)="select($event)"
+    [large]="true">
   </app-filter-chip>
   <!-- <app-filter-chip [active]="true" label="Skill"> </app-filter-chip> -->
 </div>
