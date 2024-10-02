@@ -4,6 +4,7 @@
 @import './breakpoints.scss';
 @import './light-mode.scss';
 @import './dark-mode.scss';
+@import './design-system.scss';
 
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
 body.dark-mode {
@@ -14,6 +15,18 @@ body.dark-mode {
 body.light-mode {
   @include light-mode();
   background-color: var(--backgroundColor);
+}
+
+//Inclut le padding et border dans le calcul de la taille d'un élément
+html {
+  @include design-system();
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body,
@@ -54,16 +67,4 @@ h2 {
 
 .blink {
   animation: blink 0.8s linear infinite;
-}
-
-//Inclut le padding et border dans le calcul de la taille d'un élément
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
 }

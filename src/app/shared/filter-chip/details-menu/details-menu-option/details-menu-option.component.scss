@@ -1,0 +1,28 @@
+$mat-icon-width: 1rem;
+
+:host {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 1rem;
+  border-top: 1px solid var(--filter-chip-border-color);
+
+  &:hover {
+    background-color: var(--filter-chip-hover-option-background-color);
+  }
+
+  mat-icon {
+    width: $mat-icon-width;
+    height: $mat-icon-width;
+    font-size: $mat-icon-width;
+  }
+
+  span {
+    margin-left: calc($mat-icon-width + 0.5rem);
+  }
+
+  &.active {
+    span {
+      margin-left: 0.5rem;
+    }
+  }
+}

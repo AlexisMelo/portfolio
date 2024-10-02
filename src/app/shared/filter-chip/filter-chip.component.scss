@@ -1,7 +1,22 @@
 @import '../activable-chip/activable-chip.component.scss';
 
 :host {
+  position: relative;
+
   span {
     margin-right: 0;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+app-details-menu {
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  right: 0;
+  left: auto;
+  margin-top: 0.5rem;
 }

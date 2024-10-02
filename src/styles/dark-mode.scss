@@ -20,13 +20,17 @@
   --birdsURL: url('../assets/birds-dark-mode.svg');
   --buttonTextColor: white;
   --buttonBackgroundColor: #{$light-green};
+
   --inputBackgroundColor: #{$very-dark-green};
+  --inputBorderColor: #{$green};
 
   --projectBackgroundColor: #{$green};
 
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: #49454f;
+  --filter-chip-border-color: #{$dark-green};
   --filter-chip-active-background-color: #{$green};
+  --filter-chip-details-menu-background-color: #{$green};
+  --filter-chip-hover-option-background-color: #{$dark-green};
 
   --project-see-more-background-color: #{$green};
 

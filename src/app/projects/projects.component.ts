@@ -13,10 +13,11 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { IsSelectedPipe } from './is-selected.pipe';
+import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
 import { first } from 'rxjs';
 import { InputComponent } from '../shared/input/input.component';
 import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component';
+import { SelectableItem } from '../shared/is-selected/selectable-item.model';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -259,5 +260,17 @@ export class ProjectsComponent implements OnInit {
    */
   get pinnedProjects() {
     return this.projects.filter(p => p.pinned);
+  }
+
+  /**
+   * Sélectionne un contexte particulier
+   * @param option
+   */
+  public select(option: SelectableItem) {
+    if (option.id === -1) {
+      this.selectAllContexts();
+      return;
+    }
+    this.updateSelectedContexts([option as Context]);
   }
 }

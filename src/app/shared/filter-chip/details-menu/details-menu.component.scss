@@ -1,0 +1,12 @@
+:host {
+  background-color: var(--filter-chip-details-menu-background-color);
+  z-index: 100;
+  width: 300px;
+  border: 1px solid var(--filter-chip-border-color);
+  border-radius: var(--inputs-border-radius);
+  cursor: default;
+}
+
+.header {
+  padding: 8px 8px 8px 1rem;
+}

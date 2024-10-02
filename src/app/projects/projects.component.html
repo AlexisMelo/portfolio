@@ -23,9 +23,12 @@
   </app-input>
   <app-filter-chip
     [active]="selectedContexts.length < contexts.length"
-    label="Context">
+    label="Contexte"
+    [options]="contexts"
+    [selectedOptions]="selectedContexts"
+    (selected)="select($event)">
   </app-filter-chip>
-  <app-filter-chip [active]="true" label="Skill"> </app-filter-chip>
+  <!-- <app-filter-chip [active]="true" label="Skill"> </app-filter-chip> -->
 </div>
 
 <hr class="separator filter-separator" />
@@ -39,62 +42,3 @@
     }
   }
 </div>
-
-<!-- 
-<div class="contexts">
-  <div class="title">
-    <h2>Contextes</h2>
-    @if (selectedContexts.length !== contexts.length) {
-      <span
-        (click)="selectAllContexts()"
-        (keypress)="selectAllContexts()"
-        tabindex="0"
-        >Tout sélectionner</span
-      >
-    }
-  </div>
-  <div [@stagger]="contexts.length" class="filters">
-    @for (context of contexts; track context.id) {
-      <app-filter-item
-        [item]="context"
-        [active]="selectedContexts | isSelected: context"
-        (click)="toggleContext(context)"></app-filter-item>
-    }
-  </div>
-</div>
-
-<div class="tools">
-  <div class="title">
-    <h2>Outils</h2>
-    @if (selectedSkills.length !== skills.length) {
-      <span
-        (click)="selectAllSkills()"
-        (keypress)="selectAllSkills()"
-        tabindex="0"
-        >Tout sélectionner</span
-      >
-    }
-  </div>
-  <div [@stagger]="skills.length" class="filters">
-    @for (skill of skills; track skill.id) {
-      <app-filter-chip
-        [label]="skill.label"
-        [active]="selectedSkills | isSelected: skill"
-        (click)="toggleSkill(skill)">
-      </app-filter-chip>
-    }
-  </div>
-</div>
-
-<div class="realisations">
-  <h2>Projets</h2>
-  <div [@stagger]="selectedProjects.length" class="items">
-    @for (project of selectedProjects; track project.id) {
-      <app-project-item
-        [project]="project"
-        [routerLink]="['/projects', project.url]"></app-project-item>
-    } @empty {
-      <img class="empty" src="nothing.png" alt="Aucun projet n'a été trouvé" />
-    }
-  </div>
-</div> -->

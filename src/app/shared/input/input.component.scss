@@ -33,8 +33,8 @@ mat-icon {
 
     input,
     textarea {
-      border-radius: 5px;
-      border: 1px solid var(--textColor);
+      border-radius: var(--inputs-border-radius);
+      border: 1px solid var(--inputBorderColor);
       padding: 0.7rem 1rem;
       width: 100%;
       height: 100%;

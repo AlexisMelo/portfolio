@@ -3,3 +3,9 @@
 }
 <span>{{ label }}</span>
 <mat-icon>arrow_drop_down</mat-icon>
+<app-details-menu
+  [class.hidden]="!menuIsOpen"
+  [options]="options"
+  [selectedOptions]="selectedOptions"
+  header="Sélectionner un contexte"
+  (selected)="select($event)"></app-details-menu>
