@@ -24,7 +24,7 @@
 
 <div class="technologies">
   @for (skill of project.skill; track skill.id) {
-    <app-suggestion-chip [label]="skill.label"></app-suggestion-chip>
+    <app-suggestion-chip>{{ skill.label }} </app-suggestion-chip>
   }
 </div>
 

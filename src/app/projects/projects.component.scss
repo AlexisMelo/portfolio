@@ -34,19 +34,7 @@ h1 {
   }
 }
 
-:host {
-  width: 95%;
-  margin: 0 auto;
-  max-width: 1200px;
-  min-height: 90vh;
-}
 
-//https://stackoverflow.com/a/10399500/13770966
-.separator {
-  background-color: var(--separator-color);
-  height: 1px;
-  border: 0;
-}
 
 .filter-separator {
   margin-top: 1.5rem;

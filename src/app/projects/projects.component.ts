@@ -16,9 +16,10 @@ import {
 import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
 import { InputComponent } from '../shared/input/input.component';
-import { FilterChipComponent } from '../shared/filter-chip/filter-chip.component';
 import { SelectableItem } from '../shared/is-selected/selectable-item.model';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterChipComponent } from '../shared/chips/filter-chip/filter-chip.component';
+import { SeparatorComponent } from '../shared/separator/separator.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -32,6 +33,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     InputComponent,
     ReactiveFormsModule,
     FormsModule,
+    SeparatorComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',

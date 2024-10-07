@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .text {
+    line-height: 1.5rem;
+    order: 2;
+    font-size: 0.8rem;
+  }
+
+  .text,
+  .image-container {
+    width: 50%;
+  }
+
+  .image-container {
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    order: 3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.left {
+    .text {
+      margin-right: 3rem;
+    }
+  }
+
+  //image passe à gauche
+  &.right {
+    .image-container {
+      order: 1;
+    }
+
+    .text {
+      margin-left: 3rem;
+    }
+  }
+}

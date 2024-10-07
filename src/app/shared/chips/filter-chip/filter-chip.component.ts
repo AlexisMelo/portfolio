@@ -8,8 +8,8 @@ import {
 import { ActivableChipComponent } from '../activable-chip/activable-chip.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DetailsMenuComponent } from './details-menu/details-menu.component';
-import { SelectableItem } from '../is-selected/selectable-item.model';
-import { OutsideClickDirective } from '../outside-click.directive';
+import { OutsideClickDirective } from '../../outside-click.directive';
+import { SelectableItem } from '../../is-selected/selectable-item.model';
 
 @Component({
   selector: 'app-filter-chip',

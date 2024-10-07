@@ -1,5 +1,8 @@
 import { Context } from '../landing-page/timeline/context.model';
+import { Coworker } from './coworker.model';
 import { ProjectType } from './project-type.model';
+import { Role } from './role.model';
+import { Section } from './section.model';
 import { Skill } from './skill.model';
 
 /**
@@ -24,7 +27,7 @@ export interface Project {
   /**
    * Date de fin du projet
    */
-  end_date: string;
+  end_date?: string;
 
   /**
    * Contexte du projet
@@ -34,7 +37,7 @@ export interface Project {
   /**
    * Description du projet
    */
-  description: string;
+  description?: string;
 
   /**
    * Type du projet
@@ -49,7 +52,7 @@ export interface Project {
   /**
    * Lien vers l'image d'illustration
    */
-  thumbnail: string;
+  thumbnail?: string;
 
   /**
    * URL vers les détails du projet
@@ -60,4 +63,19 @@ export interface Project {
    * Est-ce que le projet doit être mis en avant sur le portfolio
    */
   pinned: boolean;
+
+  /**
+   * Equipe
+   */
+  coworker: Array<Coworker>;
+
+  /**
+   * Rôles joués dans la réalisation du projet
+   */
+  role: Array<Role>;
+
+  /**
+   * Sections avec les détails
+   */
+  section: Array<Section>;
 }

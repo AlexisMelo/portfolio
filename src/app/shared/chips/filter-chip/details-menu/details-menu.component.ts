@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SelectableItem } from '../../is-selected/selectable-item.model';
 import { DetailsMenuOptionComponent } from './details-menu-option/details-menu-option.component';
-import { IsSelectedPipe } from '../../is-selected/is-selected.pipe';
+import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
+import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 
 @Component({
   selector: 'app-details-menu',

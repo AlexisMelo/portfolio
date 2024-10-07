@@ -43,7 +43,9 @@ export class SupabaseService {
   public async getProjectByUrl(url: string) {
     const { data } = await this.supabase
       .from('project')
-      .select('*, project_type(*), context(*), skill(*)')
+      .select(
+        '*, project_type(*), context(*), skill(*, skill_type(*)), coworker(*), role(*), section(*)'
+      )
       .eq('url', url)
       .returns<Project>()
       .limit(1)

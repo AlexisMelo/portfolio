@@ -4,7 +4,7 @@ import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/rig
 import { DatePipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { DurationPipe } from '../duration.pipe';
-import { SuggestionChipComponent } from '../../shared/suggestion-chip/suggestion-chip.component';
+import { SuggestionChipComponent } from '../../shared/chips/suggestion-chip/suggestion-chip.component';
 import { RouterLink } from '@angular/router';
 
 @Component({

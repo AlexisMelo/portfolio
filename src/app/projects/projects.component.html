@@ -35,14 +35,14 @@
   <!-- <app-filter-chip [active]="true" label="Skill"> </app-filter-chip> -->
 </div>
 
-<hr class="separator filter-separator" />
+<app-separator class="filter-separator"></app-separator>
 
 <div [@stagger]="selectedProjects.length" class="projects">
   @for (project of selectedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
 
     @if (!$last) {
-      <hr class="separator" />
+      <app-separator></app-separator>
     }
   }
 </div>

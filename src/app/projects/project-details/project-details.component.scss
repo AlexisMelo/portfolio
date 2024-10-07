@@ -1,52 +1,122 @@
-h1 {
-  text-align: center;
+$icon-size: 2rem;
+$gap: 1.5rem;
+
+.type {
+  margin-left: calc($icon-size + $gap);
+  margin-bottom: calc($gap / 2);
 }
 
-:host {
-  min-height: 80vh;
-}
-
-.description {
-  text-align: center;
-}
-
-.context {
+.title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-direction: row;
-  margin-top: 3rem;
-}
+  gap: $gap;
+  margin-bottom: 2rem;
 
-.dates {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-direction: row;
-  margin-top: 3rem;
-}
-
-.icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 3rem;
-
-  .icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    overflow: hidden;
+  .icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .icon {
+      width: $icon-size;
+      height: $icon-size;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  .statut {
+    background-color: orange;
+    border-radius: 12px;
+    padding: 4px 12px;
+  }
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+
+  svg {
+    width: calc(0.7 * $icon-size);
+  }
+
+  > * {
+    display: flex;
+    align-items: center;
+    gap: calc($gap / 3);
+  }
+}
+
+app-separator {
+  margin: 2rem 0;
+}
+
+.more-infos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $gap;
+}
+
+.sections {
+  app-section {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.skillGroups {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  .skillGroup {
+    min-width: 30%;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #e9eee2;
+
+    h3 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .chips {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
   }
 }
