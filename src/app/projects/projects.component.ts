@@ -300,7 +300,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     if (project.label.toLowerCase().includes(filter)) return true; //nom
     if (project.project_type.label.toLowerCase().includes(filter)) return true;
     if (project.context.label.toLowerCase().includes(filter)) return true;
-    if (project.description.toLowerCase().includes(filter)) return true;
+    if (project.description?.toLowerCase().includes(filter)) return true;
     if (
       project.skill
         .map(s => s.label.toLowerCase())
