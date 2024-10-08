@@ -324,11 +324,24 @@ export class ProjectsComponent implements OnInit, OnDestroy {
    * Sélectionne un contexte particulier
    * @param option
    */
-  public select(option: SelectableItem) {
+  public selectContext(option: SelectableItem) {
     if (option.id === -1) {
       this.selectAllContexts();
       return;
     }
     this.updateSelectedContexts([option as Context]);
+  }
+
+  /**
+   * Sélectionne un skill particulier
+   * @param option
+   * @returns
+   */
+  public selectSkill(option: SelectableItem) {
+    if (option.id === -1) {
+      this.selectAllSkills();
+      return;
+    }
+    this.updateSelectedSkills([option as Skill]);
   }
 }

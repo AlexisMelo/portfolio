@@ -26,13 +26,20 @@
   </app-input>
   <app-filter-chip
     [active]="selectedContexts.length < contexts.length"
-    label="Contexte"
     [options]="contexts"
     [selectedOptions]="selectedContexts"
-    (selected)="select($event)"
+    (selected)="selectContext($event)"
     [large]="true">
+    Contexte
   </app-filter-chip>
-  <!-- <app-filter-chip [active]="true" label="Skill"> </app-filter-chip> -->
+  <app-filter-chip
+    [active]="selectedSkills.length < skills.length"
+    [options]="skills"
+    [selectedOptions]="selectedSkills"
+    (selected)="selectSkill($event)"
+    [large]="true">
+    Technologie
+  </app-filter-chip>
 </div>
 
 <app-separator class="filter-separator"></app-separator>
