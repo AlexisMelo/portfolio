@@ -1,17 +1,17 @@
 @import './colors.scss';
 
 @mixin light-mode() {
-  --titleColor: #{$green-700};
-  --textColor: #{$green-500};
+  --titleColor: #{$green-500};
+  --textColor: #{$green-400};
   --backgroundColor: #{$white};
 
-  --navbarLinksColor: #{$green-500};
+  --navbarLinksColor: #{$green-400};
   --navbarBackgroundColor: #{$green-100};
 
-  --timelineCircleColor: #{$green-700};
-  --timelineProject: #{$green-400};
-  --timelineLeftCircle: #{$green-400};
-  --timelineLeftText: #{$green-400};
+  --timelineCircleColor: #{$green-500};
+  --timelineProject: #{$green-300};
+  --timelineLeftCircle: #{$green-300};
+  --timelineLeftText: #{$green-300};
   --timelineColor: #{$green-100};
 
   --footerBackgroundColor: #{$green-100};
@@ -19,7 +19,7 @@
   --contactBackgroundColor: #{$green-100};
   --birdsURL: url('../assets/birds-light-mode.svg');
   --buttonTextColor: #{$white};
-  --buttonBackgroundColor: #{$green-500};
+  --buttonBackgroundColor: #{$green-400};
 
   --inputBackgroundColor: #{$white};
   --inputBorderColor: #{$gray-200};
@@ -46,8 +46,8 @@
   //highlightable-chip
   --highlightable-chip-background-color: #{$green-100};
   --highlightable-chip-border-color: #{$green-200};
-  --highlightable-chip-gradient-1: #{$green-500};
-  --highlightable-chip-gradient-2: #{$green-400};
+  --highlightable-chip-gradient-1: #{$green-400};
+  --highlightable-chip-gradient-2: #{$green-300};
   --highlightable-chip-gradient-3: #{$green-200};
-  --highlightable-chip-gradient-4: #{$green-500};
+  --highlightable-chip-gradient-4: #{$green-400};
 }

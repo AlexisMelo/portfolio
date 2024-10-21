@@ -1,53 +1,53 @@
 @import './colors.scss';
 
 @mixin dark-mode() {
-  --titleColor: #{$green-400};
+  --titleColor: #{$green-300};
   --textColor: #{$white};
-  --backgroundColor: #{$green-900};
+  --backgroundColor: #{$green-600};
 
   --navbarLinksColor: #{$white};
-  --navbarBackgroundColor: #{$green-700};
+  --navbarBackgroundColor: #{$green-500};
 
-  --timelineCircleColor: #{$green-400};
-  --timelineProject: #{$green-400};
+  --timelineCircleColor: #{$green-300};
+  --timelineProject: #{$green-300};
   --timelineLeftCircle: #{$green-100};
   --timelineLeftText: #{$green-100};
   --timelineColor: #{$green-100};
 
-  --footerBackgroundColor: #{$green-700};
+  --footerBackgroundColor: #{$green-500};
 
-  --contactBackgroundColor: #{$green-700};
+  --contactBackgroundColor: #{$green-500};
   --birdsURL: url('../assets/birds-dark-mode.svg');
   --buttonTextColor: #{$white};
-  --buttonBackgroundColor: #{$green-400};
+  --buttonBackgroundColor: #{$green-300};
 
-  --inputBackgroundColor: #{$green-900};
-  --inputBorderColor: #{$green-500};
+  --inputBackgroundColor: #{$green-600};
+  --inputBorderColor: #{$green-400};
 
-  --projectBackgroundColor: #{$green-500};
+  --projectBackgroundColor: #{$green-400};
 
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: #{$green-700};
-  --filter-chip-active-background-color: #{$green-500};
-  --filter-chip-details-menu-background-color: #{$green-500};
-  --filter-chip-hover-option-background-color: #{$green-700};
+  --filter-chip-border-color: #{$green-500};
+  --filter-chip-active-background-color: #{$green-400};
+  --filter-chip-details-menu-background-color: #{$green-400};
+  --filter-chip-hover-option-background-color: #{$green-500};
 
-  --project-see-more-background-color: #{$green-500};
+  --project-see-more-background-color: #{$green-400};
 
-  --separator-color: #{$green-500};
+  --separator-color: #{$green-400};
 
   //project-item
   --img-background: #{$white};
 
   //project-details
-  --thumbnail-border: #{$green-700};
-  --skill-group-border: #{$green-700};
+  --thumbnail-border: #{$green-500};
+  --skill-group-border: #{$green-500};
 
   //highlightable-chip
   --highlightable-chip-background-color: #{$green-200};
   --highlightable-chip-border-color: #{$green-200};
-  --highlightable-chip-gradient-1: #{$green-700};
-  --highlightable-chip-gradient-2: #{$green-400};
-  --highlightable-chip-gradient-3: #{$green-400};
-  --highlightable-chip-gradient-4: #{$green-700};
+  --highlightable-chip-gradient-1: #{$green-500};
+  --highlightable-chip-gradient-2: #{$green-300};
+  --highlightable-chip-gradient-3: #{$green-300};
+  --highlightable-chip-gradient-4: #{$green-500};
 }
