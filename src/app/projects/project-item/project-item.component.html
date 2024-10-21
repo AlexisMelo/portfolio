@@ -1,6 +1,6 @@
 <div class="icon">
-  @if (project.thumbnail) {
-    <img [src]="project.thumbnail" alt="" />
+  @if (project.icon) {
+    <img [src]="project.icon" alt="" />
   } @else {
     <mat-icon>apps</mat-icon>
   }
@@ -13,9 +13,9 @@
     }}</span>
     <span class="type">{{ project.project_type.label }}</span>
   </div>
-  <div>
-    {{ project.end_date ? (project.end_date | date: 'yyyy') : 'En cours' }}
-  </div>
+  <app-suggestion-chip>
+    {{ project | status }}
+  </app-suggestion-chip>
 </div>
 
 <div class="description">
@@ -23,9 +23,16 @@
 </div>
 
 <div class="technologies">
-  @for (skill of project.skill; track skill.id) {
-    <app-suggestion-chip>{{ skill.label }} </app-suggestion-chip>
+  @for (skill of project.skill | slice: 0 : 3; track skill.id) {
+    <app-highlightable-chip [highlighted]="skill.main"
+      >{{ skill.label }}
+    </app-highlightable-chip>
   }
+  <span>
+    @if (project.skill.length > 3) {
+      + {{ project.skill.length - 3 }}
+    }
+  </span>
 </div>
 
 <div class="bottom">
@@ -34,9 +41,7 @@
       @if (project.context.icon) {
         <img [src]="project.context.icon" alt="" />
       } @else {
-        <mat-icon class="work-icon" fontSet="material-icons-outlined"
-          >public</mat-icon
-        >
+        <mat-icon class="work-icon">location_on</mat-icon>
       }
     </div>
     <span class="label">
@@ -44,12 +49,21 @@
     </span>
   </div>
 
-  <div class="time-spent">
-    <span class="duration"> {{ project | duration }}</span>
-    <mat-icon class="timer-icon" fontSet="material-icons-outlined"
-      >schedule</mat-icon
-    >
-  </div>
+  @if ((project | status) !== 'Abandonné') {
+    <div class="time-spent">
+      <span class="duration"> {{ project | duration }}</span>
+      <mat-icon class="timer-icon" fontSet="material-symbols-outlined"
+        >schedule</mat-icon
+      >
+
+      @if ((project | status) === 'Terminé') {
+        <span class="end-year">{{ project.end_date | date: 'yyyy' }}</span>
+        <mat-icon class="timer-icon" fontSet="material-symbols-outlined"
+          >package_2</mat-icon
+        >
+      }
+    </div>
+  }
 </div>
 
 <div class="see-more" [routerLink]="['/projects', project.url]">

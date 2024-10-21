@@ -1,38 +1,53 @@
 @import './colors.scss';
 
 @mixin light-mode() {
-  --titleColor: #{$dark-green};
-  --textColor: #{$green};
-  --backgroundColor: white;
+  --titleColor: #{$green-700};
+  --textColor: #{$green-500};
+  --backgroundColor: #{$white};
 
-  --navbarLinksColor: #{$green};
-  --navbarBackgroundColor: #{$very-light-green};
+  --navbarLinksColor: #{$green-500};
+  --navbarBackgroundColor: #{$green-100};
 
-  --timelineCircleColor: #{$dark-green};
-  --timelineProject: #{$light-green};
-  --timelineLeftCircle: #{$light-green};
-  --timelineLeftText: #{$light-green};
-  --timelineColor: #{$very-light-green};
+  --timelineCircleColor: #{$green-700};
+  --timelineProject: #{$green-400};
+  --timelineLeftCircle: #{$green-400};
+  --timelineLeftText: #{$green-400};
+  --timelineColor: #{$green-100};
 
-  --footerBackgroundColor: #{$very-light-green};
+  --footerBackgroundColor: #{$green-100};
 
-  --contactBackgroundColor: #{$very-light-green};
+  --contactBackgroundColor: #{$green-100};
   --birdsURL: url('../assets/birds-light-mode.svg');
-  --buttonTextColor: white;
-  --buttonBackgroundColor: #{$green};
+  --buttonTextColor: #{$white};
+  --buttonBackgroundColor: #{$green-500};
 
-  --inputBackgroundColor: white;
-  --inputBorderColor: #{$gray};
+  --inputBackgroundColor: #{$white};
+  --inputBorderColor: #{$gray-200};
 
-  --projectBackgroundColor: #{$very-light-green};
+  --projectBackgroundColor: #{$green-100};
 
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: #{$gray};
-  --filter-chip-active-background-color: #{$very-light-green};
-  --filter-chip-details-menu-background-color: #{$very-light-green};
-  --filter-chip-hover-option-background-color: #{$almost-light-green};
+  --filter-chip-border-color: #{$gray-200};
+  --filter-chip-active-background-color: #{$green-100};
+  --filter-chip-details-menu-background-color: #{$green-100};
+  --filter-chip-hover-option-background-color: #{$green-200};
 
-  --project-see-more-background-color: #{$very-light-green};
+  --project-see-more-background-color: #{$green-100};
 
-  --separator-color: #{$lightgray};
+  --separator-color: #{$gray-100};
+
+  //project-item
+  --img-background: #{$white};
+
+  //project-details
+  --thumbnail-border: #{$gray-200};
+  --skill-group-border: #{$gray-200};
+
+  //highlightable-chip
+  --highlightable-chip-background-color: #{$green-100};
+  --highlightable-chip-border-color: #{$green-200};
+  --highlightable-chip-gradient-1: #{$green-500};
+  --highlightable-chip-gradient-2: #{$green-400};
+  --highlightable-chip-gradient-3: #{$green-200};
+  --highlightable-chip-gradient-4: #{$green-500};
 }

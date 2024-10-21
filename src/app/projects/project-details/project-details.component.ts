@@ -11,6 +11,8 @@ import { SeparatorComponent } from 'src/app/shared/separator/separator.component
 import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
 import { SectionComponent } from './section/section.component';
 import { Skill } from '../skill.model';
+import { StatusPipe } from '../status/status.pipe';
+import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
 
 @Component({
   selector: 'app-project-details',
@@ -20,10 +22,12 @@ import { Skill } from '../skill.model';
     MatIcon,
     DurationPipe,
     SuggestionChipComponent,
+    HighlightableChipComponent,
     SeparatorComponent,
     RightArrowComponent,
     SectionComponent,
     KeyValuePipe,
+    StatusPipe,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

@@ -1,0 +1,32 @@
+@import '../suggestion-chip/suggestion-chip.component.scss';
+
+:host {
+  &.highlighted {
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    background-color: var(--highlightable-chip-background-color);
+    border-color: var(--highlightable-chip-border-color);
+
+    span {
+      background: linear-gradient(
+        to right,
+        var(--highlightable-chip-gradient-1) 20%,
+        var(--highlightable-chip-gradient-2) 40%,
+        var(--highlightable-chip-gradient-3) 60%,
+        var(--highlightable-chip-gradient-4) 80%
+      );
+      background-size: 200% auto;
+
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: shine 1.5s linear infinite;
+      @keyframes shine {
+        from {
+          background-position: 200% center;
+        }
+      }
+    }
+  }
+}

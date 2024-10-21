@@ -32,6 +32,7 @@ export class SupabaseService {
       .from('project')
       .select('*, project_type(*), context(*), skill(*)')
       .order('end_date', { ascending: false })
+      .order('main', { referencedTable: 'skill', ascending: false })
       .returns<Array<Project>>();
     return data ?? [];
   }
@@ -47,6 +48,8 @@ export class SupabaseService {
         '*, project_type(*), context(*), skill(*, skill_type(*)), coworker(*), role(*), section(*)'
       )
       .eq('url', url)
+      .order('main', { referencedTable: 'skill', ascending: false })
+      .order('label', { referencedTable: 'skill' })
       .returns<Project>()
       .limit(1)
       .single<Project>()

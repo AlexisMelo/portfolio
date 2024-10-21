@@ -55,6 +55,11 @@ export interface Project {
   thumbnail?: string;
 
   /**
+   * Lien vers l'icone
+   */
+  icon?: string;
+
+  /**
    * URL vers les détails du projet
    */
   url: string;
@@ -78,4 +83,19 @@ export interface Project {
    * Sections avec les détails
    */
   section: Array<Section>;
+
+  /**
+   * Le projet est-il à l'abandon
+   */
+  abandoned: boolean;
+
+  /**
+   * Lien vers le code source
+   */
+  source: string;
+
+  /**
+   * Lien vers le projet déployé
+   */
+  deployment: string;
 }

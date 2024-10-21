@@ -28,4 +28,9 @@ export interface Skill {
    * URL pour illustration du skill
    */
   icon: string;
+
+  /**
+   * Est-ce que c'est un skill "important", par exemple Typescript > Javascript
+   */
+  main: boolean;
 }

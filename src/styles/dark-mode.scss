@@ -1,38 +1,53 @@
 @import './colors.scss';
 
 @mixin dark-mode() {
-  --titleColor: #{$light-green};
-  --textColor: white;
-  --backgroundColor: #{$very-dark-green};
+  --titleColor: #{$green-400};
+  --textColor: #{$white};
+  --backgroundColor: #{$green-900};
 
-  --navbarLinksColor: white;
-  --navbarBackgroundColor: #{$dark-green};
+  --navbarLinksColor: #{$white};
+  --navbarBackgroundColor: #{$green-700};
 
-  --timelineCircleColor: #{$light-green};
-  --timelineProject: #{$light-green};
-  --timelineLeftCircle: #{$very-light-green};
-  --timelineLeftText: #{$very-light-green};
-  --timelineColor: #{$very-light-green};
+  --timelineCircleColor: #{$green-400};
+  --timelineProject: #{$green-400};
+  --timelineLeftCircle: #{$green-100};
+  --timelineLeftText: #{$green-100};
+  --timelineColor: #{$green-100};
 
-  --footerBackgroundColor: #{$dark-green};
+  --footerBackgroundColor: #{$green-700};
 
-  --contactBackgroundColor: #{$dark-green};
+  --contactBackgroundColor: #{$green-700};
   --birdsURL: url('../assets/birds-dark-mode.svg');
-  --buttonTextColor: white;
-  --buttonBackgroundColor: #{$light-green};
+  --buttonTextColor: #{$white};
+  --buttonBackgroundColor: #{$green-400};
 
-  --inputBackgroundColor: #{$very-dark-green};
-  --inputBorderColor: #{$green};
+  --inputBackgroundColor: #{$green-900};
+  --inputBorderColor: #{$green-500};
 
-  --projectBackgroundColor: #{$green};
+  --projectBackgroundColor: #{$green-500};
 
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: #{$dark-green};
-  --filter-chip-active-background-color: #{$green};
-  --filter-chip-details-menu-background-color: #{$green};
-  --filter-chip-hover-option-background-color: #{$dark-green};
+  --filter-chip-border-color: #{$green-700};
+  --filter-chip-active-background-color: #{$green-500};
+  --filter-chip-details-menu-background-color: #{$green-500};
+  --filter-chip-hover-option-background-color: #{$green-700};
 
-  --project-see-more-background-color: #{$green};
+  --project-see-more-background-color: #{$green-500};
 
-  --separator-color: #{$green};
+  --separator-color: #{$green-500};
+
+  //project-item
+  --img-background: #{$white};
+
+  //project-details
+  --thumbnail-border: #{$green-700};
+  --skill-group-border: #{$green-700};
+
+  //highlightable-chip
+  --highlightable-chip-background-color: #{$green-200};
+  --highlightable-chip-border-color: #{$green-200};
+  --highlightable-chip-gradient-1: #{$green-700};
+  --highlightable-chip-gradient-2: #{$green-400};
+  --highlightable-chip-gradient-3: #{$green-400};
+  --highlightable-chip-gradient-4: #{$green-700};
 }

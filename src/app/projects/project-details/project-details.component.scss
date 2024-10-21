@@ -1,14 +1,37 @@
+@import '../../../styles/breakpoints.scss';
+
 $icon-size: 2rem;
 $gap: 1.5rem;
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .main-infos {
+    flex-grow: 1;
+  }
+
+  @media (min-width: $tablets) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
 .type {
-  margin-left: calc($icon-size + $gap);
   margin-bottom: calc($gap / 2);
+  text-align: center;
+
+  @media (min-width: $tablets) {
+    margin-left: calc($icon-size + $gap);
+    text-align: start;
+  }
 }
 
 .title {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $gap;
   margin-bottom: 2rem;
 
@@ -34,24 +57,28 @@ $gap: 1.5rem;
     }
   }
 
-  h1 {
-    margin: 0;
+  @media (min-width: $tablets) {
+    justify-content: flex-start;
   }
 
-  .statut {
-    background-color: orange;
-    border-radius: 12px;
-    padding: 4px 12px;
+  h1 {
+    margin: 0;
   }
 }
 
 .description {
   margin-bottom: 2rem;
+  text-align: center;
+
+  @media (min-width: $tablets) {
+    text-align: start;
+  }
 }
 
 .links {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $gap;
 
   svg {
@@ -63,6 +90,39 @@ $gap: 1.5rem;
     align-items: center;
     gap: calc($gap / 3);
   }
+
+  @media (min-width: $tablets) and (max-width: $laptop) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (min-width: $laptop) {
+    justify-content: flex-start;
+  }
+}
+
+.thumbnail-container {
+  background-color: cadetblue;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 200px;
+  width: 350px;
+  margin-top: 2rem;
+  border: 1px solid var(--thumbnail-border);
+  flex-shrink: 0;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  @media (min-width: $tablets) {
+    height: 300px;
+    width: 450px;
+    margin-left: 2rem;
+    margin-top: 0;
+  }
 }
 
 app-separator {
@@ -72,10 +132,15 @@ app-separator {
 .more-infos {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 20%;
 
   h2 {
     margin-top: 0;
+  }
+
+  > * {
+    white-space: nowrap;
+    line-height: 2rem;
   }
 }
 
@@ -102,10 +167,12 @@ app-separator {
   gap: 1rem;
 
   .skillGroup {
-    min-width: 30%;
+    max-width: 33%;
     padding: 1rem;
     border-radius: 12px;
-    background-color: #e9eee2;
+    border: 1px solid var(--skill-group-border);
+    border-radius: var(--inputs-border-radius);
+    flex: 1 1 0;
 
     h3 {
       text-align: center;
@@ -118,5 +185,23 @@ app-separator {
       gap: 1rem;
       flex-wrap: wrap;
     }
+  }
+}
+
+.status {
+  .status-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: blue;
   }
 }

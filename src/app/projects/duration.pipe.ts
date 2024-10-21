@@ -42,7 +42,7 @@ export class DurationPipe implements PipeTransform {
     } else if (monthText) {
       return monthText;
     } else {
-      return 'En cours'; // Si aucune différence notable
+      return "Moins d'un mois"; // Si aucune différence notable
     }
   }
 }
