@@ -9,24 +9,15 @@
   display: flex;
 
   flex-direction: row;
-  white-space: nowrap;
 
   div {
     display: flex;
     align-items: center;
     white-space: nowrap;
     font-weight: 500;
-    animation: loop 4s linear infinite;
 
     mat-icon {
       margin: 0 10px;
     }
-  }
-}
-
-@keyframes loop {
-  100% {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
   }
 }

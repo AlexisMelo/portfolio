@@ -1,0 +1,42 @@
+@import '../../../styles/breakpoints.scss';
+
+/* CSS */
+button {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 2px solid var(--button-border);
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0); //background transparent
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  border-radius: var(--inputs-border-radius);
+  color: var(--button-color);
+
+  &:after {
+    content: '';
+    background-color: var(--button-background);
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+    border-radius: var(--inputs-border-radius);
+  }
+
+  &:hover:after {
+    top: 0px;
+    left: 0px;
+  }
+
+  @media (min-width: $tablets) {
+    padding: 13px 50px 13px;
+  }
+}

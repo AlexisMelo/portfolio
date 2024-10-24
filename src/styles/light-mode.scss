@@ -1,53 +1,59 @@
-@import './colors.scss';
-
 @mixin light-mode() {
-  --titleColor: #{$green-500};
-  --textColor: #{$green-400};
-  --backgroundColor: #{$white};
+  --titleColor: var(--green-500);
+  --textColor: var(--green-400);
+  --backgroundColor: var(--white);
 
-  --navbarLinksColor: #{$green-400};
-  --navbarBackgroundColor: #{$green-100};
+  --navbarLinksColor: var(--green-400);
+  --navbarBackgroundColor: var(--green-200);
 
-  --timelineCircleColor: #{$green-500};
-  --timelineProject: #{$green-300};
-  --timelineLeftCircle: #{$green-300};
-  --timelineLeftText: #{$green-300};
-  --timelineColor: #{$green-100};
+  --timelineCircleColor: var(--green-500);
+  --timelineProject: var(--green-300);
+  --timelineLeftCircle: var(--green-300);
+  --timelineLeftText: var(--green-300);
+  --timelineColor: var(--green-100);
 
-  --footerBackgroundColor: #{$green-100};
+  --footerBackgroundColor: var(--green-100);
 
-  --contactBackgroundColor: #{$green-100};
+  --contactBackgroundColor: var(--green-100);
   --birdsURL: url('../assets/birds-light-mode.svg');
-  --buttonTextColor: #{$white};
-  --buttonBackgroundColor: #{$green-400};
+  --buttonTextColor: var(--white);
+  --buttonBackgroundColor: var(--green-400);
 
-  --inputBackgroundColor: #{$white};
-  --inputBorderColor: #{$gray-200};
+  --inputBackgroundColor: var(--white);
+  --inputBorderColor: var(--gray-200);
 
-  --projectBackgroundColor: #{$green-100};
+  --projectBackgroundColor: var(--green-100);
 
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: #{$gray-200};
-  --filter-chip-active-background-color: #{$green-100};
-  --filter-chip-details-menu-background-color: #{$green-100};
-  --filter-chip-hover-option-background-color: #{$green-200};
+  --filter-chip-border-color: var(--gray-200);
+  --filter-chip-active-background-color: var(--green-100);
+  --filter-chip-details-menu-background-color: var(--green-100);
+  --filter-chip-hover-option-background-color: var(--green-200);
 
-  --project-see-more-background-color: #{$green-100};
+  --project-see-more-background-color: var(--green-100);
 
-  --separator-color: #{$gray-100};
+  --separator-color: var(--gray-100);
 
   //project-item
-  --img-background: #{$white};
+  --img-background: var(--white);
 
   //project-details
-  --thumbnail-border: #{$gray-200};
-  --skill-group-border: #{$gray-200};
+  --thumbnail-border: var(--gray-200);
+  --skill-group-border: var(--gray-200);
 
   //highlightable-chip
-  --highlightable-chip-background-color: #{$green-100};
-  --highlightable-chip-border-color: #{$green-200};
-  --highlightable-chip-gradient-1: #{$green-400};
-  --highlightable-chip-gradient-2: #{$green-300};
-  --highlightable-chip-gradient-3: #{$green-200};
-  --highlightable-chip-gradient-4: #{$green-400};
+  --highlightable-chip-background-color: var(--green-100);
+  --highlightable-chip-border-color: var(--green-200);
+  --highlightable-chip-gradient-1: var(--green-400);
+  --highlightable-chip-gradient-2: var(--green-300);
+  --highlightable-chip-gradient-3: var(--green-200);
+  --highlightable-chip-gradient-4: var(--green-400);
+
+  //landing-page
+  --svg-contour-path: var(--green-200);
+
+  //button
+  --button-background: var(--green-200);
+  --button-border: var(--green-300);
+  --button-color: var(--green-400);
 }

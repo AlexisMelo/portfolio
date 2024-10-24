@@ -8,11 +8,16 @@ import {
 import { TimelineComponent } from './timeline/timeline.component';
 import { ThemeService } from '../shared/theme.service';
 import { ContentService } from '../shared/content.service';
+import { ButtonComponent } from '../shared/button/button.component';
+import { Router } from '@angular/router';
+import { MovingContentComponent } from '../shared/moving-content/moving-content.component';
+import { SupabaseService } from '../shared/supabase.service';
+import { Skill } from '../projects/skill.model';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [TimelineComponent],
+  imports: [TimelineComponent, ButtonComponent, MovingContentComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
 })
@@ -53,6 +58,21 @@ export class LandingPageComponent implements AfterViewInit {
   public contentService = inject(ContentService);
 
   /**
+   * Gestion des routes
+   */
+  private router = inject(Router);
+
+  /**
+   * Gestion des données en base
+   */
+  private supabaseService = inject(SupabaseService);
+
+  /**
+   * Skills
+   */
+  public skills: Array<Skill> = [];
+
+  /**
    * Applique l'effet "typewriter" à un element
    * @param i
    */
@@ -76,5 +96,14 @@ export class LandingPageComponent implements AfterViewInit {
    */
   ngAfterViewInit(): void {
     this.typewrite();
+
+    this.supabaseService.getSkills().then(skills => (this.skills = skills));
+  }
+
+  /**
+   * Redirection vers la page de contact
+   */
+  goToContact() {
+    this.router.navigate(['contact']);
   }
 }

@@ -1,0 +1,44 @@
+@keyframes loop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+
+  .scroll {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+
+    white-space: nowrap;
+    animation: loop 20s linear infinite;
+
+    ::ng-deep > * {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+  }
+
+  &.shouldFade .fade {
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      #ffffff,
+      transparent 10%,
+      transparent 90%,
+      #ffffff
+    );
+    inset: 0;
+  }
+}

@@ -4,7 +4,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file", // required to format on save
   "files.autoSave": "onFocusChange", // optional but recommended
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "angular.enable-strict-mode-prompt": false,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "[html]": {

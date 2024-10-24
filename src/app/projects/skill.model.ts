@@ -33,4 +33,9 @@ export interface Skill {
    * Est-ce que c'est un skill "important", par exemple Typescript > Javascript
    */
   main: boolean;
+
+  /**
+   * Couleur hexadecimale
+   */
+  color: string;
 }

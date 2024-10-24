@@ -1,4 +1,20 @@
 @mixin design-system() {
-  --inputs-border-radius: 12px;
+  //green
+  --green-600: #1b2c1a;
+  --green-500: #294b29;
+  --green-400: #50623a;
+  --green-300: #789461;
+  --green-200: #becfa3;
+  --green-100: #e9eee2;
+
+  //gray
+  --gray-200: #cac4d0;
+  --gray-100: #e4e1e7;
+
+  //white
+  --white: white;
+
+  //spacing
+  --inputs-border-radius: 8px;
   --inputs-padding-vertical: 0.7rem;
 }
