@@ -1,4 +1,7 @@
-<div class="circle"></div>
+<div
+  [routerLink]="['projects']"
+  [queryParams]="{ contexts: item.id }"
+  class="circle"></div>
 <div>
   <h2 class="when">
     {{
@@ -17,7 +20,7 @@
       {{ item.project.length }} réalisation{{
         item.project.length > 1 ? 's' : ''
       }}
-      <app-right-arrow></app-right-arrow>
+      <app-right-arrow class="arrow"></app-right-arrow>
     </div>
   }
 </div>

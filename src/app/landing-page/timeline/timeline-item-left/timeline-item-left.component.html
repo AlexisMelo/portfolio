@@ -13,10 +13,14 @@
       class="projects"
       [routerLink]="['projects']"
       [queryParams]="{ contexts: item.id }">
-      <app-left-arrow></app-left-arrow> {{ item.project.length }} réalisation{{
+      <app-left-arrow class="arrow"></app-left-arrow>
+      {{ item.project.length }} réalisation{{
         item.project.length > 1 ? 's' : ''
       }}
     </div>
   }
 </div>
-<div class="circle"></div>
+<div
+  [routerLink]="['projects']"
+  [queryParams]="{ contexts: item.id }"
+  class="circle"></div>

@@ -23,4 +23,9 @@ export class MovingContentComponent {
    * Temps en secondes de l'animation (= vitesse du défilement)
    */
   @Input() animationDuration = 20;
+
+  /**
+   * Espacement entre les éléments
+   */
+  @Input() gap = '20px';
 }

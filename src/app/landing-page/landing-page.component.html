@@ -54,7 +54,13 @@
 
 <ng-template #skillList>
   @for (skill of skills; track skill.id) {
-    <div class="skill-keyword">
+    <div
+      class="skill-keyword"
+      [routerLink]="['projects']"
+      [queryParams]="{ skills: skill.id }"
+      appTooltip
+      [tooltip]="'Voir mes projets avec ' + skill.label"
+      [position]="'above'">
       <div class="circle" [style.backgroundColor]="skill.color"></div>
       {{ skill.label }}
     </div>
@@ -65,7 +71,10 @@
   class="skills-banner"
   [temp]="skillList"
   [fade]="true"
-  [animationDuration]="50">
+  [animationDuration]="30"
+  [gap]="'2rem'">
 </app-moving-content>
+
+<!-- <h2 class="separator">Ce que je fais</h2> -->
 
 <app-timeline></app-timeline>

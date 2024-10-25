@@ -17,8 +17,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: 20px;
-
     white-space: nowrap;
     animation: loop 20s linear infinite;
 
@@ -27,6 +25,10 @@
       align-items: center;
       white-space: nowrap;
     }
+
+    &:hover {
+      animation-play-state: paused;
+    }
   }
 
   &.shouldFade .fade {
@@ -34,11 +36,17 @@
     position: absolute;
     background: linear-gradient(
       90deg,
-      #ffffff,
+      var(--moving-content-fade),
       transparent 10%,
       transparent 90%,
-      #ffffff
+      var(--moving-content-fade)
     );
     inset: 0;
+    z-index: 10;
+  }
+
+  //https://stackoverflow.com/a/19683983
+  .fade:hover + .scroll {
+    animation-play-state: paused;
   }
 }

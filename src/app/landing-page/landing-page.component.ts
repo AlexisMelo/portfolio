@@ -9,15 +9,22 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { ThemeService } from '../shared/theme.service';
 import { ContentService } from '../shared/content.service';
 import { ButtonComponent } from '../shared/button/button.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MovingContentComponent } from '../shared/moving-content/moving-content.component';
 import { SupabaseService } from '../shared/supabase.service';
 import { Skill } from '../projects/skill.model';
+import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [TimelineComponent, ButtonComponent, MovingContentComponent],
+  imports: [
+    TimelineComponent,
+    ButtonComponent,
+    MovingContentComponent,
+    RouterLink,
+    TooltipDirective,
+  ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
 })
@@ -97,7 +104,9 @@ export class LandingPageComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.typewrite();
 
-    this.supabaseService.getSkills().then(skills => (this.skills = skills));
+    this.supabaseService
+      .getSkills()
+      .then(skills => (this.skills = skills.filter(s => s.landing_page)));
   }
 
   /**

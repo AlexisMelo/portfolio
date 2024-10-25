@@ -38,4 +38,9 @@ export interface Skill {
    * Couleur hexadecimale
    */
   color: string;
+
+  /**
+   * Est-ce qu'on doit l'afficher sur la page d'accueil
+   */
+  landing_page: boolean;
 }

@@ -10,6 +10,12 @@
   justify-content: flex-end;
 }
 
+@keyframes move {
+  50% {
+    transform: translateX(-0.5rem);
+  }
+}
+
 .circle {
   background-color: var(--timelineLeftCircle);
 }

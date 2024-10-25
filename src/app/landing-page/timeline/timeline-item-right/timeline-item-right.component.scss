@@ -1,1 +1,7 @@
 @import '../timeline-item-left/timeline-item-common.scss';
+
+@keyframes move {
+  50% {
+    transform: translateX(0.5rem);
+  }
+}

@@ -1,0 +1,77 @@
+$offset: 0.5rem;
+
+:host {
+  position: absolute;
+  display: block;
+  background-color: var(--tooltip-background);
+  border-radius: 4px;
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  opacity: 0;
+  z-index: 100;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+
+  &::before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border: 5px solid var(--tooltip-background);
+  }
+
+  &.below {
+    transform: translate(-50%, $offset);
+    margin-top: 7px;
+
+    &::before {
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-top: none;
+      left: calc(50% - 5px);
+      top: -5px;
+    }
+  }
+
+  &.above {
+    transform: translate(-50%, calc(-100% - $offset));
+    margin-bottom: 7px;
+
+    &::before {
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom: none;
+      left: calc(50% - 5px);
+      bottom: -5px;
+    }
+  }
+
+  &.left {
+    transform: translate(calc(-100% - 7px - $offset), -50%);
+
+    &::before {
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right: none;
+      right: -5px;
+      top: calc(50% - 5px);
+    }
+  }
+
+  &.right {
+    transform: translate($offset, -50%);
+    margin-left: 7px;
+
+    &::before {
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-left: none;
+      left: -5px;
+      top: calc(50% - 5px);
+    }
+  }
+}

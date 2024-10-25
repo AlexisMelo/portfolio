@@ -6,6 +6,25 @@
   flex-direction: row;
   gap: 16px;
   max-width: 50vw;
+
+  &:hover {
+    .arrow {
+      animation: move 1s linear infinite;
+    }
+
+    .circle {
+      animation: pulse-animation 1s infinite;
+    }
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
 }
 
 .circle {
@@ -14,6 +33,7 @@
   border-radius: 50%;
   background-color: var(--timelineCircleColor);
   margin-top: 5px;
+  cursor: pointer;
 
   @media (min-width: $tablets) {
     min-width: $big-circle-size;
@@ -42,4 +62,5 @@ h2 {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  width: fit-content;
 }
