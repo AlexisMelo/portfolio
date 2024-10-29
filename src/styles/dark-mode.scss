@@ -12,7 +12,7 @@
   --timelineLeftText: var(--green-100);
   --timelineColor: var(--green-100);
 
-  --footerBackgroundColor: var(--green-500);
+  --footer-background-color: var(--green-500);
 
   --contactBackgroundColor: var(--green-500);
   --birdsURL: url('../assets/birds-dark-mode.svg');
@@ -51,9 +51,10 @@
 
   //landing-page
   --svg-contour-path: var(--green-400);
+  --background-svgs: var(--green-500);
 
   //button
-  --button-background: var(--green-400);
+  --button-background: url(../../public/gradient-dark.svg);
   --button-border: white;
   --button-color: white;
 
@@ -62,4 +63,7 @@
 
   //tooltip
   --tooltip-background: var(--green-400);
+
+  //navbar
+  --navbar-gradient: url(../../public/gradient-dark.svg);
 }

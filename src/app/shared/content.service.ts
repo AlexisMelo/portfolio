@@ -13,7 +13,7 @@ export class ContentService {
    * Description de mon activité
    */
   get description() {
-    return 'Enchanté ! Je suis Alexis Melo da Silva, développeur d’applications qui améliorent la compétitivité des entreprises et le quotidien des employés.';
+    return 'Bonjour ! Je suis Alexis Melo da Silva, développeur fullstack basé à Caen, en France. Je crée des applications web ou bureau, principalement pour la transformation digitale des industries.';
   }
 
   /**

@@ -54,4 +54,11 @@ export class ThemeService implements OnDestroy {
     );
     localStorage.setItem('theme', this.theme.value.toString());
   }
+
+  /**
+   * Raccourci pour savoir si on est en dark mode
+   */
+  get isDarkMode(): boolean {
+    return this.theme.value === 'dark-mode';
+  }
 }

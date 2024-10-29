@@ -48,7 +48,7 @@
 // }
 
 .hero {
-  height: 70vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
 
@@ -180,4 +180,96 @@
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
+}
+
+.background {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+
+  svg {
+    position: absolute;
+    fill: var(--background-svgs);
+
+    &:hover {
+      animation-duration: 2s;
+    }
+  }
+
+  .shape-1,
+  .shape-4,
+  .shape-6,
+  .shape-7 {
+    animation: spin-counter-clockwise 40s linear infinite;
+  }
+
+  .shape-2,
+  .shape-3,
+  .shape-5 {
+    animation: spin-clockwise 40s linear infinite;
+  }
+
+  .shape-1 {
+    width: 200px;
+    left: 80%;
+
+    @media (min-width: $tablets) {
+      left: 50%;
+    }
+  }
+
+  .shape-2 {
+    top: 60vh;
+    left: -10%;
+    width: 100px;
+    animation-duration: 6s;
+  }
+
+  .shape-3 {
+    width: 700px;
+    left: 110%;
+    top: -50vh;
+  }
+
+  .shape-4 {
+    top: 110vh;
+    width: 300px;
+    left: -40%;
+  }
+
+  .shape-5 {
+    top: 120vh;
+    width: 200px;
+    left: 120%;
+  }
+
+  .shape-6 {
+    width: 150px;
+    top: 180vh;
+    left: -20%;
+
+    @media (min-width: $tablets) {
+      left: 0;
+    }
+  }
+
+  .shape-7 {
+    top: 240vh;
+    width: 400px;
+    left: 110%;
+    animation-duration: 6s;
+  }
+}
+
+@keyframes spin-clockwise {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-counter-clockwise {
+  100% {
+    transform: rotate(-360deg);
+  }
 }

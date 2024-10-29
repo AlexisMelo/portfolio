@@ -20,7 +20,6 @@ button {
 
   &:after {
     content: '';
-    background-color: var(--button-background);
     width: 100%;
     z-index: -1;
     position: absolute;
@@ -29,6 +28,9 @@ button {
     left: 7px;
     transition: 0.2s;
     border-radius: var(--inputs-border-radius);
+
+    background-image: var(--button-background);
+    background-size: cover;
   }
 
   &:hover:after {

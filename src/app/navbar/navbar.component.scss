@@ -30,6 +30,10 @@ $transition-duration: 0.3s;
   transition-delay: $transition-duration;
   transition-property: border-bottom-right-radius, border-bottom-left-radius;
 
+  background-image: var(--navbar-gradient);
+  background-attachment: fixed;
+  background-size: cover;
+
   //media query pour éviter que les corners restent à 0 si le menu reste ouvert ET qu'on agrandit l'écran
   @media (max-width: $tablets) {
     &.menu-opened {

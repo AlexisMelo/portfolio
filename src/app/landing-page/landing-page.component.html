@@ -33,11 +33,32 @@
               y="0"
               preserveAspectRatio="xMidYMid slice" />
           </pattern>
+          <pattern
+            id="gradient"
+            patternContentUnits="objectBoundingBox"
+            width="100%"
+            height="100%">
+            <image height="1" href="gradient.svg" x="0" y="0" />
+          </pattern>
+          <pattern
+            id="gradient-dark"
+            patternContentUnits="objectBoundingBox"
+            width="100%"
+            height="100%">
+            <image height="1" href="gradient-dark.svg" x="0" y="0" />
+          </pattern>
         </defs>
 
-        <path
-          d="M0 462C168.316 462 262.684 462 431 462C431 358.902 431 198 431 198C431 -66 0 -66 0 198C0 198 0 358.902 0 462Z"
-          class="svg-contour-path" />
+        @if (themeService.isDarkMode) {
+          <path
+            d="M0 462C168.316 462 262.684 462 431 462C431 358.902 431 198 431 198C431 -66 0 -66 0 198C0 198 0 358.902 0 462Z"
+            fill="url(#gradient-dark)" />
+        } @else {
+          <path
+            d="M0 462C168.316 462 262.684 462 431 462C431 358.902 431 198 431 198C431 -66 0 -66 0 198C0 198 0 358.902 0 462Z"
+            fill="url(#gradient)" />
+        }
+
         <path
           d="M15 446C171.6 446 259.4 446 416 446C416 350.043 416 200.286 416 200.286C416 -45.4286 15 -45.4286 15 200.286C15 200.286 15 350.043 15 446Z"
           fill="url(#img1)" />
