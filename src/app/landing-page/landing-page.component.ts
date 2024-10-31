@@ -14,6 +14,9 @@ import { MovingContentComponent } from '../shared/moving-content/moving-content.
 import { SupabaseService } from '../shared/supabase.service';
 import { Skill } from '../projects/skill.model';
 import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
+import { SectionComponent } from '../projects/project-details/section/section.component';
+import { Section } from '../projects/section.model';
+import { SectionGroupComponent } from '../projects/project-details/section-group/section-group.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -24,6 +27,8 @@ import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
     MovingContentComponent,
     RouterLink,
     TooltipDirective,
+    SectionComponent,
+    SectionGroupComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
@@ -80,6 +85,11 @@ export class LandingPageComponent implements AfterViewInit {
   public skills: Array<Skill> = [];
 
   /**
+   * Sections
+   */
+  public sections: Array<Section> = [];
+
+  /**
    * Applique l'effet "typewriter" à un element
    * @param i
    */
@@ -107,6 +117,10 @@ export class LandingPageComponent implements AfterViewInit {
     this.supabaseService
       .getSkills()
       .then(skills => (this.skills = skills.filter(s => s.landing_page)));
+
+    this.supabaseService
+      .getLandingSections()
+      .then(sections => (this.sections = sections));
   }
 
   /**

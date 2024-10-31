@@ -1,0 +1,7 @@
+<div class="sections">
+  @for (section of sections; track section.id) {
+    <app-section
+      [section]="section"
+      [position]="$odd ? 'left' : 'right'"></app-section>
+  }
+</div>

@@ -13,6 +13,7 @@ import { SectionComponent } from './section/section.component';
 import { Skill } from '../skill.model';
 import { StatusPipe } from '../status/status.pipe';
 import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
+import { SectionGroupComponent } from './section-group/section-group.component';
 
 @Component({
   selector: 'app-project-details',
@@ -28,6 +29,7 @@ import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-c
     SectionComponent,
     KeyValuePipe,
     StatusPipe,
+    SectionGroupComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

@@ -65,7 +65,9 @@
       </svg>
     </div>
 
-    <div class="description">{{ contentService.description }}</div>
+    <div class="description melo-general-text">
+      {{ contentService.description }}
+    </div>
 
     <div class="contact">
       <app-button (buttonClicked)="goToContact()">Me contacter</app-button>
@@ -96,6 +98,26 @@
   [gap]="'2rem'">
 </app-moving-content>
 
-<!-- <h2 class="separator">Ce que je fais</h2> -->
+<div class="separation-title">
+  <div class="subtitle">Développement</div>
+  <h2>Comment je peux vous aider...</h2>
+  <div class="melo-general-text details">
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco
+  </div>
+</div>
+
+<app-section-group [sections]="sections"></app-section-group>
+
+<div class="separation-title">
+  <div class="subtitle">Parcours</div>
+  <h2>D'où je viens</h2>
+  <div class="melo-general-text details">
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco
+  </div>
+</div>
 
 <app-timeline></app-timeline>

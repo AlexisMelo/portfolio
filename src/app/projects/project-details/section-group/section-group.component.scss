@@ -1,0 +1,16 @@
+@import '../../../../styles/breakpoints.scss';
+
+.sections {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+
+  h2 {
+    text-align: center;
+  }
+
+  @media (min-width: $tablets) {
+    gap: 2rem;
+  }
+}

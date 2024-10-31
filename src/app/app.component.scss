@@ -30,8 +30,8 @@ app-wip {
 }
 
 .container {
-  width: 95%;
+  width: var(--container-width);
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  max-width: 1200px;
   min-height: 90vh;
 }

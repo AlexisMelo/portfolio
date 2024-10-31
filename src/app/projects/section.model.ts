@@ -3,16 +3,6 @@
  */
 export interface Section {
   /**
-   * Identifiant du projet
-   */
-  project: number;
-
-  /**
-   * Position dans la page
-   */
-  position: number;
-
-  /**
    * Identifiant unique
    */
   id: number;
@@ -31,4 +21,14 @@ export interface Section {
    * Texte de la section
    */
   description: string;
+
+  /**
+   * Tags
+   */
+  tags: string | null;
+
+  /**
+   * Position de la section (utile si non-reliée à un projet par exemple)
+   */
+  position: number | null;
 }

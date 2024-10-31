@@ -82,4 +82,17 @@ export class SupabaseService {
       .order('label');
     return data ?? [];
   }
+
+  /**
+   * Obtient la liste des sections à afficher sur la page d'accueil
+   * @returns
+   */
+  public async getLandingSections() {
+    const { data } = await this.supabase
+      .from('section')
+      .select('*')
+      .like('tags', '%landing%')
+      .order('position');
+    return data ?? [];
+  }
 }

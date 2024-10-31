@@ -102,24 +102,9 @@ $gap: 1.5rem;
 }
 
 .thumbnail-container {
-  background-color: cadetblue;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 200px;
-  width: 350px;
   margin-top: 2rem;
-  border: 1px solid var(--thumbnail-border);
-  flex-shrink: 0;
-
-  img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
 
   @media (min-width: $tablets) {
-    height: 300px;
-    width: 450px;
     margin-left: 2rem;
     margin-top: 0;
   }
@@ -149,16 +134,6 @@ app-separator {
   flex-direction: row;
   align-items: center;
   gap: $gap;
-}
-
-.sections {
-  app-section {
-    margin-bottom: 2rem;
-  }
-
-  h2 {
-    text-align: center;
-  }
 }
 
 .skillGroups {

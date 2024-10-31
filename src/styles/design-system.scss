@@ -3,9 +3,9 @@
   --green-600: #1b2c1a;
   --green-500: #294b29;
   --green-400: #50623a;
-  --green-300: #789461;
+  --green-300: rgb(120, 148, 97);
   --green-200: #becfa3;
-  --green-100: #e9eee2;
+  --green-100: rgb(233, 238, 226);
 
   //gray
   --gray-200: #cac4d0;
@@ -17,4 +17,8 @@
   //spacing
   --inputs-border-radius: 8px;
   --inputs-padding-vertical: 0.7rem;
+
+  //widths
+  --container-max-width: 1300px;
+  --container-width: 95vw;
 }

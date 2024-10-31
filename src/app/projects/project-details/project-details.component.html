@@ -39,7 +39,7 @@
     </div>
 
     @if (project.thumbnail) {
-      <div class="thumbnail-container">
+      <div class="g-thumbnail-container thumbnail-container">
         <img [src]="project.thumbnail" alt="" />
       </div>
     }
@@ -123,12 +123,6 @@
   @if (project.section.length > 0) {
     <app-separator></app-separator>
 
-    <div class="sections">
-      @for (section of project.section; track section.id) {
-        <app-section
-          [section]="section"
-          [position]="$odd ? 'left' : 'right'"></app-section>
-      }
-    </div>
+    <app-section-group [sections]="project.section"></app-section-group>
   }
 }

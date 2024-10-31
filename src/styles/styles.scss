@@ -66,6 +66,39 @@ h2 {
   }
 }
 
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(120, 148, 97, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgb(233, 238, 226, 0);
+  }
+}
+
 .blink {
   animation: blink 0.8s linear infinite;
+}
+
+.g-thumbnail-container {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 200px;
+  width: 350px;
+  border: 1px solid var(--thumbnail-border);
+  flex-shrink: 0;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  @media (min-width: $tablets) {
+    height: 300px;
+    width: 450px;
+  }
+}
+
+.melo-general-text {
+  line-height: 200%;
 }
