@@ -95,4 +95,17 @@ export class SupabaseService {
       .order('position');
     return data ?? [];
   }
+
+  /**
+   * Obtient la liste des clients pour la page d'accueil
+   * @returns
+   */
+  public async getLandingClients() {
+    const { data } = await this.supabase
+      .from('context')
+      .select('*')
+      .eq('show_landing', true)
+      .returns<Array<Context>>();
+    return data ?? [];
+  }
 }

@@ -25,6 +25,11 @@ export class MovingContentComponent {
   @Input() animationDuration = 20;
 
   /**
+   * Doit-on utiliser la couleur de fade secondaire ? Pour les endroits où le background n'est pas celui par défaut
+   */
+  @HostBinding('class.useAltFadeColor') @Input() useAltFadeColor = false;
+
+  /**
    * Espacement entre les éléments
    */
   @Input() gap = '20px';

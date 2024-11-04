@@ -17,6 +17,9 @@ import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
 import { SectionComponent } from '../projects/project-details/section/section.component';
 import { Section } from '../projects/section.model';
 import { SectionGroupComponent } from '../projects/project-details/section-group/section-group.component';
+import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
+import { Context } from './timeline/context.model';
+import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -29,6 +32,8 @@ import { SectionGroupComponent } from '../projects/project-details/section-group
     TooltipDirective,
     SectionComponent,
     SectionGroupComponent,
+    TitleSeparatorComponent,
+    RowWithSeparatorComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
@@ -90,6 +95,11 @@ export class LandingPageComponent implements AfterViewInit {
   public sections: Array<Section> = [];
 
   /**
+   * Clients
+   */
+  public clients: Array<Context> = [];
+
+  /**
    * Applique l'effet "typewriter" à un element
    * @param i
    */
@@ -121,6 +131,10 @@ export class LandingPageComponent implements AfterViewInit {
     this.supabaseService
       .getLandingSections()
       .then(sections => (this.sections = sections));
+
+    this.supabaseService
+      .getLandingClients()
+      .then(contexts => (this.clients = contexts));
   }
 
   /**

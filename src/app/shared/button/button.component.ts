@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -12,6 +12,11 @@ export class ButtonComponent {
    * Evènement déclenché lors d'un clic sur le bouton
    */
   @Output() buttonClicked: EventEmitter<void> = new EventEmitter();
+
+  /**
+   * Style du bouton
+   */
+  @Input() style: 'outlined' | 'plain' = 'plain';
 
   /**
    * Lors d'un clic sur le bouton

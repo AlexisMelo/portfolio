@@ -4,7 +4,7 @@
   Petite sélection des projets qui me tiennent à coeur
 </div>
 
-<div [@stagger]="pinnedProjects.length" class="pinned">
+<div [@stagger]="pinnedProjects.length" class="pinned g-container">
   @for (project of pinnedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
   }
@@ -17,7 +17,7 @@
   participé !
 </div>
 
-<div class="filters">
+<div class="filters g-container">
   <app-input>
     <input
       type="text"
@@ -42,9 +42,9 @@
   </app-filter-chip>
 </div>
 
-<app-separator class="filter-separator"></app-separator>
+<app-separator class="filter-separator g-container"></app-separator>
 
-<div [@stagger]="selectedProjects.length" class="projects">
+<div [@stagger]="selectedProjects.length" class="projects g-container">
   @for (project of selectedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
 

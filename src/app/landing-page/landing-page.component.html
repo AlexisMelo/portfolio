@@ -5,7 +5,7 @@
   </h1>
 </div> -->
 
-<div class="hero">
+<div class="hero g-container">
   <div class="hero-grid">
     <div class="title">
       <h1>MELO</h1>
@@ -65,12 +65,14 @@
       </svg>
     </div>
 
-    <div class="description melo-general-text">
+    <div class="description g-text">
       {{ contentService.description }}
     </div>
 
     <div class="contact">
-      <app-button (buttonClicked)="goToContact()">Me contacter</app-button>
+      <app-button [style]="'outlined'" (buttonClicked)="goToContact()"
+        >Me contacter</app-button
+      >
     </div>
   </div>
 </div>
@@ -90,34 +92,67 @@
   }
 </ng-template>
 
-<app-moving-content
-  class="skills-banner"
-  [temp]="skillList"
-  [fade]="true"
-  [animationDuration]="30"
-  [gap]="'2rem'">
-</app-moving-content>
-
-<div class="separation-title">
-  <div class="subtitle">Développement</div>
-  <h2>Comment je peux vous aider...</h2>
-  <div class="melo-general-text details">
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco
+<app-row-with-separator>
+  <div class="g-container">
+    <app-moving-content
+      class="skills-banner"
+      [temp]="skillList"
+      [fade]="true"
+      [animationDuration]="30"
+      [gap]="'2rem'"
+      [useAltFadeColor]="true">
+    </app-moving-content>
   </div>
-</div>
+</app-row-with-separator>
+
+<app-title-separator
+  title="Comment je peux vous aider"
+  subtitle="Développement"
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco"></app-title-separator>
 
 <app-section-group [sections]="sections"></app-section-group>
 
-<div class="separation-title">
-  <div class="subtitle">Parcours</div>
-  <h2>D'où je viens</h2>
-  <div class="melo-general-text details">
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco
-  </div>
-</div>
+<app-row-with-separator>
+  <app-title-separator
+    title="Ils m'ont fait confiance"
+    subtitle="Clients"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco"></app-title-separator>
+
+  <ng-template #contextList>
+    @for (context of clients; track context.id) {
+      <app-button
+        [routerLink]="['projects']"
+        [queryParams]="{ contexts: context.id }"
+        appTooltip
+        [tooltip]="'Voir mes projets chez ' + context.label"
+        [position]="'above'"
+        [style]="'plain'">
+        @if (context.icon) {
+          <img [src]="context.icon" alt="" icon />
+        }
+        {{ context.label }}
+      </app-button>
+    }
+  </ng-template>
+
+  <app-moving-content
+    [temp]="contextList"
+    [fade]="true"
+    [animationDuration]="30"
+    [gap]="'2rem'"
+    [useAltFadeColor]="true">
+  </app-moving-content>
+</app-row-with-separator>
+
+<app-title-separator
+  title="D'où je viens"
+  subtitle="Parcours"
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco"></app-title-separator>
 
 <app-timeline></app-timeline>

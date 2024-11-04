@@ -1,7 +1,6 @@
 @import '../styles/breakpoints.scss';
 
 :host {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -29,9 +28,6 @@ app-wip {
   }
 }
 
-.container {
-  width: var(--container-width);
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+.content {
   min-height: 90vh;
 }

@@ -1,3 +1,4 @@
-<button role="button" (click)="click()">
-  <ng-content></ng-content>
+<button role="button" [class]="style" (click)="click()">
+  <ng-content select="[icon]"></ng-content>
+  <span><ng-content></ng-content></span>
 </button>

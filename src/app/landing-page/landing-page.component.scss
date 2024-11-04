@@ -103,10 +103,11 @@
     .contact {
       grid-column: 1;
       grid-row: 2;
-      text-align: center;
+      display: flex;
+      justify-content: center;
 
       @media (min-width: $tablets) {
-        text-align: start;
+        justify-content: flex-start;
       }
     }
 
@@ -115,13 +116,14 @@
       grid-column: 2 / 4;
       text-align: center;
       margin-top: 3rem;
-      margin-bottom: 6rem;
       margin-left: 3rem;
       margin-right: 3rem;
+      margin-bottom: 2rem;
 
       @media (min-width: $tablets) {
         text-align: end;
         margin: 0;
+        //margin-bottom: 6rem;
       }
     }
 
@@ -154,7 +156,6 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  margin: 7vh 0;
 
   .skill-keyword {
     display: flex;
@@ -171,27 +172,5 @@
       height: 20px;
       border-radius: 50%;
     }
-  }
-}
-
-.separation-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin: 5rem 0;
-
-  h2 {
-    margin-block-start: 0.5rem;
-  }
-
-  .details {
-    width: 60%;
-  }
-
-  .subtitle {
-    text-transform: uppercase;
-    font-size: 0.8rem;
   }
 }

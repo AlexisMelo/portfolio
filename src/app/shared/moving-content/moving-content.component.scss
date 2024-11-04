@@ -46,6 +46,16 @@
     pointer-events: none;
   }
 
+  &.shouldFade.useAltFadeColor .fade {
+    background: linear-gradient(
+      90deg,
+      var(--moving-content-fade-alt),
+      transparent 10%,
+      transparent 90%,
+      var(--moving-content-fade-alt)
+    );
+  }
+
   //https://stackoverflow.com/a/19683983
   .fade:hover + .scroll {
     animation-play-state: paused;

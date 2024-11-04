@@ -1,0 +1,21 @@
+.separation-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 5rem 0;
+
+  h2 {
+    margin-block-start: 0.5rem;
+  }
+
+  .details {
+    width: 60%;
+  }
+
+  .subtitle {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+}
