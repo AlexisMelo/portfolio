@@ -20,6 +20,7 @@ import { SectionGroupComponent } from '../projects/project-details/section-group
 import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
 import { Context } from './timeline/context.model';
 import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
+import { SkillFrontPageComponent } from './skill/skill-front-page/skill-front-page.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -34,6 +35,7 @@ import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with
     SectionGroupComponent,
     TitleSeparatorComponent,
     RowWithSeparatorComponent,
+    SkillFrontPageComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

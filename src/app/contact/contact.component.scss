@@ -21,7 +21,6 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 15px;
-  margin-top: 3rem;
 
   @media (min-width: $tablets) {
     flex-direction: row;
@@ -122,9 +121,9 @@
 
 .socials {
   @extend .contacts;
+  margin-top: 3rem;
 
   justify-content: center;
-  margin-bottom: 3rem;
 }
 
 //https://codepen.io/eyesight/pen/KGEebY

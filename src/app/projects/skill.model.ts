@@ -43,4 +43,9 @@ export interface Skill {
    * Est-ce qu'on doit l'afficher sur la page d'accueil
    */
   landing_page: boolean;
+
+  /**
+   * Courte description
+   */
+  description: string;
 }

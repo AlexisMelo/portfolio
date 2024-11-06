@@ -20,6 +20,7 @@ import { SelectableItem } from '../shared/is-selected/selectable-item.model';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterChipComponent } from '../shared/chips/filter-chip/filter-chip.component';
 import { SeparatorComponent } from '../shared/separator/separator.component';
+import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -34,6 +35,7 @@ import { SeparatorComponent } from '../shared/separator/separator.component';
     ReactiveFormsModule,
     FormsModule,
     SeparatorComponent,
+    TitleSeparatorComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',

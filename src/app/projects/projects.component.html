@@ -1,21 +1,13 @@
-<h1>Mes projets favoris</h1>
-
-<div class="description">
-  Petite sélection des projets qui me tiennent à coeur
-</div>
-
 <div [@stagger]="pinnedProjects.length" class="pinned g-container">
   @for (project of pinnedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
   }
 </div>
 
-<h1>Tous mes projets</h1>
-
-<div class="description">
-  Tu as l'âme d'un explorateur ? J'ajoute ici tous les projets auxquels j'ai
-  participé !
-</div>
+<app-title-separator
+  subtitle="Projets"
+  title="Tous mes projets"
+  description="Tu as l'âme d'un explorateur ? J'ajoute ici tous les projets auxquels j'ai participé !"></app-title-separator>
 
 <div class="filters g-container">
   <app-input>

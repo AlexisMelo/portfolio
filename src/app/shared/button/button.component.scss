@@ -59,7 +59,6 @@ button {
     border-width: 0;
     background-image: var(--button-background);
     background-size: cover;
-    //box-shadow: 2px 2px 1px 2px rgba(70, 77, 65, 0.63);
     border-radius: var(--inputs-border-radius);
     border: 2px solid var(--button-plain-border);
 
@@ -78,8 +77,6 @@ button {
     }
 
     &:hover {
-      box-shadow: none;
-
       &:after {
         top: 0px;
         left: 0px;
