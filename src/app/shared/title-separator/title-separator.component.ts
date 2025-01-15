@@ -11,7 +11,7 @@ export class TitleSeparatorComponent {
   /**
    * Titre
    */
-  @Input({ required: true }) title!: string;
+  @Input({ required: true }) heading!: string;
 
   /**
    * Sous-titre

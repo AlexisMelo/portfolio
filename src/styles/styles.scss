@@ -108,3 +108,7 @@ h2 {
   max-width: var(--container-max-width);
   margin: 0 auto;
 }
+
+.g-first-title {
+  margin-top: 2em !important; //pour régler l'écart entre les titres séparateurs et le bas de la navbar
+}

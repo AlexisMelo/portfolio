@@ -1,3 +1,9 @@
+<app-title-separator
+  subtitle="Projets"
+  heading="Favoris"
+  description="Les projets qui me tiennent à coeur"
+  class="g-first-title"></app-title-separator>
+
 <div [@stagger]="pinnedProjects.length" class="pinned g-container">
   @for (project of pinnedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
@@ -5,8 +11,8 @@
 </div>
 
 <app-title-separator
-  subtitle="Projets"
-  title="Tous mes projets"
+  subtitle="historique"
+  heading="Archives"
   description="Tu as l'âme d'un explorateur ? J'ajoute ici tous les projets auxquels j'ai participé !"></app-title-separator>
 
 <div class="filters g-container">

@@ -14,7 +14,6 @@ import { MovingContentComponent } from '../shared/moving-content/moving-content.
 import { SupabaseService } from '../shared/supabase.service';
 import { Skill } from '../projects/skill.model';
 import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
-import { SectionComponent } from '../projects/project-details/section/section.component';
 import { Section } from '../projects/section.model';
 import { SectionGroupComponent } from '../projects/project-details/section-group/section-group.component';
 import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
@@ -31,7 +30,6 @@ import { SkillFrontPageComponent } from './skill/skill-front-page/skill-front-pa
     MovingContentComponent,
     RouterLink,
     TooltipDirective,
-    SectionComponent,
     SectionGroupComponent,
     TitleSeparatorComponent,
     RowWithSeparatorComponent,

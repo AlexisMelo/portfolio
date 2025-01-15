@@ -1,0 +1,28 @@
+<div class="g-container">
+  <app-title-separator
+    heading="Créer des interfaces utilisateur"
+    subtitle="Front-end"
+    description="Top génial"
+    class="g-first-title">
+  </app-title-separator>
+
+  @for (skill of skills; track skill.id) {
+    {{ skill.label }}
+  }
+</div>
+
+<app-row-with-separator>
+  <app-title-separator
+    heading="Collecter et gérer des données"
+    subtitle="Back-end"
+    description="Top génial">
+  </app-title-separator>
+</app-row-with-separator>
+
+<div class="g-container">
+  <app-title-separator
+    heading="Gérer et déployer un projet"
+    subtitle="Front-end"
+    description="Top génial">
+  </app-title-separator>
+</div>

@@ -9,7 +9,6 @@ import { DurationPipe } from '../duration.pipe';
 import { SuggestionChipComponent } from '../../shared/chips/suggestion-chip/suggestion-chip.component';
 import { SeparatorComponent } from 'src/app/shared/separator/separator.component';
 import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
-import { SectionComponent } from './section/section.component';
 import { Skill } from '../skill.model';
 import { StatusPipe } from '../status/status.pipe';
 import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
@@ -26,7 +25,6 @@ import { SectionGroupComponent } from './section-group/section-group.component';
     HighlightableChipComponent,
     SeparatorComponent,
     RightArrowComponent,
-    SectionComponent,
     KeyValuePipe,
     StatusPipe,
     SectionGroupComponent,

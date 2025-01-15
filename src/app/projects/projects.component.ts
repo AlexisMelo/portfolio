@@ -1,10 +1,3 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { Project } from './project.model';
-import { SupabaseService } from '../shared/supabase.service';
-import { Context } from '../landing-page/timeline/context.model';
-import { Skill } from './skill.model';
-import { ProjectItemComponent } from './project-item/project-item.component';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   animate,
   query,
@@ -13,14 +6,22 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
-import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
-import { InputComponent } from '../shared/input/input.component';
-import { SelectableItem } from '../shared/is-selected/selectable-item.model';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
+import { Context } from '../landing-page/timeline/context.model';
 import { FilterChipComponent } from '../shared/chips/filter-chip/filter-chip.component';
+import { InputComponent } from '../shared/input/input.component';
+import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
+import { SelectableItem } from '../shared/is-selected/selectable-item.model';
 import { SeparatorComponent } from '../shared/separator/separator.component';
+import { SupabaseService } from '../shared/supabase.service';
 import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
+import { ProjectItemComponent } from './project-item/project-item.component';
+import { Project } from './project.model';
+import { Skill } from './skill.model';
+import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -28,14 +29,13 @@ import { TitleSeparatorComponent } from '../shared/title-separator/title-separat
   standalone: true,
   imports: [
     ProjectItemComponent,
-    RouterLink,
-    IsSelectedPipe,
     FilterChipComponent,
     InputComponent,
     ReactiveFormsModule,
     FormsModule,
     SeparatorComponent,
     TitleSeparatorComponent,
+    RowWithSeparatorComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',

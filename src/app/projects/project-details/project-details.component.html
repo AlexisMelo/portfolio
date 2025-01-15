@@ -1,128 +1,135 @@
-@if (project) {
-  <div class="hero">
-    <div class="main-infos">
-      <div class="type">
-        {{ project.project_type.label }}
-      </div>
-
-      <div class="title">
-        <div class="icon-container">
-          <div class="icon">
-            @if (project.icon) {
-              <img [src]="project.icon" alt="" />
-            } @else {
-              <mat-icon>apps</mat-icon>
-            }
-          </div>
+<div class="g-container">
+  @if (project) {
+    <div class="hero">
+      <div class="main-infos">
+        <div class="type">
+          {{ project.project_type.label }}
         </div>
-        <h1>{{ project.label }}</h1>
-      </div>
 
-      <div class="description">
-        {{ project.description }}
-      </div>
-
-      <div class="links">
-        @if (project.source) {
-          <a [href]="project.source" target="_blank" class="source">
-            <mat-icon>code</mat-icon>
-            <span>Voir le code source</span>
-          </a>
-        }
-        @if (project.deployment) {
-          <a [href]="project.deployment" target="_blank" class="website">
-            <mat-icon>open_in_new</mat-icon>
-            <span>Voir le site</span>
-          </a>
-        }
-      </div>
-    </div>
-
-    @if (project.thumbnail) {
-      <div class="g-thumbnail-container thumbnail-container">
-        <img [src]="project.thumbnail" alt="" />
-      </div>
-    }
-  </div>
-  <app-separator></app-separator>
-
-  <div class="more-infos">
-    @if (project.role.length > 0) {
-      <div class="roles">
-        <h2>Rôles</h2>
-        @for (role of project.role; track role.id) {
-          <div>{{ role.label }}</div>
-        }
-      </div>
-    }
-
-    @if (project.coworker.length > 0) {
-      <div class="team">
-        <h2>Équipe</h2>
-        @for (coworker of project.coworker; track coworker.id) {
-          <div>{{ coworker.label }}</div>
-        }
-      </div>
-    }
-
-    <div class="context">
-      <h2>Contexte</h2>
-      <div>{{ project.context.label }}</div>
-    </div>
-  </div>
-
-  <app-separator></app-separator>
-
-  <div class="status">
-    <div class="status-title">
-      <h2>Statut</h2>
-      <app-suggestion-chip>{{ project | status }}</app-suggestion-chip>
-    </div>
-    <div class="dates">
-      <div>
-        {{ project.start_date | date: 'MMMM y' }}
-      </div>
-      <app-right-arrow></app-right-arrow>
-      <div>
-        {{ project | duration }}
-      </div>
-
-      @if (project.end_date) {
-        <app-right-arrow></app-right-arrow>
-        <div>
-          {{
-            project.end_date ? (project.end_date | date: 'MMMM y') : 'En cours'
-          }}
-        </div>
-      }
-    </div>
-  </div>
-
-  @if (skillsGroupedByType !== undefined) {
-    <app-separator></app-separator>
-
-    <div class="skills">
-      <h2>Compétences</h2>
-      <div class="skillGroups">
-        @for (skillGroup of skillsGroupedByType | keyvalue; track skillGroup) {
-          <div class="skillGroup">
-            <h3>{{ skillGroup.key }}</h3>
-            <div class="chips">
-              @for (skill of skillGroup.value; track skill.id) {
-                <app-highlightable-chip [highlighted]="skill.main">{{
-                  skill.label
-                }}</app-highlightable-chip>
+        <div class="title">
+          <div class="icon-container">
+            <div class="icon">
+              @if (project.icon) {
+                <img [src]="project.icon" alt="" />
+              } @else {
+                <mat-icon>apps</mat-icon>
               }
             </div>
           </div>
+          <h1>{{ project.label }}</h1>
+        </div>
+
+        <div class="description">
+          {{ project.description }}
+        </div>
+
+        <div class="links">
+          @if (project.source) {
+            <a [href]="project.source" target="_blank" class="source">
+              <mat-icon>code</mat-icon>
+              <span>Voir le code source</span>
+            </a>
+          }
+          @if (project.deployment) {
+            <a [href]="project.deployment" target="_blank" class="website">
+              <mat-icon>open_in_new</mat-icon>
+              <span>Voir le site</span>
+            </a>
+          }
+        </div>
+      </div>
+
+      @if (project.thumbnail) {
+        <div class="g-thumbnail-container thumbnail-container">
+          <img [src]="project.thumbnail" alt="" />
+        </div>
+      }
+    </div>
+    <app-separator></app-separator>
+
+    <div class="more-infos">
+      @if (project.role.length > 0) {
+        <div class="roles">
+          <h2>Rôles</h2>
+          @for (role of project.role; track role.id) {
+            <div>{{ role.label }}</div>
+          }
+        </div>
+      }
+
+      @if (project.coworker.length > 0) {
+        <div class="team">
+          <h2>Équipe</h2>
+          @for (coworker of project.coworker; track coworker.id) {
+            <div>{{ coworker.label }}</div>
+          }
+        </div>
+      }
+
+      <div class="context">
+        <h2>Contexte</h2>
+        <div>{{ project.context.label }}</div>
+      </div>
+    </div>
+
+    <app-separator></app-separator>
+
+    <div class="status">
+      <div class="status-title">
+        <h2>Statut</h2>
+        <app-suggestion-chip>{{ project | status }}</app-suggestion-chip>
+      </div>
+      <div class="dates">
+        <div>
+          {{ project.start_date | date: 'MMMM y' }}
+        </div>
+        <app-right-arrow></app-right-arrow>
+        <div>
+          {{ project | duration }}
+        </div>
+
+        @if (project.end_date) {
+          <app-right-arrow></app-right-arrow>
+          <div>
+            {{
+              project.end_date
+                ? (project.end_date | date: 'MMMM y')
+                : 'En cours'
+            }}
+          </div>
         }
       </div>
     </div>
-  }
 
-  @if (project.section.length > 0) {
-    <app-separator></app-separator>
+    @if (skillsGroupedByType !== undefined) {
+      <app-separator></app-separator>
 
-    <app-section-group [sections]="project.section"></app-section-group>
+      <div class="skills">
+        <h2>Compétences</h2>
+        <div class="skillGroups">
+          @for (
+            skillGroup of skillsGroupedByType | keyvalue;
+            track skillGroup
+          ) {
+            <div class="skillGroup">
+              <h3>{{ skillGroup.key }}</h3>
+              <div class="chips">
+                @for (skill of skillGroup.value; track skill.id) {
+                  <app-highlightable-chip [highlighted]="skill.main">{{
+                    skill.label
+                  }}</app-highlightable-chip>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (project.section.length > 0) {
+      <app-separator></app-separator>
+
+      <app-section-group [sections]="project.section"></app-section-group>
+    }
   }
-}
+</div>
