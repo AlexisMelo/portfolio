@@ -1,0 +1,55 @@
+@import '../../../styles/breakpoints.scss';
+
+.loved-learning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  .heading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+
+  @media (min-width: $tablets) {
+    flex-direction: row;
+    gap: 4rem;
+
+    .heading {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.worked-with {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  .heading {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.category {
+  font-weight: bold;
+}
+
+.loved,
+.learning {
+  .list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

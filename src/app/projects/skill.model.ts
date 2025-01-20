@@ -1,3 +1,5 @@
+import { Project } from './project.model';
+import { SkillField } from './skill-field.model';
 import { SkillType } from './skill-type.model';
 
 /**
@@ -25,6 +27,11 @@ export interface Skill {
   skill_type: SkillType;
 
   /**
+   * Champs d'application
+   */
+  skill_field: SkillField;
+
+  /**
    * URL pour illustration du skill
    */
   icon: string;
@@ -48,4 +55,19 @@ export interface Skill {
    * Courte description
    */
   description: string;
+
+  /**
+   * Est-ce que cette technologie fait partie de mes préférées ?
+   */
+  loved: boolean;
+
+  /**
+   * Est-ce que je suis entrain d'apprendre cette technologie ?
+   */
+  currently_learning: boolean;
+
+  /**
+   * Projets utilisant cette technologie
+   */
+  projects: Array<Project>;
 }
