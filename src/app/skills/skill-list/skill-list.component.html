@@ -26,7 +26,16 @@
   @for (skills of workedWith | keyvalue; track skills.key) {
     <span class="category">{{ skills.key }}</span>
     @for (skill of skills.value; track skill.id) {
-      <app-highlightable-chip [highlighted]="skill.main">
+      <app-highlightable-chip
+        appTooltip
+        [tooltip]="
+          skill.projects.length +
+          ' réalisation' +
+          (skill.projects.length > 1 ? 's' : '')
+        "
+        [routerLink]="['/projects']"
+        [queryParams]="{ skills: skill.id }"
+        [highlighted]="skill.main">
         {{ skill.label }}
       </app-highlightable-chip>
     }

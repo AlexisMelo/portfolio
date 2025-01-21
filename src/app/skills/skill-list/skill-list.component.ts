@@ -4,6 +4,8 @@ import { HighlightableChipComponent } from '../../shared/chips/highlightable-chi
 import { KeyValuePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { SkillDetailedCardComponent } from './skill-detailed-card/skill-detailed-card.component';
+import { RouterLink } from '@angular/router';
+import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-skill-list',
@@ -13,6 +15,8 @@ import { SkillDetailedCardComponent } from './skill-detailed-card/skill-detailed
     KeyValuePipe,
     MatIconModule,
     SkillDetailedCardComponent,
+    RouterLink,
+    TooltipDirective,
   ],
   templateUrl: './skill-list.component.html',
   styleUrl: './skill-list.component.scss',
