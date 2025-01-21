@@ -35,6 +35,7 @@
         "
         [routerLink]="['/projects']"
         [queryParams]="{ skills: skill.id }"
+        [fragment]="'archives'"
         [highlighted]="skill.main">
         {{ skill.label }}
       </app-highlightable-chip>

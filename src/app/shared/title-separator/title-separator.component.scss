@@ -3,6 +3,7 @@
 :host {
   display: block;
   margin: 5rem 0;
+  scroll-margin-top: 10rem; //pour éviter que lorsqu'on scroll jusqu'à un titre il soit caché derrière la navbar
 }
 
 .separation-title {

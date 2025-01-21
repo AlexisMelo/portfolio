@@ -89,6 +89,7 @@
         [skill]="skill"
         [routerLink]="['projects']"
         [queryParams]="{ skills: skill.id }"
+        [fragment]="'archives'"
         appTooltip
         [tooltip]="'Voir mes projets avec ' + skill.label"
         [position]="'right'"></app-skill-front-page>
@@ -122,6 +123,7 @@
       <app-button
         [routerLink]="['projects']"
         [queryParams]="{ contexts: context.id }"
+        [fragment]="'archives'"
         appTooltip
         [tooltip]="'Voir mes projets chez ' + context.label"
         [position]="'above'"

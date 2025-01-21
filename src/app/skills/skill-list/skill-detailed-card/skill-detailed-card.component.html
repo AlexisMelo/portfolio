@@ -11,7 +11,8 @@
     <div
       class="projects"
       [routerLink]="['/projects']"
-      [queryParams]="{ skills: skill.id }">
+      [queryParams]="{ skills: skill.id }"
+      [fragment]="'archives'">
       <div class="project-icons">
         @for (project of skill.projects | slice: 0 : 8; track project.id) {
           @if (project.icon) {

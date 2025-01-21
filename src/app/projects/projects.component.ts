@@ -131,6 +131,19 @@ export class ProjectsComponent implements OnInit, OnDestroy {
    * Implémentation de OnInit
    */
   ngOnInit() {
+    //navigation des fragments marchent pas... seule solution comme ça ?
+    this.route.fragment.subscribe(fragment => {
+      if (!fragment) return;
+
+      setTimeout(() => {
+        const element = document.getElementById(fragment);
+        element?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 500);
+    });
+
     this.supabaseService
       .getProjects()
       .then(projects => (this.projects = projects));
