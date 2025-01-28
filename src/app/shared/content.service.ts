@@ -29,4 +29,18 @@ export class ContentService {
   get phone() {
     return '06 12 15 78 26';
   }
+
+  /**
+   * Linkedin
+   */
+  get linkedIn() {
+    return 'https://www.linkedin.com/in/alexis-melo-da-silva/';
+  }
+
+  /**
+   * Github
+   */
+  get github() {
+    return 'https://github.com/AlexisMelo';
+  }
 }

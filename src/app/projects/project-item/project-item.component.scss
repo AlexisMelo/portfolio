@@ -10,6 +10,8 @@ $see-more-height: calc(12px + 1rem + 0.5 * $gap);
   position: relative; //pour pouvoir positionner le "voir plus de détails" en absolute
   overflow: hidden;
   background-color: var(--project-item-bg);
+  border: 1px solid var(--project-item-border-color);
+  border-radius: 12px;
 
   display: grid;
   grid-template-columns: auto 2fr;

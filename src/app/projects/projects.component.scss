@@ -10,11 +10,6 @@
   @include responsive('medium') {
     grid-template-columns: 1fr 1fr;
   }
-
-  app-project-item {
-    border: 1px solid #e4e1e7;
-    border-radius: 12px;
-  }
 }
 
 .filters {

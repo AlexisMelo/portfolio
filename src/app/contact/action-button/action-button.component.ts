@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -13,4 +13,21 @@ export class ActionButtonComponent {
    * Icon à afficher dans le bouton
    */
   @Input() icon = 'open_in_new';
+
+  /**
+   * Texte à afficher à côté du bouton
+   */
+  @Input() text?: string;
+
+  /**
+   * Est-ce que le bouton doit être déroulé ?
+   */
+  @HostBinding('class.unfold') @Input() unfold: boolean = false;
+
+  /**
+   * Est-ce que le texte est vide ? Utile pour le css
+   */
+  @HostBinding('class.text-is-empty') get textEmpty() {
+    return this.text === '' || this.text === undefined;
+  }
 }

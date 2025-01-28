@@ -1,30 +1,59 @@
 $icon-size: 18px;
+$height: 36px;
 
 :host {
   position: absolute;
   left: 16px;
   bottom: 16px;
-  height: 36px;
-  width: 36px;
-  color: black;
-  background-color: white;
+  color: var(--action-button-color);
+  background-color: var(--action-button-bg);
   border-radius: 50%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.2s ease-out;
+  transition: box-shadow 300ms;
+  border: 2px solid var(--action-button-border-color);
+  border-radius: 18px;
+  height: 36px;
 
   mat-icon {
     height: $icon-size;
     width: $icon-size;
     font-size: $icon-size;
+    margin-left: calc(($height - $icon-size) / 2);
+    margin-right: calc(($height - $icon-size) / 2);
+  }
+
+  .text {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition:
+      max-width 400ms,
+      padding-right 400ms,
+      opacity 400ms,
+      transform 400ms;
+    transition-timing-function: linear;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 0;
   }
 
   &:hover {
-    transition: box-shadow 0.2s ease-out;
     cursor: pointer;
-    box-shadow:
-      rgb(255, 255, 255) 0px 0px 0px 1px,
-      rgba(255, 255, 255, 0.5) 0px 0px 0px 6px;
+    box-shadow: rgba(229, 226, 226, 0.3) 0px 0px 0px 4px;
+  }
+
+  &:hover:not(.text-is-empty),
+  &.unfold:not(.text-is-empty) {
+    .text {
+      max-width: 7rem;
+      opacity: 1;
+      padding-right: 0.7rem;
+      transform: none;
+    }
   }
 }

@@ -1,3 +1,10 @@
-<img src="icons/linkedin.svg" alt="Voir le linkedin" />
+<img
+  [src]="
+    themeService.isDarkMode ? 'icons/linkedin-dark.svg' : 'icons/linkedin.svg'
+  "
+  alt="Voir mon linkedin" />
 
-<app-action-button></app-action-button>
+<app-action-button
+  [unfold]="hovered"
+  text="Linkedin"
+  (click)="openLinkedin()"></app-action-button>

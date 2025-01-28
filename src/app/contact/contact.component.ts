@@ -1,44 +1,22 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentService } from '../shared/content.service';
+import { GithubComponent } from './github/github.component';
 import { LinkedinComponent } from './linkedin/linkedin.component';
+import { MailComponent } from './mail/mail.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [MatIconModule, LinkedinComponent],
+  imports: [MatIconModule, LinkedinComponent, GithubComponent, MailComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
   /**
-   * Bouton pour confirmer le formulaire
-   */
-  @ViewChild('buttonBird') sendButton?: ElementRef;
-
-  /**
-   * Bouton pour confirmer le formulaire
-   */
-  public textBird: string = 'EN PANNE'; //'ENVOYER';
-
-  /**
    * Gestion du contenu
    */
   public contentService = inject(ContentService);
-
-  /**
-   * Action effectuée lors du submit du formulaire
-   * @param event
-   */
-  submit(event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.sendButton?.nativeElement.classList.add('active');
-    this.textBird = 'ENVOYÉ';
-    alert(
-      'Ne fonctionne pas encore... Envoie moi plutôt un mail directement !'
-    );
-  }
 
   /**
    * Ouvre google maps

@@ -10,7 +10,7 @@
 :root {
   --grid-width: 350px; //pour que ça fonctionne même sur petit téléphone
   --columns: 2;
-  --gap: 20px;
+  --gap: 16px;
 
   @include responsive('medium') {
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);

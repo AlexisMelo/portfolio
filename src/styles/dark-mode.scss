@@ -1,7 +1,7 @@
 @mixin dark-mode() {
   --titleColor: var(--green-200);
   --textColor: var(--white);
-  --backgroundColor: var(--green-600);
+  --backgroundColor: var(--black);
 
   --navbarLinksColor: var(--white);
   --navbarBackgroundColor: var(--green-500);
@@ -38,6 +38,7 @@
   //project-item
   --img-background: var(--white);
   --project-item-bg: var(--green-700);
+  --project-item-border-color: var(--green-400);
 
   //project-details
   --thumbnail-border: var(--green-500);
@@ -84,4 +85,19 @@
 
   //skill-detailed-card
   --skill-card-bg: var(--green-700);
+
+  //action-button
+  --action-button-bg: var(--green-700);
+  --action-button-color: var(--white);
+  --action-button-border-color: var(--green-500);
+
+  //grid-item
+  --grid-item-default-bg: var(--green-700);
+  --grid-item-border-color: var(--green-500);
+
+  //linkedin
+  --linkedin-bg: var(--green-700);
+
+  //github
+  --github-bg: var(--green-700);
 }

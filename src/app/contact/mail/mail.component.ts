@@ -1,31 +1,25 @@
 import { Component, inject } from '@angular/core';
 import { ActionButtonComponent } from '../action-button/action-button.component';
-import { ThemeService } from 'src/app/shared/theme.service';
 import { GridItemDirective } from '../grid-item.directive';
 import { ContentService } from 'src/app/shared/content.service';
 
 @Component({
-  selector: 'app-linkedin',
+  selector: 'app-mail',
   standalone: true,
   imports: [ActionButtonComponent],
-  templateUrl: './linkedin.component.html',
-  styleUrl: './linkedin.component.scss',
+  templateUrl: './mail.component.html',
+  styleUrl: './mail.component.scss',
 })
-export class LinkedinComponent extends GridItemDirective {
-  /**
-   * Gestion du thème
-   */
-  public themeService = inject(ThemeService);
-
+export class MailComponent extends GridItemDirective {
   /**
    * Gestion du contenu
    */
   public contentService = inject(ContentService);
 
   /**
-   * Ouvre Linkedin
+   * Ouvre le gestionnaire de mails
    */
-  public openLinkedin() {
-    window.open(this.contentService.linkedIn, '_blank');
+  public sendEmail() {
+    window.open('mailto:' + this.contentService.mail);
   }
 }

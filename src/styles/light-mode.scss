@@ -38,6 +38,7 @@
   //project-item
   --img-background: var(--white);
   --project-item-bg: var(--white);
+  --project-item-border-color: var(--gray-200);
 
   //project-details
   --thumbnail-border: var(--gray-200);
@@ -84,4 +85,19 @@
 
   //skill-detailed-card
   --skill-card-bg: var(--white);
+
+  //action-button
+  --action-button-bg: var(--white);
+  --action-button-color: var(--black);
+  --action-button-border-color: var(--gray-100);
+
+  //grid-item
+  --grid-item-default-bg: var(--white);
+  --grid-item-border-color: transparent;
+
+  //linkedin
+  --linkedin-bg: #007ebb;
+
+  //github
+  --github-bg: black;
 }
