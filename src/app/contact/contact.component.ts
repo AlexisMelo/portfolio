@@ -1,12 +1,12 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { InputComponent } from '../shared/input/input.component';
 import { ContentService } from '../shared/content.service';
+import { LinkedinComponent } from './linkedin/linkedin.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [MatIconModule, InputComponent],
+  imports: [MatIconModule, LinkedinComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

@@ -41,14 +41,8 @@
   </app-filter-chip>
 </div>
 
-<app-separator class="filter-separator g-container"></app-separator>
-
 <div [@stagger]="selectedProjects.length" class="projects g-container">
   @for (project of selectedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
-
-    @if (!$last) {
-      <app-separator></app-separator>
-    }
   }
 </div>

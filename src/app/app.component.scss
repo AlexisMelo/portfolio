@@ -1,4 +1,4 @@
-@import '../styles/breakpoints.scss';
+@import '../styles/responsive.scss';
 
 :host {
   display: flex;
@@ -16,7 +16,7 @@ app-footer {
 app-wip {
   margin-bottom: 10px;
 
-  @media (min-width: $laptop-l) {
+  @include responsive('large') {
     margin-bottom: 0;
     position: absolute;
     left: -75px;

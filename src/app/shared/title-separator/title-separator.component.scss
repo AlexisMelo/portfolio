@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 
 :host {
   display: block;
@@ -17,7 +17,7 @@
     margin-block-start: 0.5rem;
     font-size: 2rem;
 
-    @media (min-width: $tablets) {
+    @include responsive('medium') {
       font-size: 3rem;
     }
   }
@@ -25,7 +25,7 @@
   .details {
     width: 80%;
 
-    @media (min-width: $tablets) {
+    @include responsive('medium') {
       width: 60%;
     }
   }

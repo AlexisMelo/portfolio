@@ -1,7 +1,7 @@
 @mixin light-mode() {
   --titleColor: var(--green-500);
   --textColor: var(--green-400);
-  --backgroundColor: var(--white);
+  --backgroundColor: #f2f7f3;
 
   --navbarLinksColor: var(--green-400);
   --navbarBackgroundColor: var(--green-200);
@@ -37,10 +37,14 @@
 
   //project-item
   --img-background: var(--white);
+  --project-item-bg: var(--white);
 
   //project-details
   --thumbnail-border: var(--gray-200);
   --skill-group-border: var(--gray-200);
+
+  //suggestion-chip
+  --suggestion-chip-bg: var(--white);
 
   //highlightable-chip
   --highlightable-chip-background-color: var(--green-50);
@@ -74,4 +78,10 @@
   --separator-main-color: var(--green-100);
   --separator-second-color: var(--green-200);
   --separator-third-color: var(--green-300);
+
+  //grids
+  --grid-cell-default-bg: var(--gray-50);
+
+  //skill-detailed-card
+  --skill-card-bg: var(--white);
 }

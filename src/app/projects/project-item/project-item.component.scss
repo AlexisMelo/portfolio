@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 
 $padding-y: 12px;
 $gap: 10px;
@@ -9,6 +9,7 @@ $see-more-height: calc(12px + 1rem + 0.5 * $gap);
   padding: $padding-y 14px;
   position: relative; //pour pouvoir positionner le "voir plus de détails" en absolute
   overflow: hidden;
+  background-color: var(--project-item-bg);
 
   display: grid;
   grid-template-columns: auto 2fr;

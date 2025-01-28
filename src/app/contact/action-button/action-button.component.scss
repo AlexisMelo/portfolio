@@ -1,0 +1,30 @@
+$icon-size: 18px;
+
+:host {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  height: 36px;
+  width: 36px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s ease-out;
+
+  mat-icon {
+    height: $icon-size;
+    width: $icon-size;
+    font-size: $icon-size;
+  }
+
+  &:hover {
+    transition: box-shadow 0.2s ease-out;
+    cursor: pointer;
+    box-shadow:
+      rgb(255, 255, 255) 0px 0px 0px 1px,
+      rgba(255, 255, 255, 0.5) 0px 0px 0px 6px;
+  }
+}

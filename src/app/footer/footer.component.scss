@@ -1,4 +1,4 @@
-@import '../../styles/breakpoints.scss';
+@import '../../styles/responsive.scss';
 
 :host {
   display: flex;
@@ -8,7 +8,7 @@
   padding-left: 10px;
   padding-right: 10px;
   background-color: var(--footer-background-color);
-  line-height: 150%;
+  line-height: 200%;
 }
 
 .legal {
@@ -23,11 +23,11 @@
     border-color: var(--textColor);
     width: 90vw;
 
-    @media (min-width: $tablets) {
+    @include responsive('medium') {
       width: 80vw;
     }
 
-    @media (min-width: $laptop-l) {
+    @include responsive('large') {
       width: 70vw;
     }
   }
@@ -61,7 +61,7 @@ a {
     grid-row: 3;
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     gap: 20px;
     width: 80vw;
 
@@ -81,7 +81,7 @@ a {
     }
   }
 
-  @media (min-width: $laptop-l) {
+  @include responsive('large') {
     gap: 30px;
     width: 70vw;
 

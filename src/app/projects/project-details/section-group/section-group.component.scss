@@ -1,4 +1,4 @@
-@import '../../../../styles/breakpoints.scss';
+@import '../../../../styles/responsive.scss';
 
 .sections {
   display: flex;
@@ -10,7 +10,7 @@
     text-align: center;
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     gap: 2rem;
   }
 }

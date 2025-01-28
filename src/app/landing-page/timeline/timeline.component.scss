@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 @import './timeline-item-left/timeline-item-common-variables.scss';
 
 $head-dashed-line-animation-duration: 0.5s;
@@ -30,7 +30,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   background-color: var(--backgroundColor);
   z-index: 10;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     border-left-width: 4px;
   }
 }
@@ -74,7 +74,7 @@ $timeline-items-animation-appear-duration: 0.5s;
   z-index: 10;
   margin-top: 10px;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     border-left-width: 4px;
   }
 }
@@ -98,7 +98,7 @@ $timeline-items-animation-appear-duration: 0.5s;
       position: relative;
       left: calc(50% - $small-circle-size / 2);
 
-      @media (min-width: $tablets) {
+      @include responsive('medium') {
         left: calc(50% - $big-circle-size / 2);
       }
     }
@@ -107,7 +107,7 @@ $timeline-items-animation-appear-duration: 0.5s;
       position: relative;
       right: calc(50% - $small-circle-size / 2);
 
-      @media (min-width: $tablets) {
+      @include responsive('medium') {
         right: calc(50% - $big-circle-size / 2);
       }
     }
@@ -116,7 +116,7 @@ $timeline-items-animation-appear-duration: 0.5s;
     app-timeline-item-left {
       margin-bottom: 20px;
 
-      @media (min-width: $tablets) {
+      @include responsive('medium') {
         margin-bottom: 50px;
       }
     }

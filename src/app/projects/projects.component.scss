@@ -1,31 +1,13 @@
-@import '../../styles/breakpoints.scss';
+@import '../../styles/responsive.scss';
 
-h1 {
-  text-align: center;
-  margin-top: 0;
-
-  &:not(:first-of-type) {
-    margin-top: 3rem;
-  }
-}
-
-.description {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.empty {
-  width: 50%;
-  max-width: 300px;
-}
-
-.pinned {
+.pinned,
+.projects {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr;
   min-height: 350px;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -35,15 +17,12 @@ h1 {
   }
 }
 
-.filter-separator {
-  margin-top: 1.5rem;
-}
-
 .filters {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  margin-bottom: 3rem;
 
   app-input {
     flex-grow: 1;
@@ -51,5 +30,5 @@ h1 {
 }
 
 .projects {
-  min-height: 200px; //pour que ce soit "beau" quand on scroll jusqu'à Archives et y'a un seul projet
+  min-height: 200px; //pour que ce soit "beau" quand on scroll jusqu'à Archives et y'a un seul projet ou 0
 }

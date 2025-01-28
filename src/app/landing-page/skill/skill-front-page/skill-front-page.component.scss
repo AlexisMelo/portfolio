@@ -1,4 +1,4 @@
-@import '../../../../styles/breakpoints.scss';
+@import '../../../../styles/responsive.scss';
 
 :host {
   display: block;
@@ -19,7 +19,7 @@
       object-fit: contain;
       display: block;
 
-      @media (min-width: $tablets) {
+      @include responsive('medium') {
         width: 30px;
         height: 30px;
       }

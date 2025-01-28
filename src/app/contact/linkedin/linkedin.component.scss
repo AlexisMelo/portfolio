@@ -1,0 +1,20 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  background-color: #007ebb !important;
+  display: block;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 35px;
+
+    @include responsive('medium') {
+      width: 50px;
+    }
+
+    @include responsive('large') {
+      width: 75px;
+    }
+  }
+}

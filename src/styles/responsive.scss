@@ -1,0 +1,46 @@
+//  breakpoints par défaut sur google
+// $mobile-s: 320px;
+// $mobile-m: 375px;
+// $mobile-l: 425px;
+// $tablets: 768px;
+// $laptop: 1024px;
+// $laptop-l: 1440px;
+
+//https://medium.com/@jainbhavukspeaks/leveraging-scss-mixins-to-create-responsive-layouts-the-easy-way-5bbe4080cb15
+
+$mobile-landscape: 568px;
+$tablet: 800px;
+$desktop: 1200px;
+
+$sizes: (
+  'small': $mobile-landscape,
+  'medium': $tablet,
+  'large': $desktop,
+);
+
+/*
+* Map for breakpoints
+*/
+$breakpoints: (
+  'small': (
+    '(min-width: #{$mobile-landscape})',
+  ),
+  'medium': (
+    '(min-width: #{$tablet})',
+  ),
+  'large': (
+    '(min-width: #{$desktop})',
+  ),
+);
+
+@mixin responsive($size) {
+  $query: map-get($breakpoints, $size);
+
+  @if $query {
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$size}' not found in $breakpoints.";
+  }
+}

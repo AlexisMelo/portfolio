@@ -1,5 +1,5 @@
 @import './timeline-item-common-variables.scss';
-@import '../../../../styles/breakpoints.scss';
+@import '../../../../styles/responsive.scss';
 
 :host {
   display: flex;
@@ -26,7 +26,7 @@
   margin-top: 5px;
   cursor: pointer;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     min-width: $big-circle-size;
     height: $big-circle-size;
   }

@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 
 :host {
   width: fit-content;
@@ -28,7 +28,7 @@ button {
     min-height: 1.5rem;
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     padding: 13px 50px 13px;
   }
 

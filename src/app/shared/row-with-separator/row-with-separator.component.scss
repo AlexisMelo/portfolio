@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 
 //https://codepen.io/emared/pen/gWGBLR
 
@@ -15,7 +15,7 @@
   flex-direction: column;
   position: relative;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     margin-top: 10rem;
   }
 }

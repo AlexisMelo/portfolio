@@ -1,4 +1,4 @@
-.detailed-card {
+:host {
   border: 1px solid var(--filter-chip-border-color);
   padding: 6px;
   border-radius: var(--inputs-border-radius);
@@ -7,6 +7,7 @@
   align-items: center;
   width: 150px;
   height: 100%;
+  background-color: var(--skill-card-bg);
 
   hr {
     width: 100%;

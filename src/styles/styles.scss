@@ -1,11 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-@import './breakpoints.scss';
+@import './responsive.scss';
 @import './light-mode.scss';
 @import './dark-mode.scss';
 @import './design-system.scss';
 @import 'material-symbols';
+
+:root {
+  --grid-width: 350px; //pour que ça fonctionne même sur petit téléphone
+  --columns: 2;
+  --gap: 20px;
+
+  @include responsive('medium') {
+    --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
+    --columns: 4;
+  }
+
+  @include responsive('large') {
+    --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
+  }
+
+  --cell-size: calc(
+    calc(var(--grid-width) / var(--columns)) - calc(
+        calc(var(--gap) * (var(--columns) - 1)) / var(--columns)
+      )
+  );
+}
 
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
 body.dark-mode {
@@ -43,7 +64,7 @@ html {
   overflow-x: hidden;
   font-size: 12px;
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     font-size: 16px;
   }
 }
@@ -93,7 +114,7 @@ h2 {
     width: 100%;
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     height: 300px;
     width: 450px;
   }

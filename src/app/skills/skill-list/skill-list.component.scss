@@ -1,4 +1,4 @@
-@import '../../../styles/breakpoints.scss';
+@import '../../../styles/responsive.scss';
 
 :host {
   min-height: 400px;
@@ -20,7 +20,7 @@
     justify-content: center;
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     flex-direction: row;
     gap: 4rem;
 

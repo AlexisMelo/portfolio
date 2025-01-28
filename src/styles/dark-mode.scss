@@ -37,10 +37,14 @@
 
   //project-item
   --img-background: var(--white);
+  --project-item-bg: var(--green-700);
 
   //project-details
   --thumbnail-border: var(--green-500);
   --skill-group-border: var(--green-500);
+
+  //suggestion-chip
+  --suggestion-chip-bg: var(--green-700);
 
   //highlightable-chip
   --highlightable-chip-background-color: var(--green-200);
@@ -74,4 +78,10 @@
   --separator-main-color: var(--green-700);
   --separator-second-color: var(--green-400);
   --separator-third-color: var(--green-300);
+
+  //grids
+  --grid-cell-default-bg: var(--green-700);
+
+  //skill-detailed-card
+  --skill-card-bg: var(--green-700);
 }

@@ -1,9 +1,10 @@
-@import '../../styles/breakpoints.scss';
+@import '../../styles/responsive.scss';
 
 $transition-duration: 0.2s;
 $vertical-padding: 1rem;
 $logo-size: 3rem;
 $transition-duration: 0.3s;
+$border-radius: 12px;
 
 :host {
   background-color: var(--navbarBackgroundColor);
@@ -13,7 +14,7 @@ $transition-duration: 0.3s;
   z-index: 500;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 12px;
+  border-radius: $border-radius;
   max-width: var(--container-max-width);
   width: var(--container-width);
 
@@ -30,16 +31,21 @@ $transition-duration: 0.3s;
   transition-delay: $transition-duration;
   transition-property: border-bottom-right-radius, border-bottom-left-radius;
 
+  &.menu-opened {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: none;
+  }
+
   background-image: var(--navbar-gradient);
   background-attachment: fixed;
   background-size: cover;
 
   //media query pour éviter que les corners restent à 0 si le menu reste ouvert ET qu'on agrandit l'écran
-  @media (max-width: $tablets) {
+  @include responsive('medium') {
     &.menu-opened {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      transition: none;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
     }
   }
 
@@ -67,7 +73,7 @@ $transition-duration: 0.3s;
     position: relative;
     white-space: nowrap;
 
-    @media (min-width: $mobile-m) {
+    @include responsive('medium') {
       padding: 10px;
     }
 
@@ -143,7 +149,7 @@ $transition-duration: 0.3s;
     }
   }
 
-  @media (min-width: $tablets) {
+  @include responsive('medium') {
     .collapsible-menu {
       display: none;
     }
