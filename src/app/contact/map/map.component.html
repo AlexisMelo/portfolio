@@ -1,1 +1,22 @@
-<p>map works!</p>
+<div class="map-frame">
+  <div id="map"></div>
+</div>
+
+@if (zoom !== minZoom) {
+  <app-action-button
+    [unfold]="hovered"
+    (click)="zoomOut()"
+    icon="remove"
+    position="bottom-left"></app-action-button>
+}
+
+@if (zoom !== maxZoom) {
+  <app-action-button
+    [unfold]="hovered"
+    (click)="zoomIn()"
+    icon="add"
+    position="bottom-right"></app-action-button>
+}
+
+<div class="rayon"></div>
+<img class="img-marker" src="photos/avatar-neutral.png" alt="" />

@@ -1,0 +1,58 @@
+.map-frame {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+app-action-button {
+  z-index: 500;
+
+  &:hover ~ .rayon {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.img-marker {
+  width: 70px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 500;
+}
+
+.rayon {
+  border-radius: 50%;
+  opacity: 0.5;
+  background-color: lightblue;
+  border: 2px solid green;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 500;
+  transition: 200ms;
+}

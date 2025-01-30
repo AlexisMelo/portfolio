@@ -25,6 +25,12 @@ export class ActionButtonComponent {
   @HostBinding('class.unfold') @Input() unfold: boolean = false;
 
   /**
+   * Position du bouton
+   */
+  @HostBinding('class') @Input() position: 'bottom-right' | 'bottom-left' =
+    'bottom-left';
+
+  /**
    * Est-ce que le texte est vide ? Utile pour le css
    */
   @HostBinding('class.text-is-empty') get textEmpty() {

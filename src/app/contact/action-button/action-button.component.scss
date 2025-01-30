@@ -1,10 +1,10 @@
 $icon-size: 18px;
+$border-size: 2px;
 $height: 36px;
 
 :host {
   position: absolute;
-  left: 16px;
-  bottom: 16px;
+
   color: var(--action-button-color);
   background-color: var(--action-button-bg);
   border-radius: 50%;
@@ -17,12 +17,22 @@ $height: 36px;
   border-radius: 18px;
   height: 36px;
 
+  &.bottom-left {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  &.bottom-right {
+    right: 16px;
+    bottom: 16px;
+  }
+
   mat-icon {
     height: $icon-size;
     width: $icon-size;
     font-size: $icon-size;
-    margin-left: calc(($height - $icon-size) / 2);
-    margin-right: calc(($height - $icon-size) / 2);
+    margin-left: calc(($height - $icon-size) / 2 - $border-size);
+    margin-right: calc(($height - $icon-size) / 2 - $border-size);
   }
 
   .text {
