@@ -1,0 +1,25 @@
+:host {
+  padding: 2rem;
+
+  .description {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  img {
+    width: 120px;
+    height: auto;
+  }
+
+  p {
+    line-height: 150%;
+    margin-bottom: 0;
+  }
+
+  .name {
+    font-family: 'Limelight';
+    font-size: 1.5rem;
+  }
+}

@@ -1,10 +1,16 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import { Directive, HostBinding, HostListener, inject } from '@angular/core';
+import { ThemeService } from '../shared/theme.service';
 
 @Directive({
   selector: '[appGridItem]',
   standalone: true,
 })
 export class GridItemDirective {
+  /**
+   * Gestion du thème
+   */
+  public themeService = inject(ThemeService);
+
   /**
    * Est-ce que le composant est actuellement survolé ?
    */

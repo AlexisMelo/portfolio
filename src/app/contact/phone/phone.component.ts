@@ -1,25 +1,25 @@
 import { Component, inject } from '@angular/core';
+import { GridItemDirective } from '../grid-item.directive';
 import { ContentService } from 'src/app/shared/content.service';
 import { ActionButtonComponent } from '../action-button/action-button.component';
-import { GridItemDirective } from '../grid-item.directive';
 
 @Component({
-  selector: 'app-linkedin',
+  selector: 'app-phone',
   standalone: true,
   imports: [ActionButtonComponent],
-  templateUrl: './linkedin.component.html',
-  styleUrl: './linkedin.component.scss',
+  templateUrl: './phone.component.html',
+  styleUrl: './phone.component.scss',
 })
-export class LinkedinComponent extends GridItemDirective {
+export class PhoneComponent extends GridItemDirective {
   /**
    * Gestion du contenu
    */
   public contentService = inject(ContentService);
 
   /**
-   * Ouvre Linkedin
+   * Lancer l'appel
    */
-  public openLinkedin() {
-    window.open(this.contentService.linkedIn, '_blank');
+  public call() {
+    window.open('tel:' + this.contentService.phone);
   }
 }

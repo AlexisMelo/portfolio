@@ -50,7 +50,7 @@ $height: 36px;
   &:hover:not(.text-is-empty),
   &.unfold:not(.text-is-empty) {
     .text {
-      max-width: 7rem;
+      max-width: 200px;
       opacity: 1;
       padding-right: 0.7rem;
       transform: none;

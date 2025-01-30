@@ -4,11 +4,26 @@ import { ContentService } from '../shared/content.service';
 import { GithubComponent } from './github/github.component';
 import { LinkedinComponent } from './linkedin/linkedin.component';
 import { MailComponent } from './mail/mail.component';
+import { PhoneComponent } from './phone/phone.component';
+import { PhotoComponent } from './photo/photo.component';
+import { DescriptionComponent } from './description/description.component';
+import { ResumeComponent } from './resume/resume.component';
+import { MapComponent } from './map/map.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [MatIconModule, LinkedinComponent, GithubComponent, MailComponent],
+  imports: [
+    MatIconModule,
+    LinkedinComponent,
+    GithubComponent,
+    MailComponent,
+    PhoneComponent,
+    PhotoComponent,
+    DescriptionComponent,
+    ResumeComponent,
+    MapComponent,
+  ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

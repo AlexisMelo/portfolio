@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ThemeService } from 'src/app/shared/theme.service';
+import { ContentService } from 'src/app/shared/content.service';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { GridItemDirective } from '../grid-item.directive';
-import { ContentService } from 'src/app/shared/content.service';
 
 @Component({
   selector: 'app-github',
@@ -12,11 +11,6 @@ import { ContentService } from 'src/app/shared/content.service';
   styleUrl: './github.component.scss',
 })
 export class GithubComponent extends GridItemDirective {
-  /**
-   * Gestion du thème
-   */
-  public themeService = inject(ThemeService);
-
   /**
    * Gestion du contenu
    */
