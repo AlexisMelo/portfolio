@@ -108,4 +108,18 @@ export class SupabaseService {
       .returns<Array<Context>>();
     return data ?? [];
   }
+
+  /**
+   * Télécharge mon CV
+   * @returns
+   */
+  public async getResume(): Promise<Blob> {
+    const { data, error } = await this.supabase.storage
+      .from('portfolio-project')
+      .download('CV.pdf');
+
+    if (error || data === null)
+      return Promise.reject('Erreur lors du téléchargement');
+    return data;
+  }
 }

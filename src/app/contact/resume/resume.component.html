@@ -1,1 +1,9 @@
-<h2>Curriculum Vitae</h2>
+<div class="resume">
+  <h2>Curriculum Vitae</h2>
+</div>
+
+<app-action-button
+  [unfold]="hovered"
+  text="Télécharger"
+  (click)="downloadResume()"
+  [icon]="'download'"></app-action-button>
