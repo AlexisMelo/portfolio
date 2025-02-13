@@ -1,3 +1,5 @@
+@import '../../../styles/responsive.scss';
+
 .map-frame {
   width: 100%;
   height: 100%;
@@ -29,18 +31,27 @@ app-action-button {
   z-index: 500;
 
   &:hover ~ .rayon {
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
+
+    @include responsive('medium') {
+      width: 140px;
+      height: 140px;
+    }
   }
 }
 
 .img-marker {
-  width: 70px;
+  width: 40px;
   height: auto;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 500;
+
+  @include responsive('medium') {
+    width: 70px;
+  }
 }
 
 .rayon {
@@ -48,11 +59,16 @@ app-action-button {
   opacity: 0.5;
   background-color: lightblue;
   border: 2px solid green;
-  width: 100px;
-  height: 100px;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 500;
   transition: 200ms;
+  width: 80px;
+  height: 80px;
+
+  @include responsive('medium') {
+    width: 120px;
+    height: 120px;
+  }
 }
