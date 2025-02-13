@@ -26,7 +26,7 @@ export class MapComponent
   /**
    * Niveaux de zoom autorisés
    */
-  private allowedZoomLevels = [4, 6, 14];
+  private allowedZoomLevels: Array<number> = [4, 6, 14];
 
   /**
    * Position de là où j'habite
@@ -34,12 +34,18 @@ export class MapComponent
   private position: L.LatLngExpression = [49.183, -0.372];
 
   /**
+   * Niveau de zoom de la map
+   * On commence au niveau le plus zoomé possible
+   */
+  public zoomLevel: number = this.maxZoom;
+
+  /**
    * Implémentation de AfterViewInit
    */
   ngAfterViewInit() {
     this.map = L.map('map', {
       center: this.position,
-      zoom: this.maxZoom, //on commence au + zoomé
+      zoom: this.zoomLevel,
       attributionControl: false,
       scrollWheelZoom: false,
       zoomControl: false,
@@ -65,15 +71,6 @@ export class MapComponent
    */
   get minZoom() {
     return this.allowedZoomLevels[0];
-  }
-
-  /**
-   * Zoom actuel
-   */
-  get zoom() {
-    if (!this.map) return -1;
-
-    return this.map.getZoom();
   }
 
   /**
@@ -118,7 +115,11 @@ export class MapComponent
 
     const levelIndex = this.allowedZoomLevels.indexOf(this.map.getZoom());
     if (levelIndex === -1 || levelIndex === 0) return;
-    this.map.flyTo(this.position, this.allowedZoomLevels[levelIndex - 1]);
+
+    const newLevel = this.allowedZoomLevels[levelIndex - 1];
+
+    this.map.flyTo(this.position, newLevel);
+    this.zoomLevel = newLevel;
   }
 
   /**
@@ -130,6 +131,10 @@ export class MapComponent
     const levelIndex = this.allowedZoomLevels.indexOf(this.map.getZoom());
     if (levelIndex === -1 || levelIndex === this.allowedZoomLevels.length)
       return;
-    this.map.flyTo(this.position, this.allowedZoomLevels[levelIndex + 1]);
+
+    const newLevel = this.allowedZoomLevels[levelIndex + 1];
+
+    this.map.flyTo(this.position, newLevel);
+    this.zoomLevel = newLevel;
   }
 }

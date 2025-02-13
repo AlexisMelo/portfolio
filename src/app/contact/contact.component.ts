@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentService } from '../shared/content.service';
+import { DescriptionComponent } from './description/description.component';
 import { GithubComponent } from './github/github.component';
 import { LinkedinComponent } from './linkedin/linkedin.component';
 import { MailComponent } from './mail/mail.component';
-import { PhoneComponent } from './phone/phone.component';
-import { PhotoComponent } from './photo/photo.component';
-import { DescriptionComponent } from './description/description.component';
-import { ResumeComponent } from './resume/resume.component';
 import { MapComponent } from './map/map.component';
+import { PhoneComponent } from './phone/phone.component';
+import { ResumeComponent } from './resume/resume.component';
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +18,6 @@ import { MapComponent } from './map/map.component';
     GithubComponent,
     MailComponent,
     PhoneComponent,
-    PhotoComponent,
     DescriptionComponent,
     ResumeComponent,
     MapComponent,

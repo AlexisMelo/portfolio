@@ -2,7 +2,7 @@
   <div id="map"></div>
 </div>
 
-@if (zoom !== minZoom) {
+@if (zoomLevel !== minZoom) {
   <app-action-button
     [unfold]="hovered"
     (click)="zoomOut()"
@@ -10,7 +10,7 @@
     position="bottom-left"></app-action-button>
 }
 
-@if (zoom !== maxZoom) {
+@if (zoomLevel !== maxZoom) {
   <app-action-button
     [unfold]="hovered"
     (click)="zoomIn()"
