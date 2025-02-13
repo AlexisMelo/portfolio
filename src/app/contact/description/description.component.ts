@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GridItemDirective } from '../grid-item.directive';
+import { ContentService } from 'src/app/shared/content.service';
 
 @Component({
   selector: 'app-description',
@@ -8,4 +9,9 @@ import { GridItemDirective } from '../grid-item.directive';
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss',
 })
-export class DescriptionComponent extends GridItemDirective {}
+export class DescriptionComponent extends GridItemDirective {
+  /**
+   * Gestion du contenu
+   */
+  public contentService = inject(ContentService);
+}

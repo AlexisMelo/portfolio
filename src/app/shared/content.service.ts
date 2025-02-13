@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 /**
  * Service pour gérer le contenu configurable de l'appli
@@ -9,32 +10,31 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ContentService {
+  private sanitizer = inject(DomSanitizer);
+
   /**
    * Description de mon activité
    */
-  get description() {
-    // return "Je suis Alexis Melo da Silva, développeur fullstack basé à Caen, en France. Je met mes compétences en développement web au service de la transformation digitale des entreprises et au déploiement de l'i4.0.";
-    return `Fort de 3 ans d’expérience en 
-développement logiciel et web au sein
-d’une grande entreprise, je souhaite 
-désormais exercer ma passion sous le 
-statut de freelance. 
-Aimant aussi bien participer à
-l’élaboration d’interfaces que réfléchir sur les problématiques liées à la gestion de la donnée, j’aspire chaque jour à devenir un développeur un peu plus complet.`;
+  get description(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(
+      `Je suis <span class="g-name">Alexis</span>, développeur fullstack basé à Caen.
+    J'apprécie concevoir et développer des applications performantes, intuitives
+    et qui ont un réel impact sur le terrain.`
+    );
   }
 
   /**
    * Adresse mail
    */
   get mail() {
-    return 'Alexis.Melo@outlook.fr';
+    return 'alexis.melo@outlook.fr';
   }
 
   /**
    * Téléphone
    */
   get phone() {
-    return '06 12 15 78 26';
+    return '+33 (0)6 12 15 78 26';
   }
 
   /**

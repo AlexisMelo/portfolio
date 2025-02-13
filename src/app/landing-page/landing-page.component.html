@@ -62,9 +62,9 @@
       </svg>
     </div>
 
-    <div class="description g-text">
-      {{ contentService.description }}
-    </div>
+    <div
+      [innerHTML]="contentService.description"
+      class="description g-text"></div>
 
     <div class="contact">
       <app-button [style]="'outlined'" (buttonClicked)="goToContact()"

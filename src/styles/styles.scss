@@ -134,3 +134,30 @@ h2 {
 .g-first-title {
   margin-top: 2em !important; //pour régler l'écart entre les titres séparateurs et le bas de la navbar
 }
+
+/* Grid system */
+
+.g-grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(var(--columns), var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  transition: 300ms;
+}
+
+.g-grid-container {
+  max-width: var(--grid-width);
+  margin: 0px auto;
+}
+
+/* Others */
+
+.g-bold-not-title {
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.g-name {
+  font-family: 'Limelight';
+  font-size: 1.5rem;
+}

@@ -5,32 +5,16 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
   background-color: var(--footer-background-color);
+  border-top: 1px solid var(--footer-border-color);
   line-height: 200%;
 }
 
-.legal {
+.copyright {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  div {
-    margin-bottom: 20px;
-    border-top: 1px solid;
-    border-color: var(--textColor);
-    width: 90vw;
-
-    @include responsive('medium') {
-      width: 80vw;
-    }
-
-    @include responsive('large') {
-      width: 70vw;
-    }
-  }
 }
 
 a {
@@ -44,10 +28,10 @@ a {
 
 .infos {
   display: grid;
-  gap: 10px;
-  width: 90vw;
-  margin-top: 50px;
   margin-bottom: 20px;
+  width: 100%;
+  padding: 2rem;
+  gap: 20px;
 
   .agence {
     grid-row: 1;
@@ -62,8 +46,7 @@ a {
   }
 
   @include responsive('medium') {
-    gap: 20px;
-    width: 80vw;
+    gap: 30px;
 
     .agence {
       grid-row: 1;
@@ -82,8 +65,7 @@ a {
   }
 
   @include responsive('large') {
-    gap: 30px;
-    width: 70vw;
+    gap: 50px;
 
     .agence {
       grid-row: 1;
@@ -93,11 +75,17 @@ a {
     .contact {
       grid-row: 1;
       grid-column: 2;
+      text-align: end;
     }
 
     .identity {
       grid-row: 1;
       grid-column: 3;
+      text-align: end;
     }
   }
+}
+
+.g-bold-not-title {
+  margin-bottom: 1rem;
 }

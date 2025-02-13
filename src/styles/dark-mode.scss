@@ -3,8 +3,10 @@
   --textColor: var(--white);
   --backgroundColor: var(--black);
 
+  //navbar
   --navbarLinksColor: var(--white);
-  --navbarBackgroundColor: var(--green-500);
+  --navbar-background-color: var(--green-600);
+  --navbar-border-bottom-color: var(--green-500);
 
   --timelineCircleColor: var(--green-200);
   --timelineProject: var(--green-300);
@@ -12,7 +14,9 @@
   --timelineLeftText: var(--green-100);
   --timelineColor: var(--green-100);
 
-  --footer-background-color: var(--green-500);
+  //footer
+  --footer-background-color: var(--green-600);
+  --footer-border-color: var(--green-500);
 
   //contact
   --contactBackgroundColor: var(--green-500);
@@ -93,7 +97,7 @@
 
   //grid-item
   --grid-item-default-bg: var(--green-700);
-  --grid-item-border: 2px solid var(--green-500);
+  --grid-item-border: var(--green-500);
 
   //linkedin
   --linkedin-bg: var(--green-700);

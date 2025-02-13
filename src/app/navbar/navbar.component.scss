@@ -7,47 +7,17 @@ $transition-duration: 0.3s;
 $border-radius: 12px;
 
 :host {
-  background-color: var(--navbarBackgroundColor);
-
-  position: sticky;
-  top: 10px;
-  z-index: 500;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: $border-radius;
-  max-width: var(--container-max-width);
-  width: var(--container-width);
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  width: 100%;
+  background-color: var(--navbar-background-color);
   padding: $vertical-padding 2rem;
-
-  transition:
-    border-bottom-right-radius $transition-duration ease-in,
-    border-bottom-left-radius $transition-duration ease-in;
-  transition-delay: $transition-duration;
-  transition-property: border-bottom-right-radius, border-bottom-left-radius;
-
-  &.menu-opened {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    transition: none;
-  }
-
-  background-image: var(--navbar-gradient);
-  background-attachment: fixed;
-  background-size: cover;
-
-  //media query pour éviter que les corners restent à 0 si le menu reste ouvert ET qu'on agrandit l'écran
-  @include responsive('medium') {
-    &.menu-opened {
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
-    }
-  }
+  border-bottom: 1px solid var(--navbar-border-bottom-color);
 
   .logo {
     height: $logo-size;
@@ -79,8 +49,6 @@ $border-radius: 12px;
 
     &.is-active {
       color: inherit;
-      font-weight: bold;
-      letter-spacing: 0.1rem;
     }
 
     &:hover {
@@ -138,13 +106,10 @@ $border-radius: 12px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     //    background-color: var(--navbarBackgroundColor);
-
-    background-image: var(--navbar-gradient);
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: #f2f7f3;
 
     &.opened {
-      height: 175px;
+      height: 100vh;
       width: 100%;
     }
   }

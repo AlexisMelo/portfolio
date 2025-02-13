@@ -25,20 +25,24 @@
   <div class="navbar-link">
     <a
       [routerLink]="['']"
-      [routerLinkActive]="['is-active']"
+      [routerLinkActive]="['is-active', 'g-bold-not-title']"
       [routerLinkActiveOptions]="{ exact: true }"
       >À propos</a
     >
   </div>
 
   <div class="navbar-link">
-    <a [routerLink]="['projects']" [routerLinkActive]="['is-active']"
+    <a
+      [routerLink]="['projects']"
+      [routerLinkActive]="['is-active', 'g-bold-not-title']"
       >Réalisations</a
     >
   </div>
 
   <div class="navbar-link">
-    <a [routerLink]="['skills']" [routerLinkActive]="['is-active']"
+    <a
+      [routerLink]="['skills']"
+      [routerLinkActive]="['is-active', 'g-bold-not-title']"
       >Compétences</a
     >
   </div>
@@ -46,7 +50,9 @@
 
 <ng-template #rightLinks>
   <div class="navbar-link">
-    <a [routerLink]="['contact']" [routerLinkActive]="['is-active']"
+    <a
+      [routerLink]="['contact']"
+      [routerLinkActive]="['is-active', 'g-bold-not-title']"
       >Me contacter</a
     >
   </div>
