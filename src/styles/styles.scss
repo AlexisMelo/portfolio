@@ -68,6 +68,10 @@ html {
   font-size: 12px;
 
   @include responsive('medium') {
+    font-size: 13.5px;
+  }
+
+  @include responsive('large') {
     font-size: 15px;
   }
 }
