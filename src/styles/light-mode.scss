@@ -5,7 +5,7 @@
 
   //navbar
   --navbarLinksColor: var(--green-400);
-  --navbar-background-color: var(--green-100);
+  --navbar-background-color: #f2f7f3;
   --navbar-border-bottom-color: var(--gray-200);
 
   --timelineCircleColor: var(--green-500);
@@ -93,11 +93,12 @@
   //action-button
   --action-button-bg: var(--white);
   --action-button-color: var(--black);
-  --action-button-border-color: var(--gray-200);
+  --action-button-border-color: var(--gray-100);
 
   //grid-item
   --grid-item-default-bg: var(--white);
-  --grid-item-border: var(--gray-200);
+  --grid-item-border: var(--gray-100);
+  --grid-item-border-hover-color: var(--green-500);
 
   //linkedin
   --linkedin-bg: #65b3ec;

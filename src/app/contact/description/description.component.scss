@@ -15,6 +15,7 @@
 
     @include responsive('large') {
       flex-direction: row;
+      align-items: center;
       gap: 2rem;
     }
   }

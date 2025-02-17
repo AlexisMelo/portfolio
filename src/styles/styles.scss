@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
 @import './responsive.scss';
 @import './light-mode.scss';
 @import './dark-mode.scss';
@@ -59,14 +59,16 @@ html {
   margin: 0;
   padding: 0;
   color: var(--textColor);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Funnel Display', sans-serif;
+  font-optical-sizing: auto;
+  letter-spacing: 1px;
   font-weight: 300;
   font-style: normal;
   overflow-x: hidden;
   font-size: 12px;
 
   @include responsive('medium') {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
@@ -159,5 +161,5 @@ h2 {
 
 .g-name {
   font-family: 'Limelight';
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }

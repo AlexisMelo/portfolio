@@ -17,7 +17,9 @@ $border-radius: 12px;
   width: 100%;
   background-color: var(--navbar-background-color);
   padding: $vertical-padding 2rem;
-  border-bottom: 1px solid var(--navbar-border-bottom-color);
+  // border-bottom: 1px solid var(--navbar-border-bottom-color);
+  z-index: 600;
+  transition: background-color 0.3s ease-out;
 
   .logo {
     height: $logo-size;
@@ -106,7 +108,12 @@ $border-radius: 12px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     //    background-color: var(--navbarBackgroundColor);
-    background-color: #f2f7f3;
+    background-color: var(--navbar-background-color);
+    font-size: 1.5rem;
+
+    > * {
+      margin-top: 3rem;
+    }
 
     &.opened {
       height: 100vh;
