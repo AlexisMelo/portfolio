@@ -33,5 +33,5 @@ export class GridItemDirective {
   /**
    * Classe liée aux grid-items
    */
-  @HostBinding('class') gridItem = 'grid-item';
+  @HostBinding('class') gridItem = 'g-grid-item';
 }

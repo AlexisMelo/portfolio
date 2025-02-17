@@ -1,0 +1,28 @@
+@import '../../../../styles/responsive.scss';
+
+$icon-size: 4rem;
+
+:host {
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 4rem;
+
+  @include responsive('medium') {
+    padding: 3rem;
+  }
+}
+
+.icon {
+  width: $icon-size;
+  height: $icon-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="icon">
+  @if (project.icon) {
+    <img [src]="project.icon" alt="" />
+  } @else {
+    <mat-icon>apps</mat-icon>
+  }
+</div>
+
+<h1>{{ project.label }}</h1>
+
+<div>{{ project.description }}</div>
+
+<app-action-button [unfold]="true" text="Voir le site" (click)="openLink()">
+</app-action-button>

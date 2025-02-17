@@ -1,22 +1,5 @@
 @import '../../styles/responsive.scss';
 
-.grid-item {
-  border-radius: 1rem;
-  background-color: var(--grid-item-default-bg);
-  border: 1px solid var(--grid-item-border);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: 500ms;
-
-  &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
-    border-color: var(--grid-item-border-hover-color);
-  }
-}
-
 .description {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
