@@ -1,0 +1,9 @@
+<h2>{{ project.context.label }}</h2>
+
+<div class="localization">{{ project.context.localization }}</div>
+
+<app-action-button
+  text="Voir d'autres projets"
+  [unfold]="hovered"
+  (click)="moreProjects()">
+</app-action-button>

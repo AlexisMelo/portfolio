@@ -15,6 +15,7 @@ import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-c
 import { SectionGroupComponent } from './section-group/section-group.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
+import { ProjectContextComponent } from './project-context/project-context.component';
 
 @Component({
   selector: 'app-project-details',
@@ -32,6 +33,7 @@ import { ProjectDurationComponent } from './project-duration/project-duration.co
     SectionGroupComponent,
     ProjectDescriptionComponent,
     ProjectDurationComponent,
+    ProjectContextComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

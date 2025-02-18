@@ -5,16 +5,16 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { ActivableChipComponent } from '../activable-chip/activable-chip.component';
 import { MatIconModule } from '@angular/material/icon';
-import { DetailsMenuComponent } from './details-menu/details-menu.component';
-import { OutsideClickDirective } from '../../outside-click.directive';
 import { SelectableItem } from '../../is-selected/selectable-item.model';
+import { OutsideClickDirective } from '../../outside-click.directive';
+import { ActivableChipComponent } from '../activable-chip/activable-chip.component';
+import { DetailsMenuComponent } from './details-menu/details-menu.component';
 
 @Component({
   selector: 'app-filter-chip',
   standalone: true,
-  imports: [MatIconModule, DetailsMenuComponent, OutsideClickDirective],
+  imports: [MatIconModule, DetailsMenuComponent],
   templateUrl: './filter-chip.component.html',
   styleUrl: './filter-chip.component.scss',
   hostDirectives: [
@@ -36,6 +36,11 @@ export class FilterChipComponent extends ActivableChipComponent {
    * Options sélectionnées
    */
   @Input({ required: true }) selectedOptions: Array<SelectableItem> = [];
+
+  /**
+   * Texte à afficher
+   */
+  @Input() header: string = 'Sélectionnez une option';
 
   /**
    * Une option a été selectionnée

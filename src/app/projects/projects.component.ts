@@ -15,13 +15,11 @@ import { FilterChipComponent } from '../shared/chips/filter-chip/filter-chip.com
 import { InputComponent } from '../shared/input/input.component';
 import { IsSelectedPipe } from '../shared/is-selected/is-selected.pipe';
 import { SelectableItem } from '../shared/is-selected/selectable-item.model';
-import { SeparatorComponent } from '../shared/separator/separator.component';
 import { SupabaseService } from '../shared/supabase.service';
 import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import { Project } from './project.model';
 import { Skill } from './skill.model';
-import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -33,9 +31,7 @@ import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with
     InputComponent,
     ReactiveFormsModule,
     FormsModule,
-    SeparatorComponent,
     TitleSeparatorComponent,
-    RowWithSeparatorComponent,
   ],
   providers: [IsSelectedPipe],
   templateUrl: './projects.component.html',

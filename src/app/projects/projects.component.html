@@ -28,7 +28,8 @@
     [options]="contexts"
     [selectedOptions]="selectedContexts"
     (selected)="selectContext($event)"
-    [large]="true">
+    [large]="true"
+    header="Sélectionnez un contexte">
     Contexte
   </app-filter-chip>
   <app-filter-chip
@@ -36,7 +37,8 @@
     [options]="skills"
     [selectedOptions]="selectedSkills"
     (selected)="selectSkill($event)"
-    [large]="true">
+    [large]="true"
+    header="Sélectionnez une compétence">
     Compétence
   </app-filter-chip>
 </div>
