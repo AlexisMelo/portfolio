@@ -29,7 +29,7 @@ export class ProjectContextComponent extends GridItemDirective {
   public moreProjects() {
     this.router.navigate(['/projects'], {
       queryParams: {
-        contexts: this.project.context.id,
+        contexts: this.project.project_context.id,
       },
       fragment: 'archives',
     });

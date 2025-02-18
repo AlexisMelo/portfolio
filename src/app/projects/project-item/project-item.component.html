@@ -23,14 +23,14 @@
 </div>
 
 <div class="technologies">
-  @for (skill of project.skill | slice: 0 : 3; track skill.id) {
+  @for (skill of project.skills | slice: 0 : 3; track skill.id) {
     <app-highlightable-chip [highlighted]="skill.main"
       >{{ skill.label }}
     </app-highlightable-chip>
   }
   <span>
-    @if (project.skill.length > 3) {
-      + {{ project.skill.length - 3 }}
+    @if (project.skills.length > 3) {
+      + {{ project.skills.length - 3 }}
     }
   </span>
 </div>
@@ -38,14 +38,14 @@
 <div class="bottom">
   <div class="context">
     <div class="logo">
-      @if (project.context.icon) {
-        <img [src]="project.context.icon" alt="" />
+      @if (project.project_context.icon) {
+        <img [src]="project.project_context.icon" alt="" />
       } @else {
         <mat-icon class="work-icon">location_on</mat-icon>
       }
     </div>
     <span class="label">
-      {{ project.context.label }}
+      {{ project.project_context.label }}
     </span>
   </div>
 

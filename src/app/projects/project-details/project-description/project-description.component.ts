@@ -22,6 +22,7 @@ export class ProjectDescriptionComponent extends GridItemDirective {
    * Ouvre le lien du projet
    */
   public openLink() {
+    if (!this.project.deployment) return;
     window.open(this.project.deployment);
   }
 }

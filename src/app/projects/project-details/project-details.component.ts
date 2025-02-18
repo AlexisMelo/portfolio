@@ -1,21 +1,22 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Project } from '../project.model';
-import { SupabaseService } from 'src/app/shared/supabase.service';
-import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { DatePipe, KeyValuePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { DurationPipe } from '../duration.pipe';
-import { SuggestionChipComponent } from '../../shared/chips/suggestion-chip/suggestion-chip.component';
-import { SeparatorComponent } from 'src/app/shared/separator/separator.component';
-import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
-import { Skill } from '../skill.model';
-import { StatusPipe } from '../status/status.pipe';
+import { ActivatedRoute } from '@angular/router';
 import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
-import { SectionGroupComponent } from './section-group/section-group.component';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
+import { SeparatorComponent } from 'src/app/shared/separator/separator.component';
+import { SupabaseService } from 'src/app/shared/supabase.service';
+import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
+import { SuggestionChipComponent } from '../../shared/chips/suggestion-chip/suggestion-chip.component';
+import { DurationPipe } from '../duration.pipe';
+import { Project } from '../project.model';
+import { StatusPipe } from '../status/status.pipe';
+import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
-import { ProjectContextComponent } from './project-context/project-context.component';
+import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
+import { SectionGroupComponent } from './section-group/section-group.component';
+import { SkillWithType } from './skill-with-type.model';
 
 @Component({
   selector: 'app-project-details',
@@ -34,6 +35,7 @@ import { ProjectContextComponent } from './project-context/project-context.compo
     ProjectDescriptionComponent,
     ProjectDurationComponent,
     ProjectContextComponent,
+    ProjectIllustrationsComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
@@ -67,7 +69,7 @@ export class ProjectDetailsComponent {
   /**
    * Skills liés au projet groupés par type
    */
-  public skillsGroupedByType?: { [key: string]: Array<Skill> };
+  public skillsGroupedByType?: { [key: string]: Array<SkillWithType> };
 
   /**
    * Constructeur
@@ -82,10 +84,10 @@ export class ProjectDetailsComponent {
         if (project === null) return;
         this.project = project;
 
-        if (project.skill.length < 1) return;
+        if (project.skills.length < 1) return;
 
-        this.skillsGroupedByType = this.project.skill.reduce(
-          (rv: { [key: string]: Array<Skill> }, x) => {
+        this.skillsGroupedByType = this.project.skills.reduce(
+          (rv: { [key: string]: Array<SkillWithType> }, x) => {
             (rv[x.skill_type.label] = rv[x.skill_type.label] || []).push(x);
             return rv;
           },

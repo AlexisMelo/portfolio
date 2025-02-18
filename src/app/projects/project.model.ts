@@ -1,101 +1,42 @@
-import { Context } from '../landing-page/timeline/context.model';
-import { Coworker } from './coworker.model';
-import { ProjectType } from './project-type.model';
-import { Role } from './role.model';
-import { Section } from './section.model';
-import { Skill } from './skill.model';
+import { Tables } from 'database.types';
+import { SkillWithType } from './project-details/skill-with-type.model';
 
 /**
  * Représente un projet
  */
-export interface Project {
+export interface Project extends Tables<'project'> {
   /**
-   * Identifiant unique
+   * Type de projet
    */
-  id: number;
-
-  /**
-   * Titre du projet
-   */
-  label: string;
-
-  /**
-   * Date de début du projet
-   */
-  start_date: string;
-
-  /**
-   * Date de fin du projet
-   */
-  end_date?: string;
+  project_type: Tables<'project_type'>;
 
   /**
    * Contexte du projet
    */
-  context: Context;
+  project_context: Tables<'context'>;
 
   /**
-   * Description du projet
+   * Skills utilisés dans le projet
    */
-  description?: string;
+  skills: Array<SkillWithType>;
 
   /**
-   * Type du projet
+   * Sections de texte
    */
-  project_type: ProjectType;
+  sections: Array<Tables<'section'>>;
 
   /**
-   * Liste des compétences utilisées dans le projet
+   * Collègues sur le projet
    */
-  skill: Array<Skill>;
+  coworkers: Array<Tables<'coworker'>>;
 
   /**
-   * Lien vers l'image d'illustration
+   * Mes rôles dans le projet
    */
-  thumbnail?: string;
+  roles: Array<Tables<'role'>>;
 
   /**
-   * Lien vers l'icone
+   * Illustration pour un projet
    */
-  icon?: string;
-
-  /**
-   * URL vers les détails du projet
-   */
-  url: string;
-
-  /**
-   * Est-ce que le projet doit être mis en avant sur le portfolio
-   */
-  pinned: boolean;
-
-  /**
-   * Equipe
-   */
-  coworker: Array<Coworker>;
-
-  /**
-   * Rôles joués dans la réalisation du projet
-   */
-  role: Array<Role>;
-
-  /**
-   * Sections avec les détails
-   */
-  section: Array<Section>;
-
-  /**
-   * Le projet est-il à l'abandon
-   */
-  abandoned: boolean;
-
-  /**
-   * Lien vers le code source
-   */
-  source: string;
-
-  /**
-   * Lien vers le projet déployé
-   */
-  deployment: string;
+  illustrations: Array<Tables<'project_illustration'>>;
 }

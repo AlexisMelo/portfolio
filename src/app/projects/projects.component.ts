@@ -292,11 +292,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   get selectedProjects() {
     return this.projects.filter(
       p =>
-        this.isSelectedPipe.transform(this.selectedContexts, p.context) &&
-        ((p.skill.length === 0 &&
+        this.isSelectedPipe.transform(
+          this.selectedContexts,
+          p.project_context
+        ) &&
+        ((p.skills.length === 0 &&
           this.selectedSkills.length === this.skills.length) ||
           this.selectedSkills.some(s =>
-            this.isSelectedPipe.transform(p.skill, s)
+            this.isSelectedPipe.transform(p.skills, s)
           )) &&
         (!this.filter || (this.filter && this.projectMatchesFilter(p)))
     );
@@ -312,10 +315,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
     if (project.label.toLowerCase().includes(filter)) return true; //nom
     if (project.project_type.label.toLowerCase().includes(filter)) return true;
-    if (project.context.label.toLowerCase().includes(filter)) return true;
+    if (project.project_context.label.toLowerCase().includes(filter))
+      return true;
     if (project.description?.toLowerCase().includes(filter)) return true;
     if (
-      project.skill
+      project.skills
         .map(s => s.label.toLowerCase())
         .find(s => s.includes(filter)) !== undefined
     )

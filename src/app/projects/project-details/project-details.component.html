@@ -4,6 +4,8 @@
       <app-project-description [project]="project"></app-project-description>
       <app-project-duration [project]="project"></app-project-duration>
       <app-project-context [project]="project"></app-project-context>
+      <app-project-illustrations
+        [project]="project"></app-project-illustrations>
     }
   </div>
 </div>
@@ -58,19 +60,19 @@
     <app-separator></app-separator>
 
     <div class="more-infos">
-      @if (project.role.length > 0) {
+      @if (project.roles.length > 0) {
         <div class="roles">
           <h2>Rôles</h2>
-          @for (role of project.role; track role.id) {
+          @for (role of project.roles; track role.id) {
             <div>{{ role.label }}</div>
           }
         </div>
       }
 
-      @if (project.coworker.length > 0) {
+      @if (project.coworkers.length > 0) {
         <div class="team">
           <h2>Équipe</h2>
-          @for (coworker of project.coworker; track coworker.id) {
+          @for (coworker of project.coworkers; track coworker.id) {
             <div>{{ coworker.label }}</div>
           }
         </div>
@@ -78,7 +80,7 @@
 
       <div class="context">
         <h2>Contexte</h2>
-        <div>{{ project.context.label }}</div>
+        <div>{{ project.project_context.label }}</div>
       </div>
     </div>
 
@@ -136,10 +138,10 @@
       </div>
     }
 
-    @if (project.section.length > 0) {
+    @if (project.sections.length > 0) {
       <app-separator></app-separator>
 
-      <app-section-group [sections]="project.section"></app-section-group>
+      <app-section-group [sections]="project.sections"></app-section-group>
     }
   }
 </div>
