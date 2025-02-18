@@ -34,14 +34,10 @@
   }
 
   p {
-    line-height: 200%;
     margin-bottom: 0;
     margin-top: 2rem;
-    font-size: 1.2rem;
 
     @include responsive('medium') {
-      font-size: 1rem;
-      line-height: 180%;
       margin-top: 1rem;
     }
   }

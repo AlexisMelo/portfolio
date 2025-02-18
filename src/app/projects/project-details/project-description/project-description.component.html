@@ -8,7 +8,15 @@
 
 <h1>{{ project.label }}</h1>
 
-<div>{{ project.description }}</div>
+<div class="g-paragraph description">{{ project.description }}</div>
 
-<app-action-button [unfold]="true" text="Voir le site" (click)="openLink()">
-</app-action-button>
+<div class="bottom">
+  <app-action-button
+    [positionAbsolute]="false"
+    [unfold]="true"
+    text="Voir le site"
+    (click)="openLink()">
+  </app-action-button>
+
+  <div class="type">{{ project.project_type.label }}</div>
+</div>

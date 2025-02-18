@@ -25,10 +25,17 @@ export class ActionButtonComponent {
   @HostBinding('class.unfold') @Input() unfold: boolean = false;
 
   /**
-   * Position du bouton
+   * Position du bouton.
+   * Position absolute doit être à true
    */
   @HostBinding('class') @Input() position: 'bottom-right' | 'bottom-left' =
     'bottom-left';
+
+  /**
+   * Est-ce que le bouton doit être positionné de façon absolue
+   */
+  @HostBinding('class.position-absolute') @Input() positionAbsolute: boolean =
+    true;
 
   /**
    * Est-ce que le texte est vide ? Utile pour le css

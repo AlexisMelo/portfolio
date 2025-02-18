@@ -14,6 +14,7 @@ import { StatusPipe } from '../status/status.pipe';
 import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
 import { SectionGroupComponent } from './section-group/section-group.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
+import { ProjectDurationComponent } from './project-duration/project-duration.component';
 
 @Component({
   selector: 'app-project-details',
@@ -30,6 +31,7 @@ import { ProjectDescriptionComponent } from './project-description/project-descr
     StatusPipe,
     SectionGroupComponent,
     ProjectDescriptionComponent,
+    ProjectDurationComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

@@ -1,0 +1,16 @@
+<h2>
+  <div [ngClass]="project | status | kebabCase" class="dot"></div>
+  {{ project | status }}
+</h2>
+
+<div class="timings">
+  <div>
+    {{ project.start_date | date: 'MMMM y' }}
+  </div>
+  <app-right-arrow></app-right-arrow>
+  <div>
+    {{ project.end_date ? (project.end_date | date: 'MMMM y') : "Aujourd'hui" }}
+  </div>
+</div>
+
+<div class="duration">{{ project | duration }}</div>

@@ -1,21 +1,16 @@
 @import '../../../../styles/responsive.scss';
 
-$icon-size: 4rem;
-
 :host {
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 4rem;
+  padding: 3rem;
 
-  @include responsive('medium') {
-    padding: 3rem;
+  @include responsive('large') {
+    padding: 4rem;
   }
 }
 
 .icon {
-  width: $icon-size;
-  height: $icon-size;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,4 +20,31 @@ $icon-size: 4rem;
     height: 100%;
     object-fit: cover;
   }
+
+  @include responsive('medium') {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include responsive('large') {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.description {
+  flex-grow: 1;
+}
+
+.type {
+  text-align: end;
+  color: var(--grid-item-bottom-text-color);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }

@@ -1,6 +1,6 @@
 @mixin dark-mode() {
   --titleColor: var(--green-200);
-  --textColor: var(--white);
+  --text-color: var(--white);
   --backgroundColor: var(--black);
 
   //navbar
@@ -99,6 +99,7 @@
   --grid-item-default-bg: var(--green-700);
   --grid-item-border: var(--green-500);
   --grid-item-border-hover-color: var(--green-250);
+  --grid-item-bottom-text-color: var(--gray-300);
 
   //linkedin
   --linkedin-bg: var(--green-700);
