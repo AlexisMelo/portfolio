@@ -3,6 +3,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Project } from '../projects/project.model';
 import { Context } from '../landing-page/timeline/context.model';
+import { Database } from 'database.types';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class SupabaseService {
    * Constructeur
    */
   constructor() {
-    this.supabase = createClient(
+    this.supabase = createClient<Database>(
       environment.supabaseUrl,
       environment.supabasePublicKey
     );
@@ -27,34 +28,37 @@ export class SupabaseService {
    * Obtient la liste de tous les projets
    * @returns
    */
-  public async getProjects() {
-    const { data } = await this.supabase
+  public async getProjects(): Promise<Array<Project>> {
+    const { data, error } = await this.supabase
       .from('project')
-      .select('*, project_type(*), context(*), skill(*)')
+      .select(
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*))'
+      )
       .order('end_date', { ascending: false })
-      .order('main', { referencedTable: 'skill', ascending: false })
-      .returns<Array<Project>>();
-    return data ?? [];
+      .order('main', { referencedTable: 'skill', ascending: false });
+
+    if (error) return Promise.reject(error);
+    return data as Array<Project>;
   }
 
   /**
    * Obtient un projet à partir de son URL unique
    * @param url
    */
-  public async getProjectByUrl(url: string) {
-    const { data } = await this.supabase
+  public async getProjectByUrl(url: string): Promise<Project> {
+    const { data, error } = await this.supabase
       .from('project')
       .select(
-        '*, project_type(*), context(*), skill(*, skill_type(*)), coworker(*), role(*), section(*)'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*))'
       )
       .eq('url', url)
       .order('main', { referencedTable: 'skill', ascending: false })
       .order('label', { referencedTable: 'skill' })
-      .returns<Project>()
       .limit(1)
-      .single<Project>()
-      .throwOnError();
-    return data;
+      .single<Project>();
+
+    if (error) return Promise.reject(error);
+    return data as Project;
   }
 
   /**

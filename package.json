@@ -10,7 +10,8 @@
     "test": "ng test",
     "docker-image": "docker build -t alexismelo/portfolio:latest .",
     "docker-container": "docker run -p 8000:80 -d alexismelo/portfolio:latest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-supabase-types": "npx supabase gen types --lang=typescript --project-id tgolpzoiiupkeshlgcpq --schema public > database.types.ts"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +54,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^3.3.3",
     "prettier-eslint": "^16.3.0",
+    "supabase": "^2.12.1",
     "typescript": "~5.5.2",
     "typescript-eslint": "8.1.0"
   },
