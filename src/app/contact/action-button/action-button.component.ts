@@ -28,8 +28,10 @@ export class ActionButtonComponent {
    * Position du bouton.
    * Position absolute doit être à true
    */
-  @HostBinding('class') @Input() position: 'bottom-right' | 'bottom-left' =
-    'bottom-left';
+  @HostBinding('class') @Input() position:
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'top-right' = 'bottom-left';
 
   /**
    * Est-ce que le bouton doit être positionné de façon absolue

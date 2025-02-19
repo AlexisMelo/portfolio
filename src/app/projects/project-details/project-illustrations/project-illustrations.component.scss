@@ -27,8 +27,14 @@
 
 .counter {
   position: absolute;
-  bottom: 2rem;
+  bottom: 16px;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--grid-item-border);
 }
+
+$offset-controls-modal: 3rem;
 
 #modal {
   display: none;
@@ -65,5 +71,27 @@
     margin-bottom: 2rem;
     color: white;
     cursor: pointer;
+  }
+}
+
+.controls-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 2rem;
+
+  .counter-modal {
+    @extend .counter;
+    grid-column: 2;
+    position: relative;
+    bottom: 0;
+  }
+
+  .app-action-button-left {
+    grid-column: 1;
+  }
+
+  .app-action-button-right {
+    grid-column: 3;
   }
 }

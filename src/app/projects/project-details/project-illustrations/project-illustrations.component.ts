@@ -37,6 +37,11 @@ export class ProjectIllustrationsComponent
   public currentSlide = 0;
 
   /**
+   * Index de la slide affichée dans le modal
+   */
+  public currentSlideModal = 0;
+
+  /**
    * Accès au template
    */
   private elementRef = inject(ElementRef);
@@ -87,12 +92,40 @@ export class ProjectIllustrationsComponent
   }
 
   /**
+   * Affiche la slide voulue dans le modal
+   * @param index
+   */
+  public showSlideModal(index: number) {
+    const totalSlides = this.project.illustrations.length;
+
+    if (index >= totalSlides) {
+      this.currentSlideModal = 0;
+    } else if (index < 0) {
+      this.currentSlideModal = totalSlides - 1;
+    } else {
+      this.currentSlideModal = index;
+    }
+
+    this.showIllustrationModal(
+      this.project.illustrations[this.currentSlideModal]
+    );
+  }
+
+  /**
    * Passe au prochain slide
    * @param direction
    */
   public nextSlide(direction: number) {
     this.showSlide(this.currentSlide + direction);
     this.resetAutoSlide();
+  }
+
+  /**
+   * Passe au prochain slide sur le modal
+   * @param direction
+   */
+  public nextSlideModal(direction: number) {
+    this.showSlideModal(this.currentSlideModal + direction);
   }
 
   /**
@@ -123,10 +156,25 @@ export class ProjectIllustrationsComponent
    * Ouvre le modal avec l'image en zoom
    * @param illustration
    */
-  public openModal(illustration: Tables<'project_illustration'>) {
-    if (!this.caption || !this.modal || !this.modalImg) return;
+  public openModal(illustration?: Tables<'project_illustration'>) {
+    if (!this.modal) return;
 
     this.modal.nativeElement.style.display = 'flex';
+
+    this.currentSlideModal = this.currentSlide;
+
+    this.showIllustrationModal(
+      illustration ?? this.project.illustrations[this.currentSlide]
+    );
+  }
+
+  /**
+   * Affiche l'illustration voulue dans le modal
+   * @param illustration
+   * @returns
+   */
+  public showIllustrationModal(illustration: Tables<'project_illustration'>) {
+    if (!this.modalImg || !this.caption) return;
 
     this.modalImg.nativeElement.src = illustration.url;
     this.modalImg.nativeElement.alt = illustration.alt;

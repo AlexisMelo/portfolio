@@ -29,6 +29,11 @@ $height: 36px;
     bottom: 16px;
   }
 
+  &.top-right {
+    top: 16px;
+    right: 16px;
+  }
+
   mat-icon {
     height: $icon-size;
     width: $icon-size;
