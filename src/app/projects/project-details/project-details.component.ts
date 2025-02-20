@@ -17,6 +17,8 @@ import { ProjectDurationComponent } from './project-duration/project-duration.co
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
 import { SectionGroupComponent } from './section-group/section-group.component';
 import { SkillWithType } from './skill-with-type.model';
+import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
+import { ProjectSkillsComponent } from './project-skills/project-skills.component';
 
 @Component({
   selector: 'app-project-details',
@@ -36,6 +38,8 @@ import { SkillWithType } from './skill-with-type.model';
     ProjectDurationComponent,
     ProjectContextComponent,
     ProjectIllustrationsComponent,
+    ProjectProblematicComponent,
+    ProjectSkillsComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
