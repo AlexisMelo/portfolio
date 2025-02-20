@@ -1,5 +1,5 @@
 import { Tables } from 'database.types';
-import { SkillWithType } from './project-details/skill-with-type.model';
+import { Skill } from './skill.model';
 
 /**
  * Représente un projet
@@ -18,7 +18,7 @@ export interface Project extends Tables<'project'> {
   /**
    * Skills utilisés dans le projet
    */
-  skills: Array<SkillWithType>;
+  skills: Array<Skill>;
 
   /**
    * Sections de texte

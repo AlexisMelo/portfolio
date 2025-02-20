@@ -1,5 +1,7 @@
 <div class="icon">
-  <img width="32" height="32" [ngSrc]="skill.icon" alt="" />
+  @if (skill.icon) {
+    <img width="32" height="32" [ngSrc]="skill.icon" alt="" />
+  }
 </div>
 <div class="label">
   <div class="skill">{{ skill.label }}</div>

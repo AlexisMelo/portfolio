@@ -3,11 +3,6 @@
 $icon-size: 2rem;
 $gap: 1.5rem;
 
-:host {
-  display: block;
-  transform: translateY(-700px);
-}
-
 app-project-description {
   grid-row: 1 / 3;
   grid-column: 1 / 3;
@@ -87,8 +82,8 @@ app-project-skills {
   }
 
   @include responsive('large') {
-    grid-row: 6 / 8er;
-    grid-column: 1 / 3;
+    grid-row: 5;
+    grid-column: 1 / 5;
   }
 }
 

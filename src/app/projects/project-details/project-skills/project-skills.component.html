@@ -1,1 +1,22 @@
-<p>project-skills works!</p>
+<h2>Compétences</h2>
+
+<div class="skills">
+  @for (skills of workedWith | keyvalue; track skills.key) {
+    <span class="category">{{ skills.key }}</span>
+    @for (skill of skills.value; track skill.id) {
+      <app-highlightable-chip
+        appTooltip
+        [tooltip]="
+          skill.projects.length +
+          ' réalisation' +
+          (skill.projects.length > 1 ? 's' : '')
+        "
+        [routerLink]="['/projects']"
+        [queryParams]="{ skills: skill.id }"
+        [fragment]="'archives'"
+        [highlighted]="skill.main">
+        {{ skill.label }}
+      </app-highlightable-chip>
+    }
+  }
+</div>

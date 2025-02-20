@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ContentService } from 'src/app/shared/content.service';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { GridItemDirective } from '../grid-item.directive';
@@ -12,6 +12,11 @@ import { GridItemDirective } from '../grid-item.directive';
 })
 export class GithubComponent extends GridItemDirective {
   /**
+   * Lien vers le repo voulu
+   */
+  @Input({ required: true }) link!: string;
+
+  /**
    * Gestion du contenu
    */
   public contentService = inject(ContentService);
@@ -20,6 +25,6 @@ export class GithubComponent extends GridItemDirective {
    * Ouvre Github
    */
   public openGithub() {
-    window.open(this.contentService.github, '_blank');
+    window.open(this.link, '_blank');
   }
 }

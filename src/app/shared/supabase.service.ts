@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Project } from '../projects/project.model';
 import { Context } from '../landing-page/timeline/context.model';
 import { Database } from 'database.types';
+import { Skill } from '../projects/skill.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,7 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .order('end_date', { ascending: false })
       .order('main', { referencedTable: 'skill', ascending: false });
@@ -49,7 +50,7 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .eq('url', url)
       .order('main', { referencedTable: 'skill', ascending: false })
@@ -79,12 +80,14 @@ export class SupabaseService {
    * Obtient la liste de toutes les compétences
    * @returns
    */
-  public async getSkills() {
-    const { data } = await this.supabase
+  public async getSkills(): Promise<Array<Skill>> {
+    const { data, error } = await this.supabase
       .from('skill')
       .select('*, skill_type(*), projects:project(*), skill_field(*)')
       .order('label');
-    return data ?? [];
+
+    if (error) return Promise.reject(error);
+    return data as Array<Skill>;
   }
 
   /**

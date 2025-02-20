@@ -137,4 +137,15 @@ export class MapComponent
     this.map.flyTo(this.position, newLevel);
     this.zoomLevel = newLevel;
   }
+
+  /**
+   * Ouvre google maps
+   */
+  public openMaps() {
+    const win = window.open(
+      'https://www.google.fr/maps/dir/49.16524,-0.310951/14000+Caen/@47.7223104,-5.3592267,5.67z/',
+      '_blank'
+    );
+    win?.focus();
+  }
 }

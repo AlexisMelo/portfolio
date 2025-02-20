@@ -16,9 +16,10 @@ import { ProjectDescriptionComponent } from './project-description/project-descr
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
 import { SectionGroupComponent } from './section-group/section-group.component';
-import { SkillWithType } from './skill-with-type.model';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
 import { ProjectSkillsComponent } from './project-skills/project-skills.component';
+import { Skill } from '../skill.model';
+import { GithubComponent } from 'src/app/contact/github/github.component';
 
 @Component({
   selector: 'app-project-details',
@@ -40,6 +41,7 @@ import { ProjectSkillsComponent } from './project-skills/project-skills.componen
     ProjectIllustrationsComponent,
     ProjectProblematicComponent,
     ProjectSkillsComponent,
+    GithubComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
@@ -73,7 +75,7 @@ export class ProjectDetailsComponent {
   /**
    * Skills liés au projet groupés par type
    */
-  public skillsGroupedByType?: { [key: string]: Array<SkillWithType> };
+  public skillsGroupedByType?: { [key: string]: Array<Skill> };
 
   /**
    * Constructeur
@@ -91,7 +93,7 @@ export class ProjectDetailsComponent {
         if (project.skills.length < 1) return;
 
         this.skillsGroupedByType = this.project.skills.reduce(
-          (rv: { [key: string]: Array<SkillWithType> }, x) => {
+          (rv: { [key: string]: Array<Skill> }, x) => {
             (rv[x.skill_type.label] = rv[x.skill_type.label] || []).push(x);
             return rv;
           },
