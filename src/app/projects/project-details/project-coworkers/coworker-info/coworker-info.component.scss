@@ -1,0 +1,46 @@
+@import '../../../../../styles/responsive.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-container {
+  overflow: hidden;
+  width: 80px;
+  height: auto;
+  margin-top: 2rem;
+
+  @include responsive('medium') {
+    width: 80px;
+  }
+
+  @include responsive('large') {
+    margin-top: 3rem;
+    width: 120px;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+p {
+  margin-top: 0;
+  color: var(--grid-item-bottom-text-color);
+  text-align: center;
+}
+
+h3 {
+  position: relative;
+
+  app-action-button {
+    right: -50px;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -31,6 +31,7 @@ export class ActionButtonComponent {
   @HostBinding('class') @Input() position:
     | 'bottom-right'
     | 'bottom-left'
+    | 'bottom-left-2'
     | 'top-right' = 'bottom-left';
 
   /**

@@ -1,6 +1,10 @@
 import { Tables } from 'database.types';
 import { Skill } from './skill.model';
 
+interface ProjectCoworker extends Tables<'project_coworker'> {
+  coworker: Tables<'coworker'>;
+}
+
 /**
  * Représente un projet
  */
@@ -28,7 +32,7 @@ export interface Project extends Tables<'project'> {
   /**
    * Collègues sur le projet
    */
-  coworkers: Array<Tables<'coworker'>>;
+  coworkers: Array<ProjectCoworker>;
 
   /**
    * Mes rôles dans le projet

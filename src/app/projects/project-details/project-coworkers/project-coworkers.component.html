@@ -1,0 +1,50 @@
+<h2>Collaborateurs</h2>
+
+@if (project.coworkers.length > 0) {
+  <div class="carousel">
+    <div class="carousel-items">
+      @for (
+        project_coworker of project.coworkers;
+        track project_coworker.coworker_id
+      ) {
+        <app-coworker-info
+          class="carousel-item"
+          [image]="
+            project_coworker.coworker.avatar ?? 'photos/empty-avatar.png'
+          "
+          [name]="
+            project_coworker.coworker.firstname +
+            ' ' +
+            project_coworker.coworker.lastname
+          "
+          [description]="project_coworker.role"
+          [url]="project_coworker.coworker.url"></app-coworker-info>
+      }
+    </div>
+  </div>
+
+  @if (project.coworkers.length > 1) {
+    <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
+    </app-action-button>
+
+    <app-action-button
+      [position]="'bottom-left-2'"
+      icon="chevron_right"
+      (click)="nextSlide(1)">
+    </app-action-button>
+  }
+
+  <div class="counter">
+    {{ currentSlide + 1 }} / {{ project.coworkers.length }}
+  </div>
+} @else {
+  <div class="carousel-items">
+    <app-coworker-info
+      class="carousel-item"
+      [image]="'photos/avatar-confidence.png'"
+      [name]="'Moi-même'"
+      [description]="
+        'Pas de collaborateur sur ce projet !'
+      "></app-coworker-info>
+  </div>
+}

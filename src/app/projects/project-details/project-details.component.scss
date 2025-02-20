@@ -3,6 +3,11 @@
 $icon-size: 2rem;
 $gap: 1.5rem;
 
+// :host {
+//   display: block;
+//   transform: translateY(-60%);
+// }
+
 app-project-description {
   grid-row: 1 / 3;
   grid-column: 1 / 3;
@@ -87,180 +92,32 @@ app-project-skills {
   }
 }
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .main-infos {
-    flex-grow: 1;
-  }
+app-github {
+  grid-row: 13;
+  grid-column: 1;
 
   @include responsive('medium') {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-.type {
-  margin-bottom: calc($gap / 2);
-  text-align: center;
-
-  @include responsive('medium') {
-    margin-left: calc($icon-size + $gap);
-    text-align: start;
-  }
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $gap;
-  margin-bottom: 2rem;
-
-  .icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .icon {
-      width: $icon-size;
-      height: $icon-size;
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-
-  @include responsive('medium') {
-    justify-content: flex-start;
-  }
-
-  h1 {
-    margin: 0;
-  }
-}
-
-.description {
-  margin-bottom: 2rem;
-  text-align: center;
-
-  @include responsive('medium') {
-    text-align: start;
-  }
-}
-
-.links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $gap;
-
-  svg {
-    width: calc(0.7 * $icon-size);
-  }
-
-  > * {
-    display: flex;
-    align-items: center;
-    gap: calc($gap / 3);
-  }
-
-  @include responsive('medium') {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-row: 7;
+    grid-column: 3;
   }
 
   @include responsive('large') {
-    justify-content: flex-start;
+    grid-row: 5;
+    grid-column: 5;
   }
 }
 
-.thumbnail-container {
-  margin-top: 2rem;
+app-project-coworkers {
+  grid-row: 12 / 14;
+  grid-column: 1 / 3;
 
   @include responsive('medium') {
-    margin-left: 2rem;
-    margin-top: 0;
-  }
-}
-
-app-separator {
-  margin: 2rem 0;
-}
-
-.more-infos {
-  display: flex;
-  flex-direction: row;
-  gap: 20%;
-
-  h2 {
-    margin-top: 0;
+    grid-row: 6 / 8;
+    grid-column: 1 / 3;
   }
 
-  > * {
-    white-space: nowrap;
-    line-height: 2rem;
-  }
-}
-
-.dates {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: $gap;
-}
-
-.skillGroups {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-
-  .skillGroup {
-    max-width: 33%;
-    padding: 1rem;
-    border-radius: 12px;
-    border: 1px solid var(--skill-group-border);
-    border-radius: var(--inputs-border-radius);
-    flex: 1 1 0;
-
-    h3 {
-      text-align: center;
-      margin-top: 0;
-    }
-
-    .chips {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-  }
-}
-
-.status {
-  .status-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    color: blue;
+  @include responsive('large') {
+    grid-row: 6 / 8;
+    grid-column: 1 / 3;
   }
 }

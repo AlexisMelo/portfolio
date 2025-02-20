@@ -1,0 +1,12 @@
+<div class="avatar-container">
+  <img [src]="image" [alt]="'Photo de ' + name" />
+</div>
+
+<h3>
+  {{ name }}
+  @if (url) {
+    <app-action-button icon="link" (click)="openInfos()"></app-action-button>
+  }
+</h3>
+
+<p>{{ description }}</p>

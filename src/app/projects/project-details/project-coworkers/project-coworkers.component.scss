@@ -1,0 +1,34 @@
+:host {
+  padding: 3rem;
+}
+
+.carousel {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-items {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .carousel-item {
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    transition: all 0.5s linear;
+  }
+}
+.counter {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--action-button-background);
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--grid-item-border);
+}

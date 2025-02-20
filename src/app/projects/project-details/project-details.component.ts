@@ -1,40 +1,22 @@
-import { DatePipe, KeyValuePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
-import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
+import { GithubComponent } from 'src/app/contact/github/github.component';
 import { LoadingService } from 'src/app/shared/loading/loading.service';
-import { SeparatorComponent } from 'src/app/shared/separator/separator.component';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { RightArrowComponent } from '../../landing-page/timeline/right-arrow/right-arrow.component';
-import { SuggestionChipComponent } from '../../shared/chips/suggestion-chip/suggestion-chip.component';
-import { DurationPipe } from '../duration.pipe';
 import { Project } from '../project.model';
-import { StatusPipe } from '../status/status.pipe';
+import { Skill } from '../skill.model';
 import { ProjectContextComponent } from './project-context/project-context.component';
+import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
-import { SectionGroupComponent } from './section-group/section-group.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
 import { ProjectSkillsComponent } from './project-skills/project-skills.component';
-import { Skill } from '../skill.model';
-import { GithubComponent } from 'src/app/contact/github/github.component';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
   imports: [
-    DatePipe,
-    MatIcon,
-    DurationPipe,
-    SuggestionChipComponent,
-    HighlightableChipComponent,
-    SeparatorComponent,
-    RightArrowComponent,
-    KeyValuePipe,
-    StatusPipe,
-    SectionGroupComponent,
     ProjectDescriptionComponent,
     ProjectDurationComponent,
     ProjectContextComponent,
@@ -42,6 +24,7 @@ import { GithubComponent } from 'src/app/contact/github/github.component';
     ProjectProblematicComponent,
     ProjectSkillsComponent,
     GithubComponent,
+    ProjectCoworkersComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

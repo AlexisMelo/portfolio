@@ -33,7 +33,7 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .order('end_date', { ascending: false })
       .order('main', { referencedTable: 'skill', ascending: false });
@@ -50,7 +50,7 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:coworker(*), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .eq('url', url)
       .order('main', { referencedTable: 'skill', ascending: false })
