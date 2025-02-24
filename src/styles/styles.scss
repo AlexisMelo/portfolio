@@ -163,11 +163,6 @@ h2 {
   letter-spacing: 0.1rem;
 }
 
-.g-name {
-  font-family: 'Limelight';
-  font-size: 1.2rem;
-}
-
 .g-grid-item {
   border-radius: 1rem;
   background-color: var(--grid-item-default-bg);
@@ -198,13 +193,26 @@ h2 {
 }
 
 .g-paragraph {
-  line-height: 220%;
+  line-height: 200%;
 
   @include responsive('medium') {
     line-height: 200%;
   }
 
   @include responsive('large') {
-    line-height: 180%;
+    line-height: 200%;
+  }
+
+  span {
+    background-color: var(--paragraph-highlight-bg-color);
+    padding: 2px 5px;
+    border-radius: 6px;
+    margin: 0;
+    white-space: nowrap;
+    color: var(--paragraph-highlight-color);
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }

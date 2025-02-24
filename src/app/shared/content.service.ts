@@ -10,6 +10,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class ContentService {
+  /**
+   * Sanitizer
+   */
   private sanitizer = inject(DomSanitizer);
 
   /**
@@ -17,9 +20,9 @@ export class ContentService {
    */
   get description(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(
-      `Je suis <span class="g-name">Alexis</span>, développeur fullstack basé à Caen.
+      `Je suis Alexis, <span>développeur fullstack</span> basé à Caen.
     J'apprécie concevoir et développer des applications performantes, intuitives
-    et qui ont un réel impact sur le terrain.`
+    et qui ont un <span>réel impact sur le terrain</span>.`
     );
   }
 

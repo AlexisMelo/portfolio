@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Project } from '../../project.model';
 import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-problematic',
@@ -15,4 +16,18 @@ export class ProjectProblematicComponent extends GridItemDirective {
    * Projet à afficher
    */
   @Input({ required: true }) project!: Project;
+
+  /**
+   * Sanitizer
+   */
+  private sanitizer = inject(DomSanitizer);
+
+  /**
+   * Problématique
+   */
+  get problematic() {
+    return this.sanitizer.bypassSecurityTrustHtml(
+      this.project.problematic ?? '...'
+    );
+  }
 }

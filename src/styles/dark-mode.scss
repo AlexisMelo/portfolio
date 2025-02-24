@@ -3,6 +3,10 @@
   --text-color: var(--white);
   --backgroundColor: var(--black);
 
+  //g-paragraph
+  --paragraph-highlight-bg-color: var(--green-400);
+  --paragraph-highlight-color: var(--white);
+
   //navbar
   --navbarLinksColor: var(--white);
   --navbar-background-color: var(--black);
@@ -107,4 +111,7 @@
   //github
   --github-bg: var(--green-700);
   --github-empty-color: var(--gray-300);
+
+  //project-duration
+  --termine-color: var(--green-300);
 }
