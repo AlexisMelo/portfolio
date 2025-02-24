@@ -1,6 +1,6 @@
 @mixin light-mode() {
   --titleColor: var(--green-400);
-  --text-color: black;
+  --text-color: var(--black);
   --backgroundColor: #f2f7f3;
 
   //navbar
@@ -91,7 +91,7 @@
   --skill-card-bg: var(--white);
 
   //action-button
-  --action-button-bg: var(--white);
+  --action-button-background: var(--white);
   --action-button-color: var(--black);
   --action-button-border-color: var(--gray-100);
 
@@ -106,4 +106,5 @@
 
   //github
   --github-bg: rgb(52, 58, 52);
+  --github-empty-color: var(--gray-300);
 }

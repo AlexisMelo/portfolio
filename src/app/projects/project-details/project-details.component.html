@@ -9,10 +9,12 @@
 
       <app-project-problematic [project]="project"></app-project-problematic>
       <app-project-skills [project]="project"></app-project-skills>
-      @if (project.source) {
-        <app-github [link]="project.source"></app-github>
-      }
+
+      <app-github [link]="project.source"></app-github>
+
       <app-project-coworkers [project]="project"></app-project-coworkers>
+      <app-project-participation
+        [project]="project"></app-project-participation>
     }
   </div>
 </div>

@@ -12,6 +12,7 @@ import { ProjectDurationComponent } from './project-duration/project-duration.co
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
 import { ProjectSkillsComponent } from './project-skills/project-skills.component';
+import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 
 @Component({
   selector: 'app-project-details',
@@ -25,6 +26,7 @@ import { ProjectSkillsComponent } from './project-skills/project-skills.componen
     ProjectSkillsComponent,
     GithubComponent,
     ProjectCoworkersComponent,
+    ProjectParticipationComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

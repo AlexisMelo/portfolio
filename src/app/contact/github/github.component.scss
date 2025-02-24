@@ -11,7 +11,30 @@
     }
 
     @include responsive('large') {
-      width: 75px;
+      width: 60px;
     }
   }
+}
+
+.empty {
+  position: relative;
+
+  img {
+    opacity: 0.5;
+  }
+
+  p {
+    position: absolute;
+    color: var(--github-empty-color);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -2.5rem;
+  }
+}
+
+mat-icon {
+  position: absolute;
+  color: white;
+  left: 20px;
+  bottom: 20px;
 }

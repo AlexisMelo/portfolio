@@ -1,5 +1,6 @@
+<div [ngClass]="project | status | kebabCase" class="dot"></div>
+
 <h2>
-  <div [ngClass]="project | status | kebabCase" class="dot"></div>
   {{ project | status }}
 </h2>
 
