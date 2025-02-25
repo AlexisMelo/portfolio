@@ -17,14 +17,18 @@
       }
 
       @if (project.illustrations.length > 1) {
-        <app-action-button
-          icon="chevron_left"
-          (click)="nextSlide(-1)"></app-action-button>
+        @if (currentSlide > 0) {
+          <app-action-button
+            icon="chevron_left"
+            (click)="nextSlide(-1)"></app-action-button>
+        }
 
-        <app-action-button
-          icon="chevron_right"
-          position="bottom-left-2"
-          (click)="nextSlide(1)"></app-action-button>
+        @if (currentSlide < project.illustrations.length - 1) {
+          <app-action-button
+            icon="chevron_right"
+            position="bottom-left-2"
+            (click)="nextSlide(1)"></app-action-button>
+        }
       }
 
       <app-action-button
@@ -47,25 +51,27 @@
   <div class="caption" #caption></div>
 
   <div class="controls-modal">
-    @if (currentSlideModal !== 0) {
-      <app-action-button
-        class="app-action-button-left"
-        [positionAbsolute]="false"
-        icon="chevron_left"
-        (click)="nextSlideModal(-1)"></app-action-button>
-    }
+    <div class="app-action-button-left">
+      @if (currentSlideModal !== 0) {
+        <app-action-button
+          [positionAbsolute]="false"
+          icon="chevron_left"
+          (click)="nextSlideModal(-1)"></app-action-button>
+      }
+    </div>
 
     <div class="counter-modal">
       {{ currentSlideModal + 1 }} / {{ project.illustrations.length }}
     </div>
 
-    @if (currentSlideModal < project.illustrations.length - 1) {
-      <app-action-button
-        class="app-action-button-right"
-        [positionAbsolute]="false"
-        icon="chevron_right"
-        position="bottom-right"
-        (click)="nextSlideModal(1)"></app-action-button>
-    }
+    <div class="app-action-button-right">
+      @if (currentSlideModal < project.illustrations.length - 1) {
+        <app-action-button
+          [positionAbsolute]="false"
+          icon="chevron_right"
+          position="bottom-right"
+          (click)="nextSlideModal(1)"></app-action-button>
+      }
+    </div>
   </div>
 </div>

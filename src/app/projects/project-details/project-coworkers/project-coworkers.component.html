@@ -24,14 +24,18 @@
   </div>
 
   @if (project.coworkers.length > 1) {
-    <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
-    </app-action-button>
+    @if (currentSlide > 0) {
+      <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
+      </app-action-button>
+    }
 
-    <app-action-button
-      [position]="'bottom-left-2'"
-      icon="chevron_right"
-      (click)="nextSlide(1)">
-    </app-action-button>
+    @if (currentSlide < project.coworkers.length - 1) {
+      <app-action-button
+        [position]="'bottom-left-2'"
+        icon="chevron_right"
+        (click)="nextSlide(1)">
+      </app-action-button>
+    }
   }
 
   <div class="counter">

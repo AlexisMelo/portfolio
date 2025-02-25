@@ -14,6 +14,7 @@ $height: 36px;
   border: 1px solid var(--action-button-border-color);
   border-radius: 18px;
   height: 36px;
+  min-width: 36px;
 
   &.position-absolute {
     position: absolute;
