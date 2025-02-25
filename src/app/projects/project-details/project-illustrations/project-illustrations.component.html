@@ -16,14 +16,16 @@
         </div>
       }
 
-      <app-action-button
-        icon="chevron_left"
-        (click)="nextSlide(-1)"></app-action-button>
+      @if (project.illustrations.length > 1) {
+        <app-action-button
+          icon="chevron_left"
+          (click)="nextSlide(-1)"></app-action-button>
 
-      <app-action-button
-        icon="chevron_right"
-        position="bottom-left-2"
-        (click)="nextSlide(1)"></app-action-button>
+        <app-action-button
+          icon="chevron_right"
+          position="bottom-left-2"
+          (click)="nextSlide(1)"></app-action-button>
+      }
 
       <app-action-button
         icon="crop_free"

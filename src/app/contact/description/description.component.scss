@@ -21,15 +21,15 @@
   }
 
   img {
-    width: 100px;
+    width: 80px;
     height: auto;
 
     @include responsive('medium') {
-      width: 130px;
+      width: 100px;
     }
 
     @include responsive('large') {
-      width: 120px;
+      width: 110px;
     }
   }
 
@@ -39,6 +39,10 @@
 
     @include responsive('medium') {
       margin-top: 1rem;
+    }
+
+    @include responsive('large') {
+      margin-top: 0;
     }
   }
 }

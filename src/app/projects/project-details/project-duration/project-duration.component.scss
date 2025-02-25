@@ -55,11 +55,11 @@ h2 {
   animation: pulse 1.5s infinite;
 
   &.en-cours {
-    --box-shadow-color: orange;
+    --box-shadow-color: rgb(255, 209, 124);
   }
 
   &.abandonne {
-    --box-shadow-color: red;
+    --box-shadow-color: rgb(255, 118, 118);
   }
 
   &.termine {

@@ -10,7 +10,7 @@
         <app-coworker-info
           class="carousel-item"
           [image]="
-            project_coworker.coworker.avatar ?? 'photos/empty-avatar.png'
+            project_coworker.coworker.avatar_bust ?? 'photos/empty-avatar.png'
           "
           [name]="
             project_coworker.coworker.firstname +
@@ -41,7 +41,7 @@
   <div class="carousel-items">
     <app-coworker-info
       class="carousel-item"
-      [image]="'photos/avatar-confidence.png'"
+      [image]="'photos/avatar-bust-shrugging.png'"
       [name]="'Moi-même'"
       [description]="
         'Pas de collaborateur sur ce projet !'
