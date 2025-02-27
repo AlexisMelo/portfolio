@@ -53,4 +53,11 @@ export class ContentService {
   get github() {
     return 'https://github.com/AlexisMelo';
   }
+
+  /**
+   * Langue de l'appli
+   */
+  get locale() {
+    return 'fr-FR';
+  }
 }

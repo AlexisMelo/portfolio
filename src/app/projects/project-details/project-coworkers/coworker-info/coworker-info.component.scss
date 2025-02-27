@@ -9,18 +9,15 @@
 
 .avatar-container {
   overflow: hidden;
-  height: 100px;
+  height: 120px;
   width: auto;
-  margin-top: 1rem;
 
   @include responsive('medium') {
-    margin-top: 1.5rem;
-    height: 120px;
+    height: 140px;
   }
 
   @include responsive('large') {
-    margin-top: 1rem;
-    height: 150px;
+    height: 175px;
   }
 
   img {
