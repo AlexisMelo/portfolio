@@ -1,7 +1,7 @@
-<div [ngClass]="project | status | kebabCase" class="dot"></div>
-
 <h2>
-  {{ project | status }}
+  <div [ngClass]="project | status | kebabCase" class="dot"></div>
+
+  {{ project | duration }}
 </h2>
 
 <div class="timings">
@@ -14,4 +14,4 @@
   </div>
 </div>
 
-<div class="duration">{{ project | duration }}</div>
+<div class="duration">{{ project | status }}</div>

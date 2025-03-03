@@ -193,10 +193,10 @@ h2 {
 }
 
 .g-paragraph {
-  line-height: 200%;
+  line-height: 190%;
 
   @include responsive('medium') {
-    line-height: 200%;
+    line-height: 180%;
   }
 
   @include responsive('large') {
