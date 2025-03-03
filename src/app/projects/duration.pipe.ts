@@ -18,8 +18,12 @@ export class DurationPipe implements PipeTransform {
 
     // Calcul des années
     let years = endDate.getFullYear() - startDate.getFullYear();
+
     // Calcul des mois
     let months = endDate.getMonth() - startDate.getMonth();
+
+    //Calcul des jours
+    const days = endDate.getDay() - startDate.getDay();
 
     // Ajustement si le mois de date2 est avant celui de date1
     if (months < 0) {
@@ -31,6 +35,7 @@ export class DurationPipe implements PipeTransform {
     const yearText = years > 0 ? (years === 1 ? '1 an' : `${years} ans`) : '';
     const monthText =
       months > 0 ? (months === 1 ? '1 mois' : `${months} mois`) : '';
+    const daysText = days <= 1 ? '1 journée' : `${days} jours`;
 
     // Combiner les résultats
     if (yearText && monthText) {
@@ -40,7 +45,7 @@ export class DurationPipe implements PipeTransform {
     } else if (monthText) {
       return monthText;
     } else {
-      return "Moins d'un mois"; // Si aucune différence notable
+      return daysText; // Si aucune différence notable
     }
   }
 }
