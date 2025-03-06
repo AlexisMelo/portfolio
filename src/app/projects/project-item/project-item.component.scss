@@ -82,10 +82,10 @@ $see-more-height: calc(12px + 1rem + 0.5 * $gap);
 }
 
 .description {
-  font-size: 0.8rem;
   grid-row: 2;
   grid-column: 2;
-  margin: 8px 0;
+  margin-top: 8px;
+  margin-bottom: 16px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
