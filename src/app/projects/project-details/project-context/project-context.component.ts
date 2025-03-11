@@ -3,6 +3,7 @@ import { Project } from '../../project.model';
 import { GridItemDirective } from 'src/app/contact/grid-item.directive';
 import { ActionButtonComponent } from '../../../contact/action-button/action-button.component';
 import { Router } from '@angular/router';
+import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-project-context',
@@ -27,11 +28,10 @@ export class ProjectContextComponent extends GridItemDirective {
    * Ouvre plus de projets du même contexte
    */
   public moreProjects() {
-    this.router.navigate(['/projects'], {
+    this.router.navigate([ARCHIVES_ROUTE], {
       queryParams: {
         contexts: this.project.project_context.id,
       },
-      fragment: 'archives',
     });
   }
 }

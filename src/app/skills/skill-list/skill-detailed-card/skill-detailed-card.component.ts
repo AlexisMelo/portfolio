@@ -7,6 +7,7 @@ import {
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { Skill } from 'src/app/projects/skill.model';
 
 @Component({
@@ -28,4 +29,9 @@ export class SkillDetailedCardComponent {
    * Skill à afficher
    */
   @Input({ required: true }) skill!: Skill;
+
+  /**
+   * Route vers les archives
+   */
+  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
 }

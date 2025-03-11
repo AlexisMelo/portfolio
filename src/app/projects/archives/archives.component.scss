@@ -1,0 +1,24 @@
+@import '../../../styles/responsive.scss';
+
+.projects {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  min-height: 350px;
+
+  @include responsive('medium') {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+
+  app-input {
+    flex-grow: 1;
+  }
+}

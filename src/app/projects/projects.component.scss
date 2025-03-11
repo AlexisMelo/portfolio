@@ -1,7 +1,6 @@
 @import '../../styles/responsive.scss';
 
-.pinned,
-.projects {
+.pinned {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr;
@@ -10,20 +9,4 @@
   @include responsive('medium') {
     grid-template-columns: 1fr 1fr;
   }
-}
-
-.filters {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 3rem;
-
-  app-input {
-    flex-grow: 1;
-  }
-}
-
-.projects {
-  min-height: 200px; //pour que ce soit "beau" quand on scroll jusqu'à Archives et y'a un seul projet ou 0
 }

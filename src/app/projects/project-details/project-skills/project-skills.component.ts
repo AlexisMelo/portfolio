@@ -6,6 +6,7 @@ import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-c
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
 import { Project } from '../../project.model';
 import { Skill } from '../../skill.model';
+import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-project-skills',
@@ -25,6 +26,11 @@ export class ProjectSkillsComponent extends GridItemDirective {
    * Projet à afficher
    */
   @Input({ required: true }) project!: Project;
+
+  /**
+   * Route vers les archives
+   */
+  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
 
   /**
    * Technologies avec lesquelles j'ai travaillées, groupées par type

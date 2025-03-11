@@ -20,6 +20,7 @@ import { TitleSeparatorComponent } from '../shared/title-separator/title-separat
 import { Context } from './timeline/context.model';
 import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
 import { SkillFrontPageComponent } from './skill/skill-front-page/skill-front-page.component';
+import { ARCHIVES_ROUTE } from '../app.routes';
 
 @Component({
   selector: 'app-landing-page',
@@ -53,6 +54,11 @@ export class LandingPageComponent implements AfterViewInit {
    * Contenu du titre
    */
   public titleContent: string = 'MELO';
+
+  /**
+   * Route vers les archives
+   */
+  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
 
   /**
    * Référence au timer

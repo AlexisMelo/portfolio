@@ -11,9 +11,8 @@
           ' réalisation' +
           (skill.projects.length > 1 ? 's' : '')
         "
-        [routerLink]="['/projects']"
+        [routerLink]="[ARCHIVES_ROUTE]"
         [queryParams]="{ skills: skill.id }"
-        [fragment]="'archives'"
         [highlighted]="skill.main">
         {{ skill.label }}
       </app-highlightable-chip>

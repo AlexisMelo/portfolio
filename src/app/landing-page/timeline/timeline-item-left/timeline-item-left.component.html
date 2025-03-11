@@ -11,8 +11,7 @@
   @if (item.project.length > 0) {
     <div
       class="projects"
-      [routerLink]="['projects']"
-      [fragment]="'archives'"
+      [routerLink]="[ARCHIVES_ROUTE]"
       [queryParams]="{ contexts: item.id }">
       <app-left-arrow class="arrow"></app-left-arrow>
       {{ item.project.length }} réalisation{{
@@ -22,7 +21,6 @@
   }
 </div>
 <div
-  [routerLink]="['projects']"
-  [fragment]="'archives'"
+  [routerLink]="[ARCHIVES_ROUTE]"
   [queryParams]="{ contexts: item.id }"
   class="circle"></div>

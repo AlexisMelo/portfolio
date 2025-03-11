@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SkillDetailedCardComponent } from './skill-detailed-card/skill-detailed-card.component';
 import { RouterLink } from '@angular/router';
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
+import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-skill-list',
@@ -26,6 +27,11 @@ export class SkillListComponent {
    * Skills à afficher
    */
   @Input({ required: true }) skills?: Array<Skill>;
+
+  /**
+   * Route vers les archives
+   */
+  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
 
   /**
    * Technologies avec lesquelles j'ai travaillées, groupées par type

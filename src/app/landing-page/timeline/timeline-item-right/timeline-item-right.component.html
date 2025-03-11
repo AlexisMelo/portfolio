@@ -1,7 +1,6 @@
 <div
-  [routerLink]="['projects']"
+  [routerLink]="[ARCHIVES_ROUTE]"
   [queryParams]="{ contexts: item.id }"
-  [fragment]="'archives'"
   class="circle"></div>
 <div>
   <h2 class="when">
@@ -16,9 +15,8 @@
   @if (item.project.length > 0) {
     <div
       class="projects"
-      [routerLink]="['projects']"
-      [queryParams]="{ contexts: item.id }"
-      [fragment]="'archives'">
+      [routerLink]="[ARCHIVES_ROUTE]"
+      [queryParams]="{ contexts: item.id }">
       {{ item.project.length }} réalisation{{
         item.project.length > 1 ? 's' : ''
       }}

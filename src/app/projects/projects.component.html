@@ -4,47 +4,8 @@
   description="Les projets qui me tiennent à coeur"
   class="g-first-title"></app-title-separator>
 
-<div [@stagger]="pinnedProjects.length" class="pinned g-container">
+<div class="pinned g-container">
   @for (project of pinnedProjects; track project.id) {
-    <app-project-item [project]="project"></app-project-item>
-  }
-</div>
-
-<app-title-separator
-  id="archives"
-  subtitle="historique"
-  heading="Archives"
-  description="Tu as l'âme d'un explorateur ? J'ajoute ici tous les projets auxquels j'ai participé !"></app-title-separator>
-
-<div class="filters g-container">
-  <app-input>
-    <input
-      type="text"
-      placeholder="Trouver un projet..."
-      [formControl]="filterFormControl" />
-  </app-input>
-  <app-filter-chip
-    [active]="selectedContexts.length < contexts.length"
-    [options]="contexts"
-    [selectedOptions]="selectedContexts"
-    (selected)="selectContext($event)"
-    [large]="true"
-    header="Sélectionnez un contexte">
-    Contexte
-  </app-filter-chip>
-  <app-filter-chip
-    [active]="selectedSkills.length < skills.length"
-    [options]="skills"
-    [selectedOptions]="selectedSkills"
-    (selected)="selectSkill($event)"
-    [large]="true"
-    header="Sélectionnez une compétence">
-    Compétence
-  </app-filter-chip>
-</div>
-
-<div [@stagger]="selectedProjects.length" class="projects g-container">
-  @for (project of selectedProjects; track project.id) {
     <app-project-item [project]="project"></app-project-item>
   }
 </div>

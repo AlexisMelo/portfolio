@@ -84,9 +84,8 @@
     @for (skill of skills; track skill.id) {
       <app-skill-front-page
         [skill]="skill"
-        [routerLink]="['projects']"
+        [routerLink]="[ARCHIVES_ROUTE]"
         [queryParams]="{ skills: skill.id }"
-        [fragment]="'archives'"
         appTooltip
         [tooltip]="'Voir mes projets avec ' + skill.label"
         [position]="'right'"></app-skill-front-page>
@@ -118,9 +117,8 @@
   <ng-template #contextList>
     @for (context of clients; track context.id) {
       <app-button
-        [routerLink]="['projects']"
+        [routerLink]="[ARCHIVES_ROUTE]"
         [queryParams]="{ contexts: context.id }"
-        [fragment]="'archives'"
         appTooltip
         [tooltip]="'Voir mes projets chez ' + context.label"
         [position]="'above'"
