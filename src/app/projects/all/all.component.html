@@ -1,0 +1,13 @@
+<h2>{{ projects?.length ?? '??' }} projets</h2>
+
+<div class="grid-projects">
+  @for (item of [].constructor(27); track item; let i = $index) {
+    <div [class]="'cube cube__' + i">{{ i }}</div>
+  }
+</div>
+
+<app-action-button
+  [unfold]="true"
+  text="Tous les projets"
+  [routerLink]="[ARCHIVES_ROUTE]">
+</app-action-button>

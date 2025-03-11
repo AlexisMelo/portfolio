@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment';
-import { Project } from '../projects/project.model';
-import { Context } from '../landing-page/timeline/context.model';
 import { Database } from 'database.types';
+import { environment } from '../../environments/environment';
+import { Context } from '../landing-page/timeline/context.model';
+import { ProjectItem } from '../projects/project-item/project-item.model';
+import { Project } from '../projects/project.model';
 import { Skill } from '../projects/skill.model';
 
 @Injectable({
@@ -37,6 +38,20 @@ export class SupabaseService {
       )
       .order('end_date', { ascending: false })
       .order('main', { referencedTable: 'skill', ascending: false });
+
+    if (error) return Promise.reject(error);
+    return data as Array<Project>;
+  }
+
+  /**
+   * Obtient la liste des projets épinglés
+   * @returns
+   */
+  public async getPinnedProjects(): Promise<Array<ProjectItem>> {
+    const { data, error } = await this.supabase
+      .from('project')
+      .select('*, illustrations:project_illustration(*)')
+      .eq('pinned', true);
 
     if (error) return Promise.reject(error);
     return data as Array<Project>;

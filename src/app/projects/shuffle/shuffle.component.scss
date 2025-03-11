@@ -1,0 +1,11 @@
+$size: 60px;
+
+svg {
+  width: $size;
+  height: $size;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

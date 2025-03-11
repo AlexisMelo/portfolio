@@ -98,6 +98,7 @@ export type Database = {
       project: {
         Row: {
           abandoned: boolean
+          color: string
           context: number
           deployment: string | null
           description: string | null
@@ -110,12 +111,12 @@ export type Database = {
           problematic: string | null
           source: string | null
           start_date: string | null
-          thumbnail: string | null
           type: number | null
           url: string
         }
         Insert: {
           abandoned?: boolean
+          color?: string
           context: number
           deployment?: string | null
           description?: string | null
@@ -128,12 +129,12 @@ export type Database = {
           problematic?: string | null
           source?: string | null
           start_date?: string | null
-          thumbnail?: string | null
           type?: number | null
           url: string
         }
         Update: {
           abandoned?: boolean
+          color?: string
           context?: number
           deployment?: string | null
           description?: string | null
@@ -146,7 +147,6 @@ export type Database = {
           problematic?: string | null
           source?: string | null
           start_date?: string | null
-          thumbnail?: string | null
           type?: number | null
           url?: string
         }

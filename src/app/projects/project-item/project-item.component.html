@@ -1,71 +1,15 @@
-<div class="icon">
-  @if (project.icon) {
-    <img [src]="project.icon" alt="" />
-  } @else {
-    <mat-icon>apps</mat-icon>
-  }
-</div>
+<div [class]="'decoration__' + (project.id % 3)"></div>
 
-<div class="label">
-  <div>
-    <span class="project-label" [routerLink]="['/projects', project.url]">{{
-      project.label
-    }}</span>
-    <span class="type">{{ project.project_type.label }}</span>
+@if (project.illustrations.length > 0) {
+  <div class="illustration-container">
+    <img
+      [src]="project.illustrations[0].url"
+      [alt]="project.illustrations[0].alt" />
   </div>
-  <app-suggestion-chip>
-    {{ project | status }}
-  </app-suggestion-chip>
-</div>
+}
 
-<div class="description">
-  {{ project.description }}
-</div>
-
-<div class="technologies">
-  @for (skill of project.skills | slice: 0 : 3; track skill.id) {
-    <app-highlightable-chip [highlighted]="skill.main"
-      >{{ skill.label }}
-    </app-highlightable-chip>
-  }
-  <span>
-    @if (project.skills.length > 3) {
-      + {{ project.skills.length - 3 }}
-    }
-  </span>
-</div>
-
-<div class="bottom">
-  <div class="context">
-    <div class="logo">
-      @if (project.project_context.icon) {
-        <img [src]="project.project_context.icon" alt="" />
-      } @else {
-        <mat-icon class="work-icon">location_on</mat-icon>
-      }
-    </div>
-    <span class="label">
-      {{ project.project_context.label }}
-    </span>
-  </div>
-
-  @if ((project | status) !== 'Abandonné') {
-    <div class="time-spent">
-      <span class="duration"> {{ project | duration }}</span>
-      <mat-icon class="timer-icon" fontSet="material-symbols-outlined"
-        >schedule</mat-icon
-      >
-
-      @if ((project | status) === 'Terminé') {
-        <span class="end-year">{{ project.end_date | date: 'yyyy' }}</span>
-        <mat-icon class="timer-icon" fontSet="material-symbols-outlined"
-          >package_2</mat-icon
-        >
-      }
-    </div>
-  }
-</div>
-
-<div class="see-more" [routerLink]="['/projects', project.url]">
-  Voir plus de détails
-</div>
+<app-action-button
+  [unfold]="hovered"
+  [text]="project.label"
+  [routerLink]="['/projects', project.url]">
+</app-action-button>

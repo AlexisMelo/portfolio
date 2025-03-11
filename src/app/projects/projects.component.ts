@@ -1,9 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GithubComponent } from '../contact/github/github.component';
+import { ContentService } from '../shared/content.service';
 import { SupabaseService } from '../shared/supabase.service';
-import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
-import { Project } from './project.model';
+import { ProjectItem } from './project-item/project-item.model';
+import { ShuffleComponent } from './shuffle/shuffle.component';
+import { OngoingComponent } from './ongoing/ongoing.component';
+import { AllComponent } from './all/all.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -13,7 +17,10 @@ import { Project } from './project.model';
     ProjectItemComponent,
     ReactiveFormsModule,
     FormsModule,
-    TitleSeparatorComponent,
+    GithubComponent,
+    ShuffleComponent,
+    OngoingComponent,
+    AllComponent,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
@@ -22,12 +29,17 @@ export class ProjectsComponent implements OnInit {
   /**
    * Liste des projets réalisés
    */
-  private projects: Array<Project> = [];
+  private projects: Array<ProjectItem> = [];
 
   /**
    * Gestion de la base de donnée
    */
   private supabaseService = inject(SupabaseService);
+
+  /**
+   * Gestion du contenu
+   */
+  public contentService = inject(ContentService);
 
   /**
    * Projets épinglés
@@ -37,11 +49,18 @@ export class ProjectsComponent implements OnInit {
   }
 
   /**
+   * Projets en cours
+   */
+  get ongoingProjects() {
+    return this.projects.filter(p => p.end_date === null && !p.abandoned);
+  }
+
+  /**
    * Implémentation de OnInit
    */
   ngOnInit() {
     this.supabaseService
-      .getProjects()
+      .getPinnedProjects()
       .then(projects => (this.projects = projects));
   }
 }

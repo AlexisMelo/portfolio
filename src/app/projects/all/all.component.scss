@@ -1,0 +1,73 @@
+.cube {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--gray-50);
+
+  &.cube__0,
+  &.cube__1,
+  &.cube__2,
+  &.cube__3,
+  &.cube__4,
+  &.cube__5 {
+    grid-row: 6;
+  }
+
+  &.cube__6,
+  &.cube__7,
+  &.cube__8,
+  &.cube__9,
+  &.cube__10,
+  &.cube__11 {
+    grid-row: 5;
+  }
+
+  &.cube__12,
+  &.cube__13,
+  &.cube__14,
+  &.cube__15,
+  &.cube__16,
+  &.cube__17 {
+    grid-row: 4;
+  }
+
+  &.cube__18,
+  &.cube__19 {
+    grid-row: 3;
+  }
+
+  &.cube__18 {
+    grid-column: 5;
+  }
+
+  &.cube__19 {
+    grid-column: 6;
+  }
+
+  &.cube__12 {
+    grid-row: 3;
+    grid-column: 4;
+  }
+}
+
+$padding: 3rem;
+
+:host {
+  padding: $padding;
+}
+
+h2 {
+  z-index: 10;
+}
+
+.grid-projects {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(6, 54px);
+  grid-template-rows: repeat(6, 54px);
+  gap: 10px;
+  bottom: 0;
+  right: 0;
+  margin-right: $padding;
+  margin-bottom: $padding;
+}
