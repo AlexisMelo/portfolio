@@ -4,7 +4,7 @@
   position: relative;
 
   &:hover {
-    .illustration-container,
+    .illustration-container img,
     .decoration {
       box-shadow: none;
     }
@@ -13,17 +13,29 @@
 
 .illustration-container {
   position: absolute;
+  width: 300px;
   left: 120px;
-  top: -50px;
-  transform: rotate(330deg);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
-  transition: 500ms;
+  top: 0px;
+  transform: rotate(340deg);
 
   img {
+    border-radius: 20px;
+    transition: 500ms;
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  @include responsive('medium') {
+    width: 350px;
+    left: 120px;
+    top: -25px;
+    transform: rotate(330deg);
+  }
+
+  @include responsive('large') {
     width: 450px;
-    // object-fit: cover;
+    left: 120px;
+    top: -50px;
   }
 }
 
@@ -34,32 +46,68 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+//du haut vers arrondi en bas
 .decoration__0 {
   @extend .decoration;
 
-  border-radius: 70px;
+  border-radius: 0 0 35px 35px;
   width: 200px;
-  height: 300px;
-  top: -150px;
-  left: 50px;
+  height: 130px;
+  top: 0;
+  left: 70px;
+
+  @include responsive('medium') {
+    border-radius: 0 0 50px 50px;
+    width: 200px;
+    height: 150px;
+  }
+
+  @include responsive('large') {
+    border-radius: 0 0 70px 70px;
+    width: 200px;
+    height: 180px;
+  }
 }
 
+//cercle en bas
 .decoration__1 {
   @extend .decoration;
 
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   bottom: -150px;
   left: 70px;
+
+  @include responsive('medium') {
+    width: 280px;
+  }
+
+  @include responsive('large') {
+    width: 330px;
+    height: 300px;
+    bottom: -150px;
+    left: 70px;
+  }
 }
 
+//du bas vers le haut
 .decoration__2 {
   @extend .decoration;
 
-  border-radius: 70px;
-  width: 425px;
-  height: 200px;
-  bottom: -100px;
-  right: -50px;
+  border-radius: 35px 35px 0 0;
+  height: 130px;
+  width: 200px;
+  bottom: 0px;
+  left: 70px;
+
+  @include responsive('medium') {
+    border-radius: 50px 50px 0 0;
+    height: 150px;
+  }
+
+  @include responsive('large') {
+    border-radius: 70px 70px 0 0;
+    height: 200px;
+  }
 }

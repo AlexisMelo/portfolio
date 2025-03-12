@@ -4,15 +4,7 @@
   background-color: var(--github-bg) !important;
 
   img {
-    width: 35px;
-
-    @include responsive('medium') {
-      width: 50px;
-    }
-
-    @include responsive('large') {
-      width: 60px;
-    }
+    width: var(--size-grid-icon-centered);
   }
 }
 
@@ -30,11 +22,4 @@
     transform: translateX(-50%);
     bottom: -2.5rem;
   }
-}
-
-mat-icon {
-  position: absolute;
-  color: white;
-  left: 20px;
-  bottom: 20px;
 }

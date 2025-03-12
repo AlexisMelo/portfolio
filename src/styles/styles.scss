@@ -11,6 +11,8 @@
   --grid-width: 350px; //pour que ça fonctionne même sur petit téléphone
   --columns: 2;
   --gap: 16px;
+  --grid-icon-centered-size: 36px;
+  --action-button-icon-size: 18px;
 
   @include responsive('medium') {
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
@@ -200,7 +202,7 @@ h2 {
   }
 
   @include responsive('large') {
-    line-height: 200%;
+    line-height: 220%;
   }
 
   span {

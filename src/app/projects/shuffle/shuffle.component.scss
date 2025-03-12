@@ -1,8 +1,6 @@
-$size: 60px;
-
 svg {
-  width: $size;
-  height: $size;
+  width: var(--size-grid-icon-centered);
+  height: var(--size-grid-icon-centered);
   cursor: pointer;
 
   &:hover {
