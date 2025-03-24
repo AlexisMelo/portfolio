@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
 @import './responsive.scss';
 @import './light-mode.scss';
@@ -21,7 +22,9 @@
 
   @include responsive('large') {
     --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
-    --columns: 5;
+    --columns: 4;
+    --gap: 18px;
+    --grid-icon-centered-size: 50px;
   }
 
   --cell-size: calc(
@@ -85,9 +88,14 @@ body {
 
 h1,
 h2 {
-  font-family: 'Limelight';
-  font-weight: normal;
+  font-family: 'Spicy Rice', serif;
+  font-weight: 400;
+  font-style: normal;
   color: var(--titleColor);
+
+  @include responsive('large') {
+    letter-spacing: 2px;
+  }
 }
 
 @keyframes blink {
@@ -166,9 +174,9 @@ h2 {
 }
 
 .g-grid-item {
-  border-radius: 1rem;
+  border-radius: 35px;
   background-color: var(--grid-item-default-bg);
-  border: 1px solid var(--grid-item-border);
+  border: var(--grid-item-border);
   position: relative;
   display: flex;
   align-items: center;
@@ -180,7 +188,6 @@ h2 {
 
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
-    border-color: var(--grid-item-border-hover-color);
   }
 
   &.g-start-aligned {

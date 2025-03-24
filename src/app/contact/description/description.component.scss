@@ -1,7 +1,17 @@
 @import '../../../styles/responsive.scss';
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-20%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 :host {
-  padding: 4rem;
+  padding: 3rem;
 
   @include responsive('medium') {
     padding: 3rem;
@@ -12,6 +22,7 @@
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 
     @include responsive('large') {
       flex-direction: row;
@@ -20,29 +31,57 @@
     }
   }
 
+  .text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
   img {
-    width: 80px;
+    width: 90px;
     height: auto;
+    position: relative;
+    animation: 1s slideInFromLeft;
+    transition: 1s;
 
     @include responsive('medium') {
       width: 100px;
     }
 
     @include responsive('large') {
-      width: 110px;
+      width: 140px;
     }
   }
 
-  p {
+  h2 {
+    margin: 0;
+    font-size: 2.5rem;
     margin-bottom: 0;
-    margin-top: 2rem;
 
     @include responsive('medium') {
       margin-top: 1rem;
+      margin-bottom: 0;
     }
 
     @include responsive('large') {
       margin-top: 0;
+      margin-bottom: 1rem;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @include responsive('medium') {
+      margin-top: 0;
+    }
+  }
+
+  &:hover {
+    img {
+      rotate: -5deg;
     }
   }
 }

@@ -9,6 +9,7 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
   imports: [ActionButtonComponent],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
+  host: { class: 'g-start-aligned' },
 })
 export class ResumeComponent extends GridItemDirective {
   /**

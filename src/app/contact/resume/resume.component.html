@@ -1,9 +1,17 @@
-<div class="resume">
-  <h2>Curriculum Vitae</h2>
+<h2>
+  Curriculum <br />
+  Vitae
+</h2>
+
+<div class="illustration-container">
+  <img
+    src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/curriculum-vitae/curriculum-vitae-image.png"
+    alt="Capture d'écran de mon CV" />
 </div>
 
 <app-action-button
-  [unfold]="hovered"
+  [unfold]="true"
   text="Télécharger"
   (click)="downloadResume()"
-  [icon]="'download'"></app-action-button>
+  [icon]="'download'"
+  [positionAbsolute]="false"></app-action-button>

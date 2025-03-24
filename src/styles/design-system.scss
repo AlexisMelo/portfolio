@@ -1,5 +1,7 @@
 @import './responsive.scss';
 
+//https://mycolor.space/?hex=%23F2F7F3&sub=1
+
 @mixin design-system() {
   //green
   --green-700: #1a2219;
@@ -13,9 +15,11 @@
   --green-50: rgb(240, 243, 236);
 
   //gray
-  --gray-300: #b2bbb1;
-  --gray-200: #c5d0c4;
-  --gray-100: #e1e7e1;
+  --gray-500: #346667;
+  --gray-400: #5b827e;
+  --gray-300: #809e97;
+  --gray-200: #a6bbb3;
+  --gray-100: #ccd8d2;
   --gray-50: #f2f7f3;
 
   //white
@@ -36,5 +40,5 @@
   --yellow: #f1d274;
   --purple: #d3d7fd;
   --orange: #f6d3b8;
-  --blue: #c1d5f7;
+  --blue: #98d0ff;
 }

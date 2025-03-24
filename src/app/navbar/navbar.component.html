@@ -46,9 +46,7 @@
       >Compétences</a
     >
   </div>
-</ng-template>
 
-<ng-template #rightLinks>
   <div class="navbar-link">
     <a
       [routerLink]="['contact']"
@@ -58,13 +56,13 @@
   </div>
 </ng-template>
 
-<div class="left-items">
-  <ng-template *ngTemplateOutlet="logo"></ng-template>
+<ng-template #rightLinks> </ng-template>
 
+<ng-template *ngTemplateOutlet="logo"></ng-template>
+
+<div class="left-items">
   <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
 </div>
-
-<ng-template class="center-logo" *ngTemplateOutlet="logo"></ng-template>
 
 <div class="right-items">
   <ng-template *ngTemplateOutlet="rightLinks"></ng-template>

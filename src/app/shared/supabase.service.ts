@@ -14,13 +14,13 @@ export class SupabaseService {
   /**
    * Client pour Supabase
    */
-  private supabase: SupabaseClient;
+  public client: SupabaseClient;
 
   /**
    * Constructeur
    */
   constructor() {
-    this.supabase = createClient<Database>(
+    this.client = createClient<Database>(
       environment.supabaseUrl,
       environment.supabasePublicKey
     );
@@ -31,7 +31,7 @@ export class SupabaseService {
    * @returns
    */
   public async getProjects(): Promise<Array<Project>> {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.client
       .from('project')
       .select(
         '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
@@ -48,7 +48,7 @@ export class SupabaseService {
    * @returns
    */
   public async getPinnedProjects(): Promise<Array<ProjectItem>> {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.client
       .from('project')
       .select('*, illustrations:project_illustration(*)')
       .eq('pinned', true);
@@ -62,7 +62,7 @@ export class SupabaseService {
    * @param url
    */
   public async getProjectByUrl(url: string): Promise<Project> {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.client
       .from('project')
       .select(
         '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
@@ -82,7 +82,7 @@ export class SupabaseService {
    * @returns
    */
   public async getContexts() {
-    const { data } = await this.supabase
+    const { data } = await this.client
       .from('context')
       .select('*, context_type(*), project(*)')
       .order('end_date', { ascending: false })
@@ -96,7 +96,7 @@ export class SupabaseService {
    * @returns
    */
   public async getSkills(): Promise<Array<Skill>> {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.client
       .from('skill')
       .select('*, skill_type(*), projects:project(*), skill_field(*)')
       .order('label');
@@ -110,7 +110,7 @@ export class SupabaseService {
    * @returns
    */
   public async getLandingSections() {
-    const { data } = await this.supabase
+    const { data } = await this.client
       .from('section')
       .select('*')
       .like('tags', '%landing%')
@@ -123,7 +123,7 @@ export class SupabaseService {
    * @returns
    */
   public async getLandingClients() {
-    const { data } = await this.supabase
+    const { data } = await this.client
       .from('context')
       .select('*')
       .eq('show_landing', true)
@@ -136,7 +136,7 @@ export class SupabaseService {
    * @returns
    */
   public async getResume(): Promise<Blob> {
-    const { data, error } = await this.supabase.storage
+    const { data, error } = await this.client.storage
       .from('portfolio-project')
       .download('CV.pdf');
 

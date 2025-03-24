@@ -5,25 +5,6 @@
   flex-direction: column;
 }
 
-app-navbar {
-  margin-bottom: 2rem;
-}
-
 app-footer {
   margin-top: 2rem;
-}
-
-app-wip {
-  margin-bottom: 10px;
-
-  @include responsive('large') {
-    margin-bottom: 0;
-    position: absolute;
-    left: -75px;
-    top: 25x;
-    transform: rotate(320deg);
-    padding: 10px;
-    border-width: 5px;
-    width: 400px;
-  }
 }

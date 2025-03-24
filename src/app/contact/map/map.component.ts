@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnDestroy,
+} from '@angular/core';
 import * as L from 'leaflet';
 import { GridItemDirective } from '../grid-item.directive';
 import { Subscription } from 'rxjs';
@@ -37,7 +43,12 @@ export class MapComponent
    * Niveau de zoom de la map
    * On commence au niveau le plus zoomé possible
    */
-  public zoomLevel: number = this.maxZoom;
+  public zoomLevel: number = this.allowedZoomLevels[0];
+
+  /**
+   * Détection des changements
+   */
+  private changedDetectorRef = inject(ChangeDetectorRef);
 
   /**
    * Implémentation de AfterViewInit
@@ -57,6 +68,11 @@ export class MapComponent
     this.themeSubscription = this.themeService.theme.subscribe(theme =>
       this.updateTile(theme)
     );
+
+    this.zoomIn();
+
+    //pour ne pas avoir de "expression has been changed". Obligé de faire ça dans afterviewinit ?
+    this.changedDetectorRef.detectChanges();
   }
 
   /**

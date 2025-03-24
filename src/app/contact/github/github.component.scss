@@ -1,10 +1,17 @@
 @import '../../../styles/responsive.scss';
+@import '../linkedin/spin.animation.scss';
 
 :host {
   background-color: var(--github-bg) !important;
 
   img {
-    width: var(--size-grid-icon-centered);
+    width: var(--grid-icon-centered-size);
+  }
+
+  &:hover {
+    img {
+      @extend %spin-effect;
+    }
   }
 }
 

@@ -1,25 +1,30 @@
 @import '../../styles/responsive.scss';
 
 $transition-duration: 0.2s;
-$vertical-padding: 1rem;
 $logo-size: 3rem;
 $transition-duration: 0.3s;
 $border-radius: 12px;
 
 :host {
+  --vertical-padding: 2rem;
+  --horizontal-padding: 3rem;
+
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 500;
   width: 100%;
-  background-color: var(--navbar-background-color);
-  padding: $vertical-padding 2rem;
+  // background-color: var(--navbar-background-color);
+  padding: var(--vertical-padding) var(--horizontal-padding);
   // border-bottom: 1px solid var(--navbar-border-bottom-color);
   z-index: 600;
   transition: background-color 0.3s ease-out;
+
+  @include responsive('large') {
+    --vertical-padding: 3rem;
+    --horizontal-padding: 4rem;
+  }
 
   .logo {
     height: $logo-size;
@@ -89,13 +94,9 @@ $border-radius: 12px;
     }
   }
 
-  > .logo {
-    display: none;
-  }
-
   .collapsible-menu {
     position: absolute;
-    top: calc($logo-size + 2 * $vertical-padding);
+    top: calc($logo-size + 2 * var(--vertical-padding));
     left: 0;
     overflow: hidden;
     height: 0;
@@ -126,19 +127,8 @@ $border-radius: 12px;
       display: none;
     }
 
-    .logo {
-      display: block;
-    }
-
     .open-menu {
       display: none;
-    }
-
-    .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
 
     .left-items,

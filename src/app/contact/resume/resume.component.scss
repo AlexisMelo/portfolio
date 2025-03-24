@@ -1,18 +1,70 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  padding: 2rem;
+  padding: 1.8rem;
 
-  .resume {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: flex-start;
-    justify-content: flex-start;
+  @include responsive('medium') {
+    padding: 1.5rem;
+  }
 
-    @include responsive('medium') {
-      align-items: center;
-      justify-content: center;
+  @include responsive('large') {
+    padding: 3rem;
+  }
+
+  &:hover {
+    .illustration-container {
+      transform: translateY(5%);
+      box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 15px 0px;
+      rotate: -5deg;
     }
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(30%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+h2 {
+  flex-grow: 1;
+  font-size: 1.8rem;
+  margin: 0;
+
+  @include responsive('medium') {
+    font-size: 2rem;
+  }
+
+  @include responsive('large') {
+    font-size: 2.5rem;
+  }
+}
+
+.illustration-container {
+  width: 150px;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 10px 0px;
+  animation: slideInFromBottom 1s;
+  transition: 0.5s;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  @include responsive('medium') {
+    width: 160px;
+  }
+
+  @include responsive('large') {
+    width: 250px;
   }
 }
