@@ -71,6 +71,10 @@ app-action-button {
   z-index: 500;
 
   @include responsive('medium') {
+    width: 40px;
+  }
+
+  @include responsive('large') {
     width: 70px;
   }
 }
@@ -85,10 +89,15 @@ app-action-button {
   transform: translate(-50%, 0);
   z-index: 500;
   transition: 200ms;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 
   @include responsive('medium') {
+    width: 90px;
+    height: 90px;
+  }
+
+  @include responsive('large') {
     width: 120px;
     height: 120px;
   }
