@@ -1,0 +1,38 @@
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(from var(--box-shadow-color) r g b / 0.7);
+  }
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.dot {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 0 0 var(--box-shadow-color);
+  background-color: var(--box-shadow-color);
+  transform: scale(1);
+  animation: pulse 1.5s infinite;
+
+  &.orange {
+    --box-shadow-color: rgb(255, 209, 124);
+  }
+
+  &.red {
+    --box-shadow-color: rgb(255, 118, 118);
+  }
+
+  &.green {
+    --box-shadow-color: var(--termine-color);
+  }
+}

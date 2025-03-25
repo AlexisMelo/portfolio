@@ -1,6 +1,5 @@
 <h2>
-  <div [ngClass]="project | status | kebabCase" class="dot"></div>
-
+  <app-dot [color]="dotColor"></app-dot>
   {{ project | duration }}
 </h2>
 

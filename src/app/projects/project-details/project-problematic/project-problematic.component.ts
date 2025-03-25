@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [],
   templateUrl: './project-problematic.component.html',
   styleUrl: './project-problematic.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectProblematicComponent extends GridItemDirective {
   /**

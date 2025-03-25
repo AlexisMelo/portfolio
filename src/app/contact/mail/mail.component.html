@@ -1,7 +1,10 @@
-<h2>{{ contentService.mail }}</h2>
+<h2>Contact</h2>
+
+<div class="g-paragraph text" [innerHTML]="mainText"></div>
 
 <app-action-button
-  [unfold]="hovered"
   text="Envoyer un mail"
   icon="mail"
+  [unfold]="true"
+  [positionAbsolute]="false"
   (click)="sendEmail()"></app-action-button>

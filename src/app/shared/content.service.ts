@@ -28,10 +28,16 @@ export class ContentService {
   public description?: SafeHtml;
 
   /**
+   * Activité actuelle
+   */
+  public now?: SafeHtml;
+
+  /**
    * Constructeur
    */
   constructor() {
     this.updateDescription();
+    this.updateNow();
   }
 
   /**
@@ -81,5 +87,14 @@ export class ContentService {
    */
   get locale() {
     return 'fr-FR';
+  }
+
+  /**
+   * Activité actuelle
+   */
+  private async updateNow() {
+    this.now = this.sanitizer.bypassSecurityTrustHtml(
+      "Dans les démarches pour devenir développeur fullstack en <span>freelance</span>.<br><br>Concentré sur l'apprentissage avancé d'Angular, Typescript et Supabase.<br><br>Entrain de construire ce portfolio."
+    );
   }
 }

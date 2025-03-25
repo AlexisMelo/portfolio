@@ -11,7 +11,7 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
   imports: [ActionButtonComponent],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectContextComponent extends GridItemDirective {
   /**

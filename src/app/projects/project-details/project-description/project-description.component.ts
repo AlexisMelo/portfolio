@@ -10,7 +10,7 @@ import { ActionButtonComponent } from '../../../contact/action-button/action-but
   imports: [MatIconModule, ActionButtonComponent],
   templateUrl: './project-description.component.html',
   styleUrl: './project-description.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectDescriptionComponent extends GridItemDirective {
   /**

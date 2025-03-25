@@ -1,0 +1,10 @@
+<h2>
+  Occupé
+  <app-dot [color]="openForWork ? 'green' : 'red'"></app-dot>
+</h2>
+
+<div
+  class="g-paragraph g-grid-item-main-text"
+  [innerHTML]="currentOccupation"></div>
+
+<div class="g-grid-item-footer-text" [innerHTML]="nextAvailability"></div>

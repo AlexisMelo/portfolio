@@ -6,8 +6,9 @@ import { GithubComponent } from './github/github.component';
 import { LinkedinComponent } from './linkedin/linkedin.component';
 import { MailComponent } from './mail/mail.component';
 import { MapComponent } from './map/map.component';
-import { PhoneComponent } from './phone/phone.component';
+import { NowComponent } from './now/now.component';
 import { ResumeComponent } from './resume/resume.component';
+import { AvailabilityComponent } from './availability/availability.component';
 
 @Component({
   selector: 'app-contact',
@@ -17,10 +18,11 @@ import { ResumeComponent } from './resume/resume.component';
     LinkedinComponent,
     GithubComponent,
     MailComponent,
-    PhoneComponent,
     DescriptionComponent,
     ResumeComponent,
     MapComponent,
+    NowComponent,
+    AvailabilityComponent,
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',

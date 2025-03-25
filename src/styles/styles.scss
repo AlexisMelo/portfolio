@@ -190,7 +190,7 @@ h2 {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
   }
 
-  &.g-start-aligned {
+  &.g-grid-item-start-aligned {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
@@ -198,6 +198,19 @@ h2 {
     h2 {
       margin-top: 0;
     }
+  }
+
+  .g-grid-item-main-text {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .g-grid-item-footer-text {
+    text-align: end;
+    color: var(--grid-item-bottom-text-color);
+    width: 100%;
+    text-decoration: none;
+    font-size: 0.9rem;
   }
 }
 
@@ -209,19 +222,27 @@ h2 {
   }
 
   @include responsive('large') {
-    line-height: 220%;
+    line-height: 190%;
   }
 
   span {
+    display: inline-block;
     background-color: var(--paragraph-highlight-bg-color);
     padding: 2px 5px;
     border-radius: 6px;
     margin: 0;
     white-space: nowrap;
     color: var(--paragraph-highlight-color);
+    transition: 500ms;
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  &:hover {
+    span {
+      transform: rotate(-3deg);
     }
   }
 }

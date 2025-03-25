@@ -12,7 +12,7 @@ import { Project } from '../project.model';
   imports: [ActionButtonComponent, RouterLink],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class AllComponent extends GridItemDirective implements OnInit {
   /**

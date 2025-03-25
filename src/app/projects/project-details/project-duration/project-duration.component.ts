@@ -1,12 +1,14 @@
-import { Component, Input, LOCALE_ID } from '@angular/core';
-import { Project } from '../../project.model';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
-import { StatusPipe } from '../../status/status.pipe';
-import { DurationPipe } from '../../duration.pipe';
 import { DatePipe, NgClass } from '@angular/common';
+import { Component, inject, Input, LOCALE_ID } from '@angular/core';
+import { GridItemDirective } from 'src/app/contact/grid-item.directive';
 import { RightArrowComponent } from 'src/app/landing-page/timeline/right-arrow/right-arrow.component';
-import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 import { ContentService } from 'src/app/shared/content.service';
+import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
+import { DurationPipe } from '../../duration.pipe';
+import { Project } from '../../project.model';
+import { StatusPipe } from '../../status/status.pipe';
+import { DotColor } from 'src/app/shared/dot/dot-color.model';
+import { DotComponent } from 'src/app/shared/dot/dot.component';
 
 @Component({
   selector: 'app-project-duration',
@@ -18,11 +20,13 @@ import { ContentService } from 'src/app/shared/content.service';
     RightArrowComponent,
     NgClass,
     KebabCasePipe,
+    DotComponent,
   ],
   templateUrl: './project-duration.component.html',
   styleUrl: './project-duration.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
   providers: [
+    StatusPipe,
     {
       provide: LOCALE_ID,
       deps: [ContentService],
@@ -37,4 +41,23 @@ export class ProjectDurationComponent extends GridItemDirective {
    * Projet à afficher
    */
   @Input({ required: true }) project!: Project;
+
+  /**
+   * Obtient le statut d'un projet
+   */
+  private statusPipe = inject(StatusPipe);
+
+  /**
+   * Couleur du point
+   */
+  get dotColor(): DotColor {
+    switch (this.statusPipe.transform(this.project)) {
+      case 'Abandonné':
+        return 'red';
+      case 'En cours':
+        return 'orange';
+      case 'Terminé':
+        return 'green';
+    }
+  }
 }

@@ -16,7 +16,7 @@ import { CoworkerInfoComponent } from './coworker-info/coworker-info.component';
   imports: [ActionButtonComponent, CoworkerInfoComponent],
   templateUrl: './project-coworkers.component.html',
   styleUrl: './project-coworkers.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectCoworkersComponent
   extends GridItemDirective

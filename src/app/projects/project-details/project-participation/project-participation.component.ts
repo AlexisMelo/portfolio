@@ -8,7 +8,7 @@ import { Project } from '../../project.model';
   imports: [],
   templateUrl: './project-participation.component.html',
   styleUrl: './project-participation.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectParticipationComponent extends GridItemDirective {
   /**

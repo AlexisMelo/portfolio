@@ -19,7 +19,7 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
   ],
   templateUrl: './project-skills.component.html',
   styleUrl: './project-skills.component.scss',
-  host: { class: 'g-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectSkillsComponent extends GridItemDirective {
   /**
