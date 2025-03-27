@@ -1,10 +1,10 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  padding: 1.5rem;
+  padding: 2.5rem;
 
   @include responsive('medium') {
-    padding: 1.5rem;
+    padding: 3rem;
   }
 
   @include responsive('large') {
@@ -13,11 +13,12 @@
 }
 
 h2 {
-  font-size: 2rem;
-  margin-bottom: 0;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 
   @include responsive('medium') {
-    margin-bottom: 0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
 
   @include responsive('large') {

@@ -1,7 +1,7 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  padding: 2rem;
+  padding: 2.5rem;
 
   @include responsive('large') {
     padding: 2.5rem;
@@ -15,7 +15,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 0rem;
+  margin-bottom: 0.5rem;
 
   @include responsive('medium') {
     margin-bottom: 1rem;
