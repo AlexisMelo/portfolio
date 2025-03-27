@@ -1,11 +1,11 @@
 @mixin light-mode() {
-  --titleColor: var(--green-500);
+  --titleColor: var(--gray-500);
   --text-color: var(--black);
   --backgroundColor: #f7f2f2;
 
   //g-paragraph
-  --paragraph-highlight-bg-color: var(--gray-50);
-  --paragraph-highlight-color: var(--green-500);
+  --paragraph-highlight-bg-color: rgba(130, 209, 115, 0.1);
+  --paragraph-highlight-color: var(--black);
 
   //navbar
   --navbarLinksColor: var(--green-400);
@@ -106,14 +106,13 @@
   //grid-item
   --grid-item-default-bg: var(--white);
   --grid-item-border: none;
-  --grid-item-border-hover-color: var(--green-500);
   --grid-item-bottom-text-color: var(--gray-300);
 
   //linkedin
   --linkedin-bg: var(--blue);
 
   //github
-  --github-bg: var(--green-400);
+  --github-bg: var(--gray-500);
   --github-empty-color: var(--gray-300);
 
   //project-duration

@@ -1,10 +1,10 @@
 @mixin dark-mode() {
-  --titleColor: var(--green-100);
+  --titleColor: var(--gray-100);
   --text-color: var(--white);
-  --backgroundColor: var(--black);
+  --backgroundColor: var(--gray-600);
 
   //g-paragraph
-  --paragraph-highlight-bg-color: var(--green-400);
+  --paragraph-highlight-bg-color: var(--green-600);
   --paragraph-highlight-color: var(--white);
 
   //navbar
@@ -78,7 +78,7 @@
   --moving-content-fade-alt: var(--green-700);
 
   //map
-  --rayon-background: var(--blue);
+  --rayon-background: #ffffff;
   --rayon-border: var(--blue);
 
   //tooltip
@@ -99,21 +99,20 @@
   --skill-card-bg: var(--green-700);
 
   //action-button
-  --action-button-background: var(--green-700);
+  --action-button-background: var(--gray-550);
   --action-button-color: var(--white);
-  --action-button-border-color: var(--green-500);
+  --action-button-border-color: var(--gray-500);
 
   //grid-item
-  --grid-item-default-bg: var(--green-700);
-  --grid-item-border: 2px solid var(--green-500);
-  --grid-item-border-hover-color: var(--green-250);
-  --grid-item-bottom-text-color: var(--gray-300);
+  --grid-item-default-bg: var(--gray-550);
+  --grid-item-border: 2px solid var(--gray-500);
+  --grid-item-bottom-text-color: var(--gray-400);
 
   //linkedin
-  --linkedin-bg: var(--green-700);
+  --linkedin-bg: var(--gray-525);
 
   //github
-  --github-bg: var(--green-700);
+  --github-bg: var(--gray-525);
   --github-empty-color: var(--gray-300);
 
   //project-duration

@@ -94,7 +94,7 @@ export class ContentService {
    */
   private async updateNow() {
     this.now = this.sanitizer.bypassSecurityTrustHtml(
-      "Dans les démarches pour devenir développeur fullstack en <span>freelance</span>.<br><br>Concentré sur l'apprentissage avancé d'Angular, Typescript et Supabase.<br><br>Entrain de construire ce portfolio."
+      'Réaliser les démarches pour devenir développeur fullstack en <span>freelance</span>.<br><br>Renforcer mes connaissances sur Angular, Typescript et Supabase.<br><br>Construire ce portfolio.'
     );
   }
 }

@@ -222,18 +222,29 @@ h2 {
   }
 
   @include responsive('large') {
-    line-height: 190%;
+    line-height: 200%;
   }
 
   span {
     display: inline-block;
-    background-color: var(--paragraph-highlight-bg-color);
-    padding: 2px 5px;
-    border-radius: 6px;
-    margin: 0;
     white-space: nowrap;
     color: var(--paragraph-highlight-color);
     transition: 500ms;
+    position: relative;
+    margin: 0 6px;
+
+    &::after {
+      padding: 2px 8px;
+      background-color: var(--paragraph-highlight-bg-color);
+      content: '';
+      width: calc(100% + 12px);
+      height: 1.7rem;
+      position: absolute;
+      border-radius: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     &:hover {
       opacity: 0.7;
