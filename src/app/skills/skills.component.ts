@@ -5,6 +5,7 @@ import { SupabaseService } from '../shared/supabase.service';
 import { Skill } from '../projects/skill.model';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { SkillsSection } from './skills-section.model';
+import { SkillSectionHeaderComponent } from './skill-section-header/skill-section-header.component';
 
 @Component({
   selector: 'app-skills',
@@ -13,6 +14,7 @@ import { SkillsSection } from './skills-section.model';
     TitleSeparatorComponent,
     RowWithSeparatorComponent,
     SkillListComponent,
+    SkillSectionHeaderComponent,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',

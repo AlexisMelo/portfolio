@@ -1,0 +1,29 @@
+@import '../../styles/responsive.scss';
+
+.frontend-header {
+  grid-row: 1;
+  grid-column: 1 /3;
+  background-color: var(--skill-section-header-frontend-bg);
+
+  @include responsive('medium') {
+    grid-row: 1;
+    grid-column: 3 / 5;
+  }
+}
+
+.backend-header {
+  grid-row: 4;
+  grid-column: 1 / 3;
+  background-color: var(--skill-section-header-backend-bg);
+}
+
+.general-header {
+  grid-row: 7;
+  grid-column: 1 / 3;
+  background-color: var(--skill-section-header-general-bg);
+
+  @include responsive('medium') {
+    grid-row: 7;
+    grid-column: 3/ 5;
+  }
+}

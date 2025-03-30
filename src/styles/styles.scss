@@ -232,6 +232,7 @@ h2 {
     transition: 500ms;
     position: relative;
     margin: 0 6px;
+    z-index: 1;
 
     &::after {
       padding: 2px 8px;
@@ -244,6 +245,7 @@ h2 {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      z-index: -1;
     }
 
     &:hover {
