@@ -8,7 +8,7 @@
   --green-600: #1b2c1a;
   --green-500: #294b29;
   --green-400: #50623a;
-  --green-300: rgb(120, 148, 97);
+  --green-300: #459e33;
   --green-250: #82d173;
   --green-200: #becfa3;
   --green-100: rgb(233, 238, 226);
@@ -45,5 +45,8 @@
   --orange: #f6d3b8;
 
   //blue
+  --blue-500: #3780c9; //bon contraste pour BG + écriture blanche
+  --blue-400: #4f99e3;
+  --blue-200: #86b9eb; //bleu + foncé pour dark mode
   --blue: #adcceb;
 }

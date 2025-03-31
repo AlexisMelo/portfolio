@@ -5,6 +5,7 @@ import { SupabaseService } from '../shared/supabase.service';
 import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
 import { SkillSectionHeaderComponent } from './skill-section-header/skill-section-header.component';
 import { SkillsSection } from './skills-section.model';
+import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 
 @Component({
   selector: 'app-skills',
@@ -13,6 +14,7 @@ import { SkillsSection } from './skills-section.model';
     SkillSectionHeaderComponent,
     SkillSectionDescriptionComponent,
     NgClass,
+    SkillsRecapComponent,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
@@ -29,8 +31,10 @@ export class SkillsComponent implements OnInit {
       description:
         'Création de maquettes, implémentations complexes et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien.',
       skillFieldId: 1,
-      items: [],
+      skills: [],
       class: 'frontend-grid',
+      bgColor: 'var(--skill-recap-frontend-bg)',
+      color: 'var(--skill-recap-frontend-color)',
     },
     {
       id: 'back-end',
@@ -39,8 +43,10 @@ export class SkillsComponent implements OnInit {
       description:
         "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition.",
       skillFieldId: 2,
-      items: [],
+      skills: [],
       class: 'backend-grid',
+      bgColor: 'var(--skill-recap-backend-bg)',
+      color: 'var(--skill-recap-backend-color)',
     },
     {
       id: 'general',
@@ -49,8 +55,10 @@ export class SkillsComponent implements OnInit {
       description:
         "Le code, c'est bien ! Mais pour être un développeur complet, je m'intéresse également à d'autres sujets : gestion de projet, CI/CD, et bien plus...",
       skillFieldId: 3,
-      items: [],
+      skills: [],
       class: 'general-grid',
+      bgColor: 'var(--skill-recap-general-bg)',
+      color: 'var(--skill-recap-general-color)',
     },
   ];
 
@@ -72,7 +80,7 @@ export class SkillsComponent implements OnInit {
       this.skills = skills;
 
       for (const section of this.sections) {
-        section.items = this.skills?.filter(
+        section.skills = this.skills?.filter(
           s => s.skill_field.id === section.skillFieldId
         );
       }

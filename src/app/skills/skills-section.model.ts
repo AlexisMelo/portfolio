@@ -10,7 +10,7 @@ export interface SkillsSection extends TitleSeparator {
   /**
    * Liste des skills de la section
    */
-  items: Array<Skill>;
+  skills: Array<Skill>;
 
   /**
    * Identifiant du "Skill field" en base
@@ -21,4 +21,14 @@ export interface SkillsSection extends TitleSeparator {
    * Style à appliquer sur la section
    */
   class: string;
+
+  /**
+   * Couleur de la section
+   */
+  bgColor: string;
+
+  /**
+   * Couleur d'écriture du skill
+   */
+  color: string;
 }

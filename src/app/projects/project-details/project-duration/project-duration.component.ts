@@ -1,14 +1,13 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, inject, Input, LOCALE_ID } from '@angular/core';
-import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { RightArrowComponent } from 'src/app/landing-page/timeline/right-arrow/right-arrow.component';
 import { ContentService } from 'src/app/shared/content.service';
-import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
+import { DotColor } from 'src/app/shared/dot/dot-color.model';
+import { DotComponent } from 'src/app/shared/dot/dot.component';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { DurationPipe } from '../../duration.pipe';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
-import { DotColor } from 'src/app/shared/dot/dot-color.model';
-import { DotComponent } from 'src/app/shared/dot/dot.component';
 
 @Component({
   selector: 'app-project-duration',
@@ -18,8 +17,6 @@ import { DotComponent } from 'src/app/shared/dot/dot.component';
     DurationPipe,
     DatePipe,
     RightArrowComponent,
-    NgClass,
-    KebabCasePipe,
     DotComponent,
   ],
   templateUrl: './project-duration.component.html',

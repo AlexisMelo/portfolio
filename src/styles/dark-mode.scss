@@ -1,5 +1,5 @@
 @mixin dark-mode() {
-  --titleColor: var(--gray-100);
+  --titleColor: var(--gray-50);
   --text-color: var(--white);
   --backgroundColor: var(--gray-600);
 
@@ -119,5 +119,22 @@
   --termine-color: var(--green-300);
 
   //skill-section-header
-  --skill-section-header-frontend-bg: var(--blue);
+  --skill-section-header-frontend-bg: default;
+  --skill-section-header-frontend-color: var(--blue-200);
+
+  --skill-section-header-backend-bg: default;
+  --skill-section-header-backend-color: var(--green-250);
+
+  --skill-section-header-general-bg: default;
+  --skill-section-header-general-color: var(--gray-200);
+
+  //skill-recap
+  --skill-recap-frontend-bg: var(--blue-500);
+  --skill-recap-frontend-color: default;
+
+  --skill-recap-backend-bg: var(--green-300);
+  --skill-recap-backend-color: default;
+
+  --skill-recap-general-bg: var(--gray-50);
+  --skill-recap-general-color: black;
 }

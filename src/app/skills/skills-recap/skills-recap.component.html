@@ -1,0 +1,20 @@
+@for (skills of groupedSkills | keyvalue; track skills.key) {
+  <div class="category">{{ skills.key }}</div>
+  <div class="list">
+    @for (skill of skills.value; track skill.id) {
+      <div
+        [style]="
+          '--skill-recap-opacity-bg: ' +
+          0.1 * (skill.mastery + 3) +
+          '; --skill-recap-bg: ' +
+          bgColor +
+          '; --skill-recap-color: ' +
+          color
+        "
+        [routerLink]="[ARCHIVES_ROUTE]"
+        [queryParams]="{ skills: skill.id }">
+        {{ skill.label }}
+      </div>
+    }
+  </div>
+}

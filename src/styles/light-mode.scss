@@ -119,8 +119,22 @@
   --termine-color: var(--green-200);
 
   //skill-section-header
-  --skill-section-header-color: white;
   --skill-section-header-frontend-bg: var(--blue);
+  --skill-section-header-frontend-color: white;
+
   --skill-section-header-backend-bg: var(--green-250);
+  --skill-section-header-backend-color: white;
+
   --skill-section-header-general-bg: var(--gray-500);
+  --skill-section-header-general-color: white;
+
+  //skill-recap
+  --skill-recap-frontend-bg: var(--blue-400);
+  --skill-recap-frontend-color: white;
+
+  --skill-recap-backend-bg: var(--green-300);
+  --skill-recap-backend-color: white;
+
+  --skill-recap-general-bg: var(--gray-500);
+  --skill-recap-general-color: white;
 }

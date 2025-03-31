@@ -406,6 +406,7 @@ export type Database = {
           landing_page: boolean;
           loved: boolean;
           main: boolean;
+          mastery: number;
           type: number;
         };
         Insert: {
@@ -419,6 +420,7 @@ export type Database = {
           landing_page?: boolean;
           loved?: boolean;
           main?: boolean;
+          mastery?: number;
           type: number;
         };
         Update: {
@@ -432,6 +434,7 @@ export type Database = {
           landing_page?: boolean;
           loved?: boolean;
           main?: boolean;
+          mastery?: number;
           type?: number;
         };
         Relationships: [
