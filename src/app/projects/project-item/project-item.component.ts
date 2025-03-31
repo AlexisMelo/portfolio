@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
 import { ProjectItem } from './project-item.model';
 

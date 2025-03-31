@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-skill-section-header',

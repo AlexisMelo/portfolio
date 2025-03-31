@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { GridItemDirective } from '../grid-item.directive';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { DotComponent } from '../../shared/dot/dot.component';
 
 @Component({

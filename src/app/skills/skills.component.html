@@ -1,39 +1,12 @@
 <div class="g-grid-container">
-  <div class="g-grid">
-    <app-skill-section-header class="frontend-header">
-      Frontend
-    </app-skill-section-header>
-
-    <app-skill-section-header class="backend-header">
-      Backend
-    </app-skill-section-header>
-
-    <app-skill-section-header class="general-header">
-      Général
-    </app-skill-section-header>
-  </div>
-</div>
-
-@for (section of sections; track section.heading) {
-  @if ($odd) {
-    <app-row-with-separator>
-      <app-title-separator
-        [heading]="section.heading"
-        [subtitle]="section.subtitle"
-        [description]="section.description"
-        [class.g-first-title]="$first">
-      </app-title-separator>
-      <app-skill-list [skills]="section.items"></app-skill-list>
-    </app-row-with-separator>
-  } @else {
-    <div class="g-container">
-      <app-title-separator
-        [heading]="section.heading"
-        [subtitle]="section.subtitle"
-        [description]="section.description"
-        [class.g-first-title]="$first">
-      </app-title-separator>
-      <app-skill-list [skills]="section.items"></app-skill-list>
+  @for (section of sections; track section.heading) {
+    <div class="g-grid" [ngClass]="section.class">
+      <app-skill-section-header>
+        {{ section.subtitle }}
+      </app-skill-section-header>
+      <app-skill-section-description
+        [mainText]="section.heading"
+        [secondaryText]="section.description"></app-skill-section-description>
     </div>
   }
-}
+</div>

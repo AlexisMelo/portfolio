@@ -6,7 +6,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import * as L from 'leaflet';
-import { GridItemDirective } from '../grid-item.directive';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { Subscription } from 'rxjs';
 import { Theme } from 'src/app/shared/theme.model';
 import { ActionButtonComponent } from '../action-button/action-button.component';

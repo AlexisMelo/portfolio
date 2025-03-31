@@ -1,6 +1,6 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { Component, inject, Input, LOCALE_ID } from '@angular/core';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { RightArrowComponent } from 'src/app/landing-page/timeline/right-arrow/right-arrow.component';
 import { ContentService } from 'src/app/shared/content.service';
 import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';

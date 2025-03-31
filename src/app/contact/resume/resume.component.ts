@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { GridItemDirective } from '../grid-item.directive';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 

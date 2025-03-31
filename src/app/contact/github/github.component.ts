@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ContentService } from 'src/app/shared/content.service';
 import { ActionButtonComponent } from '../action-button/action-button.component';
-import { GridItemDirective } from '../grid-item.directive';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

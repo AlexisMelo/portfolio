@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { GridItemDirective } from '../grid-item.directive';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ContentService } from 'src/app/shared/content.service';
 
 @Component({

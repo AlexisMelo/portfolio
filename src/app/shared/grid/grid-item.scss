@@ -1,0 +1,88 @@
+@import '../../../styles/responsive.scss';
+
+//Nommage : taille en lignes x taille en colonnes
+
+@mixin grid-1x1 {
+  @include responsive('large') {
+    padding: 2.5rem;
+  }
+
+  ::ng-deep {
+    h2 {
+      font-size: 2rem;
+
+      @include responsive('large') {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}
+
+@mixin grid-1x2 {
+  padding: 1.8rem;
+
+  @include responsive('medium') {
+    padding: 2rem;
+  }
+
+  @include responsive('large') {
+    padding: 3rem;
+  }
+
+  ::ng-deep {
+    h2 {
+      white-space: nowrap;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+
+      @include responsive('medium') {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      @include responsive('large') {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}
+
+@mixin grid-2x2 {
+  padding: 2.5rem;
+
+  @include responsive('medium') {
+    padding: 3rem;
+  }
+
+  ::ng-deep {
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+
+      @include responsive('medium') {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@mixin grid-3x1 {
+  padding: 2.5rem;
+
+  @include responsive('large') {
+    padding: 2.5rem;
+  }
+
+  ::ng-deep {
+    h2 {
+      font-size: 2rem; // à modif ?
+
+      @include responsive('large') {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+      }
+    }
+  }
+}

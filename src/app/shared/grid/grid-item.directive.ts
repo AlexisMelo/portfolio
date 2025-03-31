@@ -1,5 +1,5 @@
 import { Directive, HostBinding, HostListener, inject } from '@angular/core';
-import { ThemeService } from '../shared/theme.service';
+import { ThemeService } from '../theme.service';
 
 @Directive({
   selector: '[appGridItem]',

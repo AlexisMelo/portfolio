@@ -1,7 +1,7 @@
 import { KeyValuePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
 import { Project } from '../../project.model';

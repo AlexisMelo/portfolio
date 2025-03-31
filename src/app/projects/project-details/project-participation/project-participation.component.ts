@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { ActionButtonComponent } from 'src/app/contact/action-button/action-button.component';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-ongoing',

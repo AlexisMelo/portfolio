@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Project } from '../../project.model';
-import { GridItemDirective } from 'src/app/contact/grid-item.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

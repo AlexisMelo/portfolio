@@ -1,20 +1,18 @@
+import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
-import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
-import { SupabaseService } from '../shared/supabase.service';
 import { Skill } from '../projects/skill.model';
-import { SkillListComponent } from './skill-list/skill-list.component';
-import { SkillsSection } from './skills-section.model';
+import { SupabaseService } from '../shared/supabase.service';
+import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
 import { SkillSectionHeaderComponent } from './skill-section-header/skill-section-header.component';
+import { SkillsSection } from './skills-section.model';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [
-    TitleSeparatorComponent,
-    RowWithSeparatorComponent,
-    SkillListComponent,
     SkillSectionHeaderComponent,
+    SkillSectionDescriptionComponent,
+    NgClass,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
@@ -27,29 +25,32 @@ export class SkillsComponent implements OnInit {
     {
       id: 'front-end',
       heading: "Création d'interfaces",
-      subtitle: 'Front-end',
+      subtitle: 'Frontend',
       description:
-        "J'aime concevoir et développer des interfaces ésthétiques et intuitives afin qu'elles soient utilisées par le plus grand nombre !",
+        'Création de maquettes, implémentations complexes et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien.',
       skillFieldId: 1,
       items: [],
+      class: 'frontend-grid',
     },
     {
       id: 'back-end',
       heading: 'Gestion de données',
-      subtitle: 'Back-end',
+      subtitle: 'Backend',
       description:
         "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition.",
       skillFieldId: 2,
       items: [],
+      class: 'backend-grid',
     },
     {
       id: 'general',
-      heading: 'Compétences transversales',
+      heading: 'Et bien plus',
       subtitle: 'Général',
       description:
-        "Le code, c'est bien ! Mais pour être un développeur fullstack complet, je m'intéresse également à d'autres outils de gestion de projet et CI/CD.",
+        "Le code, c'est bien ! Mais pour être un développeur complet, je m'intéresse également à d'autres sujets : gestion de projet, CI/CD, et bien plus...",
       skillFieldId: 3,
       items: [],
+      class: 'general-grid',
     },
   ];
 
