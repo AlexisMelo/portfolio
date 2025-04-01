@@ -1,0 +1,15 @@
+<h2>
+  {{ skill.label
+  }}<mat-icon
+    [ngStyle]="{ color: iconColor }"
+    [ngClass]="{ 'material-symbols-outlined': hovered }">
+    {{ skill.loved ? 'favorite' : 'school' }}
+  </mat-icon>
+</h2>
+
+<div class="g-paragraph g-grid-item-main-text">{{ skill.description }}</div>
+
+<div class="g-grid-item-footer-text">
+  {{ skill.projects.length }}
+  {{ skill.projects.length > 1 ? 'réalisations' : 'réalisation' }}
+</div>

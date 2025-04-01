@@ -1,5 +1,5 @@
 @for (skills of groupedSkills | keyvalue; track skills.key) {
-  <div class="category">{{ skills.key }}</div>
+  <h3>{{ skills.key }}</h3>
   <div class="list">
     @for (skill of skills.value; track skill.id) {
       <div

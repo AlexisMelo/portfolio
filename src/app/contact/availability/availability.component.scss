@@ -4,8 +4,16 @@
 :host {
   @include grid-1x2;
 
+  .g-grid-item-main-text {
+    max-width: 70%;
+  }
+
   @include responsive('large') {
     @include grid-1x1;
+
+    .g-grid-item-main-text {
+      max-width: 100%;
+    }
   }
 }
 

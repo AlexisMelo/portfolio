@@ -38,11 +38,11 @@ export class AvailabilityComponent extends GridItemDirective {
   constructor() {
     super();
     this.nextAvailability = this.sanitizer.bypassSecurityTrustHtml(
-      'Libre à partir de Juin 2026.'
+      'Libre à partir de Juin 2026'
     );
 
     this.currentOccupation = this.sanitizer.bypassSecurityTrustHtml(
-      'Actuellement en CDI chez Bosch, Mondeville.'
+      'Actuellement en CDI chez Bosch, Mondeville'
     );
   }
 }

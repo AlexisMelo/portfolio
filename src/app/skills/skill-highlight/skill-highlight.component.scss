@@ -1,0 +1,40 @@
+@import '../../shared/grid/grid-item.scss';
+@import '../../../styles/responsive.scss';
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+:host {
+  @include grid-1x1;
+
+  cursor: pointer;
+
+  &:hover {
+    mat-icon {
+      animation: pulse 1s linear infinite;
+    }
+  }
+}
+
+h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  @include responsive('large') {
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}

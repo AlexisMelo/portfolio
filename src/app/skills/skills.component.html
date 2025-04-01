@@ -1,6 +1,14 @@
 <div class="g-grid-container">
   @for (section of sections; track section.heading) {
-    <div class="g-grid" [ngClass]="section.class">
+    <div
+      class="g-grid"
+      [ngClass]="section.class"
+      [style]="
+        '--section-bg: ' +
+        section.sectionBackgroundColor +
+        ';--section-color: ' +
+        section.sectionColor
+      ">
       <app-skill-section-header>
         <span>{{ section.subtitle }}</span>
       </app-skill-section-header>
@@ -9,8 +17,36 @@
         [secondaryText]="section.description"></app-skill-section-description>
       <app-skills-recap
         [skills]="section.skills"
-        [bgColor]="section.bgColor"
-        [color]="section.color"></app-skills-recap>
+        [bgColor]="section.recapBackgroundColor"
+        [color]="section.recapColor"></app-skills-recap>
+
+      @for (skill of section.skills | loved; track skill.id; let i = $index) {
+        <app-skill-highlight
+          class="loved"
+          [attr.data-index]="i"
+          [skill]="skill"
+          [iconColor]="
+            themeService.isDarkMode
+              ? section.sectionColor
+              : section.sectionBackgroundColor
+          "></app-skill-highlight>
+      }
+
+      @for (
+        skill of section.skills | learning;
+        track skill.id;
+        let i = $index
+      ) {
+        <app-skill-highlight
+          class="learning"
+          [attr.data-index]="i"
+          [skill]="skill"
+          [iconColor]="
+            themeService.isDarkMode
+              ? section.sectionColor
+              : section.sectionBackgroundColor
+          "></app-skill-highlight>
+      }
     </div>
   }
 </div>

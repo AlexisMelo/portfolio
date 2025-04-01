@@ -3,23 +3,27 @@
 //Nommage : taille en lignes x taille en colonnes
 
 @mixin grid-1x1 {
+  padding: 1.7rem;
+
   @include responsive('large') {
     padding: 2.5rem;
   }
 
   ::ng-deep {
     h2 {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
 
       @include responsive('large') {
         margin-bottom: 1.5rem;
+        font-size: 2rem;
       }
     }
   }
 }
 
 @mixin grid-1x2 {
-  padding: 1.8rem;
+  padding: 1.5rem;
 
   @include responsive('medium') {
     padding: 2rem;
@@ -37,7 +41,7 @@
 
       @include responsive('medium') {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
       }
 
       @include responsive('large') {

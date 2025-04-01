@@ -25,10 +25,20 @@ export interface SkillsSection extends TitleSeparator {
   /**
    * Couleur de la section
    */
-  bgColor: string;
+  recapBackgroundColor: string;
 
   /**
    * Couleur d'écriture du skill
    */
-  color: string;
+  recapColor: string;
+
+  /**
+   * Couleur du background de la section
+   */
+  sectionBackgroundColor: string;
+
+  /**
+   * Couleur du texte de la section
+   */
+  sectionColor: string;
 }

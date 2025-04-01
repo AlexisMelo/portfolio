@@ -13,23 +13,25 @@
   }
 }
 
-.category {
-  font-weight: bold;
+h3 {
+  margin-bottom: 0.3rem;
 
   @include responsive('large') {
-    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
   }
 
+  //le premier élément
+  &:first-child {
+    margin-top: 0;
+  }
+
+  //tout sauf le premier élément
   &:not(:first-child) {
     margin-top: 1rem;
 
     @include responsive('large') {
       margin-top: 1.8rem;
     }
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
   }
 }
 
