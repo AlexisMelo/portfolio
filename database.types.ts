@@ -471,16 +471,22 @@ export type Database = {
       };
       skill_type: {
         Row: {
+          icon: string;
           id: number;
           label: string;
+          position: number;
         };
         Insert: {
+          icon: string;
           id?: number;
           label: string;
+          position: number;
         };
         Update: {
+          icon?: string;
           id?: number;
           label?: string;
+          position?: number;
         };
         Relationships: [];
       };

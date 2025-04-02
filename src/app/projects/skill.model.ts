@@ -1,7 +1,6 @@
 import { Tables } from 'database.types';
 import { Project } from './project.model';
 import { SkillField } from './skill-field.model';
-import { SkillType } from './skill-type.model';
 
 /**
  * Compétence connue
@@ -10,7 +9,7 @@ export interface Skill extends Tables<'skill'> {
   /**
    * Type
    */
-  skill_type: SkillType;
+  skill_type: Tables<'skill_type'>;
 
   /**
    * Champs d'application

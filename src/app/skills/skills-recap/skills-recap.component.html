@@ -1,20 +1,49 @@
-@for (skills of groupedSkills | keyvalue; track skills.key) {
-  <h3>{{ skills.key }}</h3>
-  <div class="list">
-    @for (skill of skills.value; track skill.id) {
+<div class="header">
+  <div class="categories">
+    @for (
+      skillDetails of groupedSkills;
+      track skillDetails.skill.id;
+      let i = $index
+    ) {
       <div
-        [style]="
-          '--skill-recap-opacity-bg: ' +
-          0.1 * (skill.mastery + 3) +
-          '; --skill-recap-bg: ' +
-          bgColor +
-          '; --skill-recap-color: ' +
-          color
-        "
-        [routerLink]="[ARCHIVES_ROUTE]"
-        [queryParams]="{ skills: skill.id }">
-        {{ skill.label }}
+        (click)="selectSlide(i)"
+        (keyup)="selectSlide(i)"
+        tabindex="0"
+        class="selector"
+        [class.active]="currentSlide === i">
+        <mat-icon>{{ skillDetails.skill.icon }}</mat-icon>
       </div>
     }
   </div>
-}
+  <div class="separator"></div>
+</div>
+
+<div class="carousel">
+  <div class="carousel-items">
+    @for (skillDetails of groupedSkills; track skillDetails.skill.id) {
+      <div class="carousel-item">
+        @for (skill of skillDetails.skills; track skill.id) {
+          <div
+            [routerLink]="[ARCHIVES_ROUTE]"
+            [queryParams]="{ skills: skill.id }"
+            class="skill">
+            {{ skill.label }}
+            {{ skill.projects.length }}
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<div class="footer">
+  <div class="separator"></div>
+
+  <div class="carousel">
+    <div class="carousel-items">
+      @for (skillDetails of groupedSkills; track skillDetails.skill.id) {
+        <h2 class="carousel-item">{{ skillDetails.skill.label }}</h2>
+      }
+    </div>
+  </div>
+</div>
