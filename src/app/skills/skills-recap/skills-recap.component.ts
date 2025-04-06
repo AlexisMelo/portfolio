@@ -1,4 +1,3 @@
-import { KeyValuePipe } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -6,18 +5,18 @@ import {
   inject,
   Input,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { Tables } from 'database.types';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { Skill } from 'src/app/projects/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SkillGroup } from './skill-group.model';
-import { MatIconModule } from '@angular/material/icon';
-import { Tables } from 'database.types';
 
 @Component({
   selector: 'app-skills-recap',
   standalone: true,
-  imports: [KeyValuePipe, RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
 })
@@ -41,12 +40,12 @@ export class SkillsRecapComponent
   /**
    * Couleur de fond des skills
    */
-  @Input({ required: true }) bgColor!: string;
+  @Input({ required: true }) recapBackgroundColor!: string;
 
   /**
    * Couleur d'écriture des skills
    */
-  @Input({ required: true }) color!: string;
+  @Input({ required: true }) recapColor!: string;
 
   /**
    * Route vers les archives
@@ -98,7 +97,7 @@ export class SkillsRecapComponent
 
     for (const [key, group] of Object.entries(skillsGrouped)) {
       skillsGrouped[key].skills = group.skills.sort((a, b) =>
-        a.projects.length > b.projects.length ? 1 : -1
+        a.projects.length > b.projects.length ? -1 : 1
       );
     }
 

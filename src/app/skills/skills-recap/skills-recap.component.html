@@ -1,5 +1,7 @@
 <div class="header">
-  <div class="categories">
+  <div
+    class="categories"
+    [style]="'--recapBackgroundColor:' + recapBackgroundColor">
     @for (
       skillDetails of groupedSkills;
       track skillDetails.skill.id;
@@ -27,8 +29,13 @@
             [routerLink]="[ARCHIVES_ROUTE]"
             [queryParams]="{ skills: skill.id }"
             class="skill">
+            @if (skill.loved) {
+              <mat-icon>favorite</mat-icon>
+            } @else if (skill.currently_learning) {
+              <mat-icon>school</mat-icon>
+            }
             {{ skill.label }}
-            {{ skill.projects.length }}
+            <div class="counter">{{ skill.projects.length }}</div>
           </div>
         }
       </div>

@@ -8,8 +8,6 @@
   --paragraph-highlight-color: var(--white);
 
   //navbar
-  --navbarLinksColor: var(--white);
-  --navbar-background-color: var(--black);
   --navbar-border-bottom-color: var(--green-500);
 
   --timelineCircleColor: var(--green-200);
@@ -129,12 +127,15 @@
   --skill-section-header-general-color: var(--gray-200);
 
   //skill-recap
-  --skill-recap-frontend-bg: var(--blue-500);
+  --skill-recap-frontend-bg: var(--blue-200);
   --skill-recap-frontend-color: default;
 
-  --skill-recap-backend-bg: var(--green-300);
+  --skill-recap-backend-bg: var(--green-250);
   --skill-recap-backend-color: default;
 
-  --skill-recap-general-bg: var(--gray-50);
+  --skill-recap-general-bg: var(--gray-200);
   --skill-recap-general-color: black;
+
+  --skill-recap-counter-bg: var(--gray-500);
+  --skill-recap-counter-color: var(--white);
 }

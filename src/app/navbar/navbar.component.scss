@@ -15,9 +15,7 @@ $border-radius: 12px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  // background-color: var(--navbar-background-color);
   padding: var(--vertical-padding) var(--horizontal-padding);
-  // border-bottom: 1px solid var(--navbar-border-bottom-color);
   z-index: 600;
   transition: background-color 0.3s ease-out;
 
@@ -33,7 +31,6 @@ $border-radius: 12px;
   }
 
   .theme-toggle {
-    color: var(--navbarLinksColor);
     cursor: pointer;
 
     &:hover {
@@ -41,14 +38,18 @@ $border-radius: 12px;
     }
   }
 
+  mat-icon {
+    color: var(--titleColor);
+  }
+
   a {
     display: block;
     text-decoration: none;
-    color: var(--navbarLinksColor);
     cursor: pointer;
     padding: 5px;
     position: relative;
     white-space: nowrap;
+    color: var(--titleColor);
 
     @include responsive('medium') {
       padding: 10px;
@@ -108,8 +109,7 @@ $border-radius: 12px;
     width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    //    background-color: var(--navbarBackgroundColor);
-    background-color: var(--navbar-background-color);
+    background-color: var(--backgroundColor);
     font-size: 1.5rem;
 
     > * {
