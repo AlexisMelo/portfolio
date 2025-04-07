@@ -49,6 +49,7 @@ $height: 36px;
     margin-right: calc(
       ($height - var(--action-button-icon-size)) / 2 - $border-size
     );
+    color: var(--titleColor);
   }
 
   .text {
