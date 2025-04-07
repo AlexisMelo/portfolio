@@ -1,6 +1,7 @@
 <div class="header">
   <div
     class="categories"
+    [@stagger]="groupedSkills.length"
     [style]="'--recapBackgroundColor:' + recapBackgroundColor">
     @for (
       skillDetails of groupedSkills;
@@ -15,6 +16,8 @@
         [class.active]="currentSlide === i">
         <mat-icon>{{ skillDetails.skill.icon }}</mat-icon>
       </div>
+    } @empty {
+      <div class="selector-placeholder g-loading-effect"></div>
     }
   </div>
   <div class="separator"></div>

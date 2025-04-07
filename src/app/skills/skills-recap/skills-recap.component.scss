@@ -24,6 +24,7 @@
   gap: var(--gap);
 
   .selector {
+    opacity: 0.4;
     background-color: var(--recapBackgroundColor);
     color: white;
     width: 30px;
@@ -40,11 +41,8 @@
       height: 16px;
     }
 
-    &:not(.active) {
-      opacity: 0.4;
-    }
-
     &.active {
+      opacity: 1;
       transform: scale(1.1);
     }
 
@@ -74,6 +72,10 @@
         height: 30px;
       }
     }
+  }
+
+  .selector-placeholder {
+    @extend .selector;
   }
 }
 

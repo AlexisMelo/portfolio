@@ -10,6 +10,8 @@ import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
 import { LearningPipe } from './learning.pipe';
 import { ThemeService } from '../shared/theme.service';
+import { RangePipe } from '../shared/pipes/range.pipe';
+import { SkillHighlightPlaceholderComponent } from './skill-highlight/skill-highlight-placeholder/skill-highlight-placeholder.component';
 
 @Component({
   selector: 'app-skills',
@@ -22,6 +24,8 @@ import { ThemeService } from '../shared/theme.service';
     LovedPipe,
     SkillHighlightComponent,
     LearningPipe,
+    RangePipe,
+    SkillHighlightPlaceholderComponent,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',

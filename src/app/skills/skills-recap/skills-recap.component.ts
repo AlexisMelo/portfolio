@@ -12,13 +12,47 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { Skill } from 'src/app/projects/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SkillGroup } from './skill-group.model';
+import { RangePipe } from 'src/app/shared/pipes/range.pipe';
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-skills-recap',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, RangePipe],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
+  animations: [
+    trigger('stagger', [
+      transition('* => *', [
+        query(
+          '.selector',
+          [
+            style({
+              opacity: 0,
+            }),
+            stagger(100, [
+              animate(
+                '200ms',
+                style({
+                  opacity: 0.4,
+                })
+              ),
+            ]),
+          ],
+          {
+            optional: true,
+          }
+        ),
+      ]),
+    ]),
+  ],
 })
 export class SkillsRecapComponent
   extends GridItemDirective

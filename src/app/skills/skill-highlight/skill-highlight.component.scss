@@ -16,6 +16,10 @@
 
   cursor: pointer;
 
+  mat-icon {
+    animation: pulse 1s linear;
+  }
+
   &:hover {
     mat-icon {
       animation: pulse 1s linear infinite;

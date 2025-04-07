@@ -30,6 +30,12 @@
               ? section.sectionColor
               : section.sectionBackgroundColor
           "></app-skill-highlight>
+      } @empty {
+        @for (i of 2 | range; track i) {
+          <app-skill-highlight-placeholder
+            class="loved"
+            [attr.data-index]="i"></app-skill-highlight-placeholder>
+        }
       }
 
       @for (
@@ -46,6 +52,12 @@
               ? section.sectionColor
               : section.sectionBackgroundColor
           "></app-skill-highlight>
+      } @empty {
+        @for (i of 2 | range; track i) {
+          <app-skill-highlight-placeholder
+            class="learning"
+            [attr.data-index]="i"></app-skill-highlight-placeholder>
+        }
       }
     </div>
   }
