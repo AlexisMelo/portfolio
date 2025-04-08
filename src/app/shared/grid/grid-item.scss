@@ -23,7 +23,7 @@
 }
 
 @mixin grid-1x2 {
-  padding: 1.5rem;
+  padding: 2rem;
 
   @include responsive('medium') {
     padding: 2rem;

@@ -28,7 +28,7 @@ export class MailComponent extends GridItemDirective {
   constructor() {
     super();
     this.mainText = this.sanitizer.bypassSecurityTrustHtml(
-      "Toujours à l'écoute d'opportunités et prêt à discuter, je suis joignable par mail à <span>Alexis.Melo@outlook.fr</span>"
+      "Toujours à l'écoute d'opportunités et prêt à discuter, je suis joignable par mail à l'adresse <span>Alexis.Melo@outlook.fr</span>"
     );
   }
 

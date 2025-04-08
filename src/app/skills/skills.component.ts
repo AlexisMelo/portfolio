@@ -68,7 +68,7 @@ export class SkillsComponent implements OnInit {
       heading: 'Et bien plus',
       subtitle: 'Général',
       description:
-        "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse également à d'autres sujets comme la gestion de projet, le déploiement et l'intégration continue",
+        "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse à d'autres sujets comme la gestion de projet, le déploiement et l'intégration continue",
       skillFieldId: 3,
       skills: [],
       class: 'general-grid',
