@@ -6,6 +6,11 @@
       <app-project-item
         [class]="'project__' + (i + 1)"
         [project]="project"></app-project-item>
+    } @empty {
+      @for (i of 3 | range; track i) {
+        <app-project-item-placeholder
+          [class]="'project__' + (i + 1)"></app-project-item-placeholder>
+      }
     }
 
     <app-ongoing [count]="2"></app-ongoing>

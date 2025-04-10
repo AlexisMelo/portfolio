@@ -74,6 +74,11 @@
   rotate: 60deg;
   z-index: 2;
   animation: decoration_1_enter 1s;
+
+  @include responsive('large') {
+    bottom: 0px;
+    right: -50px;
+  }
 }
 
 .decoration_3 {
@@ -83,4 +88,9 @@
   rotate: 80deg;
   z-index: 1;
   animation: decoration_1_enter 1s;
+
+  @include responsive('large') {
+    bottom: 40px;
+    right: -110px;
+  }
 }

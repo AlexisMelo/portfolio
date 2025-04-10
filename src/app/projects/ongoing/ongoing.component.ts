@@ -10,6 +10,7 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
   imports: [ActionButtonComponent, RouterLink],
   templateUrl: './ongoing.component.html',
   styleUrl: './ongoing.component.scss',
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class OngoingComponent extends GridItemDirective {
   /**

@@ -8,6 +8,8 @@ import { OngoingComponent } from './ongoing/ongoing.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import { ProjectItem } from './project-item/project-item.model';
 import { ProjectsByContextComponent } from './projects-by-context/projects-by-context.component';
+import { RangePipe } from '../shared/pipes/range.pipe';
+import { ProjectItemPlaceholderComponent } from './project-item/project-item-placeholder/project-item-placeholder.component';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -21,6 +23,8 @@ import { ProjectsByContextComponent } from './projects-by-context/projects-by-co
     OngoingComponent,
     AllComponent,
     ProjectsByContextComponent,
+    RangePipe,
+    ProjectItemPlaceholderComponent,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

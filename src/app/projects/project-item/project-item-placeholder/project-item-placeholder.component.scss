@@ -1,0 +1,36 @@
+@import '../../../shared/grid/grid-item.scss';
+
+:host {
+  @include grid-1x2;
+  position: relative;
+}
+
+.title {
+  @extend h2;
+  height: 1em;
+  width: 50%;
+  border-radius: 12px;
+}
+
+.illustration-container {
+  position: absolute;
+  height: 80%;
+  left: 55%;
+  top: 50%;
+  transform: translate(20%, -50%);
+  transition: 400ms linear;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.skill {
+  width: 60px;
+  height: 1rem;
+  border-radius: 12px;
+}
+
+.g-grid-item-main-text {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
