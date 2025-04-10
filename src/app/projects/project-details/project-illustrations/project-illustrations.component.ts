@@ -67,11 +67,20 @@ export class ProjectIllustrationsComponent
   @ViewChild('caption') caption?: ElementRef<HTMLDivElement>;
 
   /**
+   * Illustrations du projet triées
+   */
+  get illustrationsSorted() {
+    return this.project.illustrations.sort((i1, i2) =>
+      i1.position > i2.position ? 1 : -1
+    );
+  }
+
+  /**
    * Affiche la slide voulue
    * @param index
    */
   public showSlide(index: number) {
-    const totalSlides = this.project.illustrations.length;
+    const totalSlides = this.illustrationsSorted.length;
 
     if (index >= totalSlides) {
       this.currentSlide = 0;
@@ -96,7 +105,7 @@ export class ProjectIllustrationsComponent
    * @param index
    */
   public showSlideModal(index: number) {
-    const totalSlides = this.project.illustrations.length;
+    const totalSlides = this.illustrationsSorted.length;
 
     if (index >= totalSlides) {
       this.currentSlideModal = 0;
@@ -107,7 +116,7 @@ export class ProjectIllustrationsComponent
     }
 
     this.showIllustrationModal(
-      this.project.illustrations[this.currentSlideModal]
+      this.illustrationsSorted[this.currentSlideModal]
     );
   }
 
@@ -164,7 +173,7 @@ export class ProjectIllustrationsComponent
     this.currentSlideModal = this.currentSlide;
 
     this.showIllustrationModal(
-      illustration ?? this.project.illustrations[this.currentSlide]
+      illustration ?? this.illustrationsSorted[this.currentSlide]
     );
   }
 

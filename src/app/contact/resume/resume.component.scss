@@ -1,15 +1,8 @@
 @import '../../../styles/responsive.scss';
+@import '../../shared/grid/grid-item.scss';
 
 :host {
-  padding: 1.8rem;
-
-  @include responsive('medium') {
-    padding: 2rem;
-  }
-
-  @include responsive('large') {
-    padding: 3rem;
-  }
+  @include grid-1x2;
 
   &:hover {
     .illustration-container {
@@ -20,6 +13,10 @@
   }
 }
 
+h2 {
+  flex-grow: 1;
+}
+
 @keyframes slideInFromBottom {
   0% {
     transform: translateY(30%);
@@ -27,20 +24,6 @@
 
   100% {
     transform: translateY(0%);
-  }
-}
-
-h2 {
-  flex-grow: 1;
-  font-size: 1.8rem;
-  margin: 0;
-
-  @include responsive('medium') {
-    font-size: 2rem;
-  }
-
-  @include responsive('large') {
-    font-size: 2.5rem;
   }
 }
 

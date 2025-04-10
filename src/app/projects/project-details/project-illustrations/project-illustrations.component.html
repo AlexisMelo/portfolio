@@ -1,12 +1,12 @@
 <div class="carousel">
   <div class="carousel-items">
-    @if (project.illustrations.length === 0) {
+    @if (illustrationsSorted.length === 0) {
       <div class="carousel-item no-image">
         <img src="photos/no-image.svg" alt="Aucune illustration disponible" />
         <p>Pas encore d'illustrations !</p>
       </div>
     } @else {
-      @for (illustration of project.illustrations; track illustration.id) {
+      @for (illustration of illustrationsSorted; track illustration.id) {
         <div
           class="carousel-item"
           (click)="openModal(illustration)"
@@ -16,14 +16,14 @@
         </div>
       }
 
-      @if (project.illustrations.length > 1) {
+      @if (illustrationsSorted.length > 1) {
         @if (currentSlide > 0) {
           <app-action-button
             icon="chevron_left"
             (click)="nextSlide(-1)"></app-action-button>
         }
 
-        @if (currentSlide < project.illustrations.length - 1) {
+        @if (currentSlide < illustrationsSorted.length - 1) {
           <app-action-button
             icon="chevron_right"
             position="bottom-left-2"
@@ -37,7 +37,7 @@
         (click)="openModal()"></app-action-button>
 
       <div class="counter">
-        {{ currentSlide + 1 }} / {{ project.illustrations.length }}
+        {{ currentSlide + 1 }} / {{ illustrationsSorted.length }}
       </div>
     }
   </div>
@@ -61,11 +61,11 @@
     </div>
 
     <div class="counter-modal">
-      {{ currentSlideModal + 1 }} / {{ project.illustrations.length }}
+      {{ currentSlideModal + 1 }} / {{ illustrationsSorted.length }}
     </div>
 
     <div class="app-action-button-right">
-      @if (currentSlideModal < project.illustrations.length - 1) {
+      @if (currentSlideModal < illustrationsSorted.length - 1) {
         <app-action-button
           [positionAbsolute]="false"
           icon="chevron_right"

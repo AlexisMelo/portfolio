@@ -1,113 +1,82 @@
 @import '../../../styles/responsive.scss';
+@import '../../shared/grid/grid-item.scss';
 
 :host {
+  @include grid-1x2;
+
   position: relative;
 
   &:hover {
-    .illustration-container img,
-    .decoration {
-      box-shadow: none;
+    .illustration-container {
+      box-shadow: rgba(100, 100, 111, 0.3) 0px 10px 10px 5px;
+      rotate: -5deg;
+      transform: translate(-2%, -50%);
     }
+  }
+}
+
+@keyframes slideToLeft {
+  0% {
+    transform: translate(20%, -50%);
+  }
+
+  100% {
+    transform: translate(0%, -50%);
   }
 }
 
 .illustration-container {
   position: absolute;
-  width: 300px;
-  left: 120px;
-  top: 0px;
-  transform: rotate(340deg);
+  height: 80%;
+  left: 55%;
+  top: 50%;
+  animation: slideToLeft 1s;
+  transform: translate(0%, -50%);
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 10px 0px;
+  transition: 400ms linear;
+  border-radius: 20px;
+  overflow: hidden;
 
   img {
-    border-radius: 20px;
     transition: 500ms;
-    width: 100%;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
-
-  @include responsive('medium') {
-    width: 350px;
-    left: 120px;
-    top: -25px;
-    transform: rotate(330deg);
-  }
-
-  @include responsive('large') {
-    width: 450px;
-    left: 120px;
-    top: -50px;
+    height: 100%;
   }
 }
 
-.decoration {
-  position: absolute;
-  background-color: #ffffff;
-  opacity: 0.2;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+h2 {
+  color: white;
 }
 
-//du haut vers arrondi en bas
-.decoration__0 {
-  @extend .decoration;
+.g-grid-item-main-text {
+  max-width: 55%;
+}
+.skill-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 4px;
+  font-size: 0.8rem;
+}
 
-  border-radius: 0 0 35px 35px;
-  width: 200px;
-  height: 130px;
-  top: 0;
-  left: 70px;
+.skill {
+  line-height: normal;
+  background-color: white;
+  border: solid 1px var(--gray-200);
+  padding: 2px 4px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   @include responsive('medium') {
-    border-radius: 0 0 50px 50px;
-    width: 200px;
-    height: 150px;
+    padding: 2px 4px;
   }
 
   @include responsive('large') {
-    border-radius: 0 0 70px 70px;
-    width: 200px;
-    height: 180px;
-  }
-}
-
-//cercle en bas
-.decoration__1 {
-  @extend .decoration;
-
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  bottom: -150px;
-  left: 70px;
-
-  @include responsive('medium') {
-    width: 280px;
-  }
-
-  @include responsive('large') {
-    width: 330px;
-    height: 300px;
-    bottom: -150px;
-    left: 70px;
-  }
-}
-
-//du bas vers le haut
-.decoration__2 {
-  @extend .decoration;
-
-  border-radius: 35px 35px 0 0;
-  height: 130px;
-  width: 200px;
-  bottom: 0px;
-  left: 70px;
-
-  @include responsive('medium') {
-    border-radius: 50px 50px 0 0;
-    height: 150px;
-  }
-
-  @include responsive('large') {
-    border-radius: 70px 70px 0 0;
-    height: 200px;
+    padding: 4px 6px;
   }
 }

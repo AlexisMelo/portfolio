@@ -1,13 +1,17 @@
-<h2>{{ projects?.length ?? '??' }} projets</h2>
+<h2>Tous mes projets</h2>
 
-<div class="grid-projects">
-  @for (item of [].constructor(27); track item; let i = $index) {
-    <div [class]="'cube cube__' + i">{{ i }}</div>
-  }
+<div class="g-paragraph g-grid-item-main-text">
+  Depuis mes débuts dans l'informatique !
 </div>
+
+<div class="decoration_1"></div>
+<div class="decoration_2"></div>
+<div class="decoration_3"></div>
 
 <app-action-button
   [unfold]="true"
-  text="Tous les projets"
-  [routerLink]="[ARCHIVES_ROUTE]">
+  text="Voir tout"
+  [routerLink]="[ARCHIVES_ROUTE]"
+  [positionAbsolute]="false"
+  icon="visibility">
 </app-action-button>

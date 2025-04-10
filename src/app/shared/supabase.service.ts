@@ -50,11 +50,13 @@ export class SupabaseService {
   public async getPinnedProjects(): Promise<Array<ProjectItem>> {
     const { data, error } = await this.client
       .from('project')
-      .select('*, illustrations:project_illustration(*)')
+      .select(
+        '*, illustrations:project_illustration(*), project_skills:project_skill(*, skill:skill(*))'
+      )
       .eq('pinned', true);
 
     if (error) return Promise.reject(error);
-    return data as Array<Project>;
+    return data as Array<ProjectItem>;
   }
 
   /**

@@ -1,15 +1,28 @@
-<div [class]="'decoration__' + (project.id % 3)"></div>
+<h2>{{ project.label }}</h2>
 
 @if (project.illustrations.length > 0) {
   <div class="illustration-container">
-    <img
-      [src]="project.illustrations[0].url"
-      [alt]="project.illustrations[0].alt" />
+    <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
   </div>
 }
 
+<div class="g-paragraph g-grid-item-main-text">
+  <div class="skill-list">
+    @for (project_skill of skills; track project_skill.skill_id) {
+      <div
+        [routerLink]="[ARCHIVES_ROUTE]"
+        [queryParams]="{ skills: project_skill.skill_id }"
+        class="skill">
+        {{ project_skill.skill.label }}
+      </div>
+    }
+  </div>
+</div>
+
 <app-action-button
   [unfold]="hovered"
-  [text]="project.label"
-  [routerLink]="['/projects', project.url]">
+  [text]="'En savoir plus'"
+  [routerLink]="['/projects', project.url]"
+  [icon]="'visibility'"
+  [positionAbsolute]="false">
 </app-action-button>

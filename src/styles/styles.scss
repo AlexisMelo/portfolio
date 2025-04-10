@@ -13,7 +13,6 @@
   --columns: 2;
   --gap: 16px;
   --grid-icon-centered-size: 36px;
-  --action-button-icon-size: 18px;
 
   @include responsive('medium') {
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
@@ -185,10 +184,12 @@ h3 {
   overflow: hidden;
   transition:
     box-shadow 300ms,
-    border-color 500ms;
+    border-color 500ms,
+    transform 500ms;
 
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
+    transform: scale(1.02);
   }
 
   &.g-grid-item-start-aligned {

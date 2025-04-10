@@ -1,7 +1,11 @@
-$border-size: 1px;
-$height: 36px;
+@import '../../../styles/responsive.scss';
 
 :host {
+  --action-button-transition-time: 400ms;
+  --action-button-border-size: 1px;
+  --action-button-size: 30px;
+  --action-button-icon-size: 14px;
+
   color: var(--action-button-color);
   background-color: var(--action-button-background);
   border-radius: 50%;
@@ -12,8 +16,20 @@ $height: 36px;
   transition: box-shadow 300ms;
   border: 1px solid var(--action-button-border-color);
   border-radius: 18px;
-  height: 36px;
-  min-width: 36px;
+  height: var(--action-button-size);
+  min-width: var(--action-button-size);
+
+  @include responsive('medium') {
+    --action-button-border-size: 1px;
+    --action-button-size: 32px;
+    --action-button-icon-size: 16px;
+  }
+
+  @include responsive('large') {
+    --action-button-border-size: 1px;
+    --action-button-size: 36px;
+    --action-button-icon-size: 18px;
+  }
 
   &.position-absolute {
     position: absolute;
@@ -44,10 +60,14 @@ $height: 36px;
     width: var(--action-button-icon-size);
     font-size: var(--action-button-icon-size);
     margin-left: calc(
-      ($height - var(--action-button-icon-size)) / 2 - $border-size
+      (var(--action-button-size) - var(--action-button-icon-size)) / 2 - var(
+          --action-button-border-size
+        )
     );
     margin-right: calc(
-      ($height - var(--action-button-icon-size)) / 2 - $border-size
+      (var(--action-button-size) - var(--action-button-icon-size)) / 2 - var(
+          --action-button-border-size
+        )
     );
     color: var(--titleColor);
   }
@@ -57,10 +77,10 @@ $height: 36px;
     opacity: 0;
     transform: translateX(-8px);
     transition:
-      max-width 400ms,
-      padding-right 400ms,
-      opacity 400ms,
-      transform 400ms;
+      max-width var(--action-button-transition-time),
+      padding-right var(--action-button-transition-time),
+      opacity var(--action-button-transition-time),
+      transform var(--action-button-transition-time);
     transition-timing-function: linear;
     display: inline-block;
     vertical-align: top;

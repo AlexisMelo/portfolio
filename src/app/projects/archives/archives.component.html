@@ -33,6 +33,6 @@
 
 <div class="projects g-container">
   @for (project of selectedProjects; track project.id) {
-    <app-project-item [project]="project"></app-project-item>
+    {{ project.label }}
   }
 </div>
