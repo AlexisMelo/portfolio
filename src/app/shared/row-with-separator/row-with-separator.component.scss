@@ -3,7 +3,7 @@
 //https://codepen.io/emared/pen/gWGBLR
 
 .bg {
-  background-color: var(--separator-main-color);
+  background-color: var(--row-with-separator-main-color);
 }
 
 .row {
@@ -35,20 +35,20 @@
 }
 
 .main-color {
-  fill: var(--separator-main-color);
+  fill: var(--row-with-separator-main-color);
 }
 
 .second-color {
-  fill: var(--separator-third-color);
+  fill: var(--row-with-separator-third-color);
 }
 
 .third-color {
-  fill: var(--separator-second-color);
+  fill: var(--row-with-separator-second-color);
 }
 
 .background-color {
-  fill: var(--backgroundColor);
-  stroke: var(--backgroundColor);
+  fill: var(--styles-background-color);
+  stroke: var(--styles-background-color);
 }
 
 .content {

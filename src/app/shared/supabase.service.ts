@@ -26,6 +26,17 @@ export class SupabaseService {
     );
   }
 
+  public async countOngoingProjects(): Promise<number> {
+    const { data, error } = await this.client
+      .from('project')
+      .select('*')
+      .is('end_date', null)
+      .is('abandoned', false);
+
+    if (error) return Promise.reject(error);
+    return data.length as number;
+  }
+
   /**
    * Obtient la liste de tous les projets
    * @returns

@@ -22,7 +22,7 @@
   min-width: $small-circle-size;
   height: $small-circle-size;
   border-radius: 50%;
-  background-color: var(--timelineCircleColor);
+  background-color: var(--timeline-item-circle-color);
   margin-top: 5px;
   cursor: pointer;
 
@@ -48,7 +48,7 @@ h2 {
 }
 
 .projects {
-  color: var(--timelineProject);
+  color: var(--timeline-item-project);
   display: flex;
   align-items: center;
   gap: 10px;

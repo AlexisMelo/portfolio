@@ -26,8 +26,8 @@ $timeline-items-animation-appear-duration: 0.5s;
   height: 100px;
   position: relative;
   border-left: 2px dashed;
-  border-color: var(--timelineColor);
-  background-color: var(--backgroundColor);
+  border-color: var(--timeline-color);
+  background-color: var(--styles-background-color);
   z-index: 10;
 
   @include responsive('medium') {
@@ -44,7 +44,7 @@ $timeline-items-animation-appear-duration: 0.5s;
 .head-dashed-line-hide {
   height: 100px;
   position: absolute;
-  background-color: var(--backgroundColor);
+  background-color: var(--styles-background-color);
   width: 10px;
   top: 0;
   transform: scaleY(1);
@@ -70,7 +70,7 @@ $timeline-items-animation-appear-duration: 0.5s;
 .straight-line {
   height: 100%;
   position: absolute;
-  border-left: 2px solid var(--timelineColor);
+  border-left: 2px solid var(--timeline-color);
   z-index: 10;
   margin-top: 10px;
 

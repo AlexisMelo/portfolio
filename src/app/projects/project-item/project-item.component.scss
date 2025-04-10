@@ -57,17 +57,17 @@ h2 {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 4px;
-  font-size: 0.8rem;
 }
 
 .skill {
   line-height: normal;
-  background-color: white;
-  border: solid 1px var(--gray-200);
+  background-color: var(--project-item-skill-background);
+  border: solid 1px var(--project-item-skill-border);
   padding: 2px 4px;
   border-radius: 15px;
   text-align: center;
   cursor: pointer;
+  font-size: 0.7rem;
 
   &:hover {
     opacity: 0.8;
@@ -75,9 +75,11 @@ h2 {
 
   @include responsive('medium') {
     padding: 2px 4px;
+    font-size: 0.7rem;
   }
 
   @include responsive('large') {
     padding: 4px 6px;
+    font-size: 0.8rem;
   }
 }

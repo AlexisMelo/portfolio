@@ -140,7 +140,7 @@
       }
 
       .svg-contour-path {
-        fill: var(--svg-contour-path);
+        fill: var(--landing-page-svg-contour-path);
       }
 
       @include responsive('medium') {

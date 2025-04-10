@@ -80,7 +80,7 @@
 }
 
 .separator {
-  border: 1px solid var(--gray-50);
+  border: 1px solid var(--skills-recap-separator);
   width: 100%;
   margin: 1rem 0;
 }
@@ -131,8 +131,8 @@ h2 {
 
   .counter {
     font-size: 0.8rem;
-    background-color: var(--skill-recap-counter-bg);
-    color: var(--skill-recap-counter-color);
+    background-color: var(--skills-recap-counter-bg);
+    color: var(--skills-recap-counter-color);
     padding: 1px 8px;
     border-radius: 15px;
   }

@@ -39,7 +39,7 @@ $border-radius: 12px;
   }
 
   mat-icon {
-    color: var(--titleColor);
+    color: var(--styles-title-color);
   }
 
   a {
@@ -49,7 +49,7 @@ $border-radius: 12px;
     padding: 5px;
     position: relative;
     white-space: nowrap;
-    color: var(--titleColor);
+    color: var(--styles-title-color);
 
     @include responsive('medium') {
       padding: 10px;
@@ -109,7 +109,7 @@ $border-radius: 12px;
     width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    background-color: var(--backgroundColor);
+    background-color: var(--styles-background-color);
     font-size: 1.5rem;
 
     > * {

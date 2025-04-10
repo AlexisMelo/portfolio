@@ -36,12 +36,12 @@
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
 body.dark-mode {
   @include dark-mode();
-  background-color: var(--backgroundColor);
+  background-color: var(--styles-background-color);
 }
 
 body.light-mode {
   @include light-mode();
-  background-color: var(--backgroundColor);
+  background-color: var(--styles-background-color);
 }
 
 //Inclut le padding et border dans le calcul de la taille d'un élément
@@ -62,7 +62,7 @@ html {
 
   margin: 0;
   padding: 0;
-  color: var(--text-color);
+  color: var(--styles-text-color);
   font-family: 'Funnel Display', sans-serif;
   font-optical-sizing: auto;
   letter-spacing: 1px;
@@ -91,7 +91,7 @@ h3 {
   font-family: 'Spicy Rice', serif;
   font-weight: 400;
   font-style: normal;
-  color: var(--titleColor);
+  color: var(--styles-title-color);
 
   @include responsive('large') {
     letter-spacing: 2px;
@@ -122,7 +122,7 @@ h3 {
   overflow: hidden;
   height: 200px;
   width: 350px;
-  border: 1px solid var(--thumbnail-border);
+  border: 1px solid var(--styles-thumbnail-border);
   flex-shrink: 0;
 
   img {
@@ -230,7 +230,7 @@ h3 {
   span {
     display: inline-block;
     white-space: nowrap;
-    color: var(--paragraph-highlight-color);
+    color: var(--styles-paragraph-highlight-color);
     transition: 500ms;
     position: relative;
     margin: 0 6px;
@@ -238,7 +238,7 @@ h3 {
 
     &::after {
       padding: 2px 8px;
-      background-color: var(--paragraph-highlight-bg-color);
+      background-color: var(--styles-paragraph-highlight-bg-color);
       content: '';
       width: calc(100% + 12px);
       height: 1.7rem;

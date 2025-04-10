@@ -1,57 +1,30 @@
 @mixin light-mode() {
-  --titleColor: var(--gray-500);
-  --text-color: var(--black);
-  --backgroundColor: #f7f2f2;
+  //action-button
+  --action-button-background: var(--white);
+  --action-button-color: var(--gray-500);
+  --action-button-border-color: var(--gray-100);
 
-  //g-paragraph
-  --paragraph-highlight-bg-color: rgba(130, 209, 115, 0.1);
-  --paragraph-highlight-color: var(--black);
+  //button
+  --button-background: url(../../public/gradient.svg);
+  --button-border: var(--green-300);
+  --button-color: var(--green-400);
+  --button-plain-border: var(--green-300);
 
-  //navbar
-  --navbar-border-bottom-color: var(--gray-200);
-
-  --timelineCircleColor: var(--green-500);
-  --timelineProject: var(--green-300);
-  --timelineLeftCircle: var(--green-300);
-  --timelineLeftText: var(--green-300);
-  --timelineColor: var(--green-100);
-
-  //footer
-  --footer-background-color: var(--green-100);
-  --footer-border-color: var(--gray-200);
-
-  //contact
-  --contactBackgroundColor: var(--green-100);
-  --birdsURL: url('../assets/birds-light-mode.svg');
-  --buttonTextColor: var(--white);
-  --buttonBackgroundColor: var(--green-400);
-
-  --inputBackgroundColor: var(--white);
-  --inputBorderColor: var(--gray-200);
-
-  --projectBackgroundColor: var(--green-100);
-
+  //filter-chip
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: var(--gray-200);
+  --filter-chip-border-color: var(--gray-300);
   --filter-chip-active-background-color: var(--green-100);
   --filter-chip-details-menu-background-color: var(--green-100);
   --filter-chip-hover-option-background-color: var(--green-200);
 
-  --project-see-more-background-color: var(--green-100);
+  //github
+  --github-bg: var(--gray-500);
+  --github-empty-color: var(--gray-400);
 
-  --separator-color: var(--gray-100);
-
-  //project-item
-  --img-background: var(--white);
-  --project-item-bg: var(--white);
-  --project-item-border-color: var(--gray-200);
-
-  //project-details
-  --thumbnail-border: var(--gray-200);
-  --skill-group-border: var(--gray-200);
-
-  //suggestion-chip
-  --suggestion-chip-bg: var(--white);
+  //grid-item
+  --grid-item-default-bg: var(--white);
+  --grid-item-border: none;
+  --grid-item-bottom-text-color: var(--gray-200);
 
   //highlightable-chip
   --highlightable-chip-background-color: var(--green-50);
@@ -61,60 +34,57 @@
   --highlightable-chip-gradient-3: var(--green-200);
   --highlightable-chip-gradient-4: var(--green-400);
 
-  //landing-page
-  --svg-contour-path: var(--green-200);
-  --background-svgs: var(--green-100);
+  //input
+  --input-background-color: var(--white);
+  --input-border-color: var(--gray-300);
 
-  //button
-  --button-background: url(../../public/gradient.svg);
-  --button-border: var(--green-300);
-  --button-color: var(--green-400);
-  --button-plain-border: var(--green-300);
+  //landing-page
+  --landing-page-svg-contour-path: var(--green-200);
+
+  //linkedin
+  --linkedin-bg: var(--blue);
+
+  //map
+  --map-rayon-background: #ffffff;
+  --map-rayon-border: var(--blue);
 
   //moving-content
   --moving-content-fade: var(--white);
   --moving-content-fade-alt: var(--green-100);
 
-  //map
-  --rayon-background: #ffffff;
-  --rayon-border: var(--blue);
-
-  //tooltip
-  --tooltip-background: var(--green-300);
-
   //navbar
   --navbar-gradient: url(../../public/gradient.svg);
 
-  //row-with-separator
-  --separator-main-color: var(--green-100);
-  --separator-second-color: var(--green-200);
-  --separator-third-color: var(--green-300);
-
-  //grids
-  --grid-cell-default-bg: var(--gray-50);
-
-  //skill-detailed-card
-  --skill-card-bg: var(--white);
-
-  //action-button
-  --action-button-background: var(--white);
-  --action-button-color: var(--black);
-  --action-button-border-color: var(--gray-100);
-
-  //grid-item
-  --grid-item-default-bg: var(--white);
-  --grid-item-border: none;
-  --grid-item-bottom-text-color: var(--gray-300);
-
-  //linkedin
-  --linkedin-bg: var(--blue);
-
-  //github
-  --github-bg: var(--gray-500);
-  --github-empty-color: var(--gray-300);
-
   //project-duration
-  --termine-color: var(--green-200);
+  --project-duration-termine-color: var(--green-200);
+
+  //project-item
+  --project-item-skill-border: transparent;
+  --project-item-skill-background: white;
+
+  //robotic-arm
+  --robotic-arm-arms-fill: var(--gray-400);
+  --robotic-arm-axes-fill: var(--gray-500);
+
+  //row-with-separator
+  --row-with-separator-main-color: var(--green-100);
+  --row-with-separator-second-color: var(--green-200);
+  --row-with-separator-third-color: var(--green-300);
+
+  //skills-recap
+  --skills-recap-frontend-bg: var(--blue);
+  --skills-recap-frontend-color: white;
+
+  --skills-recap-backend-bg: var(--green-250);
+  --skills-recap-backend-color: white;
+
+  --skills-recap-general-bg: var(--gray-500);
+  --skills-recap-general-color: white;
+
+  --skills-recap-counter-bg: var(--gray-050);
+  --skills-recap-counter-color: var(--gray-500);
+
+  --skills-recap-separator: var(--gray-050);
 
   //skill-section-header
   --skill-section-header-frontend-bg: var(--blue);
@@ -126,16 +96,26 @@
   --skill-section-header-general-bg: var(--gray-500);
   --skill-section-header-general-color: white;
 
-  //skill-recap
-  --skill-recap-frontend-bg: var(--blue);
-  --skill-recap-frontend-color: white;
+  //styles
+  --styles-title-color: var(--gray-500);
+  --styles-text-color: var(--black);
+  --styles-background-color: #f7f2f2;
+  --styles-paragraph-highlight-bg-color: rgba(130, 209, 115, 0.1);
+  --styles-paragraph-highlight-color: var(--black);
+  --styles-thumbnail-border: var(--gray-300);
 
-  --skill-recap-backend-bg: var(--green-250);
-  --skill-recap-backend-color: white;
+  //suggestion-chip
+  --suggestion-chip-bg: var(--white);
 
-  --skill-recap-general-bg: var(--gray-500);
-  --skill-recap-general-color: white;
+  //timeline
+  --timeline-color: var(--green-100);
 
-  --skill-recap-counter-bg: var(--gray-50);
-  --skill-recap-counter-color: var(--gray-300);
+  //timeline-item
+  --timeline-item-circle-color: var(--green-500);
+  --timeline-item-project: var(--green-300);
+  --timeline-item-left-circle: var(--green-300);
+  --timeline-item-left-text: var(--green-300);
+
+  //tooltip
+  --tooltip-background: var(--green-300);
 }
