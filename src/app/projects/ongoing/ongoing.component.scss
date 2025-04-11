@@ -4,6 +4,7 @@
 :host {
   @include grid-1x1;
   position: relative;
+  background-color: var(--ongoing-background);
 }
 
 app-robotic-arm {

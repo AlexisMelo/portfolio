@@ -55,62 +55,23 @@
   //navbar
   --navbar-border-bottom-color: var(--green-500);
 
+  //ongoing
+  --ongoing-background: var(--gray-525);
+
   //project-duration
   --project-duration-termine-color: var(--green-300);
 
   //project-item
-  --project-item-skill-border: var(--gray-100);
-  --project-item-skill-background: var(--gray-400);
+  --project-item-skill-background: var(--gray-500);
+
+  //projects
+  --projects-1-bg: var(--gray-550);
+  --projects-2-bg: var(--gray-550);
+  --projects-3-bg: var(--gray-550);
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-300);
   --robotic-arm-axes-fill: var(--gray-400);
-
-  ////////////////////////////////////////////
-  ///
-  /// ////////////////////////////////////////////////////////
-  --styles-title-color: var(--gray-100);
-  --styles-text-color: var(--white);
-  --styles-background-color: var(--gray-600);
-
-  //g-paragraph
-  --styles-paragraph-highlight-bg-color: var(--green-600);
-  --styles-paragraph-highlight-color: var(--white);
-
-  --timeline-item-circle-color: var(--green-200);
-  --timeline-item-project: var(--green-300);
-  --timeline-item-left-circle: var(--green-100);
-  --timeline-item-left-text: var(--green-100);
-  --timeline-color: var(--green-100);
-
-  //footer
-  --footer-background-color: var(--green-600);
-  --footer-border-color: var(--green-500);
-
-  //contact
-  --contactBackgroundColor: var(--green-500);
-  --birdsURL: url('../assets/birds-dark-mode.svg');
-  --buttonTextColor: var(--white);
-  --buttonBackgroundColor: var(--green-300);
-
-  --projectBackgroundColor: var(--green-400);
-
-  --project-see-more-background-color: var(--green-400);
-
-  --separator-color: var(--green-400);
-
-  //project-details
-  --styles-thumbnail-border: var(--green-500);
-  --skill-group-border: var(--green-500);
-
-  //suggestion-chip
-  --suggestion-chip-bg: var(--green-700);
-
-  //tooltip
-  --tooltip-background: var(--green-400);
-
-  //navbar
-  --navbar-gradient: url(../../public/gradient-dark.svg);
 
   //row-with-separator
   --row-with-separator-main-color: var(--green-700);
@@ -133,12 +94,35 @@
   --skills-recap-separator: var(--gray-400);
 
   //skill-section-header
-  --skill-section-header-frontend-bg: default;
+  --skill-section-header-frontend-bg: var(--grid-item-default-bg);
   --skill-section-header-frontend-color: var(--blue-200);
 
-  --skill-section-header-backend-bg: default;
+  --skill-section-header-backend-bg: var(--grid-item-default-bg);
   --skill-section-header-backend-color: var(--green-250);
 
-  --skill-section-header-general-bg: default;
+  --skill-section-header-general-bg: var(--grid-item-default-bg);
   --skill-section-header-general-color: var(--gray-300);
+
+  //styles
+  --styles-title-color: var(--gray-100);
+  --styles-text-color: var(--white);
+  --styles-background-color: var(--gray-600);
+  --styles-paragraph-highlight-bg-color: var(--green-600);
+  --styles-paragraph-highlight-color: var(--white);
+  --styles-thumbnail-border: var(--green-500);
+
+  //suggestion-chip
+  --suggestion-chip-bg: var(--green-700);
+
+  //timeline
+  --timeline-color: var(--green-100);
+
+  //timeline-item
+  --timeline-item-circle-color: var(--green-200);
+  --timeline-item-project: var(--green-300);
+  --timeline-item-left-circle: var(--green-100);
+  --timeline-item-left-text: var(--green-100);
+
+  //tooltip
+  --tooltip-background: var(--green-400);
 }

@@ -55,12 +55,19 @@
   //navbar
   --navbar-gradient: url(../../public/gradient.svg);
 
+  //ongoing
+  --ongoing-background: var(--grid-item-default-bg);
+
   //project-duration
   --project-duration-termine-color: var(--green-200);
 
   //project-item
-  --project-item-skill-border: transparent;
   --project-item-skill-background: white;
+
+  //projects
+  --projects-1-bg: var(--blue);
+  --projects-2-bg: var(--green-250);
+  --projects-3-bg: var(--blue);
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-400);
