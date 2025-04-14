@@ -1,0 +1,9 @@
+.icon-container {
+  width: var(--grid-icon-centered-size);
+  height: var(--grid-icon-centered-size);
+  position: relative;
+
+  img {
+    object-fit: contain;
+  }
+}

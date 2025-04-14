@@ -10,13 +10,10 @@
     text="Github"
     (click)="openGithub()"></app-action-button>
 } @else {
-  <div class="empty">
-    <img
-      [src]="
-        themeService.isDarkMode ? 'icons/github-dark.svg' : 'icons/github.svg'
-      "
-      alt="Logo de Github" />
-
-    <p>Confidentiel</p>
-  </div>
+  <img
+    [src]="
+      themeService.isDarkMode ? 'icons/github-dark.svg' : 'icons/github.svg'
+    "
+    alt="Logo de Github" />
+  <div>Confidentiel</div>
 }

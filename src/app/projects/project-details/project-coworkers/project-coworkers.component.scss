@@ -1,5 +1,15 @@
+@import '../../../shared/grid/grid-item.scss';
+
 :host {
-  padding: 3rem;
+  @include grid-2x2;
+
+  &:hover {
+    ::ng-deep {
+      img {
+        rotate: -5deg;
+      }
+    }
+  }
 }
 
 .carousel {
