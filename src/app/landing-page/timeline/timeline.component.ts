@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Context } from './context.model';
+import { ContextWithProjects } from './context-with-projects.model';
 import { TimelineItemRightComponent } from './timeline-item-right/timeline-item-right.component';
 import { TimelineItemLeftComponent } from './timeline-item-left/timeline-item-left.component';
 import { SupabaseService } from '../../shared/supabase.service';
@@ -15,7 +15,7 @@ export class TimelineComponent implements OnInit {
   /**
    * Liste de tous les objets à afficher
    */
-  private items: Array<Context> = [];
+  private items: Array<ContextWithProjects> = [];
 
   /**
    * Constructeur

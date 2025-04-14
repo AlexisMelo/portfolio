@@ -17,7 +17,7 @@ import { TooltipDirective } from '../shared/tooltip/tooltip.directive';
 import { Section } from '../projects/section.model';
 import { SectionGroupComponent } from '../projects/project-details/section-group/section-group.component';
 import { TitleSeparatorComponent } from '../shared/title-separator/title-separator.component';
-import { Context } from './timeline/context.model';
+import { ContextWithProjects } from './timeline/context-with-projects.model';
 import { RowWithSeparatorComponent } from '../shared/row-with-separator/row-with-separator.component';
 import { SkillFrontPageComponent } from './skill/skill-front-page/skill-front-page.component';
 import { ARCHIVES_ROUTE } from '../app.routes';
@@ -103,7 +103,7 @@ export class LandingPageComponent implements AfterViewInit {
   /**
    * Clients
    */
-  public clients: Array<Context> = [];
+  public clients: Array<ContextWithProjects> = [];
 
   /**
    * Applique l'effet "typewriter" à un element

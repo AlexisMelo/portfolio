@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Context } from '../context.model';
+import { ContextWithProjects } from '../context-with-projects.model';
 import { RightArrowComponent } from '../right-arrow/right-arrow.component';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -26,5 +26,5 @@ export class TimelineItemRightComponent {
   /**
    * Item to display
    */
-  @Input({ required: true }) item!: Context;
+  @Input({ required: true }) item!: ContextWithProjects;
 }

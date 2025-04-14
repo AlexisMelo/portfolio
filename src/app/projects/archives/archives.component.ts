@@ -1,17 +1,16 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
-import { InputComponent } from 'src/app/shared/input/input.component';
-import { TitleSeparatorComponent } from 'src/app/shared/title-separator/title-separator.component';
-import { ProjectItemComponent } from '../project-item/project-item.component';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Project } from '../project.model';
-import { Context } from 'src/app/landing-page/timeline/context.model';
-import { Skill } from '../skill.model';
-import { SupabaseService } from 'src/app/shared/supabase.service';
-import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
+import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
+import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
+import { InputComponent } from 'src/app/shared/input/input.component';
+import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
+import { SupabaseService } from 'src/app/shared/supabase.service';
+import { TitleSeparatorComponent } from 'src/app/shared/title-separator/title-separator.component';
+import { Project } from '../project.model';
+import { Skill } from '../skill.model';
 
 @Component({
   selector: 'app-archives',
@@ -20,7 +19,6 @@ import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model
     TitleSeparatorComponent,
     InputComponent,
     FilterChipComponent,
-    ProjectItemComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './archives.component.html',
@@ -36,12 +34,12 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   /**
    * Liste des contextes
    */
-  public contexts: Array<Context> = [];
+  public contexts: Array<ContextWithProjects> = [];
 
   /**
    * Contextes sélectionnés
    */
-  public selectedContexts: Array<Context> = [];
+  public selectedContexts: Array<ContextWithProjects> = [];
 
   /**
    * Liste des skills
@@ -143,7 +141,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
    * @param context
    * @returns
    */
-  toggleContext(context: Context) {
+  toggleContext(context: ContextWithProjects) {
     //Si tous les contextes sont sélectionnés, on veut filtrer sur celui cliqué uniquement
     if (this.selectedContexts.length === this.contexts.length) {
       this.updateSelectedContexts([context]);
@@ -166,7 +164,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
    * Met à jour la liste des contextes sélectionnés
    * @param contexts
    */
-  private updateSelectedContexts(contexts: Array<Context>) {
+  private updateSelectedContexts(contexts: Array<ContextWithProjects>) {
     this.selectedContexts = contexts;
     this.router.navigate([], {
       relativeTo: this.route,
@@ -289,7 +287,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       this.selectAllContexts();
       return;
     }
-    this.updateSelectedContexts([option as Context]);
+    this.updateSelectedContexts([option as ContextWithProjects]);
   }
 
   /**

@@ -12,13 +12,13 @@
   </h2>
   <div class="what">{{ item.description }}</div>
   <div class="where">{{ item.label }}, {{ item.localization }}</div>
-  @if (item.project.length > 0) {
+  @if (item.projects.length > 0) {
     <div
       class="projects"
       [routerLink]="[ARCHIVES_ROUTE]"
       [queryParams]="{ contexts: item.id }">
-      {{ item.project.length }} réalisation{{
-        item.project.length > 1 ? 's' : ''
+      {{ item.projects.length }} réalisation{{
+        item.projects.length > 1 ? 's' : ''
       }}
       <app-right-arrow class="arrow"></app-right-arrow>
     </div>

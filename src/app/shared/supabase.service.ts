@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from 'database.types';
 import { environment } from '../../environments/environment';
-import { Context } from '../landing-page/timeline/context.model';
+import { ContextWithProjects } from '../landing-page/timeline/context-with-projects.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../projects/skill.model';
@@ -26,6 +26,10 @@ export class SupabaseService {
     );
   }
 
+  /**
+   * Obtient le nombre de projets en cours
+   * @returns
+   */
   public async countOngoingProjects(): Promise<number> {
     const { data, error } = await this.client
       .from('project')
@@ -97,10 +101,11 @@ export class SupabaseService {
   public async getContexts() {
     const { data } = await this.client
       .from('context')
-      .select('*, context_type(*), project(*)')
+      .select('*, context_type(*), projects:project(*)')
       .order('end_date', { ascending: false })
       .order('start_date', { ascending: false })
-      .returns<Array<Context>>();
+      .returns<Array<ContextWithProjects>>();
+
     return data ?? [];
   }
 
@@ -140,7 +145,7 @@ export class SupabaseService {
       .from('context')
       .select('*')
       .eq('show_landing', true)
-      .returns<Array<Context>>();
+      .returns<Array<ContextWithProjects>>();
     return data ?? [];
   }
 
