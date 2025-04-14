@@ -1,0 +1,16 @@
+<div class="icon-container">
+  @if (project.icon) {
+    <img
+      [ngSrc]="project.icon"
+      fill
+      [alt]="'Icone du projet ' + project.label" />
+  }
+</div>
+
+@if (project.deployment) {
+  <app-action-button
+    text="Voir le projet"
+    [unfold]="hovered"
+    (click)="openLink()">
+  </app-action-button>
+}

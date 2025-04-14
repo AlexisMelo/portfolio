@@ -214,6 +214,18 @@ h3 {
     text-decoration: none;
     font-size: 0.9rem;
   }
+
+  .g-grid-item-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    .g-grid-item-footer-text {
+      flex-grow: 1;
+      width: auto;
+    }
+  }
 }
 
 .g-paragraph {

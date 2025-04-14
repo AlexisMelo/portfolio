@@ -1,50 +1,6 @@
 @import '../../../../styles/responsive.scss';
+@import '../../../shared/grid/grid-item.scss';
 
 :host {
-  padding: 3rem;
-
-  @include responsive('large') {
-    padding: 4rem;
-  }
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  @include responsive('medium') {
-    width: 40px;
-    height: 40px;
-  }
-
-  @include responsive('large') {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-.description {
-  flex-grow: 1;
-}
-
-.type {
-  text-align: end;
-  color: var(--grid-item-bottom-text-color);
-  flex-grow: 1;
-}
-
-.bottom {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
+  @include grid-1x2;
 }

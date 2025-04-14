@@ -1,7 +1,9 @@
+@import '../../../shared/grid/grid-item.scss';
+
 :host {
-  padding: 2rem;
+  @include grid-1x2;
 }
 
-.localization {
-  flex-grow: 1;
+.context-label {
+  color: var(--green-250);
 }

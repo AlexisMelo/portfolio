@@ -1,9 +1,20 @@
-<h2>{{ project.project_context.label }}</h2>
+<h2>
+  Chez <span class="context-label">{{ project.project_context.label }}</span>
+</h2>
 
-<div class="localization">{{ project.project_context.localization }}</div>
+<div class="g-grid-item-main-text">
+  {{ project.project_context.localization }}
+</div>
 
-<app-action-button
-  text="En voir plus"
-  [unfold]="hovered"
-  (click)="moreProjects()">
-</app-action-button>
+<div class="g-grid-item-footer">
+  <app-action-button
+    text="Voir plus de projets"
+    [unfold]="true"
+    (click)="moreProjects()"
+    [positionAbsolute]="false">
+  </app-action-button>
+
+  <div class="g-grid-item-footer-text">
+    {{ project.project_context.localization }}
+  </div>
+</div>

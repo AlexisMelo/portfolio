@@ -1,22 +1,5 @@
-<div class="icon">
-  @if (project.icon) {
-    <img [src]="project.icon" alt="" />
-  }
-</div>
+<h2>{{ project.label }}</h2>
 
-<h1>{{ project.label }}</h1>
-
-<div class="g-paragraph description">{{ project.description }}</div>
-
-<div class="bottom">
-  @if (project.deployment) {
-    <app-action-button
-      [positionAbsolute]="false"
-      [unfold]="true"
-      text="Voir le site"
-      (click)="openLink()">
-    </app-action-button>
-  }
-
-  <div class="type">{{ project.project_type.label }}</div>
+<div class="g-paragraph g-grid-item-main-text">
+  {{ project.description }}
 </div>
