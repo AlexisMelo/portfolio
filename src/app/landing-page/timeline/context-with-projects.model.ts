@@ -12,5 +12,5 @@ export interface ContextWithProjects extends Tables<'context'> {
   /**
    * Projets réalisés dans le contexte
    */
-  projects: Array<'project'>;
+  projects: Array<Tables<'project'>>;
 }

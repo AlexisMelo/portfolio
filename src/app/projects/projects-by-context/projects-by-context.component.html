@@ -1,5 +1,34 @@
-<h2></h2>
+<div class="carousel">
+  <div class="carousel-items">
+    @for (context of nonEmptyContexts; track context.id) {
+      <div class="carousel-item">
+        <h2>{{ context.label }}</h2>
 
-<app-action-button> </app-action-button>
+        <div class="g-grid-item-main-text">
+          <div class="project-chips">
+            @for (project of context.projects; track project.id) {
+              {{ project.label }}
+            }
+          </div>
+        </div>
+        <div class="g-grid-item-footer-text">
+          {{ context.projects.length }}
+          {{ context.projects.length > 1 ? 'réalisations' : 'réalisation' }}
+        </div>
+      </div>
+    }
+  </div>
+</div>
 
-<app-action-button> </app-action-button>
+@if (currentSlide > 0) {
+  <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
+  </app-action-button>
+}
+
+@if (nonEmptyContexts && currentSlide < nonEmptyContexts.length - 1) {
+  <app-action-button
+    position="bottom-left-2"
+    icon="chevron_right"
+    (click)="nextSlide(1)">
+  </app-action-button>
+}

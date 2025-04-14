@@ -41,8 +41,16 @@
   }
 
   &.bottom-left-2 {
-    left: 64px;
+    left: 55px;
     bottom: 16px;
+
+    @include responsive('medium') {
+      left: 60px;
+    }
+
+    @include responsive('large') {
+      left: 65px;
+    }
   }
 
   &.bottom-right {
