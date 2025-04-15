@@ -1,17 +1,42 @@
 <div class="carousel">
   <div class="carousel-items">
     @for (context of nonEmptyContexts; track context.id) {
-      <div class="carousel-item">
+      <div
+        class="carousel-item"
+        (click)="seeMore(context)"
+        (keyup)="seeMore(context)"
+        tabindex="0">
         <h2>{{ context.label }}</h2>
 
-        <div class="g-grid-item-main-text">
+        <div class="g-grid-item-main-text">{{ context.localization }}</div>
+
+        <div class="projects">
           <div class="project-chips">
-            @for (project of context.projects; track project.id) {
-              {{ project.label }}
+            @for (index of 9 | range; track index) {
+              <div class="project-chip">
+                <div class="icon">
+                  @if (context.projects.length - 1 >= index) {
+                    <mat-icon> folder </mat-icon>
+                    <div>
+                      {{ context.projects[index].label | slice: 0 : 2 }}
+                    </div>
+                    <!-- <img [src]="context.projects[index].icon" alt="" /> -->
+                  } @else {
+                    <mat-icon class="default"> folder </mat-icon>
+                  }
+                </div>
+              </div>
             }
           </div>
         </div>
+
         <div class="g-grid-item-footer-text">
+          {{ context.start_date | date: 'yyyy' }} -
+          {{
+            context.end_date
+              ? (context.end_date | date: 'yyyy')
+              : "Aujourd'hui"
+          }},
           {{ context.projects.length }}
           {{ context.projects.length > 1 ? 'réalisations' : 'réalisation' }}
         </div>

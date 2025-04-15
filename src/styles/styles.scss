@@ -13,6 +13,8 @@
   --columns: 2;
   --gap: 16px;
   --grid-icon-centered-size: 36px;
+  --body-font-family: 'Funnel Display', sans-serif;
+  --title-font-family: 'Spicy Rice', serif;
 
   @include responsive('medium') {
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
@@ -63,7 +65,7 @@ html {
   margin: 0;
   padding: 0;
   color: var(--styles-text-color);
-  font-family: 'Funnel Display', sans-serif;
+  font-family: var(--body-font-family);
   font-optical-sizing: auto;
   letter-spacing: 1px;
   font-weight: 300;
@@ -88,7 +90,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Spicy Rice', serif;
+  font-family: var(--title-font-family);
   font-weight: 400;
   font-style: normal;
   color: var(--styles-title-color);
