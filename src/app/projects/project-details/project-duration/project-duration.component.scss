@@ -1,25 +1,6 @@
 @import '../../../../styles/responsive.scss';
+@import '../../../shared/grid/grid-item.scss';
 
 :host {
-  padding: 3rem;
-}
-
-.timings {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.duration {
-  width: 100%;
-  text-align: end;
-  color: var(--grid-item-bottom-text-color);
-}
-
-h2 {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: center;
+  @include grid-1x1;
 }

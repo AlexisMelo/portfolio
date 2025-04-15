@@ -1,9 +1,8 @@
 <h2>
-  <app-dot [color]="dotColor"></app-dot>
   {{ project | duration }}
 </h2>
 
-<div class="timings">
+<div class="g-grid-item-main-text">
   <div>
     {{ project.start_date | date: 'MMMM y' }}
   </div>
@@ -13,4 +12,4 @@
   </div>
 </div>
 
-<div class="duration">{{ project | status }}</div>
+<div class="g-grid-item-footer-text">{{ project | status }}</div>

@@ -33,10 +33,14 @@
   }
 
   &.green {
-    --box-shadow-color: var(--project-duration-termine-color);
+    --box-shadow-color: var(--green-250);
   }
 
   &.blue {
     --box-shadow-color: var(--blue);
+  }
+
+  &.black {
+    --box-shadow-color: var(--gray-500);
   }
 }

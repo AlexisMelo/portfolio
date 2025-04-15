@@ -1,1 +1,1 @@
-export type DotColor = 'green' | 'orange' | 'red' | 'blue';
+export type DotColor = 'green' | 'orange' | 'red' | 'blue' | 'black';

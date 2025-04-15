@@ -4,11 +4,12 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../../contact/action-button/action-button.component';
 import { Router } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-project-context',
   standalone: true,
-  imports: [ActionButtonComponent],
+  imports: [ActionButtonComponent, DatePipe],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
