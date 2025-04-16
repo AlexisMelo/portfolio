@@ -1,15 +1,17 @@
 <h2>
-  {{ project | duration }}
+  {{ project | status }}
 </h2>
 
-<div class="g-grid-item-main-text">
+<div class="g-paragraph g-grid-item-main-text">
   <div>
-    {{ project.start_date | date: 'MMMM y' }}
-  </div>
-  <app-right-arrow></app-right-arrow>
-  <div>
-    {{ project.end_date ? (project.end_date | date: 'MMMM y') : "Aujourd'hui" }}
+    {{ project | duration }}
   </div>
 </div>
 
-<div class="g-grid-item-footer-text">{{ project | status }}</div>
+<div class="g-grid-item-footer-text">
+  <span>{{ project.start_date | date: 'MMMM y' }}</span> à
+
+  <span>{{
+    project.end_date ? (project.end_date | date: 'MMMM y') : "Aujourd'hui"
+  }}</span>
+</div>
