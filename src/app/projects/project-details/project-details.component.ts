@@ -14,6 +14,7 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
 import { ProjectSkillsComponent } from './project-skills/project-skills.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectDetailsIconComponent } from './project-details-icon/project-details-icon.component';
+import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
 
 @Component({
   selector: 'app-project-details',
@@ -29,6 +30,7 @@ import { ProjectDetailsIconComponent } from './project-details-icon/project-deta
     ProjectCoworkersComponent,
     ProjectParticipationComponent,
     ProjectDetailsIconComponent,
+    ProjectNameHeaderComponent,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

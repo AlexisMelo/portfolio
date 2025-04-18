@@ -61,6 +61,14 @@
   //project-item
   --project-item-skill-background: var(--gray-500);
 
+  //project-name-header
+  --project-name-header-termine-background: var(--gray-525);
+  --project-name-header-termine-color: var(--green-250);
+  --project-name-header-abandonne-background: var(--gray-525);
+  --project-name-header-abandonne-color: var(--gray-300);
+  --project-name-header-en-cours-background: var(--gray-525);
+  --project-name-header-en-cours-color: var(--blue);
+
   //projects
   --projects-1-bg: var(--gray-550);
   --projects-2-bg: var(--gray-550);
@@ -95,13 +103,13 @@
   --skills-recap-separator: var(--gray-400);
 
   //skill-section-header
-  --skill-section-header-frontend-bg: var(--grid-item-default-bg);
+  --skill-section-header-frontend-bg: var(--gray-525);
   --skill-section-header-frontend-color: var(--blue-200);
 
-  --skill-section-header-backend-bg: var(--grid-item-default-bg);
+  --skill-section-header-backend-bg: var(--gray-525);
   --skill-section-header-backend-color: var(--green-250);
 
-  --skill-section-header-general-bg: var(--grid-item-default-bg);
+  --skill-section-header-general-bg: var(--gray-525);
   --skill-section-header-general-color: var(--gray-300);
 
   //styles
