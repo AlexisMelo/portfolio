@@ -1,17 +1,41 @@
-<h2>
-  {{ project | status }}
+<h2 [ngClass]="project | status | kebabCase">
+  @switch (project | status) {
+    @case ('Abandonné') {
+      <span>Abandonné</span> après
+    }
+    @case ('En cours') {
+      <span>En cours</span> depuis
+    }
+    @case ('Terminé') {
+      <span>Terminé</span> en
+    }
+  }
+  {{ project | duration }}
 </h2>
 
 <div class="g-paragraph g-grid-item-main-text">
-  <div>
-    {{ project | duration }}
+  <div class="frise" [ngClass]="project | status | kebabCase">
+    <div class="start-date-year">{{ project.start_date | date: 'yyyy' }}</div>
+    <div class="start-date-month">{{ project.start_date | date: 'MMMM' }}</div>
+    <div class="end-date-year">{{ project.end_date | date: 'yyyy' }}</div>
+    <div class="end-date-month">{{ project.end_date | date: 'MMMM' }}</div>
+    <div class="bar-container">
+      <div class="bar"></div>
+    </div>
+    <div class="icon-container">
+      <mat-icon>
+        @switch (project | status) {
+          @case ('Abandonné') {
+            delete
+          }
+          @case ('En cours') {
+            precision_manufacturing
+          }
+          @case ('Terminé') {
+            check
+          }
+        }
+      </mat-icon>
+    </div>
   </div>
-</div>
-
-<div class="g-grid-item-footer-text">
-  <span>{{ project.start_date | date: 'MMMM y' }}</span> à
-
-  <span>{{
-    project.end_date ? (project.end_date | date: 'MMMM y') : "Aujourd'hui"
-  }}</span>
 </div>

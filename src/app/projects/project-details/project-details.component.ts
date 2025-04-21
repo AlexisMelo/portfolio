@@ -3,18 +3,20 @@ import { ActivatedRoute } from '@angular/router';
 import { GithubComponent } from 'src/app/contact/github/github.component';
 import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { SupabaseService } from 'src/app/shared/supabase.service';
+import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
 import { Project } from '../project.model';
 import { Skill } from '../skill.model';
 import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
+import { ProjectDetailsIconComponent } from './project-details-icon/project-details-icon.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
-import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
-import { ProjectSkillsComponent } from './project-skills/project-skills.component';
-import { ProjectParticipationComponent } from './project-participation/project-participation.component';
-import { ProjectDetailsIconComponent } from './project-details-icon/project-details-icon.component';
 import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
+import { ProjectParticipationComponent } from './project-participation/project-participation.component';
+import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
+import { StatusPipe } from '../status/status.pipe';
+import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 
 @Component({
   selector: 'app-project-details',
@@ -25,12 +27,14 @@ import { ProjectNameHeaderComponent } from './project-name-header/project-name-h
     ProjectContextComponent,
     ProjectIllustrationsComponent,
     ProjectProblematicComponent,
-    ProjectSkillsComponent,
     GithubComponent,
     ProjectCoworkersComponent,
     ProjectParticipationComponent,
     ProjectDetailsIconComponent,
     ProjectNameHeaderComponent,
+    SkillsRecapComponent,
+    StatusPipe,
+    KebabCasePipe,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

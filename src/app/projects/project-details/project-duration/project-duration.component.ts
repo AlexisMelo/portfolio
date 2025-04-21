@@ -1,13 +1,13 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { Component, inject, Input, LOCALE_ID } from '@angular/core';
-import { RightArrowComponent } from 'src/app/landing-page/timeline/right-arrow/right-arrow.component';
+import { MatIconModule } from '@angular/material/icon';
 import { ContentService } from 'src/app/shared/content.service';
 import { DotColor } from 'src/app/shared/dot/dot-color.model';
-import { DotComponent } from 'src/app/shared/dot/dot.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { DurationPipe } from '../../duration.pipe';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
+import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 
 @Component({
   selector: 'app-project-duration',
@@ -16,8 +16,9 @@ import { StatusPipe } from '../../status/status.pipe';
     StatusPipe,
     DurationPipe,
     DatePipe,
-    RightArrowComponent,
-    DotComponent,
+    MatIconModule,
+    KebabCasePipe,
+    NgClass,
   ],
   templateUrl: './project-duration.component.html',
   styleUrl: './project-duration.component.scss',

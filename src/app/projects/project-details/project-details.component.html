@@ -10,13 +10,20 @@
         [project]="project"></app-project-illustrations>
 
       <app-project-problematic [project]="project"></app-project-problematic>
-      <app-project-skills [project]="project"></app-project-skills>
 
       <app-github [link]="project.source"></app-github>
 
       <app-project-coworkers [project]="project"></app-project-coworkers>
       <app-project-participation
         [project]="project"></app-project-participation>
+
+      <app-skills-recap
+        [skills]="project.skills"
+        [recapBackgroundColor]="
+          'var(--project-details-skills-recap-bg-' +
+          (project | status | kebabCase) +
+          ')'
+        "></app-skills-recap>
     }
   </div>
 </div>

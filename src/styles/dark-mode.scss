@@ -58,6 +58,16 @@
   //ongoing
   --ongoing-background: var(--gray-525);
 
+  //project-details
+  --project-details-skills-recap-bg-termine: var(--green-250);
+  --project-details-skills-recap-bg-en-cours: var(--blue);
+  --project-details-skills-recap-bg-abandonne: var(--gray-500);
+
+  //project-duration
+  --project-duration-termine: var(--green-250);
+  --project-duration-en-cours: var(--blue);
+  --project-duration-abandonne: var(--gray-400);
+
   //project-item
   --project-item-skill-background: var(--gray-500);
 
@@ -89,13 +99,8 @@
 
   //skill-recap
   --skills-recap-frontend-bg: var(--blue-200);
-  --skills-recap-frontend-color: default;
-
   --skills-recap-backend-bg: var(--green-250);
-  --skills-recap-backend-color: default;
-
   --skills-recap-general-bg: var(--gray-300);
-  --skills-recap-general-color: black;
 
   --skills-recap-counter-bg: var(--gray-500);
   --skills-recap-counter-color: var(--white);
@@ -116,7 +121,7 @@
   --styles-title-color: var(--gray-100);
   --styles-text-color: var(--white);
   --styles-background-color: var(--gray-600);
-  --styles-paragraph-highlight-bg-color: var(--green-600);
+  --styles-paragraph-highlight-bg-color: var(--gray-500);
   --styles-paragraph-highlight-color: var(--white);
   --styles-thumbnail-border: var(--green-500);
 

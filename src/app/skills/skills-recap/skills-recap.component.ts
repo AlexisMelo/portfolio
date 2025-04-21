@@ -59,11 +59,6 @@ export class SkillsRecapComponent
   implements AfterViewInit
 {
   /**
-   * Toutes les compétences
-   */
-  private _skills?: Array<Skill>;
-
-  /**
    * Compétences à afficher
    */
   @Input({ required: true }) set skills(value: Array<Skill>) {
@@ -77,9 +72,9 @@ export class SkillsRecapComponent
   @Input({ required: true }) recapBackgroundColor!: string;
 
   /**
-   * Couleur d'écriture des skills
+   * Toutes les compétences
    */
-  @Input({ required: true }) recapColor!: string;
+  private _skills?: Array<Skill>;
 
   /**
    * Route vers les archives
