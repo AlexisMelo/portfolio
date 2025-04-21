@@ -1,6 +1,6 @@
 <div class="carousel">
   <div class="carousel-items">
-    @if (illustrationsSorted.length === 0) {
+    @if (illustrationsSorted?.length === 0) {
       <div class="carousel-item no-image">
         <img src="photos/no-image.svg" alt="Aucune illustration disponible" />
         <p>Pas encore d'illustrations !</p>
@@ -9,69 +9,36 @@
       @for (illustration of illustrationsSorted; track illustration.id) {
         <div
           class="carousel-item"
-          (click)="openModal(illustration)"
-          (keypress)="openModal(illustration)"
+          (click)="openDialog()"
+          (keypress)="openDialog()"
           tabindex="0">
           <img [src]="illustration.url" [alt]="illustration.alt" />
         </div>
       }
-
-      @if (illustrationsSorted.length > 1) {
-        @if (currentSlide > 0) {
-          <app-action-button
-            icon="chevron_left"
-            (click)="nextSlide(-1)"></app-action-button>
-        }
-
-        @if (currentSlide < illustrationsSorted.length - 1) {
-          <app-action-button
-            icon="chevron_right"
-            position="bottom-left-2"
-            (click)="nextSlide(1)"></app-action-button>
-        }
-      }
-
-      <app-action-button
-        icon="crop_free"
-        position="bottom-right"
-        (click)="openModal()"></app-action-button>
-
-      <div class="counter">
-        {{ currentSlide + 1 }} / {{ illustrationsSorted.length }}
-      </div>
     }
   </div>
 </div>
 
-<div id="modal" #modal>
-  <mat-icon (click)="closeModal()">close</mat-icon>
-  <div class="modal-img-container">
-    <img #modalImg class="modal-img" alt="" />
-  </div>
-  <div class="caption" #caption></div>
+@if (illustrationsSorted && illustrationsSorted.length > 1) {
+  @if (currentSlide > 0) {
+    <app-action-button
+      icon="chevron_left"
+      (click)="nextSlide(-1)"></app-action-button>
+  }
 
-  <div class="controls-modal">
-    <div class="app-action-button-left">
-      @if (currentSlideModal !== 0) {
-        <app-action-button
-          [positionAbsolute]="false"
-          icon="chevron_left"
-          (click)="nextSlideModal(-1)"></app-action-button>
-      }
-    </div>
+  @if (currentSlide < illustrationsSorted.length - 1) {
+    <app-action-button
+      icon="chevron_right"
+      position="bottom-left-2"
+      (click)="nextSlide(1)"></app-action-button>
+  }
+}
 
-    <div class="counter-modal">
-      {{ currentSlideModal + 1 }} / {{ illustrationsSorted.length }}
-    </div>
+<app-action-button
+  icon="crop_free"
+  position="bottom-right"
+  (click)="openDialog()"></app-action-button>
 
-    <div class="app-action-button-right">
-      @if (currentSlideModal < illustrationsSorted.length - 1) {
-        <app-action-button
-          [positionAbsolute]="false"
-          icon="chevron_right"
-          position="bottom-right"
-          (click)="nextSlideModal(1)"></app-action-button>
-      }
-    </div>
-  </div>
+<div class="counter">
+  {{ currentSlide + 1 }} / {{ illustrationsSorted?.length }}
 </div>

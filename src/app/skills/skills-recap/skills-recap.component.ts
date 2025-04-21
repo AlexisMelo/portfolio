@@ -1,4 +1,12 @@
 import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   AfterViewInit,
   Component,
   ElementRef,
@@ -12,20 +20,11 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { Skill } from 'src/app/projects/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SkillGroup } from './skill-group.model';
-import { RangePipe } from 'src/app/shared/pipes/range.pipe';
-import {
-  animate,
-  query,
-  stagger,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 
 @Component({
   selector: 'app-skills-recap',
   standalone: true,
-  imports: [RouterLink, MatIconModule, RangePipe],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
   animations: [

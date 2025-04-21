@@ -1,7 +1,17 @@
+@import '../../../../styles/responsive.scss';
+
 h2 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 0;
   text-align: center;
+
+  @include responsive('medium') {
+    font-size: 3rem;
+  }
+
+  @include responsive('large') {
+    font-size: 4rem;
+  }
 }
 
 :host {

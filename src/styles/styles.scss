@@ -7,6 +7,7 @@
 @import './dark-mode.scss';
 @import './design-system.scss';
 @import 'material-symbols';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
   --grid-width: 350px; //pour que ça fonctionne même sur petit téléphone
@@ -33,6 +34,10 @@
         calc(var(--gap) * (var(--columns) - 1)) / var(--columns)
       )
   );
+}
+
+.cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
@@ -82,7 +87,6 @@ html {
   }
 }
 
-html,
 body {
   height: 100%;
 }
@@ -191,7 +195,7 @@ h3 {
 
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
-    transform: scale(1.02);
+    // transform: scale(1.02);
   }
 
   &.g-grid-item-start-aligned {
