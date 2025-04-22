@@ -7,7 +7,7 @@
 
   .carousel-items-modal {
     display: flex;
-    overflow: hidden;
+    // overflow: hidden;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -33,8 +33,9 @@
         transform: translateX(-50%);
         bottom: -3rem;
         color: white;
-        background-color: black;
+        background-color: var(--gray-500);
         padding: 1rem;
+        border-radius: 12px;
       }
     }
   }

@@ -138,10 +138,6 @@ export class ProjectIllustrationsComponent
    */
   ngAfterViewInit() {
     this.startAutoSlide();
-
-    setTimeout(() => {
-      this.openDialog();
-    }, 1000);
   }
 
   /**

@@ -42,18 +42,3 @@
     }
   }
 }
-
-%counterStyle {
-  background-color: var(--action-button-background);
-  padding: 0.5rem 1rem;
-  border-radius: 16px;
-  border: 1px solid var(--grid-item-border);
-}
-
-.counter {
-  @extend %counterStyle;
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-}
