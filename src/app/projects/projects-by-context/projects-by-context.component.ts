@@ -4,11 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { Tables } from 'database.types';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { RangePipe } from 'src/app/shared/pipes/range.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
+import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
 
 @Component({
   selector: 'app-projects-by-context',

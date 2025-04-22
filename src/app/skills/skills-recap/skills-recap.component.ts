@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Tables } from 'database.types';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { Skill } from 'src/app/projects/skill.model';
+import { Skill } from 'src/app/skills/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SkillGroup } from './skill-group.model';
 

@@ -2,25 +2,19 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
-import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 import { InputComponent } from 'src/app/shared/input/input.component';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { TitleSeparatorComponent } from 'src/app/shared/title-separator/title-separator.component';
+import { Skill } from '../../skills/skill.model';
 import { Project } from '../project.model';
-import { Skill } from '../skill.model';
+import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
+import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 
 @Component({
   selector: 'app-archives',
   standalone: true,
-  imports: [
-    TitleSeparatorComponent,
-    InputComponent,
-    FilterChipComponent,
-    ReactiveFormsModule,
-  ],
+  imports: [InputComponent, ReactiveFormsModule, FilterChipComponent],
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.scss',
   providers: [IsSelectedPipe],

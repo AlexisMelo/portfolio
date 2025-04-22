@@ -1,10 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Skill } from '../projects/skill.model';
+import { Skill } from './skill.model';
 import { SupabaseService } from '../shared/supabase.service';
 import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
 import { SkillSectionHeaderComponent } from './skill-section-header/skill-section-header.component';
-import { SkillsSection } from './skills-section.model';
 import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
@@ -12,6 +11,7 @@ import { LearningPipe } from './learning.pipe';
 import { ThemeService } from '../shared/theme.service';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SkillHighlightPlaceholderComponent } from './skill-highlight/skill-highlight-placeholder/skill-highlight-placeholder.component';
+import { SkillsSection } from './skills-section.model';
 
 @Component({
   selector: 'app-skills',

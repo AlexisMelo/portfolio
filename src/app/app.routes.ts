@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { ContactComponent } from './contact/contact.component';
-import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
-import { SkillsComponent } from './skills/skills.component';
 import { ArchivesComponent } from './projects/archives/archives.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { SkillsComponent } from './skills/skills.component';
 
 const RELATIVE_ARCHIVES_ROUTE = 'projects/archives';
 export const ARCHIVES_ROUTE = '/' + RELATIVE_ARCHIVES_ROUTE;
@@ -12,7 +11,7 @@ export const ARCHIVES_ROUTE = '/' + RELATIVE_ARCHIVES_ROUTE;
 export const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    component: ContactComponent,
   },
   {
     path: 'projects',
@@ -29,10 +28,6 @@ export const routes: Routes = [
   {
     path: 'projects/:url',
     component: ProjectDetailsComponent,
-  },
-  {
-    path: 'contact',
-    component: ContactComponent,
   },
   {
     path: 'now',

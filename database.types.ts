@@ -277,39 +277,6 @@ export type Database = {
           },
         ];
       };
-      project_section: {
-        Row: {
-          position: number;
-          project_id: number;
-          section_id: number;
-        };
-        Insert: {
-          position: number;
-          project_id: number;
-          section_id: number;
-        };
-        Update: {
-          position?: number;
-          project_id?: number;
-          section_id?: number;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'project_section_project_id_fkey';
-            columns: ['project_id'];
-            isOneToOne: false;
-            referencedRelation: 'project';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'project_section_section_id_fkey';
-            columns: ['section_id'];
-            isOneToOne: false;
-            referencedRelation: 'section';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
       project_skill: {
         Row: {
           highlight: boolean;
@@ -370,33 +337,6 @@ export type Database = {
         Update: {
           id?: number;
           label?: string;
-        };
-        Relationships: [];
-      };
-      section: {
-        Row: {
-          description: string;
-          id: number;
-          illustration: string;
-          label: string;
-          position: number | null;
-          tags: string | null;
-        };
-        Insert: {
-          description: string;
-          id?: number;
-          illustration: string;
-          label: string;
-          position?: number | null;
-          tags?: string | null;
-        };
-        Update: {
-          description?: string;
-          id?: number;
-          illustration?: string;
-          label?: string;
-          position?: number | null;
-          tags?: string | null;
         };
         Relationships: [];
       };

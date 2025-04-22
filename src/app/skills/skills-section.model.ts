@@ -1,7 +1,21 @@
-import { Skill } from '../projects/skill.model';
-import { TitleSeparator } from '../shared/title-separator/title-separator.model';
+import { Skill } from './skill.model';
 
-export interface SkillsSection extends TitleSeparator {
+export interface SkillsSection {
+  /**
+   * Titre de la section
+   */
+  heading: string;
+
+  /**
+   * Description du contenu de la section
+   */
+  description: string;
+
+  /**
+   * Sous-titre de la section
+   */
+  subtitle: string;
+
   /**
    * Identifiant unique de la section
    */

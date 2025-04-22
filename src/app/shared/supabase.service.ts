@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from 'database.types';
 import { environment } from '../../environments/environment';
-import { ContextWithProjects } from '../landing-page/timeline/context-with-projects.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
-import { Skill } from '../projects/skill.model';
+import { Skill } from '../skills/skill.model';
+import { ContextWithProjects } from '../landing-page/timeline/context-with-projects.model';
 
 @Injectable({
   providedIn: 'root',

@@ -3,7 +3,7 @@ import { Component, HostListener, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { Skill } from 'src/app/projects/skill.model';
+import { Skill } from 'src/app/skills/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({

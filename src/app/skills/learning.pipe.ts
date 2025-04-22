@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Skill } from '../projects/skill.model';
+import { Skill } from './skill.model';
 
 /**
  * Filtre une liste de skills pour n'en obtenir que les skills en apprentissage

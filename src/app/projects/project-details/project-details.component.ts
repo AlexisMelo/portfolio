@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GithubComponent } from 'src/app/contact/github/github.component';
-import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
 import { Project } from '../project.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../skills/skill.model';
 import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
@@ -51,11 +50,6 @@ export class ProjectDetailsComponent {
   private supabaseService = inject(SupabaseService);
 
   /**
-   * Service pour gérer les chargements
-   */
-  private loadingService = inject(LoadingService);
-
-  /**
    * URL unique identifiant le projet
    */
   public projectUniqueUrl?: string;
@@ -74,8 +68,6 @@ export class ProjectDetailsComponent {
    * Constructeur
    */
   constructor() {
-    this.loadingService.projectDetails = this.projectUniqueUrl =
-      this.route.snapshot.params['url'];
     if (!this.projectUniqueUrl) return;
     this.supabaseService
       .getProjectByUrl(this.projectUniqueUrl)
