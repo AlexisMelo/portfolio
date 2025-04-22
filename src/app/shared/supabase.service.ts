@@ -49,7 +49,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .order('end_date', { ascending: false })
       .order('main', { referencedTable: 'skill', ascending: false });
@@ -82,7 +82,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('project')
       .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), sections:section(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
+        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
       )
       .eq('url', url)
       .order('main', { referencedTable: 'skill', ascending: false })
@@ -121,19 +121,6 @@ export class SupabaseService {
 
     if (error) return Promise.reject(error);
     return data as Array<Skill>;
-  }
-
-  /**
-   * Obtient la liste des sections à afficher sur la page d'accueil
-   * @returns
-   */
-  public async getLandingSections() {
-    const { data } = await this.client
-      .from('section')
-      .select('*')
-      .like('tags', '%landing%')
-      .order('position');
-    return data ?? [];
   }
 
   /**

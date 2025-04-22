@@ -68,6 +68,7 @@ export class ProjectDetailsComponent {
    * Constructeur
    */
   constructor() {
+    this.projectUniqueUrl = this.route.snapshot.params['url'];
     if (!this.projectUniqueUrl) return;
     this.supabaseService
       .getProjectByUrl(this.projectUniqueUrl)
