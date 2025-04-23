@@ -2,4 +2,12 @@
 
 :host {
   @include grid-2x2;
+
+  @include responsive('medium') {
+    font-size: 0.9rem;
+  }
+
+  @include responsive('large') {
+    font-size: 1rem;
+  }
 }

@@ -79,17 +79,22 @@ app-project-context {
 }
 
 app-skills-recap {
-  grid-row: 11 / 13;
+  grid-row: 12 / 14;
   grid-column: 1 / 3;
 
   @include responsive('medium') {
+    grid-row: 7 / 9;
+    grid-column: 1 / 3;
+  }
+
+  @include responsive('large') {
     grid-row: 6 / 8;
     grid-column: 1 / 3;
   }
 }
 
 app-project-coworkers {
-  grid-row: 13 / 15;
+  grid-row: 14 / 16;
   grid-column: 1 / 3;
 
   @include responsive('medium') {
@@ -99,10 +104,15 @@ app-project-coworkers {
 }
 
 app-project-participation {
-  grid-row: 9 / 11;
+  grid-row: 9 / 12;
   grid-column: 1 / 3;
 
   @include responsive('medium') {
+    grid-row: 4 / 7;
+    grid-column: 1 / 3;
+  }
+
+  @include responsive('large') {
     grid-row: 4 / 6;
     grid-column: 1 / 3;
   }
