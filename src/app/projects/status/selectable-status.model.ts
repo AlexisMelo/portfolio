@@ -1,17 +1,17 @@
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
-import { StatusValue } from './status.model';
+import { Status, StatusValue } from './status.model';
 
 /**
- * Permet de rendre les statut "selectionnable" autrement que par leur nom
+ * Selectable status for select lists
  */
 export interface SelectableStatus extends SelectableItem {
   /**
-   * Identifiant associé au statut
+   * Id for the status
    */
-  id: number;
+  id: Status;
 
   /**
-   * Label du statut, en toutes lettres. Par exemple 'Terminé'
+   * Label for the status
    */
   label: StatusValue;
 }

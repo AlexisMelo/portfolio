@@ -12,7 +12,6 @@ import { Skill } from '../../skills/skill.model';
 import { Project } from '../project.model';
 import { SelectableStatus } from '../status/selectable-status.model';
 import {
-  getStatusIdByKey,
   getStatusKeyByValue,
   getStatusValueByKey,
   Status,
@@ -135,7 +134,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       .then(projects => (this.projects = projects));
 
     const allStatuses: Array<SelectableStatus> = statusesKeys.map(key => ({
-      id: getStatusIdByKey(key),
+      id: key,
       label: getStatusValueByKey(key),
     }));
 
