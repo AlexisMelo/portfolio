@@ -32,8 +32,6 @@ export class ProjectNameHeaderComponent extends GridItemDirective {
    * Bind le statut du projet à une classe
    */
   @HostBinding('class') get projectStatus() {
-    return this.kebabCasePipe.transform(
-      this.statusPipe.transform(this.project)
-    );
+    return this.statusPipe.transform(this.project);
   }
 }

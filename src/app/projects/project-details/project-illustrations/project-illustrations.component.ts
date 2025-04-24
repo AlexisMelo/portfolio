@@ -93,8 +93,6 @@ export class ProjectIllustrationsComponent
 
     const totalSlides = this.illustrationsSorted.length;
 
-    console.log('next slide : ', index);
-
     if (index >= totalSlides) {
       this.currentSlide = 0;
     } else if (index < 0) {
@@ -105,8 +103,6 @@ export class ProjectIllustrationsComponent
 
     const carouselItems =
       this.elementRef.nativeElement.getElementsByClassName('carousel-item');
-
-    console.log(carouselItems);
 
     if (!carouselItems) return;
 

@@ -59,25 +59,25 @@
   --ongoing-background: var(--grid-item-default-bg);
 
   //project-details
-  --project-details-skills-recap-bg-termine: var(--green-250);
-  --project-details-skills-recap-bg-en-cours: var(--blue);
-  --project-details-skills-recap-bg-abandonne: var(--gray-500);
+  --project-details-skills-recap-bg-completed: var(--green-250);
+  --project-details-skills-recap-bg-ongoing: var(--blue);
+  --project-details-skills-recap-bg-abandoned: var(--gray-500);
 
   //project-duration
-  --project-duration-termine: var(--green-250);
-  --project-duration-en-cours: var(--blue);
-  --project-duration-abandonne: var(--gray-400);
+  --project-duration-completed: var(--green-250);
+  --project-duration-ongoing: var(--blue);
+  --project-duration-abandoned: var(--gray-400);
 
   //project-item
   --project-item-skill-background: white;
 
   //project-name-header
-  --project-name-header-termine-background: var(--green-250);
-  --project-name-header-termine-color: white;
-  --project-name-header-abandonne-background: var(--gray-500);
-  --project-name-header-abandonne-color: white;
-  --project-name-header-en-cours-background: var(--blue);
-  --project-name-header-en-cours-color: white;
+  --project-name-header-completed-background: var(--green-250);
+  --project-name-header-completed-color: white;
+  --project-name-header-abandoned-background: var(--gray-500);
+  --project-name-header-abandoned-color: white;
+  --project-name-header-ongoing-background: var(--blue);
+  --project-name-header-ongoing-color: white;
 
   //projects
   --projects-1-bg: var(--blue);

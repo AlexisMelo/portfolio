@@ -1,12 +1,12 @@
-<h2 [ngClass]="project | status | kebabCase">
+<h2 [ngClass]="project | status">
   @switch (project | status) {
-    @case ('Abandonné') {
+    @case ('abandoned') {
       <span>Abandonné</span> après
     }
-    @case ('En cours') {
+    @case ('ongoing') {
       <span>En cours</span> depuis
     }
-    @case ('Terminé') {
+    @case ('completed') {
       <span>Terminé</span> en
     }
   }
@@ -14,7 +14,7 @@
 </h2>
 
 <div class="g-paragraph g-grid-item-main-text">
-  <div class="frise" [ngClass]="project | status | kebabCase">
+  <div class="frise" [ngClass]="project | status">
     <div class="start-date-year">{{ project.start_date | date: 'yyyy' }}</div>
     <div class="start-date-month">{{ project.start_date | date: 'MMMM' }}</div>
     <div class="end-date-year">{{ project.end_date | date: 'yyyy' }}</div>
@@ -25,13 +25,13 @@
     <div class="icon-container">
       <mat-icon>
         @switch (project | status) {
-          @case ('Abandonné') {
+          @case ('abandoned') {
             delete
           }
-          @case ('En cours') {
+          @case ('ongoing') {
             precision_manufacturing
           }
-          @case ('Terminé') {
+          @case ('completed') {
             check
           }
         }

@@ -20,9 +20,7 @@
       <app-skills-recap
         [skills]="project.skills"
         [recapBackgroundColor]="
-          'var(--project-details-skills-recap-bg-' +
-          (project | status | kebabCase) +
-          ')'
+          'var(--project-details-skills-recap-bg-' + (project | status) + ')'
         "></app-skills-recap>
     }
   </div>

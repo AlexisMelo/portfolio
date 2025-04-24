@@ -1,13 +1,12 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, inject, Input, LOCALE_ID } from '@angular/core';
+import { Component, Input, LOCALE_ID } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentService } from 'src/app/shared/content.service';
-import { DotColor } from 'src/app/shared/dot/dot-color.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 import { DurationPipe } from '../../duration.pipe';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
-import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 
 @Component({
   selector: 'app-project-duration',
@@ -39,23 +38,4 @@ export class ProjectDurationComponent extends GridItemDirective {
    * Projet à afficher
    */
   @Input({ required: true }) project!: Project;
-
-  /**
-   * Obtient le statut d'un projet
-   */
-  private statusPipe = inject(StatusPipe);
-
-  /**
-   * Couleur du point
-   */
-  get dotColor(): DotColor {
-    switch (this.statusPipe.transform(this.project)) {
-      case 'Abandonné':
-        return 'red';
-      case 'En cours':
-        return 'orange';
-      case 'Terminé':
-        return 'green';
-    }
-  }
 }

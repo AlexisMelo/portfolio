@@ -2,14 +2,23 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
+import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
+import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 import { InputComponent } from 'src/app/shared/input/input.component';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from '../../skills/skill.model';
 import { Project } from '../project.model';
-import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
+import { SelectableStatus } from '../status/selectable-status.model';
+import {
+  getStatusIdByKey,
+  getStatusKeyByValue,
+  getStatusValueByKey,
+  Status,
+  statusesKeys,
+} from '../status/status.model';
+import { StatusPipe } from '../status/status.pipe';
 
 @Component({
   selector: 'app-archives',
@@ -17,13 +26,35 @@ import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chi
   imports: [InputComponent, ReactiveFormsModule, FilterChipComponent],
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.scss',
-  providers: [IsSelectedPipe],
+  providers: [IsSelectedPipe, StatusPipe],
 })
 export class ArchivesComponent implements OnInit, OnDestroy {
   /**
    * Liste des projets réalisés
    */
   private projects: Array<Project> = [];
+
+  /**
+   * Projets à afficher
+   */
+  get selectedProjects() {
+    return this.projects.filter(
+      p =>
+        this.isSelectedPipe.transform(
+          this.selectedContexts,
+          p.project_context
+        ) &&
+        ((p.skills.length === 0 &&
+          this.selectedSkills.length === this.skills.length) ||
+          this.selectedSkills.some(s =>
+            this.isSelectedPipe.transform(p.skills, s)
+          )) &&
+        this.selectedStatuses
+          .map(s => s.label)
+          .includes(getStatusValueByKey(this.statusPipe.transform(p))) &&
+        (!this.filter || (this.filter && this.projectMatchesFilter(p)))
+    );
+  }
 
   /**
    * Liste des contextes
@@ -46,6 +77,16 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   public selectedSkills: Array<Skill> = [];
 
   /**
+   * Liste des status existant
+   */
+  public statuses: Array<SelectableStatus> = [];
+
+  /**
+   * Status sélectionnés
+   */
+  public selectedStatuses: Array<SelectableStatus> = [];
+
+  /**
    * Gestion de la base de donnée
    */
   private supabaseService = inject(SupabaseService);
@@ -54,6 +95,11 @@ export class ArchivesComponent implements OnInit, OnDestroy {
    * Est-ce qu'un élément est sélectionné
    */
   private isSelectedPipe = inject(IsSelectedPipe);
+
+  /**
+   * Obtient le statut d'un projet
+   */
+  private statusPipe = inject(StatusPipe);
 
   /**
    * Gestion de la route actuelle
@@ -87,6 +133,25 @@ export class ArchivesComponent implements OnInit, OnDestroy {
     this.supabaseService
       .getProjects()
       .then(projects => (this.projects = projects));
+
+    const allStatuses: Array<SelectableStatus> = statusesKeys.map(key => ({
+      id: getStatusIdByKey(key),
+      label: getStatusValueByKey(key),
+    }));
+
+    this.statuses = allStatuses;
+    this.selectedStatuses = allStatuses;
+
+    this.route.queryParamMap.pipe(first()).subscribe(params => {
+      const statuses = params.get('status');
+      if (!statuses) return;
+      const preselectedStatuses = statuses.split(',').map(s => s as Status);
+      this.updateSelectedStatuses(
+        this.statuses.filter(s =>
+          preselectedStatuses.includes(getStatusKeyByValue(s.label))
+        )
+      );
+    });
 
     this.supabaseService.getContexts().then(contexts => {
       this.contexts = contexts;
@@ -174,29 +239,6 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sélectionne / Déselectionne un skill
-   * @param skill
-   * @returns
-   */
-  public toggleSkill(skill: Skill) {
-    //Si tous les skills sont sélectionnés, on veut filtrer sur celui cliqué uniquement
-    if (this.selectedSkills.length === this.skills.length) {
-      this.updateSelectedSkills([skill]);
-      return;
-    }
-
-    if (this.isSelectedPipe.transform(this.selectedSkills, skill)) {
-      this.updateSelectedSkills(
-        this.selectedSkills.filter(i => i.id !== skill.id)
-      );
-      return;
-    }
-
-    //Si non sélectionné, sélection
-    this.updateSelectedSkills([...this.selectedSkills, skill]);
-  }
-
-  /**
    * Met à jour la liste des skills sélectionnés
    * @param skills
    */
@@ -217,6 +259,28 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Met à jour la liste des statut sélectionnés
+   * @param status
+   */
+  private updateSelectedStatuses(status: Array<SelectableStatus>) {
+    this.selectedStatuses = status;
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        status:
+          this.selectedStatuses.length === this.statuses.length ||
+          this.selectedStatuses.length === 0
+            ? undefined
+            : this.selectedStatuses
+                .map(s => getStatusKeyByValue(s.label))
+                .join(','),
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  /**
    * Sélectionne tous les contextes
    */
   selectAllContexts() {
@@ -231,22 +295,10 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Projets à afficher
+   * Sélectionne tous les statuts
    */
-  get selectedProjects() {
-    return this.projects.filter(
-      p =>
-        this.isSelectedPipe.transform(
-          this.selectedContexts,
-          p.project_context
-        ) &&
-        ((p.skills.length === 0 &&
-          this.selectedSkills.length === this.skills.length) ||
-          this.selectedSkills.some(s =>
-            this.isSelectedPipe.transform(p.skills, s)
-          )) &&
-        (!this.filter || (this.filter && this.projectMatchesFilter(p)))
-    );
+  selectAllStatus() {
+    this.updateSelectedStatuses([...this.statuses]);
   }
 
   /**
@@ -295,5 +347,17 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       return;
     }
     this.updateSelectedSkills([option as Skill]);
+  }
+
+  /**
+   * Sélectionne un statut en particulier
+   * @param option
+   */
+  public selectStatus(option: SelectableItem) {
+    if (option.id === -1) {
+      this.selectAllStatus();
+      return;
+    }
+    this.updateSelectedStatuses([option as SelectableStatus]);
   }
 }

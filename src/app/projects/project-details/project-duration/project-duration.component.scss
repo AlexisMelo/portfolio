@@ -29,16 +29,16 @@ $bar-animation-duration: 2s;
 }
 
 h2 {
-  &.termine span {
-    color: var(--project-duration-termine);
+  &.completed span {
+    color: var(--project-duration-completed);
   }
 
-  &.en-cours span {
-    color: var(--project-duration-en-cours);
+  &.ongoing span {
+    color: var(--project-duration-ongoing);
   }
 
-  &.abandonne span {
-    color: var(--project-duration-abandonne);
+  &.abandoned span {
+    color: var(--project-duration-abandoned);
   }
 }
 
@@ -58,39 +58,39 @@ h2 {
     column-gap: 26px;
   }
 
-  &.termine {
+  &.completed {
     --bar-width: 100%;
 
     .bar {
-      background-color: var(--project-duration-termine);
+      background-color: var(--project-duration-completed);
     }
 
     mat-icon {
-      color: var(--project-duration-termine);
+      color: var(--project-duration-completed);
     }
   }
 
-  &.abandonne {
+  &.abandoned {
     --bar-width: 75%;
 
     .bar {
-      background-color: var(--project-duration-abandonne);
+      background-color: var(--project-duration-abandoned);
     }
 
     mat-icon {
-      color: var(--project-duration-abandonne);
+      color: var(--project-duration-abandoned);
     }
   }
 
-  &.en-cours {
+  &.ongoing {
     --bar-width: 75%;
 
     .bar {
-      background-color: var(--project-duration-en-cours);
+      background-color: var(--project-duration-ongoing);
     }
 
     mat-icon {
-      color: var(--project-duration-en-cours);
+      color: var(--project-duration-ongoing);
     }
   }
 

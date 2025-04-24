@@ -8,8 +8,8 @@ import { Status } from './status.model';
 })
 export class StatusPipe implements PipeTransform {
   transform(project: Project): Status {
-    if (project.abandoned) return 'Abandonné';
-    if (!project.end_date) return 'En cours';
-    return 'Terminé';
+    if (project.abandoned) return 'abandoned';
+    if (!project.end_date) return 'ongoing';
+    return 'completed';
   }
 }

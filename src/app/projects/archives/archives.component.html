@@ -23,6 +23,15 @@
     header="Sélectionnez une compétence">
     Compétence
   </app-filter-chip>
+  <app-filter-chip
+    [active]="selectedStatuses.length < statuses.length"
+    [options]="statuses"
+    [selectedOptions]="selectedStatuses"
+    (selected)="selectStatus($event)"
+    [large]="true"
+    header="Sélectionnez un statut">
+    Statut
+  </app-filter-chip>
 </div>
 
 <div class="projects g-container">
