@@ -50,35 +50,3 @@ h2 {
 .g-grid-item-main-text {
   max-width: 55%;
 }
-
-.skill-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 4px;
-}
-
-.skill {
-  line-height: normal;
-  background-color: var(--project-item-skill-background);
-  padding: 2px 4px;
-  border-radius: 15px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 0.7rem;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  @include responsive('medium') {
-    padding: 2px 4px;
-    font-size: 0.7rem;
-  }
-
-  @include responsive('large') {
-    padding: 4px 6px;
-    font-size: 0.8rem;
-  }
-}

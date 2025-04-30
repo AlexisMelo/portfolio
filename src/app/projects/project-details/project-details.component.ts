@@ -74,15 +74,23 @@ export class ProjectDetailsComponent {
         if (project === null) return;
         this.project = project;
 
-        if (project.skills.length < 1) return;
+        if (project.project_skills.length < 1) return;
 
-        this.skillsGroupedByType = this.project.skills.reduce(
+        this.skillsGroupedByType = this.project.project_skills.reduce(
           (rv: { [key: string]: Array<Skill> }, x) => {
-            (rv[x.skill_type.label] = rv[x.skill_type.label] || []).push(x);
+            (rv[x.skill.skill_type.label] =
+              rv[x.skill.skill_type.label] || []).push(x.skill);
             return rv;
           },
           {}
         );
       });
+  }
+
+  /**
+   * Skills used in the project
+   */
+  public get skills() {
+    return this.project?.project_skills.map(s => s.skill) ?? [];
   }
 }

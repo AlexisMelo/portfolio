@@ -4,11 +4,17 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
 import { ProjectItem } from './project-item.model';
+import { ProjectItemSkillListComponent } from './project-item-skill-list/project-item-skill-list.component';
 
 @Component({
   selector: 'app-project-item',
   standalone: true,
-  imports: [RouterLink, ActionButtonComponent, RouterLink],
+  imports: [
+    RouterLink,
+    ActionButtonComponent,
+    RouterLink,
+    ProjectItemSkillListComponent,
+  ],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
@@ -28,7 +34,9 @@ export class ProjectItemComponent extends GridItemDirective {
    * Skills à afficher
    */
   get skills() {
-    return this.project.project_skills.filter(s => s.highlight);
+    return this.project.project_skills
+      .filter(s => s.highlight)
+      .map(s => s.skill);
   }
 
   /**

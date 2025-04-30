@@ -1,7 +1,17 @@
+@import '../../../../styles/responsive.scss';
+
 .numerator,
 .denominator {
-  font-size: 5.5rem;
+  font-size: 4rem;
   font-family: var(--title-font-family);
+
+  @include responsive('medium') {
+    font-size: 4rem;
+  }
+
+  @include responsive('large') {
+    font-size: 5.5rem;
+  }
 }
 
 :host {
@@ -17,8 +27,16 @@
 }
 
 hr {
-  width: 75%;
+  width: 60%;
   border-radius: 2px;
-  border-top: 4px solid var(--gray-100);
+  border-top: 2px solid var(--gray-100);
   margin: 0;
+
+  @include responsive('medium') {
+    border-top-width: 2px;
+  }
+
+  @include responsive('large') {
+    border-top-width: 4px;
+  }
 }

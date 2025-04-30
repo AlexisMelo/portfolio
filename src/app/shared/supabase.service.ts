@@ -17,6 +17,28 @@ export class SupabaseService {
   public client: SupabaseClient;
 
   /**
+   * Request to get a project with all its details
+   */
+  private readonly PROJECT_REQUEST = `*,
+        roles:role(*), 
+        illustrations:project_illustration(*),
+        project_type(*),
+        coworkers:project_coworker(
+          *, 
+          coworker(*)
+        ), 
+        project_context:context(*), 
+        project_skills:project_skill(
+          *,
+          skill(
+            *,
+            skill_type(*), 
+            projects:project(*),
+            skill_field(*)
+          )
+        )`;
+
+  /**
    * Constructeur
    */
   constructor() {
@@ -48,11 +70,8 @@ export class SupabaseService {
   public async getProjects(): Promise<Array<Project>> {
     const { data, error } = await this.client
       .from('project')
-      .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
-      )
-      .order('end_date', { ascending: false })
-      .order('main', { referencedTable: 'skill', ascending: false });
+      .select(this.PROJECT_REQUEST)
+      .order('end_date', { ascending: false });
 
     if (error) return Promise.reject(error);
     return data as Array<Project>;
@@ -81,12 +100,8 @@ export class SupabaseService {
   public async getProjectByUrl(url: string): Promise<Project> {
     const { data, error } = await this.client
       .from('project')
-      .select(
-        '*, roles:role(*), illustrations:project_illustration(*), project_type(*), coworkers:project_coworker(*, coworker(*)), project_context:context(*), skills:skill(*, skill_type(*), projects:project(*), skill_field(*))'
-      )
+      .select(this.PROJECT_REQUEST)
       .eq('url', url)
-      .order('main', { referencedTable: 'skill', ascending: false })
-      .order('label', { referencedTable: 'skill' })
       .limit(1)
       .single<Project>();
 

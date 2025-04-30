@@ -1,6 +1,11 @@
 <h2>{{ project.label }}</h2>
 
-<div class="skill-status">
+<div class="g-grid-item-main-text">
+  <app-project-item-skill-list
+    [skills]="highlightedSkills"></app-project-item-skill-list>
+</div>
+
+<div class="skill-status" [class]="project | status">
   <mat-icon>
     @switch (project | status) {
       @case ('abandoned') {

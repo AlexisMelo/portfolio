@@ -8,6 +8,7 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
 import { SkillSectionDescriptionComponent } from '../../skills/skill-section-description/skill-section-description.component';
 import { SkillSectionHeaderComponent } from '../../skills/skill-section-header/skill-section-header.component';
+import { ProjectCondensedItemComponent } from '../project-item/project-item-condensed/project-item-condensed.component';
 import { Project } from '../project.model';
 import { SelectableStatus } from '../status/selectable-status.model';
 import {
@@ -17,7 +18,6 @@ import {
   statusesKeys,
 } from '../status/status.model';
 import { StatusPipe } from '../status/status.pipe';
-import { ProjectCondensedItemComponent } from './project-condensed-item/project-condensed-item.component';
 import { ProjectCounterComponent } from './project-counter/project-counter.component';
 import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
 import { StatusFilteringComponent } from './status-filtering/status-filtering.component';
@@ -113,10 +113,13 @@ export class ArchivesComponent implements OnInit {
           this.selectedContexts,
           p.project_context
         ) &&
-        ((p.skills.length === 0 &&
+        ((p.project_skills.length === 0 &&
           this.selectedSkills.length === this.skills.length) ||
           this.selectedSkills.some(s =>
-            this.isSelectedPipe.transform(p.skills, s)
+            this.isSelectedPipe.transform(
+              p.project_skills.map(s => s.skill),
+              s
+            )
           )) &&
         this.selectedStatuses
           .map(s => s.label)
@@ -222,8 +225,8 @@ export class ArchivesComponent implements OnInit {
       return true;
     if (project.description?.toLowerCase().includes(filter)) return true;
     if (
-      project.skills
-        .map(s => s.label.toLowerCase())
+      project.project_skills
+        .map(s => s.skill.label.toLowerCase())
         .find(s => s.includes(filter)) !== undefined
     )
       return true;

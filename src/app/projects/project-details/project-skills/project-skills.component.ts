@@ -30,14 +30,13 @@ export class ProjectSkillsComponent extends GridItemDirective {
    * Technologies avec lesquelles j'ai travaillées, groupées par type
    */
   get workedWith(): { [key: string]: Skill[] } {
-    if (!this.project.skills) return {};
-    return this.project.skills.reduce(
-      (group: { [key: string]: Skill[] }, item: Skill) => {
+    if (!this.project.project_skills) return {};
+    return this.project.project_skills
+      .map(s => s.skill)
+      .reduce((group: { [key: string]: Skill[] }, item: Skill) => {
         group[item.skill_type.label] = group[item.skill_type.label] || [];
         group[item.skill_type.label].push(item);
         return group;
-      },
-      {}
-    );
+      }, {});
   }
 }

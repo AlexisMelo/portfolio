@@ -16,8 +16,8 @@
     <app-status-filtering></app-status-filtering>
 
     @for (project of selectedProjects; track project.id) {
-      <app-project-condensed-item
-        [project]="project"></app-project-condensed-item>
+      <app-project-item-condensed
+        [project]="project"></app-project-item-condensed>
     }
   </div>
 </div>

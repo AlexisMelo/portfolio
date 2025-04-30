@@ -5,6 +5,10 @@ interface ProjectCoworker extends Tables<'project_coworker'> {
   coworker: Tables<'coworker'>;
 }
 
+interface ProjectSkill extends Tables<'project_skill'> {
+  skill: Skill;
+}
+
 /**
  * Représente un projet
  */
@@ -20,9 +24,9 @@ export interface Project extends Tables<'project'> {
   project_context: Tables<'context'>;
 
   /**
-   * Skills utilisés dans le projet
+   * Skills used in the project
    */
-  skills: Array<Skill>;
+  project_skills: Array<ProjectSkill>;
 
   /**
    * Collègues sur le projet

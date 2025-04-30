@@ -73,7 +73,16 @@
   --project-duration-abandoned: var(--gray-400);
 
   //project-item
-  --project-item-skill-background: var(--gray-500);
+  --project-item-completed-background: var(--gray-525);
+  --project-item-completed-color: var(--green-250);
+  --project-item-abandoned-background: var(--gray-525);
+  --project-item-abandoned-color: var(--gray-300);
+  --project-item-ongoing-background: var(--gray-525);
+  --project-item-ongoing-color: var(--blue);
+
+  //project-item-skill-list
+  --project-item-skill-list-skill-background: var(--gray-500);
+  --project-item-skill-list-skill-border: var(--gray-500);
 
   //project-name-header
   --project-name-header-completed-background: var(--gray-525);

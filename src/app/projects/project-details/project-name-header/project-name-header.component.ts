@@ -2,7 +2,6 @@ import { Component, HostBinding, inject, Input } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
-import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 
 @Component({
   selector: 'app-project-name-header',
@@ -10,7 +9,7 @@ import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
   imports: [],
   templateUrl: './project-name-header.component.html',
   styleUrl: './project-name-header.component.scss',
-  providers: [StatusPipe, KebabCasePipe],
+  providers: [StatusPipe],
 })
 export class ProjectNameHeaderComponent extends GridItemDirective {
   /**
@@ -22,11 +21,6 @@ export class ProjectNameHeaderComponent extends GridItemDirective {
    * Obtient le statut d'un projet
    */
   private statusPipe = inject(StatusPipe);
-
-  /**
-   * Transforme une chaine de caractère en kebabcase
-   */
-  private kebabCasePipe = inject(KebabCasePipe);
 
   /**
    * Bind le statut du projet à une classe
