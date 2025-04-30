@@ -1,0 +1,24 @@
+.numerator,
+.denominator {
+  font-size: 5.5rem;
+  font-family: var(--title-font-family);
+}
+
+:host {
+  flex-direction: column;
+}
+
+.numerator {
+  color: var(--styles-title-color);
+}
+
+.denominator {
+  color: var(--gray-200);
+}
+
+hr {
+  width: 75%;
+  border-radius: 2px;
+  border-top: 4px solid var(--gray-100);
+  margin: 0;
+}

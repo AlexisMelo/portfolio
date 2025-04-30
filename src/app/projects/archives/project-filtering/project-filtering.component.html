@@ -1,0 +1,30 @@
+<h2>Trouver un projet</h2>
+
+<div class="searchbar">
+  <input
+    type="text"
+    placeholder="Trouver un projet..."
+    [formControl]="filterFormControl" />
+</div>
+
+<div class="selects">
+  <app-filter-chip
+    [active]="selectedContexts.length < contexts.length"
+    [options]="contexts"
+    [selectedOptions]="selectedContexts"
+    (selected)="selectContext($event)"
+    [large]="true"
+    header="Sélectionnez un contexte">
+    Contexte
+  </app-filter-chip>
+
+  <app-filter-chip
+    [active]="selectedSkills.length < skills.length"
+    [options]="skills"
+    [selectedOptions]="selectedSkills"
+    (selected)="selectSkill($event)"
+    [large]="true"
+    header="Sélectionnez une compétence">
+    Compétence
+  </app-filter-chip>
+</div>

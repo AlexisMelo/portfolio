@@ -1,14 +1,13 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
+import { first } from 'rxjs';
 import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
-import { InputComponent } from 'src/app/shared/input/input.component';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { Skill } from '../../skills/skill.model';
+import { Skill } from 'src/app/skills/skill.model';
+import { SkillSectionDescriptionComponent } from '../../skills/skill-section-description/skill-section-description.component';
+import { SkillSectionHeaderComponent } from '../../skills/skill-section-header/skill-section-header.component';
 import { Project } from '../project.model';
 import { SelectableStatus } from '../status/selectable-status.model';
 import {
@@ -18,73 +17,27 @@ import {
   statusesKeys,
 } from '../status/status.model';
 import { StatusPipe } from '../status/status.pipe';
+import { ProjectCondensedItemComponent } from './project-condensed-item/project-condensed-item.component';
+import { ProjectCounterComponent } from './project-counter/project-counter.component';
+import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
+import { StatusFilteringComponent } from './status-filtering/status-filtering.component';
 
 @Component({
   selector: 'app-archives',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, FilterChipComponent],
+  imports: [
+    SkillSectionHeaderComponent,
+    SkillSectionDescriptionComponent,
+    ProjectCounterComponent,
+    ProjectCondensedItemComponent,
+    ProjectFilteringComponent,
+    StatusFilteringComponent,
+  ],
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.scss',
   providers: [IsSelectedPipe, StatusPipe],
 })
-export class ArchivesComponent implements OnInit, OnDestroy {
-  /**
-   * Liste des projets réalisés
-   */
-  private projects: Array<Project> = [];
-
-  /**
-   * Projets à afficher
-   */
-  get selectedProjects() {
-    return this.projects.filter(
-      p =>
-        this.isSelectedPipe.transform(
-          this.selectedContexts,
-          p.project_context
-        ) &&
-        ((p.skills.length === 0 &&
-          this.selectedSkills.length === this.skills.length) ||
-          this.selectedSkills.some(s =>
-            this.isSelectedPipe.transform(p.skills, s)
-          )) &&
-        this.selectedStatuses
-          .map(s => s.label)
-          .includes(getStatusValueByKey(this.statusPipe.transform(p))) &&
-        (!this.filter || (this.filter && this.projectMatchesFilter(p)))
-    );
-  }
-
-  /**
-   * Liste des contextes
-   */
-  public contexts: Array<ContextWithProjects> = [];
-
-  /**
-   * Contextes sélectionnés
-   */
-  public selectedContexts: Array<ContextWithProjects> = [];
-
-  /**
-   * Liste des skills
-   */
-  public skills: Array<Skill> = [];
-
-  /**
-   * Skills sélectionnés
-   */
-  public selectedSkills: Array<Skill> = [];
-
-  /**
-   * Liste des status existant
-   */
-  public statuses: Array<SelectableStatus> = [];
-
-  /**
-   * Status sélectionnés
-   */
-  public selectedStatuses: Array<SelectableStatus> = [];
-
+export class ArchivesComponent implements OnInit {
   /**
    * Gestion de la base de donnée
    */
@@ -111,19 +64,66 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   private router = inject(Router);
 
   /**
-   * FormControl pour la recherche par mots clés
+   * List of all projects
    */
-  public filterFormControl = new FormControl('');
+  public projects: Array<Project> = [];
 
   /**
-   * Souscription aux changements de texte
+   * List of all contexts
    */
-  private filterSubscription?: Subscription;
+  public contexts: Array<ContextWithProjects> = [];
 
   /**
-   * Filtre pour retrouver un projet
+   * List of all skills
+   */
+  public skills: Array<Skill> = [];
+
+  /**
+   * List of all statuses
+   */
+  public statuses: Array<SelectableStatus> = [];
+
+  /**
+   * List of selected contexts
+   */
+  private selectedContexts: Array<ContextWithProjects> = [];
+
+  /**
+   * List of selected skills
+   */
+  public selectedSkills: Array<Skill> = [];
+
+  /**
+   * Status sélectionnés
+   */
+  public selectedStatuses: Array<SelectableStatus> = [];
+
+  /**
+   * Text filter for projects
    */
   private filter: string | null = null;
+
+  /**
+   * List of selected projects
+   */
+  get selectedProjects() {
+    return this.projects.filter(
+      p =>
+        this.isSelectedPipe.transform(
+          this.selectedContexts,
+          p.project_context
+        ) &&
+        ((p.skills.length === 0 &&
+          this.selectedSkills.length === this.skills.length) ||
+          this.selectedSkills.some(s =>
+            this.isSelectedPipe.transform(p.skills, s)
+          )) &&
+        this.selectedStatuses
+          .map(s => s.label)
+          .includes(getStatusValueByKey(this.statusPipe.transform(p))) &&
+        (!this.filter || (this.filter && this.projectMatchesFilter(p)))
+    );
+  }
 
   /**
    * Implémentation de OnInit
@@ -158,10 +158,10 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       this.route.queryParamMap.pipe(first()).subscribe(params => {
         const contexts = params.get('contexts');
         if (!contexts) return;
-        const preselectedContexts = contexts.split(',').map(c => Number(c));
-        this.updateSelectedContexts(
-          this.contexts.filter(c => preselectedContexts.includes(c.id))
-        );
+        // const preselectedContexts = contexts.split(',').map(c => Number(c));
+        // this.updateSelectedContexts(
+        //   this.contexts.filter(c => preselectedContexts.includes(c.id))
+        // );
       });
     });
 
@@ -171,89 +171,11 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       this.route.queryParamMap.pipe(first()).subscribe(params => {
         const skills = params.get('skills');
         if (!skills) return;
-        const preselectedSkills = skills.split(',').map(s => Number(s));
-        this.updateSelectedSkills(
-          this.skills.filter(s => preselectedSkills.includes(s.id))
-        );
+        // const preselectedSkills = skills.split(',').map(s => Number(s));
+        // this.updateSelectedSkills(
+        //   this.skills.filter(s => preselectedSkills.includes(s.id))
+        // );
       });
-    });
-
-    this.filterSubscription = this.filterFormControl.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe({
-        next: value => {
-          this.filter = value;
-        },
-      });
-  }
-
-  /**
-   * Implémentation de OnDestroy
-   */
-  ngOnDestroy() {
-    this.filterSubscription?.unsubscribe();
-  }
-
-  /**
-   * Active/Désactive un contexte
-   * @param context
-   * @returns
-   */
-  toggleContext(context: ContextWithProjects) {
-    //Si tous les contextes sont sélectionnés, on veut filtrer sur celui cliqué uniquement
-    if (this.selectedContexts.length === this.contexts.length) {
-      this.updateSelectedContexts([context]);
-      return;
-    }
-
-    //Si il est déjà sélectionné, on le déselectionne
-    if (this.isSelectedPipe.transform(this.selectedContexts, context)) {
-      this.updateSelectedContexts(
-        this.selectedContexts.filter(i => i.id !== context.id)
-      );
-      return;
-    }
-
-    //Si non sélectionné, sélection
-    this.updateSelectedContexts([...this.selectedContexts, context]);
-  }
-
-  /**
-   * Met à jour la liste des contextes sélectionnés
-   * @param contexts
-   */
-  private updateSelectedContexts(contexts: Array<ContextWithProjects>) {
-    this.selectedContexts = contexts;
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        contexts:
-          this.selectedContexts.length === this.contexts.length ||
-          this.selectedContexts.length === 0
-            ? undefined
-            : this.selectedContexts.map(c => c.id).join(','),
-      },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-  /**
-   * Met à jour la liste des skills sélectionnés
-   * @param skills
-   */
-  private updateSelectedSkills(skills: Array<Skill>) {
-    this.selectedSkills = skills;
-
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        skills:
-          this.selectedSkills.length === this.skills.length ||
-          this.selectedSkills.length === 0
-            ? undefined
-            : this.selectedSkills.map(s => s.id).join(','),
-      },
-      queryParamsHandling: 'merge',
     });
   }
 
@@ -277,20 +199,6 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       },
       queryParamsHandling: 'merge',
     });
-  }
-
-  /**
-   * Sélectionne tous les contextes
-   */
-  selectAllContexts() {
-    this.updateSelectedContexts([...this.contexts]);
-  }
-
-  /**
-   * Sélectionne tous les skills
-   */
-  selectAllSkills() {
-    this.updateSelectedSkills([...this.skills]);
   }
 
   /**
@@ -321,31 +229,6 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       return true;
 
     return false;
-  }
-
-  /**
-   * Sélectionne un contexte particulier
-   * @param option
-   */
-  public selectContext(option: SelectableItem) {
-    if (option.id === -1) {
-      this.selectAllContexts();
-      return;
-    }
-    this.updateSelectedContexts([option as ContextWithProjects]);
-  }
-
-  /**
-   * Sélectionne un skill particulier
-   * @param option
-   * @returns
-   */
-  public selectSkill(option: SelectableItem) {
-    if (option.id === -1) {
-      this.selectAllSkills();
-      return;
-    }
-    this.updateSelectedSkills([option as Skill]);
   }
 
   /**

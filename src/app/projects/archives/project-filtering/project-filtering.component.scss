@@ -1,0 +1,5 @@
+@import '../../../shared/grid/grid-item.scss';
+
+:host {
+  @include grid-1x2;
+}

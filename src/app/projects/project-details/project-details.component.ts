@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { GithubComponent } from 'src/app/contact/github/github.component';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
-import { Project } from '../project.model';
 import { Skill } from '../../skills/skill.model';
+import { Project } from '../project.model';
+import { StatusPipe } from '../status/status.pipe';
 import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
@@ -14,8 +15,6 @@ import { ProjectIllustrationsComponent } from './project-illustrations/project-i
 import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
-import { StatusPipe } from '../status/status.pipe';
-import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
 
 @Component({
   selector: 'app-project-details',
@@ -33,7 +32,6 @@ import { KebabCasePipe } from 'src/app/shared/pipes/kebab-case.pipe';
     ProjectNameHeaderComponent,
     SkillsRecapComponent,
     StatusPipe,
-    KebabCasePipe,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
