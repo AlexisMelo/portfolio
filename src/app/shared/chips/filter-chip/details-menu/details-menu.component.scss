@@ -9,4 +9,11 @@
 
 .header {
   padding: 8px 8px 8px 1rem;
+  border-bottom: 1px solid var(--filter-chip-border-color);
+}
+
+.options {
+  max-height: 200px;
+  overflow: overlay;
+  scrollbar-color: var(--gray-400) transparent;
 }

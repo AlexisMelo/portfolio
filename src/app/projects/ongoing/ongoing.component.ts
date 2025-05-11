@@ -30,6 +30,9 @@ export class OngoingComponent extends GridItemDirective implements OnInit {
    */
   private supabaseService = inject(SupabaseService);
 
+  /**
+   * OnInit implementation
+   */
   ngOnInit() {
     this.supabaseService.countOngoingProjects().then(c => (this.count = c));
   }

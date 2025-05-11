@@ -1,17 +1,34 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EffectRef,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
 import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
 import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
+import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
+import { ArchivesService } from '../archives.service';
+import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-project-filtering',
   standalone: true,
-  imports: [FilterChipComponent, ReactiveFormsModule],
+  imports: [
+    FilterChipComponent,
+    ReactiveFormsModule,
+    MatIconModule,
+    ResetButtonComponent,
+  ],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
@@ -21,34 +38,25 @@ export class ProjectFilteringComponent
   implements OnInit, OnDestroy
 {
   /**
-   * Liste des contextes
+   * Handle data related to archives
    */
-  public contexts: Array<ContextWithProjects> = [];
+  public archivesService = inject(ArchivesService);
 
   /**
-   * Contextes sélectionnés
+   * Handle connection to the database
    */
-  public selectedContexts: Array<ContextWithProjects> = [];
+  public supabaseService = inject(SupabaseService);
 
   /**
-   * Liste des skills
+   * List of all skills
    */
-  public skills: Array<Skill> = [];
+  public allSkills: WritableSignal<Array<Skill> | null> = signal(null);
 
   /**
-   * Skills sélectionnés
+   * List of all contexts
    */
-  public selectedSkills: Array<Skill> = [];
-
-  /**
-   * Gestion de la route actuelle
-   */
-  private route = inject(ActivatedRoute);
-
-  /**
-   * Gestion du routeur
-   */
-  private router = inject(Router);
+  public allContexts: WritableSignal<Array<ContextWithProjects> | null> =
+    signal(null);
 
   /**
    * FormControl pour la recherche par mots clés
@@ -61,9 +69,19 @@ export class ProjectFilteringComponent
   private filterSubscription?: Subscription;
 
   /**
-   * Filtre pour retrouver un projet
+   * Get current route information
    */
-  private filter: string | null = null;
+  private route = inject(ActivatedRoute);
+
+  /**
+   * Handle routing
+   */
+  private router = inject(Router);
+
+  /**
+   * Handle contexts selection and route update
+   */
+  private contextsEffect?: EffectRef;
 
   /**
    * Implementation of OnInit
@@ -73,93 +91,118 @@ export class ProjectFilteringComponent
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: value => {
-          this.filter = value;
+          this.archivesService.filter.set(value);
         },
       });
-  }
 
-  /**
-   * Implémentation de OnDestroy
-   */
-  ngOnDestroy() {
-    this.filterSubscription?.unsubscribe();
-  }
+    this.supabaseService.getSkills().then(skills => {
+      this.allSkills.set(skills);
 
-  /**
-   * Met à jour la liste des contextes sélectionnés
-   * @param contexts
-   */
-  private updateSelectedContexts(contexts: Array<ContextWithProjects>) {
-    this.selectedContexts = contexts;
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        contexts:
-          this.selectedContexts.length === this.contexts.length ||
-          this.selectedContexts.length === 0
-            ? undefined
-            : this.selectedContexts.map(c => c.id).join(','),
-      },
-      queryParamsHandling: 'merge',
+      this.route.queryParamMap.pipe(first()).subscribe(params => {
+        const selectedSkillsIds = params.get('skills');
+
+        if (!selectedSkillsIds) return;
+
+        const selectedSkillsIdsArray = selectedSkillsIds
+          .split(',')
+          .map(c => Number(c));
+
+        this.archivesService.selectedSkills.set(
+          skills.filter(s => selectedSkillsIdsArray.includes(s.id))
+        );
+      });
+    });
+
+    this.supabaseService.getContexts().then(contexts => {
+      this.allContexts.set(contexts);
+
+      this.route.queryParamMap.pipe(first()).subscribe(params => {
+        const selectedContextsIds = params.get('contexts');
+
+        if (!selectedContextsIds) return;
+
+        const selectedContextsIdsArray = selectedContextsIds
+          .split(',')
+          .map(c => Number(c));
+
+        this.archivesService.selectedContexts.set(
+          contexts.filter(c => selectedContextsIdsArray.includes(c.id))
+        );
+      });
     });
   }
 
   /**
-   * Met à jour la liste des skills sélectionnés
-   * @param skills
+   * OnDestroy implenetation
    */
-  private updateSelectedSkills(skills: Array<Skill>) {
-    this.selectedSkills = skills;
+  ngOnDestroy() {
+    this.filterSubscription?.unsubscribe();
+    this.contextsEffect?.destroy();
+  }
+
+  /**
+   * Selects a context
+   */
+  public selectContext(option: SelectableItem | null) {
+    let selectedContext = null;
+
+    if (option && option.id !== -1) {
+      selectedContext = [option as ContextWithProjects];
+    }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        contexts:
+          selectedContext === null
+            ? undefined
+            : selectedContext.map(c => c.id).join(','),
+      },
+      queryParamsHandling: 'merge',
+    });
+
+    this.archivesService.selectedContexts.set(selectedContext);
+  }
+
+  /**
+   * Selects a skill
+   */
+  public selectSkill(option: SelectableItem | null) {
+    let selectedSkill = null;
+
+    if (option && option.id !== -1) {
+      selectedSkill = [option as Skill];
+    }
 
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
         skills:
-          this.selectedSkills.length === this.skills.length ||
-          this.selectedSkills.length === 0
+          selectedSkill === null
             ? undefined
-            : this.selectedSkills.map(s => s.id).join(','),
+            : selectedSkill.map(c => c.id).join(','),
       },
       queryParamsHandling: 'merge',
     });
+
+    this.archivesService.selectedSkills.set(selectedSkill);
   }
 
   /**
-   * Sélectionne tous les contextes
+   * Clear the selected skills, contexts, and keywords
    */
-  private selectAllContexts() {
-    this.updateSelectedContexts([...this.contexts]);
-  }
+  public clearFiltering() {
+    this.filterFormControl.setValue(null);
+    this.selectSkill(null);
+    this.selectContext(null);
 
-  /**
-   * Sélectionne tous les skills
-   */
-  private selectAllSkills() {
-    this.updateSelectedSkills([...this.skills]);
-  }
-
-  /**
-   * Sélectionne un contexte particulier
-   * @param option
-   */
-  public selectContext(option: SelectableItem) {
-    if (option.id === -1) {
-      this.selectAllContexts();
-      return;
-    }
-    this.updateSelectedContexts([option as ContextWithProjects]);
-  }
-
-  /**
-   * Sélectionne un skill particulier
-   * @param option
-   * @returns
-   */
-  public selectSkill(option: SelectableItem) {
-    if (option.id === -1) {
-      this.selectAllSkills();
-      return;
-    }
-    this.updateSelectedSkills([option as Skill]);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        skills: null,
+        contexts: null,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }

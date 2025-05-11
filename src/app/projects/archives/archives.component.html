@@ -7,15 +7,13 @@
         'Tous mes projets sont ici, triables selon vos critères ! Mes meilleurs projets et les moins bons forment, ensemble, le développeur que je suis aujourd’hui'
       "></app-skill-section-description>
 
-    <app-project-counter
-      [numerator]="selectedProjects.length"
-      [denominator]="projects.length"></app-project-counter>
+    <app-project-counter></app-project-counter>
 
     <app-project-filtering></app-project-filtering>
 
     <app-status-filtering></app-status-filtering>
 
-    @for (project of selectedProjects; track project.id) {
+    @for (project of archivesService.selectedProjects(); track project.id) {
       <app-project-item-condensed
         [project]="project"></app-project-item-condensed>
     }

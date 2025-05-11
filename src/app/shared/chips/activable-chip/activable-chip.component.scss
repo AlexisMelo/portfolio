@@ -2,6 +2,7 @@
 
 :host {
   cursor: pointer;
+  border-color: var(--action-button-border-color);
 
   span {
     transition-delay: 0.1s;

@@ -2,4 +2,56 @@
 
 :host {
   @include grid-1x2;
+  overflow: visible;
+}
+
+.selects {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+
+  @include responsive('large') {
+    gap: 6px;
+  }
+
+  app-filter-chip {
+    width: 50%;
+  }
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+
+  input {
+    border: none;
+    border-bottom: 1px solid var(--gray-050);
+    padding: 12px 0;
+    padding-left: 30px;
+    font-size: 1.1rem;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--gray-100);
+    }
+  }
+
+  mat-icon {
+    position: absolute;
+    color: var(--gray-100);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.active {
+      color: var(--gray-400);
+    }
+  }
 }

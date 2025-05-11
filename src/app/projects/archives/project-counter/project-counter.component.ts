@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { ArchivesService } from '../archives.service';
 
 @Component({
   selector: 'app-project-counter',
@@ -10,12 +11,7 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 })
 export class ProjectCounterComponent extends GridItemDirective {
   /**
-   * Number to show on top of the counter.
+   * Handle data related to archives
    */
-  @Input({ required: true }) numerator!: number;
-
-  /**
-   * Number to show on the bottom of the counter.
-   */
-  @Input({ required: true }) denominator!: number;
+  public archivesService = inject(ArchivesService);
 }

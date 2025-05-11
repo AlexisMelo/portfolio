@@ -1,5 +1,10 @@
 @import '../../../styles/responsive.scss';
 
+:host {
+  display: block;
+  min-height: 80vh;
+}
+
 .projects {
   display: grid;
   gap: 10px;
