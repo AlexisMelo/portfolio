@@ -1,9 +1,11 @@
 import { Directive, HostBinding, HostListener, inject } from '@angular/core';
 import { ThemeService } from '../theme.service';
+import { FadeInDirective } from './fade-in.directive';
 
 @Directive({
   selector: '[appGridItem]',
   standalone: true,
+  hostDirectives: [FadeInDirective],
 })
 export class GridItemDirective {
   /**

@@ -9,6 +9,7 @@ import { RangePipe } from 'src/app/shared/pipes/range.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
 import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-projects.model';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-projects-by-context',
@@ -19,6 +20,7 @@ import { ContextWithProjects } from 'src/app/landing-page/timeline/context-with-
     DatePipe,
     RangePipe,
     SlicePipe,
+    LoaderComponent,
   ],
   templateUrl: './projects-by-context.component.html',
   styleUrl: './projects-by-context.component.scss',

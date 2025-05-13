@@ -1,0 +1,69 @@
+@import '../../../styles/responsive.scss';
+
+//https://css-loaders.com/square-circle/
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  --box-size: 20px;
+  --loader-color: var(--gray-050);
+
+  @include responsive('medium') {
+    --box-size: 30px;
+  }
+
+  @include responsive('large') {
+    --box-size: 40px;
+  }
+}
+
+.loader {
+  width: calc(var(--box-size) * 2 + 5px);
+  aspect-ratio: 1;
+  display: grid;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  grid-area: 1/1;
+  width: var(--box-size); //size of the elements
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px var(--loader-color) inset; //top elements
+  filter: drop-shadow(
+    calc(var(--box-size) + 5px) calc(var(--box-size) + 5px) 0
+      var(--loader-color)
+  ); //bottom-right element
+  animation: l8 2s infinite alternate;
+}
+
+.loader:after {
+  margin: 0 0 0 auto;
+  filter: drop-shadow(
+    calc(-1 * (var(--box-size) + 5px)) calc(var(--box-size) + 5px) 0
+      var(--loader-color)
+  ); //bottom-left element
+  animation-delay: -1s;
+}
+
+@keyframes l8 {
+  0%,
+  10% {
+    border-radius: 0;
+  }
+  30%,
+  40% {
+    border-radius: 50% 0;
+  }
+  60%,
+  70% {
+    border-radius: 50%;
+  }
+  90%,
+  100% {
+    border-radius: 0 50%;
+  }
+}

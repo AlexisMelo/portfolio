@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
-import { ProjectItem } from './project-item.model';
 import { ProjectItemSkillListComponent } from './project-item-skill-list/project-item-skill-list.component';
+import { ProjectItem } from './project-item.model';
 
 @Component({
   selector: 'app-project-item',
@@ -14,6 +15,7 @@ import { ProjectItemSkillListComponent } from './project-item-skill-list/project
     ActionButtonComponent,
     RouterLink,
     ProjectItemSkillListComponent,
+    LoaderComponent,
   ],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
@@ -23,7 +25,7 @@ export class ProjectItemComponent extends GridItemDirective {
   /**
    * Project to display
    */
-  @Input({ required: true }) project!: ProjectItem;
+  @Input({ required: true }) project?: ProjectItem;
 
   /**
    * Lien vers les archives
@@ -34,6 +36,8 @@ export class ProjectItemComponent extends GridItemDirective {
    * Skills à afficher
    */
   get skills() {
+    if (!this.project) return [];
+
     return this.project.project_skills
       .filter(s => s.highlight)
       .map(s => s.skill);
@@ -43,7 +47,7 @@ export class ProjectItemComponent extends GridItemDirective {
    * Illustration à afficher
    */
   get firstIllustration() {
-    return this.project.illustrations.reduce((prev, current) =>
+    return this.project?.illustrations.reduce((prev, current) =>
       prev.position > current.position ? current : prev
     );
   }

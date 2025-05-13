@@ -1,13 +1,5 @@
 @if (!nonEmptyContexts) {
-  <div class="placeholder g-grid-item-start-aligned">
-    <div class="g-loading-effect title"></div>
-    <div class="g-paragraph g-grid-item-main-text">
-      <div class="g-loading-effect localization"></div>
-    </div>
-    <div class="g-grid-item-footer-text">
-      <div class="g-loading-effect footer"></div>
-    </div>
-  </div>
+  <app-loader></app-loader>
 } @else {
   <div class="carousel">
     <div class="carousel-items">

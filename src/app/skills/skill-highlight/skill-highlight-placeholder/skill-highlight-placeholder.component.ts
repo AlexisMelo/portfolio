@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 
 @Component({
   selector: 'app-skill-highlight-placeholder',
   standalone: true,
-  imports: [],
+  imports: [LoaderComponent],
   templateUrl: './skill-highlight-placeholder.component.html',
   styleUrl: './skill-highlight-placeholder.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
 })
 export class SkillHighlightPlaceholderComponent extends GridItemDirective {}

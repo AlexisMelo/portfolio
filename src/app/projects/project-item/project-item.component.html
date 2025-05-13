@@ -1,18 +1,23 @@
-<h2>{{ project.label }}</h2>
+@if (!project) {
+  <app-loader></app-loader>
+} @else {
+  <h2>{{ project.label }}</h2>
 
-@if (project.illustrations.length > 0) {
-  <div class="illustration-container">
-    <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
+  @if (firstIllustration) {
+    <div class="illustration-container">
+      <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
+    </div>
+  }
+
+  <div class="g-paragraph g-grid-item-main-text">
+    <app-project-item-skill-list
+      [skills]="skills"></app-project-item-skill-list>
   </div>
+
+  <app-action-button
+    [unfold]="hovered"
+    [text]="'En savoir plus'"
+    [routerLink]="['/projects', project.url]"
+    [icon]="'visibility'">
+  </app-action-button>
 }
-
-<div class="g-paragraph g-grid-item-main-text">
-  <app-project-item-skill-list [skills]="skills"></app-project-item-skill-list>
-</div>
-
-<app-action-button
-  [unfold]="hovered"
-  [text]="'En savoir plus'"
-  [routerLink]="['/projects', project.url]"
-  [icon]="'visibility'">
-</app-action-button>
