@@ -2,11 +2,7 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  @include grid-2x2;
-
-  @include responsive('large') {
-    @include grid-1x2;
-  }
+  @include grid-1x2;
 }
 
 .text {

@@ -18,8 +18,14 @@ export class MailComponent extends GridItemDirective {
    */
   public contentService = inject(ContentService);
 
+  /**
+   * Main text
+   */
   public mainText?: SafeHtml;
 
+  /**
+   * Sanitizer
+   */
   private sanitizer = inject(DomSanitizer);
 
   /**
@@ -28,7 +34,7 @@ export class MailComponent extends GridItemDirective {
   constructor() {
     super();
     this.mainText = this.sanitizer.bypassSecurityTrustHtml(
-      "Toujours à l'écoute d'opportunités et prêt à discuter, je suis joignable par mail à l'adresse <span>Alexis.Melo@outlook.fr</span>"
+      "Toujours à l'écoute d'opportunités, dis-moi comment je peux t'aider !"
     );
   }
 
