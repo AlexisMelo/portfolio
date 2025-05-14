@@ -33,6 +33,8 @@
     padding-left: 30px;
     font-size: 1.1rem;
     width: 100%;
+    background-color: transparent;
+    color: var(--styles-text-color);
 
     &:focus {
       outline: none;
