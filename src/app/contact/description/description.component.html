@@ -1,14 +1,14 @@
-<div class="description">
-  <img
-    [src]="
-      themeService.isDarkMode
-        ? 'photos/avatar-bust-neutral-sunglasses.png'
-        : 'photos/avatar-bust-arms-crossed.png'
-    "
-    alt="" />
+<img
+  [src]="
+    themeService.isDarkMode
+      ? 'photos/avatar-bust-neutral-sunglasses.png'
+      : 'photos/avatar-bust-arms-crossed.png'
+  "
+  alt="" />
 
-  <div class="text">
-    <h2>Alexis</h2>
-    <p class="g-paragraph" [innerHTML]="contentService.description"></p>
-  </div>
-</div>
+<h2>
+  <div>Alexis</div>
+  <div>Melo Da Silva</div>
+</h2>
+
+<p class="g-paragraph" [innerHTML]="contentService.description"></p>
