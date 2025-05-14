@@ -27,7 +27,8 @@
     [selectedOptions]="archivesService.selectedSkills() ?? []"
     (selected)="selectSkill($event)"
     [large]="true"
-    header="Sélectionnez une compétence">
+    header="Sélectionnez une compétence"
+    [alignment]="'right'">
     Compétence
   </app-filter-chip>
 </div>

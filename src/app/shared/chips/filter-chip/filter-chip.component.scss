@@ -7,6 +7,20 @@
     margin-right: 0;
     width: 100%;
   }
+
+  &.left {
+    app-details-menu {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  &.right {
+    app-details-menu {
+      left: auto;
+      right: 0;
+    }
+  }
 }
 
 .hidden {
@@ -17,7 +31,5 @@ app-details-menu {
   position: absolute;
   top: 100%;
   bottom: auto;
-  right: 0;
-  left: auto;
   margin-top: 0.5rem;
 }

@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostBinding,
   HostListener,
   Input,
   Output,
@@ -41,6 +42,11 @@ export class FilterChipComponent extends ActivableChipComponent {
    * Texte à afficher
    */
   @Input() header: string = 'Sélectionnez une option';
+
+  /**
+   * Which side to align the menu
+   */
+  @HostBinding('class') @Input() alignment: 'left' | 'right' = 'left';
 
   /**
    * Une option a été selectionnée
