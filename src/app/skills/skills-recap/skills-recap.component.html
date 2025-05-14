@@ -1,59 +1,63 @@
-<div class="header">
-  <div
-    class="categories"
-    [@stagger]="groupedSkills.length"
-    [style]="'--recapBackgroundColor:' + recapBackgroundColor">
-    @for (
-      skillDetails of groupedSkills;
-      track skillDetails.skill.id;
-      let i = $index
-    ) {
-      <div
-        (click)="selectSlide(i)"
-        (keyup)="selectSlide(i)"
-        tabindex="0"
-        class="selector"
-        [class.active]="currentSlide === i">
-        <mat-icon>{{ skillDetails.skill.icon }}</mat-icon>
-      </div>
-    } @empty {
-      <div class="selector-placeholder g-loading-effect"></div>
-    }
+@if (groupedSkills.length === 0) {
+  <app-loader></app-loader>
+} @else {
+  <div class="header">
+    <div
+      class="categories"
+      [@stagger]="groupedSkills.length"
+      [style]="'--recapBackgroundColor:' + recapBackgroundColor">
+      @for (
+        skillDetails of groupedSkills;
+        track skillDetails.skill.id;
+        let i = $index
+      ) {
+        <div
+          (click)="selectSlide(i)"
+          (keyup)="selectSlide(i)"
+          tabindex="0"
+          class="selector"
+          [class.active]="currentSlide === i">
+          <mat-icon>{{ skillDetails.skill.icon }}</mat-icon>
+        </div>
+      } @empty {
+        <div class="selector-placeholder g-loading-effect"></div>
+      }
+    </div>
+    <div class="separator"></div>
   </div>
-  <div class="separator"></div>
-</div>
-
-<div class="carousel">
-  <div class="carousel-items">
-    @for (skillDetails of groupedSkills; track skillDetails.skill.id) {
-      <div class="carousel-item">
-        @for (skill of skillDetails.skills; track skill.id) {
-          <div
-            [routerLink]="[ARCHIVES_ROUTE]"
-            [queryParams]="{ skills: skill.id }"
-            class="skill">
-            @if (skill.loved) {
-              <mat-icon>favorite</mat-icon>
-            } @else if (skill.currently_learning) {
-              <mat-icon>school</mat-icon>
-            }
-            {{ skill.label }}
-            <div class="counter">{{ skill.projects.length }}</div>
-          </div>
-        }
-      </div>
-    }
-  </div>
-</div>
-
-<div class="footer">
-  <div class="separator"></div>
 
   <div class="carousel">
     <div class="carousel-items">
       @for (skillDetails of groupedSkills; track skillDetails.skill.id) {
-        <h2 class="carousel-item">{{ skillDetails.skill.label }}</h2>
+        <div class="carousel-item">
+          @for (skill of skillDetails.skills; track skill.id) {
+            <div
+              [routerLink]="[ARCHIVES_ROUTE]"
+              [queryParams]="{ skills: skill.id }"
+              class="skill">
+              @if (skill.loved) {
+                <mat-icon>favorite</mat-icon>
+              } @else if (skill.currently_learning) {
+                <mat-icon>school</mat-icon>
+              }
+              {{ skill.label }}
+              <div class="counter">{{ skill.projects.length }}</div>
+            </div>
+          }
+        </div>
       }
     </div>
   </div>
-</div>
+
+  <div class="footer">
+    <div class="separator"></div>
+
+    <div class="carousel">
+      <div class="carousel-items">
+        @for (skillDetails of groupedSkills; track skillDetails.skill.id) {
+          <h2 class="carousel-item">{{ skillDetails.skill.label }}</h2>
+        }
+      </div>
+    </div>
+  </div>
+}

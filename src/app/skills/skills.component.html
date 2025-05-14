@@ -21,43 +21,43 @@
           section.recapBackgroundColor
         "></app-skills-recap>
 
-      @for (skill of section.skills | loved; track skill.id; let i = $index) {
-        <app-skill-highlight
-          class="loved"
-          [attr.data-index]="i"
-          [skill]="skill"
-          [iconColor]="
-            themeService.isDarkMode
-              ? section.sectionColor
-              : section.sectionBackgroundColor
-          "></app-skill-highlight>
-      } @empty {
-        @for (i of 2 | range; track i) {
-          <app-skill-highlight-placeholder
+      @for (i of 2 | range; track i) {
+        @if (
+          (section.skills | learning).length === 0 ||
+          (section.skills | learning)[i] !== undefined
+        ) {
+          <app-skill-highlight
             class="loved"
-            [attr.data-index]="i"></app-skill-highlight-placeholder>
+            [attr.data-index]="i"
+            [skill]="(section.skills | loved)[i]"
+            [iconColor]="
+              themeService.isDarkMode
+                ? section.sectionColor
+                : section.sectionBackgroundColor
+            "
+            [loading]="
+              (section.skills | loved).length === 0
+            "></app-skill-highlight>
         }
       }
 
-      @for (
-        skill of section.skills | learning;
-        track skill.id;
-        let i = $index
-      ) {
-        <app-skill-highlight
-          class="learning"
-          [attr.data-index]="i"
-          [skill]="skill"
-          [iconColor]="
-            themeService.isDarkMode
-              ? section.sectionColor
-              : section.sectionBackgroundColor
-          "></app-skill-highlight>
-      } @empty {
-        @for (i of 2 | range; track i) {
-          <app-skill-highlight-placeholder
+      @for (i of 2 | range; track i) {
+        @if (
+          (section.skills | learning).length === 0 ||
+          (section.skills | learning)[i] !== undefined
+        ) {
+          <app-skill-highlight
             class="learning"
-            [attr.data-index]="i"></app-skill-highlight-placeholder>
+            [attr.data-index]="i"
+            [skill]="(section.skills | learning)[i]"
+            [iconColor]="
+              themeService.isDarkMode
+                ? section.sectionColor
+                : section.sectionBackgroundColor
+            "
+            [loading]="
+              (section.skills | learning).length === 0
+            "></app-skill-highlight>
         }
       }
     </div>

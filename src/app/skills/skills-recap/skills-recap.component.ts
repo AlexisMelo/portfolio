@@ -20,11 +20,12 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { Skill } from 'src/app/skills/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SkillGroup } from './skill-group.model';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 
 @Component({
   selector: 'app-skills-recap',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, LoaderComponent],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
   animations: [
