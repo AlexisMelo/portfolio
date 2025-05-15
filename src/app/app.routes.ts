@@ -31,6 +31,11 @@ export const routes: Routes = [
   },
   {
     path: 'now',
-    redirectTo: 'contact',
+    redirectTo: '',
+  },
+  //https://v17.angular.io/guide/router#setting-up-wildcard-routes
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
