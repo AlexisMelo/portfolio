@@ -37,12 +37,16 @@
           </div>
 
           <div class="g-grid-item-footer-text">
-            {{ context.start_date | date: 'yyyy' }} -
-            {{
-              context.end_date
-                ? (context.end_date | date: 'yyyy')
-                : "Aujourd'hui"
-            }}
+            @if (context.end_date) {
+              {{ context.start_date | date: 'yyyy' }} -
+              {{
+                context.end_date
+                  ? (context.end_date | date: 'yyyy')
+                  : "Aujourd'hui"
+              }}
+            } @else {
+              Depuis {{ context.start_date | date: 'yyyy' }}
+            }
             • {{ context.localization }}
           </div>
         </div>
