@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
-import { ContextWithProjects } from '../landing-page/timeline/context-with-projects.model';
+import { ContextWithProjects } from '../projects/projects-by-context/context-with-projects.model';
 
 @Injectable({
   providedIn: 'root',
@@ -136,19 +136,6 @@ export class SupabaseService {
 
     if (error) return Promise.reject(error);
     return data as Array<Skill>;
-  }
-
-  /**
-   * Obtient la liste des clients pour la page d'accueil
-   * @returns
-   */
-  public async getLandingClients() {
-    const { data } = await this.client
-      .from('context')
-      .select('*')
-      .eq('show_landing', true)
-      .returns<Array<ContextWithProjects>>();
-    return data ?? [];
   }
 
   /**
