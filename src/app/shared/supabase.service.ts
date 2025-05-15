@@ -116,7 +116,7 @@ export class SupabaseService {
   public async getContexts() {
     const { data } = await this.client
       .from('context')
-      .select('*, context_type(*), projects:project(*)')
+      .select('*, projects:project(*)')
       .order('end_date', { ascending: false })
       .order('start_date', { ascending: false })
       .returns<Array<ContextWithProjects>>();

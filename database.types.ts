@@ -13,58 +13,26 @@ export type Database = {
         Row: {
           description: string;
           end_date: string | null;
-          icon: string | null;
           id: number;
           label: string;
           localization: string;
-          show_landing: boolean;
           start_date: string;
-          type: number;
         };
         Insert: {
           description: string;
           end_date?: string | null;
-          icon?: string | null;
           id?: number;
           label: string;
           localization: string;
-          show_landing?: boolean;
           start_date: string;
-          type: number;
         };
         Update: {
           description?: string;
           end_date?: string | null;
-          icon?: string | null;
           id?: number;
           label?: string;
           localization?: string;
-          show_landing?: boolean;
           start_date?: string;
-          type?: number;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'context_type_fkey';
-            columns: ['type'];
-            isOneToOne: false;
-            referencedRelation: 'context_type';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      context_type: {
-        Row: {
-          id: number;
-          label: string;
-        };
-        Insert: {
-          id?: number;
-          label: string;
-        };
-        Update: {
-          id?: number;
-          label?: string;
         };
         Relationships: [];
       };
