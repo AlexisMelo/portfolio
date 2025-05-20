@@ -23,8 +23,8 @@
 
       @for (i of 2 | range; track i) {
         @if (
-          (section.skills | learning).length === 0 ||
-          (section.skills | learning)[i] !== undefined
+          (section.skills | loved).length === 0 ||
+          (section.skills | loved)[i] !== undefined
         ) {
           <app-skill-highlight
             class="loved"
