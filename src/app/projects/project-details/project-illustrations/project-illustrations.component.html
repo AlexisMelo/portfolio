@@ -19,22 +19,26 @@
   </div>
 </div>
 
-@if (illustrationsSorted && illustrationsSorted.length > 1) {
-  @if (currentSlide > 0) {
-    <app-action-button
-      icon="chevron_left"
-      (click)="nextSlide(-1)"></app-action-button>
+@if (illustrationsSorted) {
+  @if (illustrationsSorted.length > 1) {
+    @if (currentSlide > 0) {
+      <app-action-button
+        icon="chevron_left"
+        (click)="nextSlide(-1)"></app-action-button>
+    }
+
+    @if (currentSlide < illustrationsSorted.length - 1) {
+      <app-action-button
+        icon="chevron_right"
+        position="bottom-left-2"
+        (click)="nextSlide(1)"></app-action-button>
+    }
   }
 
-  @if (currentSlide < illustrationsSorted.length - 1) {
+  @if (illustrationsSorted.length > 0) {
     <app-action-button
-      icon="chevron_right"
-      position="bottom-left-2"
-      (click)="nextSlide(1)"></app-action-button>
+      icon="crop_free"
+      position="bottom-right"
+      (click)="openDialog()"></app-action-button>
   }
 }
-
-<app-action-button
-  icon="crop_free"
-  position="bottom-right"
-  (click)="openDialog()"></app-action-button>
