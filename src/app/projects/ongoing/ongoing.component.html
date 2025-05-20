@@ -1,6 +1,8 @@
 <h2>En cours</h2>
 
-<div class="g-paragraph g-grid-item-main-text">{{ count }} projets</div>
+<div class="g-paragraph g-grid-item-main-text">
+  {{ count }} projet{{ count > 1 ? 's' : '' }}
+</div>
 
 <app-robotic-arm></app-robotic-arm>
 
