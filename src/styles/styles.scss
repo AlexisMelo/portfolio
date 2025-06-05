@@ -55,6 +55,7 @@ body.light-mode {
 html {
   @include design-system();
   box-sizing: border-box;
+  height: 100vh; //So the modals
 }
 
 *,
@@ -278,4 +279,10 @@ h3 {
       transform: rotate(-3deg);
     }
   }
+}
+
+.cdk-global-scrollblock {
+  position: static !important;
+  width: initial !important;
+  overflow-y: inherit !important;
 }

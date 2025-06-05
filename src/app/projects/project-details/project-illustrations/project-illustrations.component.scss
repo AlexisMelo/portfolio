@@ -44,3 +44,27 @@
     }
   }
 }
+
+@keyframes fadeInBackdrop {
+  to {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes fadeOutBackdrop {
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+::ng-deep {
+  .custom-backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    animation: fadeInBackdrop 0.5s forwards;
+
+    &.cdk-overlay-backdrop-exit {
+      background-color: rgba(0, 0, 0, 0.7);
+      animation: fadeOutBackdrop 300ms forwards;
+    }
+  }
+}
