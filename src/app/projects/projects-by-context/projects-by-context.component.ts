@@ -7,7 +7,7 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { RangePipe } from 'src/app/shared/pipes/range.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
+import { ActionButtonComponent } from '../../home/action-button/action-button.component';
 import { ContextWithProjects } from 'src/app/projects/projects-by-context/context-with-projects.model';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 

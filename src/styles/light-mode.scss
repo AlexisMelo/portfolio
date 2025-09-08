@@ -1,8 +1,8 @@
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--gray-500);
-  --action-button-border-color: var(--gray-100);
+  --action-button-color: var(--gray-400);
+  --action-button-border-color: var(--gray-200);
 
   //archives
   --archives-header-bg: var(--green-250);
@@ -14,12 +14,18 @@
   --button-color: var(--green-400);
   --button-plain-border: var(--green-300);
 
+  //description
+  --description-text: var(--gray-400);
+
   //filter-chip
   //https://m3.material.io/components/chips/specs
   --filter-chip-border-color: var(--gray-300);
-  --filter-chip-active-background-color: var(--gray-050);
+  --filter-chip-active-background-color: var(--gray-100);
   --filter-chip-details-menu-background-color: var(--white);
-  --filter-chip-hover-option-background-color: var(--gray-050);
+  --filter-chip-hover-option-background-color: var(--gray-100);
+
+  //freelance-since
+  --freelance-since-p-color: var(--gray-400);
 
   //github
   --github-bg: var(--gray-500);
@@ -27,7 +33,7 @@
 
   //grid-item
   --grid-item-default-bg: var(--white);
-  --grid-item-border: none;
+  --grid-item-border: 1px solid var(--gray-200);
   --grid-item-bottom-text-color: var(--gray-200);
 
   //highlightable-chip
@@ -110,10 +116,10 @@
   --skills-recap-backend-bg: var(--green-250);
   --skills-recap-general-bg: var(--gray-500);
 
-  --skills-recap-counter-bg: var(--gray-050);
+  --skills-recap-counter-bg: var(--gray-100);
   --skills-recap-counter-color: var(--gray-500);
 
-  --skills-recap-separator: var(--gray-050);
+  --skills-recap-separator: var(--gray-100);
 
   //skill-section-header
   --skill-section-header-frontend-bg: var(--blue);
@@ -126,9 +132,9 @@
   --skill-section-header-general-color: white;
 
   //styles
-  --styles-title-color: var(--gray-500);
+  --styles-title-color: var(--gray-700);
   --styles-text-color: var(--black);
-  --styles-background-color: #f7f2f2;
+  --styles-background-color: var(--gray-100);
   --styles-paragraph-highlight-bg-color: rgb(241, 241, 241);
   --styles-paragraph-highlight-color: var(--black);
   --styles-thumbnail-border: var(--gray-300);

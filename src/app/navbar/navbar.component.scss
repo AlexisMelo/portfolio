@@ -6,7 +6,6 @@ $transition-duration: 0.3s;
 $border-radius: 12px;
 
 :host {
-  --vertical-padding: 2rem;
   --horizontal-padding: 3rem;
 
   position: relative;
@@ -15,27 +14,15 @@ $border-radius: 12px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--vertical-padding) var(--horizontal-padding);
+  padding-bottom: var(--gap);
+  padding-top: 40px;
   z-index: 600;
   transition: background-color 0.3s ease-out;
-
-  @include responsive('large') {
-    --vertical-padding: 3rem;
-    --horizontal-padding: 4rem;
-  }
 
   .logo {
     height: $logo-size;
     width: $logo-size;
     cursor: pointer;
-  }
-
-  .theme-toggle {
-    cursor: pointer;
-
-    &:hover {
-      color: inherit;
-    }
   }
 
   mat-icon {
@@ -147,4 +134,13 @@ $border-radius: 12px;
   100% {
     width: 100%;
   }
+}
+
+nav {
+  grid-row: 1;
+  grid-column: 1 / 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
 }

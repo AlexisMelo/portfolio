@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
-import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
+import { ActionButtonComponent } from '../../home/action-button/action-button.component';
 import { ProjectItemSkillListComponent } from './project-item-skill-list/project-item-skill-list.component';
 import { ProjectItem } from './project-item.model';
 

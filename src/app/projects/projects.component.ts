@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GithubComponent } from '../contact/github/github.component';
+import { GithubComponent } from '../home/github/github.component';
 import { ContentService } from '../shared/content.service';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';

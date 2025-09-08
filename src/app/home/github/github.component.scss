@@ -2,9 +2,6 @@
 @import '../linkedin/spin.animation.scss';
 
 :host {
-  background-color: var(--github-bg) !important;
-  position: relative;
-
   img {
     width: var(--grid-icon-centered-size);
   }
@@ -14,12 +11,4 @@
       @extend %spin-effect;
     }
   }
-}
-
-div {
-  position: absolute;
-  color: var(--github-empty-color);
-  left: 28px;
-  bottom: 28px;
-  color: white;
 }

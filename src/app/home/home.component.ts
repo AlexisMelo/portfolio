@@ -9,6 +9,8 @@ import { MapComponent } from './map/map.component';
 import { NowComponent } from './now/now.component';
 import { ResumeComponent } from './resume/resume.component';
 import { AvailabilityComponent } from './availability/availability.component';
+import { ImageComponent } from './image/image.component';
+import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
 
 @Component({
   selector: 'app-contact',
@@ -23,11 +25,13 @@ import { AvailabilityComponent } from './availability/availability.component';
     MapComponent,
     NowComponent,
     AvailabilityComponent,
+    ImageComponent,
+    FreelanceSinceComponent,
   ],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
-export class ContactComponent {
+export class HomeComponent {
   /**
    * Gestion du contenu
    */

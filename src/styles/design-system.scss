@@ -15,15 +15,13 @@
   --green-50: rgb(240, 243, 236);
 
   //gray
-  --gray-600: #161616;
-  --gray-550: #181818;
-  --gray-525: #222222; //gris égal à la couleur de la map en dark mode
-  --gray-500: #444343; //couleur principale n°3
-  --gray-400: #666565;
-  --gray-300: #8a8989;
-  --gray-200: #b0afaf;
-  --gray-100: #d7d6d6;
-  --gray-050: #e4e4e4;
+  --gray-700: #262626;
+  --gray-600: #4c4c4c;
+  --gray-500: #737373;
+  --gray-400: #999999;
+  --gray-300: #bfbfbf;
+  --gray-200: #e5e5e5;
+  --gray-100: #f7f7f7;
 
   //white
   --white: white;
@@ -48,4 +46,15 @@
   --blue-500: #3780c9; //bon contraste pour BG + écriture blanche
   --blue-200: #86b9eb; //bleu + foncé pour dark mode
   --blue: #adcceb; //couleur principale n°1
+
+  //font
+  --text-xxs: 10px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-xxl: 24px;
+  --text-xxxl: 32px;
+  --text-xxxxl: 48px;
 }

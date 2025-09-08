@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 import { ArchivesComponent } from './projects/archives/archives.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -11,7 +11,7 @@ export const ARCHIVES_ROUTE = '/' + RELATIVE_ARCHIVES_ROUTE;
 export const routes: Routes = [
   {
     path: '',
-    component: ContactComponent,
+    component: HomeComponent,
   },
   {
     path: 'projects',

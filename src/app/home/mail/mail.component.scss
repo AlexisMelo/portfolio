@@ -1,0 +1,16 @@
+@import '../../shared/grid/grid-item.scss';
+@import '../../../styles/responsive.scss';
+
+:host {
+  @include grid-2x2;
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

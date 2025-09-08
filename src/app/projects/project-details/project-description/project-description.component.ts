@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 import { MatIconModule } from '@angular/material/icon';
-import { ActionButtonComponent } from '../../../contact/action-button/action-button.component';
+import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
 
 @Component({
   selector: 'app-project-description',

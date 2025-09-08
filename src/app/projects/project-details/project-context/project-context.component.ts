@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { Project } from '../../project.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ActionButtonComponent } from '../../../contact/action-button/action-button.component';
+import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
 import { Router } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { DatePipe } from '@angular/common';

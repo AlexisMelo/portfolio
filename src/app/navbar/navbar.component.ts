@@ -10,11 +10,18 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../shared/theme.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatIconModule, RouterLink, RouterLinkActive, NgTemplateOutlet],
+  imports: [
+    MatIconModule,
+    RouterLink,
+    RouterLinkActive,
+    NgTemplateOutlet,
+    GridItemDirective,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })

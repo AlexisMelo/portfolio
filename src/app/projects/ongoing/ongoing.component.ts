@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { ActionButtonComponent } from 'src/app/contact/action-button/action-button.component';
+import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { RoboticArmComponent } from './robotic-arm/robotic-arm.component';

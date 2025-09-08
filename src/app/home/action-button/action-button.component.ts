@@ -12,7 +12,7 @@ export class ActionButtonComponent {
   /**
    * Icon à afficher dans le bouton
    */
-  @Input() icon = 'open_in_new';
+  @Input() icon: string | null = null;
 
   /**
    * Texte à afficher à côté du bouton

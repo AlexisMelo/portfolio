@@ -19,26 +19,6 @@ export class MailComponent extends GridItemDirective {
   public contentService = inject(ContentService);
 
   /**
-   * Main text
-   */
-  public mainText?: SafeHtml;
-
-  /**
-   * Sanitizer
-   */
-  private sanitizer = inject(DomSanitizer);
-
-  /**
-   * Constructeur
-   */
-  constructor() {
-    super();
-    this.mainText = this.sanitizer.bypassSecurityTrustHtml(
-      "Toujours à l'écoute d'opportunités, dis-moi comment je peux t'aider !"
-    );
-  }
-
-  /**
    * Ouvre le gestionnaire de mails
    */
   public sendEmail() {

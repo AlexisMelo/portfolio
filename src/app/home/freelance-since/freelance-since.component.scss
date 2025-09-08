@@ -1,0 +1,28 @@
+@import '../../shared/grid/grid-item.scss';
+
+:host {
+  @include grid-1x2;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+h2 {
+  font-size: var(--text-xxl);
+}
+
+p {
+  color: var(--freelance-since-p-color);
+  margin: 0;
+}
+
+mat-icon {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  rotate: -15deg;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1;
+}

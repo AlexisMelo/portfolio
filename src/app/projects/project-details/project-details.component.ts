@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GithubComponent } from 'src/app/contact/github/github.component';
+import { GithubComponent } from 'src/app/home/github/github.component';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
 import { Skill } from '../../skills/skill.model';

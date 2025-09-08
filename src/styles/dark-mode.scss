@@ -1,11 +1,11 @@
 @mixin dark-mode() {
   //action-button
-  --action-button-background: var(--gray-550);
+  --action-button-background: var(--gray-600);
   --action-button-color: var(--white);
   --action-button-border-color: var(--gray-500);
 
   //archives
-  --archives-header-bg: var(--gray-525);
+  --archives-header-bg: var(--gray-500);
   --archives-header-color: var(--green-250);
 
   //button
@@ -16,17 +16,17 @@
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
-  --filter-chip-border-color: var(--gray-550);
+  --filter-chip-border-color: var(--gray-600);
   --filter-chip-active-background-color: var(--gray-500);
-  --filter-chip-details-menu-background-color: var(--gray-525);
+  --filter-chip-details-menu-background-color: var(--gray-500);
   --filter-chip-hover-option-background-color: var(--gray-500);
 
   //github
-  --github-bg: var(--gray-525);
+  --github-bg: var(--gray-500);
   --github-empty-color: var(--gray-400);
 
   //grid-item
-  --grid-item-default-bg: var(--gray-550);
+  --grid-item-default-bg: var(--gray-600);
   --grid-item-border: 2px solid var(--gray-500);
   --grid-item-bottom-text-color: var(--gray-300);
 
@@ -46,7 +46,7 @@
   --landing-page-svg-contour-path: var(--green-400);
 
   //linkedin
-  --linkedin-bg: var(--gray-525);
+  --linkedin-bg: var(--gray-500);
 
   //map
   --map-rayon-background: #ffffff;
@@ -60,7 +60,7 @@
   --navbar-border-bottom-color: var(--green-500);
 
   //ongoing
-  --ongoing-background: var(--gray-525);
+  --ongoing-background: var(--gray-500);
 
   //project-details
   --project-details-skills-recap-bg-completed: var(--green-250);
@@ -73,11 +73,11 @@
   --project-duration-abandoned: var(--gray-400);
 
   //project-item
-  --project-item-completed-background: var(--gray-525);
+  --project-item-completed-background: var(--gray-500);
   --project-item-completed-color: var(--green-250);
-  --project-item-abandoned-background: var(--gray-525);
+  --project-item-abandoned-background: var(--gray-500);
   --project-item-abandoned-color: var(--gray-300);
-  --project-item-ongoing-background: var(--gray-525);
+  --project-item-ongoing-background: var(--gray-500);
   --project-item-ongoing-color: var(--blue);
 
   //project-item-skill-list
@@ -85,17 +85,17 @@
   --project-item-skill-list-skill-border: var(--gray-500);
 
   //project-name-header
-  --project-name-header-completed-background: var(--gray-525);
+  --project-name-header-completed-background: var(--gray-500);
   --project-name-header-completed-color: var(--green-250);
-  --project-name-header-abandoned-background: var(--gray-525);
+  --project-name-header-abandoned-background: var(--gray-500);
   --project-name-header-abandoned-color: var(--gray-300);
-  --project-name-header-ongoing-background: var(--gray-525);
+  --project-name-header-ongoing-background: var(--gray-500);
   --project-name-header-ongoing-color: var(--blue);
 
   //projects
-  --projects-1-bg: var(--gray-550);
-  --projects-2-bg: var(--gray-550);
-  --projects-3-bg: var(--gray-550);
+  --projects-1-bg: var(--gray-600);
+  --projects-2-bg: var(--gray-600);
+  --projects-3-bg: var(--gray-600);
 
   //projects-by-context
   --projects-by-context-icons-bg: var(--blue);
@@ -116,25 +116,25 @@
   --skills-recap-separator: var(--gray-400);
 
   //skill-section-header
-  --skill-section-header-frontend-bg: var(--gray-525);
+  --skill-section-header-frontend-bg: var(--gray-500);
   --skill-section-header-frontend-color: var(--blue-200);
 
-  --skill-section-header-backend-bg: var(--gray-525);
+  --skill-section-header-backend-bg: var(--gray-500);
   --skill-section-header-backend-color: var(--green-250);
 
-  --skill-section-header-general-bg: var(--gray-525);
+  --skill-section-header-general-bg: var(--gray-500);
   --skill-section-header-general-color: var(--gray-300);
 
   //styles
   --styles-title-color: var(--gray-100);
   --styles-text-color: var(--white);
-  --styles-background-color: var(--gray-600);
+  --styles-background-color: var(--gray-700);
   --styles-paragraph-highlight-bg-color: var(--gray-500);
   --styles-paragraph-highlight-color: var(--white);
   --styles-thumbnail-border: var(--green-500);
 
   //suggestion-chip
-  --suggestion-chip-bg: var(--gray-525);
+  --suggestion-chip-bg: var(--gray-500);
 
   //tooltip
   --tooltip-background: var(--green-400);

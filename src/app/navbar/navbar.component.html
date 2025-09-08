@@ -1,16 +1,3 @@
-<ng-template #themeToggle>
-  <mat-icon
-    class="theme-toggle"
-    fontSet="material-icons-outlined"
-    (click)="toggleDarkMode()">
-    @if (themeService.theme.value === 'light-mode') {
-      light_mode
-    } @else {
-      dark_mode
-    }
-  </mat-icon>
-</ng-template>
-
 <ng-template #logo>
   <img
     [routerLink]="['']"
@@ -50,27 +37,32 @@
 
 <ng-template #rightLinks> </ng-template>
 
-<ng-template *ngTemplateOutlet="logo"></ng-template>
-
 <div class="left-items">
   <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
+  Melo
 </div>
 
 <div class="right-items">
   <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
-
-  <ng-template *ngTemplateOutlet="themeToggle"> </ng-template>
-
-  <div
-    class="open-menu"
-    (click)="toggleMenu()"
-    (keypress)="toggleMenu()"
-    tabindex="0">
-    <mat-icon> menu </mat-icon>
-  </div>
 </div>
 
 <div class="collapsible-menu" [class.opened]="this.menuOpened">
   <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
   <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
+</div>
+
+<div class="g-grid-container">
+  <div class="g-grid">
+    <nav appGridItem>
+      <ng-template *ngTemplateOutlet="logo"></ng-template>
+
+      <mat-icon
+        class="open-menu large"
+        (click)="toggleMenu()"
+        (keypress)="toggleMenu()"
+        tabindex="0">
+        menu
+      </mat-icon>
+    </nav>
+  </div>
 </div>

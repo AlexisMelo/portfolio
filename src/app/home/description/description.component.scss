@@ -1,0 +1,38 @@
+@import '../../shared/grid/grid-item.scss';
+@import '../../../styles/responsive.scss';
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-20%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+:host {
+  @include grid-1x4;
+
+  h2 {
+    font-size: var(--text-lg);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  div {
+    animation: 1s slideInFromLeft;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--description-text);
+
+    mat-icon {
+      margin-right: 6px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
