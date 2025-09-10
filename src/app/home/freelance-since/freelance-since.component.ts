@@ -8,6 +8,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
   imports: [MatIconModule],
   templateUrl: './freelance-since.component.html',
   styleUrl: './freelance-since.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
 })
 export class FreelanceSinceComponent extends GridItemDirective {}

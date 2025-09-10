@@ -9,45 +9,69 @@
 
       <app-language-selector></app-language-selector>
 
-      <div class="home" appGridItem>
-        <a
-          [routerLink]="['']"
-          [routerLinkActive]="['is-active', 'g-bold-not-title']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          ><h2>À propos</h2></a
-        >
-      </div>
+      <a
+        [routerLink]="['']"
+        [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="home"
+        appGridItem
+        ><h2>À propos</h2>
+        <div class="img-container">
+          <img
+            [src]="
+              themeService.isDarkMode
+                ? 'photos/avatar-neutral-dark.png'
+                : 'photos/avatar-neutral.png'
+            "
+            alt="Avatar" />
+        </div>
+      </a>
 
-      <div class="projects" appGridItem>
-        <a
-          [routerLink]="['projects']"
-          [routerLinkActive]="['is-active', 'g-bold-not-title']"
-          ><h2>Projets</h2></a
-        >
-      </div>
+      <a
+        [routerLink]="['projects']"
+        [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+        class="projects"
+        appGridItem
+        ><h2>Réalisations</h2>
+        <div class="img-container">
+          <img
+            src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
+            alt="Projects illustration" />
+        </div>
+      </a>
 
-      <div class="skills" appGridItem>
-        <a
-          [routerLink]="['skills']"
-          [routerLinkActive]="['is-active', 'g-bold-not-title']"
-          ><h2>Compétences</h2></a
-        >
-      </div>
+      <a
+        [routerLink]="['skills']"
+        [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+        class="skills"
+        appGridItem
+        ><h2>Compétences</h2>
+        <div class="img-container">
+          <img
+            src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
+            alt="Skills illustration" />
+        </div>
+      </a>
 
-      <div class="experience" appGridItem>
-        <a
-          [routerLink]="['experience']"
-          [routerLinkActive]="['is-active', 'g-bold-not-title']"
-          ><h2>Expérience</h2></a
-        >
-      </div>
+      <a
+        class="experience"
+        appGridItem
+        [routerLink]="['experience']"
+        [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+        ><h2>Expérience</h2>
+        <div class="img-container">
+          <img
+            src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
+            alt="Experience illustration" />
+        </div>
+      </a>
     </div>
   </div>
 </div>
 
 <div class="g-grid-container">
   <div class="g-grid">
-    <nav appGridItem>
+    <nav appGridItem class="g-grid-item-shadow">
       <div class="logo-name" [routerLink]="['']">
         <mat-icon class="logo">flutter_dash</mat-icon>
         <h1>Melo</h1>

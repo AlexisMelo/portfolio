@@ -169,11 +169,6 @@ h3 {
 
 /* Others */
 
-.g-bold-not-title {
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-}
-
 .g-grid-item {
   border-radius: 15px;
   background-color: var(--grid-item-default-bg);
@@ -227,6 +222,10 @@ h3 {
       width: auto;
     }
   }
+}
+
+.g-grid-item-shadow {
+  box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.05);
 }
 
 .g-paragraph {

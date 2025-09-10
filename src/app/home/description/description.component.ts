@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { GridItemDirective } from '../../shared/grid/grid-item.directive';
-import { ContentService } from 'src/app/shared/content.service';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-description',
@@ -9,6 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatIconModule],
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-shadow' },
 })
 export class DescriptionComponent extends GridItemDirective {}

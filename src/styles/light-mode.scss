@@ -44,6 +44,9 @@
   --highlightable-chip-gradient-3: var(--green-200);
   --highlightable-chip-gradient-4: var(--green-400);
 
+  //image
+  --image-svg-color: var(--gray-100);
+
   //input
   --input-background-color: var(--white);
   --input-border-color: var(--gray-300);
@@ -64,6 +67,7 @@
 
   //navbar
   --navbar-gradient: url(../../public/gradient.svg);
+  --navbar-inactive-link-color: var(--gray-400);
 
   //ongoing
   --ongoing-background: var(--grid-item-default-bg);

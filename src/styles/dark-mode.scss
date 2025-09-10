@@ -26,7 +26,7 @@
   --github-empty-color: var(--gray-400);
 
   //grid-item
-  --grid-item-default-bg: var(--gray-600);
+  --grid-item-default-bg: var(--gray-700);
   --grid-item-border: 2px solid var(--gray-500);
   --grid-item-bottom-text-color: var(--gray-300);
 
@@ -37,6 +37,9 @@
   --highlightable-chip-gradient-2: var(--green-300);
   --highlightable-chip-gradient-3: var(--green-300);
   --highlightable-chip-gradient-4: var(--green-500);
+
+  //image
+  --image-svg-color: var(--gray-600);
 
   //input
   --input-background-color: var(--green-600);
@@ -58,6 +61,7 @@
 
   //navbar
   --navbar-border-bottom-color: var(--green-500);
+  --navbar-inactive-link-color: var(--gray-400);
 
   //ongoing
   --ongoing-background: var(--gray-500);
@@ -128,7 +132,7 @@
   //styles
   --styles-title-color: var(--gray-100);
   --styles-text-color: var(--white);
-  --styles-background-color: var(--gray-700);
+  --styles-background-color: var(--gray-800);
   --styles-paragraph-highlight-bg-color: var(--gray-500);
   --styles-paragraph-highlight-color: var(--white);
   --styles-thumbnail-border: var(--green-500);

@@ -49,12 +49,12 @@ $top-padding: 40px;
     }
 
     .skills {
-      grid-row: 4;
+      grid-row: 5;
       grid-column: 1 / 5;
     }
 
     .projects {
-      grid-row: 5;
+      grid-row: 4;
       grid-column: 1 / 5;
     }
 
@@ -133,4 +133,38 @@ nav {
 
 a {
   text-decoration: none;
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  .img-container {
+    height: 60%;
+    width: 25%;
+    text-align: center;
+
+    img {
+      object-fit: contain;
+      height: 100%;
+    }
+  }
+
+  &:not(.is-active) {
+    h2 {
+      color: var(--navbar-inactive-link-color);
+    }
+
+    img {
+      opacity: 0.7;
+    }
+  }
+}
+
+h2 {
+  text-align: left;
+  margin: 0;
 }
