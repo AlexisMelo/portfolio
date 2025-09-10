@@ -4,6 +4,7 @@ $transition-duration: 0.2s;
 $logo-size: 3rem;
 $transition-duration: 0.3s;
 $border-radius: 12px;
+$top-padding: 40px;
 
 :host {
   --horizontal-padding: 3rem;
@@ -15,76 +16,12 @@ $border-radius: 12px;
   justify-content: space-between;
   width: 100%;
   padding-bottom: var(--gap);
-  padding-top: 40px;
+  padding-top: $top-padding;
   z-index: 600;
-  transition: background-color 0.3s ease-out;
-
-  .logo {
-    height: $logo-size;
-    width: $logo-size;
-    cursor: pointer;
-  }
-
-  mat-icon {
-    color: var(--styles-title-color);
-  }
-
-  a {
-    display: block;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 5px;
-    position: relative;
-    white-space: nowrap;
-    color: var(--styles-title-color);
-
-    @include responsive('medium') {
-      padding: 10px;
-    }
-
-    &.is-active {
-      color: inherit;
-    }
-
-    &:hover {
-      &:after {
-        animation: border_anim $transition-duration linear forwards;
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        border-bottom: solid 1px;
-        border-color: inherit;
-      }
-    }
-  }
-
-  .open-menu {
-    cursor: pointer;
-  }
-
-  .left-items,
-  .right-items {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 15px;
-
-    .navbar-link {
-      display: none;
-    }
-  }
-
-  .right-items {
-    .links {
-      display: none;
-    }
-  }
 
   .collapsible-menu {
     position: absolute;
-    top: calc($logo-size + 2 * var(--vertical-padding));
+    top: 0;
     left: 0;
     overflow: hidden;
     height: 0;
@@ -98,14 +35,52 @@ $border-radius: 12px;
     border-bottom-right-radius: 12px;
     background-color: var(--styles-background-color);
     font-size: 1.5rem;
-
-    > * {
-      margin-top: 3rem;
-    }
+    padding-top: $top-padding;
 
     &.opened {
       height: 100vh;
       width: 100%;
+      touch-action: none; //on peut toujours scroll avec la souris mais bon...
+    }
+
+    .home {
+      grid-row: 3;
+      grid-column: 1 / 5;
+    }
+
+    .skills {
+      grid-row: 4;
+      grid-column: 1 / 5;
+    }
+
+    .projects {
+      grid-row: 5;
+      grid-column: 1 / 5;
+    }
+
+    .experience {
+      grid-row: 6;
+      grid-column: 1 / 5;
+    }
+
+    app-github {
+      grid-row: 2;
+      grid-column: 2;
+    }
+
+    app-linkedin {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    app-theme-selector {
+      grid-row: 2;
+      grid-column: 4;
+    }
+
+    app-language-selector {
+      grid-row: 2;
+      grid-column: 3;
     }
   }
 
@@ -127,15 +102,6 @@ $border-radius: 12px;
   }
 }
 
-@keyframes border_anim {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
 nav {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -143,4 +109,28 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
+}
+
+.logo-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  .logo {
+    height: $logo-size;
+    width: $logo-size;
+    font-size: $logo-size;
+  }
+
+  h1 {
+    font-size: var(--text-xxxxl);
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 0.2em;
+  }
+}
+
+a {
+  text-decoration: none;
 }

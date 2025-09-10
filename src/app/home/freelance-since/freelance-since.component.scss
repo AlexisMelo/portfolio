@@ -16,11 +16,18 @@ p {
   margin: 0;
 }
 
+@keyframes scale {
+  50% {
+    transform: scale(0.8);
+  }
+}
+
 mat-icon {
   position: absolute;
-  left: -10px;
+  right: -10px;
   top: -10px;
-  rotate: -15deg;
+  rotate: 15deg;
+  animation: scale infinite 1s;
 }
 
 .material-symbols-outlined {
