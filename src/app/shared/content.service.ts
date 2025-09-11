@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SupabaseService } from './supabase.service';
-import { Tables } from 'database.types';
 
 /**
  * Service pour gérer le contenu configurable de l'appli
@@ -25,7 +24,7 @@ export class ContentService {
   /**
    * Activité actuelle
    */
-  public now?: SafeHtml;
+  public now?: SafeHtml[];
 
   /**
    * Constructeur
@@ -73,8 +72,10 @@ export class ContentService {
    * Activité actuelle
    */
   private async updateNow() {
-    this.now = this.sanitizer.bypassSecurityTrustHtml(
-      'Réaliser les démarches pour devenir développeur fullstack en <span>freelance</span><br><br>Renforcer mes connaissances sur Angular, Typescript et Supabase<br><br>Construire ce portfolio'
-    );
+    const nows =
+      'Réaliser les démarches pour devenir développeur fullstack en freelance/Renforcer mes connaissances sur Angular, Typescript et Supabase/Construire ce portfolio'.split(
+        '/'
+      );
+    this.now = nows.map(n => this.sanitizer.bypassSecurityTrustHtml(n));
   }
 }

@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ActionButtonComponent } from '../action-button/action-button.component';
-import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ContentService } from 'src/app/shared/content.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { GridItemDirective } from '../../shared/grid/grid-item.directive';
+import { ActionButtonComponent } from '../action-button/action-button.component';
 
 @Component({
   selector: 'app-mail',

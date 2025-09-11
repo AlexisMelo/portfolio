@@ -1,17 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { DotColor } from './dot-color.model';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-dot',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dot.component.html',
   styleUrl: './dot.component.scss',
 })
 export class DotComponent {
   /**
-   * Couleur du point
+   * HEX Color for the dot
    */
-  @Input() color: DotColor = 'green';
+  @Input() color: string = 'green';
 }

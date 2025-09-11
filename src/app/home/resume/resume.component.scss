@@ -2,7 +2,8 @@
 @import '../../shared/grid/grid-item.scss';
 
 :host {
-  @include grid-1x2;
+  padding: 2rem;
+  position: relative;
 
   &:hover {
     .illustration-container {
@@ -13,8 +14,15 @@
   }
 }
 
+svg {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+}
+
 h2 {
   flex-grow: 1;
+  font-size: var(--text-xxxl);
 }
 
 @keyframes slideInFromBottom {
@@ -28,10 +36,10 @@ h2 {
 }
 
 .illustration-container {
-  width: 150px;
+  width: 120px;
   position: absolute;
-  right: 2rem;
-  top: 2rem;
+  right: 5%;
+  top: 40%;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 10px 0px;
@@ -55,10 +63,6 @@ h2 {
 
 //Handle modal animation
 //https://codepen.io/designcouch/pen/obvKxm
-
-::ng-deep .modal-opened {
-  // overflow: hidden;
-}
 
 @keyframes fadeIn {
   0% {

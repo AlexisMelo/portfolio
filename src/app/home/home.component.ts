@@ -13,7 +13,7 @@ import { ImageComponent } from './image/image.component';
 import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-home',
   standalone: true,
   imports: [
     MatIconModule,

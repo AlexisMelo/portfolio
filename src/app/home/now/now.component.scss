@@ -2,9 +2,18 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  @include grid-2x2;
+  padding: 2rem;
+}
 
-  @include responsive('large') {
-    @include grid-3x1;
-  }
+h2 {
+  font-size: var(--text-xxxl);
+}
+
+.now-block {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  gap: 12px;
+  color: var(--gray-500);
 }

@@ -1,10 +1,6 @@
-<h2>
-  Employé
-  <app-dot [color]="openForWork ? 'green' : 'blue'"></app-dot>
-</h2>
+<div class="header">
+  <h2 [innerHTML]="currentOccupation"></h2>
+  <app-dot [color]="'var(--gray-300)'"></app-dot>
+</div>
 
-<div
-  class="g-paragraph g-grid-item-main-text"
-  [innerHTML]="currentOccupation"></div>
-
-<div class="g-grid-item-footer-text" [innerHTML]="nextAvailability"></div>
+<div class="next" [innerHTML]="nextAvailability"></div>

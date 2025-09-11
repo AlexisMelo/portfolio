@@ -8,6 +8,9 @@
   --archives-header-bg: var(--green-250);
   --archives-header-color: var(--white);
 
+  //availability
+  --availability-next-color: var(--gray-500);
+
   //button
   --button-background: url(../../public/gradient.svg);
   --button-border: var(--green-300);
@@ -15,7 +18,7 @@
   --button-plain-border: var(--green-300);
 
   //description
-  --description-text: var(--gray-400);
+  --description-text: var(--gray-500);
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
@@ -25,7 +28,7 @@
   --filter-chip-hover-option-background-color: var(--gray-100);
 
   //freelance-since
-  --freelance-since-p-color: var(--gray-400);
+  --freelance-since-p-color: var(--gray-500);
 
   //github
   --github-bg: var(--gray-500);

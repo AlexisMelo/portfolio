@@ -28,11 +28,6 @@ export class AvailabilityComponent extends GridItemDirective {
   public nextAvailability?: SafeHtml;
 
   /**
-   * A l'écoute d'opportunité ?
-   */
-  public openForWork?: boolean;
-
-  /**
    * Constructeur
    */
   constructor() {
@@ -42,7 +37,7 @@ export class AvailabilityComponent extends GridItemDirective {
     );
 
     this.currentOccupation = this.sanitizer.bypassSecurityTrustHtml(
-      'Actuellement en CDI chez Bosch, Mondeville'
+      "Aujourd'hui chez Bosch, Mondeville"
     );
   }
 }
