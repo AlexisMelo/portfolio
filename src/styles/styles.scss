@@ -163,8 +163,9 @@ h3 {
 }
 
 .g-grid-container {
-  max-width: var(--grid-width);
-  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Others */

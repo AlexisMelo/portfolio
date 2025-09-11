@@ -15,6 +15,7 @@ import { ThemeService } from '../shared/theme.service';
 import { ContentService } from '../shared/content.service';
 import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { StickyObserverDirective } from './sticky-observer.directive';
 
 @Component({
   selector: 'app-navbar',
@@ -31,6 +32,7 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
+  hostDirectives: [StickyObserverDirective],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   /**

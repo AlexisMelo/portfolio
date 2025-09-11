@@ -7,17 +7,37 @@ $border-radius: 12px;
 $top-padding: 40px;
 
 :host {
-  --horizontal-padding: 3rem;
-
-  position: relative;
+  position: sticky;
+  top: -1px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   padding-bottom: var(--gap);
   padding-top: $top-padding;
   z-index: 600;
+
+  &.is-sticking {
+    padding-top: 0;
+    justify-content: center;
+
+    .collapsible-menu {
+      padding-top: 0;
+    }
+
+    .main-navbar {
+      .g-grid {
+        grid-template-columns: auto;
+        flex-grow: 1;
+        transition: 2s;
+
+        .g-grid-item {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
 
   .collapsible-menu {
     position: absolute;
