@@ -19,7 +19,7 @@ $top-padding: 40px;
   z-index: 600;
   transition: padding-top 0.3s;
 
-  .g-grid {
+  .main-navbar > .g-grid {
     transition: grid-template-columns 0.5s ease;
   }
 
@@ -27,25 +27,21 @@ $top-padding: 40px;
     padding-top: 0;
     justify-content: center;
 
-    .g-grid {
+    .main-navbar > .g-grid {
       //taking cell-size formula and using full width
       grid-template-columns: repeat(
         var(--columns),
         functions.getCellSize(100vw, var(--columns), var(--gap))
       );
+
+      .g-grid-item {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
     }
 
     .collapsible-menu {
       padding-top: 0;
-    }
-
-    .main-navbar {
-      .g-grid {
-        .g-grid-item {
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
-      }
     }
   }
 
