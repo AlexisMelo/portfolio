@@ -32,7 +32,7 @@ export class MapComponent
   /**
    * Niveaux de zoom autorisés
    */
-  private allowedZoomLevels: Array<number> = [4, 6, 14];
+  private allowedZoomLevels: Array<number> = [3, 6, 13];
 
   /**
    * Position de là où j'habite
@@ -137,7 +137,7 @@ export class MapComponent
 
     const newLevel = this.allowedZoomLevels[levelIndex - 1];
 
-    this.map.flyTo(this.position, newLevel);
+    this.map.flyTo(this.position, newLevel, { duration: 1 });
     this.zoomLevel = newLevel;
   }
 
@@ -153,7 +153,7 @@ export class MapComponent
 
     const newLevel = this.allowedZoomLevels[levelIndex + 1];
 
-    this.map.flyTo(this.position, newLevel);
+    this.map.flyTo(this.position, newLevel, { duration: 1 });
     this.zoomLevel = newLevel;
   }
 

@@ -16,7 +16,7 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
   imports: [ActionButtonComponent, OutsideClickDirective],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
-  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ResumeComponent extends GridItemDirective {
   /**
