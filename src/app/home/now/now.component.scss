@@ -1,19 +1,37 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 :host {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  li {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: var(--gray-500);
+
+    mat-icon {
+      min-width: 10%;
+    }
+  }
 }
 
 h2 {
+  margin: 0;
   font-size: var(--text-xxxl);
 }
 
-.now-block {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-bottom: 1rem;
-  gap: 12px;
-  color: var(--gray-500);
+a {
+  text-align: end;
+  text-decoration: none;
+  color: var(--gray-300);
 }

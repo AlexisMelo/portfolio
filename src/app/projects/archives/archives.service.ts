@@ -5,7 +5,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { ContextWithProjects } from 'src/app/projects/projects-by-context/context-with-projects.model';
+import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';

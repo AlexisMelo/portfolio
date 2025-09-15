@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
-import { ContextWithProjects } from '../projects/projects-by-context/context-with-projects.model';
+import { ContextWithProjects } from '../projects/context-with-projects.model';
 
 @Injectable({
   providedIn: 'root',

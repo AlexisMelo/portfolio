@@ -2,6 +2,10 @@
 @import './spin.animation.scss';
 
 :host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   img {
     width: var(--grid-icon-centered-size);
   }

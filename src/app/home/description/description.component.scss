@@ -1,4 +1,3 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 @keyframes slideInFromLeft {
@@ -12,8 +11,10 @@
 }
 
 :host {
-  @include grid-1x4;
+  display: flex;
   flex-direction: row;
+  padding: 1.3rem 1.5rem;
+  align-items: center;
 
   .text {
     animation: 1s slideInFromLeft;
@@ -45,7 +46,8 @@
   }
 
   .img-container {
-    height: 85%;
+    height: 90%;
+    padding-top: 5px;
 
     img {
       height: 100%;

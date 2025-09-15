@@ -1,107 +1,31 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 :host {
-  @include grid-1x2;
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  &:hover {
-    .decoration_1,
-    .decoration_2,
-    .decoration_3 {
-      transform: translate(-10%, -5%);
-    }
+h2 {
+  font-size: var(--text-xxl);
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+@keyframes move {
+  50% {
+    transform: translate(5px, -5px);
   }
 }
 
-.g-grid-item-main-text {
-  max-width: 50%;
-}
-
-.decoration_1,
-.decoration_2,
-.decoration_3 {
+mat-icon {
   position: absolute;
-  height: 50px;
-  width: 150px;
-  border-radius: 12px;
-  transform: translate(0, 0);
-  transition: transform 500ms linear;
+  right: 1rem;
+  top: 1rem;
 
-  @include responsive('medium') {
-    height: 60px;
-    width: 200px;
-    border-radius: 15px;
-  }
-
-  @include responsive('large') {
-    height: 90px;
-    width: 300px;
-  }
-}
-
-@keyframes decoration_1_enter {
-  0% {
-    transform: translate(20%, 10%);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-.decoration_1 {
-  background-color: var(--green-250);
-  bottom: -30px;
-  right: 5px;
-  rotate: 35deg;
-  z-index: 3;
-  animation: decoration_1_enter 1s;
-
-  @include responsive('medium') {
-    bottom: -45px;
-    right: -20px;
-  }
-
-  @include responsive('large') {
-    bottom: -55px;
-    right: -20px;
-  }
-}
-
-.decoration_2 {
-  background-color: var(--gray-500);
-  bottom: 5px;
-  right: -15px;
-  rotate: 60deg;
-  z-index: 2;
-  animation: decoration_1_enter 1s;
-
-  @include responsive('medium') {
-    bottom: -10px;
-    right: -40px;
-  }
-
-  @include responsive('large') {
-    bottom: 0px;
-    right: -50px;
-  }
-}
-
-.decoration_3 {
-  background-color: var(--blue);
-  bottom: 30px;
-  right: -50px;
-  rotate: 80deg;
-  z-index: 1;
-  animation: decoration_1_enter 1s;
-
-  @include responsive('medium') {
-    bottom: 20px;
-    right: -75px;
-  }
-
-  @include responsive('large') {
-    bottom: 40px;
-    right: -110px;
-  }
+  animation: move 2s infinite ease;
 }

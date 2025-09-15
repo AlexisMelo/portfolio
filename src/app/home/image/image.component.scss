@@ -1,9 +1,11 @@
 img {
+  position: absolute;
   width: 100px;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   object-fit: contain;
-  padding-left: 10px;
-  padding-top: 10px;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
   z-index: 10;
 }
 

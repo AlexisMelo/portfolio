@@ -1,9 +1,12 @@
 @import '../../../styles/responsive.scss';
-@import '../../shared/grid/grid-item.scss';
 
 :host {
   padding: 2rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 
   &:hover {
     .illustration-container {
@@ -21,6 +24,7 @@ svg {
 }
 
 h2 {
+  margin: 0;
   flex-grow: 1;
   font-size: var(--text-xxxl);
 }

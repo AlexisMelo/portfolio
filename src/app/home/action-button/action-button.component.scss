@@ -62,6 +62,12 @@
     right: 16px;
   }
 
+  &.center-right {
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   mat-icon {
     height: var(--action-button-icon-size);
     width: var(--action-button-icon-size);

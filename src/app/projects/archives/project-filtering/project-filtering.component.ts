@@ -11,7 +11,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
-import { ContextWithProjects } from 'src/app/projects/projects-by-context/context-with-projects.model';
+import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';

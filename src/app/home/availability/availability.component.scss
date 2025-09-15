@@ -1,16 +1,9 @@
 @import '../../../styles/responsive.scss';
-@import '../../shared/grid/grid-item.scss';
 
 :host {
-  @include grid-1x4;
-
-  @include responsive('large') {
-    @include grid-1x1;
-
-    .g-grid-item-main-text {
-      max-width: 100%;
-    }
-  }
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -19,7 +12,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  flex-grow: 1;
 
   h2 {
     margin: 0;
@@ -27,6 +19,9 @@
   }
 }
 
-.next {
+p {
+  flex-grow: 1;
+  margin: 0;
   color: var(--availability-next-color);
+  align-content: end;
 }

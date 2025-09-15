@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Project } from '../project.model';
@@ -9,7 +9,7 @@ import { Project } from '../project.model';
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [ActionButtonComponent, RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

@@ -1,19 +1,22 @@
-@import '../../shared/grid/grid-item.scss';
-
 :host {
-  @include grid-1x2;
+  padding: 1.2rem 1.5rem;
   display: flex;
   flex-direction: column;
   overflow: visible;
 }
 
+h2,
+p {
+  margin: 0;
+}
+
 h2 {
   font-size: var(--text-xxl);
+  flex-grow: 1;
 }
 
 p {
   color: var(--freelance-since-p-color);
-  margin: 0;
 }
 
 @keyframes scale {
@@ -26,7 +29,7 @@ mat-icon {
   position: absolute;
   right: -10px;
   top: -10px;
-  rotate: 15deg;
+  // rotate: 15deg;
   animation: scale infinite 1s;
 }
 

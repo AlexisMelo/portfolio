@@ -1,8 +1,8 @@
 @import '../../styles/responsive.scss';
 
 app-github {
-  grid-row: 4;
-  grid-column: 2;
+  grid-row: 1;
+  grid-column: 1;
 
   @include responsive('medium') {
     grid-row: 2;
@@ -11,15 +11,13 @@ app-github {
 }
 
 .project__1 {
-  grid-row: 1;
-  grid-column: 1 / 3;
-  background-color: var(--projects-1-bg);
+  grid-row: 2 / 4;
+  grid-column: 1 / 5;
 }
 
 .project__2 {
-  grid-row: 3;
-  grid-column: 1 / 3;
-  background-color: var(--projects-2-bg);
+  grid-row: 5 / 7;
+  grid-column: 1 / 5;
 
   @include responsive('medium') {
     grid-row: 2;
@@ -28,9 +26,8 @@ app-github {
 }
 
 .project__3 {
-  grid-row: 5;
-  grid-column: 1 / 3;
-  background-color: var(--projects-3-bg);
+  grid-row: 8 / 10;
+  grid-column: 1 / 5;
 
   @include responsive('medium') {
     grid-row: 3;
@@ -40,7 +37,7 @@ app-github {
 
 app-ongoing {
   grid-row: 4;
-  grid-column: 1;
+  grid-column: 1 / 3;
 
   @include responsive('medium') {
     grid-row: 2;
@@ -49,8 +46,8 @@ app-ongoing {
 }
 
 app-all {
-  grid-row: 2;
-  grid-column: 1 / 3;
+  grid-row: 1;
+  grid-column: 2 / 5;
 
   @include responsive('medium') {
     grid-row: 1;
@@ -58,12 +55,12 @@ app-all {
   }
 }
 
-app-projects-by-context {
-  grid-row: 6;
-  grid-column: 1 / 3;
+app-your-project {
+  grid-row: 7;
+  grid-column: 1 / 5;
+}
 
-  @include responsive('medium') {
-    grid-row: 3;
-    grid-column: 1 / 3;
-  }
+app-with-skill {
+  grid-row: 4;
+  grid-column: 3 / 5;
 }

@@ -1,0 +1,14 @@
+:host {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  flex-grow: 1;
+}
+
+h2,
+p {
+  margin: 0;
+}

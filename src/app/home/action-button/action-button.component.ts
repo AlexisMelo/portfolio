@@ -32,7 +32,8 @@ export class ActionButtonComponent {
     | 'bottom-right'
     | 'bottom-left'
     | 'bottom-left-2'
-    | 'top-right' = 'bottom-left';
+    | 'top-right'
+    | 'center-right' = 'bottom-left';
 
   /**
    * Est-ce que le bouton doit être positionné de façon absolue
