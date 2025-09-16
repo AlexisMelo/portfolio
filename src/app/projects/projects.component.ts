@@ -10,6 +10,7 @@ import { ProjectItemComponent } from './project-item/project-item.component';
 import { ProjectItem } from './project-item/project-item.model';
 import { YourProjectComponent } from './your-project/your-project.component';
 import { WithSkillComponent } from './with-skill/with-skill.component';
+import { gridItemAnimation } from '../shared/animations';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -28,6 +29,7 @@ import { WithSkillComponent } from './with-skill/with-skill.component';
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
+  animations: [gridItemAnimation],
 })
 export class ProjectsComponent implements OnInit {
   /**

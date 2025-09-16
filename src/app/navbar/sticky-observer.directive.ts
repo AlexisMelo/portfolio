@@ -44,7 +44,6 @@ export class StickyObserverDirective implements AfterViewInit, OnDestroy {
           'is-sticking',
           entry.intersectionRatio < 1
         );
-        console.log(entry);
       },
       { threshold: [1] }
     );

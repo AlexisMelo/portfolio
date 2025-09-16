@@ -11,6 +11,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { ImageComponent } from './image/image.component';
 import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
+import { gridItemAnimation } from '../shared/animations';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ import { FreelanceSinceComponent } from './freelance-since/freelance-since.compo
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  animations: [gridItemAnimation],
 })
 export class HomeComponent {
   /**
