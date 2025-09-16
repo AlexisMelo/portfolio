@@ -1,8 +1,6 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 :host {
-  @include grid-1x1;
   position: relative;
   background-color: var(--ongoing-background);
 }
