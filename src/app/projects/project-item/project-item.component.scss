@@ -1,10 +1,10 @@
 @import '../../../styles/responsive.scss';
-@import '../../shared/grid/grid-item.scss';
 
 :host {
-  @include grid-1x2;
-
   position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     .illustration-container {
@@ -26,15 +26,16 @@
 }
 
 .illustration-container {
+  @extend .g-grid-item-shadow !optional;
+
   position: absolute;
-  height: 80%;
-  left: 55%;
+  height: 70%;
+  left: 65%;
   top: 50%;
-  animation: slideToLeft 1s;
   transform: translate(0%, -50%);
-  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 10px 0px;
+  animation: slideToLeft 1s;
   transition: 400ms linear;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
 
   img {
@@ -44,9 +45,14 @@
 }
 
 h2 {
-  color: white;
+  font-size: var(--text-xxl);
+  margin: 0 0 0.5rem 0;
 }
 
-.g-grid-item-main-text {
-  max-width: 55%;
+p {
+  margin: 0;
+  font-size: var(--text-xxs);
+  color: var(--gray-500);
+  max-width: 60%;
+  flex-grow: 1;
 }

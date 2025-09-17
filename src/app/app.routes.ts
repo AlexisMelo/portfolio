@@ -21,7 +21,7 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'projects',
+    path: RELATIVE_PROJECTS_ROUTE,
     component: ProjectsComponent,
   },
   {
@@ -33,11 +33,11 @@ export const routes: Routes = [
     component: SkillsComponent,
   },
   {
-    path: 'experience',
+    path: RELATIVE_EXPERIENCE_ROUTE,
     component: ExperienceComponent,
   },
   {
-    path: 'projects/:url',
+    path: RELATIVE_PROJECTS_ROUTE + '/:url',
     component: ProjectDetailsComponent,
   },
   {
