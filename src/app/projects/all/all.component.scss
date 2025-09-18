@@ -30,26 +30,13 @@ mat-icon {
   animation: move 2s infinite ease;
 }
 
-.website-placeholder-container {
-  display: none;
-}
-
-:not(.mosaique-container) {
+:not(app-mosaique-websites) {
   z-index: 10;
 }
 
-.mosaique-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
+app-mosaique-websites {
   position: absolute;
   top: 0;
   left: -30px;
-  color: var(--gray-100);
   rotate: 40deg;
-
-  svg {
-    width: 50px;
-    height: 30px;
-  }
 }

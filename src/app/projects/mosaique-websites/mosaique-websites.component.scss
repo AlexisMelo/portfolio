@@ -1,0 +1,16 @@
+.mosaique-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+
+  color: var(--gray-100);
+
+  svg {
+    width: 50px;
+    height: 30px;
+  }
+}
+
+.website-placeholder-container {
+  display: none;
+}

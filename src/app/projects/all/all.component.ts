@@ -5,12 +5,12 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Project } from '../project.model';
-import { RangePipe } from 'src/app/shared/pipes/range.pipe';
+import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-websites.component';
 
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [RouterLink, MatIconModule, RangePipe],
+  imports: [RouterLink, MatIconModule, MosaiqueWebsitesComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

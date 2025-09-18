@@ -1,20 +1,45 @@
 @import '../../../styles/responsive.scss';
 
 :host {
-  position: relative;
-  background-color: var(--ongoing-background);
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
-app-robotic-arm {
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--text-xxxl);
+}
+
+p {
+  font-size: var(--text-sm);
+}
+
+.cogwheel-model {
+  display: none;
+}
+
+.cogwheel__1 {
+  color: var(--gray-100);
+
   position: absolute;
-  bottom: -4px; //la bordure
-  right: 25px;
+  left: -20px;
+  bottom: -30px;
+  width: 75px;
+  height: 75px;
+}
 
-  @include responsive('medium') {
-    right: 20px;
-  }
-
-  @include responsive('large') {
-    right: 40px;
-  }
+.cogwheel__2 {
+  color: var(--gray-100);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 45px;
+  height: 45px;
 }
