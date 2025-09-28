@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SkillSectionDescriptionComponent } from '../../skills/skill-section-description/skill-section-description.component';
-import { SkillSectionHeaderComponent } from '../../skills/skill-section-header/skill-section-header.component';
 import { ProjectCondensedItemComponent } from '../project-item/project-item-condensed/project-item-condensed.component';
 import { StatusPipe } from '../status/status.pipe';
 import { ArchivesService } from './archives.service';
@@ -13,7 +12,6 @@ import { StatusFilteringComponent } from './status-filtering/status-filtering.co
   selector: 'app-archives',
   standalone: true,
   imports: [
-    SkillSectionHeaderComponent,
     SkillSectionDescriptionComponent,
     ProjectCounterComponent,
     ProjectCondensedItemComponent,

@@ -1,58 +1,47 @@
 <div
-  class="abandoned status-filter"
-  (click)="selectStatus('abandoned')"
-  tabindex="0"
-  (keyup)="selectStatus('abandoned')"
-  [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="archivesService.selectedStatus() === 'abandoned'">
-  <mat-icon>delete</mat-icon>
-  @if (projectsByStatus().abandoned) {
-    <div>
-      {{
-        (projectsByStatus().abandoned.length * 100) /
-          archivesService.projects().length | number: '1.0-0'
-      }}%
-    </div>
-  }
-</div>
-<div
   class="completed status-filter"
   (click)="selectStatus('completed')"
   tabindex="0"
   (keyup)="selectStatus('completed')"
   [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="archivesService.selectedStatus() === 'completed'">
+  [class.selected]="
+    archivesService.selectedStatus() === 'completed' &&
+    projectsByStatus().completed !== undefined
+  ">
+  <p>
+    {{ projectsByStatus().completed ? projectsByStatus().completed.length : 0 }}
+  </p>
   <mat-icon>check</mat-icon>
-  @if (projectsByStatus().completed) {
-    <div>
-      {{
-        (projectsByStatus().completed.length * 100) /
-          archivesService.projects().length | number: '1.0-0'
-      }}%
-    </div>
-  }
 </div>
+
 <div
   class="ongoing status-filter"
   (click)="selectStatus('ongoing')"
   tabindex="0"
   (keyup)="selectStatus('ongoing')"
   [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="archivesService.selectedStatus() === 'ongoing'">
-  <mat-icon>precision_manufacturing</mat-icon>
-  @if (projectsByStatus().ongoing) {
-    <div>
-      {{
-        (projectsByStatus().ongoing.length * 100) /
-          archivesService.projects().length | number: '1.0-0'
-      }}%
-    </div>
-  }
+  [class.selected]="
+    archivesService.selectedStatus() === 'ongoing' &&
+    projectsByStatus().ongoing !== undefined
+  ">
+  <p>
+    {{ projectsByStatus().ongoing ? projectsByStatus().ongoing.length : 0 }}
+  </p>
+  <mat-icon>settings</mat-icon>
 </div>
 
-@if (archivesService.selectedStatus() !== null) {
-  <app-reset-button
-    (click)="clearStatus()"
-    tabindex="0"
-    (keyup)="clearStatus()"></app-reset-button>
-}
+<div
+  class="abandoned status-filter"
+  (click)="selectStatus('abandoned')"
+  tabindex="0"
+  (keyup)="selectStatus('abandoned')"
+  [class.allSelected]="archivesService.selectedStatus() === null"
+  [class.selected]="
+    archivesService.selectedStatus() === 'abandoned' &&
+    projectsByStatus().abandoned !== undefined
+  ">
+  <p>
+    {{ projectsByStatus().abandoned ? projectsByStatus().abandoned.length : 0 }}
+  </p>
+  <mat-icon>delete</mat-icon>
+</div>

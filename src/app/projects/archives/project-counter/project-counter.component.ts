@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ArchivesService } from '../archives.service';
+import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-project-counter',
   standalone: true,
-  imports: [],
+  imports: [ResetButtonComponent],
   templateUrl: './project-counter.component.html',
   styleUrl: './project-counter.component.scss',
 })

@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PROJECTS_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 
@@ -39,7 +39,7 @@ export class OngoingComponent extends GridItemDirective implements OnInit {
    * Handle clicking on component
    */
   @HostListener('click') onClick() {
-    this.router.navigate([PROJECTS_ROUTE], {
+    this.router.navigate([ARCHIVES_ROUTE], {
       queryParams: { status: 'ongoing' },
     });
   }

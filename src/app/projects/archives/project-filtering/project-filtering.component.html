@@ -1,45 +1,13 @@
-<h2>Trouver un projet</h2>
+<h2>Chercher par mot-clé</h2>
 
 <div class="g-grid-item-main-text g-paragraph">
   <div class="search-bar">
-    <mat-icon [class.active]="filterFormControl.value">search</mat-icon>
+    <mat-icon class="small" [class.active]="filterFormControl.value"
+      >search</mat-icon
+    >
     <input
       type="text"
-      placeholder="Par mot-clé"
+      placeholder="Angular, site web..."
       [formControl]="filterFormControl" />
   </div>
 </div>
-
-<div class="selects">
-  <app-filter-chip
-    [active]="archivesService.selectedContexts() !== null"
-    [options]="allContexts() ?? []"
-    [selectedOptions]="archivesService.selectedContexts() ?? []"
-    (selected)="selectContext($event)"
-    [large]="true"
-    header="Sélectionnez un contexte">
-    Contexte
-  </app-filter-chip>
-
-  <app-filter-chip
-    [active]="archivesService.selectedSkills() !== null"
-    [options]="allSkills() ?? []"
-    [selectedOptions]="archivesService.selectedSkills() ?? []"
-    (selected)="selectSkill($event)"
-    [large]="true"
-    header="Sélectionnez une compétence"
-    [alignment]="'right'">
-    Compétence
-  </app-filter-chip>
-</div>
-
-@if (
-  archivesService.selectedContexts() !== null ||
-  archivesService.selectedSkills() !== null ||
-  (archivesService.filter() !== null && archivesService.filter() !== '')
-) {
-  <app-reset-button
-    (click)="clearFiltering()"
-    tabindex="0"
-    (keyup)="clearFiltering()"></app-reset-button>
-}

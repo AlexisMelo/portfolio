@@ -1,5 +1,6 @@
 import {
   Component,
+  effect,
   EffectRef,
   inject,
   OnDestroy,
@@ -82,6 +83,19 @@ export class ProjectFilteringComponent
    * Handle contexts selection and route update
    */
   private contextsEffect?: EffectRef;
+
+  /**
+   * Constructor
+   */
+  constructor() {
+    super();
+    //Handle value reset/change from other components
+    effect(() => {
+      this.filterFormControl.setValue(this.archivesService.filter(), {
+        emitEvent: false,
+      });
+    });
+  }
 
   /**
    * Implementation of OnInit
@@ -186,23 +200,5 @@ export class ProjectFilteringComponent
     });
 
     this.archivesService.selectedSkills.set(selectedSkill);
-  }
-
-  /**
-   * Clear the selected skills, contexts, and keywords
-   */
-  public clearFiltering() {
-    this.filterFormControl.setValue(null);
-    this.selectSkill(null);
-    this.selectContext(null);
-
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        skills: null,
-        contexts: null,
-      },
-      queryParamsHandling: 'merge',
-    });
   }
 }

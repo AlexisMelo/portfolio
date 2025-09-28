@@ -12,6 +12,7 @@ import { Skill } from 'src/app/skills/skill.model';
 import { Project } from '../project.model';
 import { Status } from '../status/status.model';
 import { StatusPipe } from '../status/status.pipe';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  * Handle the selected projects showed in archives
@@ -58,6 +59,16 @@ export class ArchivesService {
    * Text filter for projects
    */
   public filter: WritableSignal<string | null> = signal(null);
+
+  /**
+   * Handle routing
+   */
+  private router = inject(Router);
+
+  /**
+   * Get current route information
+   */
+  private route = inject(ActivatedRoute);
 
   /**
    * Update the selected projects when the selected contexts, skills, status or filter change
@@ -117,5 +128,25 @@ export class ArchivesService {
       return true;
 
     return false;
+  }
+
+  /**
+   * Clear the selected skills, contexts, and keywords
+   */
+  public clearFiltering() {
+    this.filter.set(null);
+    this.selectedSkills.set(null);
+    this.selectedContexts.set(null);
+    this.selectedStatus.set(null);
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        skills: null,
+        contexts: null,
+        status: null,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }

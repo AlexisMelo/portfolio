@@ -1,7 +1,16 @@
-<div class="numerator">
+<p class="numerator">
   {{ archivesService.selectedProjects().length }}
-</div>
-<hr />
-<div class="denominator">
+</p>
+<div class="separator"></div>
+<p class="denominator">
   {{ archivesService.projects().length }}
-</div>
+</p>
+
+@if (
+  archivesService.selectedProjects().length < archivesService.projects().length
+) {
+  <app-reset-button
+    (click)="archivesService.clearFiltering()"
+    tabindex="0"
+    (keyup)="archivesService.clearFiltering()"></app-reset-button>
+}
