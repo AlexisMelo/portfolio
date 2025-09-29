@@ -1,71 +1,56 @@
 @import '../../../../styles/responsive.scss';
 
-.skill-status {
-  background-color: var(--green-250);
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border-top-left-radius: 16px;
-  height: 50px;
-  width: 50px;
+:host {
+  padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  color: white;
-  transition: 500ms linear;
-  font-size: 0.8rem;
-  padding-right: 4px;
-  padding-bottom: 4px;
+}
 
-  mat-icon {
-    font-size: 15px;
-    height: 15px;
-    width: 15px;
+h2,
+p {
+  margin: 0;
+  max-width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: var(--text-lg);
+}
+
+p {
+  font-size: var(--text-xxs);
+  color: var(--gray-400);
+  flex-grow: 1;
+}
+
+@keyframes slideToLeft {
+  0% {
+    transform: translate(20%, -50%);
   }
 
-  @include responsive('medium') {
-    height: 60px;
-    width: 60px;
-    border-top-left-radius: 20px;
-    font-size: 0.8rem;
-    gap: 2px;
-    padding: 0;
-
-    mat-icon {
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
-    }
+  100% {
+    transform: translate(0%, -50%);
   }
+}
 
-  @include responsive('large') {
-    height: 90px;
-    width: 90px;
-    border-top-left-radius: 30px;
-    font-size: 1rem;
-    gap: 6px;
+.illustration-container {
+  width: 35%;
+  height: 85%;
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  animation: slideToLeft 1s;
 
-    mat-icon {
-      font-size: 24px;
-      height: 24px;
-      width: 24px;
-    }
-  }
-
-  &.completed {
-    background-color: var(--project-item-completed-background);
-    color: var(--project-item-completed-color);
-  }
-
-  &.abandoned {
-    background-color: var(--project-item-abandoned-background);
-    color: var(--project-item-abandoned-color);
-  }
-
-  &.ongoing {
-    background-color: var(--project-item-ongoing-background);
-    color: var(--project-item-ongoing-color);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // filter: grayscale(1);
   }
 }

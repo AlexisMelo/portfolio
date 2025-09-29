@@ -26,8 +26,6 @@
 }
 
 .illustration-container {
-  @extend .g-grid-item-shadow !optional;
-
   position: absolute;
   height: 70%;
   left: 65%;

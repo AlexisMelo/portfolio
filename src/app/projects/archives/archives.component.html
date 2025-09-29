@@ -1,5 +1,5 @@
 <div class="g-grid-container">
-  <div class="g-grid">
+  <div class="g-grid" @gridItemAnimation>
     <app-skill-section-description
       [mainText]="'Aventurier depuis 2017'"
       [secondaryText]="
@@ -8,13 +8,25 @@
 
     <app-project-counter></app-project-counter>
 
-    <app-project-filtering></app-project-filtering>
-
     <app-status-filtering></app-status-filtering>
 
-    @for (project of archivesService.selectedProjects(); track project.id) {
-      <app-project-item-condensed
-        [project]="project"></app-project-item-condensed>
+    <app-project-filtering></app-project-filtering>
+
+    <app-order></app-order>
+
+    @for (group of archivesService.sortedGroupedProjects(); track group.key) {
+      <app-key-header class="g-grid-item-shadow">
+        <ng-container title>{{ group.key }}</ng-container>
+        <ng-container subtitle
+          >{{ group.key.length }} réalisation{{
+            group.key.length > 1 ? 's' : ''
+          }}</ng-container
+        >
+      </app-key-header>
+      @for (project of group.projects; track project.id) {
+        <app-project-item-condensed
+          [project]="project"></app-project-item-condensed>
+      }
     }
   </div>
 </div>

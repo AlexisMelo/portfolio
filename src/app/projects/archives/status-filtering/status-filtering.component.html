@@ -3,11 +3,8 @@
   (click)="selectStatus('completed')"
   tabindex="0"
   (keyup)="selectStatus('completed')"
-  [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="
-    archivesService.selectedStatus() === 'completed' &&
-    projectsByStatus().completed !== undefined
-  ">
+  [class.allSelected]="showAll()"
+  [class.selected]="archivesService.selectedStatus() === 'completed'">
   <p>
     {{ projectsByStatus().completed ? projectsByStatus().completed.length : 0 }}
   </p>
@@ -19,11 +16,8 @@
   (click)="selectStatus('ongoing')"
   tabindex="0"
   (keyup)="selectStatus('ongoing')"
-  [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="
-    archivesService.selectedStatus() === 'ongoing' &&
-    projectsByStatus().ongoing !== undefined
-  ">
+  [class.allSelected]="showAll()"
+  [class.selected]="archivesService.selectedStatus() === 'ongoing'">
   <p>
     {{ projectsByStatus().ongoing ? projectsByStatus().ongoing.length : 0 }}
   </p>
@@ -35,11 +29,8 @@
   (click)="selectStatus('abandoned')"
   tabindex="0"
   (keyup)="selectStatus('abandoned')"
-  [class.allSelected]="archivesService.selectedStatus() === null"
-  [class.selected]="
-    archivesService.selectedStatus() === 'abandoned' &&
-    projectsByStatus().abandoned !== undefined
-  ">
+  [class.allSelected]="showAll()"
+  [class.selected]="archivesService.selectedStatus() === 'abandoned'">
   <p>
     {{ projectsByStatus().abandoned ? projectsByStatus().abandoned.length : 0 }}
   </p>

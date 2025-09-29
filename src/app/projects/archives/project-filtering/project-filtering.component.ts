@@ -90,10 +90,9 @@ export class ProjectFilteringComponent
   constructor() {
     super();
     //Handle value reset/change from other components
+    //Pas ouf ??
     effect(() => {
-      this.filterFormControl.setValue(this.archivesService.filter(), {
-        emitEvent: false,
-      });
+      this.filterFormControl.setValue(this.archivesService.filter());
     });
   }
 

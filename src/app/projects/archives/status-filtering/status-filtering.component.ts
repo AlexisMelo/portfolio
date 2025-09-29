@@ -59,6 +59,13 @@ export class StatusFilteringComponent
   });
 
   /**
+   * Should all status be displayed ?
+   */
+  public showAll = computed(() => {
+    return this.archivesService.selectedStatus() === null;
+  });
+
+  /**
    * OnInit implementation
    */
   public ngOnInit() {
