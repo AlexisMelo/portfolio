@@ -15,6 +15,7 @@ import { ProjectIllustrationsComponent } from './project-illustrations/project-i
 import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
+import { gridItemAnimation } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-project-details',
@@ -35,6 +36,7 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
+  animations: [gridItemAnimation],
 })
 export class ProjectDetailsComponent {
   /**

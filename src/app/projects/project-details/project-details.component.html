@@ -1,19 +1,25 @@
-<div class="g-grid-container">
-  <div class="g-grid">
-    @if (project) {
-      <app-project-name-header [project]="project"></app-project-name-header>
-      <app-project-description [project]="project"></app-project-description>
+@if (project) {
+  <div class="g-grid-container">
+    <div class="g-grid" @gridItemAnimation>
       <app-project-details-icon [project]="project"></app-project-details-icon>
-      <app-project-duration [project]="project"></app-project-duration>
-      <app-project-context [project]="project"></app-project-context>
+
+      <app-project-name-header [project]="project"></app-project-name-header>
+
+      <app-project-description
+        class="g-grid-item-shadow"
+        [project]="project"></app-project-description>
+
       <app-project-illustrations
         [project]="project"></app-project-illustrations>
 
-      <app-project-problematic [project]="project"></app-project-problematic>
-
       <app-github [link]="project.source"></app-github>
 
-      <app-project-coworkers [project]="project"></app-project-coworkers>
+      <app-project-duration [project]="project"></app-project-duration>
+
+      <app-project-problematic [project]="project"></app-project-problematic>
+
+      <app-project-context [project]="project"></app-project-context>
+
       <app-project-participation
         [project]="project"></app-project-participation>
 
@@ -22,6 +28,8 @@
         [recapBackgroundColor]="
           'var(--project-details-skills-recap-bg-' + (project | status) + ')'
         "></app-skills-recap>
-    }
+
+      <app-project-coworkers [project]="project"></app-project-coworkers>
+    </div>
   </div>
-</div>
+}

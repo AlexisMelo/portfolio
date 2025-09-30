@@ -1,0 +1,26 @@
+:host {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+p {
+  color: var(--gray-500);
+  flex-grow: 1;
+  align-content: end;
+}

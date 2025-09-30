@@ -1,5 +1,7 @@
-<h2>C'est quoi ?</h2>
+<h2>{{ project().label }}</h2>
+<app-project-item-skill-list
+  [skills]="highlightedSkills()"></app-project-item-skill-list>
 
-<div class="g-paragraph g-grid-item-main-text">
-  {{ project.description }}
-</div>
+<p>
+  {{ project().description }}
+</p>

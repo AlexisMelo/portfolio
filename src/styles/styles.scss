@@ -83,6 +83,15 @@ html {
   }
 }
 
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  padding-top: 0.2em;
+}
+
 body {
   height: 100%;
 }

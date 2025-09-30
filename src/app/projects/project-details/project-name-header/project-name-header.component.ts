@@ -2,11 +2,12 @@ import { Component, HostBinding, inject, Input } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-project-name-header',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './project-name-header.component.html',
   styleUrl: './project-name-header.component.scss',
   providers: [StatusPipe],
