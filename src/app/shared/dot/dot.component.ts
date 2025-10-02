@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-dot',
@@ -9,7 +9,12 @@ import { Component, Input } from '@angular/core';
 })
 export class DotComponent {
   /**
-   * HEX Color for the dot
+   * CSS Color for the dot
    */
-  @Input() color: string = 'green';
+  public color = input('green');
+
+  /**
+   * Should the dot animate with a pulse effect
+   */
+  public pulse = input(true);
 }

@@ -3,7 +3,7 @@
     <div class="g-grid" @gridItemAnimation>
       <app-project-details-icon [project]="project"></app-project-details-icon>
 
-      <app-project-name-header [project]="project"></app-project-name-header>
+      <app-project-duration [project]="project"></app-project-duration>
 
       <app-project-description
         class="g-grid-item-shadow"
@@ -12,9 +12,15 @@
       <app-project-illustrations
         [project]="project"></app-project-illustrations>
 
-      <app-github [link]="project.source"></app-github>
+      <app-open-live
+        [project]="project"
+        [class.source-available]="project.source !== null"></app-open-live>
 
-      <app-project-duration [project]="project"></app-project-duration>
+      @if (project.source) {
+        <app-github
+          class="g-grid-item-shadow"
+          [link]="project.source"></app-github>
+      }
 
       <app-project-problematic [project]="project"></app-project-problematic>
 

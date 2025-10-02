@@ -22,5 +22,8 @@
   box-shadow: 0 0 0 0 var(--color);
   background-color: var(--color);
   transform: scale(1);
-  animation: pulse 1.5s infinite;
+
+  &.pulse {
+    animation: pulse 1.5s infinite;
+  }
 }

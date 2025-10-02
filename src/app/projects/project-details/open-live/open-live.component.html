@@ -1,0 +1,22 @@
+<h2>
+  @if (isLive()) {
+    <app-dot color="var(--gray-300)" [pulse]="isLive() !== null"></app-dot>
+    En ligne
+  } @else {
+    Hors ligne
+  }
+</h2>
+
+<p>
+  @if (isLive()) {
+    Ce projet est accessible
+  } @else {
+    Ce projet est inaccessible
+  }
+</p>
+
+@if (isLive()) {
+  <mat-icon class="move"> call_made </mat-icon>
+} @else {
+  <mat-icon> lock </mat-icon>
+}

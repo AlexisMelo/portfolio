@@ -1,15 +1,14 @@
-import { Component, inject, Input } from '@angular/core';
-import { Project } from '../../project.model';
-import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { DatePipe } from '@angular/common';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
+import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-context',
   standalone: true,
-  imports: [ActionButtonComponent, DatePipe],
+  imports: [ActionButtonComponent],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
@@ -18,7 +17,7 @@ export class ProjectContextComponent extends GridItemDirective {
   /**
    * Projet à afficher
    */
-  @Input({ required: true }) project!: Project;
+  public project = input.required<Project>();
 
   /**
    * Gestion du routeur
@@ -31,7 +30,7 @@ export class ProjectContextComponent extends GridItemDirective {
   public moreProjects() {
     this.router.navigate([ARCHIVES_ROUTE], {
       queryParams: {
-        contexts: this.project.project_context.id,
+        contexts: this.project().project_context.id,
       },
     });
   }

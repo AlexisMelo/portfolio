@@ -12,7 +12,7 @@ import { ProjectDescriptionComponent } from './project-description/project-descr
 import { ProjectDetailsIconComponent } from './project-details-icon/project-details-icon.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
-import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
+import { OpenLiveComponent } from './open-live/open-live.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
 import { gridItemAnimation } from 'src/app/shared/animations';
@@ -30,7 +30,7 @@ import { gridItemAnimation } from 'src/app/shared/animations';
     ProjectCoworkersComponent,
     ProjectParticipationComponent,
     ProjectDetailsIconComponent,
-    ProjectNameHeaderComponent,
+    OpenLiveComponent,
     SkillsRecapComponent,
     StatusPipe,
   ],

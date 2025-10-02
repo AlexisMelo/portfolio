@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +11,7 @@ import { ArchivesService } from '../archives.service';
 @Component({
   selector: 'app-status-filtering',
   standalone: true,
-  imports: [MatIconModule, DecimalPipe],
+  imports: [MatIconModule],
   templateUrl: './status-filtering.component.html',
   styleUrl: './status-filtering.component.scss',
   providers: [StatusPipe],
