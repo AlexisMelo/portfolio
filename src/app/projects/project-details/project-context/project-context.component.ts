@@ -11,7 +11,7 @@ import { Project } from '../../project.model';
   imports: [ActionButtonComponent],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
 })
 export class ProjectContextComponent extends GridItemDirective {
   /**
