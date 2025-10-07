@@ -1,40 +1,40 @@
-<div class="controls">
-  <div
-    class="left-arrow"
-    (click)="nextSlide(-1)"
-    tabindex="0"
-    (keyup)="nextSlide(-1)">
-    <mat-icon> chevron_left </mat-icon>
-    Précédente
-  </div>
-
-  <div
-    class="close"
-    tabindex="0"
-    (keyup)="closeDialog()"
-    (click)="closeDialog()">
-    Fermer
-  </div>
-
-  <div
-    class="right-arrow"
-    tabindex="0"
-    (keyup)="nextSlide(1)"
-    (click)="nextSlide(1)">
-    Suivante
-    <mat-icon> chevron_right </mat-icon>
-  </div>
-</div>
-
 <div class="carousel-modal">
   <div class="carousel-items-modal">
     @for (illustration of data.illustrations; track illustration.id) {
       <div class="carousel-item-modal">
+        <div class="controls">
+          <div
+            class="left-arrow"
+            (click)="nextSlide(-1)"
+            tabindex="0"
+            (keyup)="nextSlide(-1)">
+            <mat-icon> chevron_left </mat-icon>
+            Précédente
+          </div>
+
+          <div
+            class="close"
+            tabindex="0"
+            (keyup)="closeDialog()"
+            (click)="closeDialog()">
+            Fermer
+          </div>
+
+          <div
+            class="right-arrow"
+            tabindex="0"
+            (keyup)="nextSlide(1)"
+            (click)="nextSlide(1)">
+            Suivante
+            <mat-icon> chevron_right </mat-icon>
+          </div>
+        </div>
+
         <img [src]="illustration.url" [alt]="illustration.alt" />
 
-        <div class="legend">
+        <p class="legend">
           {{ illustration.alt }}
-        </div>
+        </p>
       </div>
     }
   </div>

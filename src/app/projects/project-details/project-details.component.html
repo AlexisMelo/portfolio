@@ -1,41 +1,37 @@
-@if (project) {
+@if (project(); as p) {
   <div class="g-grid-container">
     <div class="g-grid" @gridItemAnimation>
-      <app-project-details-icon [project]="project"></app-project-details-icon>
+      <app-project-details-icon [project]="p"></app-project-details-icon>
 
-      <app-project-duration [project]="project"></app-project-duration>
+      <app-project-duration [project]="p"></app-project-duration>
 
       <app-project-description
         class="g-grid-item-shadow"
-        [project]="project"></app-project-description>
+        [project]="p"></app-project-description>
 
-      <app-project-illustrations
-        [project]="project"></app-project-illustrations>
+      <app-project-illustrations [project]="p"></app-project-illustrations>
 
       <app-open-live
-        [project]="project"
-        [class.source-available]="project.source !== null"></app-open-live>
+        [project]="p"
+        [class.source-available]="p.source !== null"></app-open-live>
 
-      @if (project.source) {
-        <app-github
-          class="g-grid-item-shadow"
-          [link]="project.source"></app-github>
+      @if (p.source) {
+        <app-github class="g-grid-item-shadow" [link]="p.source"></app-github>
       }
 
-      <app-project-problematic [project]="project"></app-project-problematic>
+      <app-project-problematic [project]="p"></app-project-problematic>
 
-      <app-project-context [project]="project"></app-project-context>
+      <app-project-context [project]="p"></app-project-context>
 
-      <app-project-participation
-        [project]="project"></app-project-participation>
+      <app-project-participation [project]="p"></app-project-participation>
 
       <app-skills-recap
-        [skills]="skills"
+        [skills]="skills()"
         [recapBackgroundColor]="
-          'var(--project-details-skills-recap-bg-' + (project | status) + ')'
+          'var(--project-details-skills-recap-bg-' + (p | status) + ')'
         "></app-skills-recap>
 
-      <app-project-coworkers [project]="project"></app-project-coworkers>
+      <app-project-coworkers [project]="p"></app-project-coworkers>
     </div>
   </div>
 }

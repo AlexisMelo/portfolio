@@ -13,23 +13,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
 import { ArchivesService } from '../archives.service';
-import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-project-filtering',
   standalone: true,
-  imports: [
-    FilterChipComponent,
-    ReactiveFormsModule,
-    MatIconModule,
-    ResetButtonComponent,
-  ],
+  imports: [ReactiveFormsModule, MatIconModule],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

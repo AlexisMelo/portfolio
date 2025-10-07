@@ -1,26 +1,19 @@
 import {
-  animate,
-  query,
-  stagger,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import {
   AfterViewInit,
   Component,
+  computed,
   ElementRef,
   inject,
-  Input,
+  input,
+  signal,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Tables } from 'database.types';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
-import { Skill } from 'src/app/skills/skill.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { SkillGroup } from './skill-group.model';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
+import { Skill } from 'src/app/skills/skill.model';
 
 @Component({
   selector: 'app-skills-recap',
@@ -28,63 +21,25 @@ import { LoaderComponent } from 'src/app/shared/loader/loader.component';
   imports: [RouterLink, MatIconModule, LoaderComponent],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
-  animations: [
-    trigger('stagger', [
-      transition('* => *', [
-        query(
-          '.selector',
-          [
-            style({
-              opacity: 0,
-            }),
-            stagger(100, [
-              animate(
-                '200ms',
-                style({
-                  opacity: 0.4,
-                })
-              ),
-            ]),
-          ],
-          {
-            optional: true,
-          }
-        ),
-      ]),
-    ]),
-  ],
 })
 export class SkillsRecapComponent
   extends GridItemDirective
   implements AfterViewInit
 {
   /**
-   * Compétences à afficher
+   * Skills to display
    */
-  @Input({ required: true }) set skills(value: Array<Skill>) {
-    this._skills = value;
-    this.updateGroupedSkills();
-  }
+  public skills = input.required<Array<Skill>>();
 
   /**
    * Couleur de fond des skills
    */
-  @Input({ required: true }) recapBackgroundColor!: string;
-
-  /**
-   * Toutes les compétences
-   */
-  private _skills?: Array<Skill>;
+  public recapBackgroundColor = input.required<string>();
 
   /**
    * Route vers les archives
    */
   public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
-
-  /**
-   * Technologies groupées par type
-   */
-  public groupedSkills: Array<SkillGroup> = [];
 
   /**
    * Accès au template
@@ -94,7 +49,7 @@ export class SkillsRecapComponent
   /**
    * Index du slide actuellement affiché
    */
-  public currentSlide = 0;
+  public currentSlide = signal(0);
 
   /**
    * Stockage pour l'interval de l'autoslide
@@ -102,20 +57,22 @@ export class SkillsRecapComponent
   private autoSlideInterval?: NodeJS.Timeout;
 
   /**
-   * Technologies groupées par type
+   * Skills grouped by type
    */
-  private updateGroupedSkills() {
-    if (!this._skills) return;
+  protected groupedSkills = computed(() => {
+    const skills = this.skills();
 
-    const skillsGrouped = this._skills.reduce(
+    if (!skills) return [];
+
+    const skillsGrouped = skills.reduce(
       (
         group: {
-          [key: string]: { skill: Tables<'skill_type'>; skills: Skill[] };
+          [key: string]: { skill_type: Tables<'skill_type'>; skills: Skill[] };
         },
         item: Skill
       ) => {
         group[item.skill_type.id] = group[item.skill_type.id] || {
-          skill: item.skill_type,
+          skill_type: item.skill_type,
           skills: [],
         };
         group[item.skill_type.id].skills.push(item);
@@ -130,24 +87,24 @@ export class SkillsRecapComponent
       );
     }
 
-    this.groupedSkills = Object.values(skillsGrouped).sort((a, b) =>
-      a.skill.position > b.skill.position ? 1 : -1
+    return Object.values(skillsGrouped).sort((a, b) =>
+      a.skill_type.position > b.skill_type.position ? 1 : -1
     );
-  }
+  });
 
   /**
    * Affiche la slide voulue
    * @param index
    */
   private showSlide(index: number) {
-    const totalSlides = Object.keys(this.groupedSkills).length;
+    const totalSlides = Object.keys(this.groupedSkills()).length;
 
     if (index >= totalSlides) {
-      this.currentSlide = 0;
+      this.currentSlide.set(0);
     } else if (index < 0) {
-      this.currentSlide = totalSlides - 1;
+      this.currentSlide.set(totalSlides - 1);
     } else {
-      this.currentSlide = index;
+      this.currentSlide.set(index);
     }
 
     const carouselItems =
@@ -156,7 +113,7 @@ export class SkillsRecapComponent
     if (!carouselItems) return;
 
     for (const slide of carouselItems) {
-      slide.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+      slide.style.transform = `translateX(-${this.currentSlide() * 100}%)`;
     }
   }
 
@@ -174,7 +131,7 @@ export class SkillsRecapComponent
    * @param direction
    */
   public nextSlide(direction: number) {
-    this.showSlide(this.currentSlide + direction);
+    this.showSlide(this.currentSlide() + direction);
     this.resetAutoSlide();
   }
 
