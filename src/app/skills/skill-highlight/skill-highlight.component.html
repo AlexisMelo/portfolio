@@ -2,18 +2,20 @@
   <app-loader></app-loader>
 } @else if (skill) {
   <h2>
-    {{ skill.label
-    }}<mat-icon
+    {{ skill.label }}
+  </h2>
+
+  <p class="description">{{ skill.description }}</p>
+
+  <p class="footer">
+    <mat-icon
       [ngStyle]="{ color: iconColor }"
       [ngClass]="{ 'material-symbols-outlined': hovered }">
       {{ skill.loved ? 'favorite' : 'school' }}
     </mat-icon>
-  </h2>
-
-  <div class="g-grid-item-main-text">{{ skill.description }}</div>
-
-  <div class="g-grid-item-footer-text">
-    {{ skill.projects.length }}
-    {{ skill.projects.length > 1 ? 'réalisations' : 'réalisation' }}
-  </div>
+    <span>
+      {{ skill.projects.length }}
+      {{ skill.projects.length > 1 ? 'réalisations' : 'réalisation' }}
+    </span>
+  </p>
 }

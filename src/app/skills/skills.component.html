@@ -1,7 +1,15 @@
 <div class="g-grid-container">
-  @for (section of sections; track section.heading) {
+  <div class="g-grid" @gridItemAnimation>
+    <app-keep-learning></app-keep-learning>
+    <app-favorites></app-favorites>
+  </div>
+</div>
+
+@for (section of sections; track section.heading) {
+  <div class="g-grid-container">
     <div
       class="g-grid"
+      @gridItemAnimation
       [ngClass]="section.class"
       [style]="
         '--section-bg: ' +
@@ -9,17 +17,9 @@
         ';--section-color: ' +
         section.sectionColor
       ">
-      <app-skill-section-header>
-        <span>{{ section.subtitle }}</span>
-      </app-skill-section-header>
-      <app-skill-section-description
-        [mainText]="section.heading"
-        [secondaryText]="section.description"></app-skill-section-description>
-      <app-skills-recap
-        [skills]="section.skills"
-        [recapBackgroundColor]="
-          section.recapBackgroundColor
-        "></app-skills-recap>
+      <app-key-header>
+        <ng-container title>{{ section.subtitle }}</ng-container>
+      </app-key-header>
 
       @for (i of 2 | range; track i) {
         @if (
@@ -41,25 +41,15 @@
         }
       }
 
-      @for (i of 2 | range; track i) {
-        @if (
-          (section.skills | learning).length === 0 ||
-          (section.skills | learning)[i] !== undefined
-        ) {
-          <app-skill-highlight
-            class="learning"
-            [attr.data-index]="i"
-            [skill]="(section.skills | learning)[i]"
-            [iconColor]="
-              themeService.isDarkMode
-                ? section.sectionColor
-                : section.sectionBackgroundColor
-            "
-            [loading]="
-              (section.skills | learning).length === 0
-            "></app-skill-highlight>
-        }
-      }
+      <app-skill-section-description
+        [mainText]="section.heading"
+        [secondaryText]="section.description"></app-skill-section-description>
+
+      <app-skills-recap
+        [skills]="section.skills"
+        [recapBackgroundColor]="
+          section.recapBackgroundColor
+        "></app-skills-recap>
     </div>
-  }
-</div>
+  </div>
+}
