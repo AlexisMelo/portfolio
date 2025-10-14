@@ -150,4 +150,20 @@ export class SupabaseService {
       return Promise.reject('Erreur lors du téléchargement');
     return data;
   }
+
+  /**
+   * Count number of projects per skill
+   * @param skillId
+   * @returns
+   */
+  public async countProjectsBySkill(skillId: number) {
+    const { count, error } = await this.client
+      .from('project_skill')
+      .select('*', { count: 'exact', head: true })
+      .eq('skill_id', skillId);
+
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
+  }
 }
