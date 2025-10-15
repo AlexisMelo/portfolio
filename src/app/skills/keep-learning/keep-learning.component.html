@@ -1,6 +1,14 @@
 <h2>Continuer d'apprendre</h2>
 
 <p>
-  Chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre
-  avec le temps, et reste ouvert aux évolutions !
+  Car chaque projet vient avec ses contraintes et exigences. Je continue
+  d'apprendre avec le temps, et reste ouvert aux propositions !
 </p>
+
+<h3>Montée en compétence actuelle</h3>
+
+<ul>
+  @for (skill of skills(); track skill.id) {
+    <li>{{ skill.label }}</li>
+  }
+</ul>

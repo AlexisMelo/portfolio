@@ -1,5 +1,7 @@
 :host {
   padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 h2 {
@@ -9,4 +11,20 @@ h2 {
 
 p {
   line-height: 180%;
+  flex-grow: 1;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 0;
+  margin: 0;
+  grid-auto-flow: column;
+  min-height: 2.5rem;
+
+  li {
+    list-style: none;
+    text-align: start;
+  }
 }
