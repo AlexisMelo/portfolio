@@ -1,1 +1,19 @@
-<p>experience works!</p>
+<div class="g-grid-container">
+  <div class="g-grid" @gridItemAnimation>
+    <app-resume></app-resume>
+
+    @for (context of baseContexts(); track context.id) {
+      <app-key-header
+        class="g-grid-item-shadow"
+        [chips]="[context.localization]"
+        >{{ context.label }}</app-key-header
+      >
+      <app-experience-description
+        [context]="context"></app-experience-description>
+      <app-experience-duration [context]="context"></app-experience-duration>
+      <app-experience-projects
+        [class.g-grid-item-shadow]="context.projects.length > 0"
+        [context]="context"></app-experience-projects>
+    }
+  </div>
+</div>

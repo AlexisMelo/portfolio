@@ -1,14 +1,8 @@
-@import '../../../styles/responsive.scss';
-
 :host {
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-h2 {
-  font-size: var(--text-xl);
 }
 
 @keyframes move {
@@ -31,6 +25,6 @@ mat-icon {
 app-mosaique-websites {
   position: absolute;
   top: 0;
-  left: -30px;
+  left: -100px;
   rotate: 40deg;
 }

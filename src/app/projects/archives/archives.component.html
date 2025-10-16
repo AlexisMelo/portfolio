@@ -15,13 +15,12 @@
     <app-order></app-order>
 
     @for (group of archivesService.sortedGroupedProjects(); track group.key) {
-      <app-key-header class="g-grid-item-shadow">
-        <ng-container title>{{ group.key }}</ng-container>
-        <ng-container subtitle
-          >{{ group.key.length }} réalisation{{
-            group.key.length > 1 ? 's' : ''
-          }}</ng-container
-        >
+      <app-key-header
+        class="g-grid-item-shadow"
+        [chips]="[
+          group.key.length + ' réalisation' + (group.key.length > 1 ? 's' : ''),
+        ]">
+        {{ group.key }}
       </app-key-header>
       @for (project of group.projects; track project.id) {
         <app-project-item-condensed

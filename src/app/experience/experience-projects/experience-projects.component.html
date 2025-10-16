@@ -1,0 +1,13 @@
+<h2>{{ projectsCount() > 0 ? 'Projets' : 'Aucun projet' }}</h2>
+
+@if (projectsCount() > 0) {
+  <p>{{ projectsCount() }} réalisation{{ projectsCount() > 1 ? 's' : '' }}</p>
+
+  <mat-icon class="material-symbols-outlined" [routerLink]="[ARCHIVES_ROUTE]"
+    >call_made</mat-icon
+  >
+} @else {
+  <p>On y travaille...</p>
+}
+
+<app-mosaique-websites></app-mosaique-websites>

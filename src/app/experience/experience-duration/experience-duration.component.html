@@ -1,0 +1,14 @@
+@switch (timing()) {
+  @case ('future') {
+    <h2>Bientôt</h2>
+    <p>À partir de {{ context().start_date | date: 'MMMM' }}</p>
+  }
+  @case ('now') {
+    <h2>{{ context().start_date | duration: context().end_date }}</h2>
+    <p>Depuis {{ context().start_date | date: 'yyyy' }}</p>
+  }
+  @case ('past') {
+    <h2>{{ context().start_date | duration: context().end_date }}</h2>
+    <p>Jusqu'en {{ context().start_date | date: 'yyyy' }}</p>
+  }
+}

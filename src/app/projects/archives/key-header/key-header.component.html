@@ -1,6 +1,10 @@
-<h2><ng-content select="[title]"></ng-content></h2>
+<h2><ng-content></ng-content></h2>
 
-<p><ng-content select="[subtitle]"></ng-content></p>
+<ul>
+  @for (chip of chips(); track chip) {
+    <li>{{ chip }}</li>
+  }
+</ul>
 
 <svg
   width="341"
