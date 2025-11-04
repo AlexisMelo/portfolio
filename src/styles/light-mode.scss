@@ -8,17 +8,11 @@
   --archives-header-bg: var(--green-250);
   --archives-header-color: var(--white);
 
-  //availability
-  --availability-next-color: var(--gray-500);
-
   //button
   --button-background: url(../../public/gradient.svg);
   --button-border: var(--green-300);
   --button-color: var(--green-400);
   --button-plain-border: var(--green-300);
-
-  //description
-  --description-text: var(--gray-500);
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
@@ -38,6 +32,7 @@
   --grid-item-default-bg: var(--white);
   --grid-item-border: 1px solid var(--gray-200);
   --grid-item-bottom-text-color: var(--gray-200);
+  --grid-item-shadow-color: rgba(0, 0, 0, 0.05);
 
   //highlightable-chip
   --highlightable-chip-background-color: var(--green-50);
@@ -146,6 +141,7 @@
   --styles-paragraph-highlight-bg-color: rgb(241, 241, 241);
   --styles-paragraph-highlight-color: var(--black);
   --styles-thumbnail-border: var(--gray-300);
+  --styles-default-paragraph-color: var(--gray-500);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);

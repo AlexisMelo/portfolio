@@ -15,10 +15,6 @@ h2 {
   flex-grow: 1;
 }
 
-p {
-  color: var(--freelance-since-p-color);
-}
-
 @keyframes scale {
   50% {
     transform: scale(0.8);

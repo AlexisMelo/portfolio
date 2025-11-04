@@ -92,8 +92,9 @@ h2 {
   padding-top: 0.2em;
 }
 
-p {
-  color: var(--gray-500);
+p,
+li {
+  color: var(--styles-default-paragraph-color);
 }
 
 body {
@@ -201,7 +202,7 @@ h3 {
 }
 
 .g-grid-item-shadow {
-  box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: -3px 3px 7px 0 var(--grid-item-shadow-color);
 }
 
 p,

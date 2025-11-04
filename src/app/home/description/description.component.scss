@@ -24,7 +24,7 @@
     flex-grow: 1;
 
     h2 {
-      font-size: var(--text-xl);
+      font-size: var(--text-md);
       margin: 0;
       flex-grow: 1;
     }
@@ -33,11 +33,11 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      color: var(--description-text);
     }
 
     mat-icon {
       margin-right: 6px;
+      color: var(--styles-default-paragraph-color);
     }
 
     p {

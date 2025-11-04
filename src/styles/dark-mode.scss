@@ -1,15 +1,12 @@
 @mixin dark-mode() {
   //action-button
-  --action-button-background: var(--gray-600);
-  --action-button-color: var(--white);
+  --action-button-background: var(--gray-700);
+  --action-button-color: var(--gray-200);
   --action-button-border-color: var(--gray-500);
 
   //archives
   --archives-header-bg: var(--gray-500);
   --archives-header-color: var(--green-250);
-
-  //availability
-  --availability-next-color: var(--gray-400);
 
   //button
   --button-background: url(../../public/gradient-dark.svg);
@@ -30,8 +27,9 @@
 
   //grid-item
   --grid-item-default-bg: var(--gray-700);
-  --grid-item-border: 2px solid var(--gray-500);
+  --grid-item-border: 2px solid var(--gray-600);
   --grid-item-bottom-text-color: var(--gray-300);
+  --grid-item-shadow-color: rgba(219, 219, 219, 0.05);
 
   //highlightable-chip
   --highlightable-chip-background-color: var(--green-200);
@@ -90,7 +88,7 @@
   //project-item-skill-list
   --project-item-skill-list-skill-background: var(--gray-600);
   --project-item-skill-list-skill-border: var(--gray-500);
-  --project-item-skill-list-color: var(--gray-300);
+  --project-item-skill-list-color: var(--gray-200);
 
   //project-name-header
   --project-name-header-completed-background: var(--gray-500);
@@ -140,6 +138,7 @@
   --styles-paragraph-highlight-bg-color: var(--gray-500);
   --styles-paragraph-highlight-color: var(--white);
   --styles-thumbnail-border: var(--green-500);
+  --styles-default-paragraph-color: var(--gray-300);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--gray-500);
