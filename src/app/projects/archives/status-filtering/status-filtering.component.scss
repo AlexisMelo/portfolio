@@ -57,12 +57,12 @@ p {
 
   &.selected {
     transform: translateY(0%);
-    background-color: var(--gray-600);
+    background-color: var(--status-filtering-selected);
   }
 
   &:not(.allSelected):not(.selected) {
     transform: translateY(50%);
-    background-color: var(--gray-300);
+    background-color: var(--status-filtering-not-selected);
 
     p {
       display: none;
@@ -71,13 +71,13 @@ p {
 }
 
 .ongoing {
-  background-color: var(--gray-500);
+  background-color: var(--status-filtering-ongoing);
 }
 
 .abandoned {
-  background-color: var(--gray-400);
+  background-color: var(--status-filtering-abandoned);
 }
 
 .completed {
-  background-color: var(--green-600);
+  background-color: var(--status-filtering-completed);
 }

@@ -107,6 +107,9 @@
   --projects-by-context-icons-bg: var(--blue);
   --projects-by-context-icons-color: var(--white);
 
+  //reset-button
+  --reset-button-color: var(--gray-300);
+
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-300);
   --robotic-arm-axes-fill: var(--gray-400);
@@ -130,6 +133,13 @@
 
   --skill-section-header-general-bg: var(--gray-500);
   --skill-section-header-general-color: var(--gray-300);
+
+  //status-filtering
+  --status-filtering-completed: var(--gray-400);
+  --status-filtering-ongoing: var(--gray-500);
+  --status-filtering-abandoned: var(--gray-600);
+  --status-filtering-selected: var(--gray-400);
+  --status-filtering-not-selected: var(--gray-600);
 
   //styles
   --styles-title-color: var(--gray-100);
