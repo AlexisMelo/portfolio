@@ -15,6 +15,7 @@
   flex-direction: row;
   padding: 1.3rem 1.5rem;
   align-items: center;
+  cursor: pointer;
 
   .text {
     animation: 1s slideInFromLeft;
@@ -22,12 +23,6 @@
     flex-direction: column;
     height: 100%;
     flex-grow: 1;
-
-    h2 {
-      font-size: var(--text-md);
-      margin: 0;
-      flex-grow: 1;
-    }
 
     div {
       display: flex;
@@ -42,6 +37,18 @@
 
     p {
       margin: 0;
+    }
+
+    h2 {
+      font-size: var(--text-md);
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    @include responsive('medium') {
+      h2 {
+        font-size: var(--text-lg);
+      }
     }
   }
 

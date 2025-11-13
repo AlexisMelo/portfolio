@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-theme-selector',
@@ -9,7 +9,12 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
   templateUrl: './theme-selector.component.html',
   styleUrl: './theme-selector.component.scss',
 })
-export class ThemeSelectorComponent extends GridItemDirective {
+export class ThemeSelectorComponent {
+  /**
+   * Handle theme
+   */
+  public themeService = inject(ThemeService);
+
   /**
    * Handle theme change
    */

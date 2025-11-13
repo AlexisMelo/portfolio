@@ -4,6 +4,7 @@
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .header {
@@ -16,6 +17,12 @@
   h2 {
     margin: 0;
     font-size: var(--text-md);
+  }
+
+  @include responsive('medium') {
+    h2 {
+      font-size: var(--text-lg);
+    }
   }
 }
 

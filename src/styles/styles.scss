@@ -16,15 +16,19 @@
   --grid-icon-centered-size: 20px;
   --body-font-family: 'Poppins', sans-serif;
   --title-font-family: 'Grandstander', cursive;
+  font-size: var(--text-xs);
 
   @include responsive('medium') {
+    --grid-icon-centered-size: 50px;
+    font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
-    --columns: 4;
+    --columns: 8;
   }
 
   @include responsive('large') {
+    font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
-    --columns: 4;
+    // --columns: 10;
     --gap: 18px;
     --grid-icon-centered-size: 50px;
   }
@@ -72,15 +76,6 @@ html {
   color: var(--styles-text-color);
   font-family: var(--body-font-family);
   overflow-x: hidden;
-  font-size: var(--text-xs);
-
-  @include responsive('medium') {
-    font-size: var(--text-sm);
-  }
-
-  @include responsive('large') {
-    font-size: var(--text-md);
-  }
 }
 
 h2,

@@ -8,11 +8,19 @@
   justify-content: space-between;
   align-items: flex-start;
 
+  img {
+    filter: grayscale(100);
+  }
+
   &:hover {
     .illustration-container {
       transform: translateY(5%);
       box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 15px 0px;
       rotate: -5deg;
+    }
+
+    img {
+      filter: none;
     }
   }
 }
@@ -20,7 +28,11 @@
 svg {
   position: absolute;
   right: 10%;
-  bottom: 0;
+  bottom: 5%;
+
+  @include responsive('medium') {
+    width: 200px;
+  }
 }
 
 h2 {
@@ -57,11 +69,7 @@ h2 {
   }
 
   @include responsive('medium') {
-    width: 160px;
-  }
-
-  @include responsive('large') {
-    width: 250px;
+    width: 140px;
   }
 }
 

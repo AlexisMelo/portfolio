@@ -16,6 +16,7 @@ import { ContentService } from '../shared/content.service';
 import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { StickyObserverDirective } from './sticky-observer.directive';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -29,6 +30,7 @@ import { StickyObserverDirective } from './sticky-observer.directive';
     GithubComponent,
     ThemeSelectorComponent,
     LanguageSelectorComponent,
+    NgTemplateOutlet,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
