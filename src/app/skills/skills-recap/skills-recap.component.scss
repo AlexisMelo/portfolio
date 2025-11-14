@@ -112,7 +112,11 @@
   }
 
   &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
+
+    img {
+      filter: none;
+    }
   }
 
   mat-icon {
@@ -126,6 +130,7 @@
     width: 30px;
     height: 30px;
     object-fit: contain;
+    filter: grayscale(100);
   }
 
   p {

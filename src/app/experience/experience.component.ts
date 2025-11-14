@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { ExperienceDurationComponent } from './experience-duration/experience-duration.component';
 import { ExperienceProjectsComponent } from './experience-projects/experience-projects.component';
 import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
+import { LinkedinComponent } from '../home/linkedin/linkedin.component';
 
 @Component({
   selector: 'app-experience',
@@ -18,6 +19,7 @@ import { ExperienceDescriptionComponent } from './experience-description/experie
     ExperienceDurationComponent,
     ExperienceProjectsComponent,
     ExperienceDescriptionComponent,
+    LinkedinComponent,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',
