@@ -5,13 +5,22 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 
   &:hover {
     .illustration-container {
       box-shadow: rgba(100, 100, 111, 0.3) 0px 10px 10px 5px;
       rotate: -5deg;
       transform: translate(-2%, -50%);
+
+      img {
+        filter: none;
+      }
     }
+  }
+
+  @include responsive('medium') {
+    padding: 2.5rem;
   }
 }
 
@@ -39,12 +48,17 @@
   img {
     transition: 500ms;
     height: 100%;
+    filter: grayscale(100);
   }
 }
 
 h2 {
   font-size: var(--text-xxl);
-  margin: 0 0 0.5rem 0;
+  margin-bottom: 0.5rem;
+
+  @include responsive('medium') {
+    margin-bottom: 1rem;
+  }
 }
 
 p {
@@ -52,4 +66,9 @@ p {
   font-size: var(--text-xxs);
   max-width: 60%;
   flex-grow: 1;
+
+  @include responsive('medium') {
+    font-size: var(--text-sm);
+    margin-bottom: 1rem;
+  }
 }

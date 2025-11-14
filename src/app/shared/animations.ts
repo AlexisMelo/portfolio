@@ -20,9 +20,9 @@ export const gridItemAnimation = trigger('gridItemAnimation', [
     query(
       ':scope > *',
       [
-        stagger(100, [
+        stagger(50, [
           animate(
-            '400ms ease-in',
+            '200ms ease-in',
             style({
               opacity: 1,
               transform: 'translateY(0)',

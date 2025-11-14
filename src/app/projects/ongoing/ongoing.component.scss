@@ -4,8 +4,9 @@
   padding: 1.3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 }
 
 h2,
@@ -15,10 +16,18 @@ p {
 
 h2 {
   font-size: var(--text-xxl);
+
+  @include responsive('medium') {
+    font-size: var(--text-xxxxl);
+  }
 }
 
 p {
   font-size: var(--text-sm);
+
+  @include responsive('medium') {
+    font-size: var(--text-xl);
+  }
 }
 
 .cogwheel-model {
@@ -27,7 +36,6 @@ p {
 
 .cogwheel__1 {
   color: var(--gray-100);
-
   position: absolute;
   left: -20px;
   bottom: -30px;
