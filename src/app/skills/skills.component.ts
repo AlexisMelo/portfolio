@@ -38,7 +38,7 @@ export class SkillsComponent implements OnInit {
    */
   public sections: Array<SkillsSection> = [
     {
-      id: 'front-end',
+      id: 'section-frontend',
       heading: "Création d'interfaces",
       subtitle: 'Frontend',
       description:
@@ -51,7 +51,7 @@ export class SkillsComponent implements OnInit {
       sectionColor: 'var(--skill-section-header-frontend-color)',
     },
     {
-      id: 'back-end',
+      id: 'section-backend',
       heading: 'Gestion de données',
       subtitle: 'Backend',
       description:
@@ -64,7 +64,7 @@ export class SkillsComponent implements OnInit {
       sectionColor: 'var(--skill-section-header-backend-color)',
     },
     {
-      id: 'general',
+      id: 'section-general',
       heading: 'Et bien plus',
       subtitle: 'Général',
       description:

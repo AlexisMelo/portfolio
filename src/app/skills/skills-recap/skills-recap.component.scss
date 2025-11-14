@@ -41,6 +41,12 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 1rem;
+
+  mat-icon,
+  .precedent-type,
+  .next-type {
+    cursor: pointer;
+  }
 }
 
 .carousel {

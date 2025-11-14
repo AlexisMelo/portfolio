@@ -2,22 +2,9 @@
   <div class="g-grid" @gridItemAnimation>
     <app-favorites></app-favorites>
     <app-keep-learning></app-keep-learning>
-  </div>
-</div>
 
-@for (section of sections; track section.heading) {
-  <div class="g-grid-container">
-    <div
-      class="g-grid"
-      @gridItemAnimation
-      [ngClass]="section.class"
-      [style]="
-        '--section-bg: ' +
-        section.sectionBackgroundColor +
-        ';--section-color: ' +
-        section.sectionColor
-      ">
-      <app-key-header>
+    @for (section of sections; track section.heading) {
+      <app-key-header [class]="section.id + ' g-grid-item-shadow'">
         {{ section.subtitle }}
       </app-key-header>
 
@@ -27,7 +14,7 @@
           (section.skills | loved)[i] !== undefined
         ) {
           <app-skill-highlight
-            class="loved"
+            [class]="section.id + ' loved'"
             [attr.data-index]="i"
             [skill]="(section.skills | loved)[i]"
             [iconColor]="
@@ -42,14 +29,16 @@
       }
 
       <app-skill-section-description
+        [class]="section.id"
         [mainText]="section.heading"
         [secondaryText]="section.description"></app-skill-section-description>
 
       <app-skills-recap
+        [class]="section.id"
         [skills]="section.skills"
         [recapBackgroundColor]="
           section.recapBackgroundColor
         "></app-skills-recap>
-    </div>
+    }
   </div>
-}
+</div>
