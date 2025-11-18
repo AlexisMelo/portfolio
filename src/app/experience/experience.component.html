@@ -2,7 +2,10 @@
   <div class="g-grid-container">
     <div class="g-grid" @gridItemAnimation>
       <app-resume></app-resume>
-      <app-linkedin></app-linkedin>
+
+      <div class="linkedin" appGridItem>
+        <app-linkedin></app-linkedin>
+      </div>
 
       @for (context of baseContexts(); track context.id) {
         <app-key-header

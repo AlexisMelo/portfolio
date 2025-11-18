@@ -22,10 +22,6 @@ h3 {
     height: 140px;
   }
 
-  @include responsive('large') {
-    height: 185px;
-  }
-
   img {
     transition: 1s;
     height: 100%;
@@ -42,10 +38,6 @@ p {
 
 h3 {
   position: relative;
-
-  @include responsive('large') {
-    font-size: 1.5rem;
-  }
 
   app-action-button {
     right: -50px;

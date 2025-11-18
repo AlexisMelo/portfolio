@@ -1,7 +1,20 @@
+@import '../../../styles/responsive.scss';
+
 :host {
   padding: 2rem 2.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  @include responsive('large') {
+    flex-direction: row;
+    // gap: 1rem;
+    align-items: flex-start;
+
+    > div:nth-of-type(1) {
+      width: 60%;
+    }
+  }
 }
 
 h2 {
@@ -9,8 +22,15 @@ h2 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  @include responsive('large') {
+    margin-top: 0;
+    font-size: var(--text-xl);
+  }
+}
+
 p {
-  line-height: 180%;
+  line-height: 170%;
   flex-grow: 1;
 }
 
@@ -24,7 +44,13 @@ ul {
   min-height: 2.5rem;
 
   li {
-    list-style: none;
+    // list-style: none;
     text-align: start;
+    margin-left: 1.5rem;
+  }
+
+  @include responsive('large') {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
   }
 }

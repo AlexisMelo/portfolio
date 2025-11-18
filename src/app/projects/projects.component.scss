@@ -7,14 +7,19 @@
   align-items: center;
   justify-content: center;
 
+  app-github {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+  }
+
   @include responsive('medium') {
     grid-row: 5 / 8;
     grid-column: 1 / 3;
-  }
 
-  app-github {
-    width: 24px;
-    height: 24px;
+    app-github {
+      width: var(--icon-size-md);
+      height: var(--icon-size-md);
+    }
   }
 }
 

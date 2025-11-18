@@ -14,10 +14,6 @@
   @include responsive('medium') {
     --box-size: 30px;
   }
-
-  @include responsive('large') {
-    --box-size: 40px;
-  }
 }
 
 .loader {

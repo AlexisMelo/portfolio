@@ -83,10 +83,6 @@ app-action-button {
   @include responsive('medium') {
     width: 40px;
   }
-
-  @include responsive('large') {
-    width: 70px;
-  }
 }
 
 .rayon {
@@ -102,10 +98,5 @@ app-action-button {
   @include responsive('medium') {
     width: 90px;
     height: 90px;
-  }
-
-  @include responsive('large') {
-    width: 120px;
-    height: 120px;
   }
 }

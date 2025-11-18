@@ -4,6 +4,7 @@
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
 }
 
@@ -27,7 +28,6 @@
 }
 
 p {
-  flex-grow: 1;
   margin: 0;
   align-content: end;
 }

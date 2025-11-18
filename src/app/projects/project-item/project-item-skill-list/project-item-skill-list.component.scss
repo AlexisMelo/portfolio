@@ -27,9 +27,4 @@
     padding: 2px 4px;
     font-size: 0.7rem;
   }
-
-  @include responsive('large') {
-    padding: 4px 6px;
-    font-size: 0.8rem;
-  }
 }

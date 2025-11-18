@@ -40,16 +40,6 @@ p {
     height: var(--mat-icon-size);
   }
 
-  @include responsive('large') {
-    width: 70px;
-    height: 220px;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    --mat-icon-size: 25px;
-    padding-top: 20px;
-    font-size: 1.2rem;
-  }
-
   &.selected {
     transform: translateY(0%);
     background-color: var(--status-filtering-selected);

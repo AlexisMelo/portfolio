@@ -30,6 +30,17 @@ app-map {
   }
 }
 
+app-linkedin,
+app-github {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+
+  @include responsive('medium') {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+  }
+}
+
 .linkedin {
   grid-column: 3;
   grid-row: 2;
@@ -40,11 +51,6 @@ app-map {
   @include responsive('medium') {
     grid-column: 5 / 7;
     grid-row: 3 / 5;
-  }
-
-  app-linkedin {
-    width: 24px;
-    height: 24px;
   }
 }
 
@@ -58,11 +64,6 @@ app-map {
   @include responsive('medium') {
     grid-column: 7 / 9;
     grid-row: 3 / 5;
-  }
-
-  app-github {
-    width: 24px;
-    height: 24px;
   }
 }
 

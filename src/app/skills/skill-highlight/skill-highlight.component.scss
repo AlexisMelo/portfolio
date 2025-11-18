@@ -35,18 +35,14 @@ h2 {
   width: 100%;
   font-size: var(--text-xl);
   margin-bottom: 1rem;
-
-  @include responsive('large') {
-    mat-icon {
-      font-size: 2rem;
-      height: 2rem;
-      width: 2rem;
-    }
-  }
 }
 
 .description {
   flex-grow: 1;
+
+  @include responsive('medium') {
+    font-size: var(--text-xs);
+  }
 }
 
 .footer {

@@ -24,12 +24,6 @@
     --action-button-icon-size: 16px;
   }
 
-  @include responsive('large') {
-    --action-button-border-size: 1px;
-    --action-button-size: 36px;
-    --action-button-icon-size: 18px;
-  }
-
   &.position-absolute {
     position: absolute;
   }
@@ -45,10 +39,6 @@
 
     @include responsive('medium') {
       left: 60px;
-    }
-
-    @include responsive('large') {
-      left: 65px;
     }
   }
 

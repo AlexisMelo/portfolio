@@ -26,9 +26,17 @@ app-project-details-icon {
   grid-column: 1;
 }
 
-app-github {
+.github {
   grid-row: 6;
   grid-column: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  app-github {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+  }
 
   @include responsive('medium') {
     grid-row: 4;

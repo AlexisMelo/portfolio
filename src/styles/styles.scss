@@ -21,13 +21,13 @@
     font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
     --columns: 8;
+    --gap: 14px;
   }
 
   @include responsive('large') {
-    font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
-    // --columns: 10;
-    --gap: 18px;
+    --columns: 12;
+    --gap: 16px;
   }
 
   --cell-size: #{functions.getCellSize(
@@ -80,7 +80,8 @@ p {
   margin: 0;
 }
 
-h2 {
+h2,
+h3 {
   padding-top: 0.2em;
 }
 
@@ -100,10 +101,6 @@ h3 {
   font-weight: bold;
   font-style: normal;
   color: var(--styles-title-color);
-
-  @include responsive('large') {
-    letter-spacing: 2px;
-  }
 }
 
 @keyframes blink {
@@ -143,10 +140,6 @@ h3 {
     height: 300px;
     width: 450px;
   }
-}
-
-.g-text {
-  line-height: 200%;
 }
 
 .g-container {

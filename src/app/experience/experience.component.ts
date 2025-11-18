@@ -9,6 +9,7 @@ import { ExperienceDurationComponent } from './experience-duration/experience-du
 import { ExperienceProjectsComponent } from './experience-projects/experience-projects.component';
 import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
 import { LinkedinComponent } from '../home/linkedin/linkedin.component';
+import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-experience',
@@ -20,6 +21,7 @@ import { LinkedinComponent } from '../home/linkedin/linkedin.component';
     ExperienceProjectsComponent,
     ExperienceDescriptionComponent,
     LinkedinComponent,
+    GridItemDirective,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',

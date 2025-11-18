@@ -16,7 +16,9 @@
         [class.source-available]="p.source !== null"></app-open-live>
 
       @if (p.source) {
-        <app-github class="g-grid-item-shadow" [link]="p.source"></app-github>
+        <div appGridItem class="github g-grid-item-shadow">
+          <app-github [link]="p.source"></app-github>
+        </div>
       }
 
       <app-project-problematic [project]="p"></app-project-problematic>

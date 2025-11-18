@@ -16,6 +16,7 @@ import { ProjectDurationComponent } from './project-duration/project-duration.co
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-project-details',
@@ -33,6 +34,7 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
     OpenLiveComponent,
     SkillsRecapComponent,
     StatusPipe,
+    GridItemDirective,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

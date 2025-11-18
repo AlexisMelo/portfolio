@@ -8,11 +8,20 @@ app-keep-learning {
     grid-column: 5 / 9;
     grid-row: 1 / 4;
   }
+
+  @include responsive('large') {
+    grid-column: 6 / 13;
+    grid-row: 1 / 3;
+  }
 }
 
 app-favorites {
   grid-row: 1 / 3;
   grid-column: 1 / 5;
+
+  @include responsive('large') {
+    grid-column: 1 / 6;
+  }
 }
 
 app-key-header {
@@ -25,6 +34,11 @@ app-key-header {
     @include responsive('medium') {
       grid-row: 3;
     }
+
+    @include responsive('large') {
+      grid-column: 1 / 5;
+      grid-row: 3;
+    }
   }
 
   &.section-backend {
@@ -35,6 +49,11 @@ app-key-header {
       grid-row: 7;
       grid-column: 5 / 9;
     }
+
+    @include responsive('large') {
+      grid-column: 5 / 9;
+      grid-row: 3;
+    }
   }
 
   &.section-general {
@@ -44,6 +63,11 @@ app-key-header {
     @include responsive('medium') {
       grid-row: 11;
       grid-column: 1 / 5;
+    }
+
+    @include responsive('large') {
+      grid-column: 9 / 13;
+      grid-row: 3;
     }
   }
 }
@@ -72,10 +96,18 @@ app-skill-highlight {
       grid-row: 8 / 10;
     }
 
+    @include responsive('large') {
+      grid-row: 4 / 6;
+    }
+
     &:nth-of-type(3) {
       grid-column: 1 / 3;
 
       @include responsive('medium') {
+        grid-column: 5 / 7;
+      }
+
+      @include responsive('large') {
         grid-column: 5 / 7;
       }
     }
@@ -96,12 +128,24 @@ app-skill-highlight {
       grid-row: 12 / 14;
     }
 
+    @include responsive('large') {
+      grid-row: 4 / 6;
+    }
+
     &:nth-of-type(5) {
       grid-column: 1 / 3;
+
+      @include responsive('large') {
+        grid-column: 9 / 11;
+      }
     }
 
     &:nth-of-type(6) {
       grid-column: 3 / 5;
+
+      @include responsive('large') {
+        grid-column: 11 / 13;
+      }
     }
   }
 }
@@ -124,6 +168,10 @@ app-skill-section-description {
       grid-row: 10 / 12;
       grid-column: 5 / 9;
     }
+
+    @include responsive('large') {
+      grid-row: 6 / 8;
+    }
   }
 
   &.section-general {
@@ -133,6 +181,11 @@ app-skill-section-description {
     @include responsive('medium') {
       grid-column: 1 / 5;
       grid-row: 14 / 16;
+    }
+
+    @include responsive('large') {
+      grid-column: 9 / 13;
+      grid-row: 6 / 8;
     }
   }
 }
@@ -146,6 +199,11 @@ app-skills-recap {
       grid-row: 4 / 7;
       grid-column: 5 / 9;
     }
+
+    @include responsive('large') {
+      grid-column: 1 / 5;
+      grid-row: 8 / 11;
+    }
   }
 
   &.section-backend {
@@ -156,6 +214,11 @@ app-skills-recap {
       grid-row: 8 / 11;
       grid-column: 1 / 5;
     }
+
+    @include responsive('large') {
+      grid-column: 5 / 9;
+      grid-row: 8 / 11;
+    }
   }
 
   &.section-general {
@@ -165,6 +228,11 @@ app-skills-recap {
     @include responsive('medium') {
       grid-column: 5 / 9;
       grid-row: 12 / 15;
+    }
+
+    @include responsive('large') {
+      grid-column: 9 / 13;
+      grid-row: 8 / 11;
     }
   }
 }
