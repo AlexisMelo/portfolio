@@ -1,7 +1,11 @@
 <ng-template #items>
-  <app-linkedin></app-linkedin>
+  <div appGridItem class="linkedin">
+    <app-linkedin></app-linkedin>
+  </div>
 
-  <app-github [link]="contentService.github"></app-github>
+  <div appGridItem class="github">
+    <app-github [link]="contentService.github"></app-github>
+  </div>
 
   <div appGridItem class="theme-selector">
     <app-theme-selector></app-theme-selector>

@@ -1,20 +1,24 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { ContentService } from 'src/app/shared/content.service';
-import { ActionButtonComponent } from '../action-button/action-button.component';
-import { GridItemDirective } from '../../shared/grid/grid-item.directive';
+import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-linkedin',
   standalone: true,
-  imports: [ActionButtonComponent],
+  imports: [],
   templateUrl: './linkedin.component.html',
   styleUrl: './linkedin.component.scss',
 })
-export class LinkedinComponent extends GridItemDirective {
+export class LinkedinComponent {
   /**
-   * Gestion du contenu
+   * Handle content
    */
   public contentService = inject(ContentService);
+
+  /**
+   * Handle theming
+   */
+  public themeService = inject(ThemeService);
 
   /**
    * Action when clicking on component

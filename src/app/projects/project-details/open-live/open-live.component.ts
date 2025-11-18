@@ -28,7 +28,7 @@ export class OpenLiveComponent extends GridItemDirective {
   /**
    * Returns live url or null if project is unavailable
    */
-  protected isLive = computed(() => {
+  @HostBinding('class.is-live') protected isLive = computed(() => {
     return this.project().deployment;
   });
 

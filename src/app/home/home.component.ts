@@ -12,6 +12,7 @@ import { AvailabilityComponent } from './availability/availability.component';
 import { ImageComponent } from './image/image.component';
 import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
 import { gridItemAnimation } from '../shared/animations';
+import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ import { gridItemAnimation } from '../shared/animations';
     AvailabilityComponent,
     ImageComponent,
     FreelanceSinceComponent,
+    GridItemDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

@@ -1,7 +1,7 @@
 import { Component, HostListener, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentService } from 'src/app/shared/content.service';
-import { GridItemDirective } from '../../shared/grid/grid-item.directive';
+import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-github',
@@ -10,16 +10,21 @@ import { GridItemDirective } from '../../shared/grid/grid-item.directive';
   templateUrl: './github.component.html',
   styleUrl: './github.component.scss',
 })
-export class GithubComponent extends GridItemDirective {
+export class GithubComponent {
   /**
-   * Lien vers le repo voulu
+   * Link to wanted repository
    */
   @Input({ required: true }) link!: string | null;
 
   /**
-   * Gestion du contenu
+   * Handle content
    */
   public contentService = inject(ContentService);
+
+  /**
+   * Handle theming
+   */
+  public themeService = inject(ThemeService);
 
   /**
    * Action when clicking on component
@@ -29,7 +34,7 @@ export class GithubComponent extends GridItemDirective {
   }
 
   /**
-   * Ouvre Github
+   * Open github
    */
   public openGithub() {
     if (!this.link) return;

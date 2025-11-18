@@ -2,8 +2,12 @@
   <div class="g-grid" @gridItemAnimation>
     <app-image></app-image>
     <app-freelance-since></app-freelance-since>
-    <app-linkedin></app-linkedin>
-    <app-github [link]="contentService.github"></app-github>
+    <div class="linkedin" appGridItem>
+      <app-linkedin></app-linkedin>
+    </div>
+    <div class="github" appGridItem>
+      <app-github [link]="contentService.github"></app-github>
+    </div>
     <app-description></app-description>
     <app-mail></app-mail>
     <app-map></app-map>

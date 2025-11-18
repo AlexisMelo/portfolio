@@ -13,13 +13,11 @@
   --grid-width: 356px; //pour que ça fonctionne même sur petit téléphone
   --columns: 4;
   --gap: 12px;
-  --grid-icon-centered-size: 20px;
   --body-font-family: 'Poppins', sans-serif;
   --title-font-family: 'Grandstander', cursive;
   font-size: var(--text-xs);
 
   @include responsive('medium') {
-    --grid-icon-centered-size: 50px;
     font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
     --columns: 8;
@@ -30,7 +28,6 @@
     --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
     // --columns: 10;
     --gap: 18px;
-    --grid-icon-centered-size: 50px;
   }
 
   --cell-size: #{functions.getCellSize(

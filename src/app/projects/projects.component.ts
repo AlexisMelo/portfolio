@@ -11,6 +11,7 @@ import { ProjectItemComponent } from './project-item/project-item.component';
 import { ProjectItem } from './project-item/project-item.model';
 import { WithSkillComponent } from './with-skill/with-skill.component';
 import { YourProjectComponent } from './your-project/your-project.component';
+import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
@@ -26,6 +27,7 @@ import { YourProjectComponent } from './your-project/your-project.component';
     RangePipe,
     YourProjectComponent,
     WithSkillComponent,
+    GridItemDirective,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

@@ -66,6 +66,10 @@ $top-padding: 40px;
     }
   }
 
+  .open-menu {
+    cursor: pointer;
+  }
+
   @include responsive('medium') {
     .collapsible-menu {
       display: none;
@@ -208,12 +212,25 @@ a {
   }
 }
 
-app-github {
+app-github,
+app-linkedin {
+  width: 24px;
+  height: 24px;
+}
+
+.github,
+.linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.github {
   grid-row: 2;
   grid-column: 2;
 }
 
-app-linkedin {
+.linkedin {
   grid-row: 2;
   grid-column: 1;
 }

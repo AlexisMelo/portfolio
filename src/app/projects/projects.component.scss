@@ -1,12 +1,20 @@
 @import '../../styles/responsive.scss';
 
-app-github {
+.github {
   grid-row: 1;
   grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include responsive('medium') {
     grid-row: 5 / 8;
     grid-column: 1 / 3;
+  }
+
+  app-github {
+    width: 24px;
+    height: 24px;
   }
 }
 

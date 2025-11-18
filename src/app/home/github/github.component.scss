@@ -8,7 +8,8 @@
   cursor: pointer;
 
   img {
-    width: var(--grid-icon-centered-size);
+    width: 100%;
+    height: 100%;
   }
 
   &:hover {
