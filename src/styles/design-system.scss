@@ -3,18 +3,16 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
-  //green
-  --green-700: #1a2219;
-  --green-600: #1b2c1a;
-  --green-500: #294b29;
-  --green-400: #50623a;
-  --green-300: #459e33;
-  --green-250: #82d173; //couleur principale n°2
-  --green-200: #becfa3;
-  --green-100: rgb(233, 238, 226);
-  --green-50: rgb(240, 243, 236);
+  //main color
+  --primary-800: #380f06;
+  --primary-700: #78392a;
+  --primary-600: #cc715c;
+  --primary-500: #f79d88;
+  --primary-400: #f7bbad;
+  --primary-300: #f7cfc6;
+  --primary-200: #faeae6;
 
-  //gray
+  //neutral grays
   --gray-800: #181818;
   --gray-700: #262626;
   --gray-600: #3b3b3b;
@@ -24,11 +22,26 @@
   --gray-200: #e5e5e5;
   --gray-100: #f3f3f3;
 
+  //accent 1
+  --primary-800: #330f0f;
+  --primary-700: #4c2626;
+  --primary-600: #734545;
+  --primary-500: #995c5c;
+  --primary-400: #bf8686;
+  --primary-300: #d9adad;
+  --primary-200: #fee7e7;
+
+  //accent 2
+  --primary-800: #332907;
+  --primary-700: #a68821;
+  --primary-600: #d9b434;
+  --primary-500: #f7db79;
+  --primary-400: #f7e6a8;
+  --primary-300: #f7efd2;
+  --primary-200: #fffbf0;
+
   //white
   --white: white;
-
-  //black
-  --black: black;
 
   //spacing
   --inputs-border-radius: 8px;
@@ -41,16 +54,6 @@
   //icons
   --icon-size-sm: 24px;
   --icon-size-md: 50px;
-
-  //colors
-  --yellow: #f1d274;
-  --purple: #d3d7fd;
-  --orange: #f6d3b8;
-
-  //blue
-  --blue-500: #3780c9; //bon contraste pour BG + écriture blanche
-  --blue-200: #86b9eb; //bleu + foncé pour dark mode
-  --blue: #adcceb; //couleur principale n°1
 
   //font
   --text-xxs: 10px;
