@@ -24,11 +24,11 @@
     --gap: 14px;
   }
 
-  @include responsive('large') {
-    --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
-    --columns: 12;
-    --gap: 16px;
-  }
+  // @include responsive('large') {
+  //   --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
+  //   --columns: 12;
+  //   --gap: 16px;
+  // }
 
   --cell-size: #{functions.getCellSize(
       var(--grid-width),
