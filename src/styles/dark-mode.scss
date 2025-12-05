@@ -6,7 +6,6 @@
 
   //archives
   --archives-header-bg: var(--gray-500);
-  --archives-header-color: var(--primary-250);
 
   //availability
   --availability-dot-color: var(--gray-400);
@@ -14,7 +13,6 @@
   //button
   --button-border: white;
   --button-color: white;
-  --button-plain-border: var(--primary-2000);
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
@@ -32,23 +30,8 @@
   --grid-item-bottom-text-color: var(--gray-300);
   --grid-item-shadow-color: rgba(219, 219, 219, 0.05);
 
-  //highlightable-chip
-  --highlightable-chip-background-color: var(--primary-200);
-  --highlightable-chip-border-color: var(--primary-200);
-  --highlightable-chip-gradient-1: var(--primary-2000);
-  --highlightable-chip-gradient-2: var(--primary-300);
-  --highlightable-chip-gradient-3: var(--primary-300);
-  --highlightable-chip-gradient-4: var(--primary-2000);
-
   //image
   --image-svg-color: var(--gray-600);
-
-  //input
-  --input-background-color: var(--primary-600);
-  --input-border-color: var(--primary-400);
-
-  //landing-page
-  --landing-page-svg-contour-path: var(--primary-400);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -56,11 +39,7 @@
 
   //map
   --map-rayon-background: #ffffff;
-  --map-rayon-border: var(--primary);
-
-  //moving-content
-  --moving-content-fade: var(--primary-600);
-  --moving-content-fade-alt: var(--primary-700);
+  --map-rayon-border: var(--gray-400);
 
   //navbar
   --navbar-active-link-color: white;
@@ -69,23 +48,11 @@
   //ongoing
   --ongoing-background: var(--gray-500);
 
-  //project-details
-  --project-details-skills-recap-bg-completed: var(--primary-250);
-  --project-details-skills-recap-bg-ongoing: var(--primary);
-  --project-details-skills-recap-bg-abandoned: var(--gray-500);
-
-  //project-duration
-  --project-duration-completed: var(--primary-250);
-  --project-duration-ongoing: var(--primary);
-  --project-duration-abandoned: var(--gray-400);
-
   //project-item
   --project-item-completed-background: var(--gray-500);
-  --project-item-completed-color: var(--primary-250);
   --project-item-abandoned-background: var(--gray-500);
   --project-item-abandoned-color: var(--gray-300);
   --project-item-ongoing-background: var(--gray-500);
-  --project-item-ongoing-color: var(--primary);
 
   //project-item-skill-list
   --project-item-skill-list-skill-background: var(--gray-600);
@@ -94,11 +61,9 @@
 
   //project-name-header
   --project-name-header-completed-background: var(--gray-500);
-  --project-name-header-completed-color: var(--primary-250);
   --project-name-header-abandoned-background: var(--gray-500);
   --project-name-header-abandoned-color: var(--gray-300);
   --project-name-header-ongoing-background: var(--gray-500);
-  --project-name-header-ongoing-color: var(--primary);
 
   //projects
   --projects-1-bg: var(--gray-600);
@@ -106,7 +71,6 @@
   --projects-3-bg: var(--gray-600);
 
   //projects-by-context
-  --projects-by-context-icons-bg: var(--primary);
   --projects-by-context-icons-color: var(--white);
 
   //reset-button
@@ -117,24 +81,17 @@
   --robotic-arm-axes-fill: var(--gray-400);
 
   //skill-recap
-  --skills-recap-frontend-bg: var(--primary-200);
-  --skills-recap-backend-bg: var(--primary-250);
   --skills-recap-general-bg: var(--gray-300);
-
   --skills-recap-counter-bg: var(--gray-500);
   --skills-recap-counter-color: var(--white);
-
   --skills-recap-separator: var(--gray-400);
 
   //skill-section-header
   --skill-section-header-frontend-bg: var(--gray-500);
-  --skill-section-header-frontend-color: var(--primary-200);
 
   --skill-section-header-backend-bg: var(--gray-500);
-  --skill-section-header-backend-color: var(--primary-250);
 
   --skill-section-header-general-bg: var(--gray-500);
-  --skill-section-header-general-color: var(--gray-300);
 
   //status-filtering
   --status-filtering-completed: var(--gray-400);
@@ -148,12 +105,8 @@
   --styles-text-color: var(--white);
   --styles-background-color: var(--gray-800);
   --styles-paragraph-highlight-bg-color: var(--gray-500);
-  --styles-thumbnail-border: var(--primary-2000);
   --styles-default-paragraph-color: var(--gray-300);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--gray-500);
-
-  //tooltip
-  --tooltip-background: var(--primary-400);
 }

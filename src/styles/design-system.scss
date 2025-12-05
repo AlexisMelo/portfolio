@@ -3,15 +3,6 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
-  //main color
-  --primary-800: #380f06;
-  --primary-700: #78392a;
-  --primary-600: #cc715c;
-  --primary-500: #f79d88;
-  --primary-400: #f7bbad;
-  --primary-300: #f7cfc6;
-  --primary-200: #faeae6;
-
   //neutral grays
   --gray-800: #181818;
   --gray-700: #262626;
@@ -21,24 +12,6 @@
   --gray-300: #bfbfbf;
   --gray-200: #e5e5e5;
   --gray-100: #f3f3f3;
-
-  //accent 1
-  --accent-800: #330f0f;
-  --accent-700: #4c2626;
-  --accent-600: #734545;
-  --accent-500: #995c5c;
-  --accent-400: #bf8686;
-  --accent-300: #d9adad;
-  --accent-200: #fee7e7;
-
-  //accent 2
-  --tertiary-800: #332907;
-  --tertiary-700: #a68821;
-  --tertiary-600: #d9b434;
-  --tertiary-500: #f7db79;
-  --tertiary-400: #f7e6a8;
-  --tertiary-300: #f7efd2;
-  --tertiary-200: #fffbf0;
 
   //white
   --white: white;

@@ -1,13 +1,17 @@
 @import '../../../../styles/responsive.scss';
 
 :host {
-  padding: 1.2rem 1.5rem;
+  padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
 
   &.is-live {
     cursor: pointer;
     @extend .g-grid-item-shadow !optional;
+  }
+
+  @include responsive('medium') {
+    padding: 1.2rem 1.5rem;
   }
 }
 

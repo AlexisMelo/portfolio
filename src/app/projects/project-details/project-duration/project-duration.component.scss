@@ -1,9 +1,13 @@
 @import '../../../../styles/responsive.scss';
 
 :host {
-  padding: 1.2rem 1.5rem;
+  padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
+
+  @include responsive('medium') {
+    padding: 1.2rem 1.5rem;
+  }
 }
 
 h2,
@@ -13,13 +17,13 @@ p {
 
 p {
   color: var(--gray-500);
-  flex-grow: 1;
   align-content: end;
 }
 
 h2 {
   padding-top: 0.2em;
   font-size: var(--text-lg);
+  flex-grow: 1;
 }
 
 .duration-badge {
