@@ -96,6 +96,14 @@ $top-padding: 40px;
   }
 }
 
+h1,
+mat-icon,
+app-theme-selector,
+app-language-selector,
+a.is-active h2 {
+  color: var(--navbar-active-link-color);
+}
+
 nav {
   grid-row: 1;
   grid-column: 1 / 5;

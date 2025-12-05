@@ -8,8 +8,10 @@
   --archives-header-bg: var(--primary-250);
   --archives-header-color: var(--white);
 
+  //availability
+  --availability-dot-color: var(--gray-600);
+
   //button
-  --button-background: url(../../public/gradient.svg);
   --button-border: var(--primary-300);
   --button-color: var(--primary-400);
   --button-plain-border: var(--primary-300);
@@ -27,9 +29,10 @@
   //github
   --github-bg: var(--gray-500);
   --github-empty-color: var(--gray-400);
+  --github-icon-color: var(--gray-800);
 
   //grid-item
-  --grid-item-default-bg: var(--white);
+  --grid-item-default-bg: white;
   --grid-item-border: 1px solid var(--gray-200);
   --grid-item-bottom-text-color: var(--gray-200);
   --grid-item-shadow-color: rgba(0, 0, 0, 0.05);
@@ -53,7 +56,8 @@
   --landing-page-svg-contour-path: var(--primary-200);
 
   //linkedin
-  --linkedin-bg: var(--primary);
+  --linkedin-letters-color: var(--grid-item-default-bg);
+  --linkedin-contour-bg: var(--gray-800);
 
   //map
   --map-rayon-background: #ffffff;
@@ -64,8 +68,8 @@
   --moving-content-fade-alt: var(--primary-200);
 
   //navbar
-  --navbar-gradient: url(../../public/gradient.svg);
-  --navbar-inactive-link-color: var(--gray-400);
+  --navbar-active-link-color: var(--gray-800);
+  --navbar-inactive-link-color: var(--gray-300);
 
   //ongoing
   --ongoing-background: var(--grid-item-default-bg);
