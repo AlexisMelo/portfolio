@@ -32,5 +32,9 @@ h2 {
 a {
   text-align: end;
   text-decoration: none;
-  color: var(--gray-300);
+  color: var(--now-link-color);
+}
+
+mat-icon {
+  color: var(--now-icon-color);
 }

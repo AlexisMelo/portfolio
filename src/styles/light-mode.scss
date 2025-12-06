@@ -1,14 +1,23 @@
+@import '../styles/responsive.scss';
+
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--gray-400);
-  --action-button-border-color: var(--gray-200);
+  --action-button-color: var(--primary-500);
+  --action-button-border-color: var(--primary-200);
 
   //archives
   --archives-header-color: var(--white);
 
   //availability
-  --availability-dot-color: var(--gray-600);
+  --availability-dot-color: var(--gray-800);
+
+  //description
+  --description-icon-color: var(--primary-500);
+  --description-rectangle-1-background-color: var(--primary-800);
+  --description-rectangle-2-background-color: var(--primary-700);
+  --description-rectangle-3-background-color: var(--primary-500);
+  --description-illustration-icon-color: var(--primary-200);
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
@@ -21,18 +30,20 @@
   --freelance-since-p-color: var(--gray-500);
 
   //github
-  --github-bg: var(--gray-500);
-  --github-empty-color: var(--gray-400);
-  --github-icon-color: var(--gray-800);
+  --github-icon-color: white;
 
   //grid-item
   --grid-item-default-bg: white;
   --grid-item-border: 1px solid var(--gray-200);
   --grid-item-bottom-text-color: var(--gray-200);
-  --grid-item-shadow-color: rgba(0, 0, 0, 0.05);
+  --grid-item-shadow-color: rgba(27, 110, 41, 0.1);
+
+  //home
+  --home-github-background-color: var(--primary-500);
+  --home-github-icon-color: white;
 
   //image
-  --image-svg-color: var(--gray-100);
+  --image-svg-color: var(--primary-200);
 
   //input
   --input-background-color: var(--white);
@@ -43,15 +54,33 @@
   --linkedin-contour-bg: var(--gray-800);
 
   //map
-  --map-rayon-background: #ffffff;
-  --map-rayon-border: var(--gray-400);
+  --map-rayon-background: var(--gray-200);
+  --map-rayon-border: var(--primary-500);
+
+  //mail
+  --mail-background-color: var(--primary-500);
+  --mail-color: white;
 
   //moving-content
   --moving-content-fade: var(--white);
 
   //navbar
-  --navbar-active-link-color: var(--gray-800);
+  --navbar-active-link-color: var(--primary-500);
   --navbar-inactive-link-color: var(--gray-300);
+  --navbar-logo-name: white;
+  --navbar-background-color: var(--primary-500);
+  --navbar-language-selector-color: var(--gray-800);
+  --navbar-open-menu-color: white;
+
+  @include responsive('medium') {
+    --navbar-active-link-color: white;
+    --navbar-inactive-link-color: var(--primary-800);
+    --navbar-language-selector-color: white;
+  }
+
+  //now
+  --now-icon-color: var(--primary-500);
+  --now-link-color: var(--primary-800);
 
   //ongoing
   --ongoing-background: var(--grid-item-default-bg);
@@ -84,6 +113,10 @@
 
   //reset-button
   --reset-button-color: var(--gray-700);
+
+  //resume
+  --resume-background-color: var(--primary-500);
+  --resume-color: white;
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-400);

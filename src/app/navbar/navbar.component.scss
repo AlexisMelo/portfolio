@@ -67,6 +67,7 @@ $top-padding: 40px;
   }
 
   .open-menu {
+    color: var(--navbar-open-menu-color);
     cursor: pointer;
   }
 
@@ -96,12 +97,10 @@ $top-padding: 40px;
   }
 }
 
-h1,
-mat-icon,
-app-theme-selector,
 app-language-selector,
-a.is-active h2 {
-  color: var(--navbar-active-link-color);
+app-theme-selector {
+  color: var(--navbar-language-selector-color);
+  font-weight: bold;
 }
 
 nav {
@@ -111,6 +110,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
+  background-color: var(--navbar-background-color);
 
   @include responsive('medium') {
     grid-column: 1 / -1;
@@ -130,6 +130,7 @@ nav {
   }
 
   h1 {
+    color: var(--navbar-logo-name);
     font-size: var(--text-xxxxl);
     margin: 0;
     padding-left: 10px;
@@ -157,6 +158,10 @@ a {
       object-fit: contain;
       height: 100%;
     }
+  }
+
+  &.is-active h2 {
+    color: var(--navbar-active-link-color);
   }
 
   &:not(.is-active) {

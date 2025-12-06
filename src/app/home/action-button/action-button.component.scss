@@ -13,10 +13,11 @@
   align-items: center;
   justify-content: center;
   transition: box-shadow 300ms;
-  border: 1px solid var(--action-button-border-color);
+  border: 2px solid var(--action-button-border-color);
   border-radius: 18px;
   height: var(--action-button-size);
   min-width: var(--action-button-size);
+  font-weight: bold;
 
   @include responsive('medium') {
     --action-button-border-size: 1px;

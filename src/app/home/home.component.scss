@@ -60,6 +60,8 @@ app-github {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--home-github-background-color);
+  color: var(--home-github-icon-color);
 
   @include responsive('medium') {
     grid-column: 7 / 9;
@@ -72,8 +74,8 @@ app-resume {
   grid-row: 7 / 9;
 
   @include responsive('medium') {
-    grid-column: 5 / 9;
-    grid-row: 6 / 8;
+    grid-column: 1 / 5;
+    grid-row: 5 / 7;
   }
 }
 
@@ -82,7 +84,7 @@ app-now {
   grid-row: 9 / 12;
 
   @include responsive('medium') {
-    grid-column: 1 / 5;
+    grid-column: 5 / 9;
     grid-row: 5 / 8;
   }
 }
@@ -92,8 +94,8 @@ app-availability {
   grid-row: 6;
 
   @include responsive('medium') {
-    grid-column: 5 / 9;
-    grid-row: 5;
+    grid-column: 1 / 5;
+    grid-row: 7;
   }
 }
 

@@ -1,7 +1,7 @@
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgb(from var(--color) r g b / 0.7);
+    box-shadow: 0 0 0 0 var(--dot-color);
   }
 
   70% {
@@ -19,8 +19,8 @@
   border-radius: 50%;
   width: 16px;
   height: 16px;
-  box-shadow: 0 0 0 0 var(--color);
-  background-color: var(--color);
+  box-shadow: 0 0 0 0 var(--dot-color);
+  background-color: var(--dot-color);
   transform: scale(1);
 
   &.pulse {

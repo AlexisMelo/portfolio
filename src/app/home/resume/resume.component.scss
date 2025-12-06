@@ -7,10 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-
-  img {
-    filter: grayscale(100);
-  }
+  background-color: var(--resume-background-color);
 
   &:hover {
     .illustration-container {
@@ -39,6 +36,7 @@ h2 {
   margin: 0;
   flex-grow: 1;
   font-size: var(--text-xxxl);
+  color: var(--resume-color);
 }
 
 @keyframes slideInFromBottom {

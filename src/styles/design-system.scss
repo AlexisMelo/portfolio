@@ -3,6 +3,11 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
+  --primary-800: #344e41;
+  --primary-700: #3a5a40;
+  --primary-500: #588157;
+  --primary-200: #e5ebdd;
+
   //neutral grays
   --gray-800: #181818;
   --gray-700: #262626;

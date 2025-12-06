@@ -8,11 +8,14 @@
   --archives-header-bg: var(--gray-500);
 
   //availability
-  --availability-dot-color: var(--gray-400);
+  --availability-dot-color: white;
 
-  //button
-  --button-border: white;
-  --button-color: white;
+  //description
+  --description-icon-color: var(--primary-500);
+  --description-rectangle-1-background-color: var(--gray-500);
+  --description-rectangle-2-background-color: var(--gray-400);
+  --description-rectangle-3-background-color: var(--gray-200);
+  --description-illustration-icon-color: var(--primary-500);
 
   //filter-chip
   //https://m3.material.io/components/chips/specs
@@ -30,8 +33,12 @@
   --grid-item-bottom-text-color: var(--gray-300);
   --grid-item-shadow-color: rgba(219, 219, 219, 0.05);
 
+  //home
+  --home-github-background-color: var(--primary-800);
+  --home-github-icon-color: white;
+
   //image
-  --image-svg-color: var(--gray-600);
+  --image-svg-color: var(--primary-500);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -41,9 +48,19 @@
   --map-rayon-background: #ffffff;
   --map-rayon-border: var(--gray-400);
 
+  //mail
+  --mail-background-color: var(--primary-800);
+  --mail-color: white;
+
   //navbar
   --navbar-active-link-color: white;
   --navbar-inactive-link-color: var(--gray-400);
+  --navbar-logo-name: white;
+  --navbar-background-color: var(--primary-800);
+
+  //now
+  --now-icon-color: var(--primary-500);
+  --now-link-color: var(--gray-500);
 
   //ongoing
   --ongoing-background: var(--gray-500);
@@ -75,6 +92,10 @@
 
   //reset-button
   --reset-button-color: var(--gray-300);
+
+  //resume
+  --resume-background-color: var(--primary-800);
+  --resume-color: white;
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-300);
