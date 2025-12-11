@@ -8,9 +8,7 @@
   <p class="description">{{ skill.description }}</p>
 
   <p class="footer">
-    <mat-icon
-      [ngStyle]="{ color: iconColor }"
-      [ngClass]="{ 'material-symbols-outlined': hovered }">
+    <mat-icon [ngClass]="{ 'material-symbols-outlined': hovered }">
       {{ skill.loved ? 'favorite' : 'school' }}
     </mat-icon>
     <span>

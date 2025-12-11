@@ -18,6 +18,7 @@
 
   mat-icon {
     animation: pulse 1s linear;
+    color: var(--skill-highlight-icon-color);
   }
 
   &:hover {

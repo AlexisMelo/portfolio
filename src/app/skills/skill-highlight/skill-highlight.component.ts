@@ -22,11 +22,6 @@ export class SkillHighlightComponent extends GridItemDirective {
   @Input({ required: true }) skill?: Skill;
 
   /**
-   * Couleur de l'icone
-   */
-  @Input() iconColor: string = 'default';
-
-  /**
    * Should the component be displayed as loading
    */
   @Input({ required: true }) loading: boolean = false;

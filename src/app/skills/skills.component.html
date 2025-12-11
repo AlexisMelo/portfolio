@@ -1,6 +1,7 @@
 <div class="g-grid-container">
   <div class="g-grid" @gridItemAnimation>
     <app-favorites></app-favorites>
+    <app-all></app-all>
     <app-keep-learning></app-keep-learning>
 
     @for (section of sections; track section.heading) {
@@ -17,11 +18,6 @@
             [class]="section.id + ' loved'"
             [attr.data-index]="i"
             [skill]="(section.skills | loved)[i]"
-            [iconColor]="
-              themeService.isDarkMode
-                ? section.sectionColor
-                : section.sectionBackgroundColor
-            "
             [loading]="
               (section.skills | loved).length === 0
             "></app-skill-highlight>

@@ -40,6 +40,11 @@
   //image
   --image-svg-color: var(--primary-500);
 
+  //key-header
+  --key-header-background: var(--primary-800);
+  --key-header-color: white;
+  --key-header-svg-color: white;
+
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
   --linkedin-contour-bg: var(--gray-200);
@@ -114,12 +119,17 @@
   --skills-recap-counter-bg: var(--gray-500);
   --skills-recap-counter-color: var(--white);
   --skills-recap-separator: var(--gray-400);
+  --skills-recap-background: var(--primary-800);
+
+  //skill-highlight
+  --skill-highlight-icon-color: var(--primary-500);
+
+  //skill-section-description
+  --skill-section-description-svg-color: var(--primary-800);
 
   //skill-section-header
   --skill-section-header-frontend-bg: var(--gray-500);
-
   --skill-section-header-backend-bg: var(--gray-500);
-
   --skill-section-header-general-bg: var(--gray-500);
 
   //status-filtering

@@ -1,10 +1,11 @@
-import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
 import { gridItemAnimation } from '../shared/animations';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
 import { ThemeService } from '../shared/theme.service';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { KeepLearningComponent } from './keep-learning/keep-learning.component';
 import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
@@ -12,14 +13,12 @@ import { SkillSectionDescriptionComponent } from './skill-section-description/sk
 import { Skill } from './skill.model';
 import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 import { SkillsSection } from './skills-section.model';
-import { FavoritesComponent } from './favorites/favorites.component';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [
     SkillSectionDescriptionComponent,
-    NgClass,
     SkillsRecapComponent,
     LovedPipe,
     SkillHighlightComponent,
@@ -27,6 +26,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     KeyHeaderComponent,
     KeepLearningComponent,
     FavoritesComponent,
+    AllComponent,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',

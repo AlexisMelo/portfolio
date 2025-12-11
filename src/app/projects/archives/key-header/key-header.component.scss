@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: var(--key-header-background);
 }
 
 :not(svg) {
@@ -12,6 +13,7 @@
 
 h2 {
   font-size: var(--text-xxxl);
+  color: var(--key-header-color);
   padding-top: 0.2em;
   margin: 0;
 }
