@@ -61,6 +61,9 @@
   --mail-background-color: var(--primary-500);
   --mail-color: white;
 
+  //mosaique-svg-color
+  --mosaique-svg-color: var(--primary-200);
+
   //moving-content
   --moving-content-fade: var(--white);
 
@@ -83,7 +86,12 @@
   --now-link-color: var(--primary-800);
 
   //ongoing
-  --ongoing-background: var(--grid-item-default-bg);
+  --ongoing-background: var(--primary-500);
+  --ongoing-color: white;
+
+  //projects
+  --projects-github-bg: var(--primary-500);
+  --projects-github-icon-color: white;
 
   //project-details
   --project-details-skills-recap-bg-abandoned: var(--gray-500);
@@ -98,9 +106,9 @@
   --project-item-ongoing-color: white;
 
   //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--gray-100);
-  --project-item-skill-list-skill-border: var(--gray-200);
-  --project-item-skill-list-color: var(--gray-500);
+  --project-item-skill-list-skill-background: var(--primary-500);
+  --project-item-skill-list-skill-border: var(--primary-700);
+  --project-item-skill-list-color: white;
 
   //project-name-header
   --project-name-header-completed-color: white;
@@ -155,4 +163,8 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);
+
+  //your-project
+  --your-project-background: var(--primary-500);
+  --your-project-color: white;
 }

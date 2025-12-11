@@ -7,11 +7,13 @@
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
+  background-color: var(--ongoing-background);
 }
 
 h2,
 p {
   margin: 0;
+  color: var(--ongoing-color);
 }
 
 h2 {

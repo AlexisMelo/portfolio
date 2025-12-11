@@ -4,11 +4,13 @@
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--your-project-background);
 }
 
 h2 {
   font-size: var(--text-lg);
   flex-grow: 1;
+  color: var(--your-project-color);
 
   @include responsive('medium') {
     font-size: var(--text-xl);
@@ -19,6 +21,7 @@ p {
   max-width: 60%;
   flex-grow: 1;
   align-content: flex-end;
+  color: var(--your-project-color);
 
   @include responsive('medium') {
     font-size: var(--text-xs);

@@ -52,6 +52,9 @@
   --mail-background-color: var(--primary-800);
   --mail-color: white;
 
+  //mosaique-svg-color
+  --mosaique-svg-color: var(--primary-800);
+
   //navbar
   --navbar-active-link-color: white;
   --navbar-inactive-link-color: var(--gray-400);
@@ -63,7 +66,12 @@
   --now-link-color: var(--gray-500);
 
   //ongoing
-  --ongoing-background: var(--gray-500);
+  --ongoing-background: var(--primary-800);
+  --ongoing-color: white;
+
+  //projects
+  --projects-github-bg: var(--primary-800);
+  --projects-github-icon-color: white;
 
   //project-item
   --project-item-completed-background: var(--gray-500);
@@ -130,4 +138,8 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--gray-500);
+
+  //your-project
+  --your-project-background: var(--primary-800);
+  --your-project-color: white;
 }
