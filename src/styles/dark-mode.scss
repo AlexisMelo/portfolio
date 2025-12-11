@@ -43,7 +43,10 @@
   //key-header
   --key-header-background: var(--primary-800);
   --key-header-color: white;
-  --key-header-svg-color: white;
+  --key-header-svg-color: var(--primary-500);
+  --key-header-chips-background: var(--primary-500);
+  --key-header-chips-color: white;
+  --key-header-chips-border: var(--primary-700);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);

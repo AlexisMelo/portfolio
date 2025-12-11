@@ -3,9 +3,7 @@
     <div class="g-grid" @gridItemAnimation>
       <app-resume></app-resume>
 
-      <div class="linkedin" appGridItem>
-        <app-linkedin></app-linkedin>
-      </div>
+      <app-availability></app-availability>
 
       @for (context of baseContexts(); track context.id) {
         <app-key-header

@@ -6,7 +6,7 @@ app-all {
 
   @include responsive('medium') {
     grid-column: 5 / 9;
-    grid-row: 1;
+    grid-row: 3;
   }
 }
 
@@ -26,7 +26,7 @@ app-favorites {
 
   @include responsive('medium') {
     grid-column: 5 / 9;
-    grid-row: 2 / 4;
+    grid-row: 1 / 3;
   }
 }
 

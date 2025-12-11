@@ -2,17 +2,12 @@
 
 :host {
   padding: 1.5rem;
-
-  @include responsive('medium') {
-    padding: 2rem;
-  }
 }
 
 h2 {
   margin-bottom: 0.5rem;
+}
 
-  @include responsive('medium') {
-    font-size: var(--text-xxl);
-    margin-bottom: 1rem;
-  }
+p {
+  font-size: var(--text-xs);
 }

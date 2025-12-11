@@ -10,6 +10,8 @@ import { ExperienceProjectsComponent } from './experience-projects/experience-pr
 import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
 import { LinkedinComponent } from '../home/linkedin/linkedin.component';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
+import { AvailabilityComponent } from '../home/availability/availability.component';
+import { MailComponent } from '../home/mail/mail.component';
 
 @Component({
   selector: 'app-experience',
@@ -22,6 +24,8 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
     ExperienceDescriptionComponent,
     LinkedinComponent,
     GridItemDirective,
+    AvailabilityComponent,
+    MailComponent,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',

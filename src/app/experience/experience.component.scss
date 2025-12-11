@@ -1,28 +1,26 @@
 @import '../../styles/responsive.scss';
 
-.linkedin {
-  display: none;
+app-availability {
+  grid-column: 1 / 5;
+  grid-row: 1;
 
   @include responsive('medium') {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-row: 1 / 3;
-    grid-column: 6 / 8;
-  }
-
-  app-linkedin {
-    width: var(--icon-size-md);
-    height: var(--icon-size-md);
+    position: sticky;
+    top: calc(var(--cell-size) + var(--gap));
+    grid-column: 1 / 5;
+    grid-row: 1;
   }
 }
 
 app-resume {
-  grid-row: 1 / 3;
+  grid-row: 2 / 4;
   grid-column: 1 / 5;
 
   @include responsive('medium') {
-    grid-column: 2 / 6;
+    position: sticky;
+    top: calc(2 * (var(--cell-size) + var(--gap)));
+    grid-column: 1 / 5;
+    grid-row: 2 / 4;
   }
 }
 
@@ -30,8 +28,8 @@ app-key-header {
   grid-column: 1 / 5;
 
   @include responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 3);
-    grid-column: 3 / 7;
+    grid-row: calc(var(--index) * 3 + 1);
+    grid-column: 5 / 9;
   }
 }
 
@@ -39,8 +37,8 @@ app-experience-duration {
   grid-column: 3 / 5;
 
   @include responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 4);
-    grid-column: 5 / 8;
+    grid-row: calc(var(--index) * 3 + 2);
+    grid-column: 7 / 9;
   }
 }
 
@@ -48,8 +46,8 @@ app-experience-projects {
   grid-column: 3 / 5;
 
   @include responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 5);
-    grid-column: 5 / 8;
+    grid-row: calc(var(--index) * 3 + 3);
+    grid-column: 7 / 9;
   }
 }
 
@@ -58,7 +56,7 @@ app-experience-description {
   grid-row: span 2;
 
   @include responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 4) / span 2;
-    grid-column: 2 / 5;
+    grid-row: calc(var(--index) * 3 + 2) / span 2;
+    grid-column: 5 / 7;
   }
 }
