@@ -20,14 +20,10 @@
   --description-illustration-icon-color: var(--primary-200);
 
   //filter-chip
-  //https://m3.material.io/components/chips/specs
   --filter-chip-border-color: var(--gray-300);
   --filter-chip-active-background-color: var(--gray-100);
   --filter-chip-details-menu-background-color: var(--white);
   --filter-chip-hover-option-background-color: var(--gray-100);
-
-  //freelance-since
-  --freelance-since-p-color: var(--gray-500);
 
   //github
   --github-icon-color: white;
@@ -44,10 +40,6 @@
 
   //image
   --image-svg-color: var(--primary-200);
-
-  //input
-  --input-background-color: var(--white);
-  --input-border-color: var(--gray-300);
 
   //key-header
   --key-header-background: var(--primary-500);
@@ -71,9 +63,6 @@
 
   //mosaique-svg-color
   --mosaique-svg-color: var(--primary-200);
-
-  //moving-content
-  --moving-content-fade: var(--white);
 
   //navbar
   --navbar-active-link-color: var(--primary-500);
@@ -102,19 +91,13 @@
   --open-live-color: white;
   --open-live-dot-color: var(--primary-700);
 
-  //projects
-  --projects-github-bg: var(--primary-500);
-  --projects-github-icon-color: white;
-
-  //project-details
-  --project-details-skills-recap-bg-abandoned: var(--gray-500);
-
   //project-context
   --project-context-background: var(--primary-500);
   --project-context-color: white;
 
-  //project-duration
-  --project-duration-abandoned: var(--gray-400);
+  //projects
+  --projects-github-bg: var(--primary-500);
+  --projects-github-icon-color: white;
 
   //project-item
   --project-item-completed-color: white;
@@ -160,17 +143,11 @@
   //skill-section-description
   --skill-section-description-svg-color: var(--primary-200);
 
-  //skill-section-header
-  --skill-section-header-frontend-color: white;
-  --skill-section-header-backend-color: white;
-  --skill-section-header-general-bg: var(--gray-500);
-  --skill-section-header-general-color: white;
-
   //status-filtering
-  --status-filtering-completed: var(--gray-600);
-  --status-filtering-ongoing: var(--gray-500);
-  --status-filtering-abandoned: var(--gray-400);
-  --status-filtering-selected: var(--gray-600);
+  --status-filtering-completed: var(--primary-800);
+  --status-filtering-ongoing: var(--primary-700);
+  --status-filtering-abandoned: var(--primary-500);
+  --status-filtering-selected: var(--primary-500);
   --status-filtering-not-selected: var(--gray-400);
 
   //styles

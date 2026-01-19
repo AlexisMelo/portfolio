@@ -32,11 +32,6 @@ export class SkillsRecapComponent
   public skills = input.required<Array<Skill>>();
 
   /**
-   * Couleur de fond des skills
-   */
-  public recapBackgroundColor = input.required<string>();
-
-  /**
    * Route vers les archives
    */
   public ARCHIVES_ROUTE = ARCHIVES_ROUTE;

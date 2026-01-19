@@ -46,9 +46,6 @@ export class SkillsComponent implements OnInit {
       skillFieldId: 1,
       skills: [],
       class: 'frontend-grid',
-      recapBackgroundColor: 'var(--skills-recap-frontend-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-frontend-bg)',
-      sectionColor: 'var(--skill-section-header-frontend-color)',
     },
     {
       id: 'section-backend',
@@ -59,9 +56,6 @@ export class SkillsComponent implements OnInit {
       skillFieldId: 2,
       skills: [],
       class: 'backend-grid',
-      recapBackgroundColor: 'var(--skills-recap-backend-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-backend-bg)',
-      sectionColor: 'var(--skill-section-header-backend-color)',
     },
     {
       id: 'section-general',
@@ -72,9 +66,6 @@ export class SkillsComponent implements OnInit {
       skillFieldId: 3,
       skills: [],
       class: 'general-grid',
-      recapBackgroundColor: 'var(--skills-recap-general-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-general-bg)',
-      sectionColor: 'var(--skill-section-header-general-color)',
     },
   ];
 

@@ -27,11 +27,7 @@
 
       <app-project-participation [project]="p"></app-project-participation>
 
-      <app-skills-recap
-        [skills]="skills()"
-        [recapBackgroundColor]="
-          'var(--project-details-skills-recap-bg-' + (p | status) + ')'
-        "></app-skills-recap>
+      <app-skills-recap [skills]="skills()"></app-skills-recap>
 
       <app-project-coworkers [project]="p"></app-project-coworkers>
     </div>

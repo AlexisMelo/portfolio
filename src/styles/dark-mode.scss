@@ -1,3 +1,5 @@
+@import '../styles/responsive.scss';
+
 @mixin dark-mode() {
   //action-button
   --action-button-background: var(--gray-700);
@@ -18,7 +20,6 @@
   --description-illustration-icon-color: var(--primary-500);
 
   //filter-chip
-  //https://m3.material.io/components/chips/specs
   --filter-chip-border-color: var(--gray-600);
   --filter-chip-active-background-color: var(--gray-500);
   --filter-chip-details-menu-background-color: var(--gray-500);
@@ -107,11 +108,6 @@
   --project-name-header-abandoned-color: var(--gray-300);
   --project-name-header-ongoing-background: var(--gray-500);
 
-  //projects
-  --projects-1-bg: var(--gray-600);
-  --projects-2-bg: var(--gray-600);
-  --projects-3-bg: var(--gray-600);
-
   //projects-by-context
   --projects-by-context-icons-color: var(--white);
 
@@ -139,16 +135,11 @@
   //skill-section-description
   --skill-section-description-svg-color: var(--primary-800);
 
-  //skill-section-header
-  --skill-section-header-frontend-bg: var(--gray-500);
-  --skill-section-header-backend-bg: var(--gray-500);
-  --skill-section-header-general-bg: var(--gray-500);
-
   //status-filtering
-  --status-filtering-completed: var(--gray-400);
-  --status-filtering-ongoing: var(--gray-500);
-  --status-filtering-abandoned: var(--gray-600);
-  --status-filtering-selected: var(--gray-400);
+  --status-filtering-completed: var(--primary-500);
+  --status-filtering-ongoing: var(--primary-700);
+  --status-filtering-abandoned: var(--primary-800);
+  --status-filtering-selected: var(--primary-500);
   --status-filtering-not-selected: var(--gray-600);
 
   //styles
