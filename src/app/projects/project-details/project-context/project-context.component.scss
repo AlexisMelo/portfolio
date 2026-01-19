@@ -1,10 +1,16 @@
 h2 {
-  font-size: var(--text-xl);
+  font-size: var(--text-xxl);
   margin-bottom: 1rem;
+}
+
+h2,
+p {
+  color: var(--project-context-color);
 }
 
 :host {
   padding: 2rem;
+  background-color: var(--project-context-background);
 }
 
 svg {

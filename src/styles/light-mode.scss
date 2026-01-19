@@ -97,12 +97,21 @@
   --ongoing-background: var(--primary-500);
   --ongoing-color: white;
 
+  //open-live
+  --open-live-background-color: var(--primary-500);
+  --open-live-color: white;
+  --open-live-dot-color: var(--primary-700);
+
   //projects
   --projects-github-bg: var(--primary-500);
   --projects-github-icon-color: white;
 
   //project-details
   --project-details-skills-recap-bg-abandoned: var(--gray-500);
+
+  //project-context
+  --project-context-background: var(--primary-500);
+  --project-context-color: white;
 
   //project-duration
   --project-duration-abandoned: var(--gray-400);

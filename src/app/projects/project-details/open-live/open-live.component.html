@@ -1,6 +1,8 @@
 <h2>
   @if (isLive()) {
-    <app-dot color="var(--gray-300)" [pulse]="isLive() !== null"></app-dot>
+    <app-dot
+      color="var(--open-live-dot-color)"
+      [pulse]="isLive() !== null"></app-dot>
     En ligne
   } @else {
     Hors ligne

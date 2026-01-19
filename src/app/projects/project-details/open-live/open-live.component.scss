@@ -4,6 +4,7 @@
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--open-live-background-color);
 
   &.is-live {
     cursor: pointer;
@@ -15,16 +16,18 @@
   }
 }
 
+h2,
+p,
+mat-icon {
+  color: var(--open-live-color);
+}
+
 h2 {
   font-size: var(--text-lg);
   display: flex;
   flex-direction: row;
   gap: 10px;
   flex-grow: 1;
-
-  span {
-    color: var(--gray-300);
-  }
 }
 
 @keyframes move {
@@ -37,7 +40,6 @@ mat-icon {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  // color: var(--gray-300);
 
   &.move {
     animation: move 2s infinite ease;

@@ -15,12 +15,8 @@ h3 {
 
 .avatar-container {
   overflow: hidden;
-  height: 120px;
+  height: 100px;
   width: auto;
-
-  @include responsive('medium') {
-    height: 140px;
-  }
 
   img {
     transition: 1s;

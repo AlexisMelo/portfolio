@@ -18,6 +18,9 @@ import { DotComponent } from 'src/app/shared/dot/dot.component';
   templateUrl: './open-live.component.html',
   styleUrl: './open-live.component.scss',
   providers: [StatusPipe],
+  host: {
+    '[class.is-live]': 'isLive()',
+  },
 })
 export class OpenLiveComponent extends GridItemDirective {
   /**
@@ -28,7 +31,7 @@ export class OpenLiveComponent extends GridItemDirective {
   /**
    * Returns live url or null if project is unavailable
    */
-  @HostBinding('class.is-live') protected isLive = computed(() => {
+  protected isLive = computed(() => {
     return this.project().deployment;
   });
 
