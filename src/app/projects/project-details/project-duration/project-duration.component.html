@@ -1,6 +1,6 @@
 @if (project | status; as projectStatus) {
   <h2 [ngClass]="projectStatus">
-    {{ project.start_date | duration: project.start_date }}
+    {{ project.start_date | duration: project.end_date }}
   </h2>
 
   <div class="duration-badge">
