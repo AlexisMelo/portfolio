@@ -1,25 +1,13 @@
 <div class="g-grid-container">
-  @for (section of sections; track section.heading) {
-    <div
-      class="g-grid"
-      [ngClass]="section.class"
-      [style]="
-        '--section-bg: ' +
-        section.sectionBackgroundColor +
-        ';--section-color: ' +
-        section.sectionColor
-      ">
-      <app-skill-section-header>
-        <span>{{ section.subtitle }}</span>
-      </app-skill-section-header>
-      <app-skill-section-description
-        [mainText]="section.heading"
-        [secondaryText]="section.description"></app-skill-section-description>
-      <app-skills-recap
-        [skills]="section.skills"
-        [recapBackgroundColor]="
-          section.recapBackgroundColor
-        "></app-skills-recap>
+  <div class="g-grid" @gridItemAnimation>
+    <app-favorites></app-favorites>
+    <app-all></app-all>
+    <app-keep-learning></app-keep-learning>
+
+    @for (section of sections; track section.heading) {
+      <app-key-header [class]="section.id + ' g-grid-item-shadow'">
+        {{ section.subtitle }}
+      </app-key-header>
 
       @for (i of 2 | range; track i) {
         @if (
@@ -27,39 +15,23 @@
           (section.skills | loved)[i] !== undefined
         ) {
           <app-skill-highlight
-            class="loved"
+            [class]="section.id + ' loved'"
             [attr.data-index]="i"
             [skill]="(section.skills | loved)[i]"
-            [iconColor]="
-              themeService.isDarkMode
-                ? section.sectionColor
-                : section.sectionBackgroundColor
-            "
             [loading]="
               (section.skills | loved).length === 0
             "></app-skill-highlight>
         }
       }
 
-      @for (i of 2 | range; track i) {
-        @if (
-          (section.skills | learning).length === 0 ||
-          (section.skills | learning)[i] !== undefined
-        ) {
-          <app-skill-highlight
-            class="learning"
-            [attr.data-index]="i"
-            [skill]="(section.skills | learning)[i]"
-            [iconColor]="
-              themeService.isDarkMode
-                ? section.sectionColor
-                : section.sectionBackgroundColor
-            "
-            [loading]="
-              (section.skills | learning).length === 0
-            "></app-skill-highlight>
-        }
-      }
-    </div>
-  }
+      <app-skill-section-description
+        [class]="section.id"
+        [mainText]="section.heading"
+        [secondaryText]="section.description"></app-skill-section-description>
+
+      <app-skills-recap
+        [class]="section.id"
+        [skills]="section.skills"></app-skills-recap>
+    }
+  </div>
 </div>

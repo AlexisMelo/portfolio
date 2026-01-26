@@ -1,22 +1,55 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 :host {
-  @include grid-1x1;
-  position: relative;
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
   background-color: var(--ongoing-background);
 }
 
-app-robotic-arm {
-  position: absolute;
-  bottom: -4px; //la bordure
-  right: 25px;
+h2,
+p {
+  margin: 0;
+  color: var(--ongoing-color);
+}
+
+h2 {
+  font-size: var(--text-xxl);
 
   @include responsive('medium') {
-    right: 20px;
+    font-size: var(--text-xxxxl);
   }
+}
 
-  @include responsive('large') {
-    right: 40px;
+p {
+  font-size: var(--text-sm);
+
+  @include responsive('medium') {
+    font-size: var(--text-xl);
   }
+}
+
+.cogwheel-model {
+  display: none;
+}
+
+.cogwheel__1 {
+  color: var(--gray-100);
+  position: absolute;
+  left: -20px;
+  bottom: -30px;
+  width: 75px;
+  height: 75px;
+}
+
+.cogwheel__2 {
+  color: var(--gray-100);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 45px;
+  height: 45px;
 }

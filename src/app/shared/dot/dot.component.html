@@ -1,1 +1,4 @@
-<div [ngClass]="color" class="dot"></div>
+<div
+  [style]="'--dot-color:' + color()"
+  [class.pulse]="pulse()"
+  class="dot"></div>

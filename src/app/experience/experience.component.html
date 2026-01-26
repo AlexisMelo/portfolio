@@ -1,0 +1,28 @@
+@if (baseContexts().length > 0) {
+  <div class="g-grid-container">
+    <div class="g-grid" @gridItemAnimation>
+      <app-resume></app-resume>
+
+      <app-availability></app-availability>
+
+      @for (context of baseContexts(); track context.id) {
+        <app-key-header
+          [style.--index]="$index"
+          class="g-grid-item-shadow"
+          [chips]="[context.localization]"
+          >{{ context.label }}</app-key-header
+        >
+        <app-experience-description
+          [style.--index]="$index"
+          [context]="context"></app-experience-description>
+        <app-experience-duration
+          [style.--index]="$index"
+          [context]="context"></app-experience-duration>
+        <app-experience-projects
+          [style.--index]="$index"
+          [class.g-grid-item-shadow]="context.projects.length > 0"
+          [context]="context"></app-experience-projects>
+      }
+    </div>
+  </div>
+}

@@ -3,21 +3,18 @@
 } @else {
   <h2>{{ project.label }}</h2>
 
-  @if (firstIllustration) {
-    <div class="illustration-container">
-      <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
-    </div>
-  }
+  <p>
+    {{ project.description }}
+  </p>
 
-  <div class="g-paragraph g-grid-item-main-text">
+  <div>
     <app-project-item-skill-list
       [skills]="skills"></app-project-item-skill-list>
   </div>
 
-  <app-action-button
-    [unfold]="hovered"
-    [text]="'En savoir plus'"
-    [routerLink]="['/projects', project.url]"
-    [icon]="'visibility'">
-  </app-action-button>
+  @if (firstIllustration) {
+    <div class="illustration-container g-grid-item-shadow">
+      <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
+    </div>
+  }
 }

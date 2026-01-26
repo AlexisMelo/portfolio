@@ -1,4 +1,3 @@
-@import '../../shared/grid/grid-item.scss';
 @import '../../../styles/responsive.scss';
 
 @keyframes pulse {
@@ -12,12 +11,14 @@
 }
 
 :host {
-  @include grid-1x1;
-
   cursor: pointer;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
 
   mat-icon {
     animation: pulse 1s linear;
+    color: var(--skill-highlight-icon-color);
   }
 
   &:hover {
@@ -33,12 +34,23 @@ h2 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  font-size: var(--text-xl);
+  margin-bottom: 1rem;
+}
 
-  @include responsive('large') {
-    mat-icon {
-      font-size: 2rem;
-      height: 2rem;
-      width: 2rem;
-    }
+.description {
+  flex-grow: 1;
+
+  @include responsive('medium') {
+    font-size: var(--text-xs);
   }
+}
+
+.footer {
+  font-size: var(--text-xs);
+  color: var(--gray-300);
+  text-align: end;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
 }

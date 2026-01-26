@@ -1,5 +1,25 @@
-@import '../../../shared/grid/grid-item.scss';
+h2 {
+  font-size: var(--text-xxl);
+  margin-bottom: 1rem;
+}
+
+h2,
+p {
+  color: var(--project-context-color);
+}
 
 :host {
-  @include grid-1x2;
+  padding: 2rem;
+  background-color: var(--project-context-background);
+}
+
+svg {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+}
+
+:not(svg) {
+  z-index: 10;
+  position: relative;
 }

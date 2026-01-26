@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActionButtonComponent } from '../../../../contact/action-button/action-button.component';
+import { ActionButtonComponent } from '../../../../home/action-button/action-button.component';
 
 @Component({
   selector: 'app-coworker-info',

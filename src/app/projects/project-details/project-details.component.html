@@ -1,27 +1,35 @@
-<div class="g-grid-container">
-  <div class="g-grid">
-    @if (project) {
-      <app-project-name-header [project]="project"></app-project-name-header>
-      <app-project-description [project]="project"></app-project-description>
-      <app-project-details-icon [project]="project"></app-project-details-icon>
-      <app-project-duration [project]="project"></app-project-duration>
-      <app-project-context [project]="project"></app-project-context>
-      <app-project-illustrations
-        [project]="project"></app-project-illustrations>
+@if (project(); as p) {
+  <div class="g-grid-container">
+    <div class="g-grid" @gridItemAnimation>
+      <app-project-details-icon [project]="p"></app-project-details-icon>
 
-      <app-project-problematic [project]="project"></app-project-problematic>
+      <app-project-duration [project]="p"></app-project-duration>
 
-      <app-github [link]="project.source"></app-github>
+      <app-project-description
+        class="g-grid-item-shadow"
+        [project]="p"></app-project-description>
 
-      <app-project-coworkers [project]="project"></app-project-coworkers>
-      <app-project-participation
-        [project]="project"></app-project-participation>
+      <app-project-illustrations [project]="p"></app-project-illustrations>
 
-      <app-skills-recap
-        [skills]="skills"
-        [recapBackgroundColor]="
-          'var(--project-details-skills-recap-bg-' + (project | status) + ')'
-        "></app-skills-recap>
-    }
+      <app-open-live
+        [project]="p"
+        [class.source-available]="p.source !== null"></app-open-live>
+
+      @if (p.source) {
+        <div appGridItem class="github g-grid-item-shadow">
+          <app-github [link]="p.source"></app-github>
+        </div>
+      }
+
+      <app-project-problematic [project]="p"></app-project-problematic>
+
+      <app-project-context [project]="p"></app-project-context>
+
+      <app-project-participation [project]="p"></app-project-participation>
+
+      <app-skills-recap [skills]="skills()"></app-skills-recap>
+
+      <app-project-coworkers [project]="p"></app-project-coworkers>
+    </div>
   </div>
-</div>
+}

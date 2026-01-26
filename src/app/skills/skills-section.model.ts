@@ -35,19 +35,4 @@ export interface SkillsSection {
    * Style à appliquer sur la section
    */
   class: string;
-
-  /**
-   * Couleur de la section
-   */
-  recapBackgroundColor: string;
-
-  /**
-   * Couleur du background de la section
-   */
-  sectionBackgroundColor: string;
-
-  /**
-   * Couleur du texte de la section
-   */
-  sectionColor: string;
 }

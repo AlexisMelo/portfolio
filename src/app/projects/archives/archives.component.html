@@ -1,21 +1,31 @@
 <div class="g-grid-container">
-  <div class="g-grid">
-    <app-skill-section-header>Archives</app-skill-section-header>
+  <div class="g-grid" @gridItemAnimation>
     <app-skill-section-description
       [mainText]="'Aventurier depuis 2017'"
       [secondaryText]="
-        'Tous mes projets sont ici, triables selon tes critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd’hui'
+        'Tous mes projets sont ici, triables selon pleins de critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd’hui'
       "></app-skill-section-description>
 
     <app-project-counter></app-project-counter>
 
-    <app-project-filtering></app-project-filtering>
-
     <app-status-filtering></app-status-filtering>
 
-    @for (project of archivesService.selectedProjects(); track project.id) {
-      <app-project-item-condensed
-        [project]="project"></app-project-item-condensed>
+    <app-project-filtering></app-project-filtering>
+
+    <app-order></app-order>
+
+    @for (group of archivesService.sortedGroupedProjects(); track group.key) {
+      <app-key-header
+        class="g-grid-item-shadow"
+        [chips]="[
+          group.key.length + ' réalisation' + (group.key.length > 1 ? 's' : ''),
+        ]">
+        {{ group.key }}
+      </app-key-header>
+      @for (project of group.projects; track project.id) {
+        <app-project-item-condensed
+          [project]="project"></app-project-item-condensed>
+      }
     }
   </div>
 </div>

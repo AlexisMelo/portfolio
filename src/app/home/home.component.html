@@ -1,0 +1,18 @@
+<div class="g-grid-container">
+  <div class="g-grid" @gridItemAnimation>
+    <app-image></app-image>
+    <app-freelance-since></app-freelance-since>
+    <div class="linkedin" appGridItem>
+      <app-linkedin></app-linkedin>
+    </div>
+    <div class="github" appGridItem>
+      <app-github [link]="contentService.github"></app-github>
+    </div>
+    <app-description></app-description>
+    <app-mail></app-mail>
+    <app-map></app-map>
+    <app-availability></app-availability>
+    <app-resume></app-resume>
+    <app-now></app-now>
+  </div>
+</div>

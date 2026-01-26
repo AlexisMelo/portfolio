@@ -1,0 +1,64 @@
+@import '../../../styles/responsive.scss';
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-20%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  padding: 1.3rem 1.5rem;
+  align-items: center;
+  cursor: pointer;
+
+  .text {
+    animation: 1s slideInFromLeft;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    mat-icon {
+      margin-right: 6px;
+      color: var(--description-icon-color);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: var(--text-md);
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    @include responsive('medium') {
+      h2 {
+        font-size: var(--text-lg);
+      }
+    }
+  }
+
+  .img-container {
+    height: 90%;
+    padding-top: 5px;
+
+    svg {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

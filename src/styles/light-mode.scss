@@ -1,141 +1,167 @@
+@import '../styles/responsive.scss';
+
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--gray-500);
-  --action-button-border-color: var(--gray-100);
+  --action-button-color: var(--primary-500);
+  --action-button-border-color: var(--primary-200);
 
   //archives
-  --archives-header-bg: var(--green-250);
   --archives-header-color: var(--white);
 
-  //button
-  --button-background: url(../../public/gradient.svg);
-  --button-border: var(--green-300);
-  --button-color: var(--green-400);
-  --button-plain-border: var(--green-300);
+  //availability
+  --availability-dot-color: var(--gray-800);
+
+  //description
+  --description-icon-color: var(--primary-500);
+  --description-rectangle-1-background-color: var(--primary-800);
+  --description-rectangle-2-background-color: var(--primary-700);
+  --description-rectangle-3-background-color: var(--primary-500);
+  --description-illustration-icon-color: var(--primary-200);
 
   //filter-chip
-  //https://m3.material.io/components/chips/specs
   --filter-chip-border-color: var(--gray-300);
-  --filter-chip-active-background-color: var(--gray-050);
+  --filter-chip-active-background-color: var(--gray-100);
   --filter-chip-details-menu-background-color: var(--white);
-  --filter-chip-hover-option-background-color: var(--gray-050);
+  --filter-chip-hover-option-background-color: var(--gray-100);
 
   //github
-  --github-bg: var(--gray-500);
-  --github-empty-color: var(--gray-400);
+  --github-icon-color: white;
 
   //grid-item
-  --grid-item-default-bg: var(--white);
-  --grid-item-border: none;
+  --grid-item-default-bg: white;
+  --grid-item-border: 1px solid var(--gray-200);
   --grid-item-bottom-text-color: var(--gray-200);
+  --grid-item-shadow-color: rgba(27, 110, 41, 0.1);
 
-  //highlightable-chip
-  --highlightable-chip-background-color: var(--green-50);
-  --highlightable-chip-border-color: var(--green-200);
-  --highlightable-chip-gradient-1: var(--green-400);
-  --highlightable-chip-gradient-2: var(--green-300);
-  --highlightable-chip-gradient-3: var(--green-200);
-  --highlightable-chip-gradient-4: var(--green-400);
+  //home
+  --home-github-background-color: var(--primary-500);
+  --home-github-icon-color: white;
 
-  //input
-  --input-background-color: var(--white);
-  --input-border-color: var(--gray-300);
+  //image
+  --image-svg-color: var(--primary-200);
 
-  //landing-page
-  --landing-page-svg-contour-path: var(--green-200);
+  //key-header
+  --key-header-background: var(--primary-500);
+  --key-header-color: white;
+  --key-header-svg-color: var(--primary-200);
+  --key-header-chips-background: var(--primary-700);
+  --key-header-chips-color: white;
+  --key-header-chips-border: var(--primary-800);
 
   //linkedin
-  --linkedin-bg: var(--blue);
+  --linkedin-letters-color: var(--grid-item-default-bg);
+  --linkedin-contour-bg: var(--gray-800);
 
   //map
-  --map-rayon-background: #ffffff;
-  --map-rayon-border: var(--blue);
+  --map-rayon-background: var(--gray-200);
+  --map-rayon-border: var(--primary-500);
 
-  //moving-content
-  --moving-content-fade: var(--white);
-  --moving-content-fade-alt: var(--green-100);
+  //mail
+  --mail-background-color: var(--primary-500);
+  --mail-color: white;
+
+  //mosaique-svg-color
+  --mosaique-svg-color: var(--primary-100);
 
   //navbar
-  --navbar-gradient: url(../../public/gradient.svg);
+  --navbar-active-link-color: var(--primary-500);
+  --navbar-inactive-link-color: var(--gray-300);
+  --navbar-logo-name: white;
+  --navbar-background-color: var(--primary-500);
+  --navbar-language-selector-color: var(--gray-800);
+  --navbar-open-menu-color: white;
+
+  @include responsive('medium') {
+    --navbar-active-link-color: white;
+    --navbar-inactive-link-color: var(--primary-800);
+    --navbar-language-selector-color: white;
+  }
+
+  //now
+  --now-icon-color: var(--primary-500);
+  --now-link-color: var(--primary-800);
 
   //ongoing
-  --ongoing-background: var(--grid-item-default-bg);
+  --ongoing-background: var(--primary-500);
+  --ongoing-color: white;
 
-  //project-details
-  --project-details-skills-recap-bg-completed: var(--green-250);
-  --project-details-skills-recap-bg-ongoing: var(--blue);
-  --project-details-skills-recap-bg-abandoned: var(--gray-500);
+  //open-live
+  --open-live-background-color: var(--primary-500);
+  --open-live-color: white;
+  --open-live-dot-color: var(--primary-700);
 
-  //project-duration
-  --project-duration-completed: var(--green-250);
-  --project-duration-ongoing: var(--blue);
-  --project-duration-abandoned: var(--gray-400);
+  //project-context
+  --project-context-background: var(--primary-500);
+  --project-context-color: white;
+
+  //projects
+  --projects-github-bg: var(--primary-500);
+  --projects-github-icon-color: white;
 
   //project-item
-  --project-item-completed-background: var(--green-250);
   --project-item-completed-color: white;
   --project-item-abandoned-background: var(--gray-500);
   --project-item-abandoned-color: white;
-  --project-item-ongoing-background: var(--blue);
   --project-item-ongoing-color: white;
 
   //project-item-skill-list
-  --project-item-skill-list-skill-background: white;
-  --project-item-skill-list-skill-border: var(--gray-100);
+  --project-item-skill-list-skill-background: var(--primary-500);
+  --project-item-skill-list-skill-border: var(--primary-700);
+  --project-item-skill-list-color: white;
 
   //project-name-header
-  --project-name-header-completed-background: var(--green-250);
   --project-name-header-completed-color: white;
   --project-name-header-abandoned-background: var(--gray-500);
   --project-name-header-abandoned-color: white;
-  --project-name-header-ongoing-background: var(--blue);
   --project-name-header-ongoing-color: white;
 
-  //projects
-  --projects-1-bg: var(--blue);
-  --projects-2-bg: var(--green-250);
-  --projects-3-bg: var(--blue);
-
   //projects-by-context
-  --projects-by-context-icons-bg: var(--blue);
   --projects-by-context-icons-color: var(--white);
+
+  //reset-button
+  --reset-button-color: var(--gray-700);
+
+  //resume
+  --resume-background-color: var(--primary-500);
+  --resume-color: white;
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-400);
   --robotic-arm-axes-fill: var(--gray-500);
 
   //skills-recap
-  --skills-recap-frontend-bg: var(--blue);
-  --skills-recap-backend-bg: var(--green-250);
   --skills-recap-general-bg: var(--gray-500);
-
-  --skills-recap-counter-bg: var(--gray-050);
+  --skills-recap-counter-bg: var(--gray-100);
   --skills-recap-counter-color: var(--gray-500);
+  --skills-recap-separator: var(--gray-100);
+  --skills-recap-background: var(--primary-200);
 
-  --skills-recap-separator: var(--gray-050);
+  //skill-highlight
+  --skill-highlight-icon-color: var(--primary-500);
 
-  //skill-section-header
-  --skill-section-header-frontend-bg: var(--blue);
-  --skill-section-header-frontend-color: white;
+  //skill-section-description
+  --skill-section-description-svg-color: var(--primary-200);
 
-  --skill-section-header-backend-bg: var(--green-250);
-  --skill-section-header-backend-color: white;
-
-  --skill-section-header-general-bg: var(--gray-500);
-  --skill-section-header-general-color: white;
+  //status-filtering
+  --status-filtering-completed: var(--primary-800);
+  --status-filtering-ongoing: var(--primary-700);
+  --status-filtering-abandoned: var(--primary-500);
+  --status-filtering-selected: var(--primary-500);
+  --status-filtering-not-selected: var(--gray-400);
 
   //styles
-  --styles-title-color: var(--gray-500);
-  --styles-text-color: var(--black);
-  --styles-background-color: #f7f2f2;
+  --styles-title-color: var(--gray-700);
+  --styles-text-color: var(--gray-800);
+  --styles-background-color: var(--gray-100);
   --styles-paragraph-highlight-bg-color: rgb(241, 241, 241);
-  --styles-paragraph-highlight-color: var(--black);
   --styles-thumbnail-border: var(--gray-300);
+  --styles-default-paragraph-color: var(--gray-500);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);
 
-  //tooltip
-  --tooltip-background: var(--green-300);
+  //your-project
+  --your-project-background: var(--primary-500);
+  --your-project-color: white;
 }

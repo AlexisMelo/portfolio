@@ -1,17 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { DotColor } from './dot-color.model';
-import { NgClass } from '@angular/common';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-dot',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dot.component.html',
   styleUrl: './dot.component.scss',
 })
 export class DotComponent {
   /**
-   * Couleur du point
+   * CSS Color for the dot
    */
-  @Input() color: DotColor = 'green';
+  public color = input('green');
+
+  /**
+   * Should the dot animate with a pulse effect
+   */
+  public pulse = input(true);
 }

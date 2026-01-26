@@ -1,0 +1,27 @@
+:host {
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+:not(app-mosaique-websites) {
+  z-index: 10;
+}
+
+app-mosaique-websites {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  rotate: 40deg;
+}

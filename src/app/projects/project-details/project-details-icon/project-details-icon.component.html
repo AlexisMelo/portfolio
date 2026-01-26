@@ -6,11 +6,3 @@
       [alt]="'Icone du projet ' + project.label" />
   }
 </div>
-
-@if (project.deployment) {
-  <app-action-button
-    text="Voir le projet"
-    [unfold]="hovered"
-    (click)="openLink()">
-  </app-action-button>
-}

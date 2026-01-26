@@ -1,5 +1,6 @@
 import {
   Component,
+  effect,
   EffectRef,
   inject,
   OnDestroy,
@@ -11,24 +12,17 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
-import { ContextWithProjects } from 'src/app/projects/projects-by-context/context-with-projects.model';
-import { FilterChipComponent } from 'src/app/shared/chips/filter-chip/filter-chip.component';
+import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
 import { ArchivesService } from '../archives.service';
-import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-project-filtering',
   standalone: true,
-  imports: [
-    FilterChipComponent,
-    ReactiveFormsModule,
-    MatIconModule,
-    ResetButtonComponent,
-  ],
+  imports: [ReactiveFormsModule, MatIconModule],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
@@ -82,6 +76,18 @@ export class ProjectFilteringComponent
    * Handle contexts selection and route update
    */
   private contextsEffect?: EffectRef;
+
+  /**
+   * Constructor
+   */
+  constructor() {
+    super();
+    //Handle value reset/change from other components
+    //Pas ouf ??
+    effect(() => {
+      this.filterFormControl.setValue(this.archivesService.filter());
+    });
+  }
 
   /**
    * Implementation of OnInit
@@ -186,23 +192,5 @@ export class ProjectFilteringComponent
     });
 
     this.archivesService.selectedSkills.set(selectedSkill);
-  }
-
-  /**
-   * Clear the selected skills, contexts, and keywords
-   */
-  public clearFiltering() {
-    this.filterFormControl.setValue(null);
-    this.selectSkill(null);
-    this.selectContext(null);
-
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        skills: null,
-        contexts: null,
-      },
-      queryParamsHandling: 'merge',
-    });
   }
 }

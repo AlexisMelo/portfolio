@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+@use '_functions' as functions;
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import './responsive.scss';
 @import './light-mode.scss';
 @import './dark-mode.scss';
@@ -10,30 +10,31 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
-  --grid-width: 350px; //pour que ça fonctionne même sur petit téléphone
-  --columns: 2;
-  --gap: 16px;
-  --grid-icon-centered-size: 36px;
-  --body-font-family: 'Funnel Display', sans-serif;
-  --title-font-family: 'Spicy Rice', serif;
+  --grid-width: 356px; //pour que ça fonctionne même sur petit téléphone
+  --columns: 4;
+  --gap: 12px;
+  --body-font-family: 'Poppins', sans-serif;
+  --title-font-family: 'Grandstander', cursive;
+  font-size: var(--text-xs);
 
   @include responsive('medium') {
+    font-size: var(--text-sm);
     --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
-    --columns: 4;
+    --columns: 8;
+    --gap: 14px;
   }
 
-  @include responsive('large') {
-    --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
-    --columns: 4;
-    --gap: 18px;
-    --grid-icon-centered-size: 50px;
-  }
+  // @include responsive('large') {
+  //   --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
+  //   --columns: 12;
+  //   --gap: 16px;
+  // }
 
-  --cell-size: calc(
-    calc(var(--grid-width) / var(--columns)) - calc(
-        calc(var(--gap) * (var(--columns) - 1)) / var(--columns)
-      )
-  );
+  --cell-size: #{functions.getCellSize(
+      var(--grid-width),
+      var(--columns),
+      var(--gap)
+    )};
 }
 
 .cdk-overlay-backdrop {
@@ -67,25 +68,26 @@ html {
 body,
 html {
   transition: background-color 0.3s ease-out;
-
   margin: 0;
   padding: 0;
   color: var(--styles-text-color);
   font-family: var(--body-font-family);
-  font-optical-sizing: auto;
-  letter-spacing: 1px;
-  font-weight: 300;
-  font-style: normal;
   overflow-x: hidden;
-  font-size: 12px;
+}
 
-  @include responsive('medium') {
-    font-size: 13.5px;
-  }
+h2,
+p {
+  margin: 0;
+}
 
-  @include responsive('large') {
-    font-size: 15px;
-  }
+h2,
+h3 {
+  padding-top: 0.2em;
+}
+
+p,
+li {
+  color: var(--styles-default-paragraph-color);
 }
 
 body {
@@ -96,13 +98,9 @@ h1,
 h2,
 h3 {
   font-family: var(--title-font-family);
-  font-weight: 400;
+  font-weight: bold;
   font-style: normal;
   color: var(--styles-title-color);
-
-  @include responsive('large') {
-    letter-spacing: 2px;
-  }
 }
 
 @keyframes blink {
@@ -144,10 +142,6 @@ h3 {
   }
 }
 
-.g-text {
-  line-height: 200%;
-}
-
 .g-container {
   width: var(--container-width);
   max-width: var(--container-max-width);
@@ -165,29 +159,21 @@ h3 {
   gap: var(--gap);
   grid-template-columns: repeat(var(--columns), var(--cell-size));
   grid-auto-rows: var(--cell-size);
-  transition: 300ms;
 }
 
 .g-grid-container {
-  max-width: var(--grid-width);
-  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Others */
 
-.g-bold-not-title {
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-}
-
 .g-grid-item {
-  border-radius: 35px;
+  border-radius: 15px;
   background-color: var(--grid-item-default-bg);
   border: var(--grid-item-border);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   transition:
     box-shadow 300ms,
@@ -195,94 +181,40 @@ h3 {
     transform 500ms;
 
   &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 24px 0px;
+    box-shadow: rgba(100, 111, 101, 0.2) 0px 5px 24px 0px;
     // transform: scale(1.02);
-  }
-
-  &.g-grid-item-start-aligned {
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-
-    h2 {
-      margin-top: 0;
-    }
-  }
-
-  .g-grid-item-main-text {
-    flex-grow: 1;
-    width: 100%;
-  }
-
-  .g-grid-item-footer-text {
-    text-align: end;
-    color: var(--grid-item-bottom-text-color);
-    width: 100%;
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  .g-grid-item-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-
-    .g-grid-item-footer-text {
-      flex-grow: 1;
-      width: auto;
-    }
   }
 }
 
-.g-paragraph {
-  line-height: 170%;
+.g-grid-item-shadow {
+  box-shadow: -3px 3px 7px 0 var(--grid-item-shadow-color);
+}
 
-  @include responsive('medium') {
-    line-height: 180%;
-  }
-
-  @include responsive('large') {
-    line-height: 200%;
-  }
-
-  span {
-    display: inline-block;
-    white-space: nowrap;
-    color: var(--styles-paragraph-highlight-color);
-    transition: 500ms;
-    position: relative;
-    margin: 0 6px;
-    z-index: 1;
-
-    &::after {
-      padding: 2px 8px;
-      background-color: var(--styles-paragraph-highlight-bg-color);
-      content: '';
-      width: calc(100% + 12px);
-      height: 1.4rem;
-      position: absolute;
-      border-radius: 10px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: -1;
-    }
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
-  &:hover {
-    span {
-      transform: rotate(-3deg);
-    }
-  }
+p,
+li {
+  line-height: 150%;
 }
 
 .cdk-global-scrollblock {
   position: static !important;
   width: initial !important;
   overflow-y: inherit !important;
+}
+
+mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+
+  &.small {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &.large {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+  }
 }

@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,12 +7,11 @@ import { Project } from '../../project.model';
 import { Status } from '../../status/status.model';
 import { StatusPipe } from '../../status/status.pipe';
 import { ArchivesService } from '../archives.service';
-import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-status-filtering',
   standalone: true,
-  imports: [MatIconModule, DecimalPipe, ResetButtonComponent],
+  imports: [MatIconModule],
   templateUrl: './status-filtering.component.html',
   styleUrl: './status-filtering.component.scss',
   providers: [StatusPipe],
@@ -38,15 +36,15 @@ export class StatusFilteringComponent
   private router = inject(Router);
 
   /**
-   * Get current route information
+   * Handle routing
    */
   private route = inject(ActivatedRoute);
 
   /**
-   * Projects grouped by status
+   * All projects grouped by status
    */
   public projectsByStatus = computed(() => {
-    return this.archivesService.projects().reduce(
+    return this.archivesService.selectedProjects().reduce(
       (acc, project) => {
         const status = this.statusPipe.transform(project);
         if (!acc[status]) {
@@ -57,6 +55,13 @@ export class StatusFilteringComponent
       },
       {} as Record<Status, Project[]>
     );
+  });
+
+  /**
+   * Should all status be displayed ?
+   */
+  public showAll = computed(() => {
+    return this.archivesService.selectedStatus() === null;
   });
 
   /**
@@ -75,6 +80,11 @@ export class StatusFilteringComponent
    * @param status
    */
   public selectStatus(status: Status) {
+    if (this.archivesService.selectedStatus() === status) {
+      this.clearStatus();
+      return;
+    }
+
     this.archivesService.selectedStatus.set(status);
 
     this.router.navigate([], {

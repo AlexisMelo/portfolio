@@ -1,0 +1,33 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  h2 {
+    margin: 0;
+    font-size: var(--text-md);
+  }
+
+  @include responsive('medium') {
+    h2 {
+      font-size: var(--text-lg);
+    }
+  }
+}
+
+p {
+  margin: 0;
+  align-content: end;
+}

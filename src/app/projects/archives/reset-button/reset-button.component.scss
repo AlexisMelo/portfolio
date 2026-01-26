@@ -2,17 +2,5 @@
 
 :host {
   cursor: pointer;
-  position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-
-  @include responsive('medium') {
-    right: 1.5rem;
-    top: 1.5rem;
-  }
-
-  @include responsive('large') {
-    right: 2rem;
-    top: 2rem;
-  }
+  color: var(--reset-button-color);
 }

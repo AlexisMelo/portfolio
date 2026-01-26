@@ -1,0 +1,41 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--your-project-background);
+}
+
+h2 {
+  font-size: var(--text-lg);
+  flex-grow: 1;
+  color: var(--your-project-color);
+
+  @include responsive('medium') {
+    font-size: var(--text-xl);
+  }
+}
+
+p {
+  max-width: 60%;
+  flex-grow: 1;
+  align-content: flex-end;
+  color: var(--your-project-color);
+
+  @include responsive('medium') {
+    font-size: var(--text-xs);
+  }
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+.contact {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}

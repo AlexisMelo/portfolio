@@ -1,0 +1,27 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--mail-background-color);
+}
+
+h2 {
+  margin: 0;
+  font-size: var(--text-xl);
+  color: var(--mail-color);
+
+  .projet {
+    margin-top: 0.5rem;
+    display: block;
+  }
+}
+
+svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

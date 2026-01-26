@@ -12,7 +12,8 @@
   line-height: normal;
   background-color: var(--project-item-skill-list-skill-background);
   border: 1px solid var(--project-item-skill-list-skill-border);
-  padding: 2px 4px;
+  color: var(--project-item-skill-list-color);
+  padding: 0px 8px;
   border-radius: 15px;
   text-align: center;
   cursor: pointer;
@@ -25,10 +26,5 @@
   @include responsive('medium') {
     padding: 2px 4px;
     font-size: 0.7rem;
-  }
-
-  @include responsive('large') {
-    padding: 4px 6px;
-    font-size: 0.8rem;
   }
 }

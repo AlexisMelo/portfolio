@@ -1,76 +1,130 @@
-<ng-template #themeToggle>
-  <mat-icon
-    class="theme-toggle"
-    fontSet="material-icons-outlined"
-    (click)="toggleDarkMode()">
-    @if (themeService.theme.value === 'light-mode') {
-      light_mode
-    } @else {
-      dark_mode
-    }
-  </mat-icon>
-</ng-template>
+<ng-template #items>
+  <div appGridItem class="linkedin">
+    <app-linkedin></app-linkedin>
+  </div>
 
-<ng-template #logo>
-  <img
+  <div appGridItem class="github">
+    <app-github [link]="contentService.github"></app-github>
+  </div>
+
+  <div appGridItem class="theme-selector">
+    <app-theme-selector></app-theme-selector>
+  </div>
+
+  <!-- <div appGridItem class="language-selector">
+    <app-language-selector></app-language-selector>
+  </div> -->
+
+  <a
     [routerLink]="['']"
-    class="logo"
-    [src]="
-      themeService.theme.value === 'dark-mode' ? 'logo-dark.svg' : 'logo.svg'
-    "
-    alt="logo" />
+    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="home"
+    appGridItem
+    ><h2>À propos</h2>
+    <div class="img-container">
+      <img
+        [src]="
+          themeService.isDarkMode
+            ? 'photos/avatar-neutral-dark.png'
+            : 'photos/avatar-neutral.png'
+        "
+        alt="Avatar" />
+    </div>
+  </a>
+
+  <a
+    [routerLink]="['projects']"
+    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    class="projects"
+    appGridItem
+    ><h2>Réalisations</h2>
+    <div class="img-container">
+      <img
+        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
+        alt="Projects illustration" />
+    </div>
+  </a>
+
+  <a
+    [routerLink]="['skills']"
+    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    class="skills"
+    appGridItem
+    ><h2>Compétences</h2>
+    <div class="img-container">
+      <img
+        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
+        alt="Skills illustration" />
+    </div>
+  </a>
+
+  <a
+    class="experience"
+    appGridItem
+    [routerLink]="['experience']"
+    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    ><h2>Expérience</h2>
+    <div class="img-container">
+      <img
+        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
+        alt="Experience illustration" />
+    </div>
+  </a>
 </ng-template>
-
-<ng-template #leftLinks>
-  <div class="navbar-link">
-    <a
-      [routerLink]="['']"
-      [routerLinkActive]="['is-active', 'g-bold-not-title']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >À propos</a
-    >
-  </div>
-
-  <div class="navbar-link">
-    <a
-      [routerLink]="['projects']"
-      [routerLinkActive]="['is-active', 'g-bold-not-title']"
-      >Projets</a
-    >
-  </div>
-
-  <div class="navbar-link">
-    <a
-      [routerLink]="['skills']"
-      [routerLinkActive]="['is-active', 'g-bold-not-title']"
-      >Compétences</a
-    >
-  </div>
-</ng-template>
-
-<ng-template #rightLinks> </ng-template>
-
-<ng-template *ngTemplateOutlet="logo"></ng-template>
-
-<div class="left-items">
-  <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
-</div>
-
-<div class="right-items">
-  <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
-
-  <ng-template *ngTemplateOutlet="themeToggle"> </ng-template>
-
-  <div
-    class="open-menu"
-    (click)="toggleMenu()"
-    (keypress)="toggleMenu()"
-    tabindex="0">
-    <mat-icon> menu </mat-icon>
-  </div>
-</div>
 
 <div class="collapsible-menu" [class.opened]="this.menuOpened">
-  <ng-template *ngTemplateOutlet="leftLinks"></ng-template>
-  <ng-template *ngTemplateOutlet="rightLinks"></ng-template>
+  <div class="g-grid-container">
+    <div class="g-grid">
+      <ng-template [ngTemplateOutlet]="items"></ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="g-grid-container main-navbar">
+  <div class="g-grid">
+    <nav appGridItem class="g-grid-item-shadow">
+      <div class="logo-name" [routerLink]="['']">
+        <h1>Melo</h1>
+      </div>
+
+      <div id="links-large-screen">
+        <a
+          [routerLink]="['']"
+          [routerLinkActive]="['is-active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <h2>À propos</h2></a
+        >
+
+        <a [routerLink]="['projects']" [routerLinkActive]="['is-active']">
+          <h2>Réalisations</h2>
+        </a>
+        <a [routerLink]="['skills']" [routerLinkActive]="['is-active']">
+          <h2>Compétences</h2>
+        </a>
+        <a [routerLink]="['experience']" [routerLinkActive]="['is-active']">
+          <h2>Expérience</h2>
+        </a>
+
+        <div class="separator"></div>
+
+        <!-- <app-language-selector></app-language-selector> -->
+        <app-theme-selector></app-theme-selector>
+      </div>
+
+      <mat-icon
+        class="open-menu large"
+        (click)="toggleMenu()"
+        (keypress)="toggleMenu()"
+        tabindex="0">
+        @if (menuOpened) {
+          close
+        } @else {
+          menu
+        }
+      </mat-icon>
+    </nav>
+
+    <ng-template [ngTemplateOutlet]="items"></ng-template>
+  </div>
 </div>

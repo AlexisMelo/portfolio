@@ -1,41 +1,21 @@
-<h2 [ngClass]="project | status">
-  @switch (project | status) {
-    @case ('abandoned') {
-      <span>Abandonné</span> après
-    }
-    @case ('ongoing') {
-      <span>En cours</span> depuis
-    }
-    @case ('completed') {
-      <span>Terminé</span> en
-    }
-  }
-  {{ project | duration }}
-</h2>
+@if (project | status; as projectStatus) {
+  <h2 [ngClass]="projectStatus">
+    {{ project.start_date | duration: project.end_date }}
+  </h2>
 
-<div class="g-paragraph g-grid-item-main-text">
-  <div class="frise" [ngClass]="project | status">
-    <div class="start-date-year">{{ project.start_date | date: 'yyyy' }}</div>
-    <div class="start-date-month">{{ project.start_date | date: 'MMMM' }}</div>
-    <div class="end-date-year">{{ project.end_date | date: 'yyyy' }}</div>
-    <div class="end-date-month">{{ project.end_date | date: 'MMMM' }}</div>
-    <div class="bar-container">
-      <div class="bar"></div>
-    </div>
-    <div class="icon-container">
-      <mat-icon>
-        @switch (project | status) {
-          @case ('abandoned') {
-            delete
-          }
-          @case ('ongoing') {
-            precision_manufacturing
-          }
-          @case ('completed') {
-            check
-          }
-        }
-      </mat-icon>
-    </div>
+  <div class="duration-badge">
+    @switch (projectStatus) {
+      @case ('abandoned') {
+        <span>Abandonné</span>
+      }
+      @case ('ongoing') {
+        <span>En cours</span>
+      }
+      @case ('completed') {
+        <span>Terminé</span>
+      }
+    }
   </div>
-</div>
+}
+
+<p>Démarré en {{ project.start_date | date: 'MMMM yyyy' }}</p>

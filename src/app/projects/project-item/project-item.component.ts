@@ -1,25 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { Component, HostListener, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { PROJECTS_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
-import { ActionButtonComponent } from '../../contact/action-button/action-button.component';
 import { ProjectItemSkillListComponent } from './project-item-skill-list/project-item-skill-list.component';
 import { ProjectItem } from './project-item.model';
 
 @Component({
   selector: 'app-project-item',
   standalone: true,
-  imports: [
-    RouterLink,
-    ActionButtonComponent,
-    RouterLink,
-    ProjectItemSkillListComponent,
-    LoaderComponent,
-  ],
+  imports: [ProjectItemSkillListComponent, LoaderComponent],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
 })
 export class ProjectItemComponent extends GridItemDirective {
   /**
@@ -28,9 +21,14 @@ export class ProjectItemComponent extends GridItemDirective {
   @Input({ required: true }) project?: ProjectItem;
 
   /**
-   * Lien vers les archives
+   * Handle routing
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  private router = inject(Router);
+
+  /**
+   * Link to projects
+   */
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /**
    * Skills à afficher
@@ -50,5 +48,12 @@ export class ProjectItemComponent extends GridItemDirective {
     return this.project?.illustrations.reduce((prev, current) =>
       prev.position > current.position ? current : prev
     );
+  }
+
+  /**
+   * Handle click on the component
+   */
+  @HostListener('click') onClick() {
+    this.router.navigate([PROJECTS_ROUTE, this.project?.url]);
   }
 }

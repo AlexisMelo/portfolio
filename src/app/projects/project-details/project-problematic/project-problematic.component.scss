@@ -1,13 +1,16 @@
-@import '../../../shared/grid/grid-item.scss';
+@import '../../../../styles/responsive.scss';
 
 :host {
-  @include grid-2x2;
+  padding: 2rem;
+}
 
-  @include responsive('medium') {
-    font-size: 0.9rem;
-  }
+h2 {
+  font-size: var(--text-xxl);
+  margin-bottom: 1rem;
+}
 
-  @include responsive('large') {
-    font-size: 1rem;
+@include responsive('medium') {
+  p {
+    line-height: 170%;
   }
 }

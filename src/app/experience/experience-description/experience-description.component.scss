@@ -1,0 +1,13 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  padding: 1.5rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: var(--text-xs);
+}

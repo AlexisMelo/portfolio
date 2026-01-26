@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['projects/**/*', 'node_modules/**/*'],
+    ignores: ['projects/**/*', 'node_modules/**/*', 'database.types.ts'],
     languageOptions: {
       globals: {
         ...globals.jasmine,

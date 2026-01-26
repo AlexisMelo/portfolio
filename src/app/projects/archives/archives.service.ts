@@ -2,16 +2,22 @@ import {
   computed,
   inject,
   Injectable,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
-import { ContextWithProjects } from 'src/app/projects/projects-by-context/context-with-projects.model';
+import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
 import { Project } from '../project.model';
 import { Status } from '../status/status.model';
 import { StatusPipe } from '../status/status.pipe';
+import { ActivatedRoute, Router } from '@angular/router';
+
+export type OrderByType = 'year';
+export type OrderDirection = 'asc' | 'desc';
+type GroupedProjects = Array<{ key: string; projects: Array<Project> }>;
 
 /**
  * Handle the selected projects showed in archives
@@ -36,7 +42,7 @@ export class ArchivesService {
   /**
    * List of all projects
    */
-  public projects: WritableSignal<Array<Project>> = signal([]);
+  public projects = signal<Array<Project>>([]);
 
   /**
    * List of selected contexts
@@ -60,9 +66,29 @@ export class ArchivesService {
   public filter: WritableSignal<string | null> = signal(null);
 
   /**
-   * Update the selected projects when the selected contexts, skills, status or filter change
+   * Direction for ordering projects
    */
-  readonly selectedProjects = computed(() => {
+  public orderDirection = signal<OrderDirection>('desc');
+
+  /**
+   * Key to order projects
+   */
+  public orderBy = signal<OrderByType>('year');
+
+  /**
+   * Handle routing
+   */
+  private router = inject(Router);
+
+  /**
+   * Get current route information
+   */
+  private route = inject(ActivatedRoute);
+
+  /**
+   * Selected projects based on all the criterias
+   */
+  readonly selectedProjects: Signal<Array<Project>> = computed(() => {
     const selectedContexts = this.selectedContexts();
     const selectedSkills = this.selectedSkills();
     const selectedStatus = this.selectedStatus();
@@ -85,6 +111,43 @@ export class ArchivesService {
           filter === '' ||
           this.projectMatchesFilter(p, filter))
     );
+  });
+
+  /**
+   * Selected projects grouped and sorted
+   */
+  readonly sortedGroupedProjects: Signal<GroupedProjects> = computed(() => {
+    const selectedProjects = this.selectedProjects();
+
+    const reduced = selectedProjects.reduce(
+      (group: { [key: string]: [Project] }, next: Project) => {
+        const date = next.end_date ? new Date(next.end_date) : new Date();
+
+        const endYear = date.getFullYear().toString();
+
+        if (endYear in group) {
+          group[endYear].push(next);
+        } else {
+          group[endYear] = [next];
+        }
+
+        return group;
+      },
+      {}
+    );
+
+    return Object.entries(reduced)
+      .map(([key, projects]) => ({
+        key,
+        projects,
+      }))
+      .sort((firstGroup, secondGroup) => {
+        if (firstGroup.key > secondGroup.key)
+          return this.orderDirection() === 'asc' ? -1 : 1;
+        if (firstGroup.key < secondGroup.key)
+          return this.orderDirection() === 'asc' ? 1 : -1;
+        return 0;
+      });
   });
 
   /**
@@ -117,5 +180,25 @@ export class ArchivesService {
       return true;
 
     return false;
+  }
+
+  /**
+   * Clear the selected skills, contexts, and keywords
+   */
+  public clearFiltering() {
+    this.filter.set(null);
+    this.selectedSkills.set(null);
+    this.selectedContexts.set(null);
+    this.selectedStatus.set(null);
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        skills: null,
+        contexts: null,
+        status: null,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }

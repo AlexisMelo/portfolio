@@ -1,20 +1,27 @@
 import { Routes } from '@angular/router';
-import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 import { ArchivesComponent } from './projects/archives/archives.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SkillsComponent } from './skills/skills.component';
+import { ExperienceComponent } from './experience/experience.component';
 
 const RELATIVE_ARCHIVES_ROUTE = 'projects/archives';
 export const ARCHIVES_ROUTE = '/' + RELATIVE_ARCHIVES_ROUTE;
 
+const RELATIVE_EXPERIENCE_ROUTE = 'experience';
+export const EXPERIENCE_ROUTE = '/' + RELATIVE_EXPERIENCE_ROUTE;
+
+const RELATIVE_PROJECTS_ROUTE = 'projects';
+export const PROJECTS_ROUTE = '/' + RELATIVE_PROJECTS_ROUTE;
+
 export const routes: Routes = [
   {
     path: '',
-    component: ContactComponent,
+    component: HomeComponent,
   },
   {
-    path: 'projects',
+    path: RELATIVE_PROJECTS_ROUTE,
     component: ProjectsComponent,
   },
   {
@@ -26,7 +33,11 @@ export const routes: Routes = [
     component: SkillsComponent,
   },
   {
-    path: 'projects/:url',
+    path: RELATIVE_EXPERIENCE_ROUTE,
+    component: ExperienceComponent,
+  },
+  {
+    path: RELATIVE_PROJECTS_ROUTE + '/:url',
     component: ProjectDetailsComponent,
   },
   {

@@ -1,20 +1,22 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { GithubComponent } from 'src/app/contact/github/github.component';
+import { filter, switchMap } from 'rxjs';
+import { GithubComponent } from 'src/app/home/github/github.component';
+import { gridItemAnimation } from 'src/app/shared/animations';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
-import { Skill } from '../../skills/skill.model';
-import { Project } from '../project.model';
 import { StatusPipe } from '../status/status.pipe';
+import { OpenLiveComponent } from './open-live/open-live.component';
 import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
 import { ProjectDescriptionComponent } from './project-description/project-description.component';
 import { ProjectDetailsIconComponent } from './project-details-icon/project-details-icon.component';
 import { ProjectDurationComponent } from './project-duration/project-duration.component';
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
-import { ProjectNameHeaderComponent } from './project-name-header/project-name-header.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-project-details',
@@ -29,12 +31,14 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
     ProjectCoworkersComponent,
     ProjectParticipationComponent,
     ProjectDetailsIconComponent,
-    ProjectNameHeaderComponent,
+    OpenLiveComponent,
     SkillsRecapComponent,
     StatusPipe,
+    GridItemDirective,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
+  animations: [gridItemAnimation],
 })
 export class ProjectDetailsComponent {
   /**
@@ -50,47 +54,31 @@ export class ProjectDetailsComponent {
   /**
    * URL unique identifiant le projet
    */
-  public projectUniqueUrl?: string;
-
-  /**
-   * Projet à afficher
-   */
-  public project?: Project;
-
-  /**
-   * Skills liés au projet groupés par type
-   */
-  public skillsGroupedByType?: { [key: string]: Array<Skill> };
+  public projectUniqueUrl = signal<string | undefined>(undefined);
 
   /**
    * Constructeur
    */
   constructor() {
-    this.projectUniqueUrl = this.route.snapshot.params['url'];
-    if (!this.projectUniqueUrl) return;
-    this.supabaseService
-      .getProjectByUrl(this.projectUniqueUrl)
-      .then(project => {
-        if (project === null) return;
-        this.project = project;
-
-        if (project.project_skills.length < 1) return;
-
-        this.skillsGroupedByType = this.project.project_skills.reduce(
-          (rv: { [key: string]: Array<Skill> }, x) => {
-            (rv[x.skill.skill_type.label] =
-              rv[x.skill.skill_type.label] || []).push(x.skill);
-            return rv;
-          },
-          {}
-        );
-      });
+    const url = this.route.snapshot.paramMap.get('url');
+    if (!url) return; //url empty ?
+    this.projectUniqueUrl.set(url);
   }
+
+  /**
+   * Project to display based on url
+   */
+  protected project = toSignal(
+    toObservable(this.projectUniqueUrl).pipe(
+      filter(url => url !== undefined),
+      switchMap(url => this.supabaseService.getProjectByUrl(url))
+    )
+  );
 
   /**
    * Skills used in the project
    */
-  public get skills() {
-    return this.project?.project_skills.map(s => s.skill) ?? [];
-  }
+  protected skills = computed(() => {
+    return this.project()?.project_skills.map(s => s.skill) ?? [];
+  });
 }

@@ -1,0 +1,5 @@
+@function getCellSize($maxWidth, $columns, $gap) {
+  @return calc(
+    #{$maxWidth} / #{$columns} - (#{$gap} * ($columns - 1) / #{$columns})
+  );
+}

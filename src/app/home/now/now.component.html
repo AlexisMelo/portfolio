@@ -1,0 +1,14 @@
+<h2>En train de ...</h2>
+
+<ul>
+  @for (bloc of contentService.now; track bloc) {
+    <li>
+      <mat-icon class="small">check_circle</mat-icon>
+      <div class="g-grid-item-main-text" [innerHTML]="bloc"></div>
+    </li>
+  }
+</ul>
+
+<a target="_blank" class="g-grid-item-footer-text" href="https://sive.rs/nowff"
+  >/now</a
+>

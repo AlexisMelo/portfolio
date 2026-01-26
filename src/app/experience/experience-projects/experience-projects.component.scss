@@ -1,0 +1,37 @@
+@import '../../../styles/responsive.scss';
+
+:host {
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+@keyframes move {
+  50% {
+    transform: translate(5px, -5px);
+  }
+}
+
+mat-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  animation: move 2s infinite ease;
+}
+
+:not(app-mosaique-websites) {
+  z-index: 10;
+}
+
+app-mosaique-websites {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  rotate: 40deg;
+}
+
+h2 {
+  font-size: var(--text-lg);
+}

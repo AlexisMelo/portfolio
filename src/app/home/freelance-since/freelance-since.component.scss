@@ -1,0 +1,35 @@
+:host {
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  cursor: pointer;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--text-xxl);
+  flex-grow: 1;
+}
+
+@keyframes scale {
+  50% {
+    transform: scale(0.8);
+  }
+}
+
+mat-icon {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  // rotate: 15deg;
+  animation: scale infinite 1s;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1;
+}

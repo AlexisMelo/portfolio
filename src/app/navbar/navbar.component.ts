@@ -2,23 +2,46 @@ import {
   Component,
   HostBinding,
   inject,
-  OnInit,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ThemeService } from '../shared/theme.service';
-import { NgTemplateOutlet } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { GithubComponent } from '../home/github/github.component';
+import { LinkedinComponent } from '../home/linkedin/linkedin.component';
+import { GridItemDirective } from '../shared/grid/grid-item.directive';
+import { ThemeService } from '../shared/theme.service';
+import { ContentService } from '../shared/content.service';
+import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { StickyObserverDirective } from './sticky-observer.directive';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatIconModule, RouterLink, RouterLinkActive, NgTemplateOutlet],
+  imports: [
+    MatIconModule,
+    RouterLink,
+    RouterLinkActive,
+    GridItemDirective,
+    LinkedinComponent,
+    GithubComponent,
+    ThemeSelectorComponent,
+    LanguageSelectorComponent,
+    NgTemplateOutlet,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
+  hostDirectives: [StickyObserverDirective],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  /**
+   * Content service
+   */
+  public contentService = inject(ContentService);
+
   /**
    * Est-ce que le menu est ouvert
    */

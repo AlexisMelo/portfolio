@@ -1,0 +1,42 @@
+:host {
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+h2 {
+  font-size: var(--text-xxl);
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 180%;
+  flex-grow: 1;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 0;
+  margin: 0;
+
+  li {
+    // list-style: none;
+    margin-left: 1.5rem;
+    text-align: start;
+  }
+}
+
+mat-icon {
+  position: absolute;
+  right: 2.5rem;
+  top: 2rem;
+}
+
+p,
+ul,
+h2 {
+  position: relative; //for z-index to work ??
+}

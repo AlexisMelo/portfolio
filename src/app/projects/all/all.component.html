@@ -1,17 +1,9 @@
-<h2>Tous mes projets</h2>
+<h2>Archives</h2>
 
-<div class="g-paragraph g-grid-item-main-text">
-  Depuis mes débuts dans l'informatique !
-</div>
+<p>{{ projects?.length }} réalisations</p>
 
-<div class="decoration_1"></div>
-<div class="decoration_2"></div>
-<div class="decoration_3"></div>
+<mat-icon class="material-symbols-outlined" [routerLink]="[ARCHIVES_ROUTE]"
+  >call_made</mat-icon
+>
 
-<app-action-button
-  [unfold]="true"
-  text="Voir tout"
-  [routerLink]="[ARCHIVES_ROUTE]"
-  [positionAbsolute]="false"
-  icon="visibility">
-</app-action-button>
+<app-mosaique-websites></app-mosaique-websites>

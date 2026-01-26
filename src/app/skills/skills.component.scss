@@ -1,177 +1,202 @@
 @import '../../styles/responsive.scss';
 
-.g-grid:not(:last-child) {
-  margin-bottom: var(--gap); //gap entre les grid
-}
+app-all {
+  grid-row: 3;
+  grid-column: 1 / 5;
 
-:host ::ng-deep .frontend-grid {
-  app-skill-section-header {
-    grid-row: 1;
-    grid-column: 1 / 3;
-    background-color: var(--section-bg);
-
-    @include responsive('medium') {
-      grid-row: 1;
-      grid-column: 3 / 5;
-    }
-
-    span {
-      color: var(--section-color);
-    }
-  }
-
-  app-skill-section-description {
-    grid-row: 2;
-    grid-column: 1 / 3;
-
-    @include responsive('medium') {
-      grid-row: 1;
-      grid-column: 1 / 3;
-    }
-  }
-
-  app-skills-recap {
-    grid-row: 4 / 6;
-    grid-column: 1 / 3;
-
-    @include responsive('medium') {
-      grid-row: 2 / 4;
-      grid-column: 1 / 3;
-    }
-  }
-
-  @for $i from 0 through 1 {
-    .loved[data-index='#{$i}'] {
-      grid-column: #{$i + 1};
-      grid-row: 3;
-
-      @include responsive('medium') {
-        grid-column: #{$i + 3};
-        grid-row: 2;
-      }
-    }
-
-    .learning[data-index='#{$i}'] {
-      grid-row: 6;
-      grid-column: #{$i + 1};
-
-      @include responsive('medium') {
-        grid-column: #{$i + 3};
-        grid-row: 3;
-      }
-    }
+  @include responsive('medium') {
+    grid-column: 5 / 9;
+    grid-row: 3;
   }
 }
 
-::ng-deep .backend-grid {
-  app-skill-section-header {
-    grid-row: 1;
-    grid-column: 1 / 3;
-    background-color: var(--section-bg);
+app-keep-learning {
+  grid-row: 4 / 7;
+  grid-column: 1 / 5;
 
-    span {
-      color: var(--section-color);
-    }
+  @include responsive('medium') {
+    grid-column: 1 / 5;
+    grid-row: 1 / 4;
   }
+}
 
-  app-skill-section-description {
-    grid-row: 2;
-    grid-column: 1 / 3;
+app-favorites {
+  grid-row: 1 / 3;
+  grid-column: 1 / 5;
+
+  @include responsive('medium') {
+    grid-column: 5 / 9;
+    grid-row: 1 / 3;
+  }
+}
+
+app-key-header {
+  font-size: var(--text-xl);
+
+  &.section-frontend {
+    grid-row: 7;
+    grid-column: 1 / 5;
 
     @include responsive('medium') {
-      grid-row: 1;
-      grid-column: 3 / 5;
+      grid-row: 4;
     }
   }
 
-  app-skills-recap {
-    grid-row: 4 / 6;
-    grid-column: 1 / 3;
+  &.section-backend {
+    grid-row: 15;
+    grid-column: 1 / 5;
 
     @include responsive('medium') {
-      grid-row: 2 / 4;
-      grid-column: 3 / 5;
+      grid-row: 8;
+      grid-column: 5 / 9;
     }
   }
 
-  @for $i from 0 through 1 {
-    .loved[data-index='#{$i}'] {
-      grid-column: #{$i + 1};
-      grid-row: 3;
+  &.section-general {
+    grid-row: 23;
+    grid-column: 1 / 5;
 
-      @include responsive('medium') {
-        grid-column: #{2 - $i};
-        grid-row: 2;
-      }
-    }
-
-    .learning[data-index='#{$i}'] {
-      grid-row: 6;
-      grid-column: #{$i + 1};
-
-      @include responsive('medium') {
-        grid-column: #{2 - $i};
-        grid-row: 3;
-      }
+    @include responsive('medium') {
+      grid-row: 12;
+      grid-column: 1 / 5;
     }
   }
 }
 
-::ng-deep .general-grid {
-  app-skill-section-header {
-    grid-row: 1;
-    grid-column: 1 / 3;
-    background-color: var(--section-bg);
+app-skill-highlight {
+  &.section-frontend {
+    grid-row: 8 / 10;
 
     @include responsive('medium') {
-      grid-row: 1;
+      grid-row: 4 / 6;
+    }
+
+    &:nth-of-type(1) {
+      grid-column: 1 / 3;
+
+      @include responsive('medium') {
+        grid-column: 5 / 7;
+      }
+    }
+
+    &:nth-of-type(2) {
       grid-column: 3 / 5;
-    }
-
-    span {
-      color: var(--section-color);
-    }
-  }
-
-  app-skill-section-description {
-    grid-row: 2;
-    grid-column: 1 / 3;
-
-    @include responsive('medium') {
-      grid-row: 1;
-      grid-column: 1 / 3;
-    }
-  }
-
-  app-skills-recap {
-    grid-row: 4 / 6;
-    grid-column: 1 / 3;
-
-    @include responsive('medium') {
-      grid-row: 2 / 4;
-      grid-column: 1 / 3;
-    }
-  }
-
-  @for $i from 0 through 1 {
-    .loved[data-index='#{$i}'] {
-      grid-column: #{$i + 1};
-      grid-row: 3;
 
       @include responsive('medium') {
-        grid-column: #{$i + 3};
-        grid-row: 2;
+        grid-column: 7 / 9;
+      }
+    }
+  }
+
+  &.section-backend {
+    grid-row: 16 / 18;
+
+    @include responsive('medium') {
+      grid-row: 8 / 10;
+    }
+
+    &:nth-of-type(3) {
+      grid-column: 1 / 3;
+
+      @include responsive('medium') {
+        grid-column: 1 / 3;
       }
     }
 
-    .learning[data-index='#{$i}'] {
-      grid-row: 6;
-      grid-column: #{$i + 1};
+    &:nth-of-type(4) {
+      grid-column: 3 / 5;
 
       @include responsive('medium') {
-        grid-column: #{$i + 3};
-        grid-row: 3;
+        grid-column: 3 / 5;
       }
+    }
+  }
+
+  &.section-general {
+    grid-row: 24 / 26;
+
+    @include responsive('medium') {
+      grid-row: 12 / 14;
+    }
+
+    &:nth-of-type(5) {
+      grid-column: 1 / 3;
+
+      @include responsive('medium') {
+        grid-column: 5 / 7;
+      }
+    }
+
+    &:nth-of-type(6) {
+      grid-column: 3 / 5;
+
+      @include responsive('medium') {
+        grid-column: 7 / 9;
+      }
+    }
+  }
+}
+
+app-skill-section-description {
+  &.section-frontend {
+    grid-row: 10 / 12;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-row: 6 / 8;
+      grid-column: 5 / 9;
+    }
+  }
+
+  &.section-backend {
+    grid-row: 18 / 20;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-row: 10 / 12;
+      grid-column: 1 / 5;
+    }
+  }
+
+  &.section-general {
+    grid-row: 26 / 28;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-column: 5 / 9;
+      grid-row: 14 / 16;
+    }
+  }
+}
+
+app-skills-recap {
+  &.section-frontend {
+    grid-row: 12 / 15;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-row: 5 / 8;
+      grid-column: 1 / 5;
+    }
+  }
+
+  &.section-backend {
+    grid-row: 20 / 23;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-row: 9 / 12;
+      grid-column: 5 / 9;
+    }
+  }
+
+  &.section-general {
+    grid-row: 28 / 31;
+    grid-column: 1 / 5;
+
+    @include responsive('medium') {
+      grid-column: 1 / 5;
+      grid-row: 13 / 16;
     }
   }
 }

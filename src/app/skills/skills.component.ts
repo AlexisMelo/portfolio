@@ -1,34 +1,36 @@
-import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Skill } from './skill.model';
+import { AllComponent } from '../projects/all/all.component';
+import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
+import { gridItemAnimation } from '../shared/animations';
+import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
-import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
-import { SkillSectionHeaderComponent } from './skill-section-header/skill-section-header.component';
-import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
+import { ThemeService } from '../shared/theme.service';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { KeepLearningComponent } from './keep-learning/keep-learning.component';
 import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
-import { LearningPipe } from './learning.pipe';
-import { ThemeService } from '../shared/theme.service';
-import { RangePipe } from '../shared/pipes/range.pipe';
-import { SkillHighlightPlaceholderComponent } from './skill-highlight/skill-highlight-placeholder/skill-highlight-placeholder.component';
+import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
+import { Skill } from './skill.model';
+import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 import { SkillsSection } from './skills-section.model';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [
-    SkillSectionHeaderComponent,
     SkillSectionDescriptionComponent,
-    NgClass,
     SkillsRecapComponent,
     LovedPipe,
     SkillHighlightComponent,
-    LearningPipe,
     RangePipe,
-    SkillHighlightPlaceholderComponent,
+    KeyHeaderComponent,
+    KeepLearningComponent,
+    FavoritesComponent,
+    AllComponent,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
+  animations: [gridItemAnimation],
 })
 export class SkillsComponent implements OnInit {
   /**
@@ -36,20 +38,17 @@ export class SkillsComponent implements OnInit {
    */
   public sections: Array<SkillsSection> = [
     {
-      id: 'front-end',
+      id: 'section-frontend',
       heading: "Création d'interfaces",
       subtitle: 'Frontend',
       description:
-        'Création de maquettes, implémentations complexes et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien',
+        'Création de maquettes, intégration complexe et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien',
       skillFieldId: 1,
       skills: [],
       class: 'frontend-grid',
-      recapBackgroundColor: 'var(--skills-recap-frontend-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-frontend-bg)',
-      sectionColor: 'var(--skill-section-header-frontend-color)',
     },
     {
-      id: 'back-end',
+      id: 'section-backend',
       heading: 'Gestion de données',
       subtitle: 'Backend',
       description:
@@ -57,22 +56,16 @@ export class SkillsComponent implements OnInit {
       skillFieldId: 2,
       skills: [],
       class: 'backend-grid',
-      recapBackgroundColor: 'var(--skills-recap-backend-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-backend-bg)',
-      sectionColor: 'var(--skill-section-header-backend-color)',
     },
     {
-      id: 'general',
+      id: 'section-general',
       heading: 'Et bien plus',
       subtitle: 'Général',
       description:
-        "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse à d'autres sujets comme la gestion de projet, le déploiement et l'intégration continue",
+        "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse aussi la gestion de projet, le déploiement et l'intégration continue",
       skillFieldId: 3,
       skills: [],
       class: 'general-grid',
-      recapBackgroundColor: 'var(--skills-recap-general-bg)',
-      sectionBackgroundColor: 'var(--skill-section-header-general-bg)',
-      sectionColor: 'var(--skill-section-header-general-color)',
     },
   ];
 

@@ -1,25 +1,15 @@
-@import '../../../shared/grid/grid-item.scss';
+@import '../../../../styles/responsive.scss';
 
 :host {
-  @include grid-1x2;
   overflow: visible;
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.selects {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-
-  @include responsive('large') {
-    gap: 6px;
-  }
-
-  app-filter-chip {
-    width: 50%;
-  }
+h2 {
+  margin: 0;
 }
 
 .search-bar {
@@ -28,26 +18,27 @@
 
   input {
     border: none;
-    border-bottom: 1px solid var(--gray-050);
-    padding: 12px 0;
-    padding-left: 30px;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 4px 0;
+    padding-left: 20px;
     font-size: 1.1rem;
     width: 100%;
     background-color: transparent;
     color: var(--styles-text-color);
+    line-height: 1;
 
     &:focus {
       outline: none;
     }
 
     &::placeholder {
-      color: var(--gray-100);
+      color: var(--gray-300);
     }
   }
 
   mat-icon {
     position: absolute;
-    color: var(--gray-100);
+    color: var(--gray-300);
     left: 0;
     top: 50%;
     transform: translateY(-50%);

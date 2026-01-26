@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from 'database.types';
 import { environment } from '../../environments/environment';
+import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
-import { ContextWithProjects } from '../projects/projects-by-context/context-with-projects.model';
 
 @Injectable({
   providedIn: 'root',
@@ -70,8 +70,7 @@ export class SupabaseService {
   public async getProjects(): Promise<Array<Project>> {
     const { data, error } = await this.client
       .from('project')
-      .select(this.PROJECT_REQUEST)
-      .order('end_date', { ascending: false });
+      .select(this.PROJECT_REQUEST);
 
     if (error) return Promise.reject(error);
     return data as Array<Project>;
@@ -150,5 +149,21 @@ export class SupabaseService {
     if (error || data === null)
       return Promise.reject('Erreur lors du téléchargement');
     return data;
+  }
+
+  /**
+   * Count number of projects per skill
+   * @param skillId
+   * @returns
+   */
+  public async countProjectsBySkill(skillId: number) {
+    const { count, error } = await this.client
+      .from('project_skill')
+      .select('*', { count: 'exact', head: true })
+      .eq('skill_id', skillId);
+
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
   }
 }

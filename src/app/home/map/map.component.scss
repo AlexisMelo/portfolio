@@ -1,0 +1,101 @@
+@import '../../../styles/responsive.scss';
+
+@keyframes nodding {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(-10deg);
+  }
+}
+
+:host {
+  &:hover {
+    .img-marker {
+      will-change: transform;
+      animation: nodding 1.5s infinite;
+    }
+
+    .rayon {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    #map {
+      filter: none;
+    }
+  }
+}
+
+.map-frame {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+app-action-button {
+  z-index: 500;
+}
+
+.img-marker,
+.rayon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img-marker {
+  width: 40px;
+  height: auto;
+  z-index: 500;
+
+  @include responsive('medium') {
+    width: 40px;
+  }
+}
+
+.rayon {
+  border-radius: 50%;
+  opacity: 0.5;
+  background-color: var(--map-rayon-background);
+  border: 4px solid var(--map-rayon-border);
+  z-index: 500;
+  transition: 200ms;
+  width: 70px;
+  height: 70px;
+
+  @include responsive('medium') {
+    width: 90px;
+    height: 90px;
+  }
+}

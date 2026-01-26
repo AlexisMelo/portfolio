@@ -1,7 +1,5 @@
-@import '../../../shared/grid/grid-item.scss';
-
 :host {
-  @include grid-2x2;
+  padding: 2rem;
 
   &:hover {
     ::ng-deep {

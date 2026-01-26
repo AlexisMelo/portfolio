@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Project } from './project.model';
 
 @Pipe({
   name: 'duration',
@@ -10,11 +9,15 @@ export class DurationPipe implements PipeTransform {
    * Prend deux dates et retourne la différence dans un format lisible
    * @returns
    */
-  transform(project: Project | undefined): string {
-    if (!project || !project.start_date) return '-';
+  transform(start_date: string | null, end_date: string | null): string | null {
+    if (!start_date) return null;
 
-    const startDate = new Date(project.start_date);
-    const endDate = project.end_date ? new Date(project.end_date) : new Date();
+    const today = new Date();
+    const startDate = new Date(start_date);
+
+    if (startDate > today) return null;
+
+    const endDate = end_date ? new Date(end_date) : new Date();
 
     // Calcul des années
     let years = endDate.getFullYear() - startDate.getFullYear();

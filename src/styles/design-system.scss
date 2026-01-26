@@ -3,33 +3,25 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
-  //green
-  --green-700: #1a2219;
-  --green-600: #1b2c1a;
-  --green-500: #294b29;
-  --green-400: #50623a;
-  --green-300: #459e33;
-  --green-250: #82d173; //couleur principale n°2
-  --green-200: #becfa3;
-  --green-100: rgb(233, 238, 226);
-  --green-50: rgb(240, 243, 236);
+  --primary-900: #2a3b33;
+  --primary-800: #344e41;
+  --primary-700: #3a5a40;
+  --primary-500: #588157;
+  --primary-200: #e5ebdd;
+  --primary-100: #f0f3ec;
 
-  //gray
-  --gray-600: #161616;
-  --gray-550: #181818;
-  --gray-525: #222222; //gris égal à la couleur de la map en dark mode
-  --gray-500: #444343; //couleur principale n°3
-  --gray-400: #666565;
-  --gray-300: #8a8989;
-  --gray-200: #b0afaf;
-  --gray-100: #d7d6d6;
-  --gray-050: #e4e4e4;
+  //neutral grays
+  --gray-800: #181818;
+  --gray-700: #262626;
+  --gray-600: #3b3b3b;
+  --gray-500: #737373;
+  --gray-400: #999999;
+  --gray-300: #bfbfbf;
+  --gray-200: #e5e5e5;
+  --gray-100: #f3f3f3;
 
   //white
   --white: white;
-
-  //black
-  --black: black;
 
   //spacing
   --inputs-border-radius: 8px;
@@ -39,13 +31,18 @@
   --container-max-width: 1300px;
   --container-width: 95vw;
 
-  //colors
-  --yellow: #f1d274;
-  --purple: #d3d7fd;
-  --orange: #f6d3b8;
+  //icons
+  --icon-size-sm: 24px;
+  --icon-size-md: 50px;
 
-  //blue
-  --blue-500: #3780c9; //bon contraste pour BG + écriture blanche
-  --blue-200: #86b9eb; //bleu + foncé pour dark mode
-  --blue: #adcceb; //couleur principale n°1
+  //font
+  --text-xxs: 10px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-xxl: 24px;
+  --text-xxxl: 32px;
+  --text-xxxxl: 48px;
 }

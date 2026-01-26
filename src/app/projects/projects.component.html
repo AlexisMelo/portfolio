@@ -1,6 +1,9 @@
 <div class="g-grid-container">
-  <div class="g-grid">
-    <app-github [link]="contentService.github"></app-github>
+  <div class="g-grid" @gridItemAnimation>
+    <div class="github" appGridItem>
+      <app-github [link]="contentService.github"></app-github>
+    </div>
+    <app-all></app-all>
 
     @for (i of 3 | range; track i) {
       <app-project-item
@@ -9,9 +12,8 @@
     }
 
     <app-ongoing></app-ongoing>
+    <app-with-skill></app-with-skill>
 
-    <app-projects-by-context></app-projects-by-context>
-
-    <app-all></app-all>
+    <app-your-project></app-your-project>
   </div>
 </div>

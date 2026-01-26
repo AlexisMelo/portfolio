@@ -7,18 +7,16 @@
   justify-content: center;
 }
 
+h3 {
+  font-size: var(--text-xl);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .avatar-container {
   overflow: hidden;
-  height: 120px;
+  height: 100px;
   width: auto;
-
-  @include responsive('medium') {
-    height: 140px;
-  }
-
-  @include responsive('large') {
-    height: 185px;
-  }
 
   img {
     transition: 1s;
@@ -29,18 +27,13 @@
 }
 
 p {
-  margin-top: 0;
-  color: var(--grid-item-bottom-text-color);
+  color: var(--gray-400);
   text-align: center;
   min-height: 2rem;
 }
 
 h3 {
   position: relative;
-
-  @include responsive('large') {
-    font-size: 1.5rem;
-  }
 
   app-action-button {
     right: -50px;

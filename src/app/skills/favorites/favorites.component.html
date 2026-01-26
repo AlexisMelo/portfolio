@@ -1,0 +1,11 @@
+<h2>Stack de prédilection</h2>
+
+<mat-icon>favorite</mat-icon>
+
+<p>Pour créer des sites au top, de A à Z</p>
+
+<ul>
+  @for (skill of skills(); track skill.id) {
+    <li>{{ skill.label }}</li>
+  }
+</ul>
