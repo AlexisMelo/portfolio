@@ -144,7 +144,7 @@ export class SupabaseService {
   public async getResume(): Promise<Blob> {
     const { data, error } = await this.client.storage
       .from('portfolio-project')
-      .download('CV.pdf');
+      .download('curriculum-vitae/CV.pdf');
 
     if (error || data === null)
       return Promise.reject('Erreur lors du téléchargement');

@@ -14,15 +14,15 @@
       transform: translateY(5%);
       box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 15px 0px;
       rotate: -5deg;
-    }
 
-    img {
-      filter: none;
+      img {
+        filter: none;
+      }
     }
   }
 }
 
-svg {
+#svg-background-decoration {
   position: absolute;
   right: 10%;
   bottom: 5%;
@@ -51,19 +51,22 @@ h2 {
 
 .illustration-container {
   width: 120px;
+  height: 100%;
   position: absolute;
   right: 5%;
   top: 40%;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 10px 0px;
+  box-shadow: rgba(165, 187, 155, 0.3) 0px 0px 20px 0px;
   animation: slideInFromBottom 1s;
   transition: 0.5s;
   cursor: pointer;
 
-  img {
+  svg {
+    height: auto;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    // filter: grayscale(50%) brightness(150%);
   }
 
   @include responsive('medium') {
