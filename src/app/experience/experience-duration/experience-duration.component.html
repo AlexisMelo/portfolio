@@ -9,6 +9,6 @@
   }
   @case ('past') {
     <h2>{{ context().start_date | duration: context().end_date }}</h2>
-    <p>Jusqu'en {{ context().start_date | date: 'yyyy' }}</p>
+    <p>Jusqu'en {{ context().end_date | date: 'yyyy' }}</p>
   }
 }

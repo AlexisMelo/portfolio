@@ -3,7 +3,7 @@
   <p>{{ p.description }}</p>
 
   @if (firstIllustration(); as illu) {
-    <div class="illustration-container g-grid-item-shadow">
+    <div class="illustration-container">
       <img [src]="illu.url" [alt]="illu.alt" />
     </div>
   }
