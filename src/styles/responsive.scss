@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 //  breakpoints par défaut sur google
 // $mobile-s: 320px;
 // $mobile-m: 375px;
@@ -34,7 +36,7 @@ $breakpoints: (
 );
 
 @mixin responsive($size) {
-  $query: map-get($breakpoints, $size);
+  $query: map.get($breakpoints, $size);
 
   @if $query {
     @media #{$query} {

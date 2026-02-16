@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 @keyframes pulse {
   0% {
@@ -41,7 +41,7 @@ h2 {
 .description {
   flex-grow: 1;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     font-size: var(--text-xs);
   }
 }

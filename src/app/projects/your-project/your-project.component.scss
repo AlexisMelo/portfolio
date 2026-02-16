@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 :host {
   padding: 1.3rem 1.5rem;
@@ -12,7 +12,7 @@ h2 {
   flex-grow: 1;
   color: var(--your-project-color);
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     font-size: var(--text-xl);
   }
 }
@@ -23,7 +23,7 @@ p {
   align-content: flex-end;
   color: var(--your-project-color);
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     font-size: var(--text-xs);
   }
 }

@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 :host {
   --action-button-transition-time: 400ms;
@@ -19,7 +19,7 @@
   min-width: var(--action-button-size);
   font-weight: bold;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     --action-button-border-size: 1px;
     --action-button-size: 32px;
     --action-button-icon-size: 16px;
@@ -38,7 +38,7 @@
     left: 55px;
     bottom: 16px;
 
-    @include responsive('medium') {
+    @include responsive.responsive('medium') {
       left: 60px;
     }
   }

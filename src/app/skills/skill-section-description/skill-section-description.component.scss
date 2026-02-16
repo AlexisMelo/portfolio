@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 :host {
   padding: 2rem 2.5rem;
@@ -7,7 +7,7 @@
   justify-content: space-between;
 
   div {
-    @include responsive('medium') {
+    @include responsive.responsive('medium') {
       font-size: 0.9rem;
     }
   }

@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 :host {
   position: relative;
@@ -19,7 +19,7 @@
     }
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     padding: 2.5rem;
   }
 }
@@ -56,7 +56,7 @@ h2 {
   font-size: var(--text-xxl);
   margin-bottom: 0.5rem;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     margin-bottom: 1rem;
   }
 }
@@ -67,7 +67,7 @@ p {
   max-width: 60%;
   flex-grow: 1;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     font-size: var(--text-sm);
     margin-bottom: 1rem;
   }

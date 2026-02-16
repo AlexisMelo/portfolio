@@ -1,11 +1,11 @@
-@import '../../../../styles/responsive.scss';
+@use '../../../../styles/responsive.scss' as responsive;
 
 :host {
   padding: 1.3rem 1.5rem;
   display: flex;
   flex-direction: column;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     padding: 1.2rem 1.5rem;
   }
 }

@@ -1,5 +1,4 @@
-@import '../../../styles/responsive.scss';
-@import '../linkedin/spin.animation.scss';
+@use '../linkedin/spin.animation.scss' as spin;
 
 :host {
   display: flex;

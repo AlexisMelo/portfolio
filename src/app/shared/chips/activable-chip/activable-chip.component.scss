@@ -1,4 +1,4 @@
-@import '../suggestion-chip/suggestion-chip.component.scss';
+@use '../suggestion-chip/suggestion-chip.component.scss' as suggestion;
 
 :host {
   cursor: pointer;

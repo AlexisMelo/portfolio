@@ -1,4 +1,4 @@
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as responsive;
 
 @keyframes slideInFromLeft {
   0% {
@@ -45,7 +45,7 @@
       flex-grow: 1;
     }
 
-    @include responsive('medium') {
+    @include responsive.responsive('medium') {
       h2 {
         font-size: var(--text-lg);
       }

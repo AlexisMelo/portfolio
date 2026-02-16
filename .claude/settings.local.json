@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(npm show:*)",
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "Bash(npx sass-migrator:*)",
+      "Bash(npx ng build:*)",
+      "Bash(find:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx prettier:*)"
     ]
   }
 }

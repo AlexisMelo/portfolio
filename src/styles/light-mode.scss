@@ -1,4 +1,4 @@
-@import '../styles/responsive.scss';
+@use '../styles/responsive.scss' as responsive;
 
 @mixin light-mode() {
   //action-button
@@ -72,7 +72,7 @@
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     --navbar-active-link-color: white;
     --navbar-inactive-link-color: var(--primary-800);
     --navbar-language-selector-color: white;

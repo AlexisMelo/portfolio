@@ -1,4 +1,4 @@
-@import '../../../../styles/responsive.scss';
+@use '../../../../styles/responsive.scss' as responsive;
 
 :host {
   padding: 1.3rem 1.5rem;
@@ -11,7 +11,7 @@
     @extend .g-grid-item-shadow !optional;
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     padding: 1.2rem 1.5rem;
   }
 }

@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
 @use '_functions' as functions;
+@use './responsive.scss' as responsive;
+@use './light-mode.scss' as light;
+@use './dark-mode.scss' as dark;
+@use './design-system.scss' as design;
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import './responsive.scss';
-@import './light-mode.scss';
-@import './dark-mode.scss';
-@import './design-system.scss';
 @import 'material-symbols';
 @import '@angular/cdk/overlay-prebuilt.css';
 
@@ -17,15 +18,15 @@
   --title-font-family: 'Grandstander', cursive;
   font-size: var(--text-xs);
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     font-size: var(--text-sm);
-    --grid-width: calc(#{map-get($sizes, 'medium')} - 20px);
+    --grid-width: calc(#{map.get(responsive.$sizes, 'medium')} - 20px);
     --columns: 8;
     --gap: 14px;
   }
 
-  // @include responsive('large') {
-  //   --grid-width: calc(#{map-get($sizes, 'large')} - 20px);
+  // @include responsive.responsive('large') {
+  //   --grid-width: calc(#{map-get(responsive.$sizes, 'large')} - 20px);
   //   --columns: 12;
   //   --gap: 16px;
   // }
@@ -43,18 +44,18 @@
 
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
 body.dark-mode {
-  @include dark-mode();
+  @include dark.dark-mode();
   background-color: var(--styles-background-color);
 }
 
 body.light-mode {
-  @include light-mode();
+  @include light.light-mode();
   background-color: var(--styles-background-color);
 }
 
 //Inclut le padding et border dans le calcul de la taille d'un élément
 html {
-  @include design-system();
+  @include design.design-system();
   box-sizing: border-box;
   height: 100vh; //So the modals
 }
@@ -136,7 +137,7 @@ h3 {
     width: 100%;
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     height: 300px;
     width: 450px;
   }

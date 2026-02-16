@@ -1,4 +1,4 @@
-@import '../styles/responsive.scss';
+@use '../styles/responsive.scss' as responsive;
 
 @mixin dark-mode() {
   //action-button

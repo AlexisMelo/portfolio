@@ -1,4 +1,4 @@
-@import '../../../../styles/responsive.scss';
+@use '../../../../styles/responsive.scss' as responsive;
 
 :host {
   width: 100%;
@@ -23,7 +23,7 @@
     opacity: 0.8;
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     padding: 2px 4px;
     font-size: 0.7rem;
   }

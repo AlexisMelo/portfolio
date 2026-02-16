@@ -1,5 +1,5 @@
 @use '../../styles/_functions' as functions;
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as responsive;
 
 $transition-duration: 0.2s;
 $logo-size: 3rem;
@@ -71,7 +71,7 @@ $top-padding: 40px;
     cursor: pointer;
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     .collapsible-menu {
       display: none;
     }
@@ -112,7 +112,7 @@ nav {
   padding: 1.5rem;
   background-color: var(--navbar-background-color);
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 1 / -1;
   }
 }
@@ -174,7 +174,7 @@ a {
     }
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     padding-left: 0;
     padding-right: 0;
     justify-content: center;
@@ -189,7 +189,7 @@ a {
   grid-row: 3;
   grid-column: 1 / 5;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 1 / 3;
     grid-row: 2;
   }
@@ -199,7 +199,7 @@ a {
   grid-row: 5;
   grid-column: 1 / 5;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 7 / 9;
     grid-row: 2;
   }
@@ -209,7 +209,7 @@ a {
   grid-row: 4;
   grid-column: 1 / 5;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 5 / 7;
     grid-row: 2;
   }
@@ -219,7 +219,7 @@ a {
   grid-row: 6;
   grid-column: 1 / 5;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 3 / 5;
     grid-row: 2;
   }
@@ -255,7 +255,7 @@ app-linkedin {
   grid-row: 2;
   grid-column: 4;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 8;
     grid-row: 1;
   }
@@ -268,7 +268,7 @@ app-linkedin {
   grid-row: 2;
   grid-column: 3;
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     grid-column: 7;
     grid-row: 1;
   }
@@ -289,7 +289,7 @@ app-linkedin {
     opacity: 0.7;
   }
 
-  @include responsive('medium') {
+  @include responsive.responsive('medium') {
     display: flex;
     flex-direction: row;
     align-items: center;

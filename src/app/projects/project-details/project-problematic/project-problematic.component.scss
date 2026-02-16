@@ -1,4 +1,4 @@
-@import '../../../../styles/responsive.scss';
+@use '../../../../styles/responsive.scss' as responsive;
 
 :host {
   padding: 2rem;
@@ -9,7 +9,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-@include responsive('medium') {
+@include responsive.responsive('medium') {
   p {
     line-height: 170%;
   }

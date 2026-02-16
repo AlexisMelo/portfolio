@@ -1,4 +1,4 @@
-@import '../activable-chip/activable-chip.component.scss';
+@use '../activable-chip/activable-chip.component.scss' as activable;
 
 :host {
   position: relative;
