@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { GithubComponent } from 'src/app/home/github/github.component';
 import { gridItemAnimation } from 'src/app/shared/animations';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
-import { StatusPipe } from '../status/status.pipe';
 import { OpenLiveComponent } from './open-live/open-live.component';
 import { ProjectContextComponent } from './project-context/project-context.component';
 import { ProjectCoworkersComponent } from './project-coworkers/project-coworkers.component';
@@ -16,7 +16,6 @@ import { ProjectDurationComponent } from './project-duration/project-duration.co
 import { ProjectIllustrationsComponent } from './project-illustrations/project-illustrations.component';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectProblematicComponent } from './project-problematic/project-problematic.component';
-import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-project-details',
@@ -32,7 +31,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
     ProjectDetailsIconComponent,
     OpenLiveComponent,
     SkillsRecapComponent,
-    StatusPipe,
     GridItemDirective,
   ],
   templateUrl: './project-details.component.html',

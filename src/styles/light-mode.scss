@@ -72,12 +72,6 @@
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
-  @include responsive.responsive('medium') {
-    --navbar-active-link-color: white;
-    --navbar-inactive-link-color: var(--primary-800);
-    --navbar-language-selector-color: white;
-  }
-
   //now
   --now-icon-color: var(--primary-500);
   --now-link-color: var(--primary-800);
@@ -164,4 +158,10 @@
   //your-project
   --your-project-background: var(--primary-500);
   --your-project-color: white;
+
+  @include responsive.responsive('medium') {
+    --navbar-active-link-color: white;
+    --navbar-inactive-link-color: var(--primary-800);
+    --navbar-language-selector-color: white;
+  }
 }

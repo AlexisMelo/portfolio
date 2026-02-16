@@ -5,9 +5,9 @@
 @use './light-mode.scss' as light;
 @use './dark-mode.scss' as dark;
 @use './design-system.scss' as design;
+@use 'material-symbols';
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import 'material-symbols';
 @import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
@@ -17,6 +17,12 @@
   --body-font-family: 'Poppins', sans-serif;
   --title-font-family: 'Grandstander', cursive;
   font-size: var(--text-xs);
+
+  --cell-size: #{functions.getCellSize(
+      var(--grid-width),
+      var(--columns),
+      var(--gap)
+    )};
 
   @include responsive.responsive('medium') {
     font-size: var(--text-sm);
@@ -30,12 +36,6 @@
   //   --columns: 12;
   //   --gap: 16px;
   // }
-
-  --cell-size: #{functions.getCellSize(
-      var(--grid-width),
-      var(--columns),
-      var(--gap)
-    )};
 }
 
 .cdk-overlay-backdrop {
@@ -43,14 +43,16 @@
 }
 
 //https://www.magicpattern.design/tools/grid-background-pattern-generator
-body.dark-mode {
-  @include dark.dark-mode();
+body {
   background-color: var(--styles-background-color);
-}
 
-body.light-mode {
-  @include light.light-mode();
-  background-color: var(--styles-background-color);
+  &.dark-mode {
+    @include dark.dark-mode();
+  }
+
+  &.light-mode {
+    @include light.light-mode();
+  }
 }
 
 //Inclut le padding et border dans le calcul de la taille d'un élément

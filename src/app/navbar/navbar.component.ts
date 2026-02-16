@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   HostBinding,
@@ -10,13 +11,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GithubComponent } from '../home/github/github.component';
 import { LinkedinComponent } from '../home/linkedin/linkedin.component';
+import { ContentService } from '../shared/content.service';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 import { ThemeService } from '../shared/theme.service';
-import { ContentService } from '../shared/content.service';
-import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
-import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { StickyObserverDirective } from './sticky-observer.directive';
-import { NgTemplateOutlet } from '@angular/common';
+import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +27,6 @@ import { NgTemplateOutlet } from '@angular/common';
     LinkedinComponent,
     GithubComponent,
     ThemeSelectorComponent,
-    LanguageSelectorComponent,
     NgTemplateOutlet,
   ],
   templateUrl: './navbar.component.html',
