@@ -108,27 +108,4 @@ export default [
       'prettier/prettier': 'error',
     },
   },
-  ...compat
-    .extends(
-      'plugin:@angular-eslint/template/recommended',
-      'plugin:@angular-eslint/template/accessibility',
-      'plugin:prettier/recommended'
-    )
-    .map(config => ({
-      ...config,
-      files: ['**/*.scss'],
-    })),
-  {
-    files: ['*.scss'],
-
-    plugins: {
-      prettier,
-    },
-
-    extends: {},
-
-    rules: {
-      'prettier/prettier': 'error',
-    },
-  },
 ];

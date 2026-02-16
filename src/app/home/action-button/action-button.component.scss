@@ -64,14 +64,12 @@
     width: var(--action-button-icon-size);
     font-size: var(--action-button-icon-size);
     margin-left: calc(
-      (var(--action-button-size) - var(--action-button-icon-size)) / 2 - var(
-          --action-button-border-size
-        )
+      (var(--action-button-size) - var(--action-button-icon-size)) /
+        2 - var(--action-button-border-size)
     );
     margin-right: calc(
-      (var(--action-button-size) - var(--action-button-icon-size)) / 2 - var(
-          --action-button-border-size
-        )
+      (var(--action-button-size) - var(--action-button-icon-size)) /
+        2 - var(--action-button-border-size)
     );
     color: var(--styles-title-color);
   }
