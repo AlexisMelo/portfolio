@@ -14,7 +14,6 @@ import { ProjectItemSkillListComponent } from '../project-item-skill-list/projec
 
 @Component({
   selector: 'app-project-item-condensed',
-  standalone: true,
   imports: [MatIconModule, ProjectItemSkillListComponent],
   templateUrl: './project-item-condensed.component.html',
   styleUrl: './project-item-condensed.component.scss',

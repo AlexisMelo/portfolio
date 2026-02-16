@@ -14,7 +14,6 @@ import { MosaiqueWebsitesComponent } from 'src/app/projects/mosaique-websites/mo
 
 @Component({
   selector: 'app-experience-projects',
-  standalone: true,
   imports: [MatIconModule, RouterLink, MosaiqueWebsitesComponent],
   templateUrl: './experience-projects.component.html',
   styleUrl: './experience-projects.component.scss',

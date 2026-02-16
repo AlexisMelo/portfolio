@@ -4,7 +4,6 @@ import { ArchivesService } from '../archives.service';
 
 @Component({
   selector: 'app-reset-button',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './reset-button.component.html',
   styleUrl: './reset-button.component.scss',

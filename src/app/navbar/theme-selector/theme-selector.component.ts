@@ -4,7 +4,6 @@ import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-theme-selector',
-  standalone: true,
   imports: [MatIcon],
   templateUrl: './theme-selector.component.html',
   styleUrl: './theme-selector.component.scss',

@@ -13,7 +13,6 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
 
 @Component({
   selector: 'app-map',
-  standalone: true,
   imports: [ActionButtonComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',

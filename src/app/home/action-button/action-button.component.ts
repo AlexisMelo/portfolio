@@ -3,7 +3,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-action-button',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.scss',

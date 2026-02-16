@@ -6,7 +6,6 @@ import { ContentService } from './shared/content.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

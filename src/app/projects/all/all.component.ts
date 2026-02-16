@@ -9,7 +9,6 @@ import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-website
 
 @Component({
   selector: 'app-all',
-  standalone: true,
   imports: [RouterLink, MatIconModule, MosaiqueWebsitesComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss',

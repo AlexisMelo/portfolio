@@ -8,7 +8,6 @@ import { ProjectItem } from './project-item.model';
 
 @Component({
   selector: 'app-project-item',
-  standalone: true,
   imports: [ProjectItemSkillListComponent, LoaderComponent],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',

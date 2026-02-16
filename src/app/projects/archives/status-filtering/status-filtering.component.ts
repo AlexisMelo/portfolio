@@ -10,7 +10,6 @@ import { ArchivesService } from '../archives.service';
 
 @Component({
   selector: 'app-status-filtering',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './status-filtering.component.html',
   styleUrl: './status-filtering.component.scss',

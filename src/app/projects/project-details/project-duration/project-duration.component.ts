@@ -8,7 +8,6 @@ import { StatusPipe } from '../../status/status.pipe';
 
 @Component({
   selector: 'app-project-duration',
-  standalone: true,
   imports: [StatusPipe, DurationPipe, DatePipe, MatIconModule, NgClass],
   templateUrl: './project-duration.component.html',
   styleUrl: './project-duration.component.scss',

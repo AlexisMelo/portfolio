@@ -20,7 +20,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-project-details',
-  standalone: true,
   imports: [
     ProjectDescriptionComponent,
     ProjectDurationComponent,

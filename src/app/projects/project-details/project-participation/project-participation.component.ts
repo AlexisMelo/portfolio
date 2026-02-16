@@ -4,7 +4,6 @@ import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-participation',
-  standalone: true,
   imports: [],
   templateUrl: './project-participation.component.html',
   styleUrl: './project-participation.component.scss',

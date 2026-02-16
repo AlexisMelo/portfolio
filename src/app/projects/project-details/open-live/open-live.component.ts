@@ -13,7 +13,6 @@ import { DotComponent } from 'src/app/shared/dot/dot.component';
 
 @Component({
   selector: 'app-open-live',
-  standalone: true,
   imports: [MatIconModule, DotComponent],
   templateUrl: './open-live.component.html',
   styleUrl: './open-live.component.scss',

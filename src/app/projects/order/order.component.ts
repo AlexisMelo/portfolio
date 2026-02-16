@@ -5,7 +5,6 @@ import { ArchivesService, OrderDirection } from '../archives/archives.service';
 
 @Component({
   selector: 'app-order',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',

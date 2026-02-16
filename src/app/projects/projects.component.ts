@@ -16,7 +16,6 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
 //animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
   selector: 'app-projects',
-  standalone: true,
   imports: [
     ProjectItemComponent,
     ReactiveFormsModule,

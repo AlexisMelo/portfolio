@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-favorites',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',

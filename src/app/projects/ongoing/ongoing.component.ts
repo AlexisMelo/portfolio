@@ -6,7 +6,6 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
 
 @Component({
   selector: 'app-ongoing',
-  standalone: true,
   imports: [],
   templateUrl: './ongoing.component.html',
   styleUrl: './ongoing.component.scss',

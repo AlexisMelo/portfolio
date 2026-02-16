@@ -6,7 +6,6 @@ import { PROJECTS_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-description',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss',

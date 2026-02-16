@@ -13,7 +13,6 @@ import { StatusFilteringComponent } from './status-filtering/status-filtering.co
 
 @Component({
   selector: 'app-archives',
-  standalone: true,
   imports: [
     SkillSectionDescriptionComponent,
     ProjectCounterComponent,

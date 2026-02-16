@@ -12,7 +12,6 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
 
 @Component({
   selector: 'app-resume',
-  standalone: true,
   imports: [ActionButtonComponent, OutsideClickDirective],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',

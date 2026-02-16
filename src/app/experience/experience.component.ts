@@ -13,7 +13,6 @@ import { ExperienceProjectsComponent } from './experience-projects/experience-pr
 
 @Component({
   selector: 'app-experience',
-  standalone: true,
   imports: [
     ResumeComponent,
     KeyHeaderComponent,

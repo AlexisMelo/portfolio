@@ -17,7 +17,6 @@ import { Skill } from 'src/app/skills/skill.model';
 
 @Component({
   selector: 'app-skills-recap',
-  standalone: true,
   imports: [RouterLink, MatIconModule, LoaderComponent],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',

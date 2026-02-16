@@ -12,7 +12,6 @@ import { CoworkerInfoComponent } from './coworker-info/coworker-info.component';
 
 @Component({
   selector: 'app-project-coworkers',
-  standalone: true,
   imports: [ActionButtonComponent, CoworkerInfoComponent],
   templateUrl: './project-coworkers.component.html',
   styleUrl: './project-coworkers.component.scss',

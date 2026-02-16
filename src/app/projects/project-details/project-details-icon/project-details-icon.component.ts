@@ -5,7 +5,6 @@ import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-details-icon',
-  standalone: true,
   imports: [NgOptimizedImage],
   templateUrl: './project-details-icon.component.html',
   styleUrl: './project-details-icon.component.scss',

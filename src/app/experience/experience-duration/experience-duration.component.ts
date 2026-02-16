@@ -6,7 +6,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-experience-duration',
-  standalone: true,
   imports: [DatePipe, DurationPipe],
   templateUrl: './experience-duration.component.html',
   styleUrl: './experience-duration.component.scss',

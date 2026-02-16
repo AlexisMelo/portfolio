@@ -5,7 +5,6 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
 
 @Component({
   selector: 'app-mail',
-  standalone: true,
   imports: [ActionButtonComponent],
   templateUrl: './mail.component.html',
   styleUrl: './mail.component.scss',

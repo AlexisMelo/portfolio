@@ -5,7 +5,6 @@ import { ContentService } from 'src/app/shared/content.service';
 
 @Component({
   selector: 'app-your-project',
-  standalone: true,
   imports: [ActionButtonComponent],
   templateUrl: './your-project.component.html',
   styleUrl: './your-project.component.scss',

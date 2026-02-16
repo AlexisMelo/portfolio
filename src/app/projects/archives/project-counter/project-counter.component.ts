@@ -5,7 +5,6 @@ import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
   selector: 'app-project-counter',
-  standalone: true,
   imports: [ResetButtonComponent],
   templateUrl: './project-counter.component.html',
   styleUrl: './project-counter.component.scss',

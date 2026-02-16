@@ -16,7 +16,6 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [
     MatIconModule,
     LinkedinComponent,

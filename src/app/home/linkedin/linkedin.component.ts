@@ -4,7 +4,6 @@ import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-linkedin',
-  standalone: true,
   imports: [],
   templateUrl: './linkedin.component.html',
   styleUrl: './linkedin.component.scss',

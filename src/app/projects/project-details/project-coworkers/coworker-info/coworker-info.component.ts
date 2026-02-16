@@ -3,7 +3,6 @@ import { ActionButtonComponent } from '../../../../home/action-button/action-but
 
 @Component({
   selector: 'app-coworker-info',
-  standalone: true,
   imports: [ActionButtonComponent],
   templateUrl: './coworker-info.component.html',
   styleUrl: './coworker-info.component.scss',

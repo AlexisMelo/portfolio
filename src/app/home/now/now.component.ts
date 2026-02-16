@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-now',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './now.component.html',
   styleUrl: './now.component.scss',

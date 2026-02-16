@@ -3,7 +3,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-skill-section-description',
-  standalone: true,
   imports: [],
   templateUrl: './skill-section-description.component.html',
   styleUrl: './skill-section-description.component.scss',

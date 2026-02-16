@@ -5,7 +5,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-problematic',
-  standalone: true,
   imports: [],
   templateUrl: './project-problematic.component.html',
   styleUrl: './project-problematic.component.scss',

@@ -16,7 +16,6 @@ import { SkillsSection } from './skills-section.model';
 
 @Component({
   selector: 'app-skills',
-  standalone: true,
   imports: [
     SkillSectionDescriptionComponent,
     SkillsRecapComponent,

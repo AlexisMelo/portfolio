@@ -21,7 +21,6 @@ import { ArchivesService } from '../archives.service';
 
 @Component({
   selector: 'app-project-filtering',
-  standalone: true,
   imports: [ReactiveFormsModule, MatIconModule],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',

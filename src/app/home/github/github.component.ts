@@ -5,7 +5,6 @@ import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-github',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './github.component.html',
   styleUrl: './github.component.scss',

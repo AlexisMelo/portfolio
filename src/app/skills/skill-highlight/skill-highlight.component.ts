@@ -9,7 +9,6 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-skill-highlight',
-  standalone: true,
   imports: [MatIconModule, NgStyle, NgClass, LoaderComponent],
   templateUrl: './skill-highlight.component.html',
   styleUrl: './skill-highlight.component.scss',

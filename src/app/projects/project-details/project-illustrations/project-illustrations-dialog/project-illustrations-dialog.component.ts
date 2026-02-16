@@ -13,7 +13,6 @@ import { ProjectIllustrationsDialogData } from './project-illustrations-dialog-d
 
 @Component({
   selector: 'app-project-illustrations-dialog',
-  standalone: true,
   imports: [MatIconModule],
   templateUrl: './project-illustrations-dialog.component.html',
   styleUrl: './project-illustrations-dialog.component.scss',

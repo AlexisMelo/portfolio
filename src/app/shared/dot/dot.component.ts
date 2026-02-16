@@ -2,7 +2,6 @@ import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-dot',
-  standalone: true,
   imports: [],
   templateUrl: './dot.component.html',
   styleUrl: './dot.component.scss',

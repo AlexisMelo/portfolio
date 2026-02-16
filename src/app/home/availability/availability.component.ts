@@ -7,7 +7,6 @@ import { EXPERIENCE_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-availability',
-  standalone: true,
   imports: [DotComponent],
   templateUrl: './availability.component.html',
   styleUrl: './availability.component.scss',

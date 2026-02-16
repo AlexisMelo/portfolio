@@ -7,7 +7,6 @@ import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-website
 
 @Component({
   selector: 'app-with-skill',
-  standalone: true,
   imports: [MosaiqueWebsitesComponent],
   templateUrl: './with-skill.component.html',
   styleUrl: './with-skill.component.scss',

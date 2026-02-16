@@ -7,7 +7,6 @@ import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-context',
-  standalone: true,
   imports: [ActionButtonComponent],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',

@@ -4,7 +4,6 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-experience-description',
-  standalone: true,
   imports: [],
   templateUrl: './experience-description.component.html',
   styleUrl: './experience-description.component.scss',

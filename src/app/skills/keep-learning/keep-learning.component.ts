@@ -6,7 +6,6 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
 
 @Component({
   selector: 'app-keep-learning',
-  standalone: true,
   imports: [],
   templateUrl: './keep-learning.component.html',
   styleUrl: './keep-learning.component.scss',

@@ -22,7 +22,6 @@ import { Tables } from 'database.types';
  */
 @Component({
   selector: 'app-project-illustrations',
-  standalone: true,
   imports: [ActionButtonComponent, MatIconModule, DialogModule],
   templateUrl: './project-illustrations.component.html',
   styleUrl: './project-illustrations.component.scss',

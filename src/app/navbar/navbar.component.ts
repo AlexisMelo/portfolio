@@ -20,7 +20,6 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
   imports: [
     MatIconModule,
     RouterLink,

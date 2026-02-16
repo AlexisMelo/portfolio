@@ -5,7 +5,6 @@ import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-project-item-skill-list',
-  standalone: true,
   imports: [RouterLink],
   templateUrl: './project-item-skill-list.component.html',
   styleUrl: './project-item-skill-list.component.scss',
