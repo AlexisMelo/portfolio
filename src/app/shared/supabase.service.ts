@@ -192,6 +192,48 @@ export class SupabaseService {
   }
 
   /**
+   * Returns availability text (current situation and next date) in the active language.
+   */
+  public async getAvailabilityItems(locale: Language): Promise<{
+    current: string;
+    next: string;
+  }> {
+    const labels = ['availability_current', 'availability_next'];
+
+    const { data: infos, error: infosError } = await this.client
+      .from('personal_infos')
+      .select('label, value')
+      .in('label', labels);
+
+    if (infosError) return Promise.reject(infosError);
+    if (!infos?.length) return { current: '', next: '' };
+
+    const translationKeys = infos.map(info => info.value);
+
+    const { data, error: translationsError } = await this.client
+      .from('translations')
+      .select(`id, ${locale}`)
+      .in('id', translationKeys);
+
+    const translations = data as Array<
+      { id: string } & Record<Language, string | null>
+    > | null; //so the data is typed and does not throw an error later on
+
+    if (translationsError || !translations)
+      return Promise.reject(translationsError);
+
+    const find = (label: string) => {
+      const key = infos.find(i => i.label === label)?.value;
+      return translations.find(t => t.id === key)?.[locale] ?? '';
+    };
+
+    return {
+      current: find('availability_current'),
+      next: find('availability_next'),
+    };
+  }
+
+  /**
    * Count number of projects per skill
    * @param skillId
    * @returns
