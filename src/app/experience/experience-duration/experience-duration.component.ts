@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { DurationPipe } from 'src/app/projects/duration.pipe';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({
   selector: 'app-experience-duration',
-  imports: [DatePipe, DurationPipe],
+  imports: [DatePipe, DurationPipe, TranslocoPipe],
   templateUrl: './experience-duration.component.html',
   styleUrl: './experience-duration.component.scss',
   hostDirectives: [GridItemDirective],

@@ -45,5 +45,30 @@
       "subtitle": "A dream, an idea, a reality !",
       "action": "Let's discuss it !"
     }
+  },
+  "experience": {
+    "duration": {
+      "future": {
+        "title": "Soon",
+        "subtitle": "Starting from {{month}}"
+      },
+      "now": {
+        "subtitle": "Since {{year}}"
+      },
+      "past": {
+        "subtitle": "Until {{year}}"
+      }
+    },
+    "projects": {
+      "title": "Achievements",
+      "count": "{count, plural, =0 {More to come !} =1 {1 project} other {# projects}}"
+    }
+  },
+  "duration": {
+    "yearsAbreviated": "{count, plural, =1 {1 yr} other {# yrs}}",
+    "years": "{count, plural, =1 {1 year} other {# years}}",
+    "months": "{count, plural, =1 {1 month} other {# months}}",
+    "days": "{count, plural, =1 {1 day} other {# days}}",
+    "and": "and"
   }
 }

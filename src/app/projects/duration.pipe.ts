@@ -1,13 +1,18 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Pipe({
   name: 'duration',
-  standalone: true,
+  pure: false,
 })
 export class DurationPipe implements PipeTransform {
   /**
-   * Prend deux dates et retourne la différence dans un format lisible
-   * @returns
+   * Translation service
+   */
+  private translocoService = inject(TranslocoService);
+
+  /**
+   * Takes two dates and returns their difference in a readable, translated format.
    */
   transform(start_date: string | null, end_date: string | null): string | null {
     if (!start_date) return null;
@@ -25,7 +30,7 @@ export class DurationPipe implements PipeTransform {
     // Calcul des mois
     let months = endDate.getMonth() - startDate.getMonth();
 
-    //Calcul des jours
+    // Calcul des jours
     const days = endDate.getDay() - startDate.getDay();
 
     // Ajustement si le mois de date2 est avant celui de date1
@@ -34,21 +39,20 @@ export class DurationPipe implements PipeTransform {
       months += 12;
     }
 
-    // Construction des parties de la chaîne
-    const yearText = years > 0 ? (years === 1 ? '1 an' : `${years} ans`) : '';
-    const monthText =
-      months > 0 ? (months === 1 ? '1 mois' : `${months} mois`) : '';
-    const daysText = days <= 1 ? '1 journée' : `${days} jours`;
+    const t = (key: string, params?: object) =>
+      this.translocoService.translate(key, params);
 
-    // Combiner les résultats
-    if (yearText && monthText) {
-      return `${yearText} et ${monthText}`;
-    } else if (yearText) {
-      return yearText;
+    const monthText = months > 0 ? t('duration.months', { count: months }) : '';
+    const daysText = t('duration.days', { count: days <= 1 ? 1 : days });
+
+    if (years > 0 && monthText) {
+      return `${t('duration.yearsAbreviated', { count: years })}, ${monthText}`;
+    } else if (years > 0) {
+      return t('duration.years', { count: years });
     } else if (monthText) {
       return monthText;
     } else {
-      return daysText; // Si aucune différence notable
+      return daysText;
     }
   }
 }

@@ -31,19 +31,44 @@
   "projects": {
     "all": {
       "title": "Archives",
-      "count": "{count, plural, =0 {aucune réalisation} =1 {1 réalisation} other {# réalisations}}"
+      "count": "{count, plural, =0 {aucun project} =1 {1 projet} other {# projets}}"
     },
     "ongoing": {
       "status": "En cours"
     },
     "withSkill": {
       "title": "Avec Angular",
-      "count": "{count, plural, =0 {aucune réalisation} =1 {1 réalisation} other {# réalisations}}"
+      "count": "{count, plural, =0 {aucun projet} =1 {1 projet} other {# projets}}"
     },
     "yourProject": {
       "title": "Ton projet, ici",
       "subtitle": "Un rêve, une idée, une réalité !",
       "action": "Discutons-en !"
     }
+  },
+  "experience": {
+    "duration": {
+      "future": {
+        "title": "Bientôt",
+        "subtitle": "À partir de {{month}}"
+      },
+      "now": {
+        "subtitle": "Depuis {{year}}"
+      },
+      "past": {
+        "subtitle": "Jusqu'en {{year}}"
+      }
+    },
+    "projects": {
+      "title": "Réalisations",
+      "count": "{count, plural, =0 {Plus à venir !} =1 {1 projet} other {# projets}}"
+    }
+  },
+  "duration": {
+    "yearsAbreviated": "{count, plural, =1 {1 an} other {# ans}}",
+    "years": "{count, plural, =1 {1 an} other {# ans}}",
+    "months": "{count, plural, =1 {1 mois} other {# mois}}",
+    "days": "{count, plural, =1 {1 journée} other {# jours}}",
+    "and": "et"
   }
 }

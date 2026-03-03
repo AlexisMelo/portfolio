@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
@@ -14,7 +15,12 @@ import { MosaiqueWebsitesComponent } from 'src/app/projects/mosaique-websites/mo
 
 @Component({
   selector: 'app-experience-projects',
-  imports: [MatIconModule, RouterLink, MosaiqueWebsitesComponent],
+  imports: [
+    MatIconModule,
+    RouterLink,
+    MosaiqueWebsitesComponent,
+    TranslocoPipe,
+  ],
   templateUrl: './experience-projects.component.html',
   styleUrl: './experience-projects.component.scss',
   hostDirectives: [GridItemDirective],
@@ -40,6 +46,10 @@ export class ExperienceProjectsComponent {
    */
   public projectsCount = computed(() => this.context().projects.length);
 
+  /**
+   * React to onClick events
+   * @returns
+   */
   @HostListener('click') onClick() {
     if (this.context().projects.length === 0) return;
 
