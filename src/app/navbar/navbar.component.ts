@@ -16,6 +16,7 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
 import { ThemeService } from '../shared/theme.service';
 import { StickyObserverDirective } from './sticky-observer.directive';
 import { ThemeSelectorComponent } from './theme-selector/theme-selector.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +28,7 @@ import { ThemeSelectorComponent } from './theme-selector/theme-selector.componen
     LinkedinComponent,
     GithubComponent,
     ThemeSelectorComponent,
+    LanguageSelectorComponent,
     NgTemplateOutlet,
   ],
   templateUrl: './navbar.component.html',
