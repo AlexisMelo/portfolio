@@ -5,6 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { SupabaseService } from 'src/app/shared/supabase.service';
@@ -12,7 +13,7 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
 
 @Component({
   selector: 'app-resume',
-  imports: [ActionButtonComponent, OutsideClickDirective],
+  imports: [ActionButtonComponent, OutsideClickDirective, TranslocoPipe],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

@@ -4,5 +4,32 @@
     "projects": "Réalisations",
     "skills": "Compétences",
     "experience": "Expérience"
+  },
+  "home": {
+    "description": {
+      "title": "Développeur Web Fullstack",
+      "subtitle": "Spécialisé sur Angular"
+    },
+    "freelanceSince": {
+      "since": "Depuis 2026"
+    },
+    "mail": {
+      "question_pt1": "Une",
+      "question_pt2": "question ?",
+      "project_pt1": "Un",
+      "project_pt2": "projet ?",
+      "contact": "Me contacter"
+    },
+    "now": {
+      "title": "En train de ..."
+    },
+    "resume": {
+      "download": "Télécharger",
+      "screenshot": "Capture d'écran de mon CV"
+    },
+    "availability": {
+      "current": "Aujourd'hui chez Bosch, Mondeville",
+      "next": "Libre à partir de Juin 2026"
+    }
   }
 }

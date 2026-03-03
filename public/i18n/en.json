@@ -4,5 +4,32 @@
     "projects": "Projects",
     "skills": "Skills",
     "experience": "Experience"
+  },
+  "home": {
+    "description": {
+      "title": "Fullstack Web Developer",
+      "subtitle": "Angular Specialist"
+    },
+    "freelanceSince": {
+      "since": "Since 2026"
+    },
+    "mail": {
+      "question_pt1": "Any",
+      "question_pt2": "question ?",
+      "project_pt1": "A",
+      "project_pt2": "project ?",
+      "contact": "Contact me"
+    },
+    "now": {
+      "title": "Currently..."
+    },
+    "resume": {
+      "download": "Download",
+      "screenshot": "Screenshot of my CV"
+    },
+    "availability": {
+      "current": "Currently at Bosch, Mondeville",
+      "next": "Available from June 2026"
+    }
   }
 }

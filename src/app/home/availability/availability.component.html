@@ -1,6 +1,6 @@
 <div class="header">
-  <h2 [innerHTML]="currentOccupation"></h2>
+  <h2>{{ 'home.availability.current' | transloco }}</h2>
   <app-dot [color]="'var(--availability-dot-color)'"></app-dot>
 </div>
 
-<p [innerHTML]="nextAvailability"></p>
+<p>{{ 'home.availability.next' | transloco }}</p>

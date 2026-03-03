@@ -284,7 +284,7 @@
 
 <app-action-button
   [unfold]="true"
-  text="Télécharger"
+  [text]="'home.resume.download' | transloco"
   (click)="downloadResume()"
   [positionAbsolute]="false"></app-action-button>
 
@@ -294,7 +294,7 @@
       <img
         class="modal-img"
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/curriculum-vitae/curriculum-vitae-image.png"
-        alt="Capture d'écran de mon CV" />
+        [attr.alt]="'home.resume.screenshot' | transloco" />
     </div>
   </div>
 </div>

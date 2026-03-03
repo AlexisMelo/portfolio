@@ -1,12 +1,13 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { Router } from '@angular/router';
 import { PROJECTS_ROUTE } from 'src/app/app.routes';
 
 @Component({
   selector: 'app-description',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TranslocoPipe],
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss',
   host: { class: 'g-grid-item-shadow' },

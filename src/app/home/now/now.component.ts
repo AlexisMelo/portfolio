@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ContentService } from 'src/app/shared/content.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-now',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TranslocoPipe],
   templateUrl: './now.component.html',
   styleUrl: './now.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

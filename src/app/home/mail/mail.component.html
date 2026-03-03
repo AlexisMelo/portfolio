@@ -1,11 +1,17 @@
 <h2>
-  <span>Une <br />question ?</span>
+  <span
+    >{{ 'home.mail.question_pt1' | transloco }} <br />
+    {{ 'home.mail.question_pt2' | transloco }}
+  </span>
   <br />
-  <span class="projet">Un <br />projet ?</span>
+  <span class="projet"
+    >{{ 'home.mail.project_pt1' | transloco }} <br />
+    {{ 'home.mail.project_pt2' | transloco }}</span
+  >
 </h2>
 
 <app-action-button
-  text="Me contacter"
+  [text]="'home.mail.contact' | transloco"
   [unfold]="true"
   (click)="sendEmail()"
   [positionAbsolute]="false"></app-action-button>

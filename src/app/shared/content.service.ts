@@ -1,5 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TranslocoService } from '@jsverse/transloco';
 import { SupabaseService } from './supabase.service';
 
 /**
@@ -22,15 +24,30 @@ export class ContentService {
   private supabase = inject(SupabaseService);
 
   /**
+   * Transloco
+   */
+  private translocoService = inject(TranslocoService);
+
+  /**
    * Activité actuelle
    */
-  public now?: SafeHtml[];
+  public now = signal<SafeHtml[]>([]);
+
+  /**
+   * Active language as a reactive signal, updated on every language change.
+   */
+  public activeLang = toSignal(this.translocoService.langChanges$, {
+    initialValue: this.translocoService.getActiveLang(),
+  });
 
   /**
    * Constructeur
    */
   constructor() {
-    this.updateNow();
+    effect(() => {
+      this.activeLang(); // track language changes
+      this.updateNow();
+    });
   }
 
   /**
@@ -69,13 +86,12 @@ export class ContentService {
   }
 
   /**
-   * Activité actuelle
+   * Fetches "now" items from Supabase and updates the signal.
    */
   private async updateNow() {
-    const nows =
-      'Réaliser les démarches pour devenir développeur fullstack en freelance/Renforcer mes connaissances sur Angular, Typescript et Supabase/Construire ce portfolio'.split(
-        '/'
-      );
-    this.now = nows.map(n => this.sanitizer.bypassSecurityTrustHtml(n));
+    const items = await this.supabase.getNowItems();
+    this.now.set(
+      items.map(item => this.sanitizer.bypassSecurityTrustHtml(item))
+    );
   }
 }

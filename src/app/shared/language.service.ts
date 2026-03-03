@@ -1,7 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-
-export type Language = 'fr' | 'en';
+import { Language } from './language.type';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
