@@ -1,12 +1,13 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 
 @Component({
   selector: 'app-ongoing',
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './ongoing.component.html',
   styleUrl: './ongoing.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

@@ -1,6 +1,6 @@
-<h2>Archives</h2>
+<h2>{{ 'projects.all.title' | transloco }}</h2>
 
-<p>{{ projects?.length }} réalisations</p>
+<p>{{ 'projects.all.count' | transloco: { count: projects?.length } }}</p>
 
 <mat-icon class="material-symbols-outlined" [routerLink]="[ARCHIVES_ROUTE]"
   >call_made</mat-icon

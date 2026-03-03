@@ -1,5 +1,5 @@
-<h2>Avec Angular</h2>
+<h2>{{ 'projects.withSkill.title' | transloco }}</h2>
 
-<p>{{ count() }} réalisation{{ count() > 1 ? 's' : '' }}</p>
+<p>{{ 'projects.withSkill.count' | transloco: { count: count() } }}</p>
 
 <app-mosaique-websites></app-mosaique-websites>

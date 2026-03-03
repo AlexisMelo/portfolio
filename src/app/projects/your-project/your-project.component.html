@@ -1,9 +1,9 @@
-<h2>Ton projet, ici</h2>
-<p>Un rêve, une idée, une réalité !</p>
+<h2>{{ 'projects.yourProject.title' | transloco }}</h2>
+<p>{{ 'projects.yourProject.subtitle' | transloco }}</p>
 
 <app-action-button
   class="contact"
-  text="Discutons-en !"
+  [text]="'projects.yourProject.action' | transloco"
   [unfold]="true"
   (click)="sendEmail()"
   [positionAbsolute]="true"

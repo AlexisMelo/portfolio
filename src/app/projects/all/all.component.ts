@@ -1,6 +1,7 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
@@ -9,7 +10,12 @@ import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-website
 
 @Component({
   selector: 'app-all',
-  imports: [RouterLink, MatIconModule, MosaiqueWebsitesComponent],
+  imports: [
+    RouterLink,
+    MatIconModule,
+    MosaiqueWebsitesComponent,
+    TranslocoPipe,
+  ],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

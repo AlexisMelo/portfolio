@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { ContentService } from 'src/app/shared/content.service';
 
 @Component({
   selector: 'app-your-project',
-  imports: [ActionButtonComponent],
+  imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './your-project.component.html',
   styleUrl: './your-project.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

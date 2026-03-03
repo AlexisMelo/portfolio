@@ -27,5 +27,23 @@
       "download": "Télécharger",
       "screenshot": "Capture d'écran de mon CV"
     }
+  },
+  "projects": {
+    "all": {
+      "title": "Archives",
+      "count": "{count, plural, =0 {aucune réalisation} =1 {1 réalisation} other {# réalisations}}"
+    },
+    "ongoing": {
+      "status": "En cours"
+    },
+    "withSkill": {
+      "title": "Avec Angular",
+      "count": "{count, plural, =0 {aucune réalisation} =1 {1 réalisation} other {# réalisations}}"
+    },
+    "yourProject": {
+      "title": "Ton projet, ici",
+      "subtitle": "Un rêve, une idée, une réalité !",
+      "action": "Discutons-en !"
+    }
   }
 }
