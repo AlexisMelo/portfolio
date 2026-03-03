@@ -1,4 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 import {
   Component,
   HostBinding,
@@ -30,6 +31,7 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
     ThemeSelectorComponent,
     LanguageSelectorComponent,
     NgTemplateOutlet,
+    TranslocoPipe,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

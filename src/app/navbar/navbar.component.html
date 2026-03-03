@@ -21,7 +21,7 @@
     [routerLinkActiveOptions]="{ exact: true }"
     class="home"
     appGridItem
-    ><h2>À propos</h2>
+    ><h2>{{ 'navbar.about' | transloco }}</h2>
     <div class="img-container">
       <img
         [src]="
@@ -38,7 +38,7 @@
     [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
     class="projects"
     appGridItem
-    ><h2>Réalisations</h2>
+    ><h2>{{ 'navbar.projects' | transloco }}</h2>
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
@@ -51,7 +51,7 @@
     [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
     class="skills"
     appGridItem
-    ><h2>Compétences</h2>
+    ><h2>{{ 'navbar.skills' | transloco }}</h2>
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
@@ -64,7 +64,7 @@
     appGridItem
     [routerLink]="['experience']"
     [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
-    ><h2>Expérience</h2>
+    ><h2>{{ 'navbar.experience' | transloco }}</h2>
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
@@ -93,17 +93,17 @@
           [routerLink]="['']"
           [routerLinkActive]="['is-active']"
           [routerLinkActiveOptions]="{ exact: true }">
-          <h2>À propos</h2></a
+          <h2>{{ 'navbar.about' | transloco }}</h2></a
         >
 
         <a [routerLink]="['projects']" [routerLinkActive]="['is-active']">
-          <h2>Réalisations</h2>
+          <h2>{{ 'navbar.projects' | transloco }}</h2>
         </a>
         <a [routerLink]="['skills']" [routerLinkActive]="['is-active']">
-          <h2>Compétences</h2>
+          <h2>{{ 'navbar.skills' | transloco }}</h2>
         </a>
         <a [routerLink]="['experience']" [routerLinkActive]="['is-active']">
-          <h2>Expérience</h2>
+          <h2>{{ 'navbar.experience' | transloco }}</h2>
         </a>
 
         <div class="separator"></div>

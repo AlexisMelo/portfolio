@@ -1,1 +1,8 @@
-{}
+{
+  "navbar": {
+    "about": "À propos",
+    "projects": "Réalisations",
+    "skills": "Compétences",
+    "experience": "Expérience"
+  }
+}

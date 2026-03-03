@@ -52,3 +52,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Behaviour
+
+- use your own tools to edit files. Do not rely on external services, such as Node or python3.
