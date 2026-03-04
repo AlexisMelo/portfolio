@@ -122,7 +122,9 @@ export class SupabaseService {
   public async getContexts() {
     const { data } = await this.client
       .from('context')
-      .select('*, projects:project(*)')
+      .select(
+        '*, projects:project(*), localizedDescription:translations!description(*), localizedLabel:translations!label(*), localizedJob:translations!job(*)'
+      )
       .order('end_date', { ascending: false })
       .order('start_date', { ascending: false })
       .returns<Array<ContextWithProjects>>();
@@ -174,14 +176,10 @@ export class SupabaseService {
 
     const translationKeys = infos.map(info => info.value);
 
-    console.log(translationKeys);
-
     const { data: translations, error: translationsError } = await this.client
       .from('translations')
       .select('id, en, fr')
       .in('id', translationKeys);
-
-    console.log(translations);
 
     if (translationsError) return Promise.reject(translationsError);
 

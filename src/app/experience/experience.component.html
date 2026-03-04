@@ -6,11 +6,12 @@
       <app-availability></app-availability>
 
       @for (context of baseContexts(); track context.id) {
+        @let lang = languageService.currentLang();
         <app-key-header
           [style.--index]="$index"
           class="g-grid-item-shadow"
           [chips]="[context.localization]"
-          >{{ context.label }}</app-key-header
+          >{{ context.localizedLabel[lang] ?? context.label }}</app-key-header
         >
         <app-experience-description
           [style.--index]="$index"

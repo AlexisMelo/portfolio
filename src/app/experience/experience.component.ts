@@ -6,6 +6,7 @@ import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.c
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { gridItemAnimation } from '../shared/animations';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
+import { LanguageService } from '../shared/language.service';
 import { SupabaseService } from '../shared/supabase.service';
 import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
 import { ExperienceDurationComponent } from './experience-duration/experience-duration.component';
@@ -31,6 +32,11 @@ export class ExperienceComponent {
    * Handle database
    */
   private supabaseService = inject(SupabaseService);
+
+  /**
+   * Handle language
+   */
+  public languageService = inject(LanguageService);
 
   /**
    * Contexts to display

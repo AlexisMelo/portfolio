@@ -19,6 +19,5 @@ export class ResetButtonComponent {
    */
   @HostListener('click') onClick() {
     this.archivesService.clearFiltering();
-    console.log('cleared');
   }
 }
