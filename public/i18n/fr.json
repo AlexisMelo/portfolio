@@ -46,6 +46,37 @@
       "action": "Discutons-en !"
     }
   },
+  "skills": {
+    "favorites": {
+      "title": "Stack de prédilection",
+      "subtitle": "Pour créer des sites au top, de A à Z"
+    },
+    "keepLearning": {
+      "title": "Continuer d'apprendre",
+      "description": "Car chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre avec le temps, et reste ouvert aux propositions !",
+      "skillsTitle": "Montée en compétence"
+    },
+    "skillHighlight": {
+      "projects": "{count, plural, =1 {1 réalisation} other {# réalisations}}"
+    },
+    "sections": {
+      "frontend": {
+        "heading": "Création d'interfaces",
+        "subtitle": "Frontend",
+        "description": "Création de maquettes, intégration complexe et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien"
+      },
+      "backend": {
+        "heading": "Gestion de données",
+        "subtitle": "Backend",
+        "description": "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition"
+      },
+      "general": {
+        "heading": "Et bien plus",
+        "subtitle": "Général",
+        "description": "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse aussi la gestion de projet, le déploiement et l'intégration continue"
+      }
+    }
+  },
   "experience": {
     "duration": {
       "future": {

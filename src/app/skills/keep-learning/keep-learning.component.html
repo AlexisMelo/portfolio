@@ -1,14 +1,11 @@
 <div>
-  <h2>Continuer d'apprendre</h2>
+  <h2>{{ 'skills.keepLearning.title' | transloco }}</h2>
 
-  <p>
-    Car chaque projet vient avec ses contraintes et exigences. Je continue
-    d'apprendre avec le temps, et reste ouvert aux propositions !
-  </p>
+  <p>{{ 'skills.keepLearning.description' | transloco }}</p>
 </div>
 
 <div>
-  <h3>Montée en compétence</h3>
+  <h3>{{ 'skills.keepLearning.skillsTitle' | transloco }}</h3>
 
   <ul>
     @for (skill of skills(); track skill.id) {

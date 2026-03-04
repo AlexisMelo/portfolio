@@ -1,8 +1,8 @@
-<h2>Stack de prédilection</h2>
+<h2>{{ 'skills.favorites.title' | transloco }}</h2>
 
 <mat-icon>favorite</mat-icon>
 
-<p>Pour créer des sites au top, de A à Z</p>
+<p>{{ 'skills.favorites.subtitle' | transloco }}</p>
 
 <ul>
   @for (skill of skills(); track skill.id) {

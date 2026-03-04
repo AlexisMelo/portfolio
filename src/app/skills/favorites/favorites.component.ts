@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from '../skill.model';
 import { LovedPipe } from '../loved.pipe';
@@ -7,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-favorites',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TranslocoPipe],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [LovedPipe],

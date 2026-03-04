@@ -6,7 +6,7 @@
 
     @for (section of sections; track section.heading) {
       <app-key-header [class]="section.id + ' g-grid-item-shadow'">
-        {{ section.subtitle }}
+        {{ section.subtitle | transloco }}
       </app-key-header>
 
       @for (i of 2 | range; track i) {
@@ -26,8 +26,8 @@
 
       <app-skill-section-description
         [class]="section.id"
-        [mainText]="section.heading"
-        [secondaryText]="section.description"></app-skill-section-description>
+        [mainText]="section.heading | transloco"
+        [secondaryText]="section.description | transloco"></app-skill-section-description>
 
       <app-skills-recap
         [class]="section.id"

@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Skill } from '../skill.model';
 import { LearningPipe } from '../learning.pipe';
@@ -6,7 +7,7 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
 
 @Component({
   selector: 'app-keep-learning',
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './keep-learning.component.html',
   styleUrl: './keep-learning.component.scss',
   hostDirectives: [GridItemDirective],

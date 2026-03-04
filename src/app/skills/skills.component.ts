@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
 import { gridItemAnimation } from '../shared/animations';
@@ -26,6 +27,7 @@ import { SkillsSection } from './skills-section.model';
     KeepLearningComponent,
     FavoritesComponent,
     AllComponent,
+    TranslocoPipe,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
@@ -38,30 +40,27 @@ export class SkillsComponent implements OnInit {
   public sections: Array<SkillsSection> = [
     {
       id: 'section-frontend',
-      heading: "Création d'interfaces",
-      subtitle: 'Frontend',
-      description:
-        'Création de maquettes, intégration complexe et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien',
+      heading: 'skills.sections.frontend.heading',
+      subtitle: 'skills.sections.frontend.subtitle',
+      description: 'skills.sections.frontend.description',
       skillFieldId: 1,
       skills: [],
       class: 'frontend-grid',
     },
     {
       id: 'section-backend',
-      heading: 'Gestion de données',
-      subtitle: 'Backend',
-      description:
-        "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition",
+      heading: 'skills.sections.backend.heading',
+      subtitle: 'skills.sections.backend.subtitle',
+      description: 'skills.sections.backend.description',
       skillFieldId: 2,
       skills: [],
       class: 'backend-grid',
     },
     {
       id: 'section-general',
-      heading: 'Et bien plus',
-      subtitle: 'Général',
-      description:
-        "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse aussi la gestion de projet, le déploiement et l'intégration continue",
+      heading: 'skills.sections.general.heading',
+      subtitle: 'skills.sections.general.subtitle',
+      description: 'skills.sections.general.description',
       skillFieldId: 3,
       skills: [],
       class: 'general-grid',

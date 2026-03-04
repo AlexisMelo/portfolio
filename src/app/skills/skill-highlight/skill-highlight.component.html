@@ -12,8 +12,10 @@
       {{ skill.loved ? 'favorite' : 'school' }}
     </mat-icon>
     <span>
-      {{ skill.projects.length }}
-      {{ skill.projects.length > 1 ? 'réalisations' : 'réalisation' }}
+      {{
+        'skills.skillHighlight.projects'
+          | transloco: { count: skill.projects.length }
+      }}
     </span>
   </p>
 }

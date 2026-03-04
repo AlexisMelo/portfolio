@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, HostListener, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Skill } from 'src/app/skills/skill.model';
@@ -9,7 +10,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-skill-highlight',
-  imports: [MatIconModule, NgClass, LoaderComponent],
+  imports: [MatIconModule, NgClass, LoaderComponent, TranslocoPipe],
   templateUrl: './skill-highlight.component.html',
   styleUrl: './skill-highlight.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

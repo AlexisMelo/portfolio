@@ -46,6 +46,37 @@
       "action": "Let's discuss it !"
     }
   },
+  "skills": {
+    "favorites": {
+      "title": "My go-to stack",
+      "subtitle": "To build top-notch sites, from A to Z"
+    },
+    "keepLearning": {
+      "title": "Keep learning !",
+      "description": "Because each project comes with its constraints and requirements. I keep learning over time, and remain open to new proposals !",
+      "skillsTitle": "Leveling up"
+    },
+    "skillHighlight": {
+      "projects": "{count, plural, =1 {1 achievement} other {# achievements}}"
+    },
+    "sections": {
+      "frontend": {
+        "heading": "Interface creation",
+        "subtitle": "Frontend",
+        "description": "Mockup creation, complex integration and accessibility ! Every day, I create interfaces that appeal to the widest audience"
+      },
+      "backend": {
+        "heading": "Data management",
+        "subtitle": "Backend",
+        "description": "Data is at the heart of most projects. I appreciate the challenges related to its collection, persistence and availability"
+      },
+      "general": {
+        "heading": "And much more",
+        "subtitle": "General",
+        "description": "Code is great ! But to be a complete developer, I'm also interested in project management, deployment and continuous integration"
+      }
+    }
+  },
   "experience": {
     "duration": {
       "future": {
