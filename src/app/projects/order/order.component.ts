@@ -1,11 +1,12 @@
 import { Component, effect, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ArchivesService, OrderDirection } from '../archives/archives.service';
 
 @Component({
   selector: 'app-order',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TranslocoPipe],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })

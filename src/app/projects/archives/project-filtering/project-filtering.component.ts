@@ -11,6 +11,7 @@ import {
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
@@ -21,7 +22,7 @@ import { ArchivesService } from '../archives.service';
 
 @Component({
   selector: 'app-project-filtering',
-  imports: [ReactiveFormsModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatIconModule, TranslocoPipe],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

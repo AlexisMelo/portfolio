@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { gridItemAnimation } from 'src/app/shared/animations';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SkillSectionDescriptionComponent } from '../../skills/skill-section-description/skill-section-description.component';
@@ -21,6 +22,7 @@ import { StatusFilteringComponent } from './status-filtering/status-filtering.co
     StatusFilteringComponent,
     OrderComponent,
     KeyHeaderComponent,
+    TranslocoPipe,
   ],
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.scss',

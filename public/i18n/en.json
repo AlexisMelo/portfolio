@@ -46,6 +46,18 @@
       "action": "Let's discuss it !"
     }
   },
+  "archives": {
+    "heading": "Adventurer since 2017",
+    "description": "All my projects are here, sortable by many criteria ! Both the best and the worst form, together, the developer I am today :)",
+    "chips": "{count, plural, =1 {1 achievement} other {# achievements}}",
+    "filtering": {
+      "title": "Search by keyword",
+      "placeholder": "Angular, website..."
+    },
+    "order": {
+      "label": "Date"
+    }
+  },
   "skills": {
     "favorites": {
       "title": "My go-to stack",

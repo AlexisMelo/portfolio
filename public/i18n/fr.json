@@ -46,6 +46,18 @@
       "action": "Discutons-en !"
     }
   },
+  "archives": {
+    "heading": "Aventurier depuis 2017",
+    "description": "Tous mes projets sont ici, triables selon pleins de critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd'hui :)",
+    "chips": "{count, plural, =1 {1 réalisation} other {# réalisations}}",
+    "filtering": {
+      "title": "Chercher par mot-clé",
+      "placeholder": "Angular, site web..."
+    },
+    "order": {
+      "label": "Date"
+    }
+  },
   "skills": {
     "favorites": {
       "title": "Stack de prédilection",
