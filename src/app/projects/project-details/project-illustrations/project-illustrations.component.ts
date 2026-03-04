@@ -10,6 +10,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
 import { Project } from '../../project.model';
@@ -22,7 +23,7 @@ import { Tables } from 'database.types';
  */
 @Component({
   selector: 'app-project-illustrations',
-  imports: [ActionButtonComponent, MatIconModule, DialogModule],
+  imports: [ActionButtonComponent, MatIconModule, DialogModule, TranslocoPipe],
   templateUrl: './project-illustrations.component.html',
   styleUrl: './project-illustrations.component.scss',
 })

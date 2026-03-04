@@ -1,5 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
@@ -7,7 +8,7 @@ import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-context',
-  imports: [ActionButtonComponent],
+  imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
   host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },

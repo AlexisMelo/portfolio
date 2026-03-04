@@ -5,6 +5,7 @@ import {
   HostListener,
   input,
 } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 import { StatusPipe } from '../../status/status.pipe';
@@ -13,7 +14,7 @@ import { DotComponent } from 'src/app/shared/dot/dot.component';
 
 @Component({
   selector: 'app-open-live',
-  imports: [MatIconModule, DotComponent],
+  imports: [MatIconModule, DotComponent, TranslocoPipe],
   templateUrl: './open-live.component.html',
   styleUrl: './open-live.component.scss',
   providers: [StatusPipe],

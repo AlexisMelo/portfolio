@@ -2,8 +2,12 @@
   <div class="carousel-items">
     @if (illustrationsSorted?.length === 0) {
       <div class="carousel-item no-image">
-        <img src="photos/no-image.svg" alt="Aucune illustration disponible" />
-        <p>Pas encore d'illustrations !</p>
+        <img
+          src="photos/no-image.svg"
+          [alt]="
+            'projectDetails.illustrations.noIllustrationsAlt' | transloco
+          " />
+        <p>{{ 'projectDetails.illustrations.noIllustrations' | transloco }}</p>
       </div>
     } @else {
       @for (illustration of illustrationsSorted; track illustration.id) {

@@ -9,11 +9,12 @@ import {
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, ElementRef, HostBinding, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ProjectIllustrationsDialogData } from './project-illustrations-dialog-data.model';
 
 @Component({
   selector: 'app-project-illustrations-dialog',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TranslocoPipe],
   templateUrl: './project-illustrations-dialog.component.html',
   styleUrl: './project-illustrations-dialog.component.scss',
   animations: [

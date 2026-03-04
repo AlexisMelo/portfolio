@@ -6,16 +6,28 @@
   <div class="duration-badge">
     @switch (projectStatus) {
       @case ('abandoned') {
-        <span>Abandonné</span>
+        <span>{{ 'projectDetails.duration.abandoned' | transloco }}</span>
       }
       @case ('ongoing') {
-        <span>En cours</span>
+        <span>{{ 'projectDetails.duration.ongoing' | transloco }}</span>
       }
       @case ('completed') {
-        <span>Terminé</span>
+        <span>{{ 'projectDetails.duration.completed' | transloco }}</span>
       }
     }
   </div>
 }
 
-<p>Démarré en {{ project.start_date | date: 'MMMM yyyy' }}</p>
+@if (project.start_date) {
+  <p>
+    {{
+      'projectDetails.duration.startedIn'
+        | transloco
+          : {
+              date:
+                (project.start_date
+                | translocoDate: { month: 'long', year: 'numeric' }),
+            }
+    }}
+  </p>
+}

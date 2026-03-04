@@ -46,6 +46,46 @@
       "action": "Discutons-en !"
     }
   },
+  "projectDetails": {
+    "skills": {
+      "title": "Compétences",
+      "tooltip": "{count, plural, =1 {1 réalisation} other {# réalisations}}"
+    },
+    "openLive": {
+      "online": "En ligne",
+      "offline": "Hors ligne",
+      "accessible": "Ce projet est accessible",
+      "private": "Ce projet est privé"
+    },
+    "context": {
+      "moreProjects": "Voir d'autres réalisations"
+    },
+    "duration": {
+      "abandoned": "Abandonné",
+      "ongoing": "En cours",
+      "completed": "Terminé",
+      "startedIn": "Démarré en {{date}}"
+    },
+    "participation": {
+      "title": "Contribution"
+    },
+    "problematic": {
+      "title": "Problématique"
+    },
+    "coworkers": {
+      "solo": "Moi-même",
+      "noCoworker": "Pas de collaborateur sur ce projet !"
+    },
+    "illustrations": {
+      "noIllustrations": "Pas encore d'illustrations !",
+      "noIllustrationsAlt": "Aucune illustration disponible"
+    },
+    "illustrationsDialog": {
+      "previous": "Précédente",
+      "close": "Fermer",
+      "next": "Suivante"
+    }
+  },
   "archives": {
     "heading": "Aventurier depuis 2017",
     "description": "Tous mes projets sont ici, triables selon pleins de critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd'hui :)",

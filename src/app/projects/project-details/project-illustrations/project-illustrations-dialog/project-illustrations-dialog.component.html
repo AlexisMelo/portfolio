@@ -9,7 +9,7 @@
             tabindex="0"
             (keyup)="nextSlide(-1)">
             <mat-icon> chevron_left </mat-icon>
-            Précédente
+            {{ 'projectDetails.illustrationsDialog.previous' | transloco }}
           </div>
 
           <div
@@ -17,7 +17,7 @@
             tabindex="0"
             (keyup)="closeDialog()"
             (click)="closeDialog()">
-            Fermer
+            {{ 'projectDetails.illustrationsDialog.close' | transloco }}
           </div>
 
           <div
@@ -25,7 +25,7 @@
             tabindex="0"
             (keyup)="nextSlide(1)"
             (click)="nextSlide(1)">
-            Suivante
+            {{ 'projectDetails.illustrationsDialog.next' | transloco }}
             <mat-icon> chevron_right </mat-icon>
           </div>
         </div>

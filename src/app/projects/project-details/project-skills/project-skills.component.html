@@ -1,4 +1,4 @@
-<h2>Compétences</h2>
+<h2>{{ 'projectDetails.skills.title' | transloco }}</h2>
 
 <div class="skills">
   @for (skills of workedWith | keyvalue; track skills.key) {
@@ -7,9 +7,8 @@
       <app-highlightable-chip
         appTooltip
         [tooltip]="
-          skill.projects.length +
-          ' réalisation' +
-          (skill.projects.length > 1 ? 's' : '')
+          'projectDetails.skills.tooltip'
+            | transloco: { count: skill.projects.length }
         "
         [routerLink]="[ARCHIVES_ROUTE]"
         [queryParams]="{ skills: skill.id }"

@@ -3,17 +3,17 @@
     <app-dot
       color="var(--open-live-dot-color)"
       [pulse]="isLive() !== null"></app-dot>
-    En ligne
+    {{ 'projectDetails.openLive.online' | transloco }}
   } @else {
-    Hors ligne
+    {{ 'projectDetails.openLive.offline' | transloco }}
   }
 </h2>
 
 <p>
   @if (isLive()) {
-    Ce projet est accessible
+    {{ 'projectDetails.openLive.accessible' | transloco }}
   } @else {
-    Ce projet est privé
+    {{ 'projectDetails.openLive.private' | transloco }}
   }
 </p>
 

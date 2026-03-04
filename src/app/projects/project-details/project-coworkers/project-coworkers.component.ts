@@ -5,6 +5,7 @@ import {
   Input,
   AfterViewInit,
 } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
@@ -12,7 +13,7 @@ import { CoworkerInfoComponent } from './coworker-info/coworker-info.component';
 
 @Component({
   selector: 'app-project-coworkers',
-  imports: [ActionButtonComponent, CoworkerInfoComponent],
+  imports: [ActionButtonComponent, CoworkerInfoComponent, TranslocoPipe],
   templateUrl: './project-coworkers.component.html',
   styleUrl: './project-coworkers.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

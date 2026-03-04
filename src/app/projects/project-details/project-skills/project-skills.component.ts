@@ -1,16 +1,24 @@
 import { KeyValuePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
 import { Project } from '../../project.model';
 import { Skill } from '../../../skills/skill.model';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { HighlightableChipComponent } from 'src/app/shared/chips/highlightable-chip/highlightable-chip.component';
 
 @Component({
   selector: 'app-project-skills',
   standalone: true,
-  imports: [KeyValuePipe, TooltipDirective, RouterLink],
+  imports: [
+    KeyValuePipe,
+    TooltipDirective,
+    RouterLink,
+    TranslocoPipe,
+    HighlightableChipComponent,
+  ],
   templateUrl: './project-skills.component.html',
   styleUrl: './project-skills.component.scss',
   host: { class: 'g-grid-item-start-aligned' },

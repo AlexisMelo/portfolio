@@ -8,7 +8,7 @@
 
 <app-action-button
   class="contact"
-  text="Voir d'autres réalisations"
+  [text]="'projectDetails.context.moreProjects' | transloco"
   [unfold]="true"
   (click)="moreProjects()"
   [positionAbsolute]="true"

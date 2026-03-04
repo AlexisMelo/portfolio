@@ -46,6 +46,46 @@
       "action": "Let's discuss it !"
     }
   },
+  "projectDetails": {
+    "skills": {
+      "title": "Skills",
+      "tooltip": "{count, plural, =1 {1 achievement} other {# achievements}}"
+    },
+    "openLive": {
+      "online": "Online",
+      "offline": "Offline",
+      "accessible": "This project is accessible",
+      "private": "This project is private"
+    },
+    "context": {
+      "moreProjects": "See more projects"
+    },
+    "duration": {
+      "abandoned": "Abandoned",
+      "ongoing": "Ongoing",
+      "completed": "Completed",
+      "startedIn": "Started in {{date}}"
+    },
+    "participation": {
+      "title": "Contribution"
+    },
+    "problematic": {
+      "title": "Problem"
+    },
+    "coworkers": {
+      "solo": "Me, myself and I",
+      "noCoworker": "No collaborator on this project !"
+    },
+    "illustrations": {
+      "noIllustrations": "No illustrations yet!",
+      "noIllustrationsAlt": "No illustration available"
+    },
+    "illustrationsDialog": {
+      "previous": "Previous",
+      "close": "Close",
+      "next": "Next"
+    }
+  },
   "archives": {
     "heading": "Adventurer since 2017",
     "description": "All my projects are here, sortable by many criteria ! Both the best and the worst form, together, the developer I am today :)",

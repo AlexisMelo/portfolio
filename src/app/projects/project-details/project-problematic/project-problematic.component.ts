@@ -1,11 +1,12 @@
 import { Component, inject, Input } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { Project } from '../../project.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-problematic',
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './project-problematic.component.html',
   styleUrl: './project-problematic.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
