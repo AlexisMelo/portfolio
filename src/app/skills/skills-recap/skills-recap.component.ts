@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { Tables } from 'database.types';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { LanguageService } from 'src/app/shared/language.service';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
-import { Skill } from 'src/app/skills/skill.model';
+import { Skill, SkillType } from 'src/app/skills/skill.model';
 
 @Component({
   selector: 'app-skills-recap',
@@ -34,6 +34,9 @@ export class SkillsRecapComponent
    * Route vers les archives
    */
   public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+
+  /** Current language for resolving localized labels. */
+  protected lang = inject(LanguageService).currentLang;
 
   /**
    * Accès au template
@@ -61,7 +64,7 @@ export class SkillsRecapComponent
     const skillsGrouped = skills.reduce(
       (
         group: {
-          [key: string]: { skill_type: Tables<'skill_type'>; skills: Skill[] };
+          [key: string]: { skill_type: SkillType; skills: Skill[] };
         },
         item: Skill
       ) => {

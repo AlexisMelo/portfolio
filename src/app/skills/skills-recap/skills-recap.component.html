@@ -12,13 +12,17 @@
       (click)="selectSlide(precedentSlideIndex)"
       (keyup)="selectSlide(precedentSlideIndex)"
       tabindex="0">
-      <p>{{ groupedSkills()[precedentSlideIndex].skill_type.label }}</p>
+      <p>
+        {{
+          groupedSkills()[precedentSlideIndex].skill_type.localizedLabel[lang()]
+        }}
+      </p>
     </div>
 
     <mat-icon (click)="selectSlide(precedentSlideIndex)">chevron_left</mat-icon>
 
     <h2 class="current-type">
-      {{ groupedSkills()[currentSlide()].skill_type.label }}
+      {{ groupedSkills()[currentSlide()].skill_type.localizedLabel[lang()] }}
     </h2>
 
     @let nextSlideIndex =
@@ -31,7 +35,9 @@
       (click)="selectSlide(nextSlideIndex)"
       (keyup)="selectSlide(nextSlideIndex)"
       tabindex="0">
-      <p>{{ groupedSkills()[nextSlideIndex].skill_type.label }}</p>
+      <p>
+        {{ groupedSkills()[nextSlideIndex].skill_type.localizedLabel[lang()] }}
+      </p>
     </div>
   </div>
 

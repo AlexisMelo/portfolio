@@ -16,7 +16,7 @@ export type Database = {
     Tables: {
       context: {
         Row: {
-          description: string
+          description: string | null
           end_date: string | null
           id: number
           job: string | null
@@ -25,7 +25,7 @@ export type Database = {
           start_date: string
         }
         Insert: {
-          description: string
+          description?: string | null
           end_date?: string | null
           id?: number
           job?: string | null
@@ -34,7 +34,7 @@ export type Database = {
           start_date: string
         }
         Update: {
-          description?: string
+          description?: string | null
           end_date?: string | null
           id?: number
           job?: string | null
@@ -42,7 +42,29 @@ export type Database = {
           localization?: string
           start_date?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "context_description_fkey"
+            columns: ["description"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "context_job_fkey"
+            columns: ["job"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "context_label_fkey"
+            columns: ["label"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       coworker: {
         Row: {
@@ -361,6 +383,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "skill_description_fkey"
+            columns: ["description"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "skill_type_fkey"
             columns: ["field"]
             isOneToOne: false
@@ -410,7 +439,15 @@ export type Database = {
           label?: string
           position?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "skill_type_label_fkey"
+            columns: ["label"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       translations: {
         Row: {

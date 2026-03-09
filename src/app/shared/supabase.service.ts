@@ -39,7 +39,7 @@ export class SupabaseService {
           *,
           skill(
             *,
-            skill_type(*), 
+            skill_type(*, localizedLabel:translations!label(*)),
             projects:project(*),
             skill_field(*)
           )
@@ -140,7 +140,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('skill')
       .select(
-        '*, skill_type(*), projects:project(*), skill_field(*), localizedDescription:translations!description(*)'
+        '*, skill_type(*, localizedLabel:translations!label(*)), projects:project(*), skill_field(*), localizedDescription:translations!description(*)'
       )
       .order('label');
 
