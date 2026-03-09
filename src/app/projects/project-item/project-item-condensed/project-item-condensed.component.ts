@@ -1,14 +1,9 @@
-import {
-  Component,
-  computed,
-  HostListener,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { PROJECTS_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { LanguageService } from 'src/app/shared/language.service';
 import { Project } from '../../project.model';
 import { ProjectItemSkillListComponent } from '../project-item-skill-list/project-item-skill-list.component';
 
@@ -17,12 +12,13 @@ import { ProjectItemSkillListComponent } from '../project-item-skill-list/projec
   imports: [MatIconModule, ProjectItemSkillListComponent],
   templateUrl: './project-item-condensed.component.html',
   styleUrl: './project-item-condensed.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: {
+    class: 'g-grid-item-start-aligned',
+    '(click)': 'navigate()',
+  },
 })
 export class ProjectCondensedItemComponent extends GridItemDirective {
-  /**
-   * Project to display
-   */
+  /** Project to display */
   public project = input.required<Project>();
 
   /**
@@ -31,15 +27,17 @@ export class ProjectCondensedItemComponent extends GridItemDirective {
   private router = inject(Router);
 
   /**
-   * Redirect to project details page on click
+   * Language service
    */
-  @HostListener('click') onClick() {
-    this.router.navigate([PROJECTS_ROUTE, this.project().url]);
-  }
+  private languageService = inject(LanguageService);
 
-  /**
-   * Main illustration for the project
-   */
+  /** Description in the currently active language. */
+  protected description = computed(
+    () =>
+      this.project()?.localizedDescription?.[this.languageService.currentLang()]
+  );
+
+  /** Main illustration for the project */
   public firstIllustration = computed(() => {
     const project = this.project();
 
@@ -50,12 +48,15 @@ export class ProjectCondensedItemComponent extends GridItemDirective {
     );
   });
 
-  /**
-   * Skills to display on project preview
-   */
-  get highlightedSkills() {
-    return this.project()
+  /** Skills to display on project preview */
+  protected highlightedSkills = computed(() =>
+    this.project()
       .project_skills.filter(s => s.highlight)
-      .map(s => s.skill);
+      .map(s => s.skill)
+  );
+
+  /** Navigate to the project detail page. */
+  protected navigate() {
+    this.router.navigate([PROJECTS_ROUTE, this.project().url]);
   }
 }

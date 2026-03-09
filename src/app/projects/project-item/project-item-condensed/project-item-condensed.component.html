@@ -1,6 +1,6 @@
 @if (project(); as p) {
   <h2>{{ p.label }}</h2>
-  <p>{{ p.description }}</p>
+  <p>{{ description() }}</p>
 
   @if (firstIllustration(); as illu) {
     <div class="illustration-container">
@@ -9,5 +9,5 @@
   }
 
   <app-project-item-skill-list
-    [skills]="highlightedSkills"></app-project-item-skill-list>
+    [skills]="highlightedSkills()"></app-project-item-skill-list>
 }
