@@ -139,7 +139,9 @@ export class SupabaseService {
   public async getSkills(): Promise<Array<Skill>> {
     const { data, error } = await this.client
       .from('skill')
-      .select('*, skill_type(*), projects:project(*), skill_field(*)')
+      .select(
+        '*, skill_type(*), projects:project(*), skill_field(*), localizedDescription:translations!description(*)'
+      )
       .order('label');
 
     if (error) return Promise.reject(error);

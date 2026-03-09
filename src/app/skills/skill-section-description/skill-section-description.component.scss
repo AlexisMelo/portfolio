@@ -15,12 +15,14 @@
 
 h2 {
   font-size: var(--text-xxl);
+  margin-bottom: 0.5rem;
 }
 
 p {
   font-size: var(--text-xs);
   max-width: 80%;
   line-height: 180%;
+  flex-grow: 1;
 }
 
 :not(svg) {

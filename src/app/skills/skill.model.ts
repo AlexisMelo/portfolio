@@ -19,4 +19,7 @@ export interface Skill extends Tables<'skill'> {
    * Projets utilisant cette technologie
    */
   projects: Array<Project>;
+
+  /** Localized description resolved from the translations table. */
+  localizedDescription: Tables<'translations'>;
 }
