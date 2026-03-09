@@ -43,4 +43,7 @@ export interface Project extends Tables<'project'> {
    * Illustration pour un projet
    */
   illustrations: Array<Tables<'project_illustration'>>;
+
+  /** Localized description resolved from the translations table. */
+  localizedDescription: Tables<'translations'>;
 }

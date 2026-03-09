@@ -172,6 +172,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "project_description_fkey"
+            columns: ["description"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "project_type_fkey"
             columns: ["type"]
             isOneToOne: false

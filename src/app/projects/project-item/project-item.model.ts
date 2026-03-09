@@ -17,4 +17,7 @@ export interface ProjectItem extends Tables<'project'> {
    * Skills utilisés dans le projet
    */
   project_skills: Array<ProjectSkillWithSkillDetails>;
+
+  /** Localized description resolved from the translations table. */
+  localizedDescription: Tables<'translations'>;
 }

@@ -26,7 +26,7 @@ export class SupabaseService {
   /**
    * Request to get a project with all its details
    */
-  private readonly PROJECT_REQUEST = `*,
+  private readonly PROJECT_REQUEST = `*, localizedDescription:translations!description(*),
         roles:role(*), 
         illustrations:project_illustration(*),
         project_type(*),
@@ -91,7 +91,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('project')
       .select(
-        '*, illustrations:project_illustration(*), project_skills:project_skill(*, skill:skill(*))'
+        '*, localizedDescription:translations!description(*), illustrations:project_illustration(*), project_skills:project_skill(*, skill:skill(*))'
       )
       .eq('pinned', true);
 

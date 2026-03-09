@@ -1,20 +1,18 @@
-@if (!project) {
+@if (!project()) {
   <app-loader></app-loader>
 } @else {
-  <h2>{{ project.label }}</h2>
+  <h2>{{ project().label }}</h2>
 
-  <p>
-    {{ project.description }}
-  </p>
+  <p>{{ description() }}</p>
 
   <div>
     <app-project-item-skill-list
-      [skills]="skills"></app-project-item-skill-list>
+      [skills]="skills()"></app-project-item-skill-list>
   </div>
 
-  @if (firstIllustration) {
+  @if (firstIllustration()) {
     <div class="illustration-container g-grid-item-shadow">
-      <img [src]="firstIllustration.url" [alt]="firstIllustration.alt" />
+      <img [src]="firstIllustration().url" [alt]="firstIllustration().alt" />
     </div>
   }
 }
