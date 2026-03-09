@@ -34,7 +34,7 @@ export class SupabaseService {
           *, 
           coworker(*)
         ), 
-        project_context:context(*), 
+        project_context:context(*, localizedLabel:translations!label(*), localizedDescription:translations!description(*), localizedJob:translations!job(*)),
         project_skills:project_skill(
           *,
           skill(

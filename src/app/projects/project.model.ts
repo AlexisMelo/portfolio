@@ -1,4 +1,5 @@
 import { Tables } from 'database.types';
+import { ContextWithProjects } from './context-with-projects.model';
 import { Skill } from '../skills/skill.model';
 
 interface ProjectCoworker extends Tables<'project_coworker'> {
@@ -21,7 +22,7 @@ export interface Project extends Tables<'project'> {
   /**
    * Contexte du projet
    */
-  project_context: Tables<'context'>;
+  project_context: ContextWithProjects;
 
   /**
    * Skills used in the project
