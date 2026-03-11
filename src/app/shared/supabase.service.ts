@@ -26,7 +26,7 @@ export class SupabaseService {
   /**
    * Request to get a project with all its details
    */
-  private readonly PROJECT_REQUEST = `*, localizedDescription:translations!description(*),
+  private readonly PROJECT_REQUEST = `*, localizedDescription:translations!description(*), localizedProblem:translations!problematic(*), localizedParticipation:translations!participation(*),
         roles:role(*), 
         illustrations:project_illustration(*),
         project_type(*),

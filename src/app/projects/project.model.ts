@@ -46,4 +46,10 @@ export interface Project extends Tables<'project'> {
 
   /** Localized description resolved from the translations table. */
   localizedDescription: Tables<'translations'>;
+
+  /** Localized problematic resolved from the translations table. */
+  localizedProblem: Tables<'translations'>;
+
+  /** Localized participation resolved from the translations table. */
+  localizedParticipation: Tables<'translations'>;
 }

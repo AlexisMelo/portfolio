@@ -1,33 +1,32 @@
-import { Component, inject, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Project } from '../../project.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { DomSanitizer } from '@angular/platform-browser';
+import { LanguageService } from 'src/app/shared/language.service';
 
 @Component({
   selector: 'app-project-problematic',
   imports: [TranslocoPipe],
   templateUrl: './project-problematic.component.html',
   styleUrl: './project-problematic.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectProblematicComponent extends GridItemDirective {
-  /**
-   * Projet à afficher
-   */
-  @Input({ required: true }) project!: Project;
+  /** Project to display */
+  public readonly project = input.required<Project>();
 
-  /**
-   * Sanitizer
-   */
-  private sanitizer = inject(DomSanitizer);
+  /** Language service */
+  private languageService = inject(LanguageService);
 
-  /**
-   * Problématique
-   */
-  get problematic() {
-    return this.sanitizer.bypassSecurityTrustHtml(
-      this.project.problematic ?? '...'
-    );
-  }
+  /** Problematic text in the currently active language. */
+  protected localizedProblem = computed(
+    () => this.project().localizedProblem?.[this.languageService.currentLang()]
+  );
 }

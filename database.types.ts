@@ -179,6 +179,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "project_participation_fkey"
+            columns: ["participation"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_problematic_fkey"
+            columns: ["problematic"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "project_type_fkey"
             columns: ["type"]
             isOneToOne: false
