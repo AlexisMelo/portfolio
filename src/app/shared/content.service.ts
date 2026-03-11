@@ -1,8 +1,7 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { TranslocoService } from '@jsverse/transloco';
 import { SupabaseService } from './supabase.service';
+import { LanguageService } from './language.service';
 
 /**
  * Service pour gérer le contenu configurable de l'appli
@@ -24,9 +23,9 @@ export class ContentService {
   private supabase = inject(SupabaseService);
 
   /**
-   * Transloco
+   * Language service — single source of truth for the active language
    */
-  private translocoService = inject(TranslocoService);
+  private languageService = inject(LanguageService);
 
   /**
    * Activité actuelle
@@ -34,18 +33,11 @@ export class ContentService {
   public now = signal<SafeHtml[]>([]);
 
   /**
-   * Active language as a reactive signal, updated on every language change.
-   */
-  public activeLang = toSignal(this.translocoService.langChanges$, {
-    initialValue: this.translocoService.getActiveLang(),
-  });
-
-  /**
    * Constructeur
    */
   constructor() {
     effect(() => {
-      this.activeLang(); // track language changes
+      this.languageService.currentLang(); // track language changes
       this.updateNow();
     });
   }

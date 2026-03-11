@@ -9,6 +9,8 @@ import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
 import { Language } from './language.type';
 
+type Translation = { id: string } & Record<Language, string | null>; //so the data is typed and does not throw an error later on
+
 @Injectable({
   providedIn: 'root',
 })
@@ -149,13 +151,51 @@ export class SupabaseService {
   }
 
   /**
-   * Télécharge mon CV
+   * Returns the public URLs for the CV PDF and preview image for the given locale.
+   * Reads `resume_pdf` and `resume_img` from `personal_infos`, then resolves the
+   * locale-specific URL from the linked `translations` row.
+   */
+  public async getResumeLinks(
+    locale: Language
+  ): Promise<{ pdf: string; preview: string }> {
+    const labels = ['resume_pdf', 'resume_img'];
+
+    //get translations keys from personal infos
+    const { data: personalInfos, error: infosError } = await this.client
+      .from('personal_infos')
+      .select('label, value')
+      .in('label', labels);
+
+    if (infosError) return Promise.reject(infosError);
+
+    //get links according to locale
+    const { data, error: translationsError } = await this.client
+      .from('translations')
+      .select(`id, ${locale}`)
+      .in(
+        'id',
+        personalInfos.map(i => i.value)
+      )
+      .overrideTypes<Array<Translation>, { merge: false }>();
+
+    if (translationsError || !data) return Promise.reject(translationsError);
+
+    const find = (label: string) => {
+      const key = personalInfos.find(i => i.label === label)?.value;
+      return data.find(t => t.id === key)?.[locale] ?? '';
+    };
+
+    return { pdf: find('resume_pdf'), preview: find('resume_img') };
+  }
+
+  /**
+   * Downloads an image from Supabase
    * @returns
    */
-  public async getResume(): Promise<Blob> {
+  public async getImage(link: string): Promise<Blob> {
     const { data, error } = await this.client.storage
       .from('portfolio-project')
-      .download('curriculum-vitae/CV.pdf');
+      .download(link);
 
     if (error || data === null)
       return Promise.reject('Erreur lors du téléchargement');
@@ -210,14 +250,11 @@ export class SupabaseService {
 
     const translationKeys = infos.map(info => info.value);
 
-    const { data, error: translationsError } = await this.client
+    const { data: translations, error: translationsError } = await this.client
       .from('translations')
       .select(`id, ${locale}`)
-      .in('id', translationKeys);
-
-    const translations = data as Array<
-      { id: string } & Record<Language, string | null>
-    > | null; //so the data is typed and does not throw an error later on
+      .in('id', translationKeys)
+      .overrideTypes<Array<Translation>, { merge: false }>();
 
     if (translationsError || !translations)
       return Promise.reject(translationsError);

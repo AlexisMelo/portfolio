@@ -102,10 +102,6 @@
   (click)="openResume()"
   (keyup)="openResume()"
   tabindex="0">
-  <!-- <img
-    src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/curriculum-vitae/curriculum-vitae-image.png"
-    alt="Capture d'écran de mon CV" /> -->
-
   <svg
     width="595"
     height="842"
@@ -291,10 +287,12 @@
 <div #modal id="modal-container">
   <div class="modal-background">
     <div class="modal" appOutsideClick (outsideClick)="closeResume()">
-      <img
-        class="modal-img"
-        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/curriculum-vitae/curriculum-vitae-image.png"
-        [attr.alt]="'home.resume.screenshot' | transloco" />
+      @if (resumePreviewImage.value()) {
+        <img
+          class="modal-img"
+          [src]="resumePreviewImage.value()"
+          [attr.alt]="'home.resume.screenshot' | transloco" />
+      }
     </div>
   </div>
 </div>
