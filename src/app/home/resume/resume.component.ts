@@ -1,7 +1,9 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   inject,
+  OnDestroy,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -18,14 +20,17 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
   styleUrl: './resume.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
 })
-export class ResumeComponent extends GridItemDirective {
+export class ResumeComponent
+  extends GridItemDirective
+  implements AfterViewInit, OnDestroy
+{
   /**
    * Handles database
    */
   private supabaseService = inject(SupabaseService);
 
   /**
-   * Modal containg the resume
+   * Modal containing the resume
    */
   @ViewChild('modal') modal?: ElementRef<HTMLDivElement>;
 
@@ -33,6 +38,25 @@ export class ResumeComponent extends GridItemDirective {
    * Allow DOM manipulation
    */
   private renderer = inject(Renderer2);
+
+  /**
+   * Moves the modal to <body> to avoid position:fixed being clipped
+   * by ancestor stacking contexts (e.g. position:sticky with transforms).
+   */
+  ngAfterViewInit() {
+    if (this.modal) {
+      this.renderer.appendChild(document.body, this.modal.nativeElement);
+    }
+  }
+
+  /**
+   * Removes the modal from <body> when the component is destroyed.
+   */
+  ngOnDestroy() {
+    if (this.modal?.nativeElement.parentNode === document.body) {
+      this.renderer.removeChild(document.body, this.modal.nativeElement);
+    }
+  }
 
   /**
    * Downloads the resume
