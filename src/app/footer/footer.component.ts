@@ -1,15 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { ContentService } from '../shared/content.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {
-  /**
-   * Gestion du contenu
-   */
-  public contentService = inject(ContentService);
-}
+export class FooterComponent {}

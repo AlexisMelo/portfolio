@@ -153,5 +153,8 @@
     "months": "{count, plural, =1 {1 month} other {# months}}",
     "days": "{count, plural, =1 {1 day} other {# days}}",
     "and": "and"
+  },
+  "footer": {
+    "copyright": "© 2026 - Homemade 🏠 by Alexis Melo da Silva"
   }
 }
