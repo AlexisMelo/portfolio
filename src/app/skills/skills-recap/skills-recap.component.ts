@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { RouterLink } from '@angular/router';
 import { ARCHIVES_ROUTE } from 'src/app/app.routes';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
@@ -17,7 +18,7 @@ import { Skill, SkillType } from 'src/app/skills/skill.model';
 
 @Component({
   selector: 'app-skills-recap',
-  imports: [RouterLink, MatIconModule, LoaderComponent],
+  imports: [RouterLink, MatIconModule, LoaderComponent, TranslocoPipe],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
 })

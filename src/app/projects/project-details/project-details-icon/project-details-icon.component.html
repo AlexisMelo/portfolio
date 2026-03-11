@@ -3,6 +3,6 @@
     <img
       [ngSrc]="project.icon"
       fill
-      [alt]="'Icone du projet ' + project.label" />
+      [alt]="'projectDetails.icon.alt' | transloco: { label: project.label }" />
   }
 </div>

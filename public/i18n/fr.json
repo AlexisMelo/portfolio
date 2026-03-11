@@ -3,7 +3,11 @@
     "about": "À propos",
     "projects": "Réalisations",
     "skills": "Compétences",
-    "experience": "Expérience"
+    "experience": "Expérience",
+    "avatarAlt": "Avatar",
+    "projectsIllustrationAlt": "Illustration des réalisations",
+    "skillsIllustrationAlt": "Illustration des compétences",
+    "experienceIllustrationAlt": "Illustration de l'expérience"
   },
   "home": {
     "description": {
@@ -74,11 +78,15 @@
     },
     "coworkers": {
       "solo": "Moi-même",
-      "noCoworker": "Pas de collaborateur sur ce projet !"
+      "noCoworker": "Pas de collaborateur sur ce projet !",
+      "photoAlt": "Photo de {{name}}"
     },
     "illustrations": {
       "noIllustrations": "Pas encore d'illustrations !",
       "noIllustrationsAlt": "Aucune illustration disponible"
+    },
+    "icon": {
+      "alt": "Icône du projet {{label}}"
     },
     "illustrationsDialog": {
       "previous": "Précédente",
@@ -107,6 +115,9 @@
       "title": "Continuer d'apprendre",
       "description": "Car chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre avec le temps, et reste ouvert aux propositions !",
       "skillsTitle": "Montée en compétence"
+    },
+    "recap": {
+      "iconAlt": "Icône de {{label}}"
     },
     "skillHighlight": {
       "projects": "{count, plural, =1 {1 réalisation} other {# réalisations}}"

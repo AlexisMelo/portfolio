@@ -29,7 +29,7 @@
             ? 'photos/avatar-neutral-dark.png'
             : 'photos/avatar-neutral.png'
         "
-        alt="Avatar" />
+        [attr.alt]="'navbar.avatarAlt' | transloco" />
     </div>
   </a>
 
@@ -42,7 +42,7 @@
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
-        alt="Projects illustration" />
+        [attr.alt]="'navbar.projectsIllustrationAlt' | transloco" />
     </div>
   </a>
 
@@ -55,7 +55,7 @@
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
-        alt="Skills illustration" />
+        [attr.alt]="'navbar.skillsIllustrationAlt' | transloco" />
     </div>
   </a>
 
@@ -68,7 +68,7 @@
     <div class="img-container">
       <img
         src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
-        alt="Experience illustration" />
+        [attr.alt]="'navbar.experienceIllustrationAlt' | transloco" />
     </div>
   </a>
 </ng-template>

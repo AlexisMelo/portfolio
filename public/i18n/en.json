@@ -3,7 +3,11 @@
     "about": "About",
     "projects": "Projects",
     "skills": "Skills",
-    "experience": "Experience"
+    "experience": "Experience",
+    "avatarAlt": "Avatar",
+    "projectsIllustrationAlt": "Projects illustration",
+    "skillsIllustrationAlt": "Skills illustration",
+    "experienceIllustrationAlt": "Experience illustration"
   },
   "home": {
     "description": {
@@ -74,11 +78,15 @@
     },
     "coworkers": {
       "solo": "Me, myself and I",
-      "noCoworker": "No collaborator on this project !"
+      "noCoworker": "No collaborator on this project !",
+      "photoAlt": "Photo of {{name}}"
     },
     "illustrations": {
       "noIllustrations": "No illustrations yet!",
       "noIllustrationsAlt": "No illustration available"
+    },
+    "icon": {
+      "alt": "Icon of {{label}}"
     },
     "illustrationsDialog": {
       "previous": "Previous",
@@ -107,6 +115,9 @@
       "title": "Keep learning !",
       "description": "Because each project comes with its constraints and requirements. I keep learning over time, and remain open to new proposals !",
       "skillsTitle": "Leveling up"
+    },
+    "recap": {
+      "iconAlt": "Icon of {{label}}"
     },
     "skillHighlight": {
       "projects": "{count, plural, =1 {1 achievement} other {# achievements}}"

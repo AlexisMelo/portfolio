@@ -1,5 +1,7 @@
 <div class="avatar-container">
-  <img [src]="image" [alt]="'Photo de ' + name" />
+  <img
+    [src]="image"
+    [alt]="'projectDetails.coworkers.photoAlt' | transloco: { name: name }" />
 </div>
 
 <h3>

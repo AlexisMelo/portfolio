@@ -56,7 +56,11 @@
                 } @else if (skill.currently_learning) {
                   <mat-icon class="small">school</mat-icon>
                 }
-                <img [src]="skill.icon" [alt]="'Icon of ' + skill.label" />
+                <img
+                  [src]="skill.icon"
+                  [alt]="
+                    'skills.recap.iconAlt' | transloco: { label: skill.label }
+                  " />
                 <p>{{ skill.label }}</p>
               </div>
             }

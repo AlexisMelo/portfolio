@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ActionButtonComponent } from '../../../../home/action-button/action-button.component';
 
 @Component({
   selector: 'app-coworker-info',
-  imports: [ActionButtonComponent],
+  imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './coworker-info.component.html',
   styleUrl: './coworker-info.component.scss',
 })
