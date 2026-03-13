@@ -35,6 +35,8 @@ export class ThemeService implements OnDestroy {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme !== null) {
       this.theme.next(storedTheme as Theme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.theme.next('dark-mode');
     }
   }
 
