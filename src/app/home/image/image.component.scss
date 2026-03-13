@@ -17,10 +17,31 @@ img {
   }
 }
 
-#sun {
+#sun,
+#moon {
   position: absolute;
-  left: 0;
-  top: 0;
+}
+
+#sun {
+  top: -2rem;
+  left: -2rem;
+
+  @include responsive.responsive('medium') {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+#moon {
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: scale(0.8);
+
+  @include responsive.responsive('medium') {
+    top: 1rem;
+    left: 1rem;
+    transform: scale(1);
+  }
 }
 
 #tree {
