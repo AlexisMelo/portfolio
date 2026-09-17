@@ -1,11 +1,11 @@
 import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { EXPERIENCE_ROUTE } from 'src/app/app.routes';
+import { ContentService } from 'src/app/shared/content.service';
 import { LanguageService } from 'src/app/shared/language.service';
+import { Language } from 'src/app/shared/language.type';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { DotComponent } from '../../shared/dot/dot.component';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
-import { Language } from 'src/app/shared/language.type';
 
 @Component({
   selector: 'app-availability',
@@ -16,9 +16,9 @@ import { Language } from 'src/app/shared/language.type';
 })
 export class AvailabilityComponent extends GridItemDirective {
   /**
-   * Handle routing
+   * Service containing my infos
    */
-  private router = inject(Router);
+  private contentService = inject(ContentService);
 
   /**
    * Database service
@@ -53,7 +53,7 @@ export class AvailabilityComponent extends GridItemDirective {
 
   /** Redirect to experience page */
   @HostListener('click') link() {
-    this.router.navigate([EXPERIENCE_ROUTE]);
+    window.open('mailto:' + this.contentService.mail);
   }
 
   /** Fetches availability text from Supabase and updates the signals. */
