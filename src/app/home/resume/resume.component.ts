@@ -56,19 +56,22 @@ export class ResumeComponent
   /**
    * Public URL of the CV PDF for the active language
    */
-  public resumePdfUrl = linkedSignal(() => this.resumeLinks.value()?.pdf ?? '');
+  public resumePdfUrl = linkedSignal(() =>
+    this.resumeLinks.hasValue() ? this.resumeLinks.value().pdf : ''
+  );
 
   /**
    * Fetches the actual preview image blob when the preview path changes.
    * Creates a blob URL so the image is served from memory rather than a raw storage path.
+   * Stays idle until the resume links provide a preview path.
    */
   public resumePreviewImage = resource({
-    params: () => ({ links: this.resumeLinks.value() }),
+    params: () =>
+      this.resumeLinks.hasValue()
+        ? this.resumeLinks.value().preview
+        : undefined,
     loader: async ({ params }) => {
-      if (!params.links) return Promise.reject('No resume links available');
-      const link = params.links.preview;
-      if (!link) return Promise.reject('No preview link available');
-      const blob = await this.supabaseService.getImage(link);
+      const blob = await this.supabaseService.getImage(params);
       return URL.createObjectURL(blob);
     },
   });
@@ -95,8 +98,9 @@ export class ResumeComponent
     if (this.modal?.nativeElement.parentNode === document.body) {
       this.renderer.removeChild(document.body, this.modal.nativeElement);
     }
-    const blobUrl = this.resumePreviewImage.value();
-    if (blobUrl) URL.revokeObjectURL(blobUrl);
+    if (this.resumePreviewImage.hasValue()) {
+      URL.revokeObjectURL(this.resumePreviewImage.value());
+    }
   }
 
   /**
