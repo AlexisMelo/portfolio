@@ -41,5 +41,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Claude Code: Angular skills (npx skills add) and Angular CLI MCP server
+/.claude/skills/
+/skills-lock.json
+/.mcp.json
+
 # A enlever car parfois bosch artifactory dans les dépendances = echec CI/CD. A rajouter si projet plus utilisé à Bosch
 package-lock.json

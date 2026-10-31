@@ -1,59 +1,38 @@
-You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
+# Portfolio
 
-## TypeScript Best Practices
+Personal portfolio website of Alexis Melo, a freelance fullstack web developer specialised in Angular. It presents the developer's profile, projects, skills and work experience to prospective clients, and its main goal is getting them to make contact: mail, availability, resume download, "your project here" tile.
 
-- Use strict type checking
-- Prefer type inference when the type is obvious
-- Avoid the `any` type; use `unknown` when type is uncertain
-- Write short english documentation when writing new functions and adding fields to a component
+## Angular skill and MCP
 
-## Angular Best Practices
+- The `angular-developer` skill is the reference for every Angular decision. Load it before writing, changing or reviewing Angular code. When it conflicts with anything in this file, the skill wins.
+- Use the `angular-cli` MCP server:
+  - `search_documentation` to check Angular APIs against angular.dev instead of relying on memory.
+  - `run_target` for the build, test and lint runs the skill requires, and `devserver_start` + `devserver_wait_for_build` to check a change in the dev server.
 
-- Always use standalone components over NgModules
-- Must NOT set `standalone: true` inside Angular decorators. It's the default in Angular v20+.
-- Use signals for state management
-- Implement lazy loading for feature routes
-- Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
-- Use `NgOptimizedImage` for all static images.
-  - `NgOptimizedImage` does not work for inline base64 images.
+## Domain
 
-## Accessibility Requirements
+- Routes ([app.routes.ts](src/app/app.routes.ts)):
+  - `/`: about page (description, availability, resume, map, "now" items, contact links).
+  - `/projects`: pinned projects, ongoing and Angular project counts, link to the archives.
+  - `/projects/archives`: every project, filterable by status, context, skill and free text, grouped by end year. Filters are synced to query params; state lives in `ArchivesService`, provided by the component.
+  - `/projects/:url`: project details (context, problem, contribution, skills, coworkers, illustrations, live link, source code).
+  - `/skills`: frontend, backend and general sections, with favourite skills highlighted.
+  - `/experience`: professional contexts with their projects.
+- Content is not in the codebase. It all comes from Supabase through `SupabaseService` ([supabase.service.ts](src/app/shared/supabase.service.ts)) and arrives after the first render. Tables: `project`, `context`, `skill`, `project_skill`, `personal_infos`, `translations`; images are in the `portfolio-project` storage bucket. DB types are in `database.types.ts`, regenerated with `npm run build-supabase-types`.
 
-- It MUST pass all AXE checks.
-- It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+## Project conventions
 
-### Components
+- Layout: every page is a `.g-grid` of tiles; global `g-` classes are in [styles.scss](src/styles/styles.scss). A tile extends `GridItemDirective` or uses it as a host directive, which adds the `g-grid-item` class and a fade-in. Page grids use the `@gridItemAnimation` trigger ([animations.ts](src/app/shared/animations.ts)) for a staggered entrance, which only covers tiles present when the grid first renders, not tiles rendered once Supabase data arrives.
+- i18n: Transloco with `en` (default) and `fr`. Every UI string, including alt texts and ARIA labels, needs a key in both [en.json](public/i18n/en.json) and [fr.json](public/i18n/fr.json). Database content is translated through the `translations` table (`localizedLabel`, `localizedDescription`, ...), picked with `LanguageService.currentLang()`.
+- Theming: `ThemeService` puts `dark-mode` or `light-mode` on `<body>`. Theme colours are in [dark-mode.scss](src/styles/dark-mode.scss) and [light-mode.scss](src/styles/light-mode.scss); a new colour needs a value in both.
+- Unit tests run on Karma + Jasmine (`ng test`), not Vitest.
+- Pushing to `main` deploys to production: GitHub Actions builds the Docker image (nginx serving the browser build) and redeploys it on the VPS.
 
-- Keep components small and focused on a single responsibility
-- Use `input()` and `output()` functions instead of decorators
-- Use `computed()` for derived state
-- Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
-- Prefer inline templates for small components
-- Prefer Reactive forms instead of Template-driven ones
-- Do NOT use `ngClass`, use `class` bindings instead
-- Do NOT use `ngStyle`, use `style` bindings instead
-- When using external templates/styles, use paths relative to the component TS file.
+## Rules the skill does not cover
 
-## State Management
-
-- Use signals for local component state
-- Use `computed()` for derived state
-- Keep state transformations pure and predictable
-- Do NOT use `mutate` on signals, use `update` or `set` instead
-
-## Templates
-
-- Keep templates simple and avoid complex logic
-- Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use the async pipe to handle observables
-- Do not assume globals like (`new Date()`) are available.
-
-## Services
-
-- Design services around a single responsibility
-- Use the `providedIn: 'root'` option for singleton services
-- Use the `inject()` function instead of constructor injection
-
-## Behaviour
-
-- use your own tools to edit files. Do not rely on external services, such as Node or python3.
+- Accessibility: pages MUST pass all AXE checks and meet WCAG AA, including focus management, colour contrast in both themes and ARIA attributes.
+- Set `changeDetection: ChangeDetectionStrategy.OnPush` on new components.
+- Use `NgOptimizedImage` for static images (it does not work for inline base64 images).
+- Avoid `any`; use `unknown` when the type is uncertain.
+- Write short English documentation for new functions and new component fields.
+- Edit files with your own tools, not Node or Python scripts. Angular CLI commands the skill asks for (`ng generate`, `ng build`) are fine.
