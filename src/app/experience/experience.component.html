@@ -1,5 +1,8 @@
 <div class="g-grid-container">
-  <div class="g-grid" @gridItemAnimation>
+  <div
+    class="g-grid"
+    @gridItemAnimation
+    [@asyncGridItemAnimation]="baseContexts().length">
     <app-resume></app-resume>
 
     <app-availability></app-availability>

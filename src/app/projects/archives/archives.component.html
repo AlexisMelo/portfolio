@@ -1,5 +1,8 @@
 <div class="g-grid-container">
-  <div class="g-grid" @gridItemAnimation>
+  <div
+    class="g-grid"
+    @gridItemAnimation
+    [@replayGridItemAnimation]="resultsKey()">
     <app-skill-section-description
       [mainText]="'archives.heading' | transloco"
       [secondaryText]="
