@@ -1,9 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import {
-  gridItemAnimation,
-  replayGridItemAnimation,
-} from 'src/app/shared/animations';
+import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SkillSectionDescriptionComponent } from '../../skills/skill-section-description/skill-section-description.component';
 import { OrderComponent } from '../order/order.component';
@@ -26,14 +23,11 @@ import { StatusFilteringComponent } from './status-filtering/status-filtering.co
     OrderComponent,
     KeyHeaderComponent,
     TranslocoPipe,
+    GridEntranceDirective,
   ],
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.scss',
   providers: [IsSelectedPipe, StatusPipe, ArchivesService],
-  animations: [
-    gridItemAnimation,
-    replayGridItemAnimation('app-key-header, app-project-item-condensed'),
-  ],
 })
 export class ArchivesComponent {
   /**

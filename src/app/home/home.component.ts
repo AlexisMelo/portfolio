@@ -11,7 +11,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { ImageComponent } from './image/image.component';
 import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
-import { gridItemAnimation } from '../shared/animations';
+import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
 @Component({
@@ -29,10 +29,10 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
     ImageComponent,
     FreelanceSinceComponent,
     GridItemDirective,
+    GridEntranceDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  animations: [gridItemAnimation],
 })
 export class HomeComponent {
   /**

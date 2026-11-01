@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
-import { gridItemAnimation } from '../shared/animations';
+import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
 import { ThemeService } from '../shared/theme.service';
@@ -28,10 +28,10 @@ import { SkillsSection } from './skills-section.model';
     FavoritesComponent,
     AllComponent,
     TranslocoPipe,
+    GridEntranceDirective,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
-  animations: [gridItemAnimation],
 })
 export class SkillsComponent implements OnInit {
   /**

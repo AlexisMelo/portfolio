@@ -1,13 +1,5 @@
-import {
-  animate,
-  style,
-  transition,
-  trigger,
-  AnimationEvent,
-  state,
-} from '@angular/animations';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, ElementRef, HostBinding, inject } from '@angular/core';
+import { Component, ElementRef, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ProjectIllustrationsDialogData } from './project-illustrations-dialog-data.model';
@@ -17,39 +9,17 @@ import { ProjectIllustrationsDialogData } from './project-illustrations-dialog-d
   imports: [MatIconModule, TranslocoPipe],
   templateUrl: './project-illustrations-dialog.component.html',
   styleUrl: './project-illustrations-dialog.component.scss',
-  animations: [
-    trigger('dialogAnim', [
-      state(
-        'enter',
-        style({ opacity: 1, transform: 'scale(1) translateY(0)' })
-      ),
-      state(
-        'leave',
-        style({ opacity: 0, transform: 'scale(0.8) translateY(1000px)' })
-      ),
-      transition('void => enter', [
-        style({ opacity: 0, transform: 'scale(0.8) translateY(1000px)' }),
-        animate('500ms cubic-bezier(0.165, 0.84, 0.44, 1)'),
-      ]),
-      transition('enter => leave', [
-        animate('300ms cubic-bezier(0.165, 0.84, 0.44, 1)'),
-      ]),
-    ]),
-  ],
   host: {
-    '(@dialogAnim.done)': 'onAnimationDone($event)',
+    'animate.enter': 'dialog-enter',
+    '[class.dialog-leave]': 'leaving()',
+    '(animationend)': 'onAnimationEnd($event)',
   },
 })
 export class ProjectIllustrationsDialogComponent {
   /**
-   * Bind a class to the host
+   * Whether the dialog is playing its leave animation, after which it closes
    */
-  @HostBinding('@dialogAnim') anim = true;
-
-  /**
-   * State of the animation
-   */
-  @HostBinding('@dialogAnim') animationState: 'enter' | 'leave' = 'enter';
+  protected readonly leaving = signal(false);
 
   /**
    * Data with illustrations
@@ -109,7 +79,7 @@ export class ProjectIllustrationsDialogComponent {
    * Closes dialog
    */
   public closeDialog() {
-    this.animationState = 'leave';
+    this.leaving.set(true);
 
     const backdrop = document.querySelector('.custom-backdrop');
     if (backdrop) {
@@ -118,10 +88,12 @@ export class ProjectIllustrationsDialogComponent {
   }
 
   /**
-   * Handle animation once its over
+   * Closes the dialog once its leave animation is over.
+   * The keyframes name is scoped by the component styles, hence the check on leaving() instead.
+   * @param event animationend event, possibly from an animation inside the dialog
    */
-  onAnimationDone(event: AnimationEvent) {
-    if (event.toState === 'leave') {
+  protected onAnimationEnd(event: AnimationEvent) {
+    if (event.target === this.elementRef.nativeElement && this.leaving()) {
       this.dialogRef.close();
     }
   }

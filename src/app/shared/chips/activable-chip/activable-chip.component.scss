@@ -1,5 +1,17 @@
 @use '../suggestion-chip/suggestion-chip.component.scss' as suggestion;
 
+@keyframes icon-enter {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes icon-leave {
+  to {
+    width: 0;
+  }
+}
+
 :host {
   cursor: pointer;
   border-color: var(--action-button-border-color);
@@ -15,6 +27,15 @@
     font-size: 1rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+  }
+
+  // the check icon widens when the chip is activated and narrows when it is deactivated
+  .icon-enter {
+    animation: icon-enter 100ms linear;
+  }
+
+  .icon-leave {
+    animation: icon-leave 100ms linear forwards;
   }
 
   &.active {

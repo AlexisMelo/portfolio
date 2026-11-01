@@ -1,8 +1,9 @@
 <div class="g-grid-container">
   <div
     class="g-grid"
-    @gridItemAnimation
-    [@replayGridItemAnimation]="resultsKey()">
+    appGridEntrance
+    [replayKey]="resultsKey()"
+    replaySelector="app-key-header, app-project-item-condensed">
     <app-skill-section-description
       [mainText]="'archives.heading' | transloco"
       [secondaryText]="

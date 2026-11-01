@@ -1,8 +1,5 @@
 <div class="g-grid-container">
-  <div
-    class="g-grid"
-    @gridItemAnimation
-    [@asyncGridItemAnimation]="baseContexts().length">
+  <div class="g-grid" appGridEntrance staggerAddedTiles>
     <app-resume></app-resume>
 
     <app-availability></app-availability>

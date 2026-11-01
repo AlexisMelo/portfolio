@@ -167,6 +167,34 @@ h3 {
   width: 100%;
 }
 
+/* Tile entrances */
+
+// A tile fades in when it enters the DOM (FadeInDirective, through GridItemDirective)
+.g-fade-in {
+  animation: g-fade-in 500ms linear;
+}
+
+@keyframes g-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+// In a page grid, the tiles enter one after another instead (GridEntranceDirective sets the class and the index).
+// More specific than .g-fade-in, so it replaces the fade instead of adding to it.
+.g-grid-entrance > .g-grid-item-stagger {
+  animation: g-grid-item-stagger 200ms ease-in backwards;
+  animation-delay: calc(var(--g-stagger-index, 0) * 50ms);
+}
+
+@keyframes g-grid-item-stagger {
+  from {
+    opacity: 0.1;
+    transform: translateY(80px);
+  }
+}
+
 /* Others */
 
 .g-grid-item {

@@ -1,4 +1,6 @@
 @if (active) {
-  <mat-icon @matIcon>check</mat-icon>
+  <mat-icon animate.enter="icon-enter" animate.leave="icon-leave"
+    >check</mat-icon
+  >
 }
 <span><ng-content></ng-content></span>

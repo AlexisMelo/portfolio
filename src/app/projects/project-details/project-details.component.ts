@@ -3,7 +3,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { GithubComponent } from 'src/app/home/github/github.component';
-import { gridItemAnimation } from 'src/app/shared/animations';
+import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillsRecapComponent } from 'src/app/skills/skills-recap/skills-recap.component';
@@ -32,10 +32,10 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
     OpenLiveComponent,
     SkillsRecapComponent,
     GridItemDirective,
+    GridEntranceDirective,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',
-  animations: [gridItemAnimation],
 })
 export class ProjectDetailsComponent {
   /**

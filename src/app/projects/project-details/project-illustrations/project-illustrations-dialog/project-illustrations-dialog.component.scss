@@ -3,6 +3,30 @@
   position: relative;
 }
 
+// set by animate.enter while the dialog opens
+:host(.dialog-enter) {
+  animation: dialog-enter 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+// set by closeDialog(), the dialog closes once it ends
+:host(.dialog-leave) {
+  animation: dialog-leave 300ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(1000px);
+  }
+}
+
+@keyframes dialog-leave {
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateY(1000px);
+  }
+}
+
 .carousel-modal {
   .carousel-items-modal {
     display: flex;

@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
@@ -22,7 +21,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
-    provideAnimations(),
     // Every <mat-icon> uses the Material Symbols subset loaded in index.html
     provideAppInitializer(() => {
       inject(MatIconRegistry).setDefaultFontSetClass(

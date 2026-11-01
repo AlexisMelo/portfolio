@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GithubComponent } from '../home/github/github.component';
-import { gridItemAnimation } from '../shared/animations';
 import { ContentService } from '../shared/content.service';
+import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
 import { AllComponent } from './all/all.component';
@@ -13,7 +13,6 @@ import { WithSkillComponent } from './with-skill/with-skill.component';
 import { YourProjectComponent } from './your-project/your-project.component';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
-//animation : https://sergeygultyayev.medium.com/animations-in-angular-756e1d59e385
 @Component({
   selector: 'app-projects',
   imports: [
@@ -27,10 +26,10 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
     YourProjectComponent,
     WithSkillComponent,
     GridItemDirective,
+    GridEntranceDirective,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
-  animations: [gridItemAnimation],
 })
 export class ProjectsComponent implements OnInit {
   /**

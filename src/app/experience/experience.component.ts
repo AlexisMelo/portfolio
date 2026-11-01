@@ -4,10 +4,7 @@ import { AvailabilityComponent } from '../home/availability/availability.compone
 import { ResumeComponent } from '../home/resume/resume.component';
 import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
-import {
-  asyncGridItemAnimation,
-  gridItemAnimation,
-} from '../shared/animations';
+import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 import { LanguageService } from '../shared/language.service';
 import { SupabaseService } from '../shared/supabase.service';
@@ -25,10 +22,10 @@ import { ExperienceProjectsComponent } from './experience-projects/experience-pr
     ExperienceDescriptionComponent,
     GridItemDirective,
     AvailabilityComponent,
+    GridEntranceDirective,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',
-  animations: [gridItemAnimation, asyncGridItemAnimation],
 })
 export class ExperienceComponent {
   /**
