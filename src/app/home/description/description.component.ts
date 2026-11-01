@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { Router } from '@angular/router';
-import { PROJECTS_ROUTE } from 'src/app/app.routes';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 
 @Component({
   selector: 'app-description',

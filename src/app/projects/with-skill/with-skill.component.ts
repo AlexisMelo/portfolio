@@ -1,7 +1,7 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-websites.component';

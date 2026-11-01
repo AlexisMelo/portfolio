@@ -20,7 +20,9 @@ app-mail {
   }
 }
 
-app-map {
+// the placeholder takes the map's place until Leaflet is loaded
+app-map,
+.map-placeholder {
   grid-column: 3 / 5;
   grid-row: 4 / 6;
 

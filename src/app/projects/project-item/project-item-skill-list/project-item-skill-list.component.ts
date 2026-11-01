@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Tables } from 'database.types';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 
 @Component({
   selector: 'app-project-item-skill-list',

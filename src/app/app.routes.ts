@@ -1,20 +1,12 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ArchivesComponent } from './projects/archives/archives.component';
-import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { SkillsComponent } from './skills/skills.component';
-import { ExperienceComponent } from './experience/experience.component';
+import {
+  RELATIVE_ARCHIVES_ROUTE,
+  RELATIVE_EXPERIENCE_ROUTE,
+  RELATIVE_PROJECTS_ROUTE,
+} from './route-paths';
 
-const RELATIVE_ARCHIVES_ROUTE = 'projects/archives';
-export const ARCHIVES_ROUTE = '/' + RELATIVE_ARCHIVES_ROUTE;
-
-const RELATIVE_EXPERIENCE_ROUTE = 'experience';
-export const EXPERIENCE_ROUTE = '/' + RELATIVE_EXPERIENCE_ROUTE;
-
-const RELATIVE_PROJECTS_ROUTE = 'projects';
-export const PROJECTS_ROUTE = '/' + RELATIVE_PROJECTS_ROUTE;
-
+// The landing page is eager, the other pages are loaded on navigation
 export const routes: Routes = [
   {
     path: '',
@@ -22,23 +14,34 @@ export const routes: Routes = [
   },
   {
     path: RELATIVE_PROJECTS_ROUTE,
-    component: ProjectsComponent,
+    loadComponent: () =>
+      import('./projects/projects.component').then(m => m.ProjectsComponent),
   },
   {
     path: RELATIVE_ARCHIVES_ROUTE,
-    component: ArchivesComponent,
+    loadComponent: () =>
+      import('./projects/archives/archives.component').then(
+        m => m.ArchivesComponent
+      ),
   },
   {
     path: 'skills',
-    component: SkillsComponent,
+    loadComponent: () =>
+      import('./skills/skills.component').then(m => m.SkillsComponent),
   },
   {
     path: RELATIVE_EXPERIENCE_ROUTE,
-    component: ExperienceComponent,
+    loadComponent: () =>
+      import('./experience/experience.component').then(
+        m => m.ExperienceComponent
+      ),
   },
   {
     path: RELATIVE_PROJECTS_ROUTE + '/:url',
-    component: ProjectDetailsComponent,
+    loadComponent: () =>
+      import('./projects/project-details/project-details.component').then(
+        m => m.ProjectDetailsComponent
+      ),
   },
   {
     path: 'now',

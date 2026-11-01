@@ -8,7 +8,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { MosaiqueWebsitesComponent } from 'src/app/projects/mosaique-websites/mosaique-websites.component';

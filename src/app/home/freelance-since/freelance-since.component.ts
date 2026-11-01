@@ -2,7 +2,7 @@ import { Component, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Router } from '@angular/router';
-import { EXPERIENCE_ROUTE } from 'src/app/app.routes';
+import { EXPERIENCE_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 @Component({

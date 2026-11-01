@@ -2,7 +2,7 @@ import { KeyValuePipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';

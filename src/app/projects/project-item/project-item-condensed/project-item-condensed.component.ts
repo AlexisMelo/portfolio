@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { PROJECTS_ROUTE } from 'src/app/app.routes';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { Project } from '../../project.model';

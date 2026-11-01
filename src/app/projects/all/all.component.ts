@@ -2,7 +2,7 @@ import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/app.routes';
+import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Project } from '../project.model';
