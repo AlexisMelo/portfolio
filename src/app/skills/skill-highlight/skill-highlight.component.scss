@@ -24,6 +24,7 @@
   &:hover {
     mat-icon {
       animation: pulse 1s linear infinite;
+      font-variation-settings: 'FILL' 0;
     }
   }
 }

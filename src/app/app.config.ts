@@ -1,10 +1,13 @@
 import { DEFAULT_DIALOG_CONFIG } from '@angular/cdk/dialog';
 import {
   ApplicationConfig,
+  inject,
   isDevMode,
+  provideAppInitializer,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { MatIconRegistry } from '@angular/material/icon';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -20,6 +23,13 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
     provideAnimations(),
+    // Every <mat-icon> uses the Material Symbols subset loaded in index.html
+    provideAppInitializer(() => {
+      inject(MatIconRegistry).setDefaultFontSetClass(
+        'material-symbols-outlined',
+        'mat-ligature-font'
+      );
+    }),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',

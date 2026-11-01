@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -17,7 +16,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-skill-highlight',
-  imports: [MatIconModule, NgClass, LoaderComponent, TranslocoPipe],
+  imports: [MatIconModule, LoaderComponent, TranslocoPipe],
   templateUrl: './skill-highlight.component.html',
   styleUrl: './skill-highlight.component.scss',
   host: { class: 'g-grid-item-start-aligned' },
