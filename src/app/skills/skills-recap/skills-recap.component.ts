@@ -52,7 +52,7 @@ export class SkillsRecapComponent
   /**
    * Stockage pour l'interval de l'autoslide
    */
-  private autoSlideInterval?: NodeJS.Timeout;
+  private autoSlideInterval?: ReturnType<typeof setInterval>;
 
   /**
    * Skills grouped by type

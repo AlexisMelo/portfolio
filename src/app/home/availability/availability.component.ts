@@ -1,5 +1,4 @@
 import { Component, effect, HostListener, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
 import { ContentService } from 'src/app/shared/content.service';
 import { LanguageService } from 'src/app/shared/language.service';
 import { Language } from 'src/app/shared/language.type';

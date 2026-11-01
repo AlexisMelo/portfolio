@@ -28,6 +28,8 @@ export class ProjectParticipationComponent extends GridItemDirective {
   /** Participation text in the currently active language. */
   protected localizedParticipation = computed(
     () =>
-      this.project().localizedParticipation?.[this.languageService.currentLang()]
+      this.project().localizedParticipation?.[
+        this.languageService.currentLang()
+      ]
   );
 }

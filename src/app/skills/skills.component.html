@@ -27,7 +27,9 @@
       <app-skill-section-description
         [class]="section.id"
         [mainText]="section.heading | transloco"
-        [secondaryText]="section.description | transloco"></app-skill-section-description>
+        [secondaryText]="
+          section.description | transloco
+        "></app-skill-section-description>
 
       <app-skills-recap
         [class]="section.id"

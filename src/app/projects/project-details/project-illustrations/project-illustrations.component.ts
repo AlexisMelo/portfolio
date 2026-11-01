@@ -49,7 +49,7 @@ export class ProjectIllustrationsComponent
   /**
    * Stockage pour l'interval de l'autoslide
    */
-  private autoSlideInterval?: NodeJS.Timeout;
+  private autoSlideInterval?: ReturnType<typeof setInterval>;
 
   /**
    * Référence à l'élément du modal

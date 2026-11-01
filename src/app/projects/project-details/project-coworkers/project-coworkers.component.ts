@@ -40,7 +40,7 @@ export class ProjectCoworkersComponent
   /**
    * Stockage pour l'interval de l'autoslide
    */
-  private autoSlideInterval?: NodeJS.Timeout;
+  private autoSlideInterval?: ReturnType<typeof setInterval>;
 
   /**
    * Affiche la slide voulue
