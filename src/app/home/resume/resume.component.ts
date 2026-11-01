@@ -10,6 +10,7 @@ import {
   resource,
   ViewChild,
 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { LanguageService } from '../../shared/language.service';
@@ -19,7 +20,12 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
 
 @Component({
   selector: 'app-resume',
-  imports: [ActionButtonComponent, OutsideClickDirective, TranslocoPipe],
+  imports: [
+    ActionButtonComponent,
+    NgOptimizedImage,
+    OutsideClickDirective,
+    TranslocoPipe,
+  ],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

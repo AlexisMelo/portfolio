@@ -29,6 +29,7 @@
     },
     "resume": {
       "download": "Download",
+      "open": "Open a preview of my CV",
       "screenshot": "Screenshot of my CV"
     }
   },

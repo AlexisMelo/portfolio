@@ -29,6 +29,7 @@
     },
     "resume": {
       "download": "Télécharger",
+      "open": "Ouvrir un aperçu de mon CV",
       "screenshot": "Capture d'écran de mon CV"
     }
   },
