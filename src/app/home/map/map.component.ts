@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -13,7 +14,7 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
 
 @Component({
   selector: 'app-map',
-  imports: [ActionButtonComponent],
+  imports: [ActionButtonComponent, NgOptimizedImage],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
 })

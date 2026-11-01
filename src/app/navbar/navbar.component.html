@@ -24,11 +24,13 @@
     ><h2>{{ 'navbar.about' | transloco }}</h2>
     <div class="img-container">
       <img
-        [src]="
+        [ngSrc]="
           themeService.isDarkMode
-            ? 'photos/avatar-neutral-dark.png'
-            : 'photos/avatar-neutral.png'
+            ? 'photos/avatar-neutral-dark.webp'
+            : 'photos/avatar-neutral.webp'
         "
+        width="112"
+        height="98"
         [attr.alt]="'navbar.avatarAlt' | transloco" />
     </div>
   </a>
@@ -41,7 +43,9 @@
     ><h2>{{ 'navbar.projects' | transloco }}</h2>
     <div class="img-container">
       <img
-        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
+        ngSrc="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/projects.svg"
+        width="79"
+        height="48"
         [attr.alt]="'navbar.projectsIllustrationAlt' | transloco" />
     </div>
   </a>
@@ -54,7 +58,9 @@
     ><h2>{{ 'navbar.skills' | transloco }}</h2>
     <div class="img-container">
       <img
-        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
+        ngSrc="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/skills.svg"
+        width="59"
+        height="59"
         [attr.alt]="'navbar.skillsIllustrationAlt' | transloco" />
     </div>
   </a>
@@ -67,7 +73,9 @@
     ><h2>{{ 'navbar.experience' | transloco }}</h2>
     <div class="img-container">
       <img
-        src="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
+        ngSrc="https://tgolpzoiiupkeshlgcpq.supabase.co/storage/v1/object/public/portfolio-project/illustrations/experience.svg"
+        width="48"
+        height="48"
         [attr.alt]="'navbar.experienceIllustrationAlt' | transloco" />
     </div>
   </a>

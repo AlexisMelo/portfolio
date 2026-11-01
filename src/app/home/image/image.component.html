@@ -139,4 +139,10 @@
     stroke-linecap="round" />
 </svg>
 
-<img [src]="'photos/avatar-bust-arms-crossed.png'" alt="" />
+<!-- LCP image on mobile: priority, and preloaded in index.html -->
+<img
+  ngSrc="photos/avatar-bust-arms-crossed.webp"
+  width="200"
+  height="276"
+  priority
+  alt="" />

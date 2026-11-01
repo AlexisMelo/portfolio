@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
 import {
   Component,
@@ -31,6 +31,7 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
     ThemeSelectorComponent,
     LanguageSelectorComponent,
     NgTemplateOutlet,
+    NgOptimizedImage,
     TranslocoPipe,
   ],
   templateUrl: './navbar.component.html',
