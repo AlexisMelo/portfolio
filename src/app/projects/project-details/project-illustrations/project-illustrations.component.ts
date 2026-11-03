@@ -1,4 +1,5 @@
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { NgOptimizedImage } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -23,7 +24,13 @@ import { Tables } from 'database.types';
  */
 @Component({
   selector: 'app-project-illustrations',
-  imports: [ActionButtonComponent, MatIconModule, DialogModule, TranslocoPipe],
+  imports: [
+    ActionButtonComponent,
+    MatIconModule,
+    DialogModule,
+    TranslocoPipe,
+    NgOptimizedImage,
+  ],
   templateUrl: './project-illustrations.component.html',
   styleUrl: './project-illustrations.component.scss',
 })

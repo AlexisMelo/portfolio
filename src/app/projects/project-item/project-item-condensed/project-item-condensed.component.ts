@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { ProjectItemSkillListComponent } from '../project-item-skill-list/projec
 
 @Component({
   selector: 'app-project-item-condensed',
-  imports: [MatIconModule, ProjectItemSkillListComponent],
+  imports: [MatIconModule, ProjectItemSkillListComponent, NgOptimizedImage],
   templateUrl: './project-item-condensed.component.html',
   styleUrl: './project-item-condensed.component.scss',
   host: {

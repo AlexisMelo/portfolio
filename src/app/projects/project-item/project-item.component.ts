@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PROJECTS_ROUTE } from 'src/app/route-paths';
@@ -9,7 +10,7 @@ import { ProjectItem } from './project-item.model';
 
 @Component({
   selector: 'app-project-item',
-  imports: [ProjectItemSkillListComponent, LoaderComponent],
+  imports: [ProjectItemSkillListComponent, LoaderComponent, NgOptimizedImage],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
   host: {
@@ -23,6 +24,10 @@ export class ProjectItemComponent extends GridItemDirective {
    */
   public project = input.required<ProjectItem>();
 
+  /** Loads the illustration first, for the tile likely to be the LCP element. */
+  public priority = input(false);
+
+  /** Handle routing */
   private router = inject(Router);
 
   /** Language service */

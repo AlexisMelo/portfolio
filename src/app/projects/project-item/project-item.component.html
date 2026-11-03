@@ -12,7 +12,11 @@
 
   @if (firstIllustration()) {
     <div class="illustration-container g-grid-item-shadow">
-      <img [src]="firstIllustration().url" [alt]="firstIllustration().alt" />
+      <img
+        [ngSrc]="firstIllustration().url"
+        [alt]="firstIllustration().alt"
+        [priority]="priority()"
+        fill />
     </div>
   }
 }

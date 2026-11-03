@@ -70,13 +70,13 @@ Each item lists the problem, the evidence from the audits, the fix, the files in
 
 #### P1.1 Compress the images in the Supabase bucket
 
-- [ ] 36 project illustrations
-- [ ] 25 skill icons already in the bucket
-- [ ] 22 skill icons hosted elsewhere: download them and upload them into the bucket
-- [ ] 3 project icons
-- [ ] 2 CV previews
-- [ ] Run [p1.1-update-image-urls.sql](p1.1-update-image-urls.sql) in the Supabase SQL editor
-- [ ] Delete the original files from the bucket once the site is checked
+- [x] 36 project illustrations
+- [x] 25 skill icons already in the bucket
+- [x] 22 skill icons hosted elsewhere: download them and upload them into the bucket
+- [x] 3 project icons
+- [x] 2 CV previews
+- [x] Run [p1.1-update-image-urls.sql](p1.1-update-image-urls.sql) in the Supabase SQL editor
+- [x] Delete the original files from the bucket once the site is checked
 
 **Problem.** Images are uploaded as full-size PNGs and displayed much smaller.
 
@@ -233,10 +233,12 @@ Not needed:
 
 #### P1.2 Size, lazy-load and prioritise images in the templates
 
-- [ ] `project-item` (pinned projects, `/projects`): `ngSrc` with width/height (or `fill`), and `priority` on the first project
-- [ ] `project-item-condensed` (`/projects/archives`): `ngSrc`, lazy by default
-- [ ] `skills-recap` icons (`/skills`): `ngSrc` with width/height
-- [ ] `project-illustrations` carousel and `coworker-info` (`/projects/:url`): `ngSrc`, `priority` on the first illustration
+- [x] `project-item` (pinned projects, `/projects`): `ngSrc` with width/height (or `fill`), and `priority` on the first project
+- [x] `project-item-condensed` (`/projects/archives`): `ngSrc`, lazy by default
+- [x] `skills-recap` icons (`/skills`): `ngSrc` with width/height
+- [x] `project-illustrations` carousel and `coworker-info` (`/projects/:url`): `ngSrc`, `priority` on the first illustration
+
+**Done on 2026-11-03.** Every image uses `fill` in a sized container, because the database doesn't store image dimensions and the ratios vary: with `width`/`height`, `NgOptimizedImage` warns in dev mode whenever the rendered ratio differs from the file's, even with `object-fit`. The pinned project container got `aspect-ratio: 16 / 9` (the screenshots are 1.78–1.95) with `object-position: left`, the skill icons a 30×30 box, the coworker photos a 110×100 box. Screenshots before and after are identical on desktop and mobile. In dev mode, the priority images log NG02956 (no preconnect to Supabase) until the P3 preconnect is added.
 
 **Problem.** These images are plain `<img [src]>` with no dimensions.
 
@@ -259,7 +261,7 @@ Not needed:
 - `src/app/projects/project-details/project-illustrations/project-illustrations.component.html`
 - `src/app/projects/project-details/project-coworkers/coworker-info/coworker-info.component.html`
 
-**Done when.** `unsized-images` passes, `lcp-discovery-insight` passes on `/projects` and `/projects/:url`, and `/projects/archives` only downloads the images in view and weighs under 1.5 MB.
+**Done when.** `unsized-images` passes, `lcp-discovery-insight` passes on `/projects` and `/projects/:url`, and `/projects/archives` only downloads the images in view and weighs under 1.5 MB. The "request is discoverable in the initial document" check of `lcp-discovery-insight` can't pass while the image URL comes from Supabase after startup (only P4 fixes that); the `fetchpriority=high` and "not lazy" checks should.
 
 #### P1.3 Stop the home map from becoming the LCP element
 

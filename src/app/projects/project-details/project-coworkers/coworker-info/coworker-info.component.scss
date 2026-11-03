@@ -11,15 +11,16 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+// Box of the fill-mode photo. Busts are 400px tall and up to 400px wide; the
+// width also fits the shrugging avatar (400x376) at full height.
 .avatar-container {
+  position: relative;
   overflow: hidden;
   height: 100px;
-  width: auto;
+  width: 110px;
 
   img {
     transition: 1s;
-    height: 100%;
-    width: 100%;
     object-fit: contain;
   }
 }

@@ -4,7 +4,7 @@
 
   @if (firstIllustration(); as illu) {
     <div class="illustration-container">
-      <img [src]="illu.url" [alt]="illu.alt" />
+      <img [ngSrc]="illu.url" [alt]="illu.alt" fill />
     </div>
   }
 
