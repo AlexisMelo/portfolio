@@ -1,0 +1,530 @@
+# Lighthouse performance report
+
+- **Date:** 2026-11-03, commit `d19e216`
+- **Tool:** Lighthouse 13.6.0, performance category, local production build (see [How to measure](#2-how-to-measure))
+- **Goal:** mobile score ≥ 0.90 on every page, without losing the AXE / WCAG AA compliance required by `CLAUDE.md`
+
+---
+
+## 1. Summary
+
+Mobile is the problem; desktop is already at 0.99–1.00 everywhere except one layout shift on `/experience`.
+Every mobile page loses its points on **LCP** (Largest Contentful Paint). FCP is 0.6 s everywhere, and TBT and CLS are mostly fine.
+
+| Page                 | Mobile score (median of 3) | LCP   | TBT    | CLS   | LCP element                                                          | Desktop score        |
+| -------------------- | -------------------------- | ----- | ------ | ----- | -------------------------------------------------------------------- | -------------------- |
+| `/`                  | **0.82** (0.81–0.83)       | 4.7 s | 102 ms | 0.023 | A Leaflet map tile                                                   | 0.99                 |
+| `/projects`          | **0.88** (0.86–0.89)       | 3.8 s | 106 ms | 0.021 | First pinned project's illustration (2 of 3 runs) or its description | 1.00                 |
+| `/projects/archives` | **0.88** (0.88–0.88)       | 3.8 s | 121 ms | 0.052 | Page description text                                                | 0.99                 |
+| `/skills`            | **0.85** (0.84–0.87)       | 4.1 s | 59 ms  | 0.084 | "Keep learning" tile text                                            | 0.99                 |
+| `/experience`        | **0.90** (0.89–0.90)       | 3.4 s | 103 ms | 0.080 | "Curriculum Vitae" heading                                           | **0.77** (CLS 0.589) |
+| `/projects/uloa`     | **0.79** (0.79–0.80)       | 4.8 s | 152 ms | 0.081 | First carousel illustration                                          | 0.99                 |
+
+For reference, Lighthouse rates a mobile LCP under 2.5 s as "good". `/experience` already reaches 0.90 with an LCP of 3.4 s, so getting LCP under about 3 s on every page should meet the 0.90 goal.
+
+The three causes behind almost every finding:
+
+1. **Images from the Supabase bucket are full-size PNGs**, often 1–1.6 MB each and up to 389 KB for a skill icon. Lists load all of them at once, with no lazy loading or size: 10 MB on `/projects/archives`, 3.7 MB on `/skills`.
+2. **Every page waits for JavaScript and then Supabase** before showing its content. The initial JavaScript is 790 KB uncompressed (208 KB gzipped), and about a third of it isn't needed on first load.
+3. **The home page map** downloads about 10 high-resolution tiles during a zoom animation, and one of them becomes the LCP element.
+
+---
+
+## 2. How to measure
+
+### Local production build
+
+```bash
+npx ng build
+npx serve@14.2.4 -s dist/portfolio/browser -l 4300   # gzip + SPA fallback, close to nginx.conf
+```
+
+### Lighthouse command
+
+Lighthouse's default Chrome flags include `--disable-extensions`. **Cold Turkey Blocker kills any Chrome started with that flag** a few seconds in, so runs fail at random ("Session closed", "Connection closed", NO_FCP). The command below keeps Lighthouse's other default flags and drops only that one:
+
+```bash
+FLAGS="--headless=new --disable-features=Translate,OptimizationHints,MediaRouter,DialMediaRouteProvider,CalculateNativeWinOcclusion,InterestFeedContentSuggestions,CertificateTransparencyComponentUpdater,AutofillServerCommunication,PrivacySandboxSettings4,RenderDocument --disable-component-extensions-with-background-pages --disable-background-networking --disable-component-update --disable-client-side-phishing-detection --disable-sync --metrics-recording-only --disable-default-apps --mute-audio --no-default-browser-check --no-first-run --disable-backgrounding-occluded-windows --disable-renderer-backgrounding --disable-background-timer-throttling --disable-ipc-flooding-protection --password-store=basic --use-mock-keychain --force-fieldtrials=*BackgroundTracing/default/ --disable-hang-monitor --disable-prompt-on-repost --disable-domain-reliability --propagate-iph-for-testing"
+
+# mobile (default); add --preset=desktop for desktop
+npx lighthouse@13.6.0 http://localhost:4300/projects --only-categories=performance \
+  --chrome-ignore-default-flags --chrome-flags="$FLAGS" --view
+```
+
+Pages audited: `/`, `/projects`, `/projects/archives`, `/skills`, `/experience`, `/projects/uloa` (project details).
+
+### Rules for comparing runs
+
+- **Run each page 3 times and keep the median.** Mobile scores vary by about ±0.05 between identical runs.
+- **Compare only runs made with the same command.** A trimmed flag set gave FCP 2.0 s instead of 0.6 s on `/`.
+- **Run audits one at a time.** Parallel runs compete for CPU.
+- **Local runs flatter the site.** There's no real server latency. Once changes are deployed, check production with [PageSpeed Insights](https://pagespeed.web.dev/) (mobile).
+
+---
+
+## 3. Work items
+
+Each item lists the problem, the evidence from the audits, the fix, the files involved and when to consider it done. The order within each priority is the suggested order.
+
+### P1: LCP fixes (biggest gains, low risk)
+
+#### P1.1 Compress the images in the Supabase bucket
+
+- [ ] 36 project illustrations
+- [ ] 25 skill icons already in the bucket
+- [ ] 22 skill icons hosted elsewhere: download them and upload them into the bucket
+- [ ] 3 project icons
+- [ ] 2 CV previews
+- [ ] Run [p1.1-update-image-urls.sql](p1.1-update-image-urls.sql) in the Supabase SQL editor
+- [ ] Delete the original files from the bucket once the site is checked
+
+**Problem.** Images are uploaded as full-size PNGs and displayed much smaller.
+
+The heavy images also slow pages whose LCP element is text (`/projects/archives`, `/skills`). Lighthouse's simulated throttling counts the requests still downloading when the text paints, so those downloads delay it.
+
+**Evidence.**
+
+| Page                 | Image requests | Image weight | Lighthouse "image delivery" savings       |
+| -------------------- | -------------- | ------------ | ----------------------------------------- |
+| `/projects/archives` | 19             | 9.7 MB       | 9.6 MB                                    |
+| `/skills`            | 26             | 2.7 MB       | 1.2 MB or more (one run estimated 3.1 MB) |
+| `/projects/uloa`     | 13             | 1.0 MB       | 606 KB                                    |
+| `/projects`          | 3              | 892 KB       | 858 KB                                    |
+
+- **Inventory of the database on 2026-11-03:** 199 distinct images, 22 MB of them in the 36 illustrations listed below.
+- **Example of the size gap:** `mes_infos_tracability.png` is 1919×1032 but displayed at 383×206.
+- **Externally hosted icons:** 22 skill icons come from 16 other hosts (`upload.wikimedia.org`, `cdn-icons-png.flaticon.com`, `github.com`, …). Each extra origin costs a new connection (~330 ms each according to Lighthouse).
+
+**Fix.** Convert each file to WebP and upload it next to the original, with the same path and a `.webp` extension (`skill-icons/angular.png` → `skill-icons/angular.webp`). The conversion was done on 2026-11-03 with a Pillow script: the 88 files go from 26.3 MB to 3.6 MB, the three GIFs (animated WebP) making up 1.3 MB of that. Then run [p1.1-update-image-urls.sql](p1.1-update-image-urls.sql), which points the database to the new files. It only switches the rows whose WebP file is already in the bucket, so it can be run again after each batch.
+
+| Images        | Displayed at                                  | Target                                                                 |
+| ------------- | --------------------------------------------- | ---------------------------------------------------------------------- |
+| Illustrations | Up to full screen in the illustrations dialog | At most 1600 px wide, WebP quality ~80. The GIFs become animated WebP. |
+| Skill icons   | 30×30                                         | 96 px on the longest side, WebP with transparency                      |
+| Project icons | Half a grid cell                              | 256×256, WebP                                                          |
+| CV previews   | Resume modal                                  | Same size (595×842), WebP                                              |
+
+The 1600 px limit replaces the 800 px suggested in the first version of this report: the dialog shows the same file full screen, and an 800 px screenshot would look blurry there.
+
+Not needed:
+
+- Illustrations under 100 KB and at most 1600 px wide, and `pokemon-maitre-dresseur/pic19096.webp` (already WebP).
+- Coworker photos (`coworkers/bust_*`): 13–48 KB each, displayed 100 px tall.
+- `coworkers/head_*`: the `avatar_head` column isn't used by the app.
+
+**Illustrations** (sorted by size)
+
+| File                                                                 | Size    | Dimensions | Resize to            |
+| -------------------------------------------------------------------- | ------- | ---------- | -------------------- |
+| `projects/share-instru/product-details-shareinstru.gif`              | 2074 KB | 1481×883   | keep (animated WebP) |
+| `projects/share-instru/my-insruments-shareinstru.gif`                | 1977 KB | 1481×883   | keep (animated WebP) |
+| `projects/puissance-4/client-raspberry.png`                          | 1595 KB | 1600×900   | keep                 |
+| `projects/pierre-feuille-ciseaux/affichage_main_mediapipe.png`       | 1553 KB | 1363×771   | keep                 |
+| `projects/pic-lapis/lapis_config_annotation.png`                     | 1516 KB | 1918×995   | 1600×830             |
+| `projects/share-instru/welcome-page-shareinstru.png`                 | 1502 KB | 1845×849   | 1600×736             |
+| `projects/horrifying-pirate-from-hell/pirate_landing_screen.png`     | 1478 KB | 993×700    | keep                 |
+| `projects/share-instru/maquette-share-instru.PNG`                    | 1306 KB | 1351×961   | keep                 |
+| `projects/cold lemonade/lemonade_songs.png`                          | 1046 KB | 1912×920   | 1600×770             |
+| `projects/cold lemonade/illustrations.jpg`                           | 701 KB  | 2362×2362  | 1600×1600            |
+| `projects/app-vue-leaflet/vue_leaflet_laigle.png`                    | 673 KB  | 1600×820   | keep                 |
+| `projects/share-instru/city-finder-shareinstru.gif`                  | 501 KB  | 508×359    | keep (animated WebP) |
+| `projects/cold lemonade/lemonade_front_page.png`                     | 483 KB  | 1912×920   | 1600×770             |
+| `projects/mes-client/mes_client_depose_colle.png`                    | 477 KB  | 1689×950   | 1600×900             |
+| `projects/altaterra/altaterra extrait.png`                           | 467 KB  | 1650×869   | 1600×843             |
+| `projects/portfolio/portfolio_maquette_all_projects.png`             | 451 KB  | 1912×920   | 1600×770             |
+| `projects/mes-client/mes_client_vissage.png`                         | 429 KB  | 1689×950   | 1600×900             |
+| `projects/puissance-4/client-minecraft.png`                          | 429 KB  | 1600×839   | keep                 |
+| `projects/horrifying-pirate-from-hell/pirate_player_selection.png`   | 380 KB  | 594×799    | keep                 |
+| `projects/shing-shang/shing shang diagramme de classe.png`           | 358 KB  | 1600×1057  | keep                 |
+| `projects/app-vue-leaflet/vue_leaflet_no_data.png`                   | 350 KB  | 1600×821   | keep                 |
+| `projects/horrifying-pirate-from-hell/pirate_board.png`              | 343 KB  | 565×432    | keep                 |
+| `projects/pic-lapis/pic-lapis.png`                                   | 299 KB  | 1877×1007  | 1600×858             |
+| `projects/pokemon-maitre-dresseur/pokemon_maitre_dresseur_boite.jpg` | 222 KB  | 1280×720   | keep                 |
+| `projects/axi-to-html/axi-to-html.png`                               | 210 KB  | 1912×920   | 1600×770             |
+| `projects/portfolio/portfolio_home.png`                              | 190 KB  | 1889×912   | 1600×772             |
+| `projects/pokemon-maitre-dresseur/pokemon_maitre_dresseur.png`       | 182 KB  | 1912×920   | 1600×770             |
+| `projects/pic-lapis/lapis_metrics.png`                               | 155 KB  | 1881×1009  | 1600×858             |
+| `projects/mes_infos/mes_infos_tracability.png`                       | 146 KB  | 1919×1032  | 1600×860             |
+| `projects/mes_infos_processflow/mes_infos_process_flow.png`          | 137 KB  | 1888×910   | 1600×771             |
+| `projects/mes_infos_processflow/editeur_processflow.png`             | 110 KB  | 1920×1032  | 1600×860             |
+| `projects/worklog-metrics-bot/project RDT verbosed.png`              | 104 KB  | 599×730    | keep                 |
+| `projects/puissance-4/client-web.png`                                | 104 KB  | 1491×897   | keep                 |
+| `projects/portfolio/portfolio_all_projects.png`                      | 95 KB   | 1886×910   | 1600×772             |
+| `projects/mes_infos/palettes.png`                                    | 85 KB   | 1920×1032  | 1600×860             |
+| `projects/mes_infos/mes_infos_stations.png`                          | 77 KB   | 1894×916   | 1600×774             |
+
+**Skill icons in the bucket** (all resized to 96 px on the longest side)
+
+| File                                | Size   | Dimensions |
+| ----------------------------------- | ------ | ---------- |
+| `skill-icons/angular.png`           | 389 KB | 880×934    |
+| `skill-icons/osm.png`               | 256 KB | 474×474    |
+| `skill-icons/php.png`               | 169 KB | 474×484    |
+| `skill-icons/postgresql.png`        | 163 KB | 1014×634   |
+| `skill-icons/react.png`             | 159 KB | 474×474    |
+| `skill-icons/wpf.png`               | 128 KB | 533×228    |
+| `skill-icons/raspberry.png`         | 116 KB | 1134×1367  |
+| `skill-icons/netcore.png`           | 107 KB | 489×511    |
+| `skill-icons/csharp.png`            | 106 KB | 474×474    |
+| `skill-icons/fabric.png`            | 105 KB | 414×340    |
+| `skill-icons/bootstrap.png`         | 96 KB  | 560×446    |
+| `skill-icons/html.png`              | 96 KB  | 500×500    |
+| `skill-icons/netframework.png`      | 94 KB  | 666×375    |
+| `skill-icons/web.png`               | 93 KB  | 612×408    |
+| `skill-icons/git.png`               | 82 KB  | 500×500    |
+| `skill-icons/claude.png`            | 78 KB  | 3840×3823  |
+| `skill-icons/leaflet.png`           | 76 KB  | 547×456    |
+| `skill-icons/symfony.png`           | 73 KB  | 500×500    |
+| `skill-icons/supabase.png`          | 70 KB  | 436×449    |
+| `skill-icons/vue.png`               | 67 KB  | 474×410    |
+| `skill-icons/socket.png`            | 61 KB  | 577×433    |
+| `skill-icons/slack.png`             | 54 KB  | 666×375    |
+| `skill-icons/github.png`            | 50 KB  | 500×500    |
+| `skill-icons/expressjs.png`         | 12 KB  | 272×247    |
+| `logo-typescript.png` (bucket root) | 11 KB  | 512×512    |
+
+**Skill icons hosted elsewhere.** Upload SVGs as they are. Resize the others to 96 px on the longest side, as WebP. The Gitlab one is a 1200×675 banner, not an icon: a proper logo would read better at 30×30.
+
+| Skill        | Current host                                                                                                                                                               | Size  | Dimensions | Upload as                      |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------- | ------------------------------ |
+| C            | [upload.wikimedia.org](https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png)                                                                                     | 23 KB | 360×405    | `skill-icons/c.webp`           |
+| CSS          | [upload.wikimedia.org](https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg)                                                                                  | 1 KB  | SVG        | `skill-icons/css-logo.svg`     |
+| Django       | [www.svgrepo.com](https://www.svgrepo.com/show/353657/django-icon.svg)                                                                                                     | 2 KB  | SVG        | `skill-icons/django-logo.svg`  |
+| Docker       | [user.oc-static.com](https://user.oc-static.com/upload/2021/11/10/1636542639252_Moby-logo.png)                                                                             | 22 KB | 601×431    | `skill-icons/docker.webp`      |
+| Figma        | [upload.wikimedia.org](https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg)                                                                                 | 1 KB  | SVG        | `skill-icons/figma.svg`        |
+| Gitlab CI/CD | [nextlinklabs.com](https://nextlinklabs.com/hubfs/Imported_Blog_Media/git-lab-social-header.png)                                                                           | 5 KB  | 1200×675   | `skill-icons/gitlab.webp`      |
+| Java         | [cdn-icons-png.flaticon.com](https://cdn-icons-png.flaticon.com/512/226/226777.png)                                                                                        | 16 KB | 512×512    | `skill-icons/java.webp`        |
+| Javascript   | [upload.wikimedia.org](https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png)                                                                            | 10 KB | 1052×1052  | `skill-icons/javascript.webp`  |
+| Jira API     | [cdn-icons-png.flaticon.com](https://cdn-icons-png.flaticon.com/512/5968/5968875.png)                                                                                      | 23 KB | 512×512    | `skill-icons/jira.webp`        |
+| Jquery       | [cdn.worldvectorlogo.com](https://cdn.worldvectorlogo.com/logos/jquery-4.svg)                                                                                              | 4 KB  | SVG        | `skill-icons/jquery.svg`       |
+| Labelstudio  | [cdn.prod.website-files.com](https://cdn.prod.website-files.com/640393c340112160177a8028/648c011a3f76e5ce367d258e_78195de6-6238-4abc-8ebf-d9711b0ba80b_256x256.png)        | 1 KB  | 256×256    | `skill-icons/labelstudio.webp` |
+| Materialize  | [uxwing.com](https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/materialize-css-logo-icon.png)                                                   | 4 KB  | 512×512    | `skill-icons/materialize.webp` |
+| Mediapipe    | [res.cloudinary.com](https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/events/mediapipe_icon.png) | 5 KB  | 1080×1080  | `skill-icons/mediapipe.webp`   |
+| Minecraft    | [images.icon-icons.com](https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png)                                                                         | 79 KB | 512×512    | `skill-icons/minecraft.webp`   |
+| Nginx        | [www.svgrepo.com](https://www.svgrepo.com/show/373924/nginx.svg)                                                                                                           | 1 KB  | SVG        | `skill-icons/nginx-logo.svg`   |
+| Node.js      | [humancoders-formations.s3.eu-west-1.amazonaws.com](https://humancoders-formations.s3.eu-west-1.amazonaws.com/uploads/course/logo/14/thumb_bigger_formation-node-js.png)   | 26 KB | 377×420    | `skill-icons/nodejs.webp`      |
+| Notion       | [upload.wikimedia.org](https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png)                                                                            | 11 KB | 512×512    | `skill-icons/notion.webp`      |
+| OpenCV       | [github.com](https://github.com/opencv/opencv/wiki/logo/OpenCV_logo_no_text.png)                                                                                           | 89 KB | 2623×2436  | `skill-icons/opencv.webp`      |
+| Oracle       | [images.icon-icons.com](https://images.icon-icons.com/2699/PNG/512/oracle_logo_icon_168918.png)                                                                            | 5 KB  | 512×512    | `skill-icons/oracle.webp`      |
+| Python       | [thumbnail.imgbin.com](https://thumbnail.imgbin.com/7/24/5/imgbin-python-logo-clojure-javascript-9-blue-and-yellow-logo-sqQcsxjigHvJJ509HK3VxuXeW_t.jpg)                   | 12 KB | 310×308    | `skill-icons/python.webp`      |
+| SCSS         | [cdn-icons-png.flaticon.com](https://cdn-icons-png.flaticon.com/512/5968/5968358.png)                                                                                      | 30 KB | 512×512    | `skill-icons/scss.webp`        |
+| SQL Server   | [img.icons8.com](https://img.icons8.com/color/512/microsoft-sql-server.png)                                                                                                | 30 KB | 512×512    | `skill-icons/sql-server.webp`  |
+
+**Project icons** (resized to 256×256)
+
+| File                                                  | Size   | Dimensions |
+| ----------------------------------------------------- | ------ | ---------- |
+| `projects/tour-de-france/Tour_de_France_logo.svg.png` | 256 KB | 3840×3840  |
+| `projects/monitoring-four/FourIcone.ico`              | 200 KB | ICO        |
+| `projects/cold lemonade/citron.png`                   | 179 KB | 708×708    |
+
+**CV previews** (same size, WebP)
+
+| File                         | Size   | Dimensions |
+| ---------------------------- | ------ | ---------- |
+| `curriculum-vitae/CV_FR.png` | 200 KB | 595×842    |
+| `curriculum-vitae/CV_EN.png` | 192 KB | 595×842    |
+
+**Done when.**
+
+- Every file above is replaced, the database points to the new files, and every image on the site still loads.
+- On `/skills` and `/projects/:url`, no skill icon is over 10 KB or comes from another host than Supabase.
+- Lighthouse will still report "image delivery" savings on illustrations shown small (lists, carousel), because the dialog needs the 1600 px file. That's expected.
+
+#### P1.2 Size, lazy-load and prioritise images in the templates
+
+- [ ] `project-item` (pinned projects, `/projects`): `ngSrc` with width/height (or `fill`), and `priority` on the first project
+- [ ] `project-item-condensed` (`/projects/archives`): `ngSrc`, lazy by default
+- [ ] `skills-recap` icons (`/skills`): `ngSrc` with width/height
+- [ ] `project-illustrations` carousel and `coworker-info` (`/projects/:url`): `ngSrc`, `priority` on the first illustration
+
+**Problem.** These images are plain `<img [src]>` with no dimensions.
+
+- All of them load immediately, even far below the fold.
+- They cause layout shifts ("Media element lacking an explicit size").
+- The LCP image is never given high fetch priority.
+
+**Evidence.**
+
+- `/projects`: LCP 3.7–4.1 s. The LCP element is the first pinned project's illustration in 2 of 3 runs. Lighthouse flags `fetchpriority=high should be applied`, the request not being discoverable in the HTML, and `unsized-images` (all 3 illustrations).
+- `/projects/uloa`: LCP 4.8 s in all 3 runs. The LCP element is the first carousel illustration, with the same flags.
+
+**Fix.** `NgOptimizedImage` handles lazy loading, `fetchpriority` and the size warnings. `CLAUDE.md` already asks for it on static images, and it works for these dynamic URLs too. Use `fill` plus a sized container when the aspect ratio varies.
+
+**Files.**
+
+- `src/app/projects/project-item/project-item.component.html`
+- `src/app/projects/project-item/project-item-condensed/project-item-condensed.component.html`
+- `src/app/skills/skills-recap/skills-recap.component.html`
+- `src/app/projects/project-details/project-illustrations/project-illustrations.component.html`
+- `src/app/projects/project-details/project-coworkers/coworker-info/coworker-info.component.html`
+
+**Done when.** `unsized-images` passes, `lcp-discovery-insight` passes on `/projects` and `/projects/:url`, and `/projects/archives` only downloads the images in view and weighs under 1.5 MB.
+
+#### P1.3 Stop the home map from becoming the LCP element
+
+- [ ] Static map image (light + dark WebP in `public/`, same framing as zoom 6) as the `@placeholder` of the map's `@defer`
+- [ ] Load Leaflet on interaction (`@defer (on interaction)` or on hover), or at least start at the final zoom without `flyTo`
+- [ ] Move `leaflet.css` out of the global `styles` in `angular.json` into the map component
+- [ ] While in this code: `updateTile()` adds a new tile layer on every theme change without removing the previous one
+
+**Problem.**
+
+- `@defer (on viewport)` triggers immediately on mobile because the placeholder is already on screen.
+- Leaflet then loads (150 KB uncompressed, 64% of it unused at load), and `zoomIn()` starts a 1 s `flyTo` from zoom 3 to zoom 6.
+- That downloads tiles for every intermediate zoom: about 10 high-resolution PNGs, ~600 KB, from `tiles.stadiamaps.com`, which isn't preconnected (Lighthouse estimates 253 ms).
+- A 256×256 tile is larger than the avatar (200×276), so the last tile painted becomes the LCP element.
+
+**Evidence.**
+
+- `/`: LCP 4.6–5.0 s.
+- The LCP element is `img.leaflet-tile` in 2 of 3 runs. In the third, the tile had already been removed by Leaflet during the zoom, so Lighthouse couldn't point to it.
+- During earlier test runs, when the tiles were slower to arrive, the avatar became the LCP element at 3.1 s.
+
+**Fix.** A static image larger than any tile, served from `public/`, stays the LCP element and paints early. The new image needs an alt text key in both `en.json` and `fr.json`, and the zoom buttons must stay keyboard accessible.
+
+**Files.**
+
+- `src/app/home/home.component.html`
+- `src/app/home/map/map.component.ts`, `map.component.html`, `map.component.scss`
+- `angular.json`
+
+**Done when.** The LCP element on `/` is the static map or the avatar in all 3 runs, and no `tiles.stadiamaps.com` request happens without user interaction.
+
+#### P1.4 Stop downloading data that is never shown
+
+- [ ] `AllComponent` (used on `/projects` **and** `/skills`): replace `getProjects()` with a count query
+- [ ] `countOngoingProjects()`: same, with a count query instead of `select('*')` then `.length`
+- [ ] `ArchivesService` keeps `getProjects()`, but trim `PROJECT_REQUEST` to the fields the archives use. The nested `project_skill → skill → projects:project(*)` repeats project rows inside every skill.
+
+**Problem.** `getProjects()` downloads the full project query (every project with translations, roles, illustrations, coworkers, context and skills with their projects). On `/projects` and `/skills`, that's done only to display `projects.length`.
+
+**Evidence.** The `project?select=…` response is **175 KB**, the largest REST response on both `/projects` and `/skills`. The other REST responses on those pages total under 10 KB.
+
+**Fix.** Use `.select('*', { count: 'exact', head: true })`, which returns only the count in a header. `countProjectsBySkill()` already uses this pattern.
+
+**Files.**
+
+- `src/app/projects/all/all.component.ts`
+- `src/app/projects/ongoing/ongoing.component.ts`
+- `src/app/shared/supabase.service.ts`
+- `src/app/projects/archives/archives.service.ts`
+
+**Done when.** `/projects` and `/skills` make no REST request larger than ~10 KB.
+
+#### P1.5 Load the CV preview only when the modal opens
+
+- [ ] Fetch the preview when the modal opens (or when the button is hovered or focused), not on component creation
+- [ ] Use the public URL in `<img src>` instead of a downloaded blob, so the browser can cache it
+
+**Problem.** `ResumeComponent` downloads `CV_FR.png` / `CV_EN.png` (**201 KB**) as a blob through `storage.download()` on every visit to `/` and `/experience`, even if the modal is never opened.
+
+**Evidence.**
+
+- It's the heaviest request on `/` and `/experience`.
+- When it arrives, the modal image is inserted into `document.body` without dimensions, which pushes the footer: layout shift of 0.078 on `/experience` (mobile).
+
+**Files.** `src/app/home/resume/resume.component.ts`, `resume.component.html`
+
+**Done when.** No `curriculum-vitae/` request happens before the modal opens, and the 0.078 layout shift is gone.
+
+#### P1.6 Remove the layout shifts caused by content arriving late
+
+- [ ] **Footer:** give `.content` a `min-height: 100vh` (or `100dvh`) so the footer starts below the fold. Today `app-root` is `min-height: 100vh`, so the footer sits inside the viewport until the data arrives.
+- [ ] **`/experience` on desktop, CLS 0.589:**
+  - The resume tile spans grid rows 2–4 in columns 1–4, and the experience tiles placed in columns 5–8 arrive after Supabase. They resize those rows, so the whole grid moves.
+  - Possible fixes: reserve the rows (placeholder tiles with the final size until `baseContexts()` resolves), or give the rows fixed heights.
+  - Confirm with the DevTools Performance panel → Layout shifts.
+
+**Evidence.**
+
+- Footer shift of 0.078 on `/skills` and `/projects/uloa`, and 0.046 on `/projects/archives`.
+- `/experience` desktop score is 0.77 only because of a 0.587 shift of `div.g-grid-entrance`.
+
+**Files.**
+
+- `src/app/app.component.scss`
+- `src/app/experience/experience.component.html`, `experience.component.scss`
+
+**Done when.** CLS < 0.1 on every page, mobile and desktop.
+
+### P2: Less JavaScript on first load (helps every page)
+
+The initial JavaScript is 759 KB uncompressed (790 KB with CSS, 208 KB gzipped). Main contents:
+
+| Package                                                           | Size (uncompressed) | Needed on first load?                           |
+| ----------------------------------------------------------------- | ------------------- | ----------------------------------------------- |
+| `@angular/core`                                                   | 153 KB              | yes                                             |
+| `@angular/cdk` (dialog, overlay, a11y, portal)                    | 75 KB               | **no**: only the project-details dialog uses it |
+| `@angular/router`                                                 | 75 KB               | yes                                             |
+| `@messageformat/core`                                             | 72 KB               | **no**: only 10 plural strings use it           |
+| app code                                                          | 70 KB               | yes                                             |
+| `@supabase/auth-js` + `realtime-js` + `storage-js` + `iceberg-js` | ~107 KB             | **no**: the app never logs in or uses realtime  |
+| `@angular/common`                                                 | 42 KB               | yes                                             |
+| `zone.js`                                                         | 34 KB               | **no**, if the app goes zoneless                |
+
+On every page, Lighthouse also reports a ~150–160 ms long task attributed to `polyfills` (zone.js), which sets the 150–160 ms "max potential FID", and about 60 KB of unused JavaScript.
+
+#### P2.1 Move the dialog provider out of `app.config.ts`
+
+- [ ] Move the `DEFAULT_DIALOG_CONFIG` provider to the project-details route (`providers` in `app.routes.ts`) or to the component that opens the dialog
+
+**Why.** Importing `DEFAULT_DIALOG_CONFIG` from `@angular/cdk/dialog` in `src/app/app.config.ts` is enough to pull the CDK dialog, overlay, a11y and portal code (~75 KB) into the initial bundle.
+
+**Done when.** No `@angular/cdk` in the initial chunks. Check with `ng build --stats-json` and [esbuild's analyzer](https://esbuild.github.io/analyze/).
+
+#### P2.2 Replace `supabase-js` with `postgrest-js`
+
+- [ ] Query tables with `@supabase/postgrest-js` (the same `.from().select()` API)
+- [ ] Build public storage URLs directly (`/storage/v1/object/public/portfolio-project/...`) instead of using `storage.download()`
+- [ ] The CV PDF download needs an equivalent: a public URL plus an `<a download>`, or a plain `fetch`
+
+**Why.** The app only reads tables and public files, but `createClient()` ships the auth, realtime, storage and iceberg clients (~107 KB). The auth client also touches `localStorage` on startup.
+
+**Files.** `src/app/shared/supabase.service.ts`, `src/app/home/resume/resume.component.ts`, `package.json`
+
+#### P2.3 Drop `@messageformat/core`
+
+- [ ] Replace `provideTranslocoMessageformat()` with a small custom `TranslocoTranspiler` built on `Intl.PluralRules`, handling only `{count, plural, =0 {...} =1 {...} other {# ...}}`
+- [ ] Or split the 10 plural strings into separate keys
+
+**Why.** 72 KB in `main.js` for 10 strings (`projects.*.count`, `achievements`, `years`, `months`, `days`, …).
+
+**Files.** `src/app/app.config.ts`, `public/i18n/en.json`, `public/i18n/fr.json`
+
+#### P2.4 Go zoneless
+
+- [ ] Add `provideZonelessChangeDetection()`, and remove `zone.js` from `polyfills` in `angular.json` (build and test)
+- [ ] Convert state updated in async callbacks to signals; otherwise the view won't refresh. Known cases:
+  - `AllComponent.projects`
+  - `OngoingComponent.count`
+  - `ProjectsComponent.pinnedProjects`
+  - `ArchivesService` data, and the other `.then(x => this.y = x)` assignments
+- [ ] Set `ChangeDetectionStrategy.OnPush` on components as they are migrated
+
+**Why.** Removes 34 KB and the ~155 ms long task on every page.
+
+**How.** The `onpush_zoneless_migration` tool of the Angular CLI MCP server guides the migration, and the [zoneless guide](https://angular.dev/guide/zoneless) covers testing. Unit tests run on Karma, so check the `TestBed` setup too.
+
+**Done when.** `polyfills-*.js` is gone from the build, all pages still update after the data loads, and `ng test` passes.
+
+### P3: Small improvements
+
+- [ ] **Preconnect to Supabase**, which every page uses (Lighthouse estimated 270–300 ms on `/projects` in some runs). Add `<link rel="preconnect" href="https://tgolpzoiiupkeshlgcpq.supabase.co" crossorigin>` in `src/index.html`.
+- [ ] **Bundle the translation files.**
+  - `TranslocoHttpLoader` fetches `/i18n/{lang}.json` only after `main.js` has run, and every translated text waits for it.
+  - Two static JSON imports (~2 KB gzipped each) remove that round trip.
+  - Files: `src/app/transloco-loader.ts`.
+- [ ] **Serve the navbar illustrations locally.** `projects.svg`, `skills.svg` and `experience.svg` are loaded from the Supabase bucket on every page. Move them to `public/` (file: `src/app/navbar/navbar.component.html`).
+- [ ] **Apply the theme before first paint.**
+  - `body` has `transition: background-color 0.3s` (`styles.scss`), and `ThemeService` sets the theme class after the app starts.
+  - So the background animates from light to dark on load, and Lighthouse flags it as an animation the browser can't offload from the main thread.
+  - Fix: set the class with a small inline script in `index.html` (reading `localStorage` / `prefers-color-scheme`), or enable the transition only after load.
+- [ ] **Avatar preload on every route.** `index.html` preloads `photos/avatar-bust-arms-crossed.webp` with high priority on every page, not just `/`. It's small (6 KB), so leave it unless it competes with another page's LCP image.
+- [ ] **Animations the browser can't offload** (informative): `box-shadow` pulse on `app-dot`, `border-radius` in `slideToLeft`, `background-color` in `g-grid-item-stagger`. Animating `transform` / `opacity` instead lets the browser do it off the main thread.
+- [ ] **nginx cache for `public/`.** `nginx.conf` serves `public/` files (photos, illustrations, icons) with `no-cache`, so every visit revalidates them. A `max-age` of a few days for images is safe.
+- [ ] **Production server.** Check that the VPS reverse proxy serves HTTP/2 (or HTTP/3) and that gzip (or brotli) is active end to end.
+
+### P4: Prerendering (only if P1–P3 aren't enough)
+
+- [ ] Evaluate build-time prerendering (`ng add @angular/ssr`, static output) for `/`, `/projects`, `/skills`, `/experience` and `/projects/:url` (`getPrerenderParams` listing project URLs)
+
+**Why.** Today every page's content waits for HTML, then JavaScript, then startup, then Supabase, then rendering. Prerendering puts the content in the HTML that nginx already serves, with no Node server and the same Docker image layout.
+
+**Trade-offs.**
+
+- **Content updates:** changes in Supabase require a rebuild, triggered manually, on a schedule, or by a webhook to the GitHub Action.
+- **Refetching:** `supabase-js` / `postgrest-js` use `fetch`, not `HttpClient`, so Angular's HTTP transfer cache won't reuse the build-time data. The browser would fetch everything again and re-render unless the state is transferred manually.
+- **Browser-only code:** must be guarded. This covers `localStorage` / `matchMedia` in `ThemeService` and `LanguageService`, `ResumeComponent` moving its modal into `document.body`, and Leaflet.
+- **Language:** the default language comes from `localStorage` on the client, so prerendered HTML is in one language. Visitors with the other language would see it switch, unless each language gets its own prerendered routes.
+- **Theme:** the theme flash needs the inline script from P3.
+
+**Docs.** [Rendering strategies](https://angular.dev/guide/routing/rendering-strategies), [build-time prerendering](https://angular.dev/guide/ssr#customizing-build-time-prerendering-ssg).
+
+---
+
+## 4. Page details
+
+Reference data from the median mobile run of each page. Sizes are as transferred, compressed where the server compresses.
+
+### Common to all pages
+
+- **FCP:** 0.6 s on mobile, 0.2 s on desktop.
+- **Initial JavaScript:** 790 KB uncompressed, 208 KB gzipped. About 60 KB of it is unused at load: 36 KB in the chunk holding the router and supabase-js, 25 KB in the one holding Angular core.
+- **Long task:** about 150–170 ms, attributed to `polyfills` (zone.js), which gives "max potential FID" 150–160 ms (P2.4).
+- **Icon font:** `display=block` hides the Material Symbols icons until the font loads (15–50 ms, informative).
+- **Footer layout shift** on pages whose content comes from Supabase (P1.6).
+
+### `/` (home)
+
+- **Scores:** mobile 0.82 (runs 0.81, 0.82, 0.83), LCP 4.7 s, TBT 102 ms, CLS 0.023. Desktop 0.99.
+- **LCP element:** a Leaflet map tile, `img.leaflet-tile` (P1.3).
+- **Weight:** 1.2 MB in 55 requests.
+  - CV preview `CV_FR.png`: 201 KB (P1.5)
+  - About 10 Stadia Maps tiles of 37–83 KB each
+  - Leaflet chunk: 44 KB, 28 KB of it unused at load
+- **Supabase:** 12 REST requests (4 KB), 2 storage requests (201 KB).
+- **Preconnect candidate:** `tiles.stadiamaps.com` (232 ms).
+- **Layout shift:** 0.021, the footer moving when the avatar image renders.
+
+### `/projects`
+
+- **Scores:** mobile 0.88 (runs 0.86, 0.88, 0.89), LCP 3.8 s, TBT 106 ms, CLS 0.021. Desktop 1.00.
+- **LCP element:** the first pinned project's illustration (2 of 3 runs) or its description text (P1.1, P1.2).
+- **Weight:** 1.4 MB in 43 requests.
+  - `vue_leaflet_laigle.png`: 674 KB
+  - `project?select=…`: 176 KB, used only for a count (P1.4)
+  - `mes_infos_tracability.png`: 147 KB
+  - `maquette_uloa_notifications.png`: 71 KB
+- **Image savings:** 858 KB. All 3 illustrations are unsized.
+
+### `/projects/archives`
+
+- **Scores:** mobile 0.88 (runs 0.88, 0.88, 0.88), LCP 3.8 s, TBT 121 ms, CLS 0.052. Desktop 0.99 (CLS 0.056).
+- **LCP element:** the page description text (`app-skill-section-description p`).
+- **Weight:** 10.2 MB in 57 requests. The 19 project illustrations account for 9.7 MB, all loaded at once (P1.1, P1.2). Image savings: 9.6 MB.
+- **Main thread:** 2.5 s of work, the highest of all pages.
+- **Layout shift:** 0.046 on the footer (P1.6).
+
+### `/skills`
+
+- **Scores:** mobile 0.85 (runs 0.84, 0.85, 0.87), LCP 4.1 s, TBT 59 ms, CLS 0.084 (0.107 in one run). Desktop 0.99 (CLS 0.070).
+- **LCP element:** the text of the "Keep learning" tile.
+- **Weight:** 3.7 MB in 90 requests.
+  - 26 skill icons: 2.7 MB. The largest are `angular.png` (390 KB), `osm.png` (257 KB) and `php.png` (170 KB). P1.1, P1.2.
+  - `project?select=…`: 175 KB, from `AllComponent`'s count (P1.4)
+- **Layout shift:** 0.078 on the footer (P1.6).
+
+### `/experience`
+
+- **Scores:** mobile 0.90 (runs 0.89, 0.90, 0.90), LCP 3.4 s, TBT 103 ms, CLS 0.080. **Desktop 0.77**, because of CLS 0.589.
+- **LCP element:** the "Curriculum Vitae" heading of the resume tile.
+- **Weight:** 558 KB in 44 requests. The heaviest request is `CV_FR.png` (201 KB), loaded without the modal being opened (P1.5).
+- **Layout shifts:**
+  - Mobile: 0.078, the footer pushed by the CV modal image (P1.5).
+  - Desktop: 0.587, the whole grid moving when the experience tiles arrive (P1.6).
+
+### `/projects/uloa` (project details)
+
+- **Scores:** mobile 0.79 (runs 0.79, 0.79, 0.80), LCP 4.8 s, TBT 152 ms, CLS 0.081. Desktop 0.99.
+- **LCP element:** the first carousel illustration, `maquette_uloa_notifications.png` (70 KB). P1.2.
+- **Weight:** 1.5 MB in 50 requests.
+  - Skill icons: `angular.png` 390 KB, `netcore.png` 108 KB, `csharp.png` 107 KB, `html.png` 97 KB
+  - Other illustrations, e.g. `maquette_uloa_preferences.png` (91 KB)
+- **Externally hosted icons:** `upload.wikimedia.org` and `cdn-icons-png.flaticon.com` are preconnect candidates (348 ms and 331 ms). The flaticon icon is 512×512 displayed at 53×53 (P1.1).
+- **Layout shift:** 0.078 on the footer (P1.6).
+
+---
+
+## 5. Appendix
+
+### Noticed in passing (not performance)
+
+- `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
+- `MapComponent` adds a tile layer on every theme change without removing the previous one (see P1.3).
+- `SupabaseService.countProjectsBySkill()` is not used anywhere.
+- `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.
+
+### Raw data
+
+The JSON reports of this inspection were saved in a temporary session folder and won't be kept. Re-run the command from section 2 to regenerate them; `--view` opens the HTML report.
