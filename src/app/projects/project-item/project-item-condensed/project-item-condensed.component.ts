@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
-import { Project } from '../../project.model';
+import { ArchivedProject } from '../../archives/archived-project.model';
 import { ProjectItemSkillListComponent } from '../project-item-skill-list/project-item-skill-list.component';
 
 @Component({
@@ -20,7 +20,7 @@ import { ProjectItemSkillListComponent } from '../project-item-skill-list/projec
 })
 export class ProjectCondensedItemComponent extends GridItemDirective {
   /** Project to display */
-  public project = input.required<Project>();
+  public project = input.required<ArchivedProject>();
 
   /**
    * Handle routing

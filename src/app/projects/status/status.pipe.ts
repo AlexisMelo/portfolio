@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Project } from '../project.model';
+import { Tables } from 'database.types';
 import { Status } from './status.model';
 
 @Pipe({
@@ -7,7 +7,9 @@ import { Status } from './status.model';
   standalone: true,
 })
 export class StatusPipe implements PipeTransform {
-  transform(project: Project): Status {
+  transform(
+    project: Pick<Tables<'project'>, 'abandoned' | 'end_date'>
+  ): Status {
     if (project.abandoned) return 'abandoned';
     if (!project.end_date) return 'ongoing';
     return 'completed';

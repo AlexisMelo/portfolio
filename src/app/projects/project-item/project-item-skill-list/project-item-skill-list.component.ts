@@ -13,7 +13,9 @@ export class ProjectItemSkillListComponent {
   /**
    * Skills to display
    */
-  @Input({ required: true }) skills: Array<Tables<'skill'>> = [];
+  @Input({ required: true }) skills: Array<
+    Pick<Tables<'skill'>, 'id' | 'label'>
+  > = [];
 
   /**
    * Link to archives

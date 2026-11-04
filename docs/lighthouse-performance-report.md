@@ -309,22 +309,44 @@ The images are displayed at exactly 400×200 CSS px and centred, so they line up
 
 #### P1.4 Stop downloading data that is never shown
 
-- [ ] `AllComponent` (used on `/projects` **and** `/skills`): replace `getProjects()` with a count query
-- [ ] `countOngoingProjects()`: same, with a count query instead of `select('*')` then `.length`
-- [ ] `ArchivesService` keeps `getProjects()`, but trim `PROJECT_REQUEST` to the fields the archives use. The nested `project_skill → skill → projects:project(*)` repeats project rows inside every skill.
+- [x] `AllComponent` (used on `/projects` **and** `/skills`): replace `getProjects()` with a count query
+- [x] `countOngoingProjects()`: same, with a count query instead of `select('*')` then `.length`
+- [x] `ArchivesService` keeps `getProjects()`, but with a request limited to the fields the archives use
+- [x] `getSkills()` and `PROJECT_REQUEST`: request only the ids of a skill's projects, since they are only counted
+
+**Done on 2026-11-04.** `/projects` and `/skills` now make no REST request over 4.2 KB. The scores stay within the usual ±0.05 variation and LCP doesn't move, so this step doesn't bring the 0.90 goal closer on its own.
+
+| Page                 | REST weight     | Largest REST request | Mobile score | LCP         | TBT          |
+| -------------------- | --------------- | -------------------- | ------------ | ----------- | ------------ |
+| `/projects`          | 181.5 → 7.9 KB  | 174.0 → 3.5 KB       | 0.81 → 0.83  | 4.7 → 4.6 s | 155 → 109 ms |
+| `/skills`            | 231.1 → 15.4 KB | 174.0 → 4.2 KB       | 0.86 → 0.85  | 3.9 → 3.9 s | 111 → 118 ms |
+| `/projects/archives` | 199.2 → 19.4 KB | 174.0 → 8.4 KB       | 0.90 → 0.88  | 3.6 → 3.8 s | 53 → 105 ms  |
+| `/projects/uloa`     | 13.2 → 5.8 KB   | 11.4 → 3.9 KB        | 0.81 → 0.81  | 4.6 → 4.6 s | 132 → 120 ms |
+
+Median of 3 mobile runs, with the builds before and after the change alternating in the same session.
+
+- `PROJECT_REQUEST` couldn't be trimmed as first planned, because the project details page needs it through `getProjectByUrl()`. `getProjects()` uses a new `ARCHIVED_PROJECT_REQUEST` and returns a new `ArchivedProject` type.
+- `AllComponent.count` is a signal, and its text waits for the value: the tile used to say "NaN projects" until the data arrived.
+- The project counts, status counts, skill, context and status filters and the text filter give the same results as the database.
 
 **Problem.** `getProjects()` downloads the full project query (every project with translations, roles, illustrations, coworkers, context and skills with their projects). On `/projects` and `/skills`, that's done only to display `projects.length`.
 
-**Evidence.** The `project?select=…` response is **175 KB**, the largest REST response on both `/projects` and `/skills`. The other REST responses on those pages total under 10 KB.
+**Evidence.**
+
+- The `project?select=…` response is **175 KB**, the largest REST response on both `/projects` and `/skills`.
+- The nested `project_skill → skill → projects:project(*)` repeats project rows inside every skill. Requesting only the ids takes that response from 177 to 65 KB, and the one on `/projects/uloa` from 10.7 to 3.1 KB.
+- The `skill?select=…` response is 17.9 KB and is requested 3 times on `/skills`, also because of `projects:project(*)`. Requesting only the ids brings it down to 3.4 KB.
 
 **Fix.** Use `.select('*', { count: 'exact', head: true })`, which returns only the count in a header. `countProjectsBySkill()` already uses this pattern.
 
 **Files.**
 
-- `src/app/projects/all/all.component.ts`
-- `src/app/projects/ongoing/ongoing.component.ts`
 - `src/app/shared/supabase.service.ts`
-- `src/app/projects/archives/archives.service.ts`
+- `src/app/projects/all/all.component.ts`, `all.component.html`
+- `src/app/projects/archives/archived-project.model.ts`, `archives.service.ts`, `status-filtering/status-filtering.component.ts`
+- `src/app/projects/status/status.pipe.ts`
+- `src/app/projects/project-item/project-item-condensed/project-item-condensed.component.ts`, `project-item-skill-list/project-item-skill-list.component.ts`
+- `src/app/skills/skill.model.ts`
 
 **Done when.** `/projects` and `/skills` make no REST request larger than ~10 KB.
 
@@ -412,7 +434,6 @@ On every page, Lighthouse also reports a ~150–160 ms long task attributed to `
 
 - [ ] Add `provideZonelessChangeDetection()`, and remove `zone.js` from `polyfills` in `angular.json` (build and test)
 - [ ] Convert state updated in async callbacks to signals; otherwise the view won't refresh. Known cases:
-  - `AllComponent.projects`
   - `OngoingComponent.count`
   - `ProjectsComponent.pinnedProjects`
   - `ArchivesService` data, and the other `.then(x => this.y = x)` assignments
@@ -431,6 +452,7 @@ On every page, Lighthouse also reports a ~150–160 ms long task attributed to `
   - `TranslocoHttpLoader` fetches `/i18n/{lang}.json` only after `main.js` has run, and every translated text waits for it.
   - Two static JSON imports (~2 KB gzipped each) remove that round trip.
   - Files: `src/app/transloco-loader.ts`.
+- [ ] **Request the skills once on `/skills`.** `SkillsComponent`, `FavoritesComponent` and `KeepLearningComponent` each call `getSkills()` (3.4 KB per call since P1.4). Share one request between them.
 - [ ] **Serve the navbar illustrations locally.** `projects.svg`, `skills.svg` and `experience.svg` are loaded from the Supabase bucket on every page. Move them to `public/` (file: `src/app/navbar/navbar.component.html`).
 - [ ] **Apply the theme before first paint.**
   - `body` has `transition: background-color 0.3s` (`styles.scss`), and `ThemeService` sets the theme class after the app starts.
@@ -537,7 +559,7 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 ### Noticed in passing (not performance)
 
 - `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
-- `SupabaseService.countProjectsBySkill()` is not used anywhere.
+- The archives' text filter searches `project.description` and `project_context.label`, which hold translation keys (`project.description.chifoumi`, `context.label.insa`), not the displayed text. "description", "context" or "label" match all 26 projects, and a word from a displayed description ("traçabilité", "multijoueur") matches none.
 - `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.
 
 ### Raw data

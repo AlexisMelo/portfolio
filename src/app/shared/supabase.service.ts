@@ -3,6 +3,7 @@ import { TranslocoService } from '@jsverse/transloco';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from 'database.types';
 import { environment } from '../../environments/environment';
+import { ArchivedProject } from '../projects/archives/archived-project.model';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
@@ -42,10 +43,20 @@ export class SupabaseService {
           skill(
             *,
             skill_type(*, localizedLabel:translations!label(*)),
-            projects:project(*),
+            projects:project(id),
             skill_field(*)
           )
         )`;
+
+  /**
+   * Request to get only what the archives display and filter on
+   */
+  private readonly ARCHIVED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
+        localizedDescription:translations!description(en, fr),
+        illustrations:project_illustration(url, alt, position),
+        project_type(label),
+        project_context:context(id, label),
+        project_skills:project_skill(highlight, skill(id, label))`;
 
   /**
    * Constructeur
@@ -62,27 +73,43 @@ export class SupabaseService {
    * @returns
    */
   public async countOngoingProjects(): Promise<number> {
-    const { data, error } = await this.client
+    const { count, error } = await this.client
       .from('project')
-      .select('*')
+      .select('*', { count: 'exact', head: true })
       .is('end_date', null)
       .is('abandoned', false);
 
-    if (error) return Promise.reject(error);
-    return data.length as number;
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
   }
 
   /**
-   * Obtient la liste de tous les projets
+   * Counts all projects, without downloading them
    * @returns
    */
-  public async getProjects(): Promise<Array<Project>> {
+  public async countProjects(): Promise<number> {
+    const { count, error } = await this.client
+      .from('project')
+      .select('*', { count: 'exact', head: true });
+
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
+  }
+
+  /**
+   * Gets every project, with only the fields used by the archives
+   * @returns
+   */
+  public async getProjects(): Promise<Array<ArchivedProject>> {
     const { data, error } = await this.client
       .from('project')
-      .select(this.PROJECT_REQUEST);
+      .select(this.ARCHIVED_PROJECT_REQUEST)
+      .overrideTypes<Array<ArchivedProject>, { merge: false }>();
 
     if (error) return Promise.reject(error);
-    return data as Array<Project>;
+    return data;
   }
 
   /**
@@ -142,7 +169,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('skill')
       .select(
-        '*, skill_type(*, localizedLabel:translations!label(*)), projects:project(*), skill_field(*), localizedDescription:translations!description(*)'
+        '*, skill_type(*, localizedLabel:translations!label(*)), projects:project(id), skill_field(*), localizedDescription:translations!description(*)'
       )
       .order('label');
 
