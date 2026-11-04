@@ -28,7 +28,7 @@
     "@jsverse/transloco": "^8.2.1",
     "@jsverse/transloco-locale": "^8.2.1",
     "@jsverse/transloco-messageformat": "^8.2.1",
-    "@supabase/supabase-js": "^2.45.1",
+    "@supabase/postgrest-js": "^2.95.3",
     "@types/leaflet": "^1.9.16",
     "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
@@ -59,10 +59,5 @@
     "supabase": "^2.12.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.55.0"
-  },
-  "overrides": {
-    "@supabase/supabase-js": {
-      "@supabase/auth-js": "2.61.0"
-    }
   }
 }

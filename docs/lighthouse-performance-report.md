@@ -36,7 +36,7 @@ The three causes behind almost every finding:
 
 ```bash
 npx ng build
-npx serve@14.2.4 -s dist/portfolio/browser -l 4300   # gzip + SPA fallback, close to nginx.conf
+npx serve@14.2.4 --no-port-switching -s dist/portfolio/browser -l 4300   # gzip + SPA fallback, close to nginx.conf
 ```
 
 ### Lighthouse command
@@ -58,6 +58,8 @@ Pages audited: `/`, `/projects`, `/projects/archives`, `/skills`, `/experience`,
 - **Run each page 3 times and keep the median.** Mobile scores vary by about ±0.05 between identical runs.
 - **Compare only runs made with the same command.** A trimmed flag set gave FCP 2.0 s instead of 0.6 s on `/`.
 - **Run audits one at a time.** Parallel runs compete for CPU.
+- **Be suspicious of a mobile 1.00 with LCP around 0.6 s.** Lighthouse simulates LCP: when a text LCP paints in the same frame as the first paint, LCP equals the simulated FCP (0.6 s), and one frame later it's 3.3–3.8 s. Compare `observedFirstContentfulPaint` and `observedLargestContentfulPaint` in the `metrics` audit before believing a jump.
+- **Check which build answers.** Without `--no-port-switching`, `serve` moves to a random port when its port is taken, and whatever holds that port keeps answering. Compare the `main-*.js` in the response with the one in the build's `index.html`, and stop the servers afterwards.
 - **Local runs flatter the site.** There's no real server latency. Once changes are deployed, check production with [PageSpeed Insights](https://pagespeed.web.dev/) (mobile).
 
 ---
@@ -362,7 +364,7 @@ Median of 3 mobile runs, with the builds before and after the change alternating
 | `/`           | 431 → 354 KB | 78.5 KB → none | 0.92 → 0.93  | 3.4 → 3.2 s | 0.023 → 0.023 |
 | `/experience` | 435 → 357 KB | 78.5 KB → none | 0.88 → 0.89  | 3.6 → 3.5 s | 0.080 → 0.081 |
 
-Median of 3 mobile runs, with the builds before and after the change alternating in the same session.
+Median of 3 mobile runs, with the builds before and after the change alternating in the same session. A server left running by mistake made the "before" build one commit older than intended (without P1.4), which doesn't change the requests of these two pages.
 
 - **The 0.078 layout shift wasn't caused by this image**, as the first version of this report said. It's on `app-footer` in every run, with or without the change, and `#modal-container` is `position: fixed`, so its content can't move the footer. It's now part of P1.6.
 - On desktop, the hover or focus usually gives the image time to load before the modal opens. On touch screens, loading starts with the tap.
@@ -383,23 +385,28 @@ Median of 3 mobile runs, with the builds before and after the change alternating
 
 #### P1.6 Remove the layout shifts caused by content arriving late
 
-- [ ] **Footer:** give `.content` a `min-height: 100vh` (or `100dvh`) so the footer starts below the fold. Today `app-root` is `min-height: 100vh`, so the footer sits inside the viewport until the data arrives.
-- [ ] **`/experience` on desktop, CLS 0.589:**
-  - The resume tile spans grid rows 2–4 in columns 1–4, and the experience tiles placed in columns 5–8 arrive after Supabase. They resize those rows, so the whole grid moves.
-  - Possible fixes: reserve the rows (placeholder tiles with the final size until `baseContexts()` resolves), or give the rows fixed heights.
-  - Confirm with the DevTools Performance panel → Layout shifts.
+**Not done, by choice (2026-11-04).** CLS costs under 2 points on every page except `/experience` on desktop, which doesn't justify changing how short pages look or adding code to every page.
 
-**Evidence.**
+| Page                 | Mobile CLS | Points lost | Desktop CLS | Points lost |
+| -------------------- | ---------- | ----------- | ----------- | ----------- |
+| `/`                  | 0.023      | 0           | 0.002       | 0           |
+| `/projects`          | 0.021      | 0           | 0.002       | 0           |
+| `/projects/archives` | 0.053      | 0.5         | 0.056       | 0.5         |
+| `/skills`            | 0.084      | 1.7         | 0.070       | 1.0         |
+| `/experience`        | 0.081      | 1.5         | 0.589       | 22.3        |
+| `/projects/uloa`     | 0.080      | 1.5         | 0.058       | 0.5         |
 
-- Footer shift of 0.078 on `/skills`, `/projects/uloa` and `/experience` (mobile), and 0.046 on `/projects/archives`.
-- `/experience` desktop score is 0.77 only because of a 0.587 shift of `div.g-grid-entrance`.
+**Cause.** The first version of this section was wrong: grid rows have a fixed height, so the experience tiles can't resize them. A shift's score is the area that moved multiplied by the largest distance anything moved, and two things combine:
 
-**Files.**
+- **Distance:** the footer sits inside the viewport until the data arrives, then jumps out of it (about 1,600 px on `/experience`).
+- **Area:** on desktop, the page starts overflowing at the same moment. The scrollbar appears, the page gets 15 px narrower, and the centred grid moves 7 px to the left. It's a small move, but it covers most of the screen.
 
-- `src/app/app.component.scss`
-- `src/app/experience/experience.component.html`, `experience.component.scss`
+**Tried and reverted.** Both brought CLS to at most 0.003 on every page:
 
-**Done when.** CLS < 0.1 on every page, mobile and desktop.
+- A `min-height: 100vh` wrapper around the navbar and the content, which left a gap above the footer and added a useless scrollbar on `/` and `/projects`.
+- Hiding the footer until a page is displayed, with each long page reserving a screen's height while its data loads. The final layout was unchanged, but every long page needed a loading class on its host.
+
+**If it matters later.** `scrollbar-gutter: stable` on `body` should remove the grid's move, and bring `/experience` on desktop to about 0.07. That's an estimate, it wasn't measured.
 
 ### P2: Less JavaScript on first load (helps every page)
 
@@ -555,7 +562,7 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 - **Weight:** 558 KB in 44 requests. The heaviest request is `CV_FR.png` (201 KB), loaded without the modal being opened (P1.5).
 - **Layout shifts:**
   - Mobile: 0.078 on the footer (P1.6).
-  - Desktop: 0.587, the whole grid moving when the experience tiles arrive (P1.6).
+  - Desktop: 0.587, the grid moving 7 px when the scrollbar appears, combined with the footer's jump (P1.6).
 
 ### `/projects/uloa` (project details)
 
@@ -574,6 +581,7 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 ### Noticed in passing (not performance)
 
 - `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
+- On a page that overflows by little, scrolling returns to the top: the navbar shrinks by 40 px when it sticks, which takes 40 px off the scroll position. At 860 px tall, `/` overflows by 28 px and can't stay scrolled. At 768 px tall, a scroll of about 30 px or less returns to the top.
 - The CV modal can't be closed from the keyboard: only a mouse press or tap outside it closes it. It also has no `role="dialog"`, and focus stays on the page behind it, short of the focus management `CLAUDE.md` requires.
 - The archives' text filter searches `project.description` and `project_context.label`, which hold translation keys (`project.description.chifoumi`, `context.label.insa`), not the displayed text. "description", "context" or "label" match all 26 projects, and a word from a displayed description ("traçabilité", "multijoueur") matches none.
 - `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.

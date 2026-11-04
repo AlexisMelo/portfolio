@@ -174,6 +174,10 @@ export class ProjectIllustrationsComponent
   public openDialog() {
     this.stopAutoSlide();
     const dialogRef = this.dialog.open(ProjectIllustrationsDialogComponent, {
+      backdropClass: 'custom-backdrop',
+      restoreFocus: false,
+      // Not on the first arrow, which changes the slide on any key press
+      autoFocus: 'dialog',
       data: {
         illustrations: this.illustrationsSorted,
         slideShownOnOpen: this.currentSlide,

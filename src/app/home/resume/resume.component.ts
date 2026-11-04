@@ -109,15 +109,16 @@ export class ResumeComponent
   /**
    * Downloads the CV for the active language.
    */
-  public async downloadResume() {
-    this.supabaseService.getImage(this.resumePdfUrl()).then(blob => {
-      const objectUrl = window.URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.href = objectUrl;
-      anchor.download = `CV_Alexis_Melo_da_Silva_${this.languageService.currentLang().toUpperCase()}.pdf`;
-      anchor.click();
-      URL.revokeObjectURL(objectUrl);
-    });
+  public downloadResume() {
+    const path = this.resumePdfUrl();
+    if (!path) return;
+
+    const anchor = document.createElement('a');
+    anchor.href = this.supabaseService.getPublicUrl(
+      path,
+      `CV_Alexis_Melo_da_Silva_${this.languageService.currentLang().toUpperCase()}.pdf`
+    );
+    anchor.click();
   }
 
   /**

@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Database } from 'database.types';
+import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
 import { ArchivedProject } from '../projects/archives/archived-project.model';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
@@ -17,9 +16,9 @@ type Translation = { id: string } & Record<Language, string | null>; //so the da
 })
 export class SupabaseService {
   /**
-   * Client pour Supabase
+   * Client for the Supabase tables
    */
-  public client: SupabaseClient;
+  public client: PostgrestClient;
 
   /**
    * Translation service
@@ -62,10 +61,10 @@ export class SupabaseService {
    * Constructeur
    */
   constructor() {
-    this.client = createClient<Database>(
-      environment.supabaseUrl,
-      environment.supabasePublicKey
-    );
+    const key = environment.supabasePublicKey;
+    this.client = new PostgrestClient(`${environment.supabaseUrl}/rest/v1`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    });
   }
 
   /**
@@ -216,26 +215,17 @@ export class SupabaseService {
   }
 
   /**
-   * Downloads an image from Supabase
-   * @returns
-   */
-  public async getImage(link: string): Promise<Blob> {
-    const { data, error } = await this.client.storage
-      .from('portfolio-project')
-      .download(link);
-
-    if (error || data === null)
-      return Promise.reject('Erreur lors du téléchargement');
-    return data;
-  }
-
-  /**
    * Returns the public URL of a file in the bucket, which browsers and the CDN can cache
    * @param path path of the file in the bucket
+   * @param downloadAs name to save the file under, instead of the browser displaying it
    */
-  public getPublicUrl(path: string): string {
-    return this.client.storage.from('portfolio-project').getPublicUrl(path).data
-      .publicUrl;
+  public getPublicUrl(path: string, downloadAs?: string): string {
+    const url = encodeURI(
+      `${environment.supabaseUrl}/storage/v1/object/public/portfolio-project/${path}`
+    );
+    return downloadAs
+      ? `${url}?download=${encodeURIComponent(downloadAs)}`
+      : url;
   }
 
   /**
