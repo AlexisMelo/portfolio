@@ -9,6 +9,7 @@ import {
   OnDestroy,
   ViewChild,
   OnInit,
+  signal,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -46,7 +47,7 @@ export class ProjectIllustrationsComponent
   /**
    * Index de la slide affichée
    */
-  public currentSlide = 0;
+  protected readonly currentSlide = signal(0);
 
   /**
    * Accès au template
@@ -101,11 +102,11 @@ export class ProjectIllustrationsComponent
     const totalSlides = this.illustrationsSorted.length;
 
     if (index >= totalSlides) {
-      this.currentSlide = 0;
+      this.currentSlide.set(0);
     } else if (index < 0) {
-      this.currentSlide = totalSlides - 1;
+      this.currentSlide.set(totalSlides - 1);
     } else {
-      this.currentSlide = index;
+      this.currentSlide.set(index);
     }
 
     const carouselItems =
@@ -114,7 +115,7 @@ export class ProjectIllustrationsComponent
     if (!carouselItems) return;
 
     for (const slide of carouselItems) {
-      slide.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+      slide.style.transform = `translateX(-${this.currentSlide() * 100}%)`;
     }
   }
 
@@ -123,7 +124,7 @@ export class ProjectIllustrationsComponent
    * @param direction
    */
   public nextSlide(direction: number) {
-    this.showSlide(this.currentSlide + direction);
+    this.showSlide(this.currentSlide() + direction);
     this.resetAutoSlide();
   }
 
@@ -180,7 +181,7 @@ export class ProjectIllustrationsComponent
       autoFocus: 'dialog',
       data: {
         illustrations: this.illustrationsSorted,
-        slideShownOnOpen: this.currentSlide,
+        slideShownOnOpen: this.currentSlide(),
       },
     });
 

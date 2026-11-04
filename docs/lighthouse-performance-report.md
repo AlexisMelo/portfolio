@@ -59,6 +59,7 @@ Pages audited: `/`, `/projects`, `/projects/archives`, `/skills`, `/experience`,
 - **Compare only runs made with the same command.** A trimmed flag set gave FCP 2.0 s instead of 0.6 s on `/`.
 - **Run audits one at a time.** Parallel runs compete for CPU.
 - **Be suspicious of a mobile 1.00 with LCP around 0.6 s.** Lighthouse simulates LCP: when a text LCP paints in the same frame as the first paint, LCP equals the simulated FCP (0.6 s), and one frame later it's 3.3–3.8 s. Compare `observedFirstContentfulPaint` and `observedLargestContentfulPaint` in the `metrics` audit before believing a jump.
+- **Serve copies of the builds without `ngsw-worker.js` when comparing them.** Requests answered through the service worker report `transfer: 0`, and whether it takes control in time varies between builds. It made `/projects/archives` look 1.4 MB lighter and `/projects` score 0.92 instead of 0.85. `--blocked-url-patterns` doesn't stop it. If bytes drop by more than the code you removed, suspect this first.
 - **Check which build answers.** Without `--no-port-switching`, `serve` moves to a random port when its port is taken, and whatever holds that port keeps answering. Compare the `main-*.js` in the response with the one in the build's `index.html`, and stop the servers afterwards.
 - **Local runs flatter the site.** There's no real server latency. Once changes are deployed, check production with [PageSpeed Insights](https://pagespeed.web.dev/) (mobile).
 
@@ -410,7 +411,30 @@ Median of 3 mobile runs, with the builds before and after the change alternating
 
 ### P2: Less JavaScript on first load (helps every page)
 
-The initial JavaScript is 759 KB uncompressed (790 KB with CSS, 208 KB gzipped). Main contents:
+**Result of P2.1, P2.2 and P2.4 (2026-11-04).** The initial bundle is 26% smaller and blocking time is down on every page. `/` is over the 0.90 goal, and `/projects` and `/projects/uloa` aren't: their LCP is an image, and that's what's left to improve.
+
+| Step            | Initial total | Gzipped |
+| --------------- | ------------- | ------- |
+| Before P2       | 788 KB        | 207 KB  |
+| P2.1            | 713 KB        | 189 KB  |
+| P2.2            | 592 KB        | 163 KB  |
+| Angular 22      | 612 KB        | 166 KB  |
+| P2.4 (zoneless) | 573 KB        | 154 KB  |
+
+| Page                 | Mobile score | LCP         | TBT          | Longest task |
+| -------------------- | ------------ | ----------- | ------------ | ------------ |
+| `/`                  | 0.91 → 0.94  | 3.3 → 3.0 s | 97 → 80 ms   | 148 → 130 ms |
+| `/projects`          | 0.83 → 0.85  | 4.6 → 4.3 s | 111 → 77 ms  | 155 → 127 ms |
+| `/projects/archives` | 0.93 → 1.00  | 3.2 → 0.6 s | 55 → 41 ms   | 151 → 132 ms |
+| `/skills`            | 0.89 → 0.97  | 3.5 → 0.6 s | 81 → 45 ms   | 158 → 131 ms |
+| `/experience`        | 0.88 → 0.98  | 3.6 → 0.6 s | 111 → 91 ms  | 161 → 141 ms |
+| `/projects/uloa`     | 0.81 → 0.83  | 4.7 → 4.3 s | 138 → 100 ms | 153 → 130 ms |
+
+Median of 3 mobile runs, with the builds from before P2.1 and after P2.4 alternating in the same session, both served without `ngsw-worker.js` (see section 2).
+
+**The three LCPs of 0.6 s aren't real.** They're the simulation artefact described in section 2: the text now paints in the same frame as the first paint, so Lighthouse reports the simulated FCP. The one run that didn't flip gave `/experience` 0.92 with an LCP of 3.2 s, so expect those three pages around 0.90. The unthrottled paints barely move: first paint stays around 160 ms.
+
+Before P2, the initial JavaScript was 759 KB uncompressed (790 KB with CSS, 208 KB gzipped). Main contents:
 
 | Package                                                           | Size (uncompressed) | Needed on first load?                           |
 | ----------------------------------------------------------------- | ------------------- | ----------------------------------------------- |
@@ -423,21 +447,31 @@ The initial JavaScript is 759 KB uncompressed (790 KB with CSS, 208 KB gzipped).
 | `@angular/common`                                                 | 42 KB               | yes                                             |
 | `zone.js`                                                         | 34 KB               | **no**, if the app goes zoneless                |
 
-On every page, Lighthouse also reports a ~150–160 ms long task attributed to `polyfills` (zone.js), which sets the 150–160 ms "max potential FID", and about 60 KB of unused JavaScript.
+On every page, Lighthouse also reported a ~150–160 ms long task attributed to `polyfills` (zone.js), which set the 150–160 ms "max potential FID", and about 60 KB of unused JavaScript.
 
 #### P2.1 Move the dialog provider out of `app.config.ts`
 
-- [ ] Move the `DEFAULT_DIALOG_CONFIG` provider to the project-details route (`providers` in `app.routes.ts`) or to the component that opens the dialog
+- [x] Remove the `DEFAULT_DIALOG_CONFIG` provider, and pass the options in the only `dialog.open()` call
+
+**Done on 2026-11-04.** `@angular/cdk` in the initial bundle goes from 75.4 KB to 2.2 KB. What's left is small helpers that `mat-icon` needs, so it can't reach zero while the navbar uses icons. A route provider wouldn't have worked: `app.routes.ts` is eager, so importing the token there would pull the CDK back in.
+
+The provider replaced the CDK's defaults with a bare object. Without it, the dialog gets `role="dialog"` and closes when navigating. It would also focus its first control, but the arrows change the slide on any key press, so `autoFocus: 'dialog'` puts the focus on the dialog itself.
 
 **Why.** Importing `DEFAULT_DIALOG_CONFIG` from `@angular/cdk/dialog` in `src/app/app.config.ts` is enough to pull the CDK dialog, overlay, a11y and portal code (~75 KB) into the initial bundle.
 
-**Done when.** No `@angular/cdk` in the initial chunks. Check with `ng build --stats-json` and [esbuild's analyzer](https://esbuild.github.io/analyze/).
+**Files.** `src/app/app.config.ts`, `src/app/projects/project-details/project-illustrations/project-illustrations.component.ts`
+
+**Done when.** No `@angular/cdk` in the initial chunks, apart from what `mat-icon` needs. Check with `ng build --stats-json` and [esbuild's analyzer](https://esbuild.github.io/analyze/).
 
 #### P2.2 Replace `supabase-js` with `postgrest-js`
 
-- [ ] Query tables with `@supabase/postgrest-js` (the same `.from().select()` API)
-- [ ] Build public storage URLs directly (`/storage/v1/object/public/portfolio-project/...`) instead of using `storage.download()`
-- [ ] The CV PDF download needs an equivalent: a public URL plus an `<a download>`, or a plain `fetch`
+- [x] Query tables with `@supabase/postgrest-js` (the same `.from().select()` API)
+- [x] Build public storage URLs directly (`/storage/v1/object/public/portfolio-project/...`) instead of using `storage.download()`
+- [x] The CV PDF download needs an equivalent: a public URL with `?download=<file name>`
+
+**Done on 2026-11-04.** Of the 128 KB of `@supabase/*` in the initial bundle, only `postgrest-js` is left (14 KB), and the app no longer writes an auth key to `localStorage`. `<a download>` is ignored across origins, so the PDF link uses Supabase's `?download=` parameter, which sends it as an attachment with the right file name.
+
+The text, images and links of 11 pages in both languages are identical to the previous build.
 
 **Why.** The app only reads tables and public files, but `createClient()` ships the auth, realtime, storage and iceberg clients (~107 KB). The auth client also touches `localStorage` on startup.
 
@@ -454,18 +488,38 @@ On every page, Lighthouse also reports a ~150–160 ms long task attributed to `
 
 #### P2.4 Go zoneless
 
-- [ ] Add `provideZonelessChangeDetection()`, and remove `zone.js` from `polyfills` in `angular.json` (build and test)
-- [ ] Convert state updated in async callbacks to signals; otherwise the view won't refresh. Known cases:
+- [x] Upgrade to Angular 22 with `ng update`, along with `angular-eslint` 22 and TypeScript 6
+- [x] Remove `provideZoneChangeDetection()`, `zone.js` from `polyfills` in `angular.json` (build and test), and the package. Zoneless is the default since Angular 21, so no provider is needed.
+- [x] Convert state changed outside a component's own event handlers to signals:
   - `OngoingComponent.count`
   - `ProjectsComponent.pinnedProjects`
-  - `ArchivesService` data, and the other `.then(x => this.y = x)` assignments
-- [ ] Set `ChangeDetectionStrategy.OnPush` on components as they are migrated
+  - `SkillsComponent.sections`
+  - `NavbarComponent.menuOpened`
+  - `ThemeService.theme`
+  - `currentSlide` in `ProjectCoworkersComponent` and `ProjectIllustrationsComponent`
+  - `ProjectFilteringComponent.hasFilter`, instead of reading the form control in the template
+- [x] Remove every `changeDetection` line. OnPush is the default in Angular 22, and `ng update` had stamped 51 components with `Eager` to keep the old behaviour.
 
-**Why.** Removes 34 KB and the ~155 ms long task on every page.
+**Done on 2026-11-04.** `polyfills-*.js` is gone and all pages still update. The `~155 ms` long task only shrinks to about 130 ms, so zone.js wasn't the whole of it.
 
-**How.** The `onpush_zoneless_migration` tool of the Angular CLI MCP server guides the migration, and the [zoneless guide](https://angular.dev/guide/zoneless) covers testing. Unit tests run on Karma, so check the `TestBed` setup too.
+**Checked against the Angular 21 build.**
 
-**Done when.** `polyfills-*.js` is gone from the build, all pages still update after the data loads, and `ng test` passes.
+- **Content:** the text, images and links of 11 pages in both languages are identical.
+- **Layout:** footer position, page height and scrollbar are identical in 21 combinations of pages and screen sizes.
+- **Behaviour:** 17 scenarios with real clicks, typing and scrolling give the same 209 values, with no errors: theme and language switches, carousels moving by themselves, the dialog, the archives filters, the mobile menu, the map and the CV.
+- **Missed updates:** with `provideCheckNoChangesConfig({ exhaustive: true })` on during those scenarios, the only finding is `DurationPipe` returning a translation key while a language file loads. Nothing renders during that time, so it's harmless, and a comment on the pipe records that it relies on a `transloco` pipe in the same template.
+- **Deployment:** a clean `npm install --legacy-peer-deps` and `npm run build`, as in the Dockerfile, both work. The Docker image itself wasn't built, and `ng test` has no spec files to run.
+
+**Worth knowing.**
+
+- `package-lock.json` is ignored, so deployments install the newest allowed versions: `postgrest-js` 2.119, not the 2.95 that `package.json` names. That's the version tested above.
+- `ng update` added `withXhr()` to `provideHttpClient()` to keep the old backend. It's removed: only the translation files use `HttpClient`, and they work with the default `fetch` backend.
+- The `onpush_zoneless_migration` MCP tool recommends adding the deprecated `ChangeDetectionStrategy.Default` with TODO comments, which doesn't fit Angular 22, so it wasn't followed.
+- Two optional migrations weren't run: Karma to Vitest, and `@angular-devkit/build-angular` to the new builder.
+
+**Why.** Removes 34 KB on every page, and reduces blocking time.
+
+**Done when.** `polyfills-*.js` is gone from the build, and all pages still update after the data loads.
 
 ### P3: Small improvements
 
@@ -474,6 +528,7 @@ On every page, Lighthouse also reports a ~150–160 ms long task attributed to `
   - `TranslocoHttpLoader` fetches `/i18n/{lang}.json` only after `main.js` has run, and every translated text waits for it.
   - Two static JSON imports (~2 KB gzipped each) remove that round trip.
   - Files: `src/app/transloco-loader.ts`.
+- [ ] **Register the service worker later.** Zoneless, `registerWhenStable` no longer waits for the Supabase data, so the worker takes control of every page about 120–460 ms after it starts, while its content is still loading, and it prefetches the app's files (`installMode: prefetch` in `ngsw-config.json`). It already did on most pages. What changes is `/skills`, where it used to wait more than 12 s, and `/projects/archives` (631 → 121 ms). `registerWithDelay` would avoid competing with the first load. The gain hasn't been measured.
 - [ ] **Request the skills once on `/skills`.** `SkillsComponent`, `FavoritesComponent` and `KeepLearningComponent` each call `getSkills()` (3.4 KB per call since P1.4). Share one request between them.
 - [ ] **Serve the navbar illustrations locally.** `projects.svg`, `skills.svg` and `experience.svg` are loaded from the Supabase bucket on every page. Move them to `public/` (file: `src/app/navbar/navbar.component.html`).
 - [ ] **Apply the theme before first paint.**
@@ -582,6 +637,9 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 
 - `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
 - On a page that overflows by little, scrolling returns to the top: the navbar shrinks by 40 px when it sticks, which takes 40 px off the scroll position. At 860 px tall, `/` overflows by 28 px and can't stay scrolled. At 768 px tall, a scroll of about 30 px or less returns to the top.
+- The CV preview is stretched in its modal on screens under about 936 px tall: 338×731 instead of 338×478 on a phone, and 595×691 instead of 488×691 at 1366×768. The `<img>` has `width="595" height="842"`, and `max-width` and `max-height` each clamp one side. Adding `width: auto; height: auto` to `.modal-img` gives the right ratio.
+- `app-action-button` isn't keyboard accessible: it's a plain element with a click listener and no focus, so the dialog can't be opened from the keyboard, and neither can the CV be downloaded.
+- 10 components are never rendered, so the compiler doesn't even see them: `ProjectSkillsComponent`, the tooltip, the chips, `InputComponent` and the skill highlight placeholder. They weren't migrated: the tooltip, for one, would need signals to work now.
 - The CV modal can't be closed from the keyboard: only a mouse press or tap outside it closes it. It also has no `role="dialog"`, and focus stays on the page behind it, short of the focus management `CLAUDE.md` requires.
 - The archives' text filter searches `project.description` and `project_context.label`, which hold translation keys (`project.description.chifoumi`, `context.label.insa`), not the displayed text. "description", "context" or "label" match all 26 projects, and a word from a displayed description ("traçabilité", "multijoueur") matches none.
 - `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.

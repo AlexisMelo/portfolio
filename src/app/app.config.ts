@@ -3,7 +3,6 @@ import {
   inject,
   isDevMode,
   provideAppInitializer,
-  provideZoneChangeDetection,
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideRouter, withViewTransitions } from '@angular/router';
@@ -17,7 +16,6 @@ import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
     // Every <mat-icon> uses the Material Symbols subset loaded in index.html
     provideAppInitializer(() => {

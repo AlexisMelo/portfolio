@@ -1,12 +1,6 @@
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
-import {
-  Component,
-  HostBinding,
-  inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -37,6 +31,7 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   hostDirectives: [StickyObserverDirective],
+  host: { '[class.menu-opened]': 'menuOpened()' },
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   /**
@@ -47,7 +42,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   /**
    * Est-ce que le menu est ouvert
    */
-  @HostBinding('class.menu-opened') public menuOpened: boolean = false;
+  protected readonly menuOpened = signal(false);
 
   /**
    * Gestion du thème
@@ -70,7 +65,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe({
-      next: () => (this.menuOpened = false),
+      next: () => this.menuOpened.set(false),
     });
   }
 
@@ -92,6 +87,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * Ouvre le menu
    */
   public toggleMenu() {
-    this.menuOpened = !this.menuOpened;
+    this.menuOpened.update(opened => !opened);
   }
 }

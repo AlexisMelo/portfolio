@@ -31,13 +31,13 @@
 
 @if (illustrationsSorted) {
   @if (illustrationsSorted.length > 1) {
-    @if (currentSlide > 0) {
+    @if (currentSlide() > 0) {
       <app-action-button
         icon="chevron_left"
         (click)="nextSlide(-1)"></app-action-button>
     }
 
-    @if (currentSlide < illustrationsSorted.length - 1) {
+    @if (currentSlide() < illustrationsSorted.length - 1) {
       <app-action-button
         icon="chevron_right"
         position="bottom-left-2"

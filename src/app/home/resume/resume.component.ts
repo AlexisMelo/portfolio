@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -30,7 +29,6 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
   ],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'g-grid-item-start-aligned' },
 })
 export class ResumeComponent

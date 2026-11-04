@@ -1,6 +1,5 @@
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
@@ -11,7 +10,6 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
 import { Theme } from 'src/app/shared/theme.model';
 import { ThemeService } from 'src/app/shared/theme.service';
@@ -25,7 +23,6 @@ import { ThemeService } from 'src/app/shared/theme.service';
   styleUrl: './leaflet-map.component.scss',
   // Leaflet creates its own DOM, which scoped styles wouldn't reach
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeafletMapComponent implements OnDestroy {
   /**
@@ -49,11 +46,9 @@ export class LeafletMapComponent implements OnDestroy {
   private readonly position: L.LatLngExpression = [49.183, -0.372];
 
   /**
-   * Current theme, which selects the tiles
+   * Service to access current theme, which selects the tiles
    */
-  private readonly theme = toSignal(inject(ThemeService).theme, {
-    requireSync: true,
-  });
+  private readonly themeService = inject(ThemeService);
 
   /**
    * Map instance, created once the host is in the DOM
@@ -93,7 +88,7 @@ export class LeafletMapComponent implements OnDestroy {
 
     effect(() => {
       const map = this.map();
-      if (map) this.updateTile(map, this.theme());
+      if (map) this.updateTile(map, this.themeService.theme());
     });
 
     effect(() => {

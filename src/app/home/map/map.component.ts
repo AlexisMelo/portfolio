@@ -1,7 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -10,7 +9,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../action-button/action-button.component';
@@ -26,7 +24,6 @@ import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent extends GridItemDirective {
   /**
@@ -57,13 +54,6 @@ export class MapComponent extends GridItemDirective {
    * Is there a wider zoom level?
    */
   protected readonly canZoomOut = computed(() => this.zoomIndex() > 0);
-
-  /**
-   * Current theme, which selects the static image and the credits
-   */
-  protected readonly theme = toSignal(this.themeService.theme, {
-    requireSync: true,
-  });
 
   /**
    * Has Leaflet displayed its first tiles? Until then, the static image stays on top of the map

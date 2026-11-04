@@ -8,11 +8,18 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { debounceTime, distinctUntilChanged, first, Subscription } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  first,
+  map,
+  Subscription,
+} from 'rxjs';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
@@ -56,6 +63,14 @@ export class ProjectFilteringComponent
    * FormControl pour la recherche par mots clés
    */
   public filterFormControl = new FormControl('');
+
+  /**
+   * Whether text is typed in the search bar
+   */
+  protected readonly hasFilter = toSignal(
+    this.filterFormControl.valueChanges.pipe(map(Boolean)),
+    { initialValue: false }
+  );
 
   /**
    * Souscription aux changements de texte

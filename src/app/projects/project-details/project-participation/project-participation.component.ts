@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
@@ -15,7 +9,6 @@ import { Project } from '../../project.model';
   imports: [TranslocoPipe],
   templateUrl: './project-participation.component.html',
   styleUrl: './project-participation.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectParticipationComponent extends GridItemDirective {

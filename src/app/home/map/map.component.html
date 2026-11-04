@@ -11,7 +11,7 @@
   @if (!tilesLoaded()) {
     <img
       class="map-image"
-      [ngSrc]="'map/' + theme() + '.webp'"
+      [ngSrc]="'map/' + themeService.theme() + '.webp'"
       [alt]="'home.map.alt' | transloco"
       width="400"
       height="200"

@@ -1,66 +1,56 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { Theme } from './theme.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ThemeService implements OnDestroy {
+export class ThemeService {
   /**
-   * Est-ce que le site est en dark mode ?
+   * Current theme
    */
-  public theme = new BehaviorSubject<Theme>('light-mode');
+  private readonly currentTheme = signal<Theme>('light-mode');
 
   /**
-   * Souscription aux changements de theme
+   * Current theme, read-only
    */
-  private themeSubscription?: Subscription;
+  public readonly theme = this.currentTheme.asReadonly();
 
   /**
    * Constructeur
    */
   constructor() {
-    this.themeSubscription = this.theme.subscribe({
-      next: theme => {
-        if (theme === 'light-mode') {
-          document.body.classList.remove('dark-mode');
-          document.body.classList.add('light-mode');
-        } else {
-          document.body.classList.add('dark-mode');
-          document.body.classList.remove('light-mode');
-        }
-      },
-    });
-
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme !== null) {
-      this.theme.next(storedTheme as Theme);
+      this.setTheme(storedTheme as Theme);
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.theme.next('dark-mode');
+      this.setTheme('dark-mode');
+    } else {
+      this.setTheme('light-mode');
     }
-  }
-
-  /**
-   * Implémentation de OnDestroy
-   */
-  ngOnDestroy() {
-    this.themeSubscription?.unsubscribe();
   }
 
   /**
    * Inverse le thème actuel entre "Light" et "Dark"
    */
   toggle() {
-    this.theme.next(
-      this.theme.value === 'light-mode' ? 'dark-mode' : 'light-mode'
-    );
-    localStorage.setItem('theme', this.theme.value.toString());
+    this.setTheme(this.isDarkMode ? 'light-mode' : 'dark-mode');
+    localStorage.setItem('theme', this.theme());
   }
 
   /**
    * Raccourci pour savoir si on est en dark mode
    */
   get isDarkMode(): boolean {
-    return this.theme.value === 'dark-mode';
+    return this.theme() === 'dark-mode';
+  }
+
+  /**
+   * Changes the theme and applies it to the page
+   * @param theme theme to apply
+   */
+  private setTheme(theme: Theme) {
+    this.currentTheme.set(theme);
+    document.body.classList.toggle('dark-mode', theme === 'dark-mode');
+    document.body.classList.toggle('light-mode', theme === 'light-mode');
   }
 }

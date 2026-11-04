@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GithubComponent } from '../home/github/github.component';
 import { ContentService } from '../shared/content.service';
@@ -35,7 +35,7 @@ export class ProjectsComponent implements OnInit {
   /**
    * Liste des projets réalisés
    */
-  public pinnedProjects: Array<ProjectItem> = [];
+  protected readonly pinnedProjects = signal<Array<ProjectItem>>([]);
 
   /**
    * Gestion de la base de donnée
@@ -53,6 +53,6 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {
     this.supabaseService
       .getPinnedProjects()
-      .then(projects => (this.pinnedProjects = projects));
+      .then(projects => this.pinnedProjects.set(projects));
   }
 }

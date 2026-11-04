@@ -2,9 +2,7 @@
 
 <div class="g-grid-item-main-text">
   <div class="search-bar">
-    <mat-icon class="small" [class.active]="filterFormControl.value"
-      >search</mat-icon
-    >
+    <mat-icon class="small" [class.active]="hasFilter()">search</mat-icon>
     <input
       type="text"
       [placeholder]="'archives.filtering.placeholder' | transloco"

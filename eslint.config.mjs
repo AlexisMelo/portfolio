@@ -1,3 +1,4 @@
+import angular from 'angular-eslint';
 import globals from 'globals';
 import prettier from 'eslint-plugin-prettier';
 import parser from '@angular-eslint/template-parser';
@@ -24,18 +25,18 @@ export default [
       },
     },
   },
-  ...compat
-    .extends(
+  ...[
+    ...compat.extends(
       'eslint:recommended',
-      'plugin:@angular-eslint/recommended',
-      'plugin:@angular-eslint/template/process-inline-templates',
       'plugin:prettier/recommended',
       'plugin:@typescript-eslint/recommended'
-    )
-    .map(config => ({
-      ...config,
-      files: ['**/*.ts'],
-    })),
+    ),
+    ...angular.configs.tsRecommended,
+    { processor: angular.processInlineTemplates },
+  ].map(config => ({
+    ...config,
+    files: ['**/*.ts'],
+  })),
   {
     files: ['**/*.ts'],
 
@@ -86,16 +87,14 @@ export default [
       'prettier/prettier': 'error',
     },
   },
-  ...compat
-    .extends(
-      'plugin:@angular-eslint/template/recommended',
-      'plugin:@angular-eslint/template/accessibility',
-      'plugin:prettier/recommended'
-    )
-    .map(config => ({
-      ...config,
-      files: ['**/*.html'],
-    })),
+  ...[
+    ...angular.configs.templateRecommended,
+    ...angular.configs.templateAccessibility,
+    ...compat.extends('plugin:prettier/recommended'),
+  ].map(config => ({
+    ...config,
+    files: ['**/*.html'],
+  })),
   {
     files: ['**/*.html'],
 
