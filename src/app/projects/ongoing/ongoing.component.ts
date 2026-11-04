@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/route-paths';
@@ -16,7 +16,7 @@ export class OngoingComponent extends GridItemDirective implements OnInit {
   /**
    * Nombre de projets en cours
    */
-  public count = 0;
+  protected readonly count = signal(0);
 
   /**
    * Gestion de la base de données
@@ -32,7 +32,7 @@ export class OngoingComponent extends GridItemDirective implements OnInit {
    * OnInit implementation
    */
   ngOnInit() {
-    this.supabaseService.countOngoingProjects().then(c => (this.count = c));
+    this.supabaseService.countOngoingProjects().then(c => this.count.set(c));
   }
 
   /**

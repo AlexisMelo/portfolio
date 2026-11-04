@@ -13,6 +13,7 @@ export class DurationPipe implements PipeTransform {
 
   /**
    * Takes two dates and returns their difference in a readable, translated format.
+   * Follows the language only if the view refreshes: use it next to a transloco pipe, which triggers that.
    */
   transform(start_date: string | null, end_date: string | null): string | null {
     if (!start_date) return null;

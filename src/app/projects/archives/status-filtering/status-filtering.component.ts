@@ -3,9 +3,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { Project } from '../../project.model';
 import { Status } from '../../status/status.model';
 import { StatusPipe } from '../../status/status.pipe';
+import { ArchivedProject } from '../archived-project.model';
 import { ArchivesService } from '../archives.service';
 
 @Component({
@@ -52,7 +52,7 @@ export class StatusFilteringComponent
         acc[status].push(project);
         return acc;
       },
-      {} as Record<Status, Project[]>
+      {} as Record<Status, ArchivedProject[]>
     );
   });
 

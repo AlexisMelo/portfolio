@@ -1,6 +1,8 @@
 <h2>{{ 'projects.all.title' | transloco }}</h2>
 
-<p>{{ 'projects.all.count' | transloco: { count: projects?.length } }}</p>
+@if (count() !== undefined) {
+  <p>{{ 'projects.all.count' | transloco: { count: count() } }}</p>
+}
 
 <mat-icon [routerLink]="[ARCHIVES_ROUTE]">call_made</mat-icon>
 

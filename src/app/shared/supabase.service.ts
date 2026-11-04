@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Database } from 'database.types';
+import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
+import { ArchivedProject } from '../projects/archives/archived-project.model';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
@@ -16,9 +16,9 @@ type Translation = { id: string } & Record<Language, string | null>; //so the da
 })
 export class SupabaseService {
   /**
-   * Client pour Supabase
+   * Client for the Supabase tables
    */
-  public client: SupabaseClient;
+  public client: PostgrestClient;
 
   /**
    * Translation service
@@ -42,19 +42,29 @@ export class SupabaseService {
           skill(
             *,
             skill_type(*, localizedLabel:translations!label(*)),
-            projects:project(*),
+            projects:project(id),
             skill_field(*)
           )
         )`;
 
   /**
+   * Request to get only what the archives display and filter on
+   */
+  private readonly ARCHIVED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
+        localizedDescription:translations!description(en, fr),
+        illustrations:project_illustration(url, alt, position),
+        project_type(label),
+        project_context:context(id, label),
+        project_skills:project_skill(highlight, skill(id, label))`;
+
+  /**
    * Constructeur
    */
   constructor() {
-    this.client = createClient<Database>(
-      environment.supabaseUrl,
-      environment.supabasePublicKey
-    );
+    const key = environment.supabasePublicKey;
+    this.client = new PostgrestClient(`${environment.supabaseUrl}/rest/v1`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    });
   }
 
   /**
@@ -62,27 +72,43 @@ export class SupabaseService {
    * @returns
    */
   public async countOngoingProjects(): Promise<number> {
-    const { data, error } = await this.client
+    const { count, error } = await this.client
       .from('project')
-      .select('*')
+      .select('*', { count: 'exact', head: true })
       .is('end_date', null)
       .is('abandoned', false);
 
-    if (error) return Promise.reject(error);
-    return data.length as number;
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
   }
 
   /**
-   * Obtient la liste de tous les projets
+   * Counts all projects, without downloading them
    * @returns
    */
-  public async getProjects(): Promise<Array<Project>> {
+  public async countProjects(): Promise<number> {
+    const { count, error } = await this.client
+      .from('project')
+      .select('*', { count: 'exact', head: true });
+
+    if (error || count === null)
+      return Promise.reject('Error when getting project count');
+    return count;
+  }
+
+  /**
+   * Gets every project, with only the fields used by the archives
+   * @returns
+   */
+  public async getProjects(): Promise<Array<ArchivedProject>> {
     const { data, error } = await this.client
       .from('project')
-      .select(this.PROJECT_REQUEST);
+      .select(this.ARCHIVED_PROJECT_REQUEST)
+      .overrideTypes<Array<ArchivedProject>, { merge: false }>();
 
     if (error) return Promise.reject(error);
-    return data as Array<Project>;
+    return data;
   }
 
   /**
@@ -142,7 +168,7 @@ export class SupabaseService {
     const { data, error } = await this.client
       .from('skill')
       .select(
-        '*, skill_type(*, localizedLabel:translations!label(*)), projects:project(*), skill_field(*), localizedDescription:translations!description(*)'
+        '*, skill_type(*, localizedLabel:translations!label(*)), projects:project(id), skill_field(*), localizedDescription:translations!description(*)'
       )
       .order('label');
 
@@ -189,17 +215,17 @@ export class SupabaseService {
   }
 
   /**
-   * Downloads an image from Supabase
-   * @returns
+   * Returns the public URL of a file in the bucket, which browsers and the CDN can cache
+   * @param path path of the file in the bucket
+   * @param downloadAs name to save the file under, instead of the browser displaying it
    */
-  public async getImage(link: string): Promise<Blob> {
-    const { data, error } = await this.client.storage
-      .from('portfolio-project')
-      .download(link);
-
-    if (error || data === null)
-      return Promise.reject('Erreur lors du téléchargement');
-    return data;
+  public getPublicUrl(path: string, downloadAs?: string): string {
+    const url = encodeURI(
+      `${environment.supabaseUrl}/storage/v1/object/public/portfolio-project/${path}`
+    );
+    return downloadAs
+      ? `${url}?download=${encodeURIComponent(downloadAs)}`
+      : url;
   }
 
   /**

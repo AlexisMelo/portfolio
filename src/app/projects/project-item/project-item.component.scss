@@ -34,9 +34,12 @@
   }
 }
 
+// Fixed ratio for the fill-mode image: screenshots are about 16:9, and the tile
+// only shows the left part of the container
 .illustration-container {
   position: absolute;
   height: 70%;
+  aspect-ratio: 16 / 9;
   left: 65%;
   top: 50%;
   transform: translate(0%, -50%);
@@ -47,7 +50,8 @@
 
   img {
     transition: 500ms;
-    height: 100%;
+    object-fit: cover;
+    object-position: left;
     // filter: grayscale(100);
   }
 }

@@ -22,12 +22,12 @@
   </div>
 
   @if (project.coworkers.length > 1) {
-    @if (currentSlide > 0) {
+    @if (currentSlide() > 0) {
       <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
       </app-action-button>
     }
 
-    @if (currentSlide < project.coworkers.length - 1) {
+    @if (currentSlide() < project.coworkers.length - 1) {
       <app-action-button
         [position]="'bottom-left-2'"
         icon="chevron_right"
@@ -36,7 +36,7 @@
     }
 
     <div class="counter">
-      {{ currentSlide + 1 }} / {{ project.coworkers.length }}
+      {{ currentSlide() + 1 }} / {{ project.coworkers.length }}
     </div>
   }
 } @else {

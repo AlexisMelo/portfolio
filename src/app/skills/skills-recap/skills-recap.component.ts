@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -18,7 +19,13 @@ import { Skill, SkillType } from 'src/app/skills/skill.model';
 
 @Component({
   selector: 'app-skills-recap',
-  imports: [RouterLink, MatIconModule, LoaderComponent, TranslocoPipe],
+  imports: [
+    RouterLink,
+    MatIconModule,
+    LoaderComponent,
+    TranslocoPipe,
+    NgOptimizedImage,
+  ],
   templateUrl: './skills-recap.component.html',
   styleUrl: './skills-recap.component.scss',
 })

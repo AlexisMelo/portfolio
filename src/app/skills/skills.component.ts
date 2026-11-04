@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
@@ -11,7 +11,6 @@ import { KeepLearningComponent } from './keep-learning/keep-learning.component';
 import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
 import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
-import { Skill } from './skill.model';
 import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 import { SkillsSection } from './skills-section.model';
 
@@ -37,7 +36,7 @@ export class SkillsComponent implements OnInit {
   /**
    * Liste des sections à afficher
    */
-  public sections: Array<SkillsSection> = [
+  protected readonly sections = signal<Array<SkillsSection>>([
     {
       id: 'section-frontend',
       heading: 'skills.sections.frontend.heading',
@@ -65,17 +64,12 @@ export class SkillsComponent implements OnInit {
       skills: [],
       class: 'general-grid',
     },
-  ];
+  ]);
 
   /**
    * Accès à la base de données
    */
   private supabaseService = inject(SupabaseService);
-
-  /**
-   * Liste des skills
-   */
-  public skills?: Array<Skill>;
 
   /**
    * Gestion du thème
@@ -87,13 +81,12 @@ export class SkillsComponent implements OnInit {
    */
   ngOnInit() {
     this.supabaseService.getSkills().then(skills => {
-      this.skills = skills;
-
-      for (const section of this.sections) {
-        section.skills = this.skills?.filter(
-          s => s.skill_field.id === section.skillFieldId
-        );
-      }
+      this.sections.update(sections =>
+        sections.map(section => ({
+          ...section,
+          skills: skills.filter(s => s.skill_field.id === section.skillFieldId),
+        }))
+      );
     });
   }
 }

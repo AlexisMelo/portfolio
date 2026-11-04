@@ -24,6 +24,11 @@
       "project_pt2": "projet ?",
       "contact": "Me contacter"
     },
+    "map": {
+      "alt": "Carte centrée sur Caen, en Normandie, France",
+      "zoomIn": "Zoomer sur la carte",
+      "zoomOut": "Dézoomer la carte"
+    },
     "now": {
       "title": "En train de ..."
     },

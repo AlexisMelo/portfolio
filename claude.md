@@ -35,7 +35,6 @@ Personal portfolio website of Alexis Melo, a freelance fullstack web developer s
 ## Rules the skill does not cover
 
 - Accessibility: pages MUST pass all AXE checks and meet WCAG AA, including focus management, colour contrast in both themes and ARIA attributes.
-- Set `changeDetection: ChangeDetectionStrategy.OnPush` on new components.
 - Use `NgOptimizedImage` for static images (it does not work for inline base64 images).
 - Avoid `any`; use `unknown` when the type is uncertain.
 - Write short English documentation for new functions and new component fields.

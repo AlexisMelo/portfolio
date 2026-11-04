@@ -81,7 +81,7 @@
   </a>
 </ng-template>
 
-<div class="collapsible-menu" [class.opened]="this.menuOpened">
+<div class="collapsible-menu" [class.opened]="menuOpened()">
   <div class="g-grid-container">
     <div class="g-grid">
       <ng-template [ngTemplateOutlet]="items"></ng-template>
@@ -125,7 +125,7 @@
         (click)="toggleMenu()"
         (keypress)="toggleMenu()"
         tabindex="0">
-        @if (menuOpened) {
+        @if (menuOpened()) {
           close
         } @else {
           menu

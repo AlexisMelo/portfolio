@@ -28,10 +28,6 @@
     .rayon {
       transform: translate(-50%, -50%) scale(1.1);
     }
-
-    #map {
-      filter: none;
-    }
   }
 }
 
@@ -40,8 +36,25 @@
   height: 100%;
 }
 
-#map {
-  height: 100%;
+// At its exact size and centred, like Leaflet's view, so that the map lines up with it at every tile size
+.map-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 200px;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes map-image-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.map-image-leave {
+  animation: map-image-fade-out 300ms ease-out forwards;
 }
 
 @keyframes tilt-shaking {
@@ -62,8 +75,49 @@
   }
 }
 
-app-action-button {
+.zoom-button {
+  position: absolute;
+  bottom: 16px;
   z-index: 500;
+  padding: 0;
+  border: none;
+  border-radius: 18px;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.zoom-out-button {
+  left: 16px;
+}
+
+.zoom-in-button {
+  right: 16px;
+}
+
+// Credits required by the licences of the map data
+.attribution {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 500;
+  margin: 0;
+  padding: 1px 6px;
+  border-bottom-left-radius: 6px;
+  background-color: var(--map-attribution-background);
+  color: var(--map-attribution-color);
+  font-size: 9px;
+  line-height: 14px;
+  text-align: right;
+
+  span {
+    white-space: nowrap;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 
 .img-marker,

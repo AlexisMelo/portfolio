@@ -3,7 +3,9 @@
     @if (illustrationsSorted?.length === 0) {
       <div class="carousel-item no-image">
         <img
-          src="photos/no-image.svg"
+          ngSrc="photos/no-image.svg"
+          width="1024"
+          height="1024"
           [alt]="
             'projectDetails.illustrations.noIllustrationsAlt' | transloco
           " />
@@ -16,7 +18,11 @@
           (click)="openDialog()"
           (keypress)="openDialog()"
           tabindex="0">
-          <img [src]="illustration.url" [alt]="illustration.alt" />
+          <img
+            [ngSrc]="illustration.url"
+            [alt]="illustration.alt"
+            [priority]="$first"
+            fill />
         </div>
       }
     }
@@ -25,13 +31,13 @@
 
 @if (illustrationsSorted) {
   @if (illustrationsSorted.length > 1) {
-    @if (currentSlide > 0) {
+    @if (currentSlide() > 0) {
       <app-action-button
         icon="chevron_left"
         (click)="nextSlide(-1)"></app-action-button>
     }
 
-    @if (currentSlide < illustrationsSorted.length - 1) {
+    @if (currentSlide() < illustrationsSorted.length - 1) {
       <app-action-button
         icon="chevron_right"
         position="bottom-left-2"

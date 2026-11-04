@@ -127,9 +127,14 @@
     animation: pulse 1s linear infinite;
   }
 
-  img {
+  // Box of the fill-mode icon: icons have different aspect ratios
+  .icon {
+    position: relative;
     width: 30px;
     height: 30px;
+  }
+
+  img {
     object-fit: contain;
     filter: grayscale(100);
   }

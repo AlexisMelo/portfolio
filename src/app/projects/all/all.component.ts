@@ -1,11 +1,10 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { Project } from '../project.model';
 import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-websites.component';
 
 @Component({
@@ -27,9 +26,9 @@ export class AllComponent extends GridItemDirective implements OnInit {
   public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
 
   /**
-   * Tous les projets
+   * Number of projects, undefined until it is loaded
    */
-  public projects?: Array<Project>;
+  protected count = signal<number | undefined>(undefined);
 
   /**
    * Gestion de la base de données
@@ -45,7 +44,7 @@ export class AllComponent extends GridItemDirective implements OnInit {
    * Implémentation de OnInit
    */
   ngOnInit() {
-    this.supabaseService.getProjects().then(p => (this.projects = p));
+    this.supabaseService.countProjects().then(c => this.count.set(c));
   }
 
   /**

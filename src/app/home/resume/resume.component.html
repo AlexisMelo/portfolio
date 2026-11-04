@@ -97,7 +97,12 @@
     stroke-linecap="round" />
 </svg>
 
-<button type="button" class="illustration-container" (click)="openResume()">
+<button
+  type="button"
+  class="illustration-container"
+  (mouseenter)="requestPreview()"
+  (focus)="requestPreview()"
+  (click)="openResume()">
   <img
     ngSrc="illustrations/resume-preview.webp"
     width="240"
@@ -114,11 +119,14 @@
 <div #modal id="modal-container">
   <div class="modal-background">
     <div class="modal" appOutsideClick (outsideClick)="closeResume()">
-      @if (resumePreviewImage.hasValue()) {
+      @if (resumePreviewUrl(); as previewUrl) {
         <img
           class="modal-img"
-          [src]="resumePreviewImage.value()"
-          [attr.alt]="'home.resume.screenshot' | transloco" />
+          [ngSrc]="previewUrl"
+          width="595"
+          height="842"
+          loading="eager"
+          [alt]="'home.resume.screenshot' | transloco" />
       }
     </div>
   </div>

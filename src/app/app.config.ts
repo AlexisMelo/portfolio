@@ -1,12 +1,9 @@
-import { DEFAULT_DIALOG_CONFIG } from '@angular/cdk/dialog';
 import {
   ApplicationConfig,
   inject,
   isDevMode,
   provideAppInitializer,
-  provideZoneChangeDetection,
 } from '@angular/core';
-import { MatDialogConfig } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -19,7 +16,6 @@ import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
     // Every <mat-icon> uses the Material Symbols subset loaded in index.html
     provideAppInitializer(() => {
@@ -32,14 +28,6 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    {
-      provide: DEFAULT_DIALOG_CONFIG,
-      useValue: <MatDialogConfig>{
-        hasBackdrop: true,
-        backdropClass: 'custom-backdrop',
-        restoreFocus: false,
-      },
-    },
     provideHttpClient(),
     provideTransloco({
       config: {

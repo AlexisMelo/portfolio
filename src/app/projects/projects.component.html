@@ -8,7 +8,8 @@
     @for (i of 3 | range; track i) {
       <app-project-item
         [class]="'project__' + (i + 1)"
-        [project]="pinnedProjects[i]"></app-project-item>
+        [project]="pinnedProjects()[i]"
+        [priority]="i === 0"></app-project-item>
     }
 
     <app-ongoing></app-ongoing>

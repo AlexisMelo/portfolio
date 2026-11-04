@@ -4,6 +4,7 @@ import {
   inject,
   Input,
   AfterViewInit,
+  signal,
 } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
@@ -35,7 +36,7 @@ export class ProjectCoworkersComponent
   /**
    * Index du coworker actuellement affiché
    */
-  public currentSlide = 0;
+  protected readonly currentSlide = signal(0);
 
   /**
    * Stockage pour l'interval de l'autoslide
@@ -50,11 +51,11 @@ export class ProjectCoworkersComponent
     const totalSlides = this.project.coworkers.length;
 
     if (index >= totalSlides) {
-      this.currentSlide = 0;
+      this.currentSlide.set(0);
     } else if (index < 0) {
-      this.currentSlide = totalSlides - 1;
+      this.currentSlide.set(totalSlides - 1);
     } else {
-      this.currentSlide = index;
+      this.currentSlide.set(index);
     }
 
     const carouselItems =
@@ -63,7 +64,7 @@ export class ProjectCoworkersComponent
     if (!carouselItems) return;
 
     for (const slide of carouselItems) {
-      slide.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+      slide.style.transform = `translateX(-${this.currentSlide() * 100}%)`;
     }
   }
 
@@ -81,7 +82,7 @@ export class ProjectCoworkersComponent
    * @param direction
    */
   public nextSlide(direction: number) {
-    this.showSlide(this.currentSlide + direction);
+    this.showSlide(this.currentSlide() + direction);
     this.resetAutoSlide();
   }
 

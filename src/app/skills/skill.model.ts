@@ -1,5 +1,4 @@
 import { Tables } from 'database.types';
-import { Project } from '../projects/project.model';
 
 /** skill_type row with its label resolved from the translations table. */
 export interface SkillType extends Tables<'skill_type'> {
@@ -22,9 +21,9 @@ export interface Skill extends Tables<'skill'> {
   skill_field: Tables<'skill_field'>;
 
   /**
-   * Projets utilisant cette technologie
+   * Projects using this skill, only their ids since they are only counted
    */
-  projects: Array<Project>;
+  projects: Array<Pick<Tables<'project'>, 'id'>>;
 
   /** Localized description resolved from the translations table. */
   localizedDescription: Tables<'translations'>;

@@ -45,6 +45,7 @@ Thumbs.db
 /.claude/skills/
 /skills-lock.json
 /.mcp.json
+launch.json
 
 # A enlever car parfois bosch artifactory dans les dépendances = echec CI/CD. A rajouter si projet plus utilisé à Bosch
 package-lock.json

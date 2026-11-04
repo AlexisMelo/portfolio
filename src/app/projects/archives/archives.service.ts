@@ -10,14 +10,14 @@ import { ContextWithProjects } from 'src/app/projects/context-with-projects.mode
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
-import { Project } from '../project.model';
 import { Status } from '../status/status.model';
 import { StatusPipe } from '../status/status.pipe';
+import { ArchivedProject } from './archived-project.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 export type OrderByType = 'year';
 export type OrderDirection = 'asc' | 'desc';
-type GroupedProjects = Array<{ key: string; projects: Array<Project> }>;
+type GroupedProjects = Array<{ key: string; projects: Array<ArchivedProject> }>;
 
 /**
  * Handle the selected projects showed in archives
@@ -42,7 +42,7 @@ export class ArchivesService {
   /**
    * List of all projects
    */
-  public projects = signal<Array<Project>>([]);
+  public projects = signal<Array<ArchivedProject>>([]);
 
   /**
    * List of selected contexts
@@ -88,7 +88,7 @@ export class ArchivesService {
   /**
    * Selected projects based on all the criterias
    */
-  readonly selectedProjects: Signal<Array<Project>> = computed(() => {
+  readonly selectedProjects: Signal<Array<ArchivedProject>> = computed(() => {
     const selectedContexts = this.selectedContexts();
     const selectedSkills = this.selectedSkills();
     const selectedStatus = this.selectedStatus();
@@ -120,7 +120,7 @@ export class ArchivesService {
     const selectedProjects = this.selectedProjects();
 
     const reduced = selectedProjects.reduce(
-      (group: { [key: string]: [Project] }, next: Project) => {
+      (group: { [key: string]: [ArchivedProject] }, next: ArchivedProject) => {
         const date = next.end_date ? new Date(next.end_date) : new Date();
 
         const endYear = date.getFullYear().toString();
@@ -163,7 +163,10 @@ export class ArchivesService {
    * Est-ce que le projet match le filtre textuel
    * @param project
    */
-  private projectMatchesFilter(project: Project, filter: string): boolean {
+  private projectMatchesFilter(
+    project: ArchivedProject,
+    filter: string
+  ): boolean {
     const treatedFilter = filter.toLowerCase();
 
     if (project.label.toLowerCase().includes(treatedFilter)) return true; //nom
