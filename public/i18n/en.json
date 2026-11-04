@@ -24,6 +24,11 @@
       "project_pt2": "project ?",
       "contact": "Contact me"
     },
+    "map": {
+      "alt": "Map centred on Caen, in Normandy, France",
+      "zoomIn": "Zoom in on the map",
+      "zoomOut": "Zoom out of the map"
+    },
     "now": {
       "title": "Currently..."
     },

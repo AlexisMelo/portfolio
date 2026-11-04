@@ -1,27 +1,55 @@
-<div class="map-frame">
-  <div id="map"></div>
+<div #mapFrame class="map-frame">
+  <!-- Leaflet loads on the first hover, focus, click or key press in the tile -->
+  @defer (on hover(mapFrame); on interaction(mapFrame)) {
+    <app-leaflet-map
+      role="img"
+      [attr.aria-label]="'home.map.alt' | transloco"
+      [zoom]="zoomLevel()"
+      (loaded)="tilesLoaded.set(true)"></app-leaflet-map>
+  }
+
+  @if (!tilesLoaded()) {
+    <img
+      class="map-image"
+      [ngSrc]="'map/' + theme() + '.webp'"
+      [alt]="'home.map.alt' | transloco"
+      width="400"
+      height="200"
+      priority
+      animate.leave="map-image-leave" />
+  }
+
+  @if (canZoomOut()) {
+    <button
+      #zoomOutButton
+      type="button"
+      class="zoom-button zoom-out-button"
+      [attr.aria-label]="'home.map.zoomOut' | transloco"
+      (click)="zoomOut()">
+      <app-action-button
+        icon="remove"
+        [positionAbsolute]="false"></app-action-button>
+    </button>
+  }
+
+  @if (canZoomIn()) {
+    <button
+      #zoomInButton
+      type="button"
+      class="zoom-button zoom-in-button"
+      [attr.aria-label]="'home.map.zoomIn' | transloco"
+      (click)="zoomIn()">
+      <app-action-button
+        icon="add"
+        [positionAbsolute]="false"></app-action-button>
+    </button>
+  }
+
+  <div class="rayon"></div>
+  <img
+    class="img-marker"
+    ngSrc="photos/avatar-neutral.webp"
+    width="112"
+    height="98"
+    alt="" />
 </div>
-
-@if (zoomLevel !== minZoom) {
-  <app-action-button
-    [unfold]="hovered"
-    (click)="zoomOut()"
-    icon="remove"
-    position="bottom-left"></app-action-button>
-}
-
-@if (zoomLevel !== maxZoom) {
-  <app-action-button
-    [unfold]="hovered"
-    (click)="zoomIn()"
-    icon="add"
-    position="bottom-right"></app-action-button>
-}
-
-<div class="rayon"></div>
-<img
-  class="img-marker"
-  ngSrc="photos/avatar-neutral.webp"
-  width="112"
-  height="98"
-  alt="" />

@@ -49,7 +49,6 @@
               }
             ],
             "styles": [
-              "./node_modules/leaflet/dist/leaflet.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles/styles.scss"
             ],
@@ -114,7 +113,6 @@
               }
             ],
             "styles": [
-              "./node_modules/leaflet/dist/leaflet.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles/styles.scss"
             ],

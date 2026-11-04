@@ -1,161 +1,119 @@
 import { NgOptimizedImage } from '@angular/common';
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
+  afterNextRender,
+  ChangeDetectionStrategy,
   Component,
+  computed,
+  ElementRef,
   inject,
-  OnDestroy,
+  Injector,
+  signal,
+  viewChild,
 } from '@angular/core';
-import * as L from 'leaflet';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
-import { Subscription } from 'rxjs';
-import { Theme } from 'src/app/shared/theme.model';
 import { ActionButtonComponent } from '../action-button/action-button.component';
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 @Component({
   selector: 'app-map',
-  imports: [ActionButtonComponent, NgOptimizedImage],
+  imports: [
+    ActionButtonComponent,
+    LeafletMapComponent,
+    NgOptimizedImage,
+    TranslocoPipe,
+  ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapComponent
-  extends GridItemDirective
-  implements AfterViewInit, OnDestroy
-{
-  /**
-   * Object to store map instance
-   */
-  private map?: L.Map;
-
-  /**
-   * Souscription aux changements de thème
-   */
-  private themeSubscription?: Subscription;
-
+export class MapComponent extends GridItemDirective {
   /**
    * Niveaux de zoom autorisés
    */
-  private allowedZoomLevels: Array<number> = [3, 6, 13];
+  private readonly allowedZoomLevels = [3, 6, 13];
 
   /**
-   * Position de là où j'habite
+   * Index of the displayed level in allowedZoomLevels
    */
-  private position: L.LatLngExpression = [49.183, -0.372];
+  private readonly zoomIndex = signal(1);
 
   /**
    * Niveau de zoom de la map
-   * On commence au niveau le plus zoomé possible
    */
-  public zoomLevel: number = this.allowedZoomLevels[0];
+  protected readonly zoomLevel = computed(
+    () => this.allowedZoomLevels[this.zoomIndex()]
+  );
 
   /**
-   * Détection des changements
+   * Is there a closer zoom level?
    */
-  private changedDetectorRef = inject(ChangeDetectorRef);
+  protected readonly canZoomIn = computed(
+    () => this.zoomIndex() < this.allowedZoomLevels.length - 1
+  );
 
   /**
-   * Implémentation de AfterViewInit
+   * Is there a wider zoom level?
    */
-  ngAfterViewInit() {
-    this.map = L.map('map', {
-      center: this.position,
-      zoom: this.zoomLevel,
-      attributionControl: false,
-      scrollWheelZoom: false,
-      zoomControl: false,
-      dragging: false,
-    });
-
-    this.updateTile(this.themeService.theme.value);
-
-    this.themeSubscription = this.themeService.theme.subscribe(theme =>
-      this.updateTile(theme)
-    );
-
-    this.zoomIn();
-
-    //pour ne pas avoir de "expression has been changed". Obligé de faire ça dans afterviewinit ?
-    this.changedDetectorRef.detectChanges();
-  }
+  protected readonly canZoomOut = computed(() => this.zoomIndex() > 0);
 
   /**
-   * Zoom maximal
+   * Current theme, which selects the static image and the credits
    */
-  get maxZoom() {
-    return this.allowedZoomLevels[this.allowedZoomLevels.length - 1];
-  }
+  protected readonly theme = toSignal(this.themeService.theme, {
+    requireSync: true,
+  });
 
   /**
-   * Zoom minimal
+   * Has Leaflet displayed its first tiles? Until then, the static image stays on top of the map
    */
-  get minZoom() {
-    return this.allowedZoomLevels[0];
-  }
+  protected readonly tilesLoaded = signal(false);
 
   /**
-   * Implémentation de OnDestroy
+   * Zoom in button, absent at the closest level
    */
-  ngOnDestroy() {
-    this.themeSubscription?.unsubscribe();
-  }
+  private readonly zoomInButton =
+    viewChild<ElementRef<HTMLButtonElement>>('zoomInButton');
 
   /**
-   * Met à jour le fond de la carte
-   *
-   * https://leaflet-extras.github.io/leaflet-providers/preview/
-   *
-   * @param theme
+   * Zoom out button, absent at the widest level
    */
-  private updateTile(theme: Theme) {
-    if (!this.map) return;
+  private readonly zoomOutButton =
+    viewChild<ElementRef<HTMLButtonElement>>('zoomOutButton');
 
-    const tile =
-      theme === 'dark-mode'
-        ? L.tileLayer(
-            'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
-            {
-              attribution:
-                '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            }
-          )
-        : L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          });
+  /**
+   * Injector for the render callback that follows a zoom
+   */
+  private readonly injector = inject(Injector);
 
-    tile.addTo(this.map);
+  /**
+   * Zoom sur la map
+   */
+  protected zoomIn() {
+    this.zoomTo(this.zoomIndex() + 1);
   }
 
   /**
    * Dézoom sur la map
    */
-  zoomOut() {
-    if (!this.map) return;
-
-    const levelIndex = this.allowedZoomLevels.indexOf(this.map.getZoom());
-    if (levelIndex === -1 || levelIndex === 0) return;
-
-    const newLevel = this.allowedZoomLevels[levelIndex - 1];
-
-    this.map.flyTo(this.position, newLevel, { duration: 1 });
-    this.zoomLevel = newLevel;
+  protected zoomOut() {
+    this.zoomTo(this.zoomIndex() - 1);
   }
 
   /**
-   * Zoom sur la map
+   * Changes the zoom level. The focus goes to the only button left when the pressed one disappears at the last level.
    */
-  zoomIn() {
-    if (!this.map) return;
+  private zoomTo(index: number) {
+    this.zoomIndex.set(index);
 
-    const levelIndex = this.allowedZoomLevels.indexOf(this.map.getZoom());
-    if (levelIndex === -1 || levelIndex === this.allowedZoomLevels.length)
-      return;
-
-    const newLevel = this.allowedZoomLevels[levelIndex + 1];
-
-    this.map.flyTo(this.position, newLevel, { duration: 1 });
-    this.zoomLevel = newLevel;
+    if (!this.canZoomIn() || !this.canZoomOut()) {
+      afterNextRender(
+        () =>
+          (this.zoomInButton() ?? this.zoomOutButton())?.nativeElement.focus(),
+        { injector: this.injector }
+      );
+    }
   }
 
   /**

@@ -1,0 +1,8 @@
+@use 'leaflet/dist/leaflet';
+
+app-leaflet-map {
+  display: block;
+  height: 100%;
+  // Keeps the z-indexes of Leaflet's panes under what the tile puts on top of the map
+  isolation: isolate;
+}

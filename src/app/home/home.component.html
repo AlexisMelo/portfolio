@@ -10,12 +10,7 @@
     </div>
     <app-description></app-description>
     <app-mail></app-mail>
-    <!-- Leaflet is loaded in its own chunk, once the tile is in the viewport -->
-    @defer (on viewport) {
-      <app-map></app-map>
-    } @placeholder {
-      <div class="map-placeholder" appGridItem></div>
-    }
+    <app-map></app-map>
     <app-availability></app-availability>
     <app-resume></app-resume>
     <app-now></app-now>

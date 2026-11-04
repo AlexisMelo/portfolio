@@ -265,10 +265,21 @@ Not needed:
 
 #### P1.3 Stop the home map from becoming the LCP element
 
-- [ ] Static map image (light + dark WebP in `public/`, same framing as zoom 6) as the `@placeholder` of the map's `@defer`
-- [ ] Load Leaflet on interaction (`@defer (on interaction)` or on hover), or at least start at the final zoom without `flyTo`
-- [ ] Move `leaflet.css` out of the global `styles` in `angular.json` into the map component
-- [ ] While in this code: `updateTile()` adds a new tile layer on every theme change without removing the previous one
+- [x] Static map image (light + dark WebP in `public/map/`, same framing as zoom 6), displayed until Leaflet's first tiles are there
+- [x] Load Leaflet on interaction (`@defer (on hover; on interaction)`), and start at zoom 6 without `flyTo`
+- [x] Move `leaflet.css` out of the global `styles` in `angular.json` into the deferred `LeafletMapComponent`
+- [x] While in this code: `updateTile()` adds a new tile layer on every theme change without removing the previous one
+
+**Done on 2026-11-03.** `/` went from 0.82 to 0.89 on mobile (median of 3: 0.89, 0.92, 0.89), and LCP from 4.7 s to 3.5 s. The LCP element is the static map in all 3 runs, with no tile request and no Leaflet chunk before an interaction.
+
+- The image isn't a `@placeholder`: Angular removes the placeholder as soon as the chunk is loaded, which would leave an empty tile until the tiles arrive. It stays on top of the map and fades out on the first tile layer's `load` event.
+- A zoom requested before the tiles are there (a tap on mobile) is applied once they are, so its animation is visible.
+- `leaflet.css` makes `leaflet-map.component.scss` exceed the 6 KB `anyComponentStyle` warning budget (11 KB, the error budget is 15 KB).
+
+The images are displayed at exactly 400×200 CSS px and centred, so they line up with Leaflet's view at every tile size:
+
+- `light-mode.webp` is the 400×200 view of zoom 6 centred on `[49.183, -0.372]`, drawn from the 4 OSM tiles of that view, so it's identical to what Leaflet shows. WebP quality 0.85.
+- `dark-mode.webp` can't come from Stadia's tiles: its terms don't allow storing them without a paid plan. It's rendered once with MapLibre GL at `pixelRatio: 2` and zoom 5 (Leaflet's zoom minus 1) from the [OpenFreeMap](https://openfreemap.org/) `dark` style, recoloured with the colours of Stadia's tiles: land `#333333`, water `#222222`, parks `#383e36`, main roads `#505050` and thinner, labels `#a8a8a8`, no `place_state` labels, no maritime boundaries. WebP quality 0.8. The geography lines up with Stadia's tiles, but some labels differ.
 
 **Problem.**
 
@@ -283,12 +294,15 @@ Not needed:
 - The LCP element is `img.leaflet-tile` in 2 of 3 runs. In the third, the tile had already been removed by Leaflet during the zoom, so Lighthouse couldn't point to it.
 - During earlier test runs, when the tiles were slower to arrive, the avatar became the LCP element at 3.1 s.
 
-**Fix.** A static image larger than any tile, served from `public/`, stays the LCP element and paints early. The new image needs an alt text key in both `en.json` and `fr.json`, and the zoom buttons must stay keyboard accessible.
+**Fix.** A static image served from `public/` stays the LCP element and paints early. It has an alt text key in both `en.json` and `fr.json`. The zoom buttons weren't keyboard accessible: they are now native `<button>` elements with ARIA labels, and the focus moves to the remaining button when the pressed one disappears at the last zoom level. The credits required by the map licences, hidden until now, are displayed on the tile.
 
 **Files.**
 
-- `src/app/home/home.component.html`
+- `src/app/home/home.component.html`, `home.component.scss`
 - `src/app/home/map/map.component.ts`, `map.component.html`, `map.component.scss`
+- `src/app/home/map/leaflet-map/leaflet-map.component.ts`, `leaflet-map.component.scss`
+- `public/map/`, `public/i18n/en.json`, `public/i18n/fr.json`
+- `src/styles/dark-mode.scss`, `src/styles/light-mode.scss`
 - `angular.json`
 
 **Done when.** The LCP element on `/` is the static map or the avatar in all 3 runs, and no `tiles.stadiamaps.com` request happens without user interaction.
@@ -523,7 +537,6 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 ### Noticed in passing (not performance)
 
 - `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
-- `MapComponent` adds a tile layer on every theme change without removing the previous one (see P1.3).
 - `SupabaseService.countProjectsBySkill()` is not used anywhere.
 - `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.
 
