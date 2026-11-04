@@ -2,12 +2,14 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   inject,
   linkedSignal,
   OnDestroy,
   Renderer2,
   resource,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
@@ -67,20 +69,18 @@ export class ResumeComponent
   );
 
   /**
-   * Fetches the actual preview image blob when the preview path changes.
-   * Creates a blob URL so the image is served from memory rather than a raw storage path.
-   * Stays idle until the resume links provide a preview path.
+   * Whether the preview is needed: it isn't downloaded before the visitor goes for the modal
    */
-  public resumePreviewImage = resource({
-    params: () =>
-      this.resumeLinks.hasValue()
-        ? this.resumeLinks.value().preview
-        : undefined,
-    loader: async ({ params }) => {
-      const blob = await this.supabaseService.getImage(params);
-      return URL.createObjectURL(blob);
-    },
-  });
+  private previewRequested = signal(false);
+
+  /**
+   * Public URL of the CV preview for the active language, null until it's requested
+   */
+  protected resumePreviewUrl = computed(() =>
+    this.previewRequested() && this.resumeLinks.hasValue()
+      ? this.supabaseService.getPublicUrl(this.resumeLinks.value().preview)
+      : null
+  );
 
   /**
    * Modal containing the resume
@@ -104,9 +104,6 @@ export class ResumeComponent
     if (this.modal?.nativeElement.parentNode === document.body) {
       this.renderer.removeChild(document.body, this.modal.nativeElement);
     }
-    if (this.resumePreviewImage.hasValue()) {
-      URL.revokeObjectURL(this.resumePreviewImage.value());
-    }
   }
 
   /**
@@ -124,9 +121,17 @@ export class ResumeComponent
   }
 
   /**
+   * Starts loading the preview, so it's ready when the modal opens.
+   */
+  protected requestPreview() {
+    this.previewRequested.set(true);
+  }
+
+  /**
    * Opens the resume preview modal.
    */
   public openResume() {
+    this.requestPreview();
     this.modal?.nativeElement.removeAttribute('class');
     this.modal?.nativeElement.classList.add('opened');
     this.renderer.addClass(document.documentElement, 'modal-opened');

@@ -230,6 +230,15 @@ export class SupabaseService {
   }
 
   /**
+   * Returns the public URL of a file in the bucket, which browsers and the CDN can cache
+   * @param path path of the file in the bucket
+   */
+  public getPublicUrl(path: string): string {
+    return this.client.storage.from('portfolio-project').getPublicUrl(path).data
+      .publicUrl;
+  }
+
+  /**
    * Returns "now" items translated in the currently active language.
    */
   public async getNowItems(): Promise<string[]> {

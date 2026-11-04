@@ -352,19 +352,34 @@ Median of 3 mobile runs, with the builds before and after the change alternating
 
 #### P1.5 Load the CV preview only when the modal opens
 
-- [ ] Fetch the preview when the modal opens (or when the button is hovered or focused), not on component creation
-- [ ] Use the public URL in `<img src>` instead of a downloaded blob, so the browser can cache it
+- [x] Fetch the preview when the button is hovered, focused or clicked, not on component creation
+- [x] Use the public URL in `<img>` instead of a downloaded blob, so the browser can cache it
 
-**Problem.** `ResumeComponent` downloads `CV_FR.png` / `CV_EN.png` (**201 KB**) as a blob through `storage.download()` on every visit to `/` and `/experience`, even if the modal is never opened.
+**Done on 2026-11-04.** Neither page downloads the CV preview on load any more. The scores stay within the usual ±0.05 variation.
 
-**Evidence.**
+| Page          | Page weight  | CV preview     | Mobile score | LCP         | CLS           |
+| ------------- | ------------ | -------------- | ------------ | ----------- | ------------- |
+| `/`           | 431 → 354 KB | 78.5 KB → none | 0.92 → 0.93  | 3.4 → 3.2 s | 0.023 → 0.023 |
+| `/experience` | 435 → 357 KB | 78.5 KB → none | 0.88 → 0.89  | 3.6 → 3.5 s | 0.080 → 0.081 |
 
-- It's the heaviest request on `/` and `/experience`.
-- When it arrives, the modal image is inserted into `document.body` without dimensions, which pushes the footer: layout shift of 0.078 on `/experience` (mobile).
+Median of 3 mobile runs, with the builds before and after the change alternating in the same session.
 
-**Files.** `src/app/home/resume/resume.component.ts`, `resume.component.html`
+- **The 0.078 layout shift wasn't caused by this image**, as the first version of this report said. It's on `app-footer` in every run, with or without the change, and `#modal-container` is `position: fixed`, so its content can't move the footer. It's now part of P1.6.
+- On desktop, the hover or focus usually gives the image time to load before the modal opens. On touch screens, loading starts with the tap.
+- The modal has the preview's size from the start (595×842, at most 90% of the screen), and is a white sheet until the image arrives. `loading="eager"` makes the hover or focus download the image while the modal is still hidden.
+- The public URL is served by the CDN with `public, max-age=2592000`. A `HEAD` request on it answers `private, no-cache`, but a real `GET` doesn't.
+- The PDF download is unchanged: it still goes through `storage.download()` when the button is clicked.
 
-**Done when.** No `curriculum-vitae/` request happens before the modal opens, and the 0.078 layout shift is gone.
+**Problem.** `ResumeComponent` downloads `CV_FR.png` / `CV_EN.png` (**201 KB**, 72–80 KB since P1.1) as a blob through `storage.download()` on every visit to `/` and `/experience`, even if the modal is never opened.
+
+**Evidence.** It's the heaviest request on `/` and `/experience`.
+
+**Files.**
+
+- `src/app/home/resume/resume.component.ts`, `resume.component.html`, `resume.component.scss`
+- `src/app/shared/supabase.service.ts`
+
+**Done when.** No `curriculum-vitae/` request happens before the button is hovered, focused or clicked.
 
 #### P1.6 Remove the layout shifts caused by content arriving late
 
@@ -376,7 +391,7 @@ Median of 3 mobile runs, with the builds before and after the change alternating
 
 **Evidence.**
 
-- Footer shift of 0.078 on `/skills` and `/projects/uloa`, and 0.046 on `/projects/archives`.
+- Footer shift of 0.078 on `/skills`, `/projects/uloa` and `/experience` (mobile), and 0.046 on `/projects/archives`.
 - `/experience` desktop score is 0.77 only because of a 0.587 shift of `div.g-grid-entrance`.
 
 **Files.**
@@ -539,7 +554,7 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 - **LCP element:** the "Curriculum Vitae" heading of the resume tile.
 - **Weight:** 558 KB in 44 requests. The heaviest request is `CV_FR.png` (201 KB), loaded without the modal being opened (P1.5).
 - **Layout shifts:**
-  - Mobile: 0.078, the footer pushed by the CV modal image (P1.5).
+  - Mobile: 0.078 on the footer (P1.6).
   - Desktop: 0.587, the whole grid moving when the experience tiles arrive (P1.6).
 
 ### `/projects/uloa` (project details)
@@ -559,6 +574,7 @@ Reference data from the median mobile run of each page. Sizes are as transferred
 ### Noticed in passing (not performance)
 
 - `<html lang="en">` is static in `src/index.html`, but the default UI language is French (`LanguageService` falls back to `'fr'`). That breaks WCAG 3.1.1 (Language of Page): update `document.documentElement.lang` when the language changes.
+- The CV modal can't be closed from the keyboard: only a mouse press or tap outside it closes it. It also has no `role="dialog"`, and focus stays on the page behind it, short of the focus management `CLAUDE.md` requires.
 - The archives' text filter searches `project.description` and `project_context.label`, which hold translation keys (`project.description.chifoumi`, `context.label.insa`), not the displayed text. "description", "context" or "label" match all 26 projects, and a word from a displayed description ("traçabilité", "multijoueur") matches none.
 - `coworker.avatar_head` isn't used by the app, and some of its values are wrong: Zacharia's is a LinkedIn URL, Nathan's points to `head_jerome-saivres.png`, and Jérôme's to his bust photo.
 
