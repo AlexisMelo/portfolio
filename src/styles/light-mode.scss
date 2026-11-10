@@ -3,7 +3,7 @@
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--primary-500);
+  --action-button-color: var(--primary-800);
   --action-button-border-color: var(--primary-200);
 
   //archives
@@ -13,7 +13,7 @@
   --availability-dot-color: var(--gray-800);
 
   //description
-  --description-icon-color: var(--primary-500);
+  --description-icon-color: var(--primary-800);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-300);
@@ -31,15 +31,15 @@
   --grid-item-shadow-color: rgba(27, 110, 41, 0.1);
 
   //home
-  --home-github-background-color: var(--primary-500);
+  --home-github-background-color: var(--primary-800);
   --home-github-icon-color: white;
 
   //key-header
-  --key-header-background: var(--primary-500);
+  --key-header-background: var(--primary-800);
   --key-header-color: white;
   --key-header-chips-background: var(--primary-700);
   --key-header-chips-color: white;
-  --key-header-chips-border: var(--primary-800);
+  --key-header-chips-border: var(--primary-500);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -47,39 +47,39 @@
 
   //map
   --map-rayon-background: var(--gray-200);
-  --map-rayon-border: var(--primary-500);
+  --map-rayon-border: var(--primary-800);
 
   //mail
-  --mail-background-color: var(--primary-500);
+  --mail-background-color: var(--primary-800);
   --mail-color: white;
 
   //navbar
-  --navbar-active-link-color: var(--primary-500);
-  --navbar-inactive-link-color: var(--gray-300);
+  --navbar-active-link-color: var(--primary-800);
+  --navbar-inactive-link-color: var(--gray-500);
   --navbar-logo-name: white;
-  --navbar-background-color: var(--primary-500);
+  --navbar-background-color: var(--primary-800);
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
   //now
-  --now-icon-color: var(--primary-500);
+  --now-icon-color: var(--primary-800);
   --now-link-color: var(--primary-800);
 
   //ongoing
-  --ongoing-background: var(--primary-500);
+  --ongoing-background: var(--primary-800);
   --ongoing-color: white;
 
   //open-live
-  --open-live-background-color: var(--primary-500);
+  --open-live-background-color: var(--primary-800);
   --open-live-color: white;
-  --open-live-dot-color: var(--primary-700);
+  --open-live-dot-color: var(--primary-200);
 
   //project-context
-  --project-context-background: var(--primary-500);
+  --project-context-background: var(--primary-800);
   --project-context-color: white;
 
   //projects
-  --projects-github-bg: var(--primary-500);
+  --projects-github-bg: var(--primary-800);
   --projects-github-icon-color: white;
 
   //project-item
@@ -89,7 +89,7 @@
   --project-item-ongoing-color: white;
 
   //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--primary-500);
+  --project-item-skill-list-skill-background: var(--primary-800);
   --project-item-skill-list-skill-border: var(--primary-700);
   --project-item-skill-list-color: white;
 
@@ -106,7 +106,7 @@
   --reset-button-color: var(--gray-700);
 
   //resume
-  --resume-background-color: var(--primary-500);
+  --resume-background-color: var(--primary-800);
   --resume-color: white;
 
   //robotic-arm
@@ -121,7 +121,7 @@
   --skills-recap-background: var(--primary-200);
 
   //skill-highlight
-  --skill-highlight-icon-color: var(--primary-500);
+  --skill-highlight-icon-color: var(--primary-800);
 
   //status-filtering
   --status-filtering-completed: var(--primary-800);
@@ -142,12 +142,13 @@
   --suggestion-chip-bg: var(--white);
 
   //your-project
-  --your-project-background: var(--primary-500);
+  --your-project-background: var(--primary-800);
   --your-project-color: white;
 
+  // From medium up, the links sit on the navbar background instead of white tiles
   @include responsive.responsive('medium') {
     --navbar-active-link-color: white;
-    --navbar-inactive-link-color: var(--primary-800);
+    --navbar-inactive-link-color: var(--gray-300);
     --navbar-language-selector-color: white;
   }
 }
