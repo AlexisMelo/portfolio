@@ -4,11 +4,10 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { MosaiqueWebsitesComponent } from '../mosaique-websites/mosaique-websites.component';
 
 @Component({
   selector: 'app-with-skill',
-  imports: [MosaiqueWebsitesComponent, TranslocoPipe],
+  imports: [TranslocoPipe],
   templateUrl: './with-skill.component.html',
   styleUrl: './with-skill.component.scss',
 })

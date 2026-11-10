@@ -24,14 +24,3 @@ mat-icon {
   top: 1rem;
   animation: move 2s infinite ease;
 }
-
-:not(app-mosaique-websites) {
-  z-index: 10;
-}
-
-app-mosaique-websites {
-  position: absolute;
-  top: 0;
-  left: -30px;
-  rotate: 40deg;
-}

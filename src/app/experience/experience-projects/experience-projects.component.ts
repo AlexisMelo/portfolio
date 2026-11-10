@@ -11,16 +11,10 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { ARCHIVES_ROUTE } from 'src/app/route-paths';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { MosaiqueWebsitesComponent } from 'src/app/projects/mosaique-websites/mosaique-websites.component';
 
 @Component({
   selector: 'app-experience-projects',
-  imports: [
-    MatIconModule,
-    RouterLink,
-    MosaiqueWebsitesComponent,
-    TranslocoPipe,
-  ],
+  imports: [MatIconModule, RouterLink, TranslocoPipe],
   templateUrl: './experience-projects.component.html',
   styleUrl: './experience-projects.component.scss',
   hostDirectives: [GridItemDirective],

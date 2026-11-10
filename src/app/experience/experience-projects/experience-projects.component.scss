@@ -19,17 +19,6 @@ mat-icon {
   animation: move 2s infinite ease;
 }
 
-:not(app-mosaique-websites) {
-  z-index: 10;
-}
-
-app-mosaique-websites {
-  position: absolute;
-  top: 0;
-  left: -100px;
-  rotate: 40deg;
-}
-
 h2 {
   font-size: var(--text-lg);
 }

@@ -7,22 +7,11 @@
   background-color: var(--key-header-background);
 }
 
-:not(svg) {
-  z-index: 10;
-}
-
 h2 {
   font-size: var(--text-xxxl);
   color: var(--key-header-color);
   padding-top: 0.2em;
   margin: 0;
-}
-
-svg {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
 }
 
 ul {

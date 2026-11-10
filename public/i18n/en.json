@@ -4,10 +4,7 @@
     "projects": "Projects",
     "skills": "Skills",
     "experience": "Experience",
-    "avatarAlt": "Avatar",
-    "projectsIllustrationAlt": "Projects illustration",
-    "skillsIllustrationAlt": "Skills illustration",
-    "experienceIllustrationAlt": "Experience illustration"
+    "avatarAlt": "Avatar"
   },
   "home": {
     "description": {

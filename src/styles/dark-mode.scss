@@ -14,10 +14,6 @@
 
   //description
   --description-icon-color: var(--primary-500);
-  --description-rectangle-1-background-color: var(--gray-500);
-  --description-rectangle-2-background-color: var(--gray-400);
-  --description-rectangle-3-background-color: var(--gray-200);
-  --description-illustration-icon-color: var(--primary-500);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-600);
@@ -38,13 +34,9 @@
   --home-github-background-color: var(--primary-800);
   --home-github-icon-color: white;
 
-  //image
-  --image-svg-color: var(--primary-500);
-
   //key-header
   --key-header-background: var(--primary-800);
   --key-header-color: white;
-  --key-header-svg-color: var(--primary-500);
   --key-header-chips-background: var(--primary-500);
   --key-header-chips-color: white;
   --key-header-chips-border: var(--primary-700);
@@ -60,9 +52,6 @@
   //mail
   --mail-background-color: var(--primary-800);
   --mail-color: white;
-
-  //mosaique-svg-color
-  --mosaique-svg-color: var(--primary-900);
 
   //navbar
   --navbar-active-link-color: white;
@@ -131,9 +120,6 @@
 
   //skill-highlight
   --skill-highlight-icon-color: var(--primary-500);
-
-  //skill-section-description
-  --skill-section-description-svg-color: var(--primary-800);
 
   //status-filtering
   --status-filtering-completed: var(--primary-500);

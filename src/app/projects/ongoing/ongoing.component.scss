@@ -31,25 +31,3 @@ p {
     font-size: var(--text-xl);
   }
 }
-
-.cogwheel-model {
-  display: none;
-}
-
-.cogwheel__1 {
-  color: var(--gray-100);
-  position: absolute;
-  left: -20px;
-  bottom: -30px;
-  width: 75px;
-  height: 75px;
-}
-
-.cogwheel__2 {
-  color: var(--gray-100);
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 45px;
-  height: 45px;
-}

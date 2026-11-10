@@ -12,14 +12,3 @@ p {
   padding: 2rem;
   background-color: var(--project-context-background);
 }
-
-svg {
-  position: absolute;
-  bottom: 0;
-  left: 50px;
-}
-
-:not(svg) {
-  z-index: 10;
-  position: relative;
-}

@@ -22,16 +22,6 @@
   }
 }
 
-#svg-background-decoration {
-  position: absolute;
-  right: 10%;
-  bottom: 5%;
-
-  @include responsive.responsive('medium') {
-    width: 200px;
-  }
-}
-
 h2 {
   margin: 0;
   flex-grow: 1;
