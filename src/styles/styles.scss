@@ -28,6 +28,12 @@
     --gap: 14px;
   }
 
+  @include responsive.responsive('large') {
+    --grid-width: calc(#{map.get(responsive.$sizes, 'large')} - 20px);
+    --columns: 12;
+    --gap: 16px;
+  }
+
   // @include responsive.responsive('large') {
   //   --grid-width: calc(#{map-get(responsive.$sizes, 'large')} - 20px);
   //   --columns: 12;

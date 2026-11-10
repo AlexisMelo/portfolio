@@ -10,7 +10,6 @@ import { NowComponent } from './now/now.component';
 import { ResumeComponent } from './resume/resume.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { ImageComponent } from './image/image.component';
-import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
@@ -27,7 +26,6 @@ import { GridItemDirective } from '../shared/grid/grid-item.directive';
     NowComponent,
     AvailabilityComponent,
     ImageComponent,
-    FreelanceSinceComponent,
     GridItemDirective,
     GridEntranceDirective,
   ],
