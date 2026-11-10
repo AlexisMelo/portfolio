@@ -11,8 +11,8 @@
   --grid-width: 356px; //pour que ça fonctionne même sur petit téléphone
   --columns: 4;
   --gap: 12px;
-  --body-font-family: 'Poppins', sans-serif;
-  --title-font-family: 'Grandstander', cursive;
+  --body-font-family: 'Geist', system-ui, sans-serif;
+  --title-font-family: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif;
   font-size: var(--text-xs);
 
   --cell-size: #{functions.getCellSize(
@@ -84,11 +84,6 @@ html {
 h2,
 p {
   margin: 0;
-}
-
-h2,
-h3 {
-  padding-top: 0.2em;
 }
 
 p,

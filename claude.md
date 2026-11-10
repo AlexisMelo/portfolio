@@ -27,7 +27,7 @@ Personal portfolio website of Alexis Melo, a freelance fullstack web developer s
 - i18n: Transloco with `en` (default) and `fr`. Every UI string, including alt texts and ARIA labels, needs a key in both [en.json](public/i18n/en.json) and [fr.json](public/i18n/fr.json). Database content is translated through the `translations` table (`localizedLabel`, `localizedDescription`, ...), picked with `LanguageService.currentLang()`.
 - Theming: `ThemeService` puts `dark-mode` or `light-mode` on `<body>`. Theme colours are in [dark-mode.scss](src/styles/dark-mode.scss) and [light-mode.scss](src/styles/light-mode.scss); a new colour needs a value in both.
 - Fonts are loaded from Google Fonts in [index.html](src/index.html), restricted to what is used:
-  - Text: Grandstander 400–700 (titles) and Poppins 400 and 700 (body), no italics. A new weight or italic must be added to the link, or the browser falls back to the nearest loaded one.
+  - Text: Bricolage Grotesque 400–700 at optical size 32 (titles) and Geist 400 and 700 (body), no italics. A new weight or italic must be added to the link, or the browser falls back to the nearest loaded one.
   - Icons: `<mat-icon>` uses a Material Symbols Outlined subset, filled by default (`'FILL' 1` in [styles.scss](src/styles/styles.scss)). A new icon name must be added to the link's `icon_names`, in alphabetical order, or it renders as its ligature text.
 - Unit tests run on Karma + Jasmine (`ng test`), not Vitest.
 - Pushing to `main` deploys to production: GitHub Actions builds the Docker image (nginx serving the browser build) and redeploys it on the VPS.
