@@ -40,42 +40,34 @@ app-map {
   }
 }
 
-app-linkedin,
-app-github {
-  width: var(--icon-size-sm);
-  height: var(--icon-size-sm);
-
-  @include responsive.responsive('medium') {
-    width: var(--icon-size-md);
-    height: var(--icon-size-md);
-  }
-}
-
+// LinkedIn above GitHub, next to the photo on phones and on the right of the contact tile above
 .linkedin {
-  grid-column: 3;
-  grid-row: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  grid-column: 3 / 5;
+  grid-row: 1;
 
   @include responsive.responsive('medium') {
-    grid-column: 5 / 7;
-    grid-row: 3 / 5;
+    grid-column: 7 / 9;
+    grid-row: 3;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 7 / 9;
+    grid-row: 2;
   }
 }
 
 .github {
-  grid-column: 4;
+  grid-column: 3 / 5;
   grid-row: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--home-github-background-color);
-  color: var(--home-github-icon-color);
 
   @include responsive.responsive('medium') {
     grid-column: 7 / 9;
-    grid-row: 3 / 5;
+    grid-row: 4;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 7 / 9;
+    grid-row: 3;
   }
 }
 

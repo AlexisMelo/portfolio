@@ -1,0 +1,42 @@
+@use '../linkedin/spin.animation.scss' as spin;
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+  padding: 0 1.5rem;
+  border-radius: inherit;
+  color: var(--styles-title-color);
+  text-decoration: none;
+
+  // Inside the tile, which hides what overflows it
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -4px;
+  }
+
+  // Hovering the tile spins the icon
+  &:hover {
+    app-linkedin,
+    app-github {
+      @extend %spin-effect;
+    }
+  }
+}
+
+app-linkedin,
+app-github {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  // The link opens the profile: the icon's own click would open a second tab
+  pointer-events: none;
+}
+
+.label {
+  font-family: var(--title-font-family);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}

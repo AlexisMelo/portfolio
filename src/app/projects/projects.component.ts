@@ -1,9 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { GithubComponent } from 'src/app/home/github/github.component';
-import { ContentService } from 'src/app/shared/content.service';
+import { SocialLinkComponent } from 'src/app/home/social-link/social-link.component';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
-import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SkillSectionDescriptionComponent } from '../skills/skill-section-description/skill-section-description.component';
 import { KeyHeaderComponent } from './key-header/key-header.component';
@@ -34,9 +32,8 @@ import { YourProjectComponent } from './your-project/your-project.component';
     YourProjectComponent,
     OngoingComponent,
     WithSkillComponent,
-    GithubComponent,
+    SocialLinkComponent,
     TranslocoPipe,
-    GridItemDirective,
     GridEntranceDirective,
   ],
   templateUrl: './projects.component.html',
@@ -48,11 +45,6 @@ export class ProjectsComponent {
    * Projects, filters and their results
    */
   public projectsService = inject(ProjectsService);
-
-  /**
-   * Content of the site, for the GitHub link
-   */
-  protected contentService = inject(ContentService);
 
   /**
    * Ids of the displayed projects in display order, changes each time the results are re-rendered

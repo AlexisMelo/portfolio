@@ -146,16 +146,6 @@ app-with-skill {
 .github {
   grid-row: 7;
   grid-column: 3 / 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--projects-github-bg);
-
-  app-github {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-    color: var(--projects-github-icon-color);
-  }
 
   @include responsive.responsive('large') {
     grid-row: 3;

@@ -4,7 +4,9 @@
     "projects": "Projets",
     "skills": "Compétences",
     "experience": "Expérience",
-    "avatarAlt": "Avatar"
+    "avatarAlt": "Avatar",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "home": {
     "description": {
@@ -26,6 +28,10 @@
     },
     "now": {
       "title": "En train de ..."
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
     },
     "resume": {
       "download": "Télécharger",

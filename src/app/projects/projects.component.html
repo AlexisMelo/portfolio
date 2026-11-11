@@ -21,9 +21,7 @@
     <app-your-project></app-your-project>
     <app-ongoing></app-ongoing>
     <app-with-skill></app-with-skill>
-    <div class="github g-grid-item-highlight" appGridItem>
-      <app-github [link]="contentService.github"></app-github>
-    </div>
+    <app-social-link class="github" network="github"></app-social-link>
 
     @for (group of projectsService.sortedGroupedProjects(); track group.key) {
       @let chipLabel =

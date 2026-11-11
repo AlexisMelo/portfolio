@@ -1,0 +1,8 @@
+<a class="social-link" [href]="href()" target="_blank" rel="noopener">
+  @if (network() === 'linkedin') {
+    <app-linkedin aria-hidden="true"></app-linkedin>
+  } @else {
+    <app-github aria-hidden="true" [link]="href()"></app-github>
+  }
+  <span class="label">{{ 'home.social.' + network() | transloco }}</span>
+</a>

@@ -1,6 +1,16 @@
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  ElementRef,
+  inject,
+  Injector,
+  OnDestroy,
+  OnInit,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -31,7 +41,10 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   hostDirectives: [StickyObserverDirective],
-  host: { '[class.menu-opened]': 'menuOpened()' },
+  host: {
+    '[class.menu-opened]': 'menuOpened()',
+    '(keydown.escape)': 'closeMenu()',
+  },
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   /**
@@ -60,6 +73,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private routerSubscription?: Subscription;
 
   /**
+   * Button that opens and closes the menu on small screens
+   */
+  private readonly menuButton =
+    viewChild.required<ElementRef<HTMLButtonElement>>('menuButton');
+
+  /**
+   * Menu on small screens
+   */
+  private readonly mobileMenu =
+    viewChild.required<ElementRef<HTMLElement>>('mobileMenu');
+
+  /**
+   * Injector for the render callback that follows the opening of the menu
+   */
+  private readonly injector = inject(Injector);
+
+  /**
    * Implémentation de OnInit
    */
 
@@ -84,9 +114,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Ouvre le menu
+   * Opens or closes the menu. Once open, the focus goes to its first link: the menu comes
+   * before the button in the page, so the next Tab would otherwise go to the page behind it.
    */
   public toggleMenu() {
     this.menuOpened.update(opened => !opened);
+
+    if (this.menuOpened()) {
+      afterNextRender(
+        () =>
+          this.mobileMenu()
+            .nativeElement.querySelector<HTMLElement>('a[href]')
+            ?.focus(),
+        { injector: this.injector }
+      );
+    }
+  }
+
+  /**
+   * Closes the menu with the Escape key, and gives the focus back to its button
+   */
+  protected closeMenu() {
+    if (!this.menuOpened()) return;
+
+    this.menuOpened.set(false);
+    this.menuButton().nativeElement.focus();
   }
 }
