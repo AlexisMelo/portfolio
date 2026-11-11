@@ -46,6 +46,7 @@
   animation: slideToLeft 1s;
   transition: 400ms linear;
   border-radius: 10px;
+  border: var(--grid-item-border);
   overflow: hidden;
 
   img {

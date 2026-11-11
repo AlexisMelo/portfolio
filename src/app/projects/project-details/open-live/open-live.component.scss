@@ -8,7 +8,6 @@
 
   &.is-live {
     cursor: pointer;
-    @extend .g-grid-item-shadow !optional;
   }
 
   @include responsive.responsive('medium') {

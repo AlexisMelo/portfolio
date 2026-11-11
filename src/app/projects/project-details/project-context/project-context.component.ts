@@ -12,7 +12,7 @@ import { Project } from '../../project.model';
   imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
-  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class ProjectContextComponent extends GridItemDirective {
   /**

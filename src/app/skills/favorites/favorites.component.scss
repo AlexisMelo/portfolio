@@ -3,6 +3,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  background-color: var(--favorites-background);
+}
+
+h2,
+p,
+li,
+mat-icon {
+  color: var(--favorites-color);
 }
 
 h2 {

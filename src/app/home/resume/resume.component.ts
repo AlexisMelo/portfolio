@@ -29,7 +29,7 @@ import { OutsideClickDirective } from 'src/app/shared/outside-click.directive';
   ],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class ResumeComponent
   extends GridItemDirective

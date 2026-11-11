@@ -21,7 +21,7 @@
     @for (group of archivesService.sortedGroupedProjects(); track group.key) {
       @let chipLabel =
         'archives.chips' | transloco: { count: group.projects.length };
-      <app-key-header class="g-grid-item-shadow" [chips]="[chipLabel]">
+      <app-key-header [chips]="[chipLabel]">
         {{ group.key }}
       </app-key-header>
 

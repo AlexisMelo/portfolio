@@ -3,10 +3,15 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
-  --primary-900: #2a3b33;
-  --primary-800: #344e41;
-  --primary-700: #3a5a40;
-  --primary-500: #588157;
+  // Brand palette, from green to slate blue. primary-600 is the standard colour
+  // (navbar, coloured tiles, links and icons on white)
+  --primary-950: #2f4858;
+  --primary-900: #285461;
+  --primary-800: #246065;
+  --primary-700: #2b6c64;
+  --primary-600: #3e765f;
+  --primary-500: #577f57;
+  // Light tints, for backgrounds and borders on white
   --primary-200: #e5ebdd;
   --primary-100: #f0f3ec;
 

@@ -14,7 +14,7 @@ import { ProjectItem } from './project-item.model';
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
   host: {
-    class: 'g-grid-item-start-aligned g-grid-item-shadow',
+    class: 'g-grid-item-start-aligned',
     '(click)': 'navigate()',
   },
 })

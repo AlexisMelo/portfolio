@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [LovedPipe],
+  host: { class: 'g-grid-item-highlight' },
   hostDirectives: [GridItemDirective],
 })
 export class FavoritesComponent {

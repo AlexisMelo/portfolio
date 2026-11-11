@@ -1,5 +1,7 @@
 @use '../styles/responsive.scss' as responsive;
 
+// Coloured backgrounds (navbar, coloured tiles) use the darkest palette colour, primary-950,
+// instead of the light mode's primary-600
 @mixin dark-mode() {
   //action-button
   --action-button-background: var(--gray-700);
@@ -15,6 +17,10 @@
   //description
   --description-icon-color: var(--primary-500);
 
+  //favorites
+  --favorites-background: var(--primary-950);
+  --favorites-color: white;
+
   //filter-chip
   --filter-chip-border-color: var(--gray-600);
   --filter-chip-active-background-color: var(--gray-500);
@@ -26,20 +32,20 @@
 
   //grid-item
   --grid-item-default-bg: var(--gray-700);
-  --grid-item-border: 2px solid var(--gray-600);
+  // Tile borders, and the offset of the tiles that stand out
+  --grid-item-border-color: black;
+  --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-300);
-  --grid-item-shadow-color: rgba(219, 219, 219, 0.05);
 
   //home
-  --home-github-background-color: var(--primary-800);
+  --home-github-background-color: var(--primary-950);
   --home-github-icon-color: white;
 
   //key-header
-  --key-header-background: var(--primary-800);
+  --key-header-background: var(--primary-950);
   --key-header-color: white;
-  --key-header-chips-background: var(--primary-500);
-  --key-header-chips-color: white;
-  --key-header-chips-border: var(--primary-700);
+  --key-header-chips-background: white;
+  --key-header-chips-color: var(--key-header-background);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -50,34 +56,36 @@
   --map-rayon-border: var(--gray-400);
 
   //mail
-  --mail-background-color: var(--primary-800);
+  --mail-background-color: var(--primary-950);
   --mail-color: white;
 
   //navbar
+  // In the mobile menu, the active link is a tile in the navbar colour
   --navbar-active-link-color: white;
+  --navbar-active-link-background: var(--navbar-background-color);
   --navbar-inactive-link-color: var(--gray-400);
   --navbar-logo-name: white;
-  --navbar-background-color: var(--primary-800);
+  --navbar-background-color: var(--primary-950);
 
   //now
   --now-icon-color: var(--primary-500);
   --now-link-color: var(--gray-500);
 
   //ongoing
-  --ongoing-background: var(--primary-800);
+  --ongoing-background: var(--primary-950);
   --ongoing-color: white;
 
   //open-live
-  --open-live-background-color: var(--primary-800);
+  --open-live-background-color: var(--primary-950);
   --open-live-color: white;
-  --open-live-dot-color: var(--primary-500);
+  --open-live-dot-color: var(--primary-200);
 
   //project-context
-  --project-context-background: var(--primary-800);
+  --project-context-background: var(--primary-950);
   --project-context-color: white;
 
   //projects
-  --projects-github-bg: var(--primary-800);
+  --projects-github-bg: var(--primary-950);
   --projects-github-icon-color: white;
 
   //project-item
@@ -104,7 +112,7 @@
   --reset-button-color: var(--gray-300);
 
   //resume
-  --resume-background-color: var(--primary-800);
+  --resume-background-color: var(--primary-950);
   --resume-color: white;
 
   //robotic-arm
@@ -116,7 +124,8 @@
   --skills-recap-counter-bg: var(--gray-500);
   --skills-recap-counter-color: var(--white);
   --skills-recap-separator: var(--gray-400);
-  --skills-recap-background: var(--primary-800);
+  // Darkest palette colour: the skill labels use the light grey paragraph colour
+  --skills-recap-background: var(--primary-950);
 
   //skill-highlight
   --skill-highlight-icon-color: var(--primary-500);
@@ -124,7 +133,7 @@
   //status-filtering
   --status-filtering-completed: var(--primary-500);
   --status-filtering-ongoing: var(--primary-700);
-  --status-filtering-abandoned: var(--primary-800);
+  --status-filtering-abandoned: var(--primary-600);
   --status-filtering-selected: var(--primary-500);
   --status-filtering-not-selected: var(--gray-600);
 
@@ -139,6 +148,14 @@
   --suggestion-chip-bg: var(--gray-500);
 
   //your-project
-  --your-project-background: var(--primary-800);
+  --your-project-background: var(--primary-950);
   --your-project-color: white;
+
+  // From medium up, the links sit on the navbar background instead of tiles: they are white,
+  // and the active one is a white rounded area with its text in the navbar colour
+  @include responsive.responsive('medium') {
+    --navbar-active-link-color: var(--navbar-background-color);
+    --navbar-active-link-background: white;
+    --navbar-inactive-link-color: white;
+  }
 }

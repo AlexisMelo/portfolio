@@ -3,7 +3,7 @@
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--primary-800);
+  --action-button-color: var(--primary-600);
   --action-button-border-color: var(--primary-200);
 
   //archives
@@ -13,7 +13,11 @@
   --availability-dot-color: var(--gray-800);
 
   //description
-  --description-icon-color: var(--primary-800);
+  --description-icon-color: var(--primary-600);
+
+  //favorites
+  --favorites-background: var(--primary-600);
+  --favorites-color: white;
 
   //filter-chip
   --filter-chip-border-color: var(--gray-300);
@@ -26,20 +30,19 @@
 
   //grid-item
   --grid-item-default-bg: white;
-  --grid-item-border: 1px solid var(--gray-200);
+  --grid-item-border-color: var(--gray-800);
+  --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-200);
-  --grid-item-shadow-color: rgba(27, 110, 41, 0.1);
 
   //home
-  --home-github-background-color: var(--primary-800);
+  --home-github-background-color: var(--primary-600);
   --home-github-icon-color: white;
 
   //key-header
-  --key-header-background: var(--primary-800);
+  --key-header-background: var(--primary-600);
   --key-header-color: white;
-  --key-header-chips-background: var(--primary-700);
-  --key-header-chips-color: white;
-  --key-header-chips-border: var(--primary-500);
+  --key-header-chips-background: white;
+  --key-header-chips-color: var(--key-header-background);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -47,39 +50,41 @@
 
   //map
   --map-rayon-background: var(--gray-200);
-  --map-rayon-border: var(--primary-800);
+  --map-rayon-border: var(--primary-600);
 
   //mail
-  --mail-background-color: var(--primary-800);
+  --mail-background-color: var(--primary-600);
   --mail-color: white;
 
   //navbar
-  --navbar-active-link-color: var(--primary-800);
+  // In the mobile menu, the active link is a tile in the navbar colour
+  --navbar-active-link-color: white;
+  --navbar-active-link-background: var(--navbar-background-color);
   --navbar-inactive-link-color: var(--gray-500);
   --navbar-logo-name: white;
-  --navbar-background-color: var(--primary-800);
+  --navbar-background-color: var(--primary-600);
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
   //now
-  --now-icon-color: var(--primary-800);
-  --now-link-color: var(--primary-800);
+  --now-icon-color: var(--primary-600);
+  --now-link-color: var(--primary-600);
 
   //ongoing
-  --ongoing-background: var(--primary-800);
+  --ongoing-background: var(--primary-600);
   --ongoing-color: white;
 
   //open-live
-  --open-live-background-color: var(--primary-800);
+  --open-live-background-color: var(--primary-600);
   --open-live-color: white;
   --open-live-dot-color: var(--primary-200);
 
   //project-context
-  --project-context-background: var(--primary-800);
+  --project-context-background: var(--primary-600);
   --project-context-color: white;
 
   //projects
-  --projects-github-bg: var(--primary-800);
+  --projects-github-bg: var(--primary-600);
   --projects-github-icon-color: white;
 
   //project-item
@@ -89,7 +94,7 @@
   --project-item-ongoing-color: white;
 
   //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--primary-800);
+  --project-item-skill-list-skill-background: var(--primary-600);
   --project-item-skill-list-skill-border: var(--primary-700);
   --project-item-skill-list-color: white;
 
@@ -106,7 +111,7 @@
   --reset-button-color: var(--gray-700);
 
   //resume
-  --resume-background-color: var(--primary-800);
+  --resume-background-color: var(--primary-600);
   --resume-color: white;
 
   //robotic-arm
@@ -121,10 +126,10 @@
   --skills-recap-background: var(--primary-200);
 
   //skill-highlight
-  --skill-highlight-icon-color: var(--primary-800);
+  --skill-highlight-icon-color: var(--primary-600);
 
   //status-filtering
-  --status-filtering-completed: var(--primary-800);
+  --status-filtering-completed: var(--primary-600);
   --status-filtering-ongoing: var(--primary-700);
   --status-filtering-abandoned: var(--primary-500);
   --status-filtering-selected: var(--primary-500);
@@ -142,13 +147,15 @@
   --suggestion-chip-bg: var(--white);
 
   //your-project
-  --your-project-background: var(--primary-800);
+  --your-project-background: var(--primary-600);
   --your-project-color: white;
 
-  // From medium up, the links sit on the navbar background instead of white tiles
+  // From medium up, the links sit on the navbar background instead of white tiles: they are white,
+  // and the active one is a white rounded area with its text in the navbar colour
   @include responsive.responsive('medium') {
-    --navbar-active-link-color: white;
-    --navbar-inactive-link-color: var(--gray-300);
+    --navbar-active-link-color: var(--navbar-background-color);
+    --navbar-active-link-background: white;
+    --navbar-inactive-link-color: white;
     --navbar-language-selector-color: white;
   }
 }

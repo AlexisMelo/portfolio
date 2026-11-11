@@ -10,7 +10,7 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
   imports: [TranslocoPipe],
   templateUrl: './ongoing.component.html',
   styleUrl: './ongoing.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class OngoingComponent extends GridItemDirective implements OnInit {
   /**

@@ -5,7 +5,7 @@
     <app-keep-learning></app-keep-learning>
 
     @for (section of sections(); track section.heading) {
-      <app-key-header [class]="section.id + ' g-grid-item-shadow'">
+      <app-key-header [class]="section.id">
         {{ section.subtitle | transloco }}
       </app-key-header>
 

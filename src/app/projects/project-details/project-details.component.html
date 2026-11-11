@@ -5,9 +5,7 @@
 
       <app-project-duration [project]="p"></app-project-duration>
 
-      <app-project-description
-        class="g-grid-item-shadow"
-        [project]="p"></app-project-description>
+      <app-project-description [project]="p"></app-project-description>
 
       <app-project-illustrations [project]="p"></app-project-illustrations>
 
@@ -16,7 +14,7 @@
         [class.source-available]="p.source !== null"></app-open-live>
 
       @if (p.source) {
-        <div appGridItem class="github g-grid-item-shadow">
+        <div appGridItem class="github">
           <app-github [link]="p.source"></app-github>
         </div>
       }

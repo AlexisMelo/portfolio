@@ -9,7 +9,7 @@ import { ContentService } from 'src/app/shared/content.service';
   imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './your-project.component.html',
   styleUrl: './your-project.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class YourProjectComponent extends GridItemDirective {
   /**

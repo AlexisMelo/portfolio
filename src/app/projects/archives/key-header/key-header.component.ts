@@ -6,6 +6,7 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
   imports: [],
   templateUrl: './key-header.component.html',
   styleUrl: './key-header.component.scss',
+  host: { class: 'g-grid-item-highlight' },
   hostDirectives: [GridItemDirective],
 })
 export class KeyHeaderComponent {

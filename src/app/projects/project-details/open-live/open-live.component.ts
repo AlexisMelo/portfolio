@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  HostBinding,
-  HostListener,
-  input,
-} from '@angular/core';
+import { Component, computed, HostListener, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
@@ -19,6 +13,7 @@ import { DotComponent } from 'src/app/shared/dot/dot.component';
   styleUrl: './open-live.component.scss',
   providers: [StatusPipe],
   host: {
+    class: 'g-grid-item-highlight',
     '[class.is-live]': 'isLive()',
   },
 })
@@ -42,12 +37,5 @@ export class OpenLiveComponent extends GridItemDirective {
     const url = this.isLive();
     if (!url) return;
     window.open(url, '_blank');
-  }
-
-  /**
-   * Apply shadow based on link availability
-   */
-  @HostBinding('class.g-grid-item-shadow') get applyShadow() {
-    return this.isLive();
   }
 }

@@ -31,7 +31,6 @@
   @include responsive.responsive('large') {
     --grid-width: calc(#{map.get(responsive.$sizes, 'large')} - 20px);
     --columns: 12;
-    --gap: 16px;
   }
 
   // @include responsive.responsive('large') {
@@ -198,8 +197,9 @@ h3 {
 
 /* Others */
 
+// Every tile has a strong solid border; hovering adds a small hard shadow on its bottom-right side
 .g-grid-item {
-  border-radius: 15px;
+  border-radius: 12px;
   background-color: var(--grid-item-default-bg);
   border: var(--grid-item-border);
   position: relative;
@@ -210,13 +210,19 @@ h3 {
     transform 500ms;
 
   &:hover {
-    box-shadow: rgba(100, 111, 101, 0.2) 0px 5px 24px 0px;
-    // transform: scale(1.02);
+    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
   }
 }
 
-.g-grid-item-shadow {
-  box-shadow: -3px 3px 7px 0 var(--grid-item-shadow-color);
+// Tile that stands out (the coloured ones): thicker border, and a hard offset shadow
+// in the border colour that makes its right and bottom sides look larger
+.g-grid-item-highlight {
+  border-width: 3px;
+  box-shadow: 4px 4px 0 0 var(--grid-item-border-color);
+
+  &:hover {
+    box-shadow: 6px 6px 0 0 var(--grid-item-border-color);
+  }
 }
 
 p,

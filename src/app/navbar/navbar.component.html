@@ -17,7 +17,7 @@
 
   <a
     [routerLink]="['']"
-    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    [routerLinkActive]="['is-active', 'g-grid-item-highlight']"
     [routerLinkActiveOptions]="{ exact: true }"
     class="home"
     appGridItem
@@ -37,7 +37,7 @@
 
   <a
     [routerLink]="['projects']"
-    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    [routerLinkActive]="['is-active', 'g-grid-item-highlight']"
     class="projects"
     appGridItem
     ><h2>{{ 'navbar.projects' | transloco }}</h2></a
@@ -45,7 +45,7 @@
 
   <a
     [routerLink]="['skills']"
-    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    [routerLinkActive]="['is-active', 'g-grid-item-highlight']"
     class="skills"
     appGridItem
     ><h2>{{ 'navbar.skills' | transloco }}</h2></a
@@ -55,7 +55,7 @@
     class="experience"
     appGridItem
     [routerLink]="['experience']"
-    [routerLinkActive]="['is-active', 'g-grid-item-shadow']"
+    [routerLinkActive]="['is-active', 'g-grid-item-highlight']"
     ><h2>{{ 'navbar.experience' | transloco }}</h2></a
   >
 </ng-template>
@@ -70,7 +70,7 @@
 
 <div class="g-grid-container main-navbar">
   <div class="g-grid">
-    <nav appGridItem class="g-grid-item-shadow">
+    <nav appGridItem class="g-grid-item-highlight">
       <div class="logo-name" [routerLink]="['']">
         <h1>Melo</h1>
       </div>

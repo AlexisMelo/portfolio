@@ -10,7 +10,6 @@ import { PROJECTS_ROUTE } from 'src/app/route-paths';
   imports: [MatIconModule, TranslocoPipe],
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss',
-  host: { class: 'g-grid-item-shadow' },
 })
 export class DescriptionComponent extends GridItemDirective {
   /**

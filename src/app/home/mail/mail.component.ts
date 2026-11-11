@@ -9,7 +9,7 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
   imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './mail.component.html',
   styleUrl: './mail.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class MailComponent extends GridItemDirective {
   /**
