@@ -1,17 +1,19 @@
 <h2>
   <span
-    >{{ 'home.mail.question_pt1' | transloco }} <br />
+    >{{ 'home.mail.question_pt1' | transloco }}
     {{ 'home.mail.question_pt2' | transloco }}
   </span>
   <br />
   <span class="projet"
-    >{{ 'home.mail.project_pt1' | transloco }} <br />
+    >{{ 'home.mail.project_pt1' | transloco }}
     {{ 'home.mail.project_pt2' | transloco }}</span
   >
 </h2>
 
-<app-action-button
-  [text]="'home.mail.contact' | transloco"
-  [unfold]="true"
-  (click)="sendEmail()"
-  [positionAbsolute]="false"></app-action-button>
+<a class="contact-link" [href]="'mailto:' + contentService.mail">
+  <app-action-button
+    icon="mail"
+    [text]="'home.mail.contact' | transloco"
+    [unfold]="true"
+    [positionAbsolute]="false"></app-action-button>
+</a>

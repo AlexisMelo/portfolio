@@ -71,7 +71,8 @@
       (var(--action-button-size) - var(--action-button-icon-size)) /
         2 - var(--action-button-border-size)
     );
-    color: var(--styles-title-color);
+    // A parent can set --action-button-icon-color, for instance to match the text
+    color: var(--action-button-icon-color, var(--styles-title-color));
   }
 
   .text {

@@ -16,11 +16,4 @@ export class MailComponent extends GridItemDirective {
    * Gestion du contenu
    */
   public contentService = inject(ContentService);
-
-  /**
-   * Ouvre le gestionnaire de mails
-   */
-  public sendEmail() {
-    window.open('mailto:' + this.contentService.mail);
-  }
 }

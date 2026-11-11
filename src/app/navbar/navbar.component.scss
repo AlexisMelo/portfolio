@@ -52,7 +52,12 @@ $top-padding: 40px;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    transition: height $transition-duration ease-out;
+    // Hidden once closed: its top padding would otherwise cover the background grid,
+    // and its links stay out of the keyboard focus order
+    visibility: hidden;
+    transition:
+      height $transition-duration ease-out,
+      visibility 0s $transition-duration;
     width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -61,6 +66,8 @@ $top-padding: 40px;
     padding-top: $top-padding;
 
     &.opened {
+      visibility: visible;
+      transition: height $transition-duration ease-out;
       height: 100vh;
       width: 100%;
       touch-action: none; //on peut toujours scroll avec la souris mais bon...

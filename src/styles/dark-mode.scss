@@ -14,6 +14,15 @@
   //availability
   --availability-dot-color: white;
 
+  //background-grid
+  --background-grid-color: rgba(255, 255, 255, 0.16);
+  // primary-500: the darker palette colours would not show on the dark page background
+  --background-grid-glow-color: color-mix(
+    in srgb,
+    var(--primary-800) 22%,
+    transparent
+  );
+
   //description
   --description-icon-color: var(--primary-500);
 
@@ -58,6 +67,8 @@
   //mail
   --mail-background-color: var(--primary-950);
   --mail-color: white;
+  --mail-project-color: var(--primary-200);
+  --mail-grid-color: rgba(255, 255, 255, 0.09);
 
   //navbar
   // In the mobile menu, the active link is a tile in the navbar colour

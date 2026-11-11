@@ -15,7 +15,12 @@ app-mail {
   grid-row: 4 / 6;
 
   @include responsive.responsive('medium') {
-    grid-column: 3 / 5;
+    grid-column: 3 / 7;
+    grid-row: 2 / 4;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 3 / 7;
     grid-row: 2 / 4;
   }
 }

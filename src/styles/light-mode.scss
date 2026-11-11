@@ -12,6 +12,14 @@
   //availability
   --availability-dot-color: var(--gray-800);
 
+  //background-grid
+  --background-grid-color: rgba(0, 0, 0, 0.22);
+  --background-grid-glow-color: color-mix(
+    in srgb,
+    var(--primary-300) 14%,
+    transparent
+  );
+
   //description
   --description-icon-color: var(--primary-600);
 
@@ -55,6 +63,8 @@
   //mail
   --mail-background-color: var(--primary-600);
   --mail-color: white;
+  --mail-project-color: var(--primary-200);
+  --mail-grid-color: rgba(255, 255, 255, 0.12);
 
   //navbar
   // In the mobile menu, the active link is a tile in the navbar colour
