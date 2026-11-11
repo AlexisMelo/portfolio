@@ -20,6 +20,7 @@
     },
     "map": {
       "alt": "Carte centrée sur Caen, en Normandie, France",
+      "location": "Caen, France",
       "zoomIn": "Zoomer sur la carte",
       "zoomOut": "Dézoomer la carte"
     },

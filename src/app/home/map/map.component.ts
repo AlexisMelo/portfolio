@@ -9,6 +9,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../action-button/action-button.component';
@@ -19,6 +20,7 @@ import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
   imports: [
     ActionButtonComponent,
     LeafletMapComponent,
+    MatIconModule,
     NgOptimizedImage,
     TranslocoPipe,
   ],

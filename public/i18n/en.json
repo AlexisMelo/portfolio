@@ -20,6 +20,7 @@
     },
     "map": {
       "alt": "Map centred on Caen, in Normandy, France",
+      "location": "Caen, France",
       "zoomIn": "Zoom in on the map",
       "zoomOut": "Zoom out of the map"
     },
