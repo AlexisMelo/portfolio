@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
+import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
@@ -28,6 +29,7 @@ import { SkillsSection } from './skills-section.model';
     AllComponent,
     TranslocoPipe,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',

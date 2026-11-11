@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { SocialLinkComponent } from 'src/app/home/social-link/social-link.component';
+import { GridDragDirective } from 'src/app/shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
 import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
 import { SkillSectionDescriptionComponent } from '../skills/skill-section-description/skill-section-description.component';
@@ -35,6 +36,7 @@ import { YourProjectComponent } from './your-project/your-project.component';
     SocialLinkComponent,
     TranslocoPipe,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

@@ -4,6 +4,7 @@ import { AvailabilityComponent } from '../home/availability/availability.compone
 import { ResumeComponent } from '../home/resume/resume.component';
 import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
+import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';
 import { LanguageService } from '../shared/language.service';
@@ -23,6 +24,7 @@ import { ExperienceProjectsComponent } from './experience-projects/experience-pr
     GridItemDirective,
     AvailabilityComponent,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',

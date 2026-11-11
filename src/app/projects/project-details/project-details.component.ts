@@ -3,6 +3,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { GithubComponent } from 'src/app/home/github/github.component';
+import { GridDragDirective } from 'src/app/shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
@@ -33,6 +34,7 @@ import { ProjectProblematicComponent } from './project-problematic/project-probl
     SkillsRecapComponent,
     GridItemDirective,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss',

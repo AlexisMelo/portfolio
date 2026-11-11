@@ -9,6 +9,7 @@ import {
   input,
   untracked,
 } from '@angular/core';
+import { PLACEHOLDER_CLASS } from './grid-drag.directive';
 
 /**
  * Class running the staggered entrance of a tile (styles.scss)
@@ -140,11 +141,14 @@ export class GridEntranceDirective {
 
   /**
    * Keeps the elements of a node list, the tiles
-   * @param nodes grid children or added nodes, which include comments from control flow blocks
+   * @param nodes grid children or added nodes, which include comments from control flow blocks,
+   * and the outline of a drag and drop, which is not a tile
    */
   private toTiles(nodes: Iterable<Node>): HTMLElement[] {
     return [...nodes].filter(
-      (node): node is HTMLElement => node instanceof HTMLElement
+      (node): node is HTMLElement =>
+        node instanceof HTMLElement &&
+        !node.classList.contains(PLACEHOLDER_CLASS)
     );
   }
 }

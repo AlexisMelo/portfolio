@@ -225,6 +225,45 @@ h3 {
   }
 }
 
+/* Drag and drop of the tiles (GridDragDirective) */
+
+// Tiles that do nothing on click show they can be grabbed; clickable ones keep their own cursor
+.g-grid-drag > * {
+  cursor: grab;
+
+  // A long press picks a tile up: it must not select text or open the link preview
+  @media (pointer: coarse) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    :is(input, textarea) {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+  }
+}
+
+// The dragged tile looks lifted, with a larger hard shadow (after the hover shadows, which it replaces)
+.g-grid-drag > .g-grid-item-dragging {
+  box-shadow: 8px 8px 0 0 var(--grid-item-border-color);
+}
+
+// Where the dragged tile lands
+.g-grid-drop-placeholder {
+  border: 2px dashed var(--styles-default-paragraph-color);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+// While a tile is dragged, the whole page shows the grabbing hand and no text gets selected
+.g-grid-dragging,
+.g-grid-dragging * {
+  cursor: grabbing !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 p,
 li {
   line-height: 150%;

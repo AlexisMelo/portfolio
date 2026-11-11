@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ProjectItemComponent } from '../projects/project-item/project-item.component';
 import { ProjectItem } from '../projects/project-item/project-item.model';
+import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
@@ -29,6 +30,7 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     ProjectItemComponent,
     RangePipe,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
