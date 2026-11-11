@@ -1,0 +1,16 @@
+<p class="numerator">
+  {{ projectsService.selectedProjects().length }}
+</p>
+<div class="separator"></div>
+<p class="denominator">
+  {{ projectsService.projects().length }}
+</p>
+
+@if (
+  projectsService.selectedProjects().length < projectsService.projects().length
+) {
+  <app-reset-button
+    (click)="projectsService.clearFiltering()"
+    tabindex="0"
+    (keyup)="projectsService.clearFiltering()"></app-reset-button>
+}

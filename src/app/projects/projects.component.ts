@@ -1,58 +1,66 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GithubComponent } from '../home/github/github.component';
-import { ContentService } from '../shared/content.service';
-import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { RangePipe } from '../shared/pipes/range.pipe';
-import { SupabaseService } from '../shared/supabase.service';
-import { AllComponent } from './all/all.component';
+import { Component, computed, inject } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { GithubComponent } from 'src/app/home/github/github.component';
+import { ContentService } from 'src/app/shared/content.service';
+import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
+import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
+import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
+import { SkillSectionDescriptionComponent } from '../skills/skill-section-description/skill-section-description.component';
+import { KeyHeaderComponent } from './key-header/key-header.component';
 import { OngoingComponent } from './ongoing/ongoing.component';
-import { ProjectItemComponent } from './project-item/project-item.component';
-import { ProjectItem } from './project-item/project-item.model';
+import { OrderComponent } from './order/order.component';
+import { ProjectCounterComponent } from './project-counter/project-counter.component';
+import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
+import { ProjectCondensedItemComponent } from './project-item/project-item-condensed/project-item-condensed.component';
+import { ProjectsService } from './projects.service';
+import { StatusFilteringComponent } from './status-filtering/status-filtering.component';
+import { StatusPipe } from './status/status.pipe';
 import { WithSkillComponent } from './with-skill/with-skill.component';
 import { YourProjectComponent } from './your-project/your-project.component';
-import { GridItemDirective } from '../shared/grid/grid-item.directive';
 
+/**
+ * Projects page: every project, with filters, grouped by end year
+ */
 @Component({
   selector: 'app-projects',
   imports: [
-    ProjectItemComponent,
-    ReactiveFormsModule,
-    FormsModule,
-    GithubComponent,
-    OngoingComponent,
-    AllComponent,
-    RangePipe,
+    SkillSectionDescriptionComponent,
+    ProjectCounterComponent,
+    ProjectCondensedItemComponent,
+    ProjectFilteringComponent,
+    StatusFilteringComponent,
+    OrderComponent,
+    KeyHeaderComponent,
     YourProjectComponent,
+    OngoingComponent,
     WithSkillComponent,
+    GithubComponent,
+    TranslocoPipe,
     GridItemDirective,
     GridEntranceDirective,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
+  providers: [IsSelectedPipe, StatusPipe, ProjectsService],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent {
   /**
-   * Liste des projets réalisés
+   * Projects, filters and their results
    */
-  protected readonly pinnedProjects = signal<Array<ProjectItem>>([]);
+  public projectsService = inject(ProjectsService);
 
   /**
-   * Gestion de la base de donnée
+   * Content of the site, for the GitHub link
    */
-  private supabaseService = inject(SupabaseService);
+  protected contentService = inject(ContentService);
 
   /**
-   * Gestion du contenu
+   * Ids of the displayed projects in display order, changes each time the results are re-rendered
    */
-  public contentService = inject(ContentService);
-
-  /**
-   * Implémentation de OnInit
-   */
-  ngOnInit() {
-    this.supabaseService
-      .getPinnedProjects()
-      .then(projects => this.pinnedProjects.set(projects));
-  }
+  protected readonly resultsKey = computed(() =>
+    this.projectsService
+      .sortedGroupedProjects()
+      .flatMap(group => group.projects.map(project => project.id))
+      .join()
+  );
 }

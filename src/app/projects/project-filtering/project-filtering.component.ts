@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   effect,
   EffectRef,
   inject,
@@ -8,24 +9,18 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  first,
-  map,
-  Subscription,
-} from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subscription } from 'rxjs';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SelectableItem } from 'src/app/shared/is-selected/selectable-item.model';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { Skill } from 'src/app/skills/skill.model';
-import { ArchivesService } from '../archives.service';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-project-filtering',
@@ -39,9 +34,9 @@ export class ProjectFilteringComponent
   implements OnInit, OnDestroy
 {
   /**
-   * Handle data related to archives
+   * Projects, filters and their results
    */
-  public archivesService = inject(ArchivesService);
+  public projectsService = inject(ProjectsService);
 
   /**
    * Handle connection to the database
@@ -88,6 +83,11 @@ export class ProjectFilteringComponent
   private router = inject(Router);
 
   /**
+   * Stops following the URL when the page is left
+   */
+  private destroyRef = inject(DestroyRef);
+
+  /**
    * Handle contexts selection and route update
    */
   private contextsEffect?: EffectRef;
@@ -100,7 +100,7 @@ export class ProjectFilteringComponent
     //Handle value reset/change from other components
     //Pas ouf ??
     effect(() => {
-      this.filterFormControl.setValue(this.archivesService.filter());
+      this.filterFormControl.setValue(this.projectsService.filter());
     });
   }
 
@@ -112,44 +112,56 @@ export class ProjectFilteringComponent
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: value => {
-          this.archivesService.filter.set(value);
+          this.projectsService.filter.set(value);
         },
       });
 
+    // The skills and contexts follow the URL, which also changes while the page is displayed:
+    // the "with Angular" tile, and the browser's back and forward buttons
     this.supabaseService.getSkills().then(skills => {
       this.allSkills.set(skills);
 
-      this.route.queryParamMap.pipe(first()).subscribe(params => {
-        const selectedSkillsIds = params.get('skills');
+      this.route.queryParamMap
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(params => {
+          const selectedSkillsIds = params.get('skills');
 
-        if (!selectedSkillsIds) return;
+          if (!selectedSkillsIds) {
+            this.projectsService.selectedSkills.set(null);
+            return;
+          }
 
-        const selectedSkillsIdsArray = selectedSkillsIds
-          .split(',')
-          .map(c => Number(c));
+          const selectedSkillsIdsArray = selectedSkillsIds
+            .split(',')
+            .map(c => Number(c));
 
-        this.archivesService.selectedSkills.set(
-          skills.filter(s => selectedSkillsIdsArray.includes(s.id))
-        );
-      });
+          this.projectsService.selectedSkills.set(
+            skills.filter(s => selectedSkillsIdsArray.includes(s.id))
+          );
+        });
     });
 
     this.supabaseService.getContexts().then(contexts => {
       this.allContexts.set(contexts);
 
-      this.route.queryParamMap.pipe(first()).subscribe(params => {
-        const selectedContextsIds = params.get('contexts');
+      this.route.queryParamMap
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(params => {
+          const selectedContextsIds = params.get('contexts');
 
-        if (!selectedContextsIds) return;
+          if (!selectedContextsIds) {
+            this.projectsService.selectedContexts.set(null);
+            return;
+          }
 
-        const selectedContextsIdsArray = selectedContextsIds
-          .split(',')
-          .map(c => Number(c));
+          const selectedContextsIdsArray = selectedContextsIds
+            .split(',')
+            .map(c => Number(c));
 
-        this.archivesService.selectedContexts.set(
-          contexts.filter(c => selectedContextsIdsArray.includes(c.id))
-        );
-      });
+          this.projectsService.selectedContexts.set(
+            contexts.filter(c => selectedContextsIdsArray.includes(c.id))
+          );
+        });
     });
   }
 
@@ -182,7 +194,7 @@ export class ProjectFilteringComponent
       queryParamsHandling: 'merge',
     });
 
-    this.archivesService.selectedContexts.set(selectedContext);
+    this.projectsService.selectedContexts.set(selectedContext);
   }
 
   /**
@@ -206,6 +218,6 @@ export class ProjectFilteringComponent
       queryParamsHandling: 'merge',
     });
 
-    this.archivesService.selectedSkills.set(selectedSkill);
+    this.projectsService.selectedSkills.set(selectedSkill);
   }
 }

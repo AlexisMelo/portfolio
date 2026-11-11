@@ -1,12 +1,12 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { Status } from '../../status/status.model';
-import { StatusPipe } from '../../status/status.pipe';
-import { ArchivedProject } from '../archived-project.model';
-import { ArchivesService } from '../archives.service';
+import { ListedProject } from '../listed-project.model';
+import { ProjectsService } from '../projects.service';
+import { Status } from '../status/status.model';
+import { StatusPipe } from '../status/status.pipe';
 
 @Component({
   selector: 'app-status-filtering',
@@ -20,9 +20,9 @@ export class StatusFilteringComponent
   implements OnInit
 {
   /**
-   * Handle data related to archives
+   * Projects, filters and their results
    */
-  public archivesService = inject(ArchivesService);
+  public projectsService = inject(ProjectsService);
 
   /**
    * Get a status from a project
@@ -40,10 +40,15 @@ export class StatusFilteringComponent
   private route = inject(ActivatedRoute);
 
   /**
+   * Stops following the URL when the page is left
+   */
+  private destroyRef = inject(DestroyRef);
+
+  /**
    * All projects grouped by status
    */
   public projectsByStatus = computed(() => {
-    return this.archivesService.selectedProjects().reduce(
+    return this.projectsService.selectedProjects().reduce(
       (acc, project) => {
         const status = this.statusPipe.transform(project);
         if (!acc[status]) {
@@ -52,7 +57,7 @@ export class StatusFilteringComponent
         acc[status].push(project);
         return acc;
       },
-      {} as Record<Status, ArchivedProject[]>
+      {} as Record<Status, ListedProject[]>
     );
   });
 
@@ -60,18 +65,21 @@ export class StatusFilteringComponent
    * Should all status be displayed ?
    */
   public showAll = computed(() => {
-    return this.archivesService.selectedStatus() === null;
+    return this.projectsService.selectedStatus() === null;
   });
 
   /**
-   * OnInit implementation
+   * Follows the status in the URL, which also changes while the page is displayed:
+   * the "ongoing" tile, and the browser's back and forward buttons
    */
   public ngOnInit() {
-    this.route.queryParamMap.pipe(first()).subscribe(params => {
-      const status = params.get('status');
-      if (!status) return;
-      this.archivesService.selectedStatus.set(status as Status);
-    });
+    this.route.queryParamMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(params =>
+        this.projectsService.selectedStatus.set(
+          params.get('status') as Status | null
+        )
+      );
   }
 
   /**
@@ -79,12 +87,12 @@ export class StatusFilteringComponent
    * @param status
    */
   public selectStatus(status: Status) {
-    if (this.archivesService.selectedStatus() === status) {
+    if (this.projectsService.selectedStatus() === status) {
       this.clearStatus();
       return;
     }
 
-    this.archivesService.selectedStatus.set(status);
+    this.projectsService.selectedStatus.set(status);
 
     this.router.navigate([], {
       relativeTo: this.route,
@@ -99,7 +107,7 @@ export class StatusFilteringComponent
    * Clear the selected status
    */
   public clearStatus() {
-    this.archivesService.selectedStatus.set(null);
+    this.projectsService.selectedStatus.set(null);
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {

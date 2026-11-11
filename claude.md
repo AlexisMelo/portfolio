@@ -12,9 +12,8 @@ Personal portfolio website of Alexis Melo, a freelance fullstack web developer s
 ## Domain
 
 - Routes ([app.routes.ts](src/app/app.routes.ts)):
-  - `/`: about page (description, availability, resume, map, "now" items, contact links).
-  - `/projects`: pinned projects, ongoing and Angular project counts, link to the archives.
-  - `/projects/archives`: every project, filterable by status, context, skill and free text, grouped by end year. Filters are synced to query params; state lives in `ArchivesService`, provided by the component.
+  - `/`: about page (description, availability, resume, map, "now" items, contact links, pinned projects).
+  - `/projects`: every project, filterable by status, context, skill and free text, grouped by end year, with the ongoing and Angular project counts, the "your project here" tile and the GitHub link. Filters follow the query params; state lives in `ProjectsService`, provided by the component.
   - `/projects/:url`: project details (context, problem, contribution, skills, coworkers, illustrations, live link, source code).
   - `/skills`: frontend, backend and general sections, with favourite skills highlighted.
   - `/experience`: professional contexts with their projects.
@@ -22,7 +21,7 @@ Personal portfolio website of Alexis Melo, a freelance fullstack web developer s
 
 ## Project conventions
 
-- Layout: every page is a `.g-grid` of tiles; global `g-` classes are in [styles.scss](src/styles/styles.scss). A tile extends `GridItemDirective` or uses it as a host directive, which adds the `g-grid-item` class and a fade-in (`animate.enter`). Page grids use the `appGridEntrance` directive ([grid-entrance.directive.ts](src/app/shared/grid/grid-entrance.directive.ts)) for a staggered entrance, which replaces the fade-in of the tiles present when the grid first renders. Grids whose tiles are rendered once Supabase data arrives also set `staggerAddedTiles`, which staggers the newly added tiles. To replay the stagger on tiles already displayed each time the results change (archives), bind `[replayKey]` to a key of the displayed results and set `replaySelector`.
+- Layout: every page is a `.g-grid` of tiles; global `g-` classes are in [styles.scss](src/styles/styles.scss). A tile extends `GridItemDirective` or uses it as a host directive, which adds the `g-grid-item` class and a fade-in (`animate.enter`). Page grids use the `appGridEntrance` directive ([grid-entrance.directive.ts](src/app/shared/grid/grid-entrance.directive.ts)) for a staggered entrance, which replaces the fade-in of the tiles present when the grid first renders. Grids whose tiles are rendered once Supabase data arrives also set `staggerAddedTiles`, which staggers the newly added tiles. To replay the stagger on tiles already displayed each time the results change (projects page), bind `[replayKey]` to a key of the displayed results and set `replaySelector`.
 - Animations are native CSS, with `animate.enter` / `animate.leave` for elements entering or leaving the DOM. The deprecated `@angular/animations` package is not installed.
 - i18n: Transloco with `en` (default) and `fr`. Every UI string, including alt texts and ARIA labels, needs a key in both [en.json](public/i18n/en.json) and [fr.json](public/i18n/fr.json). Database content is translated through the `translations` table (`localizedLabel`, `localizedDescription`, ...), picked with `LanguageService.currentLang()`.
 - Theming: `ThemeService` puts `dark-mode` or `light-mode` on `<body>`. Theme colours are in [dark-mode.scss](src/styles/dark-mode.scss) and [light-mode.scss](src/styles/light-mode.scss); a new colour needs a value in both.

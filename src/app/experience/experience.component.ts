@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AvailabilityComponent } from '../home/availability/availability.component';
 import { ResumeComponent } from '../home/resume/resume.component';
-import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
+import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { GridItemDirective } from '../shared/grid/grid-item.directive';

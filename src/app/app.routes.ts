@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {
-  RELATIVE_ARCHIVES_ROUTE,
   RELATIVE_EXPERIENCE_ROUTE,
   RELATIVE_PROJECTS_ROUTE,
 } from './route-paths';
@@ -16,13 +15,6 @@ export const routes: Routes = [
     path: RELATIVE_PROJECTS_ROUTE,
     loadComponent: () =>
       import('./projects/projects.component').then(m => m.ProjectsComponent),
-  },
-  {
-    path: RELATIVE_ARCHIVES_ROUTE,
-    loadComponent: () =>
-      import('./projects/archives/archives.component').then(
-        m => m.ArchivesComponent
-      ),
   },
   {
     path: 'skills',

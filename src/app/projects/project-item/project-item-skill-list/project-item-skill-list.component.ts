@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Tables } from 'database.types';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 
 @Component({
   selector: 'app-project-item-skill-list',
@@ -18,7 +18,7 @@ export class ProjectItemSkillListComponent {
   > = [];
 
   /**
-   * Link to archives
+   * Link to the projects list
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 }

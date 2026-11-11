@@ -1,8 +1,151 @@
 @use '../../styles/responsive.scss' as responsive;
 
-.github {
-  grid-row: 1;
+:host {
+  display: block;
+  min-height: 80vh;
+}
+
+.projects {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  min-height: 350px;
+
+  @include responsive.responsive('medium') {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+
+  app-input {
+    flex-grow: 1;
+  }
+}
+
+app-key-header,
+app-project-item-condensed {
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-column: 5 / 9;
+  }
+}
+
+app-skill-section-description {
+  grid-row: 1 / 3;
+  grid-column: 1 / 5;
+  position: sticky;
+
+  @include responsive.responsive('medium') {
+    grid-row: 1 / 3;
+    grid-column: 1 / 5;
+  }
+}
+
+app-project-filtering {
+  grid-row: 4;
+  grid-column: 1 / 4;
+
+  @include responsive.responsive('medium') {
+    position: sticky;
+    top: calc(2 * (var(--cell-size) + var(--gap)));
+    grid-row: 4;
+    grid-column: 1 / 4;
+  }
+}
+
+app-status-filtering {
+  grid-row: 3;
+  grid-column: 2 / 5;
+
+  @include responsive.responsive('medium') {
+    position: sticky;
+
+    top: calc(var(--cell-size) + var(--gap));
+    grid-row: 3;
+    grid-column: 2 / 5;
+  }
+}
+
+app-project-counter {
+  grid-row: 3;
   grid-column: 1;
+
+  @include responsive.responsive('medium') {
+    position: sticky;
+
+    top: calc(var(--cell-size) + var(--gap));
+    grid-row: 3;
+    grid-column: 1;
+  }
+}
+
+app-order {
+  grid-row: 4;
+  grid-column: 4;
+
+  @include responsive.responsive('medium') {
+    position: sticky;
+    top: calc(2 * (var(--cell-size) + var(--gap)));
+    grid-row: 4;
+    grid-column: 4;
+  }
+}
+
+app-order {
+  position: sticky;
+  z-index: 100;
+}
+
+// From medium up, the filters stay at the top of the page: the tiles below them scroll under them
+app-project-counter,
+app-status-filtering,
+app-project-filtering {
+  @include responsive.responsive('medium') {
+    z-index: 1;
+  }
+}
+
+// Tiles about the projects: below the filters, then in the right column, free on large screens
+app-your-project {
+  grid-row: 5;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('large') {
+    grid-row: 1;
+    grid-column: 9 / 13;
+  }
+}
+
+app-ongoing {
+  grid-row: 6 / 8;
+  grid-column: 1 / 3;
+
+  @include responsive.responsive('large') {
+    grid-row: 2 / 4;
+    grid-column: 9 / 11;
+  }
+}
+
+app-with-skill {
+  grid-row: 6;
+  grid-column: 3 / 5;
+
+  @include responsive.responsive('large') {
+    grid-row: 2;
+    grid-column: 11 / 13;
+  }
+}
+
+.github {
+  grid-row: 7;
+  grid-column: 3 / 5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,78 +157,8 @@
     color: var(--projects-github-icon-color);
   }
 
-  @include responsive.responsive('medium') {
-    grid-row: 1;
-    grid-column: 1;
-  }
-}
-
-.project__1 {
-  grid-row: 2 / 4;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 1 / 4;
-    grid-column: 5 / 9;
-  }
-}
-
-.project__2 {
-  grid-row: 5 / 7;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 2 / 5;
-    grid-column: 1 / 5;
-  }
-}
-
-.project__3 {
-  grid-row: 8 / 10;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 5 / 8;
-    grid-column: 5 / 9;
-  }
-}
-
-app-all {
-  grid-row: 1;
-  grid-column: 2 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 1;
-    grid-column: 2 / 5;
-  }
-}
-
-app-your-project {
-  grid-row: 7;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 4;
-    grid-column: 5 / 9;
-  }
-}
-
-app-ongoing {
-  grid-row: 4;
-  grid-column: 3 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 5 / 7;
-    grid-column: 3 / 5;
-  }
-}
-
-app-with-skill {
-  grid-row: 4;
-  grid-column: 1 / 3;
-
-  @include responsive.responsive('medium') {
-    grid-row: 5;
-    grid-column: 1 / 3;
+  @include responsive.responsive('large') {
+    grid-row: 3;
+    grid-column: 11 / 13;
   }
 }

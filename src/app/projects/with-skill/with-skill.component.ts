@@ -1,7 +1,7 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 
@@ -21,7 +21,7 @@ export class WithSkillComponent extends GridItemDirective {
    * Handle clicking on component
    */
   @HostListener('click') onClick() {
-    this.router.navigate([ARCHIVES_ROUTE], { queryParams: { skills: 2 } });
+    this.router.navigate([PROJECTS_ROUTE], { queryParams: { skills: 2 } });
   }
 
   /**

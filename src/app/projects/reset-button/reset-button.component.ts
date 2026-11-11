@@ -1,6 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ArchivesService } from '../archives.service';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-reset-button',
@@ -10,14 +10,14 @@ import { ArchivesService } from '../archives.service';
 })
 export class ResetButtonComponent {
   /**
-   * Handle archives
+   * Projects and their filters
    */
-  private archivesService = inject(ArchivesService);
+  private projectsService = inject(ProjectsService);
 
   /**
    * Handle click on component
    */
   @HostListener('click') onClick() {
-    this.archivesService.clearFiltering();
+    this.projectsService.clearFiltering();
   }
 }

@@ -11,7 +11,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { RouterLink } from '@angular/router';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
@@ -39,9 +39,9 @@ export class SkillsRecapComponent
   public skills = input.required<Array<Skill>>();
 
   /**
-   * Route vers les archives
+   * Link to the projects list
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /** Current language for resolving localized labels. */
   protected lang = inject(LanguageService).currentLang;

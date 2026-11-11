@@ -8,7 +8,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
@@ -21,9 +21,9 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 })
 export class ExperienceProjectsComponent {
   /**
-   * Link to archives
+   * Link to the projects list
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /**
    * Context to display
@@ -47,7 +47,7 @@ export class ExperienceProjectsComponent {
   @HostListener('click') onClick() {
     if (this.context().projects.length === 0) return;
 
-    this.router.navigate([ARCHIVES_ROUTE], {
+    this.router.navigate([PROJECTS_ROUTE], {
       queryParams: { contexts: this.context().id },
     });
   }

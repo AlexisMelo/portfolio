@@ -13,5 +13,11 @@
     <app-availability></app-availability>
     <app-resume></app-resume>
     <app-now></app-now>
+
+    @for (i of 3 | range; track i) {
+      <app-project-item
+        [class]="'project__' + (i + 1)"
+        [project]="pinnedProjects()[i]"></app-project-item>
+    }
   </div>
 </div>

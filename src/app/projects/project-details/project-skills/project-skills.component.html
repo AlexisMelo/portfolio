@@ -10,7 +10,7 @@
           'projectDetails.skills.tooltip'
             | transloco: { count: skill.projects.length }
         "
-        [routerLink]="[ARCHIVES_ROUTE]"
+        [routerLink]="[PROJECTS_ROUTE]"
         [queryParams]="{ skills: skill.id }"
         [highlighted]="skill.main">
         {{ skill.label }}

@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
@@ -48,7 +48,7 @@ export class ProjectContextComponent extends GridItemDirective {
    * Ouvre plus de projets du même contexte
    */
   public moreProjects() {
-    this.router.navigate([ARCHIVES_ROUTE], {
+    this.router.navigate([PROJECTS_ROUTE], {
       queryParams: {
         contexts: this.project().project_context.id,
       },

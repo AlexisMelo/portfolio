@@ -2,7 +2,7 @@ import { KeyValuePipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { TooltipDirective } from 'src/app/shared/tooltip/tooltip.directive';
@@ -31,9 +31,9 @@ export class ProjectSkillsComponent extends GridItemDirective {
   @Input({ required: true }) project!: Project;
 
   /**
-   * Route vers les archives
+   * Link to the projects list
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /**
    * Handle language

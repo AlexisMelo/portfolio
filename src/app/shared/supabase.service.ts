@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
-import { ArchivedProject } from '../projects/archives/archived-project.model';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
+import { ListedProject } from '../projects/listed-project.model';
 import { ProjectItem } from '../projects/project-item/project-item.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
@@ -48,9 +48,9 @@ export class SupabaseService {
         )`;
 
   /**
-   * Request to get only what the archives display and filter on
+   * Request to get only what the projects page displays and filters on
    */
-  private readonly ARCHIVED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
+  private readonly LISTED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
         localizedDescription:translations!description(en, fr),
         illustrations:project_illustration(url, alt, position),
         project_type(label),
@@ -98,14 +98,14 @@ export class SupabaseService {
   }
 
   /**
-   * Gets every project, with only the fields used by the archives
+   * Gets every project, with only the fields used by the projects page
    * @returns
    */
-  public async getProjects(): Promise<Array<ArchivedProject>> {
+  public async getProjects(): Promise<Array<ListedProject>> {
     const { data, error } = await this.client
       .from('project')
-      .select(this.ARCHIVED_PROJECT_REQUEST)
-      .overrideTypes<Array<ArchivedProject>, { merge: false }>();
+      .select(this.LISTED_PROJECT_REQUEST)
+      .overrideTypes<Array<ListedProject>, { merge: false }>();
 
     if (error) return Promise.reject(error);
     return data;

@@ -1,9 +1,9 @@
 import { Tables } from 'database.types';
 
 /**
- * Project as displayed and filtered in the archives
+ * Project as displayed and filtered on the projects page
  */
-export interface ArchivedProject extends Pick<
+export interface ListedProject extends Pick<
   Tables<'project'>,
   'id' | 'label' | 'url' | 'description' | 'end_date' | 'abandoned'
 > {

@@ -48,7 +48,7 @@
           <div class="skill-grid">
             @for (skill of skillDetails.skills; track skill.id) {
               <div
-                [routerLink]="[ARCHIVES_ROUTE]"
+                [routerLink]="[PROJECTS_ROUTE]"
                 [queryParams]="{ skills: skill.id }"
                 class="skill">
                 @if (skill.loved) {

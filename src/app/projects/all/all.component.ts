@@ -2,7 +2,7 @@ import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 
@@ -15,9 +15,9 @@ import { SupabaseService } from 'src/app/shared/supabase.service';
 })
 export class AllComponent extends GridItemDirective implements OnInit {
   /**
-   * Chemin vers les archives
+   * Link to the projects list
    */
-  public ARCHIVES_ROUTE = ARCHIVES_ROUTE;
+  public PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /**
    * Number of projects, undefined until it is loaded
@@ -45,6 +45,6 @@ export class AllComponent extends GridItemDirective implements OnInit {
    * Handle clicking on the component
    */
   @HostListener('click') onClick() {
-    this.router.navigate([ARCHIVES_ROUTE]);
+    this.router.navigate([PROJECTS_ROUTE]);
   }
 }

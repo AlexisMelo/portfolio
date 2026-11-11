@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ArchivesService } from '../archives.service';
+import { ProjectsService } from '../projects.service';
 import { ResetButtonComponent } from '../reset-button/reset-button.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { ResetButtonComponent } from '../reset-button/reset-button.component';
 })
 export class ProjectCounterComponent extends GridItemDirective {
   /**
-   * Handle data related to archives
+   * Projects, filters and their results
    */
-  public archivesService = inject(ArchivesService);
+  public projectsService = inject(ProjectsService);
 }

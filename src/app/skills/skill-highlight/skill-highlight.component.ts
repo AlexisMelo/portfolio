@@ -8,7 +8,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { Skill } from 'src/app/skills/skill.model';
@@ -44,7 +44,7 @@ export class SkillHighlightComponent extends GridItemDirective {
    */
   @HostListener('click')
   onClick() {
-    this.router.navigate([ARCHIVES_ROUTE], {
+    this.router.navigate([PROJECTS_ROUTE], {
       queryParams: {
         skills: [this.skill().id],
       },

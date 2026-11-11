@@ -2,7 +2,7 @@ import { Component, effect, HostListener, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ArchivesService, OrderDirection } from '../archives/archives.service';
+import { OrderDirection, ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-order',
@@ -12,16 +12,16 @@ import { ArchivesService, OrderDirection } from '../archives/archives.service';
 })
 export class OrderComponent extends GridItemDirective {
   /**
-   * Handle archives
+   * Projects and their order
    */
-  protected archivesService = inject(ArchivesService);
+  protected projectsService = inject(ProjectsService);
 
   /**
    * Toggle sort direction
    */
   @HostListener('click') onClick() {
-    this.archivesService.orderDirection.set(
-      this.archivesService.orderDirection() === 'asc' ? 'desc' : 'asc'
+    this.projectsService.orderDirection.set(
+      this.projectsService.orderDirection() === 'asc' ? 'desc' : 'asc'
     );
   }
 
@@ -33,13 +33,13 @@ export class OrderComponent extends GridItemDirective {
     effect(() => {
       localStorage.setItem(
         'orderDirection',
-        this.archivesService.orderDirection()
+        this.projectsService.orderDirection()
       );
     });
 
     const orderDirection = localStorage.getItem('orderDirection');
     if (orderDirection) {
-      this.archivesService.orderDirection.set(orderDirection as OrderDirection);
+      this.projectsService.orderDirection.set(orderDirection as OrderDirection);
     }
   }
 }
