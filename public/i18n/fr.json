@@ -10,9 +10,9 @@
   },
   "home": {
     "job": {
-      "title": "Développeur Web Fullstack",
-      "before": "Spécialiste des frameworks",
-      "and": "et"
+      "title": "Développeur web fullstack",
+      "more": "& bien plus",
+      "skillsLink": "{{name}}, voir mes compétences"
     },
     "mail": {
       "question_pt1": "Une",
@@ -42,7 +42,8 @@
       "allLabel": "Voir tous les projets"
     },
     "companies": {
-      "title": "Passé par"
+      "title": "Passé par",
+      "ongoing": "Aujourd'hui"
     }
   },
   "projectCard": {

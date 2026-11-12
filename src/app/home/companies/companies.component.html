@@ -10,17 +10,39 @@
   (focusin)="onFocusIn($event)"
   (focusout)="onFocusOut($event)">
   <ul class="group" aria-labelledby="companies-title">
-    @for (name of names(); track $index) {
+    @for (company of companies(); track $index) {
       <li>
-        <a [routerLink]="EXPERIENCE_ROUTE">{{ name }}</a>
+        <ng-container
+          *ngTemplateOutlet="
+            link;
+            context: { $implicit: company, tabindex: 0 }
+          " />
       </li>
     }
   </ul>
   <ul class="group" aria-hidden="true">
-    @for (name of names(); track $index) {
+    @for (company of companies(); track $index) {
       <li>
-        <a [routerLink]="EXPERIENCE_ROUTE" tabindex="-1">{{ name }}</a>
+        <ng-container
+          *ngTemplateOutlet="
+            link;
+            context: { $implicit: company, tabindex: -1 }
+          " />
       </li>
     }
   </ul>
 </div>
+
+<!-- A company's name, with the end date of its context under it -->
+<ng-template #link let-company let-tabindex="tabindex">
+  <a [routerLink]="EXPERIENCE_ROUTE" [tabIndex]="tabindex">
+    <span class="name">{{ company.name }}</span>
+    <span class="date">
+      @if (company.endDate) {
+        {{ company.endDate | translocoDate: { year: 'numeric' } }}
+      } @else {
+        {{ 'home.companies.ongoing' | transloco }}
+      }
+    </span>
+  </a>
+</ng-template>

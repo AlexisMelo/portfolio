@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import {
   RELATIVE_EXPERIENCE_ROUTE,
   RELATIVE_PROJECTS_ROUTE,
+  RELATIVE_SKILLS_ROUTE,
 } from './route-paths';
 
 // The landing page is eager, the other pages are loaded on navigation
@@ -17,7 +18,7 @@ export const routes: Routes = [
       import('./projects/projects.component').then(m => m.ProjectsComponent),
   },
   {
-    path: 'skills',
+    path: RELATIVE_SKILLS_ROUTE,
     loadComponent: () =>
       import('./skills/skills.component').then(m => m.SkillsComponent),
   },

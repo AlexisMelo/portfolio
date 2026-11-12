@@ -22,10 +22,11 @@
   );
 
   //companies
-  --companies-label-color: var(--primary-500);
-  --companies-divider-color: var(--gray-500);
-  --companies-name-color: var(--gray-400);
-  --companies-name-hover-color: var(--styles-title-color);
+  // Label in the tiles' grey with coral text, like the one of the projects preview; names and
+  // dates in the title colour
+  --companies-label-background: var(--grid-item-default-bg);
+  --companies-label-color: var(--coral-500);
+  --companies-name-color: var(--styles-title-color);
 
   //coworker-info
   --coworker-info-color: var(--gray-400);
@@ -54,10 +55,15 @@
   --image-background-color: var(--grid-item-default-bg);
 
   //job
-  // Brand colours of the frameworks, under white text (AA)
+  // Brand colours of the frameworks, under white text (AA). "& much more" like the mustard tiles:
+  // the tiles' grey with mustard text (AA)
   --job-framework-color: white;
   --job-angular-background: #dd0031;
   --job-dotnet-background: #512bd4;
+  --job-more-background: var(--grid-item-default-bg);
+  --job-more-color: var(--mustard-500);
+  // Focus ring of the chips, light on the dark tile
+  --job-focus-color: white;
 
   //key-header
   --key-header-background: var(--primary-900);
@@ -81,7 +87,6 @@
   --mail-background-color: var(--primary-900);
   --mail-color: white;
   --mail-project-color: var(--primary-200);
-  --mail-grid-color: rgba(255, 255, 255, 0.09);
 
   //navbar
   // In the mobile menu, the active link is a tile in the navbar colour

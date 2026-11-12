@@ -7,25 +7,9 @@
   justify-content: space-between;
   align-items: flex-start;
   background-color: var(--mail-background-color);
-  // Keeps the grid below the text and the button
-  isolation: isolate;
 
   @include responsive.responsive('medium') {
     padding: 1.7rem;
-  }
-
-  // Grid of squares from the top right corner, faded out under the text
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      linear-gradient(var(--mail-grid-color) 1px, transparent 1px),
-      linear-gradient(90deg, var(--mail-grid-color) 1px, transparent 1px);
-    background-size: 24px 24px;
-    mask-image: radial-gradient(circle at 100% 0%, black 0%, transparent 75%);
   }
 }
 

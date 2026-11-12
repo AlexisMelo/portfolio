@@ -11,8 +11,8 @@
   "home": {
     "job": {
       "title": "Fullstack Web Developer",
-      "before": "Specialist in",
-      "and": "and"
+      "more": "& much more",
+      "skillsLink": "{{name}}, see my skills"
     },
     "mail": {
       "question_pt1": "Any",
@@ -42,7 +42,8 @@
       "allLabel": "See all projects"
     },
     "companies": {
-      "title": "Worked at"
+      "title": "Worked at",
+      "ongoing": "Today"
     }
   },
   "projectCard": {

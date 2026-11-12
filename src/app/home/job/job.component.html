@@ -1,9 +1,30 @@
 <h2>{{ 'home.job.title' | transloco }}</h2>
-<p>
-  {{ 'home.job.before' | transloco }}
-  <span class="frameworks"
-    ><span class="framework angular">Angular</span>
-    {{ 'home.job.and' | transloco }}
-    <span class="framework dotnet">.NET</span></span
-  >
-</p>
+<ul class="frameworks">
+  <li>
+    <a
+      class="framework angular"
+      [routerLink]="SKILLS_ROUTE"
+      [attr.aria-label]="'home.job.skillsLink' | transloco: { name: 'Angular' }"
+      >Angular</a
+    >
+  </li>
+  <li>
+    <a
+      class="framework dotnet"
+      [routerLink]="SKILLS_ROUTE"
+      [attr.aria-label]="'home.job.skillsLink' | transloco: { name: '.NET' }"
+      >.NET</a
+    >
+  </li>
+  <li>
+    <a
+      class="framework more"
+      [routerLink]="SKILLS_ROUTE"
+      [attr.aria-label]="
+        'home.job.skillsLink'
+          | transloco: { name: ('home.job.more' | transloco) }
+      "
+      >{{ 'home.job.more' | transloco }}</a
+    >
+  </li>
+</ul>

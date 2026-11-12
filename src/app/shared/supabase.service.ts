@@ -3,6 +3,7 @@ import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ListedProject } from '../projects/listed-project.model';
+import { Company } from '../home/companies/company.model';
 import { ProjectCard } from '../home/projects-preview/project-card/project-card.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
@@ -160,24 +161,29 @@ export class SupabaseService {
   }
 
   /**
-   * Names of the companies I worked at (contexts flagged is_company), most recent first
+   * Companies I worked at (contexts flagged is_company), with the end date of each context, most
+   * recent first
    * @param locale language of the names
    */
-  public async getCompanyNames(locale: Language): Promise<string[]> {
+  public async getCompanies(locale: Language): Promise<Company[]> {
     const { data, error } = await this.client
       .from('context')
-      .select(`localizedLabel:translations!label(${locale})`)
+      .select(`end_date, localizedLabel:translations!label(${locale})`)
       .eq('is_company', true)
       .order('start_date', { ascending: false })
       .overrideTypes<
-        Array<{ localizedLabel: Partial<Record<Language, string | null>> }>,
+        Array<{
+          end_date: string | null;
+          localizedLabel: Partial<Record<Language, string | null>>;
+        }>,
         { merge: false }
       >();
 
     if (error) return Promise.reject(error);
-    return data
-      .map(company => company.localizedLabel[locale])
-      .filter((name): name is string => !!name);
+    return data.flatMap(company => {
+      const name = company.localizedLabel[locale];
+      return name ? [{ name, endDate: company.end_date }] : [];
+    });
   }
 
   /**

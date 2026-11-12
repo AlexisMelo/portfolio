@@ -1,6 +1,6 @@
 @use '../../../styles/responsive.scss' as responsive;
 
-// Slow rise and fall of the framework chips
+// Slow rise and fall of the chips
 @keyframes float {
   0%,
   100% {
@@ -12,60 +12,78 @@
   }
 }
 
+// Title and chips centred in the tile
 :host {
-  padding: 0.8rem 1.2rem;
+  padding: 0.6rem 0.8rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.8rem;
+  text-align: center;
 
   @include responsive.responsive('medium') {
-    padding: 1.3rem 1.5rem;
-    gap: 0.6rem;
+    padding: 1rem 1.2rem;
+    gap: 1rem;
   }
 }
 
-// Same sizes as the titles of the contact tile
+// The biggest size of the design system, on two balanced lines
 h2 {
   margin: 0;
-  font-size: var(--text-xl);
+  font-size: var(--text-xxxl);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 
   @include responsive.responsive('medium') {
-    font-size: var(--text-xxxl);
+    font-size: var(--text-xxxxl);
   }
 }
 
-// Lines just tall enough for the chips to float without touching the line above
-p {
-  margin: 0;
-  line-height: 1.65;
-  font-size: var(--text-sm);
-
-  @include responsive.responsive('medium') {
-    font-size: var(--text-md);
-  }
-}
-
-// Both chips and the word between them stay on one line
 .frameworks {
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-// Coloured chip with the tiles' border and hard shadow, slightly tilted
+// Sticker-like chip with the tiles' border and hard shadow, slightly tilted, floating out of step
+// with the others. The shadow grows on hover, like the other clickable stickers.
 .framework {
-  display: inline-block;
-  margin: 0 0.1em;
-  padding: 0 0.45em;
-  line-height: 1.45;
-  border: 2px solid var(--grid-item-border-color);
-  border-radius: 7px;
-  box-shadow: 2px 2px 0 0 var(--grid-item-border-color);
+  display: block;
+  padding: 0.15em 0.6em;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
   color: var(--job-framework-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-md);
   font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: box-shadow 200ms;
   animation: float 2.6s ease-in-out infinite;
+
+  &:hover {
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--job-focus-color);
+    outline-offset: 3px;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
   }
 }
 
@@ -74,9 +92,15 @@ p {
   rotate: -3deg;
 }
 
-// Out of step with the Angular chip
 .dotnet {
   background-color: var(--job-dotnet-background);
   rotate: 2deg;
-  animation-delay: -1.3s;
+  animation-delay: -0.87s;
+}
+
+.more {
+  background-color: var(--job-more-background);
+  color: var(--job-more-color);
+  rotate: -1deg;
+  animation-delay: -1.73s;
 }

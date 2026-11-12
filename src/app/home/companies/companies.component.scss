@@ -15,22 +15,25 @@
   }
 }
 
-// Small spaced capitals, then a hairline before the names. One word per line on phones.
+// Slightly tilted sticker with an ink border and a hard shadow, like the label of the projects
+// preview
 .label {
   flex-shrink: 0;
-  width: min-content;
-  padding-right: 1rem;
-  border-right: 1px solid var(--companies-divider-color);
-  font-size: var(--text-xs);
-  line-height: 1.6;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--companies-label-background);
   color: var(--companies-label-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
   white-space: nowrap;
+  rotate: -4deg;
 
   @include responsive.responsive('medium') {
-    width: auto;
-    padding-right: 1.5rem;
+    font-size: var(--text-md);
   }
 }
 
@@ -46,8 +49,8 @@
   mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 8%,
+    black 92%,
     transparent
   );
 
@@ -87,33 +90,48 @@
   }
 }
 
-// Muted, like a row of logos, and darker when hovered
+// The name in bold ink, the end date of the context under it. Only the name is underlined when
+// hovered.
 a {
-  display: block;
-  white-space: nowrap;
-  font-family: var(--title-font-family);
-  font-size: var(--text-lg);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.1rem 0.25rem;
   color: var(--companies-name-color);
   text-decoration: none;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
+  white-space: nowrap;
   border-radius: 4px;
-  transition: color 200ms;
 
-  &:hover {
-    color: var(--companies-name-hover-color);
+  &:hover .name {
     text-decoration-line: underline;
   }
 
   &:focus-visible {
     outline: 2px solid currentColor;
-    outline-offset: 4px;
+    outline-offset: 2px;
   }
+}
+
+.name {
+  font-family: var(--title-font-family);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 
   @include responsive.responsive('medium') {
     font-size: var(--text-xl);
+  }
+}
+
+.date {
+  font-size: var(--text-xs);
+  line-height: 1.4;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-sm);
   }
 }
 
