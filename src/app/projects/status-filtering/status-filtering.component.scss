@@ -10,7 +10,7 @@ p {
   font-size: var(--text-xxl);
   font-family: var(--title-font-family);
   line-height: 1;
-  color: white;
+  color: inherit;
 }
 
 .ongoing,
@@ -25,7 +25,6 @@ p {
   height: 60px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  color: white;
   --mat-icon-size: 15px;
   font-size: 0.9rem;
   gap: 4px;
@@ -38,14 +37,15 @@ p {
     height: var(--mat-icon-size);
   }
 
+  // The selected status keeps its colour, the others turn grey
   &.selected {
     transform: translateY(0%);
-    background-color: var(--status-filtering-selected);
   }
 
   &:not(.allSelected):not(.selected) {
     transform: translateY(50%);
     background-color: var(--status-filtering-not-selected);
+    color: var(--status-filtering-not-selected-color);
 
     p {
       display: none;
@@ -55,12 +55,15 @@ p {
 
 .ongoing {
   background-color: var(--status-filtering-ongoing);
+  color: var(--status-filtering-ongoing-color);
 }
 
 .abandoned {
   background-color: var(--status-filtering-abandoned);
+  color: var(--status-filtering-abandoned-color);
 }
 
 .completed {
   background-color: var(--status-filtering-completed);
+  color: var(--status-filtering-completed-color);
 }

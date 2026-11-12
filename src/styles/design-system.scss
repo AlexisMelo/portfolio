@@ -3,17 +3,24 @@
 //https://mycolor.space/?hex=%23F2F7F3&sub=1
 
 @mixin design-system() {
-  // Brand palette, from green to slate blue. primary-600 is the standard colour
-  // (navbar, coloured tiles, links and icons on white)
+  // Brand palette, from teal to slate blue. primary-600 is the standard colour, the brand teal
+  // (navbar, teal tiles, links and icons on white)
   --primary-950: #2f4858;
   --primary-900: #285461;
   --primary-800: #246065;
   --primary-700: #2b6c64;
-  --primary-600: #3e765f;
-  --primary-500: #577f57;
-  // Light tints, for backgrounds and borders on white
-  --primary-200: #e5ebdd;
-  --primary-100: #f0f3ec;
+  --primary-600: #1f6f68;
+  // Lighter teal, for text and icons on the dark tiles (AA)
+  --primary-500: #4baba1;
+  // Light teal tints, for backgrounds and borders on white
+  --primary-200: #d9ece9;
+  --primary-100: #edf6f5;
+
+  // The two other palette colours: coral for the calls to action and the projects, mustard as
+  // the accent. Both are light: in light mode they are tile backgrounds under dark text, in dark
+  // mode text colours on the dark tiles (AA)
+  --coral-500: #ff7d5e;
+  --mustard-500: #ffc93c;
 
   //neutral grays
   --gray-800: #181818;

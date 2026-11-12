@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) calc(var(--cell-size) + var(--gap) / 2);
   grid-template-rows: minmax(0, 1fr);
+  background-color: var(--projects-preview-background);
 }
 
 /* Displayed project */
@@ -47,7 +48,7 @@
   }
 }
 
-/* Selector: a green column with one cell per project, then the link to every project */
+/* Selector: a teal column with one cell per project, then the link to every project */
 
 .selector {
   display: grid;
@@ -95,10 +96,12 @@
     transform: scale(1.08);
   }
 
-  // Open on the panel it shows, like a folder tab: its colour runs under the transparent border
+  // Open on the panel it shows, like a folder tab: in the panel's colour, which runs under the
+  // transparent border. Its colour is the one of the focus outline.
   &[aria-selected='true'] {
     border-left-color: transparent;
     background-color: var(--projects-preview-selected-background);
+    color: var(--projects-preview-selected-color);
     cursor: default;
 
     .icon {
@@ -136,7 +139,7 @@
   }
 }
 
-// Darker than the rest of the column, so that it reads as a link and not as a project
+// Not in the column's colour, so that it reads as a link and not as a project
 .all-projects {
   grid-row: 4;
   display: flex;
@@ -144,7 +147,7 @@
   justify-content: space-between;
   padding: 0.5rem 0.6rem;
   background-color: var(--projects-preview-all-background);
-  color: var(--projects-preview-selector-color);
+  color: var(--projects-preview-all-color);
   text-decoration: none;
   font-family: var(--title-font-family);
   font-weight: 700;

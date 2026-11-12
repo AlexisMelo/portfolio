@@ -1,7 +1,9 @@
 @use '../styles/responsive.scss' as responsive;
 
-// Coloured backgrounds (navbar, coloured tiles) use the darkest palette colour, primary-950,
-// instead of the light mode's primary-600
+// Teal backgrounds (navbar, teal tiles) use the darker primary-900. The coral and mustard tiles
+// keep the usual dark grey instead, and their text takes the colour, bright enough to be read on
+// it (AA); without text (avatar), they are just dark grey. Teal text and icons on the dark tiles
+// use the lighter primary-500 (AA).
 @mixin dark-mode() {
   //action-button
   --action-button-background: var(--gray-700);
@@ -13,7 +15,6 @@
 
   //background-grid
   --background-grid-color: rgba(255, 255, 255, 0.16);
-  // primary-500: the darker palette colours would not show on the dark page background
   --background-grid-glow-color: color-mix(
     in srgb,
     var(--primary-800) 22%,
@@ -21,8 +22,7 @@
   );
 
   //companies
-  // primary-200: the darker greens are too dark for small text on the tiles (AA)
-  --companies-label-color: var(--primary-200);
+  --companies-label-color: var(--primary-500);
   --companies-divider-color: var(--gray-500);
   --companies-name-color: var(--gray-400);
   --companies-name-hover-color: var(--styles-title-color);
@@ -31,8 +31,8 @@
   --coworker-info-color: var(--gray-400);
 
   //favorites
-  --favorites-background: var(--primary-950);
-  --favorites-color: white;
+  --favorites-background: var(--grid-item-default-bg);
+  --favorites-color: var(--mustard-500);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-600);
@@ -50,6 +50,9 @@
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-300);
 
+  //image
+  --image-background-color: var(--grid-item-default-bg);
+
   //job
   // Brand colours of the frameworks, under white text (AA)
   --job-framework-color: white;
@@ -57,7 +60,7 @@
   --job-dotnet-background: #512bd4;
 
   //key-header
-  --key-header-background: var(--primary-950);
+  --key-header-background: var(--primary-900);
   --key-header-color: white;
   --key-header-chips-background: white;
   --key-header-chips-color: var(--key-header-background);
@@ -74,7 +77,7 @@
   --map-location-icon-color: var(--primary-500);
 
   //mail
-  --mail-background-color: var(--primary-950);
+  --mail-background-color: var(--primary-900);
   --mail-color: white;
   --mail-project-color: var(--primary-200);
   --mail-grid-color: rgba(255, 255, 255, 0.09);
@@ -85,26 +88,27 @@
   --navbar-active-link-background: var(--navbar-background-color);
   --navbar-inactive-link-color: var(--gray-400);
   --navbar-logo-name: white;
-  --navbar-background-color: var(--primary-950);
+  --navbar-background-color: var(--primary-900);
 
   //ongoing
-  --ongoing-background: var(--primary-950);
-  --ongoing-color: white;
+  --ongoing-background: var(--grid-item-default-bg);
+  --ongoing-color: var(--mustard-500);
 
   //open-live
-  --open-live-background-color: var(--primary-950);
-  --open-live-color: white;
-  --open-live-dot-color: var(--primary-200);
+  --open-live-background-color: var(--grid-item-default-bg);
+  --open-live-color: var(--coral-500);
+  --open-live-dot-color: var(--coral-500);
 
   //project-card
-  // Number, year and description, lighter than the usual paragraphs
-  --project-card-text-color: var(--gray-200);
+  // Name and context in coral, number, year and description in the paragraph grey
+  --project-card-text-color: var(--gray-300);
+  --project-card-title-color: var(--coral-500);
   // White like in light mode: the project icons are made for a light background
   --project-card-illustration-background: white;
-  --project-card-initial-color: var(--primary-950);
+  --project-card-initial-color: var(--primary-600);
 
   //project-context
-  --project-context-background: var(--primary-950);
+  --project-context-background: var(--primary-900);
   --project-context-color: white;
 
   //project-duration
@@ -134,16 +138,15 @@
   --projects-by-context-icons-color: var(--white);
 
   //projects-preview
-  // Selector column in the coloured tiles' green, its selected cell one tone lower, the link in
-  // a darker green than the palette has
-  --projects-preview-selector-background: var(--primary-950);
+  // Selector column in teal; the displayed project, its selected cell and the link to every
+  // project in the tiles' grey, the project's name and the link in coral
+  --projects-preview-background: var(--grid-item-default-bg);
+  --projects-preview-selector-background: var(--primary-900);
   --projects-preview-selector-color: white;
-  --projects-preview-selected-background: var(--primary-900);
-  --projects-preview-all-background: color-mix(
-    in srgb,
-    var(--primary-950) 65%,
-    black
-  );
+  --projects-preview-selected-background: var(--grid-item-default-bg);
+  --projects-preview-selected-color: white;
+  --projects-preview-all-background: var(--grid-item-default-bg);
+  --projects-preview-all-color: var(--coral-500);
   // White like in light mode: the project icons are made for a light background
   --projects-preview-icon-background: white;
   --projects-preview-icon-color: var(--gray-800);
@@ -152,8 +155,8 @@
   --reset-button-color: var(--gray-300);
 
   //resume
-  --resume-background-color: var(--primary-950);
-  --resume-color: white;
+  --resume-background-color: var(--grid-item-default-bg);
+  --resume-color: var(--mustard-500);
 
   //round-button
   --round-button-background: var(--grid-item-default-bg);
@@ -176,11 +179,16 @@
   --skill-highlight-icon-color: var(--primary-500);
 
   //status-filtering
-  --status-filtering-completed: var(--primary-500);
-  --status-filtering-ongoing: var(--primary-700);
-  --status-filtering-abandoned: var(--primary-600);
-  --status-filtering-selected: var(--primary-500);
+  // Completed in teal like in light mode; the ongoing and abandoned chips grey, lighter than the
+  // tile, with their number and icon in mustard and coral. The numbers are large text (3:1).
+  --status-filtering-completed: var(--primary-900);
+  --status-filtering-completed-color: white;
+  --status-filtering-ongoing: var(--gray-600);
+  --status-filtering-ongoing-color: var(--mustard-500);
+  --status-filtering-abandoned: var(--gray-600);
+  --status-filtering-abandoned-color: var(--coral-500);
   --status-filtering-not-selected: var(--gray-600);
+  --status-filtering-not-selected-color: var(--gray-400);
 
   //styles
   --styles-title-color: var(--gray-100);
@@ -193,8 +201,8 @@
   --suggestion-chip-bg: var(--gray-500);
 
   //your-project
-  --your-project-background: var(--primary-950);
-  --your-project-color: white;
+  --your-project-background: var(--grid-item-default-bg);
+  --your-project-color: var(--coral-500);
 
   // From medium up, the links sit on the navbar background instead of tiles: they are white,
   // and the active one is a white rounded area with its text in the navbar colour

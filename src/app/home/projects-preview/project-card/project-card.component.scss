@@ -69,6 +69,7 @@
 // On one line
 h2 {
   margin: 0;
+  color: var(--project-card-title-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -113,7 +114,7 @@ h2 {
   font-family: var(--title-font-family);
   font-weight: 700;
   font-size: var(--text-lg);
-  color: var(--styles-title-color);
+  color: var(--project-card-title-color);
 }
 
 // Its look comes from .g-round-button (styles.scss)

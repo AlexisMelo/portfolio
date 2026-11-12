@@ -197,11 +197,13 @@ h3 {
 
 /* Others */
 
-// Every tile has a strong solid border; hovering adds a small hard shadow on its bottom-right side
+// Every tile has a strong solid border and a small hard shadow on its bottom-right side, which
+// grows when hovered
 .g-grid-item {
   border-radius: 12px;
   background-color: var(--grid-item-default-bg);
   border: var(--grid-item-border);
+  box-shadow: 2px 2px 0 0 var(--grid-item-border-color);
   position: relative;
   overflow: hidden;
   transition:
@@ -210,7 +212,7 @@ h3 {
     transform 500ms;
 
   &:hover {
-    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
   }
 }
 

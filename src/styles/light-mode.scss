@@ -27,8 +27,8 @@
   --coworker-info-color: var(--gray-600);
 
   //favorites
-  --favorites-background: var(--primary-600);
-  --favorites-color: white;
+  --favorites-background: var(--mustard-500);
+  --favorites-color: var(--gray-800);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-300);
@@ -44,6 +44,9 @@
   --grid-item-border-color: var(--gray-800);
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-200);
+
+  //image
+  --image-background-color: var(--coral-500);
 
   //job
   // Brand colours of the frameworks, under white text (AA)
@@ -85,17 +88,19 @@
   --navbar-open-menu-color: white;
 
   //ongoing
-  --ongoing-background: var(--primary-600);
-  --ongoing-color: white;
+  --ongoing-background: var(--mustard-500);
+  --ongoing-color: var(--gray-800);
 
   //open-live
-  --open-live-background-color: var(--primary-600);
-  --open-live-color: white;
-  --open-live-dot-color: var(--primary-200);
+  --open-live-background-color: var(--coral-500);
+  --open-live-color: var(--gray-800);
+  --open-live-dot-color: var(--gray-800);
 
   //project-card
-  // Number, year and description, darker than the usual paragraphs
-  --project-card-text-color: var(--gray-600);
+  // On the coral of the projects preview: dark texts (AA), the number, year and description
+  // slightly lighter than the name and the context
+  --project-card-text-color: var(--gray-700);
+  --project-card-title-color: var(--gray-800);
   // Behind the icon of a project without illustration, which icons are made for
   --project-card-illustration-background: white;
   --project-card-initial-color: var(--primary-600);
@@ -132,11 +137,15 @@
   --projects-by-context-icons-color: var(--white);
 
   //projects-preview
-  // Selector column in the standard green, its selected cell one tone lower, the link a darker green
+  // Displayed project in coral; selector column in teal, its selected cell in the coral of the
+  // project it shows, like the link to every project
+  --projects-preview-background: var(--coral-500);
   --projects-preview-selector-background: var(--primary-600);
   --projects-preview-selector-color: white;
-  --projects-preview-selected-background: var(--primary-500);
-  --projects-preview-all-background: var(--primary-800);
+  --projects-preview-selected-background: var(--coral-500);
+  --projects-preview-selected-color: var(--gray-800);
+  --projects-preview-all-background: var(--coral-500);
+  --projects-preview-all-color: var(--gray-800);
   --projects-preview-icon-background: white;
   --projects-preview-icon-color: var(--gray-800);
 
@@ -144,8 +153,8 @@
   --reset-button-color: var(--gray-700);
 
   //resume
-  --resume-background-color: var(--primary-600);
-  --resume-color: white;
+  --resume-background-color: var(--mustard-500);
+  --resume-color: var(--gray-800);
 
   //round-button
   --round-button-background: var(--grid-item-default-bg);
@@ -167,11 +176,15 @@
   --skill-highlight-icon-color: var(--primary-600);
 
   //status-filtering
+  // One palette colour per status, with dark text on the light ones (AA)
   --status-filtering-completed: var(--primary-600);
-  --status-filtering-ongoing: var(--primary-700);
-  --status-filtering-abandoned: var(--primary-500);
-  --status-filtering-selected: var(--primary-500);
+  --status-filtering-completed-color: white;
+  --status-filtering-ongoing: var(--mustard-500);
+  --status-filtering-ongoing-color: var(--gray-800);
+  --status-filtering-abandoned: var(--coral-500);
+  --status-filtering-abandoned-color: var(--gray-800);
   --status-filtering-not-selected: var(--gray-400);
+  --status-filtering-not-selected-color: var(--gray-800);
 
   //styles
   --styles-title-color: var(--gray-700);
@@ -186,8 +199,8 @@
   --suggestion-chip-bg: var(--white);
 
   //your-project
-  --your-project-background: var(--primary-600);
-  --your-project-color: white;
+  --your-project-background: var(--coral-500);
+  --your-project-color: var(--gray-800);
 
   // From medium up, the links sit on the navbar background instead of white tiles: they are white,
   // and the active one is a white rounded area with its text in the navbar colour
