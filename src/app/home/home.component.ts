@@ -4,8 +4,8 @@ import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { SupabaseService } from '../shared/supabase.service';
 import { AvailabilityComponent } from './availability/availability.component';
-import { DescriptionComponent } from './description/description.component';
 import { ImageComponent } from './image/image.component';
+import { JobComponent } from './job/job.component';
 import { MailComponent } from './mail/mail.component';
 import { MapComponent } from './map/map.component';
 import { NowComponent } from './now/now.component';
@@ -20,7 +20,7 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     MatIconModule,
     SocialLinkComponent,
     MailComponent,
-    DescriptionComponent,
+    JobComponent,
     ResumeComponent,
     MapComponent,
     NowComponent,

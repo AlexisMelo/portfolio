@@ -9,13 +9,16 @@
 
 /* Displayed project */
 
-// The panels are stacked in the same cell, only the selected one is visible
+// The panels are stacked in the same cell, only the selected one is visible. The next project
+// slides in from the selector, on the right, and pushes the displayed one out to the left: the
+// panels are clipped to the cell, so that they do not pass over the selector.
 .details {
   display: grid;
   grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  overflow: clip;
 }
 
-// Its project card fills it
+// Its project card fills it. The component slides the panels when the displayed project changes.
 .panel {
   grid-area: 1 / 1;
   display: grid;
@@ -23,9 +26,12 @@
   min-height: 0;
   visibility: hidden;
 
-  // The animation starts each time a panel gets selected
   &.selected {
     visibility: visible;
+  }
+
+  // The first project displayed, once the projects are loaded, fades in from the right
+  &.entering {
     animation: projects-preview-panel 300ms ease-out;
 
     @media (prefers-reduced-motion: reduce) {
@@ -37,7 +43,7 @@
 @keyframes projects-preview-panel {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateX(16px);
   }
 }
 

@@ -28,6 +28,15 @@ const MAX_PROJECTS = 3;
 const ROTATION_DELAY = 3000;
 
 /**
+ * Timing of the slide between two projects: the next one comes in from the selector, on the right,
+ * while the displayed one goes out to the left
+ */
+const SLIDE: KeyframeAnimationOptions = {
+  duration: 700,
+  easing: 'cubic-bezier(0.3, 0, 0, 1)',
+};
+
+/**
  * Number given to the next preview, so that each one has its own element ids
  */
 let nextPreviewId = 0;
@@ -110,6 +119,11 @@ export class ProjectsPreviewComponent extends GridItemDirective {
   private readonly tabs = viewChildren<ElementRef<HTMLButtonElement>>('tab');
 
   /**
+   * Panels of the projects, to slide them when the displayed project changes
+   */
+  private readonly panels = viewChildren<ElementRef<HTMLElement>>('panel');
+
+  /**
    * Shows the next project every few seconds while the rotation runs. A pause restarts the delay.
    */
   constructor() {
@@ -120,7 +134,7 @@ export class ProjectsPreviewComponent extends GridItemDirective {
         return;
 
       const timer = setInterval(
-        () => this.selectedIndex.update(index => (index + 1) % count),
+        () => this.select((this.selectedIndex() + 1) % count),
         ROTATION_DELAY
       );
       onCleanup(() => clearInterval(timer));
@@ -144,11 +158,16 @@ export class ProjectsPreviewComponent extends GridItemDirective {
   }
 
   /**
-   * Displays the project the visitor picked: the rotation goes on from it
+   * Displays a project, the one the visitor picked or the next one of the rotation, which goes on
+   * from it
    * @param index index of the project in the selector
    */
   protected select(index: number): void {
+    const previous = this.selectedIndex();
+    if (index === previous) return;
+
     this.selectedIndex.set(index);
+    this.slide(previous, index);
   }
 
   /**
@@ -179,5 +198,39 @@ export class ProjectsPreviewComponent extends GridItemDirective {
     event.preventDefault();
     this.select(target);
     this.tabs()[target]?.nativeElement.focus();
+  }
+
+  /**
+   * Slides the project leaving out to the left, from where it is (even halfway in when the visitor
+   * switches quickly), while the next one always comes in from the right. Both stay visible during
+   * the slide. Nothing moves when the visitor asks for reduced motion.
+   * @param from index of the project leaving
+   * @param to index of the project coming in
+   */
+  private slide(from: number, to: number): void {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const leaving = this.panels()[from]?.nativeElement;
+    const entering = this.panels()[to]?.nativeElement;
+    if (!leaving || !entering) return;
+
+    const position = getComputedStyle(leaving).transform;
+    leaving.getAnimations().forEach(animation => animation.cancel());
+    leaving.animate(
+      [
+        { transform: position, visibility: 'visible' },
+        { transform: 'translateX(-100%)', visibility: 'visible' },
+      ],
+      SLIDE
+    );
+
+    entering.getAnimations().forEach(animation => animation.cancel());
+    entering.animate(
+      [
+        { transform: 'translateX(100%)', visibility: 'visible' },
+        { transform: 'none', visibility: 'visible' },
+      ],
+      SLIDE
+    );
   }
 }

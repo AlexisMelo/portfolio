@@ -9,9 +9,11 @@
     "closeMenu": "Fermer le menu"
   },
   "home": {
-    "description": {
+    "job": {
       "title": "Développeur Web Fullstack",
-      "subtitle": "Spécialisé sur Angular"
+      "before": "Bonjour ! Je m'appelle Alexis Melo da Silva. Ingénieur INSA et développeur fullstack, je suis spécialiste des frameworks",
+      "and": "et",
+      "after": "."
     },
     "mail": {
       "question_pt1": "Une",

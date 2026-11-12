@@ -20,8 +20,8 @@
     transparent
   );
 
-  //description
-  --description-icon-color: var(--primary-500);
+  //coworker-info
+  --coworker-info-color: var(--gray-400);
 
   //favorites
   --favorites-background: var(--primary-950);
@@ -42,6 +42,12 @@
   --grid-item-border-color: black;
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-300);
+
+  //job
+  // Brand colours of the frameworks, under white text (AA)
+  --job-framework-color: white;
+  --job-angular-background: #dd0031;
+  --job-dotnet-background: #512bd4;
 
   //key-header
   --key-header-background: var(--primary-950);
@@ -97,6 +103,12 @@
   //project-context
   --project-context-background: var(--primary-950);
   --project-context-color: white;
+
+  //project-duration
+  --project-duration-color: var(--gray-500);
+
+  //project-filtering
+  --project-filtering-placeholder-color: var(--gray-300);
 
   //project-item
   --project-item-completed-background: var(--gray-500);

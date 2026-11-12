@@ -17,8 +17,8 @@
     transparent
   );
 
-  //description
-  --description-icon-color: var(--primary-600);
+  //coworker-info
+  --coworker-info-color: var(--gray-600);
 
   //favorites
   --favorites-background: var(--primary-600);
@@ -38,6 +38,12 @@
   --grid-item-border-color: var(--gray-800);
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-200);
+
+  //job
+  // Brand colours of the frameworks, under white text (AA)
+  --job-framework-color: white;
+  --job-angular-background: #dd0031;
+  --job-dotnet-background: #512bd4;
 
   //key-header
   --key-header-background: var(--primary-600);
@@ -66,7 +72,7 @@
   // In the mobile menu, the active link is a tile in the navbar colour
   --navbar-active-link-color: white;
   --navbar-active-link-background: var(--navbar-background-color);
-  --navbar-inactive-link-color: var(--gray-500);
+  --navbar-inactive-link-color: var(--gray-600);
   --navbar-logo-name: white;
   --navbar-background-color: var(--primary-600);
   --navbar-language-selector-color: var(--gray-800);
@@ -95,6 +101,13 @@
   //project-context
   --project-context-background: var(--primary-600);
   --project-context-color: white;
+
+  //project-duration
+  --project-duration-color: var(--gray-600);
+
+  //project-filtering
+  // Placeholder of the search field, readable on white (AA)
+  --project-filtering-placeholder-color: var(--gray-500);
 
   //project-item
   --project-item-completed-color: white;
@@ -144,7 +157,7 @@
   //skills-recap
   --skills-recap-general-bg: var(--gray-500);
   --skills-recap-counter-bg: var(--gray-100);
-  --skills-recap-counter-color: var(--gray-500);
+  --skills-recap-counter-color: var(--gray-600);
   --skills-recap-separator: var(--gray-100);
   --skills-recap-background: var(--primary-200);
 
@@ -164,7 +177,8 @@
   --styles-background-color: var(--gray-100);
   --styles-paragraph-highlight-bg-color: rgb(241, 241, 241);
   --styles-thumbnail-border: var(--gray-300);
-  --styles-default-paragraph-color: var(--gray-500);
+  // Dark enough to read easily on the white tiles
+  --styles-default-paragraph-color: var(--gray-600);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);

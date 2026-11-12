@@ -2,8 +2,10 @@
   @for (project of selectable(); track project.id; let i = $index) {
     <!-- The panels are stacked, the other ones invisible: their illustrations load beforehand -->
     <div
+      #panel
       class="panel"
       role="tabpanel"
+      animate.enter="entering"
       [id]="panelId(i)"
       [attr.aria-labelledby]="tabId(i)"
       [class.selected]="i === selectedIndex()">
