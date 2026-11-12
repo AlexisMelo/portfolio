@@ -8,7 +8,7 @@ import { LanguageService } from 'src/app/shared/language.service';
 import { ProjectCard } from './project-card.model';
 
 /**
- * A project in the projects preview of the home page: number and year, illustration, name,
+ * A project in the projects preview of the home page: number, illustration, name,
  * description, then its context and a round link to its details. The whole card leads to the
  * details.
  */
@@ -31,14 +31,6 @@ export class ProjectCardComponent {
    * Path of the projects page, the base of the project details paths
    */
   protected readonly PROJECTS_ROUTE = PROJECTS_ROUTE;
-
-  /**
-   * Year the project ended, or the current year when it is ongoing (as the projects page groups them)
-   */
-  protected readonly year = computed(() => {
-    const end = this.project().end_date;
-    return (end ? new Date(end) : new Date()).getFullYear();
-  });
 
   /**
    * Description in the active language

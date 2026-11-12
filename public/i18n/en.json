@@ -37,8 +37,9 @@
       "screenshot": "Screenshot of my CV"
     },
     "projectsPreview": {
-      "tabs": "Highlighted projects",
-      "all": "See all projects"
+      "title": "Featured projects",
+      "all": "All",
+      "allLabel": "See all projects"
     },
     "companies": {
       "title": "Worked at"

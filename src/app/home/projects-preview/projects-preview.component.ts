@@ -42,9 +42,9 @@ const SLIDE: KeyframeAnimationOptions = {
 let nextPreviewId = 0;
 
 /**
- * Tile showing one of the highlighted projects at a time as a project card, with a selector on its
- * right: one cell per project, then a link to every project. The selector follows the ARIA tabs
- * pattern.
+ * Tile showing one of the highlighted projects at a time as a project card, in a box with a label
+ * on its top left and, on its right, tabs like the dividers of a notebook: one per project, then a
+ * link to every project. The tabs follow the ARIA tabs pattern.
  *
  * The projects take turns every few seconds, from the one displayed. The rotation pauses while the
  * mouse is over the tile, and while the keyboard focus is in it, so that a project does not change
@@ -112,6 +112,11 @@ export class ProjectsPreviewComponent extends GridItemDirective {
    * Prefix of the ids of the tabs and panels, which link them to each other
    */
   private readonly idPrefix = `projects-preview-${nextPreviewId++}`;
+
+  /**
+   * Id of the label on the top left of the tile, which names the tab list
+   */
+  protected readonly labelId = `${this.idPrefix}-label`;
 
   /**
    * Tabs of the selector, to move the focus with the arrow keys

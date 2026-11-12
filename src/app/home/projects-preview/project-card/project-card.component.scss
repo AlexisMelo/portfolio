@@ -14,9 +14,10 @@
   }
 }
 
+// On the right, clear of the label on the box's top left corner
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-family: var(--title-font-family);
   font-size: var(--text-md);
   color: var(--project-card-text-color);

@@ -97,9 +97,8 @@
   --open-live-dot-color: var(--gray-800);
 
   //project-card
-  // On the coral of the projects preview: dark texts (AA), the number, year and description
-  // slightly lighter than the name and the context
-  --project-card-text-color: var(--gray-700);
+  // On the mustard of the projects preview: every text in the darkest grey, no lighter one
+  --project-card-text-color: var(--gray-800);
   --project-card-title-color: var(--gray-800);
   // Behind the icon of a project without illustration, which icons are made for
   --project-card-illustration-background: white;
@@ -137,15 +136,17 @@
   --projects-by-context-icons-color: var(--white);
 
   //projects-preview
-  // Displayed project in coral; selector column in teal, its selected cell in the coral of the
-  // project it shows, like the link to every project
-  --projects-preview-background: var(--coral-500);
-  --projects-preview-selector-background: var(--primary-600);
-  --projects-preview-selector-color: white;
-  --projects-preview-selected-background: var(--coral-500);
+  // Box of the displayed project in mustard, and the selected tab with it; the other tabs white;
+  // the link to every project and the label in coral. Dark text everywhere (AA).
+  --projects-preview-background: var(--mustard-500);
+  --projects-preview-tab-background: white;
+  --projects-preview-tab-color: var(--gray-800);
+  --projects-preview-selected-background: var(--mustard-500);
   --projects-preview-selected-color: var(--gray-800);
   --projects-preview-all-background: var(--coral-500);
   --projects-preview-all-color: var(--gray-800);
+  --projects-preview-label-background: var(--coral-500);
+  --projects-preview-label-color: var(--gray-800);
   --projects-preview-icon-background: white;
   --projects-preview-icon-color: var(--gray-800);
 

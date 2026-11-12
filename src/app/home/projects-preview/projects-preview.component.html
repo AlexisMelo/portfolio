@@ -1,3 +1,7 @@
+<p class="label" [id]="labelId">
+  {{ 'home.projectsPreview.title' | transloco }}
+</p>
+
 <div class="details">
   @for (project of selectable(); track project.id; let i = $index) {
     <!-- The panels are stacked, the other ones invisible: their illustrations load beforehand -->
@@ -21,7 +25,7 @@
     class="tabs"
     role="tablist"
     aria-orientation="vertical"
-    [attr.aria-label]="'home.projectsPreview.tabs' | transloco">
+    [attr.aria-labelledby]="labelId">
     @for (project of selectable(); track project.id; let i = $index) {
       <button
         #tab
@@ -46,7 +50,10 @@
     }
   </div>
 
-  <a class="all-projects" [routerLink]="PROJECTS_ROUTE">
+  <a
+    class="all-projects"
+    [routerLink]="PROJECTS_ROUTE"
+    [attr.aria-label]="'home.projectsPreview.allLabel' | transloco">
     <mat-icon class="arrow" aria-hidden="true">call_made</mat-icon>
     <span>{{ 'home.projectsPreview.all' | transloco }}</span>
   </a>
