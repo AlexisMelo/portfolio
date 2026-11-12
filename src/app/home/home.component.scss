@@ -55,13 +55,14 @@ app-mail {
   }
 }
 
+// Next to the contact tile on phones, under the CV on medium screens, top right on large ones
 app-map {
   grid-column: 3 / 5;
   grid-row: 5 / 7;
 
   @include responsive.responsive('medium') {
-    grid-column: 5 / 9;
-    grid-row: 5 / 7;
+    grid-column: 1 / 5;
+    grid-row: 7 / 9;
   }
 
   @include responsive.responsive('large') {
@@ -80,35 +81,20 @@ app-resume {
   }
 
   @include responsive.responsive('large') {
-    grid-column: 5 / 9;
+    grid-column: 1 / 5;
     grid-row: 5 / 7;
   }
 }
 
-// Under the CV, as tall as the projects preview next to it on medium screens
-app-now {
-  grid-column: 1 / 5;
-  grid-row: 9 / 12;
-
-  @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 7 / 10;
-  }
-
-  @include responsive.responsive('large') {
-    grid-column: 1 / 5;
-    grid-row: 5 / 8;
-  }
-}
-
-// 4 by 4 at the bottom, then on the right under the map on large screens
+// 4 by 4 under the CV on phones, next to the CV and the map on medium screens, then on the right
+// under the map on large screens
 app-projects-preview {
   grid-column: 1 / 5;
-  grid-row: 12 / 16;
+  grid-row: 9 / 13;
 
   @include responsive.responsive('medium') {
     grid-column: 5 / 9;
-    grid-row: 7 / 11;
+    grid-row: 5 / 9;
   }
 
   @include responsive.responsive('large') {
@@ -117,18 +103,19 @@ app-projects-preview {
   }
 }
 
-// One row across the whole grid, under every other tile
+// One row across the whole grid, under every other tile. On large screens, half as wide, next to
+// the CV
 app-companies {
   grid-column: 1 / 5;
-  grid-row: 16;
+  grid-row: 13;
 
   @include responsive.responsive('medium') {
     grid-column: 1 / 9;
-    grid-row: 11;
+    grid-row: 9;
   }
 
   @include responsive.responsive('large') {
-    grid-column: 5 / 13;
-    grid-row: 7;
+    grid-column: 5 / 9;
+    grid-row: 5;
   }
 }

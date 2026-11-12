@@ -8,7 +8,6 @@ import { ImageComponent } from './image/image.component';
 import { JobComponent } from './job/job.component';
 import { MailComponent } from './mail/mail.component';
 import { MapComponent } from './map/map.component';
-import { NowComponent } from './now/now.component';
 import { ProjectCard } from './projects-preview/project-card/project-card.model';
 import { ProjectsPreviewComponent } from './projects-preview/projects-preview.component';
 import { ResumeComponent } from './resume/resume.component';
@@ -23,7 +22,6 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     JobComponent,
     ResumeComponent,
     MapComponent,
-    NowComponent,
     ImageComponent,
     ProjectsPreviewComponent,
     CompaniesComponent,

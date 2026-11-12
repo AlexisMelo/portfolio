@@ -35,10 +35,6 @@ export const routes: Routes = [
         m => m.ProjectDetailsComponent
       ),
   },
-  {
-    path: 'now',
-    redirectTo: '',
-  },
   //https://v17.angular.io/guide/router#setting-up-wildcard-routes
   {
     path: '**',

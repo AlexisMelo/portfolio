@@ -1,5 +1,4 @@
-import { inject, Injectable } from '@angular/core';
-import { TranslocoService } from '@jsverse/transloco';
+import { Injectable } from '@angular/core';
 import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
@@ -19,11 +18,6 @@ export class SupabaseService {
    * Client for the Supabase tables
    */
   public client: PostgrestClient;
-
-  /**
-   * Translation service
-   */
-  private translocoService = inject(TranslocoService);
 
   /**
    * Request to get a project with all its details
@@ -252,35 +246,6 @@ export class SupabaseService {
     return downloadAs
       ? `${url}?download=${encodeURIComponent(downloadAs)}`
       : url;
-  }
-
-  /**
-   * Returns "now" items translated in the currently active language.
-   */
-  public async getNowItems(): Promise<string[]> {
-    const locale = this.translocoService.getActiveLang();
-    const { data: infos, error: infosError } = await this.client
-      .from('personal_infos')
-      .select('label, value')
-      .like('label', 'now%')
-      .order('label');
-
-    if (infosError) return Promise.reject(infosError);
-    if (!infos?.length) return [];
-
-    const translationKeys = infos.map(info => info.value);
-
-    const { data: translations, error: translationsError } = await this.client
-      .from('translations')
-      .select('id, en, fr')
-      .in('id', translationKeys);
-
-    if (translationsError) return Promise.reject(translationsError);
-
-    const col = locale as Language;
-    return infos
-      .map(info => translations?.find(t => t.id === info.value)?.[col] ?? null)
-      .filter((text): text is string => text != null);
   }
 
   /**

@@ -12,7 +12,7 @@ Personal portfolio website of Alexis Melo, a freelance fullstack web developer s
 ## Domain
 
 - Routes ([app.routes.ts](src/app/app.routes.ts)):
-  - `/`: about page (description, availability, resume, map, "now" items, contact links, pinned projects).
+  - `/`: about page (description, availability, resume, map, contact links, pinned projects).
   - `/projects`: every project, filterable by status, context, skill and free text, grouped by end year, with the ongoing and Angular project counts, the "your project here" tile and the GitHub link. Filters follow the query params; state lives in `ProjectsService`, provided by the component.
   - `/projects/:url`: project details (context, problem, contribution, skills, coworkers, illustrations, live link, source code).
   - `/skills`: frontend, backend and general sections, with favourite skills highlighted.
