@@ -67,9 +67,10 @@
   //map
   --map-rayon-background: var(--gray-200);
   --map-rayon-border: var(--primary-600);
-  --map-location-background: rgba(255, 255, 255, 0.92);
-  --map-location-color: var(--gray-700);
-  --map-location-icon-color: var(--primary-600);
+  // Teal sticker with white text (AA) and a mustard pin (3:1 on teal)
+  --map-location-background: var(--primary-600);
+  --map-location-color: white;
+  --map-location-icon-color: var(--mustard-500);
 
   //mail
   --mail-background-color: var(--primary-600);
