@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatIconModule],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.scss',
+  host: { class: 'g-round-button' },
 })
 export class ActionButtonComponent {
   /**

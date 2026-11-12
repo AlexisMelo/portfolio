@@ -177,8 +177,12 @@ h2 {
   }
 }
 
+// At its own size, scaled down to fit the screen: with both dimensions auto, the limits keep the
+// proportions of the CV instead of the width and height attributes stretching it
 .modal-img {
   display: block;
+  width: auto;
+  height: auto;
   max-width: 90vw;
   max-height: 90vh;
 }

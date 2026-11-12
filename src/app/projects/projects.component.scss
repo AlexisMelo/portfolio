@@ -29,11 +29,20 @@
 }
 
 app-key-header,
-app-project-item-condensed {
+app-project-item {
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
     grid-column: 5 / 9;
+  }
+}
+
+// As the pinned projects of the home page were: 4 by 2, then 4 by 3
+app-project-item {
+  grid-row: span 2;
+
+  @include responsive.responsive('medium') {
+    grid-row: span 3;
   }
 }
 

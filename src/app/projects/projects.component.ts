@@ -10,7 +10,7 @@ import { OngoingComponent } from './ongoing/ongoing.component';
 import { OrderComponent } from './order/order.component';
 import { ProjectCounterComponent } from './project-counter/project-counter.component';
 import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
-import { ProjectCondensedItemComponent } from './project-item/project-item-condensed/project-item-condensed.component';
+import { ProjectItemComponent } from './project-item/project-item.component';
 import { ProjectsService } from './projects.service';
 import { StatusFilteringComponent } from './status-filtering/status-filtering.component';
 import { StatusPipe } from './status/status.pipe';
@@ -25,7 +25,7 @@ import { YourProjectComponent } from './your-project/your-project.component';
   imports: [
     SkillSectionDescriptionComponent,
     ProjectCounterComponent,
-    ProjectCondensedItemComponent,
+    ProjectItemComponent,
     ProjectFilteringComponent,
     StatusFilteringComponent,
     OrderComponent,

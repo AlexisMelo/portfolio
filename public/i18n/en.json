@@ -37,7 +37,15 @@
       "download": "Download",
       "open": "Open a preview of my CV",
       "screenshot": "Screenshot of my CV"
+    },
+    "projectsPreview": {
+      "tabs": "Highlighted projects",
+      "all": "See all projects"
     }
+  },
+  "projectCard": {
+    "number": "N°{{number}}",
+    "details": "See the {{label}} project"
   },
   "projects": {
     "heading": "Adventurer since 2017",

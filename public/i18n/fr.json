@@ -37,7 +37,15 @@
       "download": "Télécharger",
       "open": "Ouvrir un aperçu de mon CV",
       "screenshot": "Capture d'écran de mon CV"
+    },
+    "projectsPreview": {
+      "tabs": "Projets mis en avant",
+      "all": "Voir tous les projets"
     }
+  },
+  "projectCard": {
+    "number": "N°{{number}}",
+    "details": "Voir le projet {{label}}"
   },
   "projects": {
     "heading": "Aventurier depuis 2017",

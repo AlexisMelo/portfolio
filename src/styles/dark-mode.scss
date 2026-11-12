@@ -87,6 +87,13 @@
   --open-live-color: white;
   --open-live-dot-color: var(--primary-200);
 
+  //project-card
+  // Number, year and description, lighter than the usual paragraphs
+  --project-card-text-color: var(--gray-200);
+  // White like in light mode: the project icons are made for a light background
+  --project-card-illustration-background: white;
+  --project-card-initial-color: var(--primary-950);
+
   //project-context
   --project-context-background: var(--primary-950);
   --project-context-color: white;
@@ -111,12 +118,32 @@
   //projects-by-context
   --projects-by-context-icons-color: var(--white);
 
+  //projects-preview
+  // Selector column in the coloured tiles' green, its selected cell one tone lower, the link in
+  // a darker green than the palette has
+  --projects-preview-selector-background: var(--primary-950);
+  --projects-preview-selector-color: white;
+  --projects-preview-selected-background: var(--primary-900);
+  --projects-preview-all-background: color-mix(
+    in srgb,
+    var(--primary-950) 65%,
+    black
+  );
+  // White like in light mode: the project icons are made for a light background
+  --projects-preview-icon-background: white;
+  --projects-preview-icon-color: var(--gray-800);
+
   //reset-button
   --reset-button-color: var(--gray-300);
 
   //resume
   --resume-background-color: var(--primary-950);
   --resume-color: white;
+
+  //round-button
+  --round-button-background: var(--grid-item-default-bg);
+  --round-button-color: var(--styles-title-color);
+  --round-button-border-color: var(--grid-item-border-color);
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-300);

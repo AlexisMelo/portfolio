@@ -1,22 +1,18 @@
-@if (!project()) {
-  <app-loader></app-loader>
-} @else {
-  <h2>{{ project().label }}</h2>
+<h2>{{ project().label }}</h2>
 
-  <p>{{ description() }}</p>
+<p>{{ description() }}</p>
 
-  <div>
-    <app-project-item-skill-list
-      [skills]="skills()"></app-project-item-skill-list>
+<div>
+  <app-project-item-skill-list
+    [skills]="skills()"></app-project-item-skill-list>
+</div>
+
+@if (firstIllustration(); as illustration) {
+  <div class="illustration-container">
+    <img
+      [ngSrc]="illustration.url"
+      [alt]="illustration.alt"
+      [priority]="priority()"
+      fill />
   </div>
-
-  @if (firstIllustration()) {
-    <div class="illustration-container">
-      <img
-        [ngSrc]="firstIllustration().url"
-        [alt]="firstIllustration().alt"
-        [priority]="priority()"
-        fill />
-    </div>
-  }
 }

@@ -1,0 +1,170 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The project on the left, the selector on a column about one cell wide on the right
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) calc(var(--cell-size) + var(--gap) / 2);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* Displayed project */
+
+// The panels are stacked in the same cell, only the selected one is visible
+.details {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+}
+
+// Its project card fills it
+.panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+  visibility: hidden;
+
+  // The animation starts each time a panel gets selected
+  &.selected {
+    visibility: visible;
+    animation: projects-preview-panel 300ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes projects-preview-panel {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Selector: a green column with one cell per project, then the link to every project */
+
+.selector {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  background-color: var(--projects-preview-selector-background);
+  color: var(--projects-preview-selector-color);
+}
+
+.tabs {
+  grid-row: 1 / 4;
+  display: grid;
+  grid-template-rows: subgrid;
+
+  // Until the projects are loaded, the column still has its border
+  &:empty {
+    border-left: var(--grid-item-border);
+  }
+}
+
+.tab,
+.all-projects {
+  border-left: var(--grid-item-border);
+
+  // Inside the tile, which hides what overflows it
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -5px;
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: var(--grid-item-border);
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover .icon {
+    transform: scale(1.08);
+  }
+
+  // Open on the panel it shows, like a folder tab: its colour runs under the transparent border
+  &[aria-selected='true'] {
+    border-left-color: transparent;
+    background-color: var(--projects-preview-selected-background);
+    cursor: default;
+
+    .icon {
+      transform: scale(1.12);
+    }
+  }
+}
+
+// Project icon in a white disc, which the icons are made for
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--grid-item-border);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--projects-preview-icon-background);
+  color: var(--projects-preview-icon-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  transition: transform 200ms;
+
+  img {
+    padding: 18%;
+    object-fit: contain;
+  }
+
+  @include responsive.responsive('medium') {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+// Darker than the rest of the column, so that it reads as a link and not as a project
+.all-projects {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem;
+  background-color: var(--projects-preview-all-background);
+  color: var(--projects-preview-selector-color);
+  text-decoration: none;
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  line-height: 1.15;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-sm);
+  }
+}
+
+// The arrow bounces towards the top right corner, like the one of the all projects tile
+.arrow {
+  align-self: flex-end;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  animation: projects-preview-arrow 2s infinite ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes projects-preview-arrow {
+  50% {
+    transform: translate(5px, -5px);
+  }
+}

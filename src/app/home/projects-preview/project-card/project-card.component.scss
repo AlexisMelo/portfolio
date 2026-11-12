@@ -1,0 +1,133 @@
+@use '../../../../styles/responsive.scss' as responsive;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+
+  @include responsive.responsive('medium') {
+    padding: 1.1rem 1.3rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--title-font-family);
+  font-size: var(--text-md);
+  color: var(--project-card-text-color);
+}
+
+// The room the texts leave, the same for every project since the name and the description have a
+// fixed height. The illustration takes the largest 16:9 area that fits in it, at its bottom left,
+// so that it starts where the name does.
+.illustration-area {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  container-type: size;
+}
+
+.illustration {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: min(100cqw, 100cqh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  border: var(--grid-item-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--project-card-illustration-background);
+
+  img {
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  // The icon is made for a light background, which the area has in both themes
+  .icon {
+    padding: 12% 30%;
+    object-fit: contain;
+  }
+}
+
+.initial {
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-xxxxl);
+  color: var(--project-card-initial-color);
+}
+
+// On one line
+h2 {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-xl);
+  line-height: 1.1;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xxl);
+  }
+}
+
+// Always three lines high, shorter descriptions included
+.description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  flex-shrink: 0;
+  height: 3lh;
+  overflow: hidden;
+  color: var(--project-card-text-color);
+  font-size: var(--text-xs);
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-sm);
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: var(--grid-item-border);
+}
+
+.context {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--styles-title-color);
+}
+
+// Its look comes from .g-round-button (styles.scss)
+.details-link {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}

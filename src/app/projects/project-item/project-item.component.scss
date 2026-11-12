@@ -57,7 +57,9 @@
   }
 }
 
+// Beside the illustration, like the description: long names wrap instead of going under it
 h2 {
+  max-width: 60%;
   font-size: var(--text-xxl);
   margin-bottom: 0.5rem;
 

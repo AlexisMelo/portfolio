@@ -1,9 +1,6 @@
 @use '../../../styles/responsive.scss' as responsive;
 
 :host {
-  // The mail icon of the button takes the colour of its text
-  --action-button-icon-color: var(--action-button-color);
-
   padding: 1.5rem;
   display: flex;
   flex-direction: column;

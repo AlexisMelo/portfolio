@@ -225,6 +225,31 @@ h3 {
   }
 }
 
+/* Buttons */
+
+// Round button (a pill when it holds text) with a solid border, lifted with a hard shadow on hover
+// like the tiles. Each button sets its own size. The lift uses `translate`, which adds to the
+// `transform` some buttons are positioned with.
+.g-round-button {
+  border: 2px solid var(--round-button-border-color);
+  border-radius: 999px;
+  color: var(--round-button-color);
+  background-color: var(--round-button-background);
+  transition:
+    box-shadow 200ms,
+    translate 200ms;
+
+  &:hover {
+    translate: -2px -2px;
+    box-shadow: 2px 2px 0 0 var(--round-button-border-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--round-button-color);
+    outline-offset: 2px;
+  }
+}
+
 /* Drag and drop of the tiles (GridDragDirective) */
 
 // Tiles that do nothing on click show they can be grabbed; clickable ones keep their own cursor

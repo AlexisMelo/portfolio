@@ -4,7 +4,7 @@ import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ListedProject } from '../projects/listed-project.model';
-import { ProjectItem } from '../projects/project-item/project-item.model';
+import { ProjectCard } from '../home/projects-preview/project-card/project-card.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
 import { Language } from './language.type';
@@ -112,19 +112,24 @@ export class SupabaseService {
   }
 
   /**
-   * Obtient la liste des projets épinglés
+   * Obtient la liste des projets épinglés, the most recent first (ongoing ones before the others)
    * @returns
    */
-  public async getPinnedProjects(): Promise<Array<ProjectItem>> {
+  public async getPinnedProjects(): Promise<Array<ProjectCard>> {
     const { data, error } = await this.client
       .from('project')
       .select(
-        '*, localizedDescription:translations!description(*), illustrations:project_illustration(*), project_skills:project_skill(*, skill:skill(*))'
+        `id, label, url, end_date, icon,
+        localizedDescription:translations!description(en, fr),
+        illustrations:project_illustration(url, alt, position),
+        project_context:context(localizedLabel:translations!label(en, fr))`
       )
-      .eq('pinned', true);
+      .eq('pinned', true)
+      .order('end_date', { ascending: false, nullsFirst: true })
+      .overrideTypes<Array<ProjectCard>, { merge: false }>();
 
     if (error) return Promise.reject(error);
-    return data as Array<ProjectItem>;
+    return data;
   }
 
   /**

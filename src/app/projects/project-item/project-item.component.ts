@@ -4,13 +4,16 @@ import { Router } from '@angular/router';
 import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
-import { LoaderComponent } from 'src/app/shared/loader/loader.component';
+import { ListedProject } from '../listed-project.model';
 import { ProjectItemSkillListComponent } from './project-item-skill-list/project-item-skill-list.component';
-import { ProjectItem } from './project-item.model';
 
+/**
+ * Tile of a project on the projects page: name, description, highlighted skills and illustration.
+ * The whole tile leads to the project details.
+ */
 @Component({
   selector: 'app-project-item',
-  imports: [ProjectItemSkillListComponent, LoaderComponent, NgOptimizedImage],
+  imports: [ProjectItemSkillListComponent, NgOptimizedImage],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.scss',
   host: {
@@ -22,7 +25,7 @@ export class ProjectItemComponent extends GridItemDirective {
   /**
    * Project to display
    */
-  public project = input.required<ProjectItem>();
+  public project = input.required<ListedProject>();
 
   /** Loads the illustration first, for the tile likely to be the LCP element. */
   public priority = input(false);
@@ -51,12 +54,14 @@ export class ProjectItemComponent extends GridItemDirective {
       .map(s => s.skill)
   );
 
-  /** First illustration to display, sorted by position. */
-  protected firstIllustration = computed(() =>
-    this.project().illustrations.reduce((prev, current) =>
+  protected firstIllustration = computed(() => {
+    const illustrations = this.project().illustrations;
+    if (illustrations.length === 0) return null;
+
+    return illustrations.reduce((prev, current) =>
       prev.position > current.position ? current : prev
-    )
-  );
+    );
+  });
 
   /** Navigate to the project detail page. */
   protected navigate() {

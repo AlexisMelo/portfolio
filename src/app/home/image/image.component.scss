@@ -1,19 +1,29 @@
 @use '../../../styles/responsive.scss' as responsive;
 
+:host {
+  overflow: visible;
+}
+
 img {
   position: absolute;
-  width: 100px;
+  width: 130px;
   height: auto;
-  right: 0;
+  left: 0;
   bottom: 0;
   object-fit: contain;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: -15px;
   z-index: 10;
+  rotate: -3deg;
 
   @include responsive.responsive('medium') {
-    width: 120px;
-    margin-right: 2rem;
-    margin-bottom: 3rem;
+    width: 190px;
+    margin-left: -25px;
+    margin-bottom: -15px;
+  }
+
+  @include responsive.responsive('large') {
+    width: 210px;
+    margin-left: -45px;
+    margin-bottom: -20px;
   }
 }

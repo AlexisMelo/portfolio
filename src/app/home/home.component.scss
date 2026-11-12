@@ -5,8 +5,8 @@ app-description {
   grid-row: 3;
 
   @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 4;
+    grid-column: 1 / 7;
+    grid-row: 4 / 6;
   }
 }
 
@@ -116,38 +116,18 @@ app-image {
   }
 }
 
-// Pinned projects, below the rest for now: one under the other, then two per row, then side by side
-.project__1 {
+// 4 by 4 at the bottom, then 5 columns wide on large screens
+app-projects-preview {
   grid-column: 1 / 5;
-  grid-row: 12 / 14;
-
-  @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 8 / 11;
-  }
-}
-
-.project__2 {
-  grid-column: 1 / 5;
-  grid-row: 14 / 16;
+  grid-row: 12 / 16;
 
   @include responsive.responsive('medium') {
     grid-column: 5 / 9;
-    grid-row: 8 / 11;
-  }
-}
-
-.project__3 {
-  grid-column: 1 / 5;
-  grid-row: 16 / 18;
-
-  @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 11 / 14;
+    grid-row: 8 / 12;
   }
 
   @include responsive.responsive('large') {
-    grid-column: 9 / 13;
-    grid-row: 8 / 11;
+    grid-column: 8 / 13;
+    grid-row: 3 / 7;
   }
 }

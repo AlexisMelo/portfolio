@@ -1,0 +1,51 @@
+<div class="details">
+  @for (project of selectable(); track project.id; let i = $index) {
+    <!-- The panels are stacked, the other ones invisible: their illustrations load beforehand -->
+    <div
+      class="panel"
+      role="tabpanel"
+      [id]="panelId(i)"
+      [attr.aria-labelledby]="tabId(i)"
+      [class.selected]="i === selectedIndex()">
+      <app-project-card [project]="project"></app-project-card>
+    </div>
+  } @empty {
+    <app-loader></app-loader>
+  }
+</div>
+
+<div class="selector">
+  <div
+    class="tabs"
+    role="tablist"
+    aria-orientation="vertical"
+    [attr.aria-label]="'home.projectsPreview.tabs' | transloco">
+    @for (project of selectable(); track project.id; let i = $index) {
+      <button
+        #tab
+        type="button"
+        class="tab"
+        role="tab"
+        [id]="tabId(i)"
+        [attr.aria-label]="project.label"
+        [attr.aria-selected]="i === selectedIndex()"
+        [attr.aria-controls]="panelId(i)"
+        [tabIndex]="i === selectedIndex() ? 0 : -1"
+        (click)="select(i)"
+        (keydown)="onTabKeydown($event)">
+        <span class="icon">
+          @if (project.icon) {
+            <img [ngSrc]="project.icon" alt="" fill />
+          } @else {
+            <span aria-hidden="true">{{ project.label.charAt(0) }}</span>
+          }
+        </span>
+      </button>
+    }
+  </div>
+
+  <a class="all-projects" [routerLink]="PROJECTS_ROUTE">
+    <mat-icon class="arrow" aria-hidden="true">call_made</mat-icon>
+    <span>{{ 'home.projectsPreview.all' | transloco }}</span>
+  </a>
+</div>

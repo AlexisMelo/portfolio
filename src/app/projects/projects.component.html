@@ -4,7 +4,7 @@
     appGridEntrance
     appGridDrag
     [replayKey]="resultsKey()"
-    replaySelector="app-key-header, app-project-item-condensed">
+    replaySelector="app-key-header, app-project-item">
     <app-skill-section-description
       [mainText]="'projects.heading' | transloco"
       [secondaryText]="
@@ -32,8 +32,7 @@
       </app-key-header>
 
       @for (project of group.projects; track project.id) {
-        <app-project-item-condensed
-          [project]="project"></app-project-item-condensed>
+        <app-project-item [project]="project"></app-project-item>
       }
     }
   </div>
