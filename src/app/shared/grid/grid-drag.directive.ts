@@ -6,11 +6,29 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { GridArea, rearrange, sameArea } from './grid-layout';
+import {
+  EdgeZone,
+  edgesAt,
+  ResizeEdges,
+  resizeArea,
+  resizeCursor,
+} from './grid-resize';
 
 /**
  * Distance a mouse or pen moves, in pixels, before a press becomes a drag instead of a click
  */
 const DRAG_THRESHOLD = 6;
+
+/**
+ * Bands along the edges of a tile where a mouse or pen resizes it, in pixels. The band outside
+ * covers half the gap between two tiles.
+ */
+const POINTER_EDGE_ZONE: EdgeZone = { inside: 8, outside: 6, corner: 20 };
+
+/**
+ * Bands along the edges of a tile where a long press resizes it, wider for a finger
+ */
+const TOUCH_EDGE_ZONE: EdgeZone = { inside: 14, outside: 6, corner: 28 };
 
 /**
  * Time a finger stays down, in milliseconds, before it picks the tile up
@@ -58,7 +76,7 @@ const LIFT_DURATION = 200;
 const IGNORED_TARGETS = 'input, textarea, select, [contenteditable]';
 
 /**
- * Class of the dragged tile (styles.scss)
+ * Class of the tile being moved or resized (styles.scss)
  */
 const DRAGGING_CLASS = 'g-grid-item-dragging';
 
@@ -71,6 +89,22 @@ export const PLACEHOLDER_CLASS = 'g-grid-drop-placeholder';
  * Class on the root element while a tile is dragged (styles.scss)
  */
 const ROOT_DRAGGING_CLASS = 'g-grid-dragging';
+
+/**
+ * Class on the root element while a tile is resized (styles.scss)
+ */
+const ROOT_RESIZING_CLASS = 'g-grid-resizing';
+
+/**
+ * Class on the grid while a mouse or pen is over the edge of a tile (styles.scss)
+ */
+const RESIZE_HOVER_CLASS = 'g-grid-resize-hover';
+
+/**
+ * Custom property holding the resize cursor: on the grid while the pointer is over the edge of a
+ * tile, on the root element while a tile is resized (styles.scss)
+ */
+const RESIZE_CURSOR_PROPERTY = '--g-grid-resize-cursor';
 
 /**
  * Size of the grid tracks, read from the grid
@@ -122,6 +156,11 @@ interface Gesture {
   tile: HTMLElement;
 
   /**
+   * Edges of the tile the press is on, which resize it instead of moving it
+   */
+  edges?: ResizeEdges;
+
+  /**
    * Where the press started, in window coordinates
    */
   startX: number;
@@ -140,13 +179,41 @@ interface Gesture {
 }
 
 /**
- * Tile being dragged
+ * Resize of the dragged tile, whose edges follow the pointer
+ */
+interface Resize {
+  /**
+   * Edges following the pointer
+   */
+  edges: ResizeEdges;
+
+  /**
+   * Where the pointer was when the resize started, from the top left corner of the grid, in pixels
+   */
+  originX: number;
+  originY: number;
+
+  /**
+   * Distance between where the tile was displayed when the resize started and its area, in pixels:
+   * the offset of a stuck sticky tile, which it keeps until it is released
+   */
+  shiftX: number;
+  shiftY: number;
+}
+
+/**
+ * Tile being dragged, to move it or to resize it
  */
 interface Drag {
   /**
    * Dragged tile
    */
   tile: HTMLElement;
+
+  /**
+   * Resize in progress, undefined when the tile is moved
+   */
+  resize?: Resize;
 
   /**
    * Every tile of the grid, in DOM order
@@ -169,7 +236,7 @@ interface Drag {
   applied: GridArea[];
 
   /**
-   * Area under the dragged tile the layout was computed for, where it is dropped before the tiles rise
+   * Area the layout was computed for, before the tiles rise: under the moved tile, or the one of the resized tile
    */
   target: GridArea;
 
@@ -210,6 +277,9 @@ interface Drag {
  * the mouse a few pixels while pressing it, or by a long press with a finger; a simple click still
  * works as usual. Tiles it lands on swap places with it or are pushed down, then every tile rises
  * as far as it can, so that no space is left empty above a tile.
+ * The same gestures on the edge or corner of a tile resize it instead: its edges follow the pointer,
+ * and it takes whole grid tracks when released, one at least, the columns staying inside the grid.
+ * Tiles it grows over are pushed down the same way.
  * The layout is not saved: it goes back to the CSS one on reload, when the window width changes,
  * and when tiles are added or removed (filters, data arriving).
  */
@@ -293,6 +363,8 @@ export class GridDragDirective implements OnDestroy {
     this.grid.addEventListener('touchmove', this.onTouchMove, {
       passive: false,
     });
+    this.grid.addEventListener('pointermove', this.onHover, { passive: true });
+    this.grid.addEventListener('pointerleave', this.onLeave);
     this.mutationObserver.observe(this.grid, { childList: true });
     this.document.defaultView?.addEventListener('resize', this.onResize);
   }
@@ -310,6 +382,8 @@ export class GridDragDirective implements OnDestroy {
       capture: true,
     });
     this.grid.removeEventListener('touchmove', this.onTouchMove);
+    this.grid.removeEventListener('pointermove', this.onHover);
+    this.grid.removeEventListener('pointerleave', this.onLeave);
     this.mutationObserver.disconnect();
     this.document.defaultView?.removeEventListener('resize', this.onResize);
   }
@@ -324,7 +398,9 @@ export class GridDragDirective implements OnDestroy {
     const target = event.target as Element;
     if (target.closest(IGNORED_TARGETS)) return;
 
-    const tile = this.tileOf(target);
+    // a press in the gap between two tiles can only resize one of them
+    const edge = this.edgeAt(event);
+    const tile = edge?.tile ?? this.tileOf(target);
     if (!tile) return;
 
     const touch = event.pointerType === 'touch';
@@ -332,6 +408,7 @@ export class GridDragDirective implements OnDestroy {
       pointerId: event.pointerId,
       touch,
       tile,
+      edges: edge?.edges,
       startX: event.clientX,
       startY: event.clientY,
       x: event.clientX,
@@ -415,6 +492,26 @@ export class GridDragDirective implements OnDestroy {
   };
 
   /**
+   * Shows the resize cursor while a mouse or pen is over the edge of a tile. Fingers do not hover,
+   * and a pressed button may be selecting text.
+   */
+  private readonly onHover = (event: PointerEvent): void => {
+    if (this.gesture || this.drag) return;
+    if (event.pointerType === 'touch' || event.buttons !== 0) {
+      this.showResizeCursor(undefined);
+      return;
+    }
+    this.showResizeCursor(this.edgeAt(event)?.edges);
+  };
+
+  /**
+   * Hides the resize cursor when the pointer leaves the grid
+   */
+  private readonly onLeave = (): void => {
+    if (!this.drag) this.showResizeCursor(undefined);
+  };
+
+  /**
    * Cancels the default action of an event
    */
   private readonly preventDefault = (event: Event): void => {
@@ -430,7 +527,7 @@ export class GridDragDirective implements OnDestroy {
   };
 
   /**
-   * Picks the pressed tile up: pins every tile where it is, then follows the pointer
+   * Picks the pressed tile up, or grabs its edges: pins every tile where it is, then follows the pointer
    */
   private startDrag(): void {
     const gesture = this.gesture;
@@ -453,9 +550,15 @@ export class GridDragDirective implements OnDestroy {
     const tile = gesture.tile;
     const rect = tile.getBoundingClientRect();
     tile.getAnimations().forEach(animation => animation.cancel());
+    // measured once the animations are cancelled, and before the tile leaves a sticky position
+    const resize = gesture.edges
+      ? this.startResize(gesture, gesture.edges, start[index], metrics)
+      : undefined;
     tile.classList.add(DRAGGING_CLASS);
-    // sticky tiles go back to their grid area, which the pointer offset is computed from
+    // sticky tiles go back to their grid area, which the pointer offset is computed from; their
+    // sticky offsets would shift them as relative offsets
     tile.style.position = 'relative';
+    tile.style.inset = 'auto';
     tile.style.zIndex = '1000';
     // the transform follows the pointer without delay; the larger shadow fades in
     tile.style.transition = 'box-shadow 200ms';
@@ -468,6 +571,7 @@ export class GridDragDirective implements OnDestroy {
 
     this.drag = {
       tile,
+      resize,
       tiles,
       index,
       start,
@@ -482,8 +586,43 @@ export class GridDragDirective implements OnDestroy {
       frame: requestAnimationFrame(this.onFrame),
     };
 
-    this.document.documentElement.classList.add(ROOT_DRAGGING_CLASS);
+    // the whole page shows the cursor of the gesture, instead of the grid over an edge only
+    this.showResizeCursor(undefined);
+    const root = this.document.documentElement;
+    if (resize) {
+      root.style.setProperty(
+        RESIZE_CURSOR_PROPERTY,
+        resizeCursor(resize.edges)
+      );
+      root.classList.add(ROOT_RESIZING_CLASS);
+    } else {
+      root.classList.add(ROOT_DRAGGING_CLASS);
+    }
     this.document.getSelection()?.removeAllRanges();
+  }
+
+  /**
+   * Measures where the edges of a tile are grabbed from
+   * @param gesture press on the edges
+   * @param edges edges pressed
+   * @param home area of the tile
+   * @param metrics grid tracks
+   */
+  private startResize(
+    gesture: Gesture,
+    edges: ResizeEdges,
+    home: GridArea,
+    metrics: GridMetrics
+  ): Resize {
+    const gridRect = this.grid.getBoundingClientRect();
+    const shown = gesture.tile.getBoundingClientRect();
+    return {
+      edges,
+      originX: gesture.startX - gridRect.left,
+      originY: gesture.startY - gridRect.top,
+      shiftX: shown.left - gridRect.left - (home.col - 1) * metrics.colStep,
+      shiftY: shown.top - gridRect.top - (home.row - 1) * metrics.rowStep,
+    };
   }
 
   /**
@@ -501,15 +640,39 @@ export class GridDragDirective implements OnDestroy {
   };
 
   /**
-   * Keeps the dragged tile under the pointer, moves the other tiles to where they would be if it were
-   * dropped there, and outlines where it would land
+   * Keeps the dragged tile, or its grabbed edges, under the pointer, moves the other tiles to where
+   * they would be if it were released now, and outlines where it would land
    * @param drag drag in progress
    * @param gesture press of the dragged tile
    */
   private follow(drag: Drag, gesture: Gesture): void {
+    const gridRect = this.grid.getBoundingClientRect();
+    const target = drag.resize
+      ? this.followResize(drag, drag.resize, gesture, gridRect)
+      : this.followMove(drag, gesture, gridRect);
+
+    if (!sameArea(target, drag.target)) {
+      drag.target = target;
+      const layout = rearrange(drag.start, drag.index, target);
+      this.applyArea(drag.placeholder, layout[drag.index]);
+      this.applyLayout(drag, layout);
+    }
+  }
+
+  /**
+   * Keeps the moved tile under the pointer
+   * @param drag drag in progress
+   * @param gesture press of the dragged tile
+   * @param gridRect where the grid is displayed
+   * @returns the area under the tile
+   */
+  private followMove(
+    drag: Drag,
+    gesture: Gesture,
+    gridRect: DOMRect
+  ): GridArea {
     const { metrics } = drag;
     const home = drag.start[drag.index];
-    const gridRect = this.grid.getBoundingClientRect();
     const x = gesture.x - drag.grabX - gridRect.left;
     const y = gesture.y - drag.grabY - gridRect.top;
 
@@ -521,7 +684,7 @@ export class GridDragDirective implements OnDestroy {
     const scale = 1 + (LIFT_SCALE - 1) * (1 - (1 - lift) ** 2);
     drag.tile.style.transform = `translate(${x - (home.col - 1) * metrics.colStep}px, ${y - (home.row - 1) * metrics.rowStep}px) scale(${scale})`;
 
-    const target: GridArea = {
+    return {
       ...home,
       col: Math.min(
         Math.max(Math.round(x / metrics.colStep) + 1, 1),
@@ -529,16 +692,69 @@ export class GridDragDirective implements OnDestroy {
       ),
       row: Math.max(Math.round(y / metrics.rowStep) + 1, 1),
     };
-    if (!sameArea(target, drag.target)) {
-      drag.target = target;
-      const layout = rearrange(drag.start, drag.index, target);
-      this.applyArea(drag.placeholder, layout[drag.index]);
-      this.applyLayout(drag, layout);
-    }
   }
 
   /**
-   * Drops the dragged tile on the area outlined, sliding it there from under the pointer
+   * Keeps the grabbed edges of the resized tile under the pointer, the tile staying at least one
+   * track large and its columns inside the grid
+   * @param drag drag in progress
+   * @param resize resize of the dragged tile
+   * @param gesture press of the dragged tile
+   * @param gridRect where the grid is displayed
+   * @returns the area the tile takes once its edges are on the closest grid lines
+   */
+  private followResize(
+    drag: Drag,
+    resize: Resize,
+    gesture: Gesture,
+    gridRect: DOMRect
+  ): GridArea {
+    const { metrics, tile } = drag;
+    const { edges } = resize;
+    const home = drag.start[drag.index];
+    const dx = gesture.x - gridRect.left - resize.originX;
+    const dy = gesture.y - gridRect.top - resize.originY;
+
+    // sides of the area and smallest tile, in pixels from the top left corner of the grid
+    const left = (home.col - 1) * metrics.colStep;
+    const top = (home.row - 1) * metrics.rowStep;
+    const right = left + home.width * metrics.colStep - metrics.colGap;
+    const bottom = top + home.height * metrics.rowStep - metrics.rowGap;
+    const minWidth = metrics.colStep - metrics.colGap;
+    const minHeight = metrics.rowStep - metrics.rowGap;
+    const gridRight = Math.max(
+      metrics.columns * metrics.colStep - metrics.colGap,
+      right
+    );
+
+    const newLeft =
+      edges.x < 0 ? Math.min(Math.max(left + dx, 0), right - minWidth) : left;
+    const newRight =
+      edges.x > 0
+        ? Math.min(Math.max(right + dx, left + minWidth), gridRight)
+        : right;
+    const newTop =
+      edges.y < 0 ? Math.min(Math.max(top + dy, 0), bottom - minHeight) : top;
+    const newBottom =
+      edges.y > 0 ? Math.max(bottom + dy, top + minHeight) : bottom;
+
+    // the tile stays on its area: the translation moves its top left corner, the size its other sides
+    tile.style.width = `${newRight - newLeft}px`;
+    tile.style.height = `${newBottom - newTop}px`;
+    tile.style.transform = `translate(${newLeft - left + resize.shiftX}px, ${newTop - top + resize.shiftY}px)`;
+
+    return resizeArea(
+      home,
+      edges,
+      Math.round(dx / metrics.colStep),
+      Math.round(dy / metrics.rowStep),
+      metrics.columns
+    );
+  }
+
+  /**
+   * Drops the dragged tile on the area outlined, sliding it there from under the pointer, or brings
+   * the edges of the resized tile to its new area
    */
   private endDrag(): void {
     const drag = this.drag;
@@ -547,19 +763,28 @@ export class GridDragDirective implements OnDestroy {
 
     cancelAnimationFrame(drag.frame);
     drag.placeholder.remove();
-    this.document.documentElement.classList.remove(ROOT_DRAGGING_CLASS);
+    const root = this.document.documentElement;
+    root.classList.remove(ROOT_DRAGGING_CLASS, ROOT_RESIZING_CLASS);
+    root.style.removeProperty(RESIZE_CURSOR_PROPERTY);
 
     const { tile } = drag;
     const from = tile.getBoundingClientRect();
     tile.classList.remove(DRAGGING_CLASS);
     tile.style.removeProperty('transform');
+    tile.style.removeProperty('width');
+    tile.style.removeProperty('height');
     tile.style.removeProperty('position');
+    tile.style.removeProperty('inset');
     tile.style.removeProperty('z-index');
 
     // a tile removed meanwhile (filters) is left as it is
     if (tile.isConnected) {
       this.applyArea(tile, drag.applied[drag.index]);
-      this.land(tile, from);
+      if (drag.resize) {
+        this.settle(tile, from);
+      } else {
+        this.land(tile, from);
+      }
     }
 
     // removed once the style without the transform is computed (by the landing), or the tiles'
@@ -691,6 +916,75 @@ export class GridDragDirective implements OnDestroy {
       ],
       { duration: SLIDE_DURATION, easing: SLIDE_EASING }
     );
+  }
+
+  /**
+   * Brings the released tile from the size its edges were left at to its area. The size is animated
+   * rather than scaled, so that the content does not stretch.
+   * @param tile released tile, already on its area
+   * @param from where it was displayed, in window coordinates
+   */
+  private settle(tile: HTMLElement, from: DOMRect): void {
+    if (this.reducedMotion.matches) return;
+
+    const to = tile.getBoundingClientRect();
+    tile.animate(
+      [
+        {
+          width: `${from.width}px`,
+          height: `${from.height}px`,
+          transform: `translate(${from.left - to.left}px, ${from.top - to.top}px)`,
+        },
+        {
+          width: `${to.width}px`,
+          height: `${to.height}px`,
+          transform: 'none',
+        },
+      ],
+      { duration: SLIDE_DURATION, easing: SLIDE_EASING }
+    );
+  }
+
+  /**
+   * Shows the resize cursor over the grid, or hides it
+   * @param edges edges under the pointer, undefined when it is not over an edge
+   */
+  private showResizeCursor(edges: ResizeEdges | undefined): void {
+    this.grid.classList.toggle(RESIZE_HOVER_CLASS, edges !== undefined);
+    if (edges) {
+      this.grid.style.setProperty(RESIZE_CURSOR_PROPERTY, resizeCursor(edges));
+    } else {
+      this.grid.style.removeProperty(RESIZE_CURSOR_PROPERTY);
+    }
+  }
+
+  /**
+   * Tile whose edge is under the pointer, and the edges a resize would move
+   * @param event press or move of the pointer
+   * @returns undefined when the pointer is not on the edge of a tile
+   */
+  private edgeAt(
+    event: PointerEvent
+  ): { tile: HTMLElement; edges: ResizeEdges } | undefined {
+    const target = event.target as Element;
+    if (target.closest(IGNORED_TARGETS)) return undefined;
+
+    // over a tile only its own edges are close enough; in a gap, any tile around it may be
+    const tile = this.tileOf(target);
+    const candidates = tile ? [tile] : target === this.grid ? this.tiles() : [];
+    const zone =
+      event.pointerType === 'touch' ? TOUCH_EDGE_ZONE : POINTER_EDGE_ZONE;
+
+    for (const candidate of candidates) {
+      const edges = edgesAt(
+        candidate.getBoundingClientRect(),
+        event.clientX,
+        event.clientY,
+        zone
+      );
+      if (edges) return { tile: candidate, edges };
+    }
+    return undefined;
   }
 
   /**

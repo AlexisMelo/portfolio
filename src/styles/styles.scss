@@ -289,6 +289,21 @@ h3 {
   user-select: none !important;
 }
 
+// Over the edge or corner of a tile, the resize cursor of that edge (set by GridDragDirective) replaces
+// the grabbing hand and the cursors of the content
+.g-grid-drag.g-grid-resize-hover,
+.g-grid-drag.g-grid-resize-hover * {
+  cursor: var(--g-grid-resize-cursor) !important;
+}
+
+// While a tile is resized, the whole page shows the resize cursor and no text gets selected
+.g-grid-resizing,
+.g-grid-resizing * {
+  cursor: var(--g-grid-resize-cursor) !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 p,
 li {
   line-height: 150%;
