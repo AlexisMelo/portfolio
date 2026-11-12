@@ -11,9 +11,8 @@
   "home": {
     "job": {
       "title": "Fullstack Web Developer",
-      "before": "Hello! I'm Alexis Melo da Silva. An INSA engineer and fullstack developer, I specialise in the",
-      "and": "and",
-      "after": " frameworks."
+      "before": "Specialist in",
+      "and": "and"
     },
     "mail": {
       "question_pt1": "Any",
@@ -43,6 +42,9 @@
     "projectsPreview": {
       "tabs": "Highlighted projects",
       "all": "See all projects"
+    },
+    "companies": {
+      "title": "Worked at"
     }
   },
   "projectCard": {

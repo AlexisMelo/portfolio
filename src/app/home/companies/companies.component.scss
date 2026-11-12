@@ -1,0 +1,134 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+:host {
+  // Space between two names, and between the two lists
+  --companies-gap: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+
+  @include responsive.responsive('medium') {
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+}
+
+// Small spaced capitals, then a hairline before the names. One word per line on phones.
+.label {
+  flex-shrink: 0;
+  width: min-content;
+  padding-right: 1rem;
+  border-right: 1px solid var(--companies-divider-color);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--companies-label-color);
+  white-space: nowrap;
+
+  @include responsive.responsive('medium') {
+    width: auto;
+    padding-right: 1.5rem;
+  }
+}
+
+// As tall as the tile, so that it does not cut the focus outline of the names
+.marquee {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  display: flex;
+  gap: var(--companies-gap);
+  overflow: hidden;
+  // The names fade in and out at both ends
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+
+  // With the keyboard, the names go back to their place, without the fades, and stay still: the
+  // browser scrolls the marquee to the focused one
+  &:has(:focus-visible) {
+    mask-image: none;
+
+    .group {
+      animation: none;
+    }
+  }
+}
+
+// At least as wide as the marquee, so that the second list follows the first without a gap
+.group {
+  flex-shrink: 0;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--companies-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: companies-scroll var(--companies-loop-duration, 20s) linear
+    infinite;
+
+  :host(:hover) & {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes companies-scroll {
+  to {
+    transform: translateX(calc(-100% - var(--companies-gap)));
+  }
+}
+
+// Muted, like a row of logos, and darker when hovered
+a {
+  display: block;
+  white-space: nowrap;
+  font-family: var(--title-font-family);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--companies-name-color);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  border-radius: 4px;
+  transition: color 200ms;
+
+  &:hover {
+    color: var(--companies-name-hover-color);
+    text-decoration-line: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xl);
+  }
+}
+
+// No movement: one still list, which scrolls when it is wider than the tile
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .group {
+    animation: none;
+
+    &[aria-hidden='true'] {
+      display: none;
+    }
+  }
+}

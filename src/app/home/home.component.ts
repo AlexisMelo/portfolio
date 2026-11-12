@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { SupabaseService } from '../shared/supabase.service';
-import { AvailabilityComponent } from './availability/availability.component';
+import { CompaniesComponent } from './companies/companies.component';
 import { ImageComponent } from './image/image.component';
 import { JobComponent } from './job/job.component';
 import { MailComponent } from './mail/mail.component';
@@ -24,9 +24,9 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     ResumeComponent,
     MapComponent,
     NowComponent,
-    AvailabilityComponent,
     ImageComponent,
     ProjectsPreviewComponent,
+    CompaniesComponent,
     GridEntranceDirective,
     GridDragDirective,
   ],

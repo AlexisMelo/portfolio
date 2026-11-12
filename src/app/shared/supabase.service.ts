@@ -166,6 +166,27 @@ export class SupabaseService {
   }
 
   /**
+   * Names of the companies I worked at (contexts flagged is_company), most recent first
+   * @param locale language of the names
+   */
+  public async getCompanyNames(locale: Language): Promise<string[]> {
+    const { data, error } = await this.client
+      .from('context')
+      .select(`localizedLabel:translations!label(${locale})`)
+      .eq('is_company', true)
+      .order('start_date', { ascending: false })
+      .overrideTypes<
+        Array<{ localizedLabel: Partial<Record<Language, string | null>> }>,
+        { merge: false }
+      >();
+
+    if (error) return Promise.reject(error);
+    return data
+      .map(company => company.localizedLabel[locale])
+      .filter((name): name is string => !!name);
+  }
+
+  /**
    * Obtient la liste de toutes les compétences
    * @returns
    */

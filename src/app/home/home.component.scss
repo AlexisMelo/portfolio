@@ -70,24 +70,9 @@ app-map {
   }
 }
 
-app-availability {
-  grid-column: 1 / 5;
-  grid-row: 7;
-
-  @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 10;
-  }
-
-  @include responsive.responsive('large') {
-    grid-column: 5 / 9;
-    grid-row: 7;
-  }
-}
-
 app-resume {
   grid-column: 1 / 5;
-  grid-row: 8 / 10;
+  grid-row: 7 / 9;
 
   @include responsive.responsive('medium') {
     grid-column: 1 / 5;
@@ -100,9 +85,10 @@ app-resume {
   }
 }
 
+// Under the CV, as tall as the projects preview next to it on medium screens
 app-now {
   grid-column: 1 / 5;
-  grid-row: 10 / 13;
+  grid-row: 9 / 12;
 
   @include responsive.responsive('medium') {
     grid-column: 1 / 5;
@@ -118,7 +104,7 @@ app-now {
 // 4 by 4 at the bottom, then on the right under the map on large screens
 app-projects-preview {
   grid-column: 1 / 5;
-  grid-row: 13 / 17;
+  grid-row: 12 / 16;
 
   @include responsive.responsive('medium') {
     grid-column: 5 / 9;
@@ -128,5 +114,21 @@ app-projects-preview {
   @include responsive.responsive('large') {
     grid-column: 9 / 13;
     grid-row: 3 / 7;
+  }
+}
+
+// One row across the whole grid, under every other tile
+app-companies {
+  grid-column: 1 / 5;
+  grid-row: 16;
+
+  @include responsive.responsive('medium') {
+    grid-column: 1 / 9;
+    grid-row: 11;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 5 / 13;
+    grid-row: 7;
   }
 }

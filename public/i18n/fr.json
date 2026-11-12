@@ -11,9 +11,8 @@
   "home": {
     "job": {
       "title": "Développeur Web Fullstack",
-      "before": "Bonjour ! Je m'appelle Alexis Melo da Silva. Ingénieur INSA et développeur fullstack, je suis spécialiste des frameworks",
-      "and": "et",
-      "after": "."
+      "before": "Spécialiste des frameworks",
+      "and": "et"
     },
     "mail": {
       "question_pt1": "Une",
@@ -43,6 +42,9 @@
     "projectsPreview": {
       "tabs": "Projets mis en avant",
       "all": "Voir tous les projets"
+    },
+    "companies": {
+      "title": "Passé par"
     }
   },
   "projectCard": {

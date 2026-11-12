@@ -17,6 +17,12 @@
     transparent
   );
 
+  //companies
+  --companies-label-color: var(--primary-600);
+  --companies-divider-color: var(--gray-300);
+  --companies-name-color: var(--gray-500);
+  --companies-name-hover-color: var(--styles-title-color);
+
   //coworker-info
   --coworker-info-color: var(--gray-600);
 
@@ -80,7 +86,7 @@
 
   //now
   --now-icon-color: var(--primary-600);
-  --now-link-color: var(--primary-600);
+  --now-separator-color: var(--gray-300);
 
   //ongoing
   --ongoing-background: var(--primary-600);

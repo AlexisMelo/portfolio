@@ -20,17 +20,17 @@ ul {
       min-width: 10%;
     }
   }
+
+  // Horizontal rule between two entries
+  li + li {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--now-separator-color);
+  }
 }
 
 h2 {
   margin: 0;
   font-size: var(--text-xxxl);
-}
-
-a {
-  text-align: end;
-  text-decoration: none;
-  color: var(--now-link-color);
 }
 
 mat-icon {

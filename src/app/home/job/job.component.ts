@@ -3,8 +3,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from '../../shared/grid/grid-item.directive';
 
 /**
- * Tile at the top of the home page that explains my job, with the Angular and .NET frameworks
- * shown as coloured chips that float up and down
+ * Tile at the top of the home page with my job title and my speciality, the Angular and .NET
+ * frameworks shown as coloured chips that float up and down
  */
 @Component({
   selector: 'app-job',

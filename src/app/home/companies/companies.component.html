@@ -1,0 +1,26 @@
+<p id="companies-title" class="label">
+  {{ 'home.companies.title' | transloco }}
+</p>
+
+<!-- Two identical lists scroll side by side. The second one only completes the loop: it is hidden
+     from assistive technologies and out of the tab order. -->
+<div
+  class="marquee"
+  [style.--companies-loop-duration]="loopDuration()"
+  (focusin)="onFocusIn($event)"
+  (focusout)="onFocusOut($event)">
+  <ul class="group" aria-labelledby="companies-title">
+    @for (name of names(); track $index) {
+      <li>
+        <a [routerLink]="EXPERIENCE_ROUTE">{{ name }}</a>
+      </li>
+    }
+  </ul>
+  <ul class="group" aria-hidden="true">
+    @for (name of names(); track $index) {
+      <li>
+        <a [routerLink]="EXPERIENCE_ROUTE" tabindex="-1">{{ name }}</a>
+      </li>
+    }
+  </ul>
+</div>

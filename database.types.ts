@@ -19,6 +19,7 @@ export type Database = {
           description: string | null
           end_date: string | null
           id: number
+          is_company: boolean
           job: string | null
           label: string
           localization: string
@@ -28,6 +29,7 @@ export type Database = {
           description?: string | null
           end_date?: string | null
           id?: number
+          is_company?: boolean
           job?: string | null
           label: string
           localization: string
@@ -37,6 +39,7 @@ export type Database = {
           description?: string | null
           end_date?: string | null
           id?: number
+          is_company?: boolean
           job?: string | null
           label?: string
           localization?: string
