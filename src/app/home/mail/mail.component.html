@@ -10,10 +10,6 @@
   >
 </h2>
 
-<a class="contact-link" [href]="'mailto:' + contentService.mail">
-  <app-action-button
-    icon="mail"
-    [text]="'home.mail.contact' | transloco"
-    [unfold]="true"
-    [positionAbsolute]="false"></app-action-button>
+<a app-action-button icon="mail" [href]="'mailto:' + contentService.mail">
+  {{ 'home.mail.contact' | transloco }}
 </a>

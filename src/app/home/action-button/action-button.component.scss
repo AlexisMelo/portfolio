@@ -1,106 +1,103 @@
 @use '../../../styles/responsive.scss' as responsive;
 
+// A parent changes the colours with
+// --round-button-background and --round-button-color, and the size with --action-button-size and
+// --action-button-icon-size.
 :host {
-  --action-button-transition-time: 400ms;
-  --action-button-border-size: 1px;
   --action-button-size: 30px;
-  --action-button-icon-size: 14px;
+  --action-button-icon-size: 16px;
 
-  // Colours, border, radius and hover lift come from .g-round-button (styles.scss)
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   height: var(--action-button-size);
   min-width: var(--action-button-size);
-  font-weight: bold;
-
-  @include responsive.responsive('medium') {
-    --action-button-border-size: 1px;
-    --action-button-size: 32px;
-    --action-button-icon-size: 16px;
-  }
-
-  &.position-absolute {
-    position: absolute;
-  }
-
-  &.bottom-left {
-    left: 16px;
-    bottom: 16px;
-  }
-
-  &.bottom-left-2 {
-    left: 55px;
-    bottom: 16px;
-
-    @include responsive.responsive('medium') {
-      left: 60px;
-    }
-  }
-
-  &.bottom-right {
-    right: 16px;
-    bottom: 16px;
-  }
-
-  &.top-right {
-    top: 16px;
-    right: 16px;
-  }
-
-  &.center-right {
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  mat-icon {
-    height: var(--action-button-icon-size);
-    width: var(--action-button-icon-size);
-    font-size: var(--action-button-icon-size);
-    margin-left: calc(
-      (var(--action-button-size) - var(--action-button-icon-size)) /
-        2 - var(--action-button-border-size)
-    );
-    margin-right: calc(
-      (var(--action-button-size) - var(--action-button-icon-size)) /
-        2 - var(--action-button-border-size)
-    );
-  }
-
-  .text {
-    max-width: 0;
-    opacity: 0;
-    transform: translateX(-8px);
-    transition:
-      max-width var(--action-button-transition-time),
-      padding-right var(--action-button-transition-time),
-      opacity var(--action-button-transition-time),
-      transform var(--action-button-transition-time);
-    transition-timing-function: linear;
-    display: inline-block;
-    vertical-align: top;
-    white-space: nowrap;
-    overflow: hidden;
-    padding-right: 0;
-  }
+  padding: 0;
+  border: 2px solid var(--round-button-border-color);
+  border-radius: 999px;
+  color: var(--round-button-color);
+  background-color: var(--round-button-background);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    box-shadow 200ms,
+    translate 200ms;
 
   &:hover {
-    cursor: pointer;
+    translate: -2px -2px;
+    box-shadow: 2px 2px 0 0 var(--round-button-border-color);
   }
 
-  &:hover:not(.text-is-empty),
-  &.unfold:not(.text-is-empty) {
-    .text {
-      max-width: 200px;
-      opacity: 1;
-      padding-right: 0.7rem;
-      transform: none;
-    }
+  &:focus-visible {
+    outline: 2px solid var(--round-button-color);
+    outline-offset: 2px;
   }
 
-  .no-icon {
-    padding-left: 0.7rem;
+  @include responsive.responsive('medium') {
+    --action-button-size: 32px;
+    --action-button-icon-size: 18px;
   }
+}
+
+:host(.icon-end) {
+  flex-direction: row-reverse;
+}
+
+mat-icon {
+  flex-shrink: 0;
+  width: var(--action-button-icon-size);
+  height: var(--action-button-icon-size);
+  margin-inline: calc(
+    (var(--action-button-size) - 4px - var(--action-button-icon-size)) / 2
+  );
+  font-size: var(--action-button-icon-size);
+}
+
+.label {
+  padding-inline: 0.9em;
+
+  &:empty {
+    display: none;
+  }
+}
+
+:host(.with-icon) .label {
+  padding-inline: 0 0.9em;
+}
+
+:host(.with-icon.icon-end) .label {
+  padding-inline: 0.9em 0;
+}
+
+/* Positions over the tile */
+
+:host(.bottom-left),
+:host(.bottom-left-2),
+:host(.bottom-right) {
+  position: absolute;
+  bottom: 16px;
+}
+
+:host(.bottom-left) {
+  left: 16px;
+}
+
+// Next to a bottom-left one
+:host(.bottom-left-2) {
+  left: 55px;
+
+  @include responsive.responsive('medium') {
+    left: 60px;
+  }
+}
+
+:host(.bottom-right) {
+  right: 16px;
 }

@@ -1,5 +1,6 @@
-@if (icon) {
-  <mat-icon>{{ icon }}</mat-icon>
+@if (icon(); as name) {
+  <mat-icon aria-hidden="true">{{ name }}</mat-icon>
 }
 
-<div class="text" [class.no-icon]="!icon">{{ text }}</div>
+<!-- The text of a pill, empty for a round button -->
+<span class="label"><ng-content /></span>

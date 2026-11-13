@@ -16,11 +16,20 @@
     [alt]="'home.resume.open' | transloco" />
 </button>
 
-<app-action-button
-  [unfold]="true"
-  [text]="'home.resume.download' | transloco"
-  (click)="downloadResume()"
-  [positionAbsolute]="false"></app-action-button>
+<div class="actions">
+  <button type="button" app-action-button (click)="downloadResume()">
+    {{ 'home.resume.download' | transloco }}
+  </button>
+
+  <button
+    type="button"
+    app-action-button
+    icon="visibility"
+    [attr.aria-label]="'home.resume.open' | transloco"
+    (mouseenter)="requestPreview()"
+    (focus)="requestPreview()"
+    (click)="openResume()"></button>
+</div>
 
 <div #modal id="modal-container">
   <div class="modal-background">

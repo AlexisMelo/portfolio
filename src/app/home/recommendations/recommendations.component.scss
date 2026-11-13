@@ -26,7 +26,7 @@
   grid-area: label;
   justify-self: start;
   margin-left: -2rem;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 3rem 0.3rem 2rem;
   border: var(--grid-item-border);
   border-radius: 8px;
   box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
@@ -193,22 +193,8 @@ figure {
 
 // Coral pill, like the other calls to action, with the arrow of the links leaving the site
 .read {
-  align-self: flex-end;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.3rem 0.6rem 0.3rem 0.9rem;
-  background-color: var(--recommendations-read-background);
-  color: var(--recommendations-read-color);
-  font-family: var(--title-font-family);
-  font-weight: 700;
-  font-size: var(--text-sm);
-  text-decoration: none;
-  white-space: nowrap;
+  --round-button-background: var(--recommendations-read-background);
+  --round-button-color: var(--recommendations-read-color);
 
-  mat-icon {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
-  }
+  align-self: flex-end;
 }

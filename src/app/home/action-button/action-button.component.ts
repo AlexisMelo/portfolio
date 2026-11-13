@@ -1,50 +1,44 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { booleanAttribute, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
+/**
+ * Places of an action button laid over its tile, from its bottom corners
+ */
+export type ActionButtonPosition =
+  | 'bottom-left'
+  | 'bottom-left-2'
+  | 'bottom-right';
+
+/**
+ * Every round button of the tiles: round with an icon, a pill with the text it holds. It goes on a
+ * native button or link, so that it is reached with the keyboard; an icon-only one needs an
+ * aria-label. On a span, it only gives the look, for the visual button of a larger link.
+ */
 @Component({
-  selector: 'app-action-button',
+  selector:
+    'button[app-action-button], a[app-action-button], span[app-action-button]',
   imports: [MatIconModule],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.scss',
-  host: { class: 'g-round-button' },
+  host: {
+    '[class]': 'position()',
+    '[class.with-icon]': '!!icon()',
+    '[class.icon-end]': 'iconEnd()',
+  },
 })
 export class ActionButtonComponent {
   /**
-   * Icon à afficher dans le bouton
+   * Name of the Material Symbols icon, which must be in the font link of index.html
    */
-  @Input() icon: string | null = null;
+  public readonly icon = input<string>();
 
   /**
-   * Texte à afficher à côté du bouton
+   * Whether the icon comes after the text instead of before it
    */
-  @Input() text?: string;
+  public readonly iconEnd = input(false, { transform: booleanAttribute });
 
   /**
-   * Est-ce que le bouton doit être déroulé ?
+   * Place of the button over its tile, which must be positioned; in the flow when not given
    */
-  @HostBinding('class.unfold') @Input() unfold: boolean = false;
-
-  /**
-   * Position du bouton.
-   * Position absolute doit être à true
-   */
-  @HostBinding('class') @Input() position:
-    | 'bottom-right'
-    | 'bottom-left'
-    | 'bottom-left-2'
-    | 'top-right'
-    | 'center-right' = 'bottom-left';
-
-  /**
-   * Est-ce que le bouton doit être positionné de façon absolue
-   */
-  @HostBinding('class.position-absolute') @Input() positionAbsolute: boolean =
-    true;
-
-  /**
-   * Est-ce que le texte est vide ? Utile pour le css
-   */
-  @HostBinding('class.text-is-empty') get textEmpty() {
-    return this.text === '' || this.text === undefined;
-  }
+  public readonly position = input<ActionButtonPosition>();
 }

@@ -117,19 +117,3 @@ h2 {
   font-size: var(--text-lg);
   color: var(--project-card-title-color);
 }
-
-// Its look comes from .g-round-button (styles.scss)
-.details-link {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-}

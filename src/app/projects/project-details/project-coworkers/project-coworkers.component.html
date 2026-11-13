@@ -8,7 +8,7 @@
         <app-coworker-info
           class="carousel-item"
           [image]="
-            project_coworker.coworker.avatar_bust ?? 'photos/empty-avatar.png'
+            project_coworker.coworker.avatar_bust ?? 'photos/empty-avatar.webp'
           "
           [name]="
             project_coworker.coworker.firstname +
@@ -23,16 +23,23 @@
 
   @if (project.coworkers.length > 1) {
     @if (currentSlide() > 0) {
-      <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
-      </app-action-button>
+      <button
+        type="button"
+        app-action-button
+        icon="chevron_left"
+        position="bottom-left"
+        [attr.aria-label]="'projectDetails.coworkers.previous' | transloco"
+        (click)="nextSlide(-1)"></button>
     }
 
     @if (currentSlide() < project.coworkers.length - 1) {
-      <app-action-button
-        [position]="'bottom-left-2'"
+      <button
+        type="button"
+        app-action-button
         icon="chevron_right"
-        (click)="nextSlide(1)">
-      </app-action-button>
+        position="bottom-left-2"
+        [attr.aria-label]="'projectDetails.coworkers.next' | transloco"
+        (click)="nextSlide(1)"></button>
     }
 
     <div class="counter">
@@ -43,7 +50,7 @@
   <div class="carousel-items">
     <app-coworker-info
       class="carousel-item"
-      [image]="'photos/avatar-bust-shrugging.png'"
+      [image]="'photos/avatar-bust-shrugging.webp'"
       [name]="'projectDetails.coworkers.solo' | transloco"
       [description]="
         'projectDetails.coworkers.noCoworker' | transloco

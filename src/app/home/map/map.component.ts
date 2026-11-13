@@ -63,16 +63,18 @@ export class MapComponent extends GridItemDirective {
   protected readonly tilesLoaded = signal(false);
 
   /**
-   * Zoom in button, absent at the closest level
+   * Zoom in button, absent at the closest level (its element, not its action button component)
    */
-  private readonly zoomInButton =
-    viewChild<ElementRef<HTMLButtonElement>>('zoomInButton');
+  private readonly zoomInButton = viewChild('zoomInButton', {
+    read: ElementRef<HTMLButtonElement>,
+  });
 
   /**
-   * Zoom out button, absent at the widest level
+   * Zoom out button, absent at the widest level (its element, not its action button component)
    */
-  private readonly zoomOutButton =
-    viewChild<ElementRef<HTMLButtonElement>>('zoomOutButton');
+  private readonly zoomOutButton = viewChild('zoomOutButton', {
+    read: ElementRef<HTMLButtonElement>,
+  });
 
   /**
    * Injector for the render callback that follows a zoom

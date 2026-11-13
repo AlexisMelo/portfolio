@@ -1,8 +1,10 @@
 <div class="header">
-  <!-- Placeholder number, not defined yet: hidden from screen readers meanwhile -->
-  <span aria-hidden="true">{{
-    'projectCard.number' | transloco: { number: 'X' }
-  }}</span>
+  <!-- Year the project ended, or "ongoing" when it has no end date yet -->
+  @if (project().end_date; as endDate) {
+    <span>{{ endDate | translocoDate: { year: 'numeric' } }}</span>
+  } @else {
+    <span>{{ 'projects.status.ongoing' | transloco }}</span>
+  }
 </div>
 
 <div class="illustration-area">
@@ -28,11 +30,10 @@
 <div class="footer">
   <span class="context">{{ context() }}</span>
   <a
-    class="details-link g-round-button"
+    app-action-button
+    icon="call_made"
     [routerLink]="[PROJECTS_ROUTE, project().url]"
     [attr.aria-label]="
       'projectCard.details' | transloco: { label: project().label }
-    ">
-    <mat-icon aria-hidden="true">call_made</mat-icon>
-  </a>
+    "></a>
 </div>

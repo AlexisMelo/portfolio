@@ -10,11 +10,11 @@ import {
   signal,
   viewChildren,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { SupabaseService } from 'src/app/shared/supabase.service';
+import { ActionButtonComponent } from '../action-button/action-button.component';
 
 /**
  * A recommendation as the tile displays it, in the active language
@@ -39,7 +39,7 @@ interface DisplayedRecommendation {
 /**
  * Drawing displayed for an author who has none
  */
-const DEFAULT_AVATAR = 'photos/empty-avatar.png';
+const DEFAULT_AVATAR = 'photos/empty-avatar.webp';
 
 /**
  * Number given to the next tile, so that each one has its own element ids
@@ -54,7 +54,7 @@ let nextRecommendationsId = 0;
  */
 @Component({
   selector: 'app-recommendations',
-  imports: [MatIconModule, NgOptimizedImage, TranslocoPipe],
+  imports: [ActionButtonComponent, NgOptimizedImage, TranslocoPipe],
   templateUrl: './recommendations.component.html',
   styleUrl: './recommendations.component.scss',
 })

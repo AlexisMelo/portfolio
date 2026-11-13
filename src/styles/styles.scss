@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @use 'sass:map';
 @use '_functions' as functions;
 @use './responsive.scss' as responsive;
@@ -32,19 +31,12 @@
     --grid-width: calc(#{map.get(responsive.$sizes, 'large')} - 20px);
     --columns: 12;
   }
-
-  // @include responsive.responsive('large') {
-  //   --grid-width: calc(#{map-get(responsive.$sizes, 'large')} - 20px);
-  //   --columns: 12;
-  //   --gap: 16px;
-  // }
 }
 
 .cdk-overlay-backdrop {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-//https://www.magicpattern.design/tools/grid-background-pattern-generator
 body {
   background-color: var(--styles-background-color);
 
@@ -61,7 +53,7 @@ body {
 html {
   @include design.design-system();
   box-sizing: border-box;
-  height: 100vh; //So the modals
+  height: 100vh;
 }
 
 *,
@@ -227,29 +219,71 @@ h3 {
   }
 }
 
-/* Buttons */
+/* Chips */
 
-// Round button (a pill when it holds text) with a solid border, lifted with a hard shadow on hover
-// like the tiles. Each button sets its own size. The lift uses `translate`, which adds to the
-// `transform` some buttons are positioned with.
-.g-round-button {
-  border: 2px solid var(--round-button-border-color);
-  border-radius: 999px;
-  color: var(--round-button-color);
-  background-color: var(--round-button-background);
+// Toggle button on a tile (the filters of the projects page): bordered like the small elements of
+// the tiles, lifted on hover, pressed in when selected (aria-pressed). Components give the selected
+// colours with --chip-pressed-background and --chip-pressed-color.
+.g-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.35em 0.9em;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--chip-background);
+  color: var(--chip-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
   transition:
     box-shadow 200ms,
-    translate 200ms;
+    translate 200ms,
+    background-color 200ms,
+    color 200ms;
 
   &:hover {
-    translate: -2px -2px;
-    box-shadow: 2px 2px 0 0 var(--round-button-border-color);
+    translate: -1px -1px;
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--round-button-color);
-    outline-offset: 2px;
+    outline: 2px solid var(--chip-focus-color);
+    outline-offset: 3px;
   }
+
+  // Pushed into the tile: its shadow almost gone
+  &[aria-pressed='true'] {
+    translate: 2px 2px;
+    box-shadow: 1px 1px 0 0 var(--grid-item-border-color);
+    background-color: var(--chip-pressed-background, var(--chip-background));
+    color: var(--chip-pressed-color, var(--chip-color));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+// Hidden on screen, read by assistive technologies
+.g-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Drag and drop of the tiles (GridDragDirective) */

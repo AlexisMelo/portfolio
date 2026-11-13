@@ -1,20 +1,27 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoDatePipe } from '@jsverse/transloco-locale';
 import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { LanguageService } from 'src/app/shared/language.service';
+import { ActionButtonComponent } from '../../action-button/action-button.component';
 import { ProjectCard } from './project-card.model';
 
 /**
- * A project in the projects preview of the home page: number, illustration, name,
+ * A project in the projects preview of the home page: end year, illustration, name,
  * description, then its context and a round link to its details. The whole card leads to the
  * details.
  */
 @Component({
   selector: 'app-project-card',
-  imports: [MatIconModule, NgOptimizedImage, RouterLink, TranslocoPipe],
+  imports: [
+    ActionButtonComponent,
+    NgOptimizedImage,
+    RouterLink,
+    TranslocoPipe,
+    TranslocoDatePipe,
+  ],
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.scss',
   host: {

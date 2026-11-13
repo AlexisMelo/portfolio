@@ -31,12 +31,13 @@ p {
   min-height: 2rem;
 }
 
+// The link to the profile on the right of the name, which stays centred
 h3 {
   position: relative;
 
-  app-action-button {
+  .profile {
+    position: absolute;
     right: -50px;
-    left: auto;
     top: 50%;
     transform: translateY(-50%);
   }

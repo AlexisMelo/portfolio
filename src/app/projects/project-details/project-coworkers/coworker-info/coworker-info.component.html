@@ -8,7 +8,16 @@
 <h3>
   {{ name }}
   @if (url) {
-    <app-action-button icon="link" (click)="openInfos()"></app-action-button>
+    <a
+      class="profile"
+      app-action-button
+      icon="link"
+      target="_blank"
+      rel="noopener"
+      [href]="url"
+      [attr.aria-label]="
+        'projectDetails.coworkers.profile' | transloco: { name: name }
+      "></a>
   }
 </h3>
 

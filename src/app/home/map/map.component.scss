@@ -75,24 +75,9 @@
   }
 }
 
+// Above the Leaflet panes
 .zoom-button {
-  position: absolute;
-  bottom: 16px;
   z-index: 500;
-  padding: 0;
-  border: none;
-  border-radius: 18px;
-  background: none;
-  font: inherit;
-  color: inherit;
-}
-
-.zoom-out-button {
-  left: 16px;
-}
-
-.zoom-in-button {
-  right: 16px;
 }
 
 // Credits required by the licences of the map data

@@ -2,10 +2,10 @@
 
 <p>{{ description() }}</p>
 
-<app-action-button
-  class="contact"
-  [text]="'projectDetails.context.moreProjects' | transloco"
-  [unfold]="true"
-  (click)="moreProjects()"
-  [positionAbsolute]="true"
-  [position]="'bottom-right'"></app-action-button>
+<a
+  app-action-button
+  position="bottom-right"
+  [routerLink]="PROJECTS_ROUTE"
+  [queryParams]="{ contexts: project().project_context.id }">
+  {{ 'projectDetails.context.moreProjects' | transloco }}
+</a>

@@ -23,26 +23,24 @@
     <button
       #zoomOutButton
       type="button"
-      class="zoom-button zoom-out-button"
+      class="zoom-button"
+      app-action-button
+      icon="remove"
+      position="bottom-left"
       [attr.aria-label]="'home.map.zoomOut' | transloco"
-      (click)="zoomOut()">
-      <app-action-button
-        icon="remove"
-        [positionAbsolute]="false"></app-action-button>
-    </button>
+      (click)="zoomOut()"></button>
   }
 
   @if (canZoomIn()) {
     <button
       #zoomInButton
       type="button"
-      class="zoom-button zoom-in-button"
+      class="zoom-button"
+      app-action-button
+      icon="add"
+      position="bottom-right"
       [attr.aria-label]="'home.map.zoomIn' | transloco"
-      (click)="zoomIn()">
-      <app-action-button
-        icon="add"
-        [positionAbsolute]="false"></app-action-button>
-    </button>
+      (click)="zoomIn()"></button>
   }
 
   <p class="location">

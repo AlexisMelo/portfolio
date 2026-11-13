@@ -32,23 +32,33 @@
 @if (illustrationsSorted) {
   @if (illustrationsSorted.length > 1) {
     @if (currentSlide() > 0) {
-      <app-action-button
+      <button
+        type="button"
+        app-action-button
         icon="chevron_left"
-        (click)="nextSlide(-1)"></app-action-button>
+        position="bottom-left"
+        [attr.aria-label]="'projectDetails.illustrations.previous' | transloco"
+        (click)="nextSlide(-1)"></button>
     }
 
     @if (currentSlide() < illustrationsSorted.length - 1) {
-      <app-action-button
+      <button
+        type="button"
+        app-action-button
         icon="chevron_right"
         position="bottom-left-2"
-        (click)="nextSlide(1)"></app-action-button>
+        [attr.aria-label]="'projectDetails.illustrations.next' | transloco"
+        (click)="nextSlide(1)"></button>
     }
   }
 
   @if (illustrationsSorted.length > 0) {
-    <app-action-button
+    <button
+      type="button"
+      app-action-button
       icon="crop_free"
       position="bottom-right"
-      (click)="openDialog()"></app-action-button>
+      [attr.aria-label]="'projectDetails.illustrations.open' | transloco"
+      (click)="openDialog()"></button>
   }
 }
