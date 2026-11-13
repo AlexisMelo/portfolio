@@ -1,23 +1,10 @@
 <ng-template #items>
-  <a
-    appGridItem
+  <app-social-link
     class="linkedin"
-    [href]="contentService.linkedIn"
-    target="_blank"
-    rel="noopener"
-    [attr.aria-label]="'home.social.linkedin' | transloco">
-    <app-linkedin aria-hidden="true"></app-linkedin>
-  </a>
+    network="linkedin"
+    iconOnly></app-social-link>
 
-  <a
-    appGridItem
-    class="github"
-    [href]="contentService.github"
-    target="_blank"
-    rel="noopener"
-    [attr.aria-label]="'home.social.github' | transloco">
-    <app-github aria-hidden="true" [link]="contentService.github"></app-github>
-  </a>
+  <app-social-link class="github" network="github" iconOnly></app-social-link>
 
   <div appGridItem class="theme-selector">
     <app-theme-selector></app-theme-selector>
@@ -36,11 +23,7 @@
     ><h2>{{ 'navbar.about' | transloco }}</h2>
     <div class="img-container">
       <img
-        [ngSrc]="
-          themeService.isDarkMode
-            ? 'photos/avatar-neutral-dark.webp'
-            : 'photos/avatar-neutral.webp'
-        "
+        ngSrc="photos/avatar-neutral.webp"
         width="112"
         height="98"
         [attr.alt]="'navbar.avatarAlt' | transloco" />

@@ -13,10 +13,13 @@
         [project]="p"
         [class.source-available]="p.source !== null"></app-open-live>
 
-      @if (p.source) {
-        <div appGridItem class="github">
-          <app-github [link]="p.source"></app-github>
-        </div>
+      @if (p.source; as source) {
+        <app-social-link
+          class="github"
+          network="github"
+          iconOnly
+          [link]="source"
+          labelKey="projectDetails.sourceCode"></app-social-link>
       }
 
       <app-project-problematic [project]="p"></app-project-problematic>

@@ -1,4 +1,15 @@
-@use '../linkedin/spin.animation.scss' as spin;
+// The icon spins round, slightly past its starting point, then settles back
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(450deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .social-link {
   display: flex;
@@ -18,21 +29,28 @@
   }
 
   // Hovering the tile spins the icon
-  &:hover {
-    app-linkedin,
-    app-github {
-      @extend %spin-effect;
-    }
+  &:hover .icon {
+    animation: spin 1.5s ease-in-out;
   }
 }
 
-app-linkedin,
-app-github {
+// Only the icon, a bit bigger, in the middle of the tile
+:host(.icon-only) {
+  .social-link {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.icon {
   width: 26px;
   height: 26px;
   flex-shrink: 0;
-  // The link opens the profile: the icon's own click would open a second tab
-  pointer-events: none;
 }
 
 .label {

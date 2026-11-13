@@ -1,6 +1,5 @@
 @use '../../styles/_functions' as functions;
 @use '../../styles/responsive.scss' as responsive;
-@use '../home/linkedin/spin.animation.scss' as spin;
 
 $transition-duration: 0.2s;
 $logo-size: 3rem;
@@ -249,31 +248,6 @@ a {
   @include responsive.responsive('medium') {
     grid-column: 3 / 5;
     grid-row: 2;
-  }
-}
-
-app-github,
-app-linkedin {
-  width: 24px;
-  height: 24px;
-  // The tile is the link: the icon's own click would open a second tab
-  pointer-events: none;
-}
-
-// Links filling their tile, with the icon in the middle
-.github,
-.linkedin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  color: inherit;
-
-  &:hover {
-    app-github,
-    app-linkedin {
-      @extend %spin-effect;
-    }
   }
 }
 

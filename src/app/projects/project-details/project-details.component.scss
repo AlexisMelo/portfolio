@@ -26,17 +26,10 @@ app-project-details-icon {
   grid-column: 1;
 }
 
+// Source code, next to the live link
 .github {
   grid-row: 6;
   grid-column: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  app-github {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-  }
 
   @include responsive.responsive('medium') {
     grid-row: 4;
