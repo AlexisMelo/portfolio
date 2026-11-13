@@ -76,8 +76,9 @@
   --linkedin-contour-bg: var(--gray-200);
 
   //map
-  --map-rayon-background: #ffffff;
-  --map-rayon-border: var(--gray-400);
+  // Disc behind my head in grey, like the tile of my photo, a step lighter than the tiles so that
+  // it stands out from the dark map
+  --map-rayon-background: var(--gray-600);
   // Teal sticker like the other teal backgrounds, white text and a mustard pin (AA)
   --map-location-background: var(--primary-900);
   --map-location-color: white;
@@ -163,6 +164,20 @@
   // White like in light mode: the project icons are made for a light background
   --projects-preview-icon-background: white;
   --projects-preview-icon-color: var(--gray-800);
+
+  //recommendations
+  // Teal sticker like the other teal backgrounds, with white text (AA); the link to LinkedIn grey
+  // with coral text, like the other coral calls to action (AA). The discs stay light, like the
+  // project icons: the heads are drawn with black outlines.
+  --recommendations-label-background: var(--primary-900);
+  --recommendations-label-color: white;
+  --recommendations-tab-background: white;
+  --recommendations-selected-background: var(--mustard-500);
+  --recommendations-name-color: var(--styles-title-color);
+  --recommendations-read-background: var(--grid-item-default-bg);
+  --recommendations-read-color: var(--coral-500);
+  // Focus ring of the tabs and panels, light on the dark tile
+  --recommendations-focus-color: white;
 
   //reset-button
   --reset-button-color: var(--gray-300);

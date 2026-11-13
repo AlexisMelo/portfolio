@@ -70,8 +70,8 @@
   --linkedin-contour-bg: var(--gray-800);
 
   //map
-  --map-rayon-background: var(--gray-200);
-  --map-rayon-border: var(--primary-600);
+  // Disc behind my head in coral, like the tile of my photo
+  --map-rayon-background: var(--primary-500);
   // Teal sticker with white text (AA) and a mustard pin (3:1 on teal)
   --map-location-background: var(--primary-600);
   --map-location-color: white;
@@ -158,6 +158,20 @@
   --projects-preview-label-color: var(--gray-800);
   --projects-preview-icon-background: white;
   --projects-preview-icon-color: var(--gray-800);
+
+  //recommendations
+  // Teal sticker with white text (AA); the link to LinkedIn is a coral call to action under the
+  // darkest grey (AA). The heads are drawn with black outlines: white discs, the selected one in
+  // mustard.
+  --recommendations-label-background: var(--primary-600);
+  --recommendations-label-color: white;
+  --recommendations-tab-background: white;
+  --recommendations-selected-background: var(--mustard-500);
+  --recommendations-name-color: var(--styles-title-color);
+  --recommendations-read-background: var(--coral-500);
+  --recommendations-read-color: var(--gray-800);
+  // Focus ring of the tabs and panels, dark on the white tile
+  --recommendations-focus-color: var(--gray-800);
 
   //reset-button
   --reset-button-color: var(--gray-700);

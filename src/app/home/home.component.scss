@@ -76,8 +76,8 @@ app-map {
   grid-row: 5 / 7;
 
   @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 7 / 9;
+    grid-column: 5 / 9;
+    grid-row: 5 / 7;
   }
 
   @include responsive.responsive('large') {
@@ -92,7 +92,7 @@ app-resume {
 
   @include responsive.responsive('medium') {
     grid-column: 1 / 5;
-    grid-row: 5 / 7;
+    grid-row: 6 / 8;
   }
 
   @include responsive.responsive('large') {
@@ -109,7 +109,7 @@ app-projects-preview {
 
   @include responsive.responsive('medium') {
     grid-column: 5 / 9;
-    grid-row: 5 / 9;
+    grid-row: 7 / 11;
   }
 
   @include responsive.responsive('large') {
@@ -125,13 +125,30 @@ app-companies {
   grid-row: 11;
 
   @include responsive.responsive('medium') {
-    grid-column: 1 / 9;
-    grid-row: 9;
+    grid-column: 1 / 5;
+    grid-row: 5;
   }
 
   @include responsive.responsive('large') {
     grid-column: 7 / 13;
     grid-row: 3;
+  }
+}
+
+// 4 by 3: under the CV on phones, across the whole grid under the companies on medium screens, and
+// between the social links, the CV and the projects preview on large ones
+app-recommendations {
+  grid-column: 1 / 5;
+  grid-row: 14 / 17;
+
+  @include responsive.responsive('medium') {
+    grid-column: 1 / 5;
+    grid-row: 8 / 11;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 5 / 9;
+    grid-row: 5 / 8;
   }
 }
 

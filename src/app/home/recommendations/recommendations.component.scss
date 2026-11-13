@@ -1,0 +1,214 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The sticker label on the top left, the tabs on its right, the selected recommendation under them
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    'label tabs'
+    'panels panels';
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.7rem;
+  padding: 1rem;
+
+  @include responsive.responsive('medium') {
+    row-gap: 0.8rem;
+    padding: 1.1rem 1.4rem 1.3rem;
+  }
+}
+
+/* Label */
+
+// Slightly tilted sticker with an ink border and a hard shadow, in teal
+.label {
+  grid-area: label;
+  justify-self: start;
+  margin-left: -2rem;
+  padding: 0.3rem 1rem;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--recommendations-label-background);
+  color: var(--recommendations-label-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+/* Tabs: the drawn head of each author in a disc */
+
+.tabs {
+  grid-area: tabs;
+  display: flex;
+  gap: 0.6rem;
+}
+
+// Grey until hovered or selected. The selected one is larger and in mustard, with its head in
+// colour.
+.tab {
+  --recommendations-tab-size: 40px;
+
+  position: relative;
+  width: var(--recommendations-tab-size);
+  height: var(--recommendations-tab-size);
+  padding: 0;
+  border: var(--grid-item-border);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--recommendations-tab-background);
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  cursor: pointer;
+  transition:
+    box-shadow 200ms,
+    translate 200ms,
+    scale 200ms,
+    background-color 200ms;
+
+  img {
+    padding: 10%;
+    object-fit: contain;
+    filter: grayscale(1);
+    transition: filter 200ms;
+  }
+
+  &:hover {
+    translate: -1px -1px;
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+
+    img {
+      filter: none;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--recommendations-focus-color);
+    outline-offset: 3px;
+  }
+
+  &[aria-selected='true'] {
+    background-color: var(--recommendations-selected-background);
+    scale: 1.15;
+    cursor: default;
+
+    &:hover {
+      translate: none;
+      box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+    }
+
+    img {
+      filter: none;
+    }
+  }
+
+  @include responsive.responsive('medium') {
+    --recommendations-tab-size: 46px;
+  }
+}
+
+/* Selected recommendation */
+
+.panels {
+  grid-area: panels;
+  align-self: stretch;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+}
+
+// The author's name, the quote filling the space left, and the link at the bottom right. The
+// selected one comes in from the right; the other ones disappear at once.
+.panel {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 0;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  translate: 12px 0;
+
+  &.selected {
+    visibility: visible;
+    opacity: 1;
+    translate: none;
+    transition:
+      opacity 250ms ease-out,
+      translate 250ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--recommendations-focus-color);
+    outline-offset: 4px;
+  }
+}
+
+figure {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.name {
+  color: var(--recommendations-name-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-md);
+  line-height: 1.2;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
+}
+
+// Takes the height left, and its text as many lines as fit in it (set by the component)
+.quote {
+  flex: 1 1 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--recommendations-lines, 3);
+    overflow: hidden;
+    white-space: pre-line;
+  }
+}
+
+// Coral pill, like the other calls to action, with the arrow of the links leaving the site
+.read {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.9rem;
+  background-color: var(--recommendations-read-background);
+  color: var(--recommendations-read-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}

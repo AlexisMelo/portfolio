@@ -44,6 +44,11 @@
     "companies": {
       "title": "Passé par",
       "ongoing": "Aujourd'hui"
+    },
+    "recommendations": {
+      "title": "Recommandé par",
+      "read": "Lire en entier",
+      "readLabel": "Lire en entier : la recommandation de {{name}} sur LinkedIn"
     }
   },
   "projectCard": {

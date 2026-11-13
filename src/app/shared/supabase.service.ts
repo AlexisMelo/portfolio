@@ -5,6 +5,7 @@ import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { ListedProject } from '../projects/listed-project.model';
 import { Company } from '../home/companies/company.model';
 import { ProjectCard } from '../home/projects-preview/project-card/project-card.model';
+import { Recommendation } from '../home/recommendations/recommendation.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
 import { Language } from './language.type';
@@ -200,6 +201,25 @@ export class SupabaseService {
 
     if (error) return Promise.reject(error);
     return data as Array<Skill>;
+  }
+
+  /**
+   * Gets the LinkedIn recommendations, with their text in every language and their author, the
+   * most recent first
+   */
+  public async getRecommendations(): Promise<Array<Recommendation>> {
+    const { data, error } = await this.client
+      .from('recommendations')
+      .select(
+        `id, link,
+        localizedText:translations!text(en, fr),
+        coworker(firstname, lastname, avatar_head)`
+      )
+      .order('date', { ascending: false, nullsFirst: false })
+      .overrideTypes<Array<Recommendation>, { merge: false }>();
+
+    if (error) return Promise.reject(error);
+    return data;
   }
 
   /**

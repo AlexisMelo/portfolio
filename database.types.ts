@@ -347,6 +347,55 @@ export type Database = {
         }
         Relationships: []
       }
+      recommendations: {
+        Row: {
+          context_id: number
+          coworker_id: number
+          date: string | null
+          id: string
+          link: string | null
+          text: string | null
+        }
+        Insert: {
+          context_id: number
+          coworker_id: number
+          date?: string | null
+          id?: string
+          link?: string | null
+          text?: string | null
+        }
+        Update: {
+          context_id?: number
+          coworker_id?: number
+          date?: string | null
+          id?: string
+          link?: string | null
+          text?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendations_context_id_fkey"
+            columns: ["context_id"]
+            isOneToOne: false
+            referencedRelation: "context"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recommendations_coworker_id_fkey"
+            columns: ["coworker_id"]
+            isOneToOne: false
+            referencedRelation: "coworker"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recommendations_text_fkey"
+            columns: ["text"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       role: {
         Row: {
           id: number

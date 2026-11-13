@@ -1,0 +1,66 @@
+<p class="label" [id]="labelId">
+  {{ 'home.recommendations.title' | transloco }}
+</p>
+
+<!-- The drawn heads of the authors, as tabs -->
+<div class="tabs" role="tablist" [attr.aria-labelledby]="labelId">
+  @for (
+    recommendation of recommendations();
+    track recommendation.id;
+    let i = $index
+  ) {
+    <button
+      #tab
+      type="button"
+      class="tab"
+      role="tab"
+      [id]="tabId(i)"
+      [attr.aria-label]="recommendation.name"
+      [attr.aria-selected]="i === selectedIndex()"
+      [attr.aria-controls]="panelId(i)"
+      [tabIndex]="i === selectedIndex() ? 0 : -1"
+      (click)="select(i)"
+      (keydown)="onTabKeydown($event)">
+      <img [ngSrc]="recommendation.avatar" alt="" fill />
+    </button>
+  }
+</div>
+
+<!-- The panels are stacked, only the selected one is visible -->
+<div class="panels">
+  @for (
+    recommendation of recommendations();
+    track recommendation.id;
+    let i = $index
+  ) {
+    <div
+      class="panel"
+      role="tabpanel"
+      tabindex="0"
+      [id]="panelId(i)"
+      [attr.aria-labelledby]="tabId(i)"
+      [class.selected]="i === selectedIndex()">
+      <figure>
+        <figcaption class="name">{{ recommendation.name }}</figcaption>
+        <blockquote #quote class="quote" [attr.cite]="recommendation.link">
+          <p>{{ recommendation.text }}</p>
+        </blockquote>
+      </figure>
+
+      @if (recommendation.link) {
+        <a
+          class="read g-round-button"
+          target="_blank"
+          rel="noopener"
+          [href]="recommendation.link"
+          [attr.aria-label]="
+            'home.recommendations.readLabel'
+              | transloco: { name: recommendation.name }
+          ">
+          {{ 'home.recommendations.read' | transloco }}
+          <mat-icon aria-hidden="true">call_made</mat-icon>
+        </a>
+      }
+    </div>
+  }
+</div>

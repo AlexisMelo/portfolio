@@ -44,6 +44,11 @@
     "companies": {
       "title": "Worked at",
       "ongoing": "Today"
+    },
+    "recommendations": {
+      "title": "Recommended by",
+      "read": "Read it all",
+      "readLabel": "Read it all: {{name}}'s recommendation on LinkedIn"
     }
   },
   "projectCard": {

@@ -12,7 +12,7 @@
   &:hover {
     .illustration-container {
       transform: translateY(5%);
-      box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 15px 0px;
+      box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
       rotate: -5deg;
 
       img {
@@ -39,21 +39,23 @@ h2 {
   }
 }
 
+// A sheet of paper coming out of the bottom of the tile, with an ink border and a hard shadow that
+// grows when hovered, like the other clickable elements on a tile
 .illustration-container {
   // button reset, the image starts at the top like the former div
   display: flex;
   align-items: flex-start;
   padding: 0;
-  border: none;
+  border: var(--grid-item-border);
   background: none;
   width: 120px;
   height: 100%;
   position: absolute;
   right: 5%;
   top: 40%;
-  border-radius: 20px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: rgba(165, 187, 155, 0.3) 0px 0px 20px 0px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
   animation: slideInFromBottom 1s;
   transition: 0.5s;
   cursor: pointer;
