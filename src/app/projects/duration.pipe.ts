@@ -25,13 +25,10 @@ export class DurationPipe implements PipeTransform {
 
     const endDate = end_date ? new Date(end_date) : new Date();
 
-    // Calcul des années
     let years = endDate.getFullYear() - startDate.getFullYear();
 
-    // Calcul des mois
     let months = endDate.getMonth() - startDate.getMonth();
 
-    // Calcul des jours
     const days = endDate.getDay() - startDate.getDay();
 
     // Ajustement si le mois de date2 est avant celui de date1

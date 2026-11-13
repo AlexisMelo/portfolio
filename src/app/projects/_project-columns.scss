@@ -1,0 +1,4 @@
+// Columns of the project list from medium screens up, shared by the project rows and the "your
+// project" entry so that they line up: number, name, description, type and end year (or the
+// ongoing label)
+$columns: 4.4rem minmax(0, 1.2fr) minmax(0, 1.6fr) 6.5rem 5rem;

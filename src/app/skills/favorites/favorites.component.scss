@@ -31,7 +31,6 @@ ul {
   margin: 0;
 
   li {
-    // list-style: none;
     margin-left: 1.5rem;
     text-align: start;
   }
@@ -46,5 +45,5 @@ mat-icon {
 p,
 ul,
 h2 {
-  position: relative; //for z-index to work ??
+  position: relative;
 }
