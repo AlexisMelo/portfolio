@@ -1,0 +1,69 @@
+@use '../../styles/responsive.scss' as responsive;
+
+// Shared by the entries of the project list, the project rows and the "your project" one, so that
+// they line up and look alike
+
+// Columns from medium screens up: number, name, description, type and end year (or the ongoing
+// label)
+$columns: 4.4rem minmax(0, 1.2fr) minmax(0, 1.6fr) 6.5rem 5rem;
+
+// Link filling its entry. On phones a card: the number and the name on top, the text, then a last
+// line. From medium screens up a row, in the columns above. The focus ring is inside the entry,
+// which hides what overflows it.
+@mixin layout($card-areas, $row-areas, $focus-color) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas: $card-areas;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid $focus-color;
+    outline-offset: -5px;
+  }
+
+  @include responsive.responsive('medium') {
+    grid-template-columns: $columns;
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: $row-areas;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0.4rem 1.25rem;
+  }
+}
+
+// Number sticker, in the `.row` link: it tilts a bit more and lifts when the row is hovered. Its
+// colours are set by the entry.
+@mixin number {
+  grid-area: number;
+  justify-self: start;
+  padding: 0.15em 0.55em;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  rotate: -2deg;
+  transition:
+    rotate 200ms,
+    translate 200ms,
+    box-shadow 200ms;
+
+  .row:hover & {
+    rotate: -6deg;
+    translate: -1px -1px;
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

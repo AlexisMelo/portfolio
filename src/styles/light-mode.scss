@@ -9,6 +9,17 @@
   //availability
   --availability-dot-color: var(--gray-800);
 
+  //category-filtering
+  // Selected chip in teal, the colour of the selectors, under white text (AA)
+  --category-filtering-selected-background: var(--primary-600);
+  --category-filtering-selected-color: white;
+
+  //chip
+  --chip-background: var(--grid-item-default-bg);
+  --chip-color: var(--styles-title-color);
+  // Focus ring, dark on the white tiles
+  --chip-focus-color: var(--gray-800);
+
   //background-grid
   --background-grid-color: rgba(0, 0, 0, 0.22);
   --background-grid-glow-color: color-mix(
@@ -35,9 +46,6 @@
   --filter-chip-active-background-color: var(--gray-100);
   --filter-chip-details-menu-background-color: var(--white);
   --filter-chip-hover-option-background-color: var(--gray-100);
-
-  //github
-  --github-icon-color: white;
 
   //grid-item
   --grid-item-default-bg: white;
@@ -92,10 +100,6 @@
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
-  //ongoing
-  --ongoing-background: var(--mustard-500);
-  --ongoing-color: var(--gray-800);
-
   //open-live
   --open-live-background-color: var(--coral-500);
   --open-live-color: var(--gray-800);
@@ -123,12 +127,9 @@
   //project-filtering
   // Placeholder of the search field, readable on white (AA)
   --project-filtering-placeholder-color: var(--gray-500);
-
-  //project-item
-  --project-item-completed-color: white;
-  --project-item-abandoned-background: var(--gray-500);
-  --project-item-abandoned-color: white;
-  --project-item-ongoing-color: white;
+  --project-filtering-background: white;
+  --project-filtering-icon-color: var(--gray-600);
+  --project-filtering-focus-color: var(--gray-800);
 
   //project-item-skill-list
   --project-item-skill-list-skill-background: var(--primary-600);
@@ -141,8 +142,34 @@
   --project-name-header-abandoned-color: white;
   --project-name-header-ongoing-color: white;
 
+  //project-list
+  --project-list-loader-color: var(--gray-400);
+
+  //project-row
+  // Numbers in the colour of their status, like the status chips: teal under white text, mustard
+  // and coral under the darkest grey (AA). Hovered rows in the lightest teal tint.
+  --project-row-completed-background: var(--primary-600);
+  --project-row-completed-color: white;
+  --project-row-ongoing-background: var(--mustard-500);
+  --project-row-ongoing-color: var(--gray-800);
+  --project-row-abandoned-background: var(--coral-500);
+  --project-row-abandoned-color: var(--gray-800);
+  --project-row-hover-background: var(--primary-100);
+  // Focus ring, dark on the white rows
+  --project-row-focus-color: var(--gray-800);
+
   //projects-by-context
   --projects-by-context-icons-color: var(--white);
+
+  //projects-heading
+  // Mustard title tile, the accent, under the darkest grey (AA)
+  --projects-heading-background: var(--mustard-500);
+  --projects-heading-color: var(--gray-800);
+
+  //projects-intro
+  // Coral label, like the projects preview one, under the darkest grey (AA)
+  --projects-intro-highlight-background: var(--coral-500);
+  --projects-intro-highlight-color: var(--gray-800);
 
   //projects-preview
   // Box of the displayed project in mustard, and the selected tab with it; the other tabs white;
@@ -173,9 +200,6 @@
   // Focus ring of the tabs and panels, dark on the white tile
   --recommendations-focus-color: var(--gray-800);
 
-  //reset-button
-  --reset-button-color: var(--gray-700);
-
   //resume
   --resume-background-color: var(--mustard-500);
   --resume-color: var(--gray-800);
@@ -199,16 +223,21 @@
   //skill-highlight
   --skill-highlight-icon-color: var(--primary-600);
 
+  //skill-section-description
+  --skill-section-description-rule-color: var(--primary-600);
+
   //status-filtering
-  // One palette colour per status, with dark text on the light ones (AA)
+  // One palette colour per status, the one of the numbers in the list: the dots (with an ink
+  // border), and the pressed chip, with dark text on the light ones (AA)
   --status-filtering-completed: var(--primary-600);
-  --status-filtering-completed-color: white;
+  --status-filtering-completed-pressed: var(--primary-600);
+  --status-filtering-completed-pressed-color: white;
   --status-filtering-ongoing: var(--mustard-500);
-  --status-filtering-ongoing-color: var(--gray-800);
+  --status-filtering-ongoing-pressed: var(--mustard-500);
+  --status-filtering-ongoing-pressed-color: var(--gray-800);
   --status-filtering-abandoned: var(--coral-500);
-  --status-filtering-abandoned-color: var(--gray-800);
-  --status-filtering-not-selected: var(--gray-400);
-  --status-filtering-not-selected-color: var(--gray-800);
+  --status-filtering-abandoned-pressed: var(--coral-500);
+  --status-filtering-abandoned-pressed-color: var(--gray-800);
 
   //styles
   --styles-title-color: var(--gray-700);
@@ -223,8 +252,11 @@
   --suggestion-chip-bg: var(--white);
 
   //your-project
+  // Coral entry of the list with the darkest grey text (AA), its number on a white sticker
   --your-project-background: var(--coral-500);
   --your-project-color: var(--gray-800);
+  --your-project-number-background: white;
+  --your-project-number-color: var(--gray-800);
 
   // From medium up, the links sit on the navbar background instead of white tiles: they are white,
   // and the active one is a white rounded area with its text in the navbar colour

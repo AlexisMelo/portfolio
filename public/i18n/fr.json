@@ -52,30 +52,53 @@
     }
   },
   "projectCard": {
-    "number": "N°{{number}}",
     "details": "Voir le projet {{label}}"
   },
   "projects": {
     "heading": "Aventurier depuis 2017",
-    "description": "Tous mes projets sont ici, triables selon pleins de critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd'hui :)",
-    "chips": "{count, plural, =1 {1 projet} other {# projets}}",
+    "intro": {
+      "highlight": "Tous mes projets sont ici",
+      "text": "Les meilleurs, les moins bons, les terminés et les abandonnés font, ensemble, le développeur que je suis aujourd'hui !"
+    },
     "filtering": {
       "title": "Chercher par mot-clé",
       "placeholder": "Angular, site web..."
-    },
-    "order": {
-      "label": "Date"
     },
     "all": {
       "title": "Tous les projets",
       "count": "{count, plural, =0 {aucun projet} =1 {1 projet} other {# projets}}"
     },
-    "ongoing": {
-      "status": "En cours"
+    "categoryFilter": {
+      "label": "Filtrer les projets par catégorie",
+      "all": "Tout",
+      "featured": "À la une",
+      "angular": "Angular",
+      "company": "Entreprise",
+      "personal": "Personnel"
     },
-    "withSkill": {
-      "title": "Avec Angular",
-      "count": "{count, plural, =0 {aucun projet} =1 {1 projet} other {# projets}}"
+    "statusFilter": {
+      "label": "Filtrer par statut",
+      "completed": "Terminés",
+      "ongoing": "En cours",
+      "abandoned": "Abandonnés"
+    },
+    "status": {
+      "ongoing": "En cours",
+      "abandoned": "Abandonné"
+    },
+    "types": {
+      "website": "Site web",
+      "desktop": "Application bureau",
+      "other": "Autre"
+    },
+    "clearFilters": "Effacer les filtres",
+    "counter": {
+      "label": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
+    },
+    "list": {
+      "label": "Projets, du plus récent au plus ancien",
+      "number": "N°{{number}}",
+      "empty": "Aucun projet ne correspond à ces filtres."
     },
     "yourProject": {
       "title": "Ton projet, ici",
@@ -94,6 +117,7 @@
       "accessible": "Ce projet est accessible",
       "private": "Ce projet est privé"
     },
+    "sourceCode": "Code source sur GitHub",
     "context": {
       "moreProjects": "Voir d'autres projets"
     },
@@ -112,11 +136,17 @@
     "coworkers": {
       "solo": "Moi-même",
       "noCoworker": "Pas de collaborateur sur ce projet !",
-      "photoAlt": "Photo de {{name}}"
+      "photoAlt": "Photo de {{name}}",
+      "previous": "Collaborateur précédent",
+      "next": "Collaborateur suivant",
+      "profile": "Voir le profil de {{name}}"
     },
     "illustrations": {
       "noIllustrations": "Pas encore d'illustrations !",
-      "noIllustrationsAlt": "Aucune illustration disponible"
+      "noIllustrationsAlt": "Aucune illustration disponible",
+      "previous": "Illustration précédente",
+      "next": "Illustration suivante",
+      "open": "Agrandir les illustrations"
     },
     "icon": {
       "alt": "Icône du projet {{label}}"

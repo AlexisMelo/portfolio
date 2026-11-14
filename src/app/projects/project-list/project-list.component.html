@@ -1,0 +1,35 @@
+@if (projectsService.loaded()) {
+  <ul class="entries" [attr.aria-label]="'projects.list.label' | transloco">
+    @for (entry of entries(); track entry.key; let i = $index) {
+      <li
+        class="entry"
+        [class]="entry.kind"
+        [style.--entry-index]="i"
+        animate.enter="entering">
+        @switch (entry.kind) {
+          @case ('project') {
+            <app-project-row
+              [project]="entry.numbered.project"
+              [number]="entry.numbered.number"></app-project-row>
+          }
+          @case ('yourProject') {
+            <app-your-project [number]="nextNumber()"></app-your-project>
+          }
+          @case ('empty') {
+            <div class="empty">
+              <p>{{ 'projects.list.empty' | transloco }}</p>
+              <button
+                type="button"
+                app-action-button
+                (click)="projectsService.clearFiltering()">
+                {{ 'projects.clearFilters' | transloco }}
+              </button>
+            </div>
+          }
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  <app-loader></app-loader>
+}

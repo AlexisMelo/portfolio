@@ -1,207 +1,270 @@
-import {
-  computed,
-  inject,
-  Injectable,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
-import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
-import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
+import { computed, DOCUMENT, inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 import { SupabaseService } from 'src/app/shared/supabase.service';
-import { Skill } from 'src/app/skills/skill.model';
-import { Status } from './status/status.model';
-import { StatusPipe } from './status/status.pipe';
-import { ListedProject } from './listed-project.model';
-import { ActivatedRoute, Router } from '@angular/router';
-
-export type OrderByType = 'year';
-export type OrderDirection = 'asc' | 'desc';
-type GroupedProjects = Array<{ key: string; projects: Array<ListedProject> }>;
+import { ListedProject, NumberedProject } from './listed-project.model';
+import {
+  ALL_CATEGORIES_CHIP_ID,
+  isProjectCategory,
+  PROJECT_TYPE_KEYS,
+  ProjectCategory,
+  projectIsInCategory,
+} from './project-category.model';
+import { isStatus, Status } from './status/status.model';
+import { getProjectStatus } from './status/status.pipe';
 
 /**
- * Handle the projects of the projects page: the filters, and the selected projects they give
+ * Projects of the projects page, its filters and the projects they select. Every filter but the
+ * text one lives in the URL (`category`, `status`, `skills`, `contexts`): links from other pages and
+ * the browser's back and forward buttons set them, and the chips write them there.
  */
 @Injectable()
 export class ProjectsService {
   /**
-   * Est-ce qu'un élément est sélectionné
+   * Database
    */
-  private isSelectedPipe = inject(IsSelectedPipe);
+  private readonly supabaseService = inject(SupabaseService);
 
   /**
-   * Obtient le statut d'un projet
+   * Translations, for the text filter on the project types
    */
-  private statusPipe = inject(StatusPipe);
+  private readonly translocoService = inject(TranslocoService);
 
   /**
-   * Gestion de la base de donnée
+   * Writes the filters in the URL
    */
-  private supabaseService = inject(SupabaseService);
+  private readonly router = inject(Router);
 
   /**
-   * List of all projects
+   * Route of the page, whose query params hold the filters
    */
-  public projects = signal<Array<ListedProject>>([]);
+  private readonly route = inject(ActivatedRoute);
 
   /**
-   * List of selected contexts
+   * Document, to move the focus
    */
-  public selectedContexts: WritableSignal<Array<ContextWithProjects> | null> =
-    signal(null);
+  private readonly document = inject(DOCUMENT);
 
   /**
-   * List of selected skills
+   * Every project
    */
-  public selectedSkills: WritableSignal<Array<Skill> | null> = signal(null);
+  public readonly projects = signal<Array<ListedProject>>([]);
 
   /**
-   * Selected status
+   * Whether the projects have arrived from the database
    */
-  public selectedStatus: WritableSignal<Status | null> = signal(null);
+  public readonly loaded = signal(false);
 
   /**
-   * Text filter for projects
+   * Query params of the page
    */
-  public filter: WritableSignal<string | null> = signal(null);
+  private readonly queryParams = toSignal(this.route.queryParamMap, {
+    requireSync: true,
+  });
 
   /**
-   * Direction for ordering projects
+   * Ids of the selected contexts (links from the experience page and the project details), empty
+   * for every context
    */
-  public orderDirection = signal<OrderDirection>('desc');
+  public readonly selectedContextIds = computed(() =>
+    getIds(this.queryParams(), 'contexts')
+  );
 
   /**
-   * Key to order projects
+   * Ids of the selected skills (links from the skills page and the project details), empty for
+   * every skill
    */
-  public orderBy = signal<OrderByType>('year');
+  public readonly selectedSkillIds = computed(() =>
+    getIds(this.queryParams(), 'skills')
+  );
 
   /**
-   * Handle routing
+   * Selected status, null for every status
    */
-  private router = inject(Router);
+  public readonly selectedStatus = computed(() => {
+    const status = this.queryParams().get('status');
+    return isStatus(status) ? status : null;
+  });
 
   /**
-   * Get current route information
+   * Selected category (chips above the list), null for every project
    */
-  private route = inject(ActivatedRoute);
+  public readonly selectedCategory = computed(() => {
+    const category = this.queryParams().get('category');
+    return isProjectCategory(category) ? category : null;
+  });
 
   /**
-   * Selected projects based on all the criterias
+   * Text typed in the search tile
    */
-  readonly selectedProjects: Signal<Array<ListedProject>> = computed(() => {
-    const selectedContexts = this.selectedContexts();
-    const selectedSkills = this.selectedSkills();
-    const selectedStatus = this.selectedStatus();
-    const filter = this.filter();
+  public readonly filter = signal<string | null>(null);
 
-    return this.projects().filter(
-      p =>
-        (selectedContexts === null ||
-          this.isSelectedPipe.transform(selectedContexts, p.project_context)) &&
-        (selectedSkills === null ||
-          selectedSkills.some(s =>
-            this.isSelectedPipe.transform(
-              p.project_skills.map(s => s.skill),
-              s
-            )
-          )) &&
-        (selectedStatus === null ||
-          selectedStatus === this.statusPipe.transform(p)) &&
-        (filter === null ||
-          filter === '' ||
-          this.projectMatchesFilter(p, filter))
+  /**
+   * Number of every project by id: its rank by end date, the oldest being n°1 and the ongoing ones
+   * last. It does not depend on the filters, so a project keeps its number in every list.
+   */
+  private readonly numbers = computed(() => {
+    const chronological = [...this.projects()].sort(compareChronologically);
+    return new Map(
+      chronological.map((project, index) => [project.id, index + 1])
     );
   });
 
   /**
-   * Selected projects grouped and sorted
+   * Projects matching every filter
    */
-  readonly sortedGroupedProjects: Signal<GroupedProjects> = computed(() => {
-    const selectedProjects = this.selectedProjects();
+  public readonly selectedProjects = computed(() => {
+    const contextIds = this.selectedContextIds();
+    const skillIds = this.selectedSkillIds();
+    const status = this.selectedStatus();
+    const category = this.selectedCategory();
+    const filter = this.filter()?.toLowerCase();
 
-    const reduced = selectedProjects.reduce(
-      (group: { [key: string]: [ListedProject] }, next: ListedProject) => {
-        const date = next.end_date ? new Date(next.end_date) : new Date();
-
-        const endYear = date.getFullYear().toString();
-
-        if (endYear in group) {
-          group[endYear].push(next);
-        } else {
-          group[endYear] = [next];
-        }
-
-        return group;
-      },
-      {}
+    return this.projects().filter(
+      project =>
+        (contextIds.length === 0 ||
+          contextIds.includes(project.project_context.id)) &&
+        (skillIds.length === 0 ||
+          project.project_skills.some(s => skillIds.includes(s.skill.id))) &&
+        (status === null || status === getProjectStatus(project)) &&
+        (category === null || projectIsInCategory(project, category)) &&
+        (!filter || this.projectMatchesFilter(project, filter))
     );
+  });
 
-    return Object.entries(reduced)
-      .map(([key, projects]) => ({
-        key,
-        projects,
-      }))
-      .sort((firstGroup, secondGroup) => {
-        if (firstGroup.key > secondGroup.key)
-          return this.orderDirection() === 'asc' ? -1 : 1;
-        if (firstGroup.key < secondGroup.key)
-          return this.orderDirection() === 'asc' ? 1 : -1;
-        return 0;
-      });
+  /**
+   * Selected projects with their number, the most recent first
+   */
+  public readonly listedProjects = computed<Array<NumberedProject>>(() => {
+    const numbers = this.numbers();
+
+    return this.selectedProjects()
+      .map(project => ({ project, number: numbers.get(project.id) ?? 0 }))
+      .sort((first, second) => second.number - first.number);
   });
 
   /**
    * Constructor
    */
   constructor() {
-    this.supabaseService
-      .getProjects()
-      .then(projects => this.projects.set(projects));
+    this.supabaseService.getProjects().then(projects => {
+      this.projects.set(projects);
+      this.loaded.set(true);
+    });
   }
 
   /**
-   * Est-ce que le projet match le filtre textuel
-   * @param project
+   * Selects a category, null for every project
+   * @param category category to select
+   */
+  public selectCategory(category: ProjectCategory | null) {
+    this.writeQueryParams({ category });
+  }
+
+  /**
+   * Selects a status, null for every status
+   * @param status status to select
+   */
+  public selectStatus(status: Status | null) {
+    this.writeQueryParams({ status });
+  }
+
+  /**
+   * Clears every filter. The buttons doing it disappear with the filters, so the focus moves to the
+   * "all" category chip.
+   */
+  public clearFiltering() {
+    this.filter.set(null);
+    this.writeQueryParams({
+      category: null,
+      status: null,
+      skills: null,
+      contexts: null,
+    });
+    this.document.getElementById(ALL_CATEGORIES_CHIP_ID)?.focus();
+  }
+
+  /**
+   * Writes filters in the URL, keeping the others
+   * @param queryParams filters to write, null removing one
+   */
+  private writeQueryParams(queryParams: Params) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  /**
+   * Whether the name, description (in both languages), type (as displayed and as stored), context
+   * or skills of a project contain the typed text
+   * @param project project to check
+   * @param filter typed text, in lower case
    */
   private projectMatchesFilter(
     project: ListedProject,
     filter: string
   ): boolean {
-    const treatedFilter = filter.toLowerCase();
+    const typeKey = project.project_type
+      ? PROJECT_TYPE_KEYS[project.project_type.id]
+      : undefined;
 
-    if (project.label.toLowerCase().includes(treatedFilter)) return true; //nom
-    if (project.project_type.label.toLowerCase().includes(treatedFilter))
-      return true;
-    if (project.project_context.label.toLowerCase().includes(treatedFilter))
-      return true;
-    if (project.description?.toLowerCase().includes(treatedFilter)) return true;
-    if (
-      project.project_skills
-        .map(s => s.skill.label.toLowerCase())
-        .find(s => s.includes(treatedFilter)) !== undefined
-    )
-      return true;
+    const searched = [
+      project.label,
+      project.localizedDescription?.en,
+      project.localizedDescription?.fr,
+      project.project_type?.label,
+      typeKey
+        ? this.translocoService.translate(`projects.types.${typeKey}`)
+        : undefined,
+      project.project_context.label,
+      ...project.project_skills.map(s => s.skill.label),
+    ];
 
-    return false;
+    return searched.some(text => text?.toLowerCase().includes(filter));
   }
+}
 
-  /**
-   * Clear the selected skills, contexts, and keywords
-   */
-  public clearFiltering() {
-    this.filter.set(null);
-    this.selectedSkills.set(null);
-    this.selectedContexts.set(null);
-    this.selectedStatus.set(null);
+/**
+ * Ids of a query param, given as `1,2` or repeated
+ * @param params query params of the page
+ * @param key name of the query param
+ */
+function getIds(params: ParamMap, key: string): Array<number> {
+  return params
+    .getAll(key)
+    .flatMap(value => value.split(','))
+    .filter(value => value !== '')
+    .map(Number)
+    .filter(id => Number.isInteger(id));
+}
 
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        skills: null,
-        contexts: null,
-        status: null,
-      },
-      queryParamsHandling: 'merge',
-    });
-  }
+/**
+ * Orders two projects by end date, the ongoing ones (no end date) last, then by start date and id
+ * @param first first project
+ * @param second second project
+ */
+function compareChronologically(
+  first: ListedProject,
+  second: ListedProject
+): number {
+  return (
+    compareDates(first.end_date, second.end_date) ||
+    compareDates(first.start_date, second.start_date) ||
+    first.id - second.id
+  );
+}
+
+/**
+ * Orders two ISO dates, a missing one last
+ * @param first first date
+ * @param second second date
+ */
+function compareDates(first: string | null, second: string | null): number {
+  if (first === second) return 0;
+  if (first === null) return 1;
+  if (second === null) return -1;
+  return first < second ? -1 : 1;
 }

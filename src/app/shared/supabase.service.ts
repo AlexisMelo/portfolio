@@ -46,12 +46,11 @@ export class SupabaseService {
   /**
    * Request to get only what the projects page displays and filters on
    */
-  private readonly LISTED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
+  private readonly LISTED_PROJECT_REQUEST = `id, label, url, start_date, end_date, abandoned, pinned,
         localizedDescription:translations!description(en, fr),
-        illustrations:project_illustration(url, alt, position),
-        project_type(label),
+        project_type(id, label),
         project_context:context(id, label),
-        project_skills:project_skill(highlight, skill(id, label))`;
+        project_skills:project_skill(skill(id, label))`;
 
   /**
    * Constructeur
@@ -61,22 +60,6 @@ export class SupabaseService {
     this.client = new PostgrestClient(`${environment.supabaseUrl}/rest/v1`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` },
     });
-  }
-
-  /**
-   * Obtient le nombre de projets en cours
-   * @returns
-   */
-  public async countOngoingProjects(): Promise<number> {
-    const { count, error } = await this.client
-      .from('project')
-      .select('*', { count: 'exact', head: true })
-      .is('end_date', null)
-      .is('abandoned', false);
-
-    if (error || count === null)
-      return Promise.reject('Error when getting project count');
-    return count;
   }
 
   /**
@@ -311,21 +294,5 @@ export class SupabaseService {
       current: find('availability_current'),
       next: find('availability_next'),
     };
-  }
-
-  /**
-   * Count number of projects per skill
-   * @param skillId
-   * @returns
-   */
-  public async countProjectsBySkill(skillId: number) {
-    const { count, error } = await this.client
-      .from('project_skill')
-      .select('*', { count: 'exact', head: true })
-      .eq('skill_id', skillId);
-
-    if (error || count === null)
-      return Promise.reject('Error when getting project count');
-    return count;
   }
 }

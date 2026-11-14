@@ -1,0 +1,31 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// A tile of the grid, which can be moved and resized like the others, without the look of one: the
+// chips sit on the page. The selected one is teal, like the other selectors.
+:host(.g-grid-item) {
+  --chip-pressed-background: var(--category-filtering-selected-background);
+  --chip-pressed-color: var(--category-filtering-selected-color);
+
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:host(.g-grid-item:hover),
+:host(.g-grid-item.g-grid-item-dragging) {
+  box-shadow: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  @include responsive.responsive('medium') {
+    gap: 0.75rem;
+  }
+}

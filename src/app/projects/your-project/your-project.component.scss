@@ -1,41 +1,68 @@
 @use '../../../styles/responsive.scss' as responsive;
+@use '../project-entry';
 
+// Fills its entry of the list, in coral (the colour of the calls to action) where the projects are
+// white: a whole row on medium screens and up, a whole card on phones
 :host {
-  padding: 1.3rem 1.5rem;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  height: 100%;
   background-color: var(--your-project-background);
-}
-
-h2 {
-  font-size: var(--text-lg);
-  flex-grow: 1;
   color: var(--your-project-color);
-
-  @include responsive.responsive('medium') {
-    font-size: var(--text-xl);
-  }
 }
 
-p {
-  max-width: 60%;
-  flex-grow: 1;
-  align-content: flex-end;
-  color: var(--your-project-color);
-
-  @include responsive.responsive('medium') {
-    font-size: var(--text-xs);
-  }
+// Same columns as a project row, the action taking the ones of the type and the date
+.row {
+  @include project-entry.layout(
+    'number title' 'subtitle subtitle' 'action action',
+    'number title subtitle action action',
+    currentColor
+  );
 }
 
-h2,
-p {
+.number {
+  @include project-entry.number;
+  background-color: var(--your-project-number-background);
+  color: var(--your-project-number-color);
+}
+
+.title,
+.subtitle {
   margin: 0;
+  color: inherit;
 }
 
-.contact {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+.title {
+  grid-area: title;
+  align-self: center;
+  font-size: var(--text-lg);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  grid-area: subtitle;
+  align-self: start;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+
+  @include responsive.responsive('medium') {
+    align-self: center;
+  }
+}
+
+// Action button, lifted when the row is hovered
+.action {
+  grid-area: action;
+  justify-self: start;
+  align-self: end;
+
+  .row:hover & {
+    translate: -2px -2px;
+    box-shadow: 2px 2px 0 0 var(--round-button-border-color);
+  }
+
+  @include responsive.responsive('medium') {
+    justify-self: end;
+    align-self: center;
+  }
 }

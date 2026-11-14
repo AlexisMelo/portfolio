@@ -52,30 +52,53 @@
     }
   },
   "projectCard": {
-    "number": "N°{{number}}",
     "details": "See the {{label}} project"
   },
   "projects": {
     "heading": "Adventurer since 2017",
-    "description": "All my projects are here, sortable by many criteria ! Both the best and the worst form, together, the developer I am today :)",
-    "chips": "{count, plural, =1 {1 project} other {# projects}}",
+    "intro": {
+      "highlight": "All my projects are here",
+      "text": "The best ones, the not-so-good ones, the finished ones, and the ones I gave up on—together, they’ve made me the developer I am today !"
+    },
     "filtering": {
       "title": "Search by keyword",
       "placeholder": "Angular, website..."
-    },
-    "order": {
-      "label": "Date"
     },
     "all": {
       "title": "All projects",
       "count": "{count, plural, =0 {no projects} =1 {1 project} other {# projects}}"
     },
-    "ongoing": {
-      "status": "Ongoing"
+    "categoryFilter": {
+      "label": "Filter the projects by category",
+      "all": "All",
+      "featured": "Featured",
+      "angular": "Angular",
+      "company": "Company",
+      "personal": "Personal"
     },
-    "withSkill": {
-      "title": "With Angular",
-      "count": "{count, plural, =0 {no projects} =1 {1 project} other {# projects}}"
+    "statusFilter": {
+      "label": "Filter by status",
+      "completed": "Completed",
+      "ongoing": "Ongoing",
+      "abandoned": "Abandoned"
+    },
+    "status": {
+      "ongoing": "Ongoing",
+      "abandoned": "Abandoned"
+    },
+    "types": {
+      "website": "Website",
+      "desktop": "Desktop app",
+      "other": "Other"
+    },
+    "clearFilters": "Clear the filters",
+    "counter": {
+      "label": "{count, plural, =0 {No project shown} =1 {1 project shown} other {# projects shown}} out of {total}"
+    },
+    "list": {
+      "label": "Projects, the most recent first",
+      "number": "N°{{number}}",
+      "empty": "No project matches these filters."
     },
     "yourProject": {
       "title": "Your project, here",
@@ -94,6 +117,7 @@
       "accessible": "This project is accessible",
       "private": "This project is private"
     },
+    "sourceCode": "Source code on GitHub",
     "context": {
       "moreProjects": "See more projects"
     },
@@ -112,11 +136,17 @@
     "coworkers": {
       "solo": "Me, myself and I",
       "noCoworker": "No collaborator on this project !",
-      "photoAlt": "Photo of {{name}}"
+      "photoAlt": "Photo of {{name}}",
+      "previous": "Previous collaborator",
+      "next": "Next collaborator",
+      "profile": "See {{name}}'s profile"
     },
     "illustrations": {
       "noIllustrations": "No illustrations yet!",
-      "noIllustrationsAlt": "No illustration available"
+      "noIllustrationsAlt": "No illustration available",
+      "previous": "Previous illustration",
+      "next": "Next illustration",
+      "open": "Enlarge the illustrations"
     },
     "icon": {
       "alt": "Icon of {{label}}"

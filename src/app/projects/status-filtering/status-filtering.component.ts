@@ -1,119 +1,48 @@
-import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ListedProject } from '../listed-project.model';
 import { ProjectsService } from '../projects.service';
 import { Status } from '../status/status.model';
-import { StatusPipe } from '../status/status.pipe';
 
+/**
+ * Tile filtering the projects by status, a title above a line of chips like the search tile. Each
+ * chip has a dot in the colour of its status, the colour of the numbers in the list. One status at
+ * most: pressing the selected one shows every project again.
+ */
 @Component({
   selector: 'app-status-filtering',
-  imports: [MatIconModule],
+  imports: [TranslocoPipe],
   templateUrl: './status-filtering.component.html',
   styleUrl: './status-filtering.component.scss',
-  providers: [StatusPipe],
+  hostDirectives: [GridItemDirective],
 })
-export class StatusFilteringComponent
-  extends GridItemDirective
-  implements OnInit
-{
+export class StatusFilteringComponent {
   /**
    * Projects, filters and their results
    */
-  public projectsService = inject(ProjectsService);
+  protected readonly projectsService = inject(ProjectsService);
 
   /**
-   * Get a status from a project
+   * Statuses of the chips, in display order
    */
-  private statusPipe = inject(StatusPipe);
+  protected readonly statuses: ReadonlyArray<Status> = [
+    'completed',
+    'ongoing',
+    'abandoned',
+  ];
 
   /**
-   * Handle routing
+   * Id of the title, which labels the group of chips
    */
-  private router = inject(Router);
+  protected readonly titleId = 'projects-status-title';
 
   /**
-   * Handle routing
+   * Selects a status, or shows every status again when it is already selected
+   * @param status status of the pressed chip
    */
-  private route = inject(ActivatedRoute);
-
-  /**
-   * Stops following the URL when the page is left
-   */
-  private destroyRef = inject(DestroyRef);
-
-  /**
-   * All projects grouped by status
-   */
-  public projectsByStatus = computed(() => {
-    return this.projectsService.selectedProjects().reduce(
-      (acc, project) => {
-        const status = this.statusPipe.transform(project);
-        if (!acc[status]) {
-          acc[status] = [];
-        }
-        acc[status].push(project);
-        return acc;
-      },
-      {} as Record<Status, ListedProject[]>
+  protected toggle(status: Status) {
+    this.projectsService.selectStatus(
+      this.projectsService.selectedStatus() === status ? null : status
     );
-  });
-
-  /**
-   * Should all status be displayed ?
-   */
-  public showAll = computed(() => {
-    return this.projectsService.selectedStatus() === null;
-  });
-
-  /**
-   * Follows the status in the URL, which also changes while the page is displayed:
-   * the "ongoing" tile, and the browser's back and forward buttons
-   */
-  public ngOnInit() {
-    this.route.queryParamMap
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(params =>
-        this.projectsService.selectedStatus.set(
-          params.get('status') as Status | null
-        )
-      );
-  }
-
-  /**
-   * Select a status
-   * @param status
-   */
-  public selectStatus(status: Status) {
-    if (this.projectsService.selectedStatus() === status) {
-      this.clearStatus();
-      return;
-    }
-
-    this.projectsService.selectedStatus.set(status);
-
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        status: status,
-      },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-  /**
-   * Clear the selected status
-   */
-  public clearStatus() {
-    this.projectsService.selectedStatus.set(null);
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        status: null,
-      },
-      queryParamsHandling: 'merge',
-    });
   }
 }

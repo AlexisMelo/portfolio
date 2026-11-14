@@ -1,60 +1,71 @@
-import { Component, computed, inject } from '@angular/core';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {
+  afterRenderEffect,
+  Component,
+  computed,
+  inject,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { SocialLinkComponent } from 'src/app/home/social-link/social-link.component';
 import { GridDragDirective } from 'src/app/shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
-import { IsSelectedPipe } from 'src/app/shared/is-selected/is-selected.pipe';
-import { SkillSectionDescriptionComponent } from '../skills/skill-section-description/skill-section-description.component';
-import { KeyHeaderComponent } from './key-header/key-header.component';
-import { OngoingComponent } from './ongoing/ongoing.component';
-import { OrderComponent } from './order/order.component';
+import { CategoryFilteringComponent } from './category-filtering/category-filtering.component';
 import { ProjectCounterComponent } from './project-counter/project-counter.component';
 import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
-import { ProjectItemComponent } from './project-item/project-item.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectsHeadingComponent } from './projects-heading/projects-heading.component';
+import { ProjectsIntroComponent } from './projects-intro/projects-intro.component';
 import { ProjectsService } from './projects.service';
 import { StatusFilteringComponent } from './status-filtering/status-filtering.component';
-import { StatusPipe } from './status/status.pipe';
-import { WithSkillComponent } from './with-skill/with-skill.component';
-import { YourProjectComponent } from './your-project/your-project.component';
 
 /**
- * Projects page: every project, with filters, grouped by end year
+ * Projects page: every project in a list, the most recent first, with the filters around it
  */
 @Component({
   selector: 'app-projects',
   imports: [
-    SkillSectionDescriptionComponent,
-    ProjectCounterComponent,
-    ProjectItemComponent,
+    ProjectsHeadingComponent,
+    ProjectsIntroComponent,
     ProjectFilteringComponent,
+    ProjectCounterComponent,
     StatusFilteringComponent,
-    OrderComponent,
-    KeyHeaderComponent,
-    YourProjectComponent,
-    OngoingComponent,
-    WithSkillComponent,
+    CategoryFilteringComponent,
     SocialLinkComponent,
-    TranslocoPipe,
+    ProjectListComponent,
     GridEntranceDirective,
     GridDragDirective,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
-  providers: [IsSelectedPipe, StatusPipe, ProjectsService],
+  providers: [ProjectsService],
 })
 export class ProjectsComponent {
   /**
    * Projects, filters and their results
    */
-  public projectsService = inject(ProjectsService);
+  private readonly projectsService = inject(ProjectsService);
 
   /**
-   * Ids of the displayed projects in display order, changes each time the results are re-rendered
+   * Drag and drop of the tiles
    */
-  protected readonly resultsKey = computed(() =>
-    this.projectsService
-      .sortedGroupedProjects()
-      .flatMap(group => group.projects.map(project => project.id))
-      .join()
+  private readonly gridDrag = viewChild.required(GridDragDirective);
+
+  /**
+   * Number of projects in the list, which sets its height
+   */
+  private readonly listSize = computed(
+    () => this.projectsService.listedProjects().length
   );
+
+  /**
+   * Constructor
+   */
+  constructor() {
+    // The list grows and shrinks with the results: tiles moved by the visitor would keep it at its
+    // previous size, so the page goes back to the CSS layout once the new list is rendered
+    afterRenderEffect(() => {
+      this.listSize();
+      untracked(() => this.gridDrag().reset());
+    });
+  }
 }

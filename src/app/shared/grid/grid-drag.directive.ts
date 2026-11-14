@@ -834,9 +834,11 @@ export class GridDragDirective implements OnDestroy {
   }
 
   /**
-   * Goes back to the CSS layout: ends a drag, and removes the areas written on the tiles
+   * Goes back to the CSS layout: ends a drag, and removes the areas written on the tiles.
+   * Pages call it when a tile changes size with its content (the project list), whose new size
+   * the written areas would hide.
    */
-  private reset(): void {
+  public reset(): void {
     if (this.pinnedWidth === undefined && !this.drag) return;
 
     this.cancelGesture();

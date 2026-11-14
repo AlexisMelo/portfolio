@@ -1,11 +1,13 @@
-<h2>{{ 'projects.filtering.title' | transloco }}</h2>
+<label class="title" for="projects-search">{{
+  'projects.filtering.title' | transloco
+}}</label>
 
-<div class="g-grid-item-main-text">
-  <div class="search-bar">
-    <mat-icon class="small" [class.active]="hasFilter()">search</mat-icon>
-    <input
-      type="text"
-      [placeholder]="'projects.filtering.placeholder' | transloco"
-      [formControl]="filterFormControl" />
-  </div>
+<div class="search-bar">
+  <mat-icon class="small" aria-hidden="true">search</mat-icon>
+  <input
+    id="projects-search"
+    type="search"
+    autocomplete="off"
+    [placeholder]="'projects.filtering.placeholder' | transloco"
+    [formControl]="filterFormControl" />
 </div>

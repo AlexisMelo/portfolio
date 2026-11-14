@@ -5,159 +5,113 @@
   min-height: 80vh;
 }
 
-.projects {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 1fr;
-  min-height: 350px;
-
-  @include responsive.responsive('medium') {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.filters {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 3rem;
-
-  app-input {
-    flex-grow: 1;
-  }
-}
-
-app-key-header,
-app-project-item {
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-column: 5 / 9;
-  }
-}
-
-// As the pinned projects of the home page were: 4 by 2, then 4 by 3
-app-project-item {
-  grid-row: span 2;
-
-  @include responsive.responsive('medium') {
-    grid-row: span 3;
-  }
-}
-
-app-skill-section-description {
+app-projects-heading {
   grid-row: 1 / 3;
   grid-column: 1 / 5;
-  position: sticky;
+}
+
+app-projects-intro {
+  grid-row: 3 / 5;
+  grid-column: 1 / 4;
 
   @include responsive.responsive('medium') {
     grid-row: 1 / 3;
+    grid-column: 5 / 8;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 3 / 5;
     grid-column: 1 / 5;
   }
 }
 
 app-project-filtering {
-  grid-row: 4;
+  grid-row: 5;
   grid-column: 1 / 4;
 
   @include responsive.responsive('medium') {
-    position: sticky;
-    top: calc(2 * (var(--cell-size) + var(--gap)));
-    grid-row: 4;
-    grid-column: 1 / 4;
-  }
-}
-
-app-status-filtering {
-  grid-row: 3;
-  grid-column: 2 / 5;
-
-  @include responsive.responsive('medium') {
-    position: sticky;
-
-    top: calc(var(--cell-size) + var(--gap));
     grid-row: 3;
-    grid-column: 2 / 5;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 5;
+    grid-column: 1 / 5;
   }
 }
 
 app-project-counter {
-  grid-row: 3;
-  grid-column: 1;
-
-  @include responsive.responsive('medium') {
-    position: sticky;
-
-    top: calc(var(--cell-size) + var(--gap));
-    grid-row: 3;
-    grid-column: 1;
-  }
-}
-
-app-order {
-  grid-row: 4;
+  grid-row: 7;
   grid-column: 4;
 
   @include responsive.responsive('medium') {
-    position: sticky;
-    top: calc(2 * (var(--cell-size) + var(--gap)));
-    grid-row: 4;
-    grid-column: 4;
+    grid-row: 2;
+    grid-column: 8;
   }
-}
-
-app-order {
-  position: sticky;
-  z-index: 100;
-}
-
-// From medium up, the filters stay at the top of the page: the tiles below them scroll under them
-app-project-counter,
-app-status-filtering,
-app-project-filtering {
-  @include responsive.responsive('medium') {
-    z-index: 1;
-  }
-}
-
-// Tiles about the projects: below the filters, then in the right column, free on large screens
-app-your-project {
-  grid-row: 5;
-  grid-column: 1 / 5;
 
   @include responsive.responsive('large') {
     grid-row: 1;
-    grid-column: 9 / 13;
+    grid-column: 11;
   }
 }
 
-app-ongoing {
-  grid-row: 6 / 8;
-  grid-column: 1 / 3;
-
-  @include responsive.responsive('large') {
-    grid-row: 2 / 4;
-    grid-column: 9 / 11;
-  }
-}
-
-app-with-skill {
+app-status-filtering {
   grid-row: 6;
-  grid-column: 3 / 5;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 3;
+    grid-column: 5 / 9;
+  }
 
   @include responsive.responsive('large') {
-    grid-row: 2;
-    grid-column: 11 / 13;
+    grid-row: 6;
+    grid-column: 1 / 5;
   }
 }
 
-.github {
+app-category-filtering {
   grid-row: 7;
-  grid-column: 3 / 5;
+  grid-column: 1 / 4;
+
+  @include responsive.responsive('medium') {
+    grid-row: 4;
+    grid-column: 1 / 8;
+  }
 
   @include responsive.responsive('large') {
-    grid-row: 3;
-    grid-column: 11 / 13;
+    grid-row: 1;
+    grid-column: 5 / 11;
+  }
+}
+
+// At the end of the category chips' row, above the list
+.github {
+  grid-row: 3;
+  grid-column: 4;
+
+  @include responsive.responsive('medium') {
+    grid-row: 1;
+    grid-column: 8;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 1;
+    grid-column: 12;
+  }
+}
+
+// The list sets how many rows it needs (ProjectListComponent)
+app-project-list {
+  grid-row: 8 / span var(--project-list-card-rows);
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 5 / span var(--project-list-rows);
+    grid-column: 1 / 9;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 2 / span var(--project-list-rows);
+    grid-column: 5 / 13;
   }
 }

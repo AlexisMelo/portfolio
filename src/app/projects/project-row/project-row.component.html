@@ -1,0 +1,35 @@
+<a class="row" [routerLink]="link()">
+  <span class="number" [class]="status()">
+    {{ 'projects.list.number' | transloco: { number: number() } }}
+    @if (status() === 'abandoned') {
+      <span class="g-visually-hidden">
+        {{ 'projects.status.abandoned' | transloco }}
+      </span>
+    }
+  </span>
+
+  <h2 class="name">{{ project().label }}</h2>
+
+  <p class="description">{{ description() }}</p>
+
+  <!-- Two columns on medium screens and up, one line at the bottom of the card on phones -->
+  <span class="meta">
+    <span class="type">
+      @if (typeKey(); as key) {
+        {{ 'projects.types.' + key | transloco }}
+      } @else {
+        {{ project().project_type?.label }}
+      }
+    </span>
+
+    @if (status() === 'ongoing') {
+      <span class="date ongoing">{{
+        'projects.status.ongoing' | transloco
+      }}</span>
+    } @else if (project().end_date; as endDate) {
+      <span class="date">{{
+        endDate | translocoDate: { year: 'numeric' }
+      }}</span>
+    }
+  </span>
+</a>

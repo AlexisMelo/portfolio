@@ -1,40 +1,41 @@
 p {
   margin: 0;
   font-family: var(--title-font-family);
+  font-weight: 700;
   line-height: 1;
 }
 
 .numerator {
-  color: var(--styles-title-color);
   position: absolute;
-  left: 1.2rem;
-  top: 1.5rem;
+  left: 0.9rem;
+  top: 0.8rem;
+  color: var(--styles-title-color);
   font-size: var(--text-xxxl);
-  font-weight: bold;
-  min-width: var(--text-xxxl);
-  text-align: center;
 }
 
 .denominator {
   position: absolute;
-  right: 1rem;
-  bottom: 0.5rem;
-  color: var(--gray-300);
+  right: 0.9rem;
+  bottom: 0.7rem;
+  color: var(--styles-default-paragraph-color);
   font-size: var(--text-lg);
 }
 
 .separator {
-  height: 1px;
   position: absolute;
-  width: 30px;
-  background-color: var(--gray-300);
-  rotate: -45deg;
-  bottom: 2rem;
   right: 1.5rem;
+  bottom: 2rem;
+  width: 30px;
+  height: 2px;
+  background-color: var(--styles-default-paragraph-color);
+  rotate: -45deg;
 }
 
-app-reset-button {
+.reset {
+  --action-button-size: 24px;
+  --action-button-icon-size: 14px;
+
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 6px;
+  right: 6px;
 }

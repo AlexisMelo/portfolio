@@ -1,69 +1,80 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// Like the search tile: the title on top, the chips on one line at the bottom
 :host {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-end;
-}
-
-p {
-  margin: 0;
-  font-size: var(--text-xxl);
-  font-family: var(--title-font-family);
-  line-height: 1;
-  color: inherit;
-}
-
-.ongoing,
-.abandoned,
-.completed {
-  cursor: pointer;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 8px;
-  width: 60px;
-  height: 60px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  --mat-icon-size: 15px;
-  font-size: 0.9rem;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 0.3rem;
+  padding: 0.6rem 0.8rem 0.8rem;
+
+  @include responsive.responsive('medium') {
+    padding: 0.7rem 1rem 0.9rem;
+  }
+}
+
+.title {
+  margin: 0;
+  color: var(--styles-title-color);
   font-family: var(--title-font-family);
-  transition: 500ms ease-in-out;
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.2;
 
-  mat-icon {
-    font-size: var(--mat-icon-size);
-    width: var(--mat-icon-size);
-    height: var(--mat-icon-size);
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
   }
+}
 
-  // The selected status keeps its colour, the others turn grey
-  &.selected {
-    transform: translateY(0%);
+.chips {
+  display: flex;
+  gap: 0.4rem;
+
+  @include responsive.responsive('medium') {
+    gap: 0.5rem;
   }
+}
 
-  &:not(.allSelected):not(.selected) {
-    transform: translateY(50%);
-    background-color: var(--status-filtering-not-selected);
-    color: var(--status-filtering-not-selected-color);
+// Narrower than the category chips, so that the three fit on one line of the tile
+.g-chip {
+  gap: 0.35em;
+  padding-inline: 0.6em;
+  font-size: var(--text-sm);
 
-    p {
-      display: none;
-    }
+  @include responsive.responsive('medium') {
+    padding-inline: 0.65em;
   }
+}
+
+// Dot in the colour of the status, filled with the text colour once the chip is pressed
+.dot {
+  width: 0.6em;
+  height: 0.6em;
+  flex-shrink: 0;
+  border: 1.5px solid var(--grid-item-border-color);
+  border-radius: 50%;
+  background-color: var(--status-filtering-dot);
+  transition: background-color 200ms;
+
+  [aria-pressed='true'] > & {
+    background-color: currentColor;
+  }
+}
+
+.completed {
+  --status-filtering-dot: var(--status-filtering-completed);
+  --chip-pressed-background: var(--status-filtering-completed-pressed);
+  --chip-pressed-color: var(--status-filtering-completed-pressed-color);
 }
 
 .ongoing {
-  background-color: var(--status-filtering-ongoing);
-  color: var(--status-filtering-ongoing-color);
+  --status-filtering-dot: var(--status-filtering-ongoing);
+  --chip-pressed-background: var(--status-filtering-ongoing-pressed);
+  --chip-pressed-color: var(--status-filtering-ongoing-pressed-color);
 }
 
 .abandoned {
-  background-color: var(--status-filtering-abandoned);
-  color: var(--status-filtering-abandoned-color);
-}
-
-.completed {
-  background-color: var(--status-filtering-completed);
-  color: var(--status-filtering-completed-color);
+  --status-filtering-dot: var(--status-filtering-abandoned);
+  --chip-pressed-background: var(--status-filtering-abandoned-pressed);
+  --chip-pressed-color: var(--status-filtering-abandoned-pressed-color);
 }

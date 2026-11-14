@@ -13,6 +13,17 @@
   //availability
   --availability-dot-color: white;
 
+  //category-filtering
+  // Selected chip like the other teal backgrounds, under white text (AA)
+  --category-filtering-selected-background: var(--primary-900);
+  --category-filtering-selected-color: white;
+
+  //chip
+  --chip-background: var(--grid-item-default-bg);
+  --chip-color: var(--styles-title-color);
+  // Focus ring, light on the dark tiles
+  --chip-focus-color: white;
+
   //background-grid
   --background-grid-color: rgba(255, 255, 255, 0.16);
   --background-grid-glow-color: color-mix(
@@ -40,9 +51,6 @@
   --filter-chip-active-background-color: var(--gray-500);
   --filter-chip-details-menu-background-color: var(--gray-500);
   --filter-chip-hover-option-background-color: var(--gray-500);
-
-  //github
-  --github-icon-color: var(--gray-200);
 
   //grid-item
   --grid-item-default-bg: var(--gray-700);
@@ -97,10 +105,6 @@
   --navbar-logo-name: white;
   --navbar-background-color: var(--primary-900);
 
-  //ongoing
-  --ongoing-background: var(--grid-item-default-bg);
-  --ongoing-color: var(--mustard-500);
-
   //open-live
   --open-live-background-color: var(--grid-item-default-bg);
   --open-live-color: var(--coral-500);
@@ -126,13 +130,11 @@
   --project-duration-color: var(--gray-500);
 
   //project-filtering
+  // Field a step darker than the tile, its placeholder light enough to be read on it (AA)
   --project-filtering-placeholder-color: var(--gray-300);
-
-  //project-item
-  --project-item-completed-background: var(--gray-500);
-  --project-item-abandoned-background: var(--gray-500);
-  --project-item-abandoned-color: var(--gray-300);
-  --project-item-ongoing-background: var(--gray-500);
+  --project-filtering-background: var(--gray-800);
+  --project-filtering-icon-color: var(--gray-300);
+  --project-filtering-focus-color: white;
 
   //project-item-skill-list
   --project-item-skill-list-skill-background: var(--gray-600);
@@ -145,8 +147,36 @@
   --project-name-header-abandoned-color: var(--gray-300);
   --project-name-header-ongoing-background: var(--gray-500);
 
+  //project-list
+  --project-list-loader-color: var(--gray-500);
+
+  //project-row
+  // Numbers in the colour of their status, like the status chips: teal like the other teal
+  // backgrounds under white text; the ongoing and abandoned ones in the tiles' grey with mustard
+  // and coral text (AA). Hovered rows a step lighter than the tile, where the paragraph grey stays
+  // readable (AA).
+  --project-row-completed-background: var(--primary-900);
+  --project-row-completed-color: white;
+  --project-row-ongoing-background: var(--grid-item-default-bg);
+  --project-row-ongoing-color: var(--mustard-500);
+  --project-row-abandoned-background: var(--grid-item-default-bg);
+  --project-row-abandoned-color: var(--coral-500);
+  --project-row-hover-background: var(--gray-600);
+  // Focus ring, light on the dark rows
+  --project-row-focus-color: white;
+
   //projects-by-context
   --projects-by-context-icons-color: var(--white);
+
+  //projects-heading
+  // Like the mustard tiles: the tiles' grey with the title in mustard (AA)
+  --projects-heading-background: var(--grid-item-default-bg);
+  --projects-heading-color: var(--mustard-500);
+
+  //projects-intro
+  // Like the coral labels: the tiles' grey with the text in coral (AA)
+  --projects-intro-highlight-background: var(--grid-item-default-bg);
+  --projects-intro-highlight-color: var(--coral-500);
 
   //projects-preview
   // Box of the displayed project in the tiles' grey, with its texts in mustard, and the selected
@@ -179,9 +209,6 @@
   // Focus ring of the tabs and panels, light on the dark tile
   --recommendations-focus-color: white;
 
-  //reset-button
-  --reset-button-color: var(--gray-300);
-
   //resume
   --resume-background-color: var(--grid-item-default-bg);
   --resume-color: var(--mustard-500);
@@ -206,17 +233,22 @@
   //skill-highlight
   --skill-highlight-icon-color: var(--primary-500);
 
+  //skill-section-description
+  --skill-section-description-rule-color: var(--primary-500);
+
   //status-filtering
-  // Completed in teal like in light mode; the ongoing and abandoned chips grey, lighter than the
-  // tile, with their number and icon in mustard and coral. The numbers are large text (3:1).
-  --status-filtering-completed: var(--primary-900);
-  --status-filtering-completed-color: white;
-  --status-filtering-ongoing: var(--gray-600);
-  --status-filtering-ongoing-color: var(--mustard-500);
-  --status-filtering-abandoned: var(--gray-600);
-  --status-filtering-abandoned-color: var(--coral-500);
-  --status-filtering-not-selected: var(--gray-600);
-  --status-filtering-not-selected-color: var(--gray-400);
+  // Dots in the colours of the numbers in the list, the teal one lighter to stand out on the dark
+  // tile. Pressed chips: completed in teal like the other teal backgrounds under white text; the
+  // ongoing and abandoned ones keep the tiles' grey, with their text in mustard and coral (AA).
+  --status-filtering-completed: var(--primary-500);
+  --status-filtering-completed-pressed: var(--primary-900);
+  --status-filtering-completed-pressed-color: white;
+  --status-filtering-ongoing: var(--mustard-500);
+  --status-filtering-ongoing-pressed: var(--grid-item-default-bg);
+  --status-filtering-ongoing-pressed-color: var(--mustard-500);
+  --status-filtering-abandoned: var(--coral-500);
+  --status-filtering-abandoned-pressed: var(--grid-item-default-bg);
+  --status-filtering-abandoned-pressed-color: var(--coral-500);
 
   //styles
   --styles-title-color: var(--gray-100);
@@ -229,8 +261,11 @@
   --suggestion-chip-bg: var(--gray-500);
 
   //your-project
+  // Like the coral tiles: the tiles' grey with coral text (AA), its number too
   --your-project-background: var(--grid-item-default-bg);
   --your-project-color: var(--coral-500);
+  --your-project-number-background: var(--grid-item-default-bg);
+  --your-project-number-color: var(--coral-500);
 
   // From medium up, the links sit on the navbar background instead of tiles: they are white,
   // and the active one is a white rounded area with its text in the navbar colour

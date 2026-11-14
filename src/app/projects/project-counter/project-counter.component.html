@@ -1,16 +1,19 @@
-<p class="numerator">
-  {{ projectsService.selectedProjects().length }}
-</p>
-<div class="separator"></div>
-<p class="denominator">
-  {{ projectsService.projects().length }}
+<p class="g-visually-hidden" aria-live="polite">
+  @if (projectsService.loaded()) {
+    {{ 'projects.counter.label' | transloco: { count, total } }}
+  }
 </p>
 
-@if (
-  projectsService.selectedProjects().length < projectsService.projects().length
-) {
-  <app-reset-button
-    (click)="projectsService.clearFiltering()"
-    tabindex="0"
-    (keyup)="projectsService.clearFiltering()"></app-reset-button>
+<p class="numerator" aria-hidden="true">{{ count() }}</p>
+<div class="separator"></div>
+<p class="denominator" aria-hidden="true">{{ total() }}</p>
+
+@if (count() < total()) {
+  <button
+    type="button"
+    class="reset"
+    app-action-button
+    icon="undo"
+    [attr.aria-label]="'projects.clearFilters' | transloco"
+    (click)="projectsService.clearFiltering()"></button>
 }

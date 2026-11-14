@@ -1,39 +1,19 @@
 <div class="g-grid-container">
-  <div
-    class="g-grid"
-    appGridEntrance
-    appGridDrag
-    [replayKey]="resultsKey()"
-    replaySelector="app-key-header, app-project-item">
-    <app-skill-section-description
-      [mainText]="'projects.heading' | transloco"
-      [secondaryText]="
-        'projects.description' | transloco
-      "></app-skill-section-description>
+  <div class="g-grid" appGridEntrance appGridDrag>
+    <app-projects-heading></app-projects-heading>
+
+    <app-projects-intro></app-projects-intro>
+
+    <app-project-filtering></app-project-filtering>
 
     <app-project-counter></app-project-counter>
 
     <app-status-filtering></app-status-filtering>
 
-    <app-project-filtering></app-project-filtering>
+    <app-category-filtering></app-category-filtering>
 
-    <app-order></app-order>
+    <app-social-link class="github" network="github" iconOnly></app-social-link>
 
-    <app-your-project></app-your-project>
-    <app-ongoing></app-ongoing>
-    <app-with-skill></app-with-skill>
-    <app-social-link class="github" network="github"></app-social-link>
-
-    @for (group of projectsService.sortedGroupedProjects(); track group.key) {
-      @let chipLabel =
-        'projects.chips' | transloco: { count: group.projects.length };
-      <app-key-header [chips]="[chipLabel]">
-        {{ group.key }}
-      </app-key-header>
-
-      @for (project of group.projects; track project.id) {
-        <app-project-item [project]="project"></app-project-item>
-      }
-    }
+    <app-project-list></app-project-list>
   </div>
 </div>

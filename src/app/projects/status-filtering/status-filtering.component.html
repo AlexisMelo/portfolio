@@ -1,38 +1,17 @@
-<div
-  class="completed status-filter"
-  (click)="selectStatus('completed')"
-  tabindex="0"
-  (keyup)="selectStatus('completed')"
-  [class.allSelected]="showAll()"
-  [class.selected]="projectsService.selectedStatus() === 'completed'">
-  <p>
-    {{ projectsByStatus().completed ? projectsByStatus().completed.length : 0 }}
-  </p>
-  <mat-icon>check</mat-icon>
-</div>
+<p class="title" [id]="titleId">
+  {{ 'projects.statusFilter.label' | transloco }}
+</p>
 
-<div
-  class="ongoing status-filter"
-  (click)="selectStatus('ongoing')"
-  tabindex="0"
-  (keyup)="selectStatus('ongoing')"
-  [class.allSelected]="showAll()"
-  [class.selected]="projectsService.selectedStatus() === 'ongoing'">
-  <p>
-    {{ projectsByStatus().ongoing ? projectsByStatus().ongoing.length : 0 }}
-  </p>
-  <mat-icon>settings</mat-icon>
-</div>
-
-<div
-  class="abandoned status-filter"
-  (click)="selectStatus('abandoned')"
-  tabindex="0"
-  (keyup)="selectStatus('abandoned')"
-  [class.allSelected]="showAll()"
-  [class.selected]="projectsService.selectedStatus() === 'abandoned'">
-  <p>
-    {{ projectsByStatus().abandoned ? projectsByStatus().abandoned.length : 0 }}
-  </p>
-  <mat-icon>delete</mat-icon>
+<div class="chips" role="group" [attr.aria-labelledby]="titleId">
+  @for (status of statuses; track status) {
+    <button
+      type="button"
+      class="g-chip"
+      [class]="status"
+      [attr.aria-pressed]="projectsService.selectedStatus() === status"
+      (click)="toggle(status)">
+      <span class="dot" aria-hidden="true"></span>
+      {{ 'projects.statusFilter.' + status | transloco }}
+    </button>
+  }
 </div>
