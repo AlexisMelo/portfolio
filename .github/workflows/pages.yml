@@ -1,0 +1,54 @@
+# Publishes the relooking branch on GitHub Pages, at https://alexismelo.github.io/portfolio/.
+# Production (amelo.dev) is deployed from main by docker-publish.yml.
+name: GitHub Pages
+
+on:
+  push:
+    branches: ['relooking']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time, the latest push wins
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # No lock file in the repository, same install as the Dockerfile
+      - run: npm install --legacy-peer-deps
+
+      # Served under /portfolio/, not at the root of a domain
+      - run: npx ng build --base-href /portfolio/
+
+      # Kept out of search results, amelo.dev is the real site. Added here rather than in index.html so it never reaches production.
+      - run: sed -i 's|<base href="/portfolio/">|&<meta name="robots" content="noindex">|' dist/portfolio/browser/index.html
+
+      # GitHub Pages has no fallback to index.html: its 404 page serves the app for the other routes
+      - run: cp dist/portfolio/browser/index.html dist/portfolio/browser/404.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/portfolio/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
