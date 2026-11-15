@@ -1,7 +1,17 @@
-<!-- LCP image on mobile: priority, and preloaded in index.html -->
-<img
-  ngSrc="photos/avatar-bust-arms-crossed.webp"
-  width="200"
-  height="276"
-  priority
-  alt="" />
+@if (pose() === 'shrugging') {
+  <!-- LCP image of the projects page, whose title waits for the projects: priority -->
+  <img
+    ngSrc="photos/avatar-bust-shrugging.webp"
+    width="400"
+    height="376"
+    priority
+    alt="" />
+} @else {
+  <!-- LCP image on mobile: priority, and preloaded in index.html -->
+  <img
+    ngSrc="photos/avatar-bust-arms-crossed.webp"
+    width="200"
+    height="276"
+    priority
+    alt="" />
+}

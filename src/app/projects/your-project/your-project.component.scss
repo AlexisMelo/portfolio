@@ -31,22 +31,31 @@
   color: inherit;
 }
 
+// The sizes of the project rows: bigger on the phone cards, the title on one line there
 .title {
   grid-area: title;
   align-self: center;
-  font-size: var(--text-lg);
+  overflow: hidden;
+  font-size: var(--text-xxl);
   line-height: 1.15;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
 }
 
 .subtitle {
   grid-area: subtitle;
   align-self: start;
-  font-size: var(--text-sm);
+  font-size: var(--text-md);
   line-height: 1.4;
 
   @include responsive.responsive('medium') {
     align-self: center;
+    font-size: var(--text-sm);
   }
 }
 

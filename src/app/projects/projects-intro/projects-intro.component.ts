@@ -1,15 +1,14 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 /**
- * Tile under the title of the projects page, introducing the projects: a coloured label and the
- * text under it, with the avatar shrugging on their right
+ * Speech bubble of the projects page: what the avatar of the tile on its right says about the
+ * projects, between big quote marks
  */
 @Component({
   selector: 'app-projects-intro',
-  imports: [TranslocoPipe, NgOptimizedImage],
+  imports: [TranslocoPipe],
   templateUrl: './projects-intro.component.html',
   styleUrl: './projects-intro.component.scss',
   hostDirectives: [GridItemDirective],

@@ -101,6 +101,18 @@ export class ProjectsService {
   public readonly filter = signal<string | null>(null);
 
   /**
+   * Whether at least one filter is applied
+   */
+  public readonly hasFilters = computed(
+    () =>
+      !!this.filter() ||
+      this.selectedCategory() !== null ||
+      this.selectedStatus() !== null ||
+      this.selectedSkillIds().length > 0 ||
+      this.selectedContextIds().length > 0
+  );
+
+  /**
    * Number of every project by id: its rank by end date, the oldest being n°1 and the ongoing ones
    * last. It does not depend on the filters, so a project keeps its number in every list.
    */

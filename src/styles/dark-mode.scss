@@ -172,11 +172,9 @@
   // Like the mustard tiles: the tiles' grey with the title in mustard (AA)
   --projects-heading-background: var(--grid-item-default-bg);
   --projects-heading-color: var(--mustard-500);
-
-  //projects-intro
-  // Like the coral labels: the tiles' grey with the text in coral (AA)
-  --projects-intro-highlight-background: var(--grid-item-default-bg);
-  --projects-intro-highlight-color: var(--coral-500);
+  // Badge of the total like the coral stickers: the tiles' grey with the text in coral (AA)
+  --projects-heading-total-background: var(--grid-item-default-bg);
+  --projects-heading-total-color: var(--coral-500);
 
   //projects-preview
   // Box of the displayed project in the tiles' grey, with its texts in mustard, and the selected

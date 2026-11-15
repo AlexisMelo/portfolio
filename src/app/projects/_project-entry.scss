@@ -19,7 +19,7 @@ $columns: 4.4rem minmax(0, 1.2fr) minmax(0, 1.6fr) 6.5rem 5rem;
   column-gap: 0.75rem;
   row-gap: 0.5rem;
   height: 100%;
-  padding: 0.9rem 1rem;
+  padding: 1.5rem;
   color: inherit;
   text-decoration: none;
 
@@ -39,9 +39,10 @@ $columns: 4.4rem minmax(0, 1.2fr) minmax(0, 1.6fr) 6.5rem 5rem;
 }
 
 // Number sticker, in the `.row` link: it tilts a bit more and lifts when the row is hovered. Its
-// colours are set by the entry.
+// colours are set by the entry. Centred on its line, it keeps its height next to a bigger title.
 @mixin number {
   grid-area: number;
+  align-self: center;
   justify-self: start;
   @include sticker.sticker;
 }

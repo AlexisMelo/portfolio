@@ -1,64 +1,71 @@
 @use '../../../styles/responsive.scss' as responsive;
 
-// The text, with the label stuck over the top left corner and the avatar over the bottom right one,
-// leaning out of the tile. The avatar's widths leave the text room in both languages (the English
-// one is longer).
+// Its tail crosses the gap towards the avatar tile on its right, level with the middle of its first
+// row. The tail is a square turned on its corner, its two outer sides bordered, hiding the bubble's
+// border where it starts.
 :host(.g-grid-item) {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: minmax(0, 1fr);
-  column-gap: 0.5rem;
+  display: flex;
+  align-items: center;
   overflow: visible;
-}
+  padding: 0.5rem 0.9rem;
 
-.avatar {
-  position: absolute;
-  bottom: -1.2rem;
-  right: -3.7rem;
-  width: 80px;
-  height: auto;
-  scale: -1 1;
-  z-index: 1;
-  rotate: 5deg;
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--cell-size) / 2 - 8px);
+    right: -10px;
+    width: 16px;
+    height: 16px;
+    border-top: var(--grid-item-border);
+    border-right: var(--grid-item-border);
+    background-color: var(--grid-item-default-bg);
+    rotate: 45deg;
+  }
 
   @include responsive.responsive('medium') {
-    width: 140px;
-  }
-
-  @include responsive.responsive('large') {
-    width: 200px;
+    padding: 1.2rem 1.4rem;
   }
 }
 
-// Larger once the tile is wide enough for it next to the avatar
+blockquote {
+  margin: 0;
+}
+
 p {
-  grid-area: 1 / 1;
-  font-size: var(--text-sm);
-  line-height: 1.35;
+  color: var(--styles-title-color);
+  font-family: var(--title-font-family);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.25;
   text-wrap: pretty;
-  padding-top: 2rem;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
 
   @include responsive.responsive('large') {
-    font-size: var(--text-md);
-    line-height: 1.45;
+    font-size: var(--text-xl);
   }
 }
 
-// Sticker over the top left corner, like the other labels stuck on tiles
-.highlight {
-  position: absolute;
-  top: -0.5rem;
-  left: -0.5rem;
-  width: fit-content;
-  margin: 0 0 0.6rem;
-  padding: 0.4rem 1rem;
-  border: var(--grid-item-border);
-  border-radius: 8px;
-  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
-  background-color: var(--projects-intro-highlight-background);
-  color: var(--projects-intro-highlight-color);
-  font-family: var(--title-font-family);
+// Bigger than the text, hollow: filled with the bubble's colour, outlined in the text colour, with a
+// hard shadow like the stickers. Without line height, they do not push the lines apart.
+.mark {
+  display: inline-block;
+  color: var(--grid-item-default-bg);
+  font-size: 3em;
   font-weight: 700;
-  line-height: 1.3;
-  rotate: -2deg;
+  line-height: 0;
+  vertical-align: -0.47em;
+  -webkit-text-stroke: 4px var(--styles-title-color);
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 var(--grid-item-border-color);
+
+  &:first-child {
+    margin-inline-end: 0.12em;
+  }
+
+  &:last-child {
+    margin-inline-start: 0.12em;
+  }
 }

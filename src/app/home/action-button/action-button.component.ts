@@ -2,12 +2,13 @@ import { booleanAttribute, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 /**
- * Places of an action button laid over its tile, from its bottom corners
+ * Places of an action button laid over its tile, from its corners
  */
 export type ActionButtonPosition =
   | 'bottom-left'
   | 'bottom-left-2'
-  | 'bottom-right';
+  | 'bottom-right'
+  | 'top-right';
 
 /**
  * Every round button of the tiles: round with an icon, a pill with the text it holds. It goes on a

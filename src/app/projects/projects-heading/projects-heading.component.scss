@@ -1,22 +1,154 @@
 @use '../../../styles/responsive.scss' as responsive;
+@use '../sticker';
 
-// The title at the bottom left, on two balanced lines, like a poster
+// One row on phones: the number, then the words on two lines. From medium screens up, a poster:
+// the number big at the bottom left, the words on one line under it.
 :host {
   display: flex;
-  align-items: flex-end;
-  padding: 1.4rem 1.6rem;
+  align-items: center;
+  padding: 0 1.2rem;
   background-color: var(--projects-heading-background);
 
   @include responsive.responsive('medium') {
-    padding: 1.8rem 2rem;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    padding: 1.4rem 1.6rem;
   }
 }
 
-h2 {
-  margin: 0;
+.title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   color: var(--projects-heading-color);
-  font-size: var(--text-xxxxl);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
+  line-height: 1;
+
+  @include responsive.responsive('medium') {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+}
+
+// The badge of the total leans on the bottom right of the shown number
+.count {
+  display: flex;
+  align-items: flex-end;
+  font-size: 56px;
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+
+  @include responsive.responsive('medium') {
+    font-size: 100px;
+  }
+
+  @include responsive.responsive('large') {
+    font-size: 112px;
+  }
+}
+
+// Hidden while every project is shown, it pops up when filters hide some. On phones, where the
+// words follow the number, it is left out of the layout while hidden, so that the words stand next
+// to the number until it shows. From medium screens up, the words are under the number and the
+// badge keeps its place.
+.total {
+  @include sticker.sticker(-8deg);
+  margin: 0 0 -0.4rem -0.4rem;
+  background-color: var(--projects-heading-total-background);
+  color: var(--projects-heading-total-color);
+  letter-spacing: 0;
+  opacity: 0;
+  scale: 0.4;
+  transition:
+    opacity 200ms ease-out,
+    scale 250ms ease-out;
+
+  &:not(.shown) {
+    display: none;
+
+    @include responsive.responsive('medium') {
+      display: block;
+    }
+  }
+
+  &.shown {
+    opacity: 1;
+    scale: 1;
+
+    // Where it is put back in the layout, the pop-up starts from there
+    @starting-style {
+      opacity: 0;
+      scale: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  @include responsive.responsive('medium') {
+    margin: 0 0 -0.3rem -0.2rem;
+    font-size: var(--text-lg);
+  }
+}
+
+// Regular words around the bold year, which changes with the filters
+.words {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: var(--text-lg);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+
+  @include responsive.responsive('medium') {
+    flex-direction: row;
+    gap: 0.3em;
+    font-size: var(--text-xxl);
+  }
+}
+
+/* Counters */
+
+// Registered as integers, so that the counters showing them count from the old value to the new one
+@property --projects-count {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --projects-year {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+// Tabular figures and two digits at least ("03"): the number keeps its width, and the badge its place
+.number {
+  counter-reset: projects-count var(--projects-count);
+  font-variant-numeric: tabular-nums;
+  transition: --projects-count 800ms ease-out;
+
+  &::after {
+    content: counter(projects-count, decimal-leading-zero);
+  }
+}
+
+.year {
+  counter-reset: projects-year var(--projects-year);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  transition: --projects-year 800ms ease-out;
+
+  &::after {
+    content: counter(projects-year);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .number,
+  .year {
+    transition: none;
+  }
 }

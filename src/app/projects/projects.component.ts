@@ -6,11 +6,11 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { ImageComponent } from 'src/app/home/image/image.component';
 import { SocialLinkComponent } from 'src/app/home/social-link/social-link.component';
 import { GridDragDirective } from 'src/app/shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
 import { CategoryFilteringComponent } from './category-filtering/category-filtering.component';
-import { ProjectCounterComponent } from './project-counter/project-counter.component';
 import { ProjectFilteringComponent } from './project-filtering/project-filtering.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectsHeadingComponent } from './projects-heading/projects-heading.component';
@@ -26,8 +26,8 @@ import { StatusFilteringComponent } from './status-filtering/status-filtering.co
   imports: [
     ProjectsHeadingComponent,
     ProjectsIntroComponent,
+    ImageComponent,
     ProjectFilteringComponent,
-    ProjectCounterComponent,
     StatusFilteringComponent,
     CategoryFilteringComponent,
     SocialLinkComponent,

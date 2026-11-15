@@ -55,10 +55,13 @@
     "details": "Voir le projet {{label}}"
   },
   "projects": {
-    "heading": "Aventurier depuis 2017",
+    "heading": {
+      "projects": "{count, plural, =0 {projet} =1 {projet} other {projets}}",
+      "since": "depuis",
+      "shown": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
+    },
     "intro": {
-      "highlight": "Tous mes projets sont ici",
-      "text": "Les meilleurs, les moins bons, les terminés et les abandonnés font, ensemble, le développeur que je suis aujourd'hui !"
+      "quote": "Ils sont tous là ! Les meilleurs comme les moins bons ont fait de moi le développeur que je suis aujourd'hui"
     },
     "filtering": {
       "title": "Chercher par mot-clé",
@@ -93,9 +96,6 @@
       "other": "Autre"
     },
     "clearFilters": "Effacer les filtres",
-    "counter": {
-      "label": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
-    },
     "list": {
       "label": "Projets, du plus récent au plus ancien",
       "number": "N°{{number}}",

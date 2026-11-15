@@ -12,7 +12,8 @@
 
   <p class="description">{{ description() }}</p>
 
-  <!-- Two columns on medium screens and up, one line at the bottom of the card on phones -->
+  <!-- Two columns on medium screens and up, one line at the bottom of the card on phones, where a
+  dot separates them -->
   <span class="meta">
     <span class="type">
       @if (typeKey(); as key) {
@@ -23,10 +24,12 @@
     </span>
 
     @if (status() === 'ongoing') {
+      <span class="separator" aria-hidden="true">·</span>
       <span class="date ongoing">{{
         'projects.status.ongoing' | transloco
       }}</span>
     } @else if (project().end_date; as endDate) {
+      <span class="separator" aria-hidden="true">·</span>
       <span class="date">{{
         endDate | translocoDate: { year: 'numeric' }
       }}</span>

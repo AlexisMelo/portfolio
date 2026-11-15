@@ -165,11 +165,10 @@
   // Mustard title tile, the accent, under the darkest grey (AA)
   --projects-heading-background: var(--mustard-500);
   --projects-heading-color: var(--gray-800);
-
-  //projects-intro
-  // Coral label, like the projects preview one, under the darkest grey (AA)
-  --projects-intro-highlight-background: var(--coral-500);
-  --projects-intro-highlight-color: var(--gray-800);
+  // Coral badge of the total next to the shown number, like the abandoned status, under the darkest
+  // grey (AA)
+  --projects-heading-total-background: var(--coral-500);
+  --projects-heading-total-color: var(--gray-800);
 
   //projects-preview
   // Box of the displayed project in mustard, and the selected tab with it; the other tabs white;

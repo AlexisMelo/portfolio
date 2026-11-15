@@ -28,3 +28,20 @@ img {
     margin-bottom: -20px;
   }
 }
+
+// One cell next to the speech bubble on its left: mirrored to face it, leaning out of the bottom
+// right corner
+:host(.shrugging) img {
+  left: auto;
+  right: -16px;
+  width: 108px;
+  margin: 0 0 -14px;
+  scale: -1 1;
+  rotate: 5deg;
+
+  @include responsive.responsive('medium') {
+    right: -26px;
+    width: 118px;
+    margin: 0 0 -14px;
+  }
+}

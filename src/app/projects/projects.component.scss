@@ -5,13 +5,20 @@
   min-height: 80vh;
 }
 
+// One row on phones, two from medium screens up
 app-projects-heading {
-  grid-row: 1 / 3;
+  grid-row: 1;
   grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 1 / 3;
+  }
 }
 
+// The speech bubble, with the avatar on the right of its first row, GitHub under the avatar from
+// medium screens up
 app-projects-intro {
-  grid-row: 3 / 5;
+  grid-row: 2;
   grid-column: 1 / 4;
 
   @include responsive.responsive('medium') {
@@ -21,7 +28,37 @@ app-projects-intro {
 
   @include responsive.responsive('large') {
     grid-row: 3 / 5;
-    grid-column: 1 / 5;
+    grid-column: 1 / 4;
+  }
+}
+
+app-image {
+  grid-row: 2;
+  grid-column: 4;
+
+  @include responsive.responsive('medium') {
+    grid-row: 1;
+    grid-column: 8;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 3;
+    grid-column: 4;
+  }
+}
+
+.github {
+  grid-row: 5;
+  grid-column: 4;
+
+  @include responsive.responsive('medium') {
+    grid-row: 2;
+    grid-column: 8;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 4;
+    grid-column: 4;
   }
 }
 
@@ -31,32 +68,17 @@ app-project-filtering {
 
   @include responsive.responsive('medium') {
     grid-row: 3;
+    grid-column: 1 / 5;
   }
 
   @include responsive.responsive('large') {
     grid-row: 5;
-    grid-column: 1 / 5;
   }
 }
 
-app-project-counter {
-  grid-row: 8;
-  grid-column: 4;
-
-  @include responsive.responsive('medium') {
-    grid-row: 2;
-    grid-column: 8;
-  }
-
-  @include responsive.responsive('large') {
-    grid-row: 1;
-    grid-column: 11;
-  }
-}
-
-// Two rows for its three bars, at every width
+// Two rows for its three bars, at every width. Above the search on phones.
 app-status-filtering {
-  grid-row: 6 / 8;
+  grid-row: 3 / 5;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
@@ -71,43 +93,26 @@ app-status-filtering {
 }
 
 app-category-filtering {
-  grid-row: 8;
-  grid-column: 1 / 4;
+  grid-row: 6;
+  grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 5;
-    grid-column: 1 / 8;
+    grid-row: 4;
   }
 
   @include responsive.responsive('large') {
     grid-row: 1;
-    grid-column: 5 / 11;
-  }
-}
-
-// At the end of the category chips' row, above the list
-.github {
-  grid-row: 3;
-  grid-column: 4;
-
-  @include responsive.responsive('medium') {
-    grid-row: 1;
-    grid-column: 8;
-  }
-
-  @include responsive.responsive('large') {
-    grid-row: 1;
-    grid-column: 12;
+    grid-column: 5 / 13;
   }
 }
 
 // The list sets how many rows it needs (ProjectListComponent)
 app-project-list {
-  grid-row: 9 / span var(--project-list-card-rows);
+  grid-row: 7 / span var(--project-list-card-rows);
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 6 / span var(--project-list-rows);
+    grid-row: 5 / span var(--project-list-rows);
     grid-column: 1 / 9;
   }
 

@@ -101,3 +101,9 @@ mat-icon {
 :host(.bottom-right) {
   right: 16px;
 }
+
+:host(.top-right) {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
