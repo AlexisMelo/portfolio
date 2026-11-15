@@ -80,7 +80,8 @@
       "label": "Filter by status",
       "completed": "Completed",
       "ongoing": "Ongoing",
-      "abandoned": "Abandoned"
+      "abandoned": "Abandoned",
+      "count": "{count, plural, =0 {no project shown} =1 {1 project shown} other {# projects shown}} out of {total}"
     },
     "status": {
       "ongoing": "Ongoing",

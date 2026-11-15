@@ -1,80 +1,116 @@
-@use '../../../styles/responsive.scss' as responsive;
+@use '../sticker';
 
-// Like the search tile: the title on top, the chips on one line at the bottom
-:host {
+// The tags hang out of the tile, past its right border
+:host(.g-grid-item) {
+  --tile-padding: 1rem;
+
+  overflow: visible;
+  padding: 0.9rem var(--tile-padding);
+}
+
+.rows {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+}
+
+.row {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.3rem;
-  padding: 0.6rem 0.8rem 0.8rem;
+  align-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: opacity 200ms;
 
-  @include responsive.responsive('medium') {
-    padding: 0.7rem 1rem 0.9rem;
+  &:focus-visible {
+    outline: 2px solid var(--chip-focus-color);
+    outline-offset: 3px;
   }
 }
 
-.title {
-  margin: 0;
+.dimmed {
+  opacity: 0.5;
+}
+
+/* Bar */
+
+// Every project: the colour of the status, faded after the shown projects
+.track {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 2.2em;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--bar-color) 30%, transparent);
+}
+
+// The shown projects, ended by an ink line. It gives way to the count when it would not fit. The
+// 6px radius is the track's minus its border.
+.fill {
+  flex: 0 1 0%;
+  align-self: stretch;
+  min-width: 0;
+  border-start-start-radius: 6px;
+  border-end-start-radius: 6px;
+  border-inline-end: var(--grid-item-border);
+  background-color: var(--bar-color);
+  transition: flex-basis 400ms ease-out;
+
+  &.empty {
+    border-inline-end: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.count {
+  flex: none;
+  padding-inline: 0.45em;
   color: var(--styles-title-color);
   font-family: var(--title-font-family);
-  font-size: var(--text-md);
   font-weight: 700;
-  line-height: 1.2;
-
-  @include responsive.responsive('medium') {
-    font-size: var(--text-lg);
-  }
+  line-height: 1;
 }
 
-.chips {
-  display: flex;
-  gap: 0.4rem;
+/* Tag */
 
-  @include responsive.responsive('medium') {
-    gap: 0.5rem;
-  }
+// Sticker like the numbers of the list, in the same colours, over the end of the bar: it rises
+// above the bar and reaches past the tile's border by 0.5rem (the track's border, the tile's
+// padding and border, then 0.5rem). Being in the bar's flow, it keeps the count from going under it.
+.tag {
+  @include sticker.sticker(-4deg);
+  flex: none;
+  align-self: flex-start;
+  margin-block-start: -0.8em;
+  margin-inline: auto calc(-1 * (var(--tile-padding) + 0.5rem + 4px));
+  background-color: var(--tag-background);
+  color: var(--tag-color);
 }
 
-// Narrower than the category chips, so that the three fit on one line of the tile
-.g-chip {
-  gap: 0.35em;
-  padding-inline: 0.6em;
-  font-size: var(--text-sm);
-
-  @include responsive.responsive('medium') {
-    padding-inline: 0.65em;
-  }
-}
-
-// Dot in the colour of the status, filled with the text colour once the chip is pressed
-.dot {
-  width: 0.6em;
-  height: 0.6em;
-  flex-shrink: 0;
-  border: 1.5px solid var(--grid-item-border-color);
-  border-radius: 50%;
-  background-color: var(--status-filtering-dot);
-  transition: background-color 200ms;
-
-  [aria-pressed='true'] > & {
-    background-color: currentColor;
-  }
-}
+/* Colours */
 
 .completed {
-  --status-filtering-dot: var(--status-filtering-completed);
-  --chip-pressed-background: var(--status-filtering-completed-pressed);
-  --chip-pressed-color: var(--status-filtering-completed-pressed-color);
+  --bar-color: var(--status-filtering-completed);
+  --tag-background: var(--status-filtering-completed-tag);
+  --tag-color: var(--status-filtering-completed-tag-color);
 }
 
 .ongoing {
-  --status-filtering-dot: var(--status-filtering-ongoing);
-  --chip-pressed-background: var(--status-filtering-ongoing-pressed);
-  --chip-pressed-color: var(--status-filtering-ongoing-pressed-color);
+  --bar-color: var(--status-filtering-ongoing);
+  --tag-background: var(--status-filtering-ongoing-tag);
+  --tag-color: var(--status-filtering-ongoing-tag-color);
 }
 
 .abandoned {
-  --status-filtering-dot: var(--status-filtering-abandoned);
-  --chip-pressed-background: var(--status-filtering-abandoned-pressed);
-  --chip-pressed-color: var(--status-filtering-abandoned-pressed-color);
+  --bar-color: var(--status-filtering-abandoned);
+  --tag-background: var(--status-filtering-abandoned-tag);
+  --tag-color: var(--status-filtering-abandoned-tag-color);
 }

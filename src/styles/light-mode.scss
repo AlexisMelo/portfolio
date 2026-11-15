@@ -227,17 +227,17 @@
   --skill-section-description-rule-color: var(--primary-600);
 
   //status-filtering
-  // One palette colour per status, the one of the numbers in the list: the dots (with an ink
-  // border), and the pressed chip, with dark text on the light ones (AA)
+  // One palette colour per status, the one of the numbers in the list: the bars (faded after the
+  // shown projects), and the tags, with dark text on the light ones (AA)
   --status-filtering-completed: var(--primary-600);
-  --status-filtering-completed-pressed: var(--primary-600);
-  --status-filtering-completed-pressed-color: white;
+  --status-filtering-completed-tag: var(--primary-600);
+  --status-filtering-completed-tag-color: white;
   --status-filtering-ongoing: var(--mustard-500);
-  --status-filtering-ongoing-pressed: var(--mustard-500);
-  --status-filtering-ongoing-pressed-color: var(--gray-800);
+  --status-filtering-ongoing-tag: var(--mustard-500);
+  --status-filtering-ongoing-tag-color: var(--gray-800);
   --status-filtering-abandoned: var(--coral-500);
-  --status-filtering-abandoned-pressed: var(--coral-500);
-  --status-filtering-abandoned-pressed-color: var(--gray-800);
+  --status-filtering-abandoned-tag: var(--coral-500);
+  --status-filtering-abandoned-tag-color: var(--gray-800);
 
   //styles
   --styles-title-color: var(--gray-700);

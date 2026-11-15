@@ -237,18 +237,19 @@
   --skill-section-description-rule-color: var(--primary-500);
 
   //status-filtering
-  // Dots in the colours of the numbers in the list, the teal one lighter to stand out on the dark
-  // tile. Pressed chips: completed in teal like the other teal backgrounds under white text; the
-  // ongoing and abandoned ones keep the tiles' grey, with their text in mustard and coral (AA).
+  // Bars in the colours of the numbers in the list, the teal one lighter to stand out on the dark
+  // tile. Tags like the numbers: completed in teal like the other teal backgrounds under white
+  // text; the ongoing and abandoned ones keep the tiles' grey, with their text in mustard and coral
+  // (AA).
   --status-filtering-completed: var(--primary-500);
-  --status-filtering-completed-pressed: var(--primary-900);
-  --status-filtering-completed-pressed-color: white;
+  --status-filtering-completed-tag: var(--primary-900);
+  --status-filtering-completed-tag-color: white;
   --status-filtering-ongoing: var(--mustard-500);
-  --status-filtering-ongoing-pressed: var(--grid-item-default-bg);
-  --status-filtering-ongoing-pressed-color: var(--mustard-500);
+  --status-filtering-ongoing-tag: var(--grid-item-default-bg);
+  --status-filtering-ongoing-tag-color: var(--mustard-500);
   --status-filtering-abandoned: var(--coral-500);
-  --status-filtering-abandoned-pressed: var(--grid-item-default-bg);
-  --status-filtering-abandoned-pressed-color: var(--coral-500);
+  --status-filtering-abandoned-tag: var(--grid-item-default-bg);
+  --status-filtering-abandoned-tag-color: var(--coral-500);
 
   //styles
   --styles-title-color: var(--gray-100);

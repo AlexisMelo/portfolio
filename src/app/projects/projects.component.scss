@@ -40,7 +40,7 @@ app-project-filtering {
 }
 
 app-project-counter {
-  grid-row: 7;
+  grid-row: 8;
   grid-column: 4;
 
   @include responsive.responsive('medium') {
@@ -54,27 +54,28 @@ app-project-counter {
   }
 }
 
+// Two rows for its three bars, at every width
 app-status-filtering {
-  grid-row: 6;
+  grid-row: 6 / 8;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 3;
+    grid-row: 3 / 5;
     grid-column: 5 / 9;
   }
 
   @include responsive.responsive('large') {
-    grid-row: 6;
+    grid-row: 6 / 8;
     grid-column: 1 / 5;
   }
 }
 
 app-category-filtering {
-  grid-row: 7;
+  grid-row: 8;
   grid-column: 1 / 4;
 
   @include responsive.responsive('medium') {
-    grid-row: 4;
+    grid-row: 5;
     grid-column: 1 / 8;
   }
 
@@ -102,11 +103,11 @@ app-category-filtering {
 
 // The list sets how many rows it needs (ProjectListComponent)
 app-project-list {
-  grid-row: 8 / span var(--project-list-card-rows);
+  grid-row: 9 / span var(--project-list-card-rows);
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 5 / span var(--project-list-rows);
+    grid-row: 6 / span var(--project-list-rows);
     grid-column: 1 / 9;
   }
 
