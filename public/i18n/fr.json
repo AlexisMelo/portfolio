@@ -60,7 +60,7 @@
       "shown": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
     },
     "intro": {
-      "quote": "Ils sont tous là ! Les meilleurs comme les moins bons ont fait de moi le développeur que je suis aujourd'hui"
+      "quote": "Ils sont tous là ! Les meilleurs comme les moins bons font de moi le développeur que je suis aujourd'hui"
     },
     "filtering": {
       "title": "Chercher par mot-clé",
@@ -193,7 +193,14 @@
   },
   "experience": {
     "heading": {
-      "steps": "{count, plural, =0 {étape} =1 {étape} other {étapes}}"
+      "steps": "{count, plural, =0 {étape} =1 {étape} other {étapes}}",
+      "shown": "{count, plural, =0 {Aucune étape affichée} =1 {1 étape affichée} other {# étapes affichées}} sur {total}"
+    },
+    "filter": {
+      "label": "Filtrer le parcours",
+      "all": "Tout",
+      "pro": "Pro",
+      "school": "Formation"
     },
     "yourCompany": {
       "title": "Prochaine étape :",

@@ -1,7 +1,8 @@
 @use '../../styles/responsive.scss' as responsive;
 
-// Top of the page: the heading, then the invitation to companies and the CV. One under the other on
-// phones, side by side from large screens up.
+// Top of the page: the heading, then the invitation to companies and the CV, then the filters. One
+// under the other on phones; from medium screens up the filters sit under the heading, and from
+// large screens up the heading, the invitation and the CV share the first two rows.
 app-experience-heading {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -26,12 +27,21 @@ app-resume {
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 3 / 5;
+    grid-row: 4 / 6;
   }
 
   @include responsive.responsive('large') {
     grid-row: 1 / 3;
     grid-column: 9 / 13;
+  }
+}
+
+app-experience-filtering {
+  grid-row: 6;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 3;
   }
 }
 

@@ -48,6 +48,14 @@
   --experience-heading-background: var(--primary-600);
   --experience-heading-color: white;
 
+  //experience-filtering
+  // Selected chip in the colour of its kind: teal for every step and the jobs under white text,
+  // mustard for the schools under dark text (AA)
+  --experience-filtering-selected-background: var(--primary-600);
+  --experience-filtering-selected-color: white;
+  --experience-filtering-school-selected-background: var(--mustard-500);
+  --experience-filtering-school-selected-color: var(--gray-800);
+
   //favorites
   --favorites-background: var(--mustard-500);
   --favorites-color: var(--gray-800);
@@ -136,11 +144,14 @@
   --project-duration-color: var(--gray-600);
 
   //project-filtering
+  --project-filtering-tile-background: var(--primary-600);
+  --project-filtering-tile-color: white;
   // Placeholder of the search field, readable on white (AA)
   --project-filtering-placeholder-color: var(--gray-500);
   --project-filtering-background: white;
   --project-filtering-icon-color: var(--gray-600);
-  --project-filtering-focus-color: var(--gray-800);
+  // White, as dark grey is too close to the teal tile to show the focus ring (3:1)
+  --project-filtering-focus-color: white;
 
   //project-item-skill-list
   --project-item-skill-list-skill-background: var(--primary-600);

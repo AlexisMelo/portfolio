@@ -1,13 +1,24 @@
 <div class="g-grid-container">
-  <div class="g-grid" appGridEntrance staggerAddedTiles appGridDrag>
+  <div
+    class="g-grid"
+    appGridEntrance
+    staggerAddedTiles
+    [replayKey]="shownKey()"
+    replaySelector="app-key-header, app-experience-description, app-experience-duration, app-experience-projects"
+    appGridDrag>
     <app-experience-heading
-      [contexts]="baseContexts()"></app-experience-heading>
+      [contexts]="baseContexts()"
+      [shownContexts]="shownContexts()"></app-experience-heading>
 
     <app-your-company></app-your-company>
 
     <app-resume></app-resume>
 
-    @for (context of baseContexts(); track context.id) {
+    <app-experience-filtering
+      [contexts]="baseContexts()"
+      [(selectedKind)]="selectedKind"></app-experience-filtering>
+
+    @for (context of shownContexts(); track context.id) {
       @let lang = languageService.currentLang();
       <app-key-header
         [style.--index]="$index"

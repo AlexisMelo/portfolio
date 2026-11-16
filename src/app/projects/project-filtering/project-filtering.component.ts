@@ -15,6 +15,7 @@ import { ProjectsService } from '../projects.service';
   imports: [ReactiveFormsModule, MatIconModule, TranslocoPipe],
   templateUrl: './project-filtering.component.html',
   styleUrl: './project-filtering.component.scss',
+  host: { class: 'g-grid-item-highlight' },
 })
 export class ProjectFilteringComponent extends GridItemDirective {
   /**

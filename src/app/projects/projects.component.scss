@@ -48,8 +48,8 @@ app-image {
 }
 
 .github {
-  grid-row: 5;
-  grid-column: 4;
+  grid-row: 3;
+  grid-column: 1;
 
   @include responsive.responsive('medium') {
     grid-row: 2;
@@ -63,8 +63,8 @@ app-image {
 }
 
 app-project-filtering {
-  grid-row: 5;
-  grid-column: 1 / 4;
+  grid-row: 3;
+  grid-column: 2 / 5;
 
   @include responsive.responsive('medium') {
     grid-row: 3;
@@ -78,10 +78,10 @@ app-project-filtering {
 
 // Two rows for its three bars, at every width. Above the search on phones.
 app-status-filtering {
-  grid-row: 3 / 5;
-  grid-column: 1 / 5;
+  display: none;
 
   @include responsive.responsive('medium') {
+    display: block;
     grid-row: 3 / 5;
     grid-column: 5 / 9;
   }
@@ -93,7 +93,7 @@ app-status-filtering {
 }
 
 app-category-filtering {
-  grid-row: 6;
+  grid-row: 4;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
@@ -108,7 +108,7 @@ app-category-filtering {
 
 // The list sets how many rows it needs (ProjectListComponent)
 app-project-list {
-  grid-row: 7 / span var(--project-list-card-rows);
+  grid-row: 5 / span var(--project-list-card-rows);
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {

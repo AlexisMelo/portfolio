@@ -9,7 +9,8 @@ import { ProjectsService } from '../projects.service';
 
 /**
  * Tile of chips above the project list: every project, then the featured, Angular, company and
- * personal ones. One category at most, "all" being pressed when none is selected.
+ * personal ones, each with the number of projects it would show with the other filters kept. One
+ * category at most, "all" being pressed when none is selected.
  */
 @Component({
   selector: 'app-category-filtering',

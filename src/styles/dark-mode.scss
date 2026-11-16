@@ -52,6 +52,14 @@
   --experience-heading-background: var(--primary-900);
   --experience-heading-color: white;
 
+  //experience-filtering
+  // Teal like the other teal backgrounds under white text; the schools keep the tiles' grey with
+  // their text in mustard (AA)
+  --experience-filtering-selected-background: var(--primary-900);
+  --experience-filtering-selected-color: white;
+  --experience-filtering-school-selected-background: var(--grid-item-default-bg);
+  --experience-filtering-school-selected-color: var(--mustard-500);
+
   //favorites
   --favorites-background: var(--grid-item-default-bg);
   --favorites-color: var(--mustard-500);
@@ -140,6 +148,8 @@
   --project-duration-color: var(--gray-500);
 
   //project-filtering
+  --project-filtering-tile-background: var(--primary-900);
+  --project-filtering-tile-color: white;
   // Field a step darker than the tile, its placeholder light enough to be read on it (AA)
   --project-filtering-placeholder-color: var(--gray-300);
   --project-filtering-background: var(--gray-800);

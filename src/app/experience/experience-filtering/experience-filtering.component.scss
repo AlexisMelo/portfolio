@@ -1,0 +1,47 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// A tile of the grid, which can be moved and resized like the others, without the look of one: the
+// chips sit on the page. The selected one takes the colour of its kind: teal for every step and the
+// jobs, mustard for the schools.
+:host(.g-grid-item) {
+  --chip-pressed-background: var(--experience-filtering-selected-background);
+  --chip-pressed-color: var(--experience-filtering-selected-color);
+
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:host(.g-grid-item:hover),
+:host(.g-grid-item.g-grid-item-dragging) {
+  box-shadow: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  @include responsive.responsive('medium') {
+    gap: 0.75rem;
+  }
+}
+
+.school {
+  --chip-pressed-background: var(--experience-filtering-school-selected-background);
+  --chip-pressed-color: var(--experience-filtering-school-selected-color);
+}
+
+mat-icon {
+  width: 1.1em;
+  height: 1.1em;
+  font-size: 1.1em;
+}
+
+.count {
+  font-weight: 400;
+}
