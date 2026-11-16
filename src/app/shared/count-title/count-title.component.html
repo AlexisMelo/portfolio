@@ -1,0 +1,30 @@
+<h2 class="title">
+  <span class="count">
+    <span
+      class="number"
+      aria-hidden="true"
+      [style.--count-title-number]="count()"></span>
+    <span class="g-visually-hidden">{{ count() }}</span>
+
+    @if (total() !== undefined) {
+      <!-- Always in the layout, so that nothing moves when it shows -->
+      <span class="total" aria-hidden="true" [class.shown]="count() !== total()"
+        >/{{ total() }}</span
+      >
+    }
+  </span>
+
+  <span class="words">
+    <span>{{ noun() }}</span>
+    @if (year() !== null) {
+      <span>
+        {{ 'countTitle.since' | transloco }}
+        <span
+          class="year"
+          aria-hidden="true"
+          [style.--count-title-year]="year()"></span>
+        <span class="g-visually-hidden">{{ year() }}</span>
+      </span>
+    }
+  </span>
+</h2>

@@ -34,8 +34,19 @@
   --companies-label-color: var(--gray-800);
   --companies-name-color: var(--gray-800);
 
+  //count-title
+  // Coral badge of the total next to the number, like the abandoned status, under the darkest grey
+  // (AA)
+  --count-title-total-background: var(--coral-500);
+  --count-title-total-color: var(--gray-800);
+
   //coworker-info
   --coworker-info-color: var(--gray-600);
+
+  //experience-heading
+  // Teal title tile, the brand, under white text (AA)
+  --experience-heading-background: var(--primary-600);
+  --experience-heading-color: white;
 
   //favorites
   --favorites-background: var(--mustard-500);
@@ -165,10 +176,6 @@
   // Mustard title tile, the accent, under the darkest grey (AA)
   --projects-heading-background: var(--mustard-500);
   --projects-heading-color: var(--gray-800);
-  // Coral badge of the total next to the shown number, like the abandoned status, under the darkest
-  // grey (AA)
-  --projects-heading-total-background: var(--coral-500);
-  --projects-heading-total-color: var(--gray-800);
 
   //projects-preview
   // Box of the displayed project in mustard, and the selected tab with it; the other tabs white;
@@ -249,6 +256,11 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);
+
+  //your-company
+  // Coral call to action with the darkest grey text (AA)
+  --your-company-background: var(--coral-500);
+  --your-company-color: var(--gray-800);
 
   //your-project
   // Coral entry of the list with the darkest grey text (AA), its number on a white sticker

@@ -1,0 +1,9 @@
+@if (count() > 0) {
+  <app-count-title
+    animate.enter="g-fade-in"
+    [count]="count()"
+    [year]="firstYear()"
+    [noun]="
+      'experience.heading.steps' | transloco: { count: count() }
+    "></app-count-title>
+}

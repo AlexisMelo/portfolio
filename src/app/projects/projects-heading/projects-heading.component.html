@@ -6,37 +6,15 @@
   }
 </p>
 
-<!-- The number and the year are drawn by CSS counters, which count to each new value; assistive
-technologies read the hidden text instead -->
 @if (projectsService.loaded()) {
-  <h2 class="title" animate.enter="g-fade-in">
-    <span class="count">
-      <span
-        class="number"
-        aria-hidden="true"
-        [style.--projects-count]="count()"></span>
-      <span class="g-visually-hidden">{{ count() }}</span>
-
-      <!-- Always in the layout, so that nothing moves when it shows -->
-      <span class="total" aria-hidden="true" [class.shown]="count() !== total()"
-        >/{{ total() }}</span
-      >
-    </span>
-
-    <span class="words">
-      <span>{{
-        'projects.heading.projects' | transloco: { count: count() }
-      }}</span>
-      <span>
-        {{ 'projects.heading.since' | transloco }}
-        <span
-          class="year"
-          aria-hidden="true"
-          [style.--projects-year]="shownYear()"></span>
-        <span class="g-visually-hidden">{{ shownYear() }}</span>
-      </span>
-    </span>
-  </h2>
+  <app-count-title
+    animate.enter="g-fade-in"
+    [count]="count()"
+    [total]="total()"
+    [year]="shownYear()"
+    [noun]="
+      'projects.heading.projects' | transloco: { count: count() }
+    "></app-count-title>
 }
 
 @if (projectsService.hasFilters()) {

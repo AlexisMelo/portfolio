@@ -57,7 +57,6 @@
   "projects": {
     "heading": {
       "projects": "{count, plural, =0 {projet} =1 {projet} other {projets}}",
-      "since": "depuis",
       "shown": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
     },
     "intro": {
@@ -193,6 +192,14 @@
     }
   },
   "experience": {
+    "heading": {
+      "steps": "{count, plural, =0 {étape} =1 {étape} other {étapes}}"
+    },
+    "yourCompany": {
+      "title": "Prochaine étape :",
+      "subtitle": "Votre entreprise ?",
+      "action": "Me contacter"
+    },
     "duration": {
       "future": {
         "title": "Bientôt",
@@ -216,6 +223,9 @@
     "months": "{count, plural, =1 {1 mois} other {# mois}}",
     "days": "{count, plural, =1 {1 journée} other {# jours}}",
     "and": "et"
+  },
+  "countTitle": {
+    "since": "depuis"
   },
   "footer": {
     "copyright": "© 2026 - Fait maison 🏠 par Alexis Melo da Silva"

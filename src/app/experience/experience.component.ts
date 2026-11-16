@@ -1,28 +1,28 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AvailabilityComponent } from '../home/availability/availability.component';
 import { ResumeComponent } from '../home/resume/resume.component';
 import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { GridItemDirective } from '../shared/grid/grid-item.directive';
 import { LanguageService } from '../shared/language.service';
 import { SupabaseService } from '../shared/supabase.service';
 import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
 import { ExperienceDurationComponent } from './experience-duration/experience-duration.component';
+import { ExperienceHeadingComponent } from './experience-heading/experience-heading.component';
 import { ExperienceProjectsComponent } from './experience-projects/experience-projects.component';
+import { YourCompanyComponent } from './your-company/your-company.component';
 
 @Component({
   selector: 'app-experience',
   imports: [
+    ExperienceHeadingComponent,
+    YourCompanyComponent,
     ResumeComponent,
     KeyHeaderComponent,
     ExperienceDurationComponent,
     ExperienceProjectsComponent,
     ExperienceDescriptionComponent,
-    GridItemDirective,
-    AvailabilityComponent,
     GridEntranceDirective,
     GridDragDirective,
   ],

@@ -39,8 +39,18 @@
   --companies-label-color: var(--coral-500);
   --companies-name-color: var(--styles-title-color);
 
+  //count-title
+  // Badge of the total like the coral stickers: the tiles' grey with the text in coral (AA)
+  --count-title-total-background: var(--grid-item-default-bg);
+  --count-title-total-color: var(--coral-500);
+
   //coworker-info
   --coworker-info-color: var(--gray-400);
+
+  //experience-heading
+  // Like the other teal backgrounds, under white text (AA)
+  --experience-heading-background: var(--primary-900);
+  --experience-heading-color: white;
 
   //favorites
   --favorites-background: var(--grid-item-default-bg);
@@ -172,9 +182,6 @@
   // Like the mustard tiles: the tiles' grey with the title in mustard (AA)
   --projects-heading-background: var(--grid-item-default-bg);
   --projects-heading-color: var(--mustard-500);
-  // Badge of the total like the coral stickers: the tiles' grey with the text in coral (AA)
-  --projects-heading-total-background: var(--grid-item-default-bg);
-  --projects-heading-total-color: var(--coral-500);
 
   //projects-preview
   // Box of the displayed project in the tiles' grey, with its texts in mustard, and the selected
@@ -258,6 +265,11 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--gray-500);
+
+  //your-company
+  // Like the coral tiles: the tiles' grey with coral text (AA)
+  --your-company-background: var(--grid-item-default-bg);
+  --your-company-color: var(--coral-500);
 
   //your-project
   // Like the coral tiles: the tiles' grey with coral text (AA), its number too

@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
+import { CountTitleComponent } from 'src/app/shared/count-title/count-title.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ListedProject } from '../listed-project.model';
 import { ProjectsService } from '../projects.service';
@@ -13,7 +14,7 @@ import { ProjectsService } from '../projects.service';
  */
 @Component({
   selector: 'app-projects-heading',
-  imports: [ActionButtonComponent, TranslocoPipe],
+  imports: [ActionButtonComponent, CountTitleComponent, TranslocoPipe],
   templateUrl: './projects-heading.component.html',
   styleUrl: './projects-heading.component.scss',
   host: { class: 'g-grid-item-highlight' },

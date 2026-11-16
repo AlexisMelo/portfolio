@@ -1,0 +1,20 @@
+<h2>
+  <span>
+    {{ 'experience.yourCompany.title' | transloco }}
+  </span>
+  <br />
+  <span class="subtitle">
+    {{ 'experience.yourCompany.subtitle' | transloco }}</span
+  >
+</h2>
+
+<a app-action-button icon="mail" [href]="'mailto:' + contentService.mail">
+  {{ 'experience.yourCompany.action' | transloco }}
+</a>
+
+<img
+  ngSrc="photos/avatar-face-smiling.webp"
+  width="400"
+  height="350"
+  priority
+  alt="" />

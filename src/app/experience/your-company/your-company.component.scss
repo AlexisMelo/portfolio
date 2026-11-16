@@ -1,0 +1,53 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+:host {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--your-company-background);
+
+  overflow: visible;
+
+  @include responsive.responsive('medium') {
+    padding: 1.7rem;
+  }
+}
+
+h2 {
+  margin: 0;
+  font-size: var(--text-xl);
+  color: var(--your-company-color);
+
+  .subtitle {
+    margin-top: 0.5rem;
+    display: block;
+    color: var(--your-company-color);
+
+    opacity: 0.8;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xxxl);
+
+    .subtitle {
+      margin-top: 0.1rem;
+      font-size: var(--text-xxl);
+    }
+  }
+}
+
+img {
+  position: absolute;
+  right: 0rem;
+  bottom: 0rem;
+  width: 120px;
+  height: auto;
+  scale: -1 1;
+  rotate: 7deg;
+
+  @include responsive.responsive('medium') {
+    width: 120px;
+  }
+}
