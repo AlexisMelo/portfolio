@@ -1,6 +1,7 @@
 @use '../../../styles/responsive.scss' as responsive;
 
-// The title in one row on phones; from medium screens up, a poster at the bottom left
+// The title in one row on phones, on a single row of cells; from medium screens up, a poster at the
+// bottom left of a 4 x 2 tile
 :host {
   display: flex;
   align-items: center;
@@ -12,6 +13,6 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-end;
-    padding: 1.4rem 1.6rem;
+    padding: var(--tile-padding);
   }
 }

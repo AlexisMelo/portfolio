@@ -8,8 +8,9 @@
   align-items: flex-start;
   background-color: var(--mail-background-color);
 
+  // Two cells wide on phones, a 4 x 2 tile from medium screens up
   @include responsive.responsive('medium') {
-    padding: 1.7rem;
+    padding: var(--tile-padding);
   }
 }
 

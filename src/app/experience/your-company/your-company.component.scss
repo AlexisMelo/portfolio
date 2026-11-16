@@ -1,7 +1,7 @@
 @use '../../../styles/responsive.scss' as responsive;
 
 :host {
-  padding: 1.5rem;
+  padding: var(--tile-padding);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,32 +9,18 @@
   background-color: var(--your-company-background);
 
   overflow: visible;
-
-  @include responsive.responsive('medium') {
-    padding: 1.7rem;
-  }
 }
 
 h2 {
   margin: 0;
-  font-size: var(--text-xl);
   color: var(--your-company-color);
+  font-size: var(--text-xxxl);
 
   .subtitle {
-    margin-top: 0.5rem;
     display: block;
     color: var(--your-company-color);
-
+    font-size: var(--text-xxl);
     opacity: 0.8;
-  }
-
-  @include responsive.responsive('medium') {
-    font-size: var(--text-xxxl);
-
-    .subtitle {
-      margin-top: 0.1rem;
-      font-size: var(--text-xxl);
-    }
   }
 }
 
