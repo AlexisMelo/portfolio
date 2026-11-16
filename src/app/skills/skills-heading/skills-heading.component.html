@@ -1,0 +1,9 @@
+@if (count() > 0 && year() !== null) {
+  <app-count-title
+    animate.enter="g-fade-in"
+    [count]="count()"
+    [year]="year()"
+    [noun]="
+      'skills.heading.skills' | transloco: { count: count() }
+    "></app-count-title>
+}

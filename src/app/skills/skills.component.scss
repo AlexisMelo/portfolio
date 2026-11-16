@@ -1,32 +1,46 @@
 @use '../../styles/responsive.scss' as responsive;
 
-app-all {
-  grid-row: 3;
+// From medium screens up the heading and the favourites share the first two rows, the heading on
+// the left; the rest of the page stays on the first 8 columns
+app-skills-heading {
+  grid-row: 1;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-column: 5 / 9;
-    grid-row: 3;
-  }
-}
-
-app-keep-learning {
-  grid-row: 4 / 7;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-column: 1 / 5;
-    grid-row: 1 / 4;
+    grid-row: 1 / 3;
   }
 }
 
 app-favorites {
-  grid-row: 1 / 3;
+  grid-row: 2 / 4;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-column: 5 / 9;
     grid-row: 1 / 3;
+    grid-column: 5 / 9;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 5 / 13;
+  }
+}
+
+app-all {
+  grid-row: 4;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 3;
+    grid-column: 5 / 9;
+  }
+}
+
+app-keep-learning {
+  grid-row: 5 / 8;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 3 / 6;
   }
 }
 
@@ -34,41 +48,41 @@ app-key-header {
   font-size: var(--text-xl);
 
   &.section-frontend {
-    grid-row: 7;
+    grid-row: 8;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
       grid-row: 4;
+      grid-column: 5 / 9;
     }
   }
 
   &.section-backend {
-    grid-row: 15;
+    grid-row: 16;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 8;
+      grid-row: 9;
       grid-column: 5 / 9;
     }
   }
 
   &.section-general {
-    grid-row: 23;
+    grid-row: 24;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 12;
-      grid-column: 1 / 5;
+      grid-row: 13;
     }
   }
 }
 
 app-skill-highlight {
   &.section-frontend {
-    grid-row: 8 / 10;
+    grid-row: 9 / 11;
 
     @include responsive.responsive('medium') {
-      grid-row: 4 / 6;
+      grid-row: 5 / 7;
     }
 
     &:nth-of-type(1) {
@@ -89,34 +103,26 @@ app-skill-highlight {
   }
 
   &.section-backend {
-    grid-row: 16 / 18;
+    grid-row: 17 / 19;
 
     @include responsive.responsive('medium') {
-      grid-row: 8 / 10;
+      grid-row: 9 / 11;
     }
 
     &:nth-of-type(3) {
       grid-column: 1 / 3;
-
-      @include responsive.responsive('medium') {
-        grid-column: 1 / 3;
-      }
     }
 
     &:nth-of-type(4) {
       grid-column: 3 / 5;
-
-      @include responsive.responsive('medium') {
-        grid-column: 3 / 5;
-      }
     }
   }
 
   &.section-general {
-    grid-row: 24 / 26;
+    grid-row: 25 / 27;
 
     @include responsive.responsive('medium') {
-      grid-row: 12 / 14;
+      grid-row: 13 / 15;
     }
 
     &:nth-of-type(5) {
@@ -139,64 +145,61 @@ app-skill-highlight {
 
 app-skill-section-description {
   &.section-frontend {
-    grid-row: 10 / 12;
+    grid-row: 11 / 13;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 6 / 8;
+      grid-row: 7 / 9;
       grid-column: 5 / 9;
     }
   }
 
   &.section-backend {
-    grid-row: 18 / 20;
+    grid-row: 19 / 21;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 10 / 12;
-      grid-column: 1 / 5;
+      grid-row: 11 / 13;
     }
   }
 
   &.section-general {
-    grid-row: 26 / 28;
+    grid-row: 27 / 29;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
+      grid-row: 15 / 17;
       grid-column: 5 / 9;
-      grid-row: 14 / 16;
     }
   }
 }
 
 app-skills-recap {
   &.section-frontend {
-    grid-row: 12 / 15;
+    grid-row: 13 / 16;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 5 / 8;
-      grid-column: 1 / 5;
+      grid-row: 6 / 9;
     }
   }
 
   &.section-backend {
-    grid-row: 20 / 23;
+    grid-row: 21 / 24;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-row: 9 / 12;
+      grid-row: 10 / 13;
       grid-column: 5 / 9;
     }
   }
 
   &.section-general {
-    grid-row: 28 / 31;
+    grid-row: 29 / 32;
     grid-column: 1 / 5;
 
     @include responsive.responsive('medium') {
-      grid-column: 1 / 5;
-      grid-row: 13 / 16;
+      grid-row: 14 / 17;
     }
   }
 }

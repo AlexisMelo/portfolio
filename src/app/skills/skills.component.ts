@@ -4,6 +4,7 @@ import { AllComponent } from '../projects/all/all.component';
 import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
+import { firstStartYear } from '../shared/first-start-year';
 import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
 import { ThemeService } from '../shared/theme.service';
@@ -12,6 +13,7 @@ import { KeepLearningComponent } from './keep-learning/keep-learning.component';
 import { LovedPipe } from './loved.pipe';
 import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
 import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
+import { SkillsHeadingComponent } from './skills-heading/skills-heading.component';
 import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
 import { SkillsSection } from './skills-section.model';
 
@@ -26,6 +28,7 @@ import { SkillsSection } from './skills-section.model';
     KeyHeaderComponent,
     KeepLearningComponent,
     FavoritesComponent,
+    SkillsHeadingComponent,
     AllComponent,
     TranslocoPipe,
     GridEntranceDirective,
@@ -69,6 +72,16 @@ export class SkillsComponent implements OnInit {
   ]);
 
   /**
+   * Number of skills, 0 until they are loaded
+   */
+  protected readonly skillsCount = signal(0);
+
+  /**
+   * Year the first project started, null until the projects are loaded
+   */
+  protected readonly firstYear = signal<number | null>(null);
+
+  /**
    * Accès à la base de données
    */
   private supabaseService = inject(SupabaseService);
@@ -82,7 +95,12 @@ export class SkillsComponent implements OnInit {
    * Implémentation de OnInit
    */
   ngOnInit() {
+    this.supabaseService
+      .getProjects()
+      .then(projects => this.firstYear.set(firstStartYear(projects)));
+
     this.supabaseService.getSkills().then(skills => {
+      this.skillsCount.set(skills.length);
       this.sections.update(sections =>
         sections.map(section => ({
           ...section,

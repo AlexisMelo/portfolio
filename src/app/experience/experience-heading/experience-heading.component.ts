@@ -2,6 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { CountTitleComponent } from 'src/app/shared/count-title/count-title.component';
+import { firstStartYear } from 'src/app/shared/first-start-year';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 /**
@@ -46,18 +47,4 @@ export class ExperienceHeadingComponent {
     () =>
       firstStartYear(this.shownContexts()) ?? firstStartYear(this.contexts())
   );
-}
-
-/**
- * Year the earliest of some steps started, null when there is none
- * @param contexts steps to look at
- */
-function firstStartYear(contexts: Array<ContextWithProjects>): number | null {
-  const dates = contexts.map(context => context.start_date);
-  if (dates.length === 0) return null;
-
-  const first = dates.reduce((earliest, date) =>
-    date < earliest ? date : earliest
-  );
-  return Number(first.slice(0, 4));
 }

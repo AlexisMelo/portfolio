@@ -52,6 +52,11 @@
   --experience-heading-background: var(--primary-900);
   --experience-heading-color: white;
 
+  //skills-heading
+  // Like the other teal backgrounds, under white text (AA)
+  --skills-heading-background: var(--primary-900);
+  --skills-heading-color: white;
+
   //experience-card
   // Teal band like the other teal backgrounds under white text; the schools keep the tiles' grey with
   // their text in mustard, and the projects sticker with its text in coral (AA)
@@ -87,6 +92,22 @@
   //favorites
   --favorites-background: var(--grid-item-default-bg);
   --favorites-color: var(--mustard-500);
+  // Focus ring of the stickers, light on the dark tile
+  --favorites-focus-color: white;
+  // Stickers keep their brand colours on the dark tile: white text on Angular and .NET, the
+  // darkest grey on the lighter Supabase, Figma and Git ones (AA, Figma 4.6:1); white for the others
+  --favorites-sticker-background: white;
+  --favorites-sticker-color: var(--gray-800);
+  --favorites-angular-background: #dd0031;
+  --favorites-angular-color: white;
+  --favorites-dotnet-background: #512bd4;
+  --favorites-dotnet-color: white;
+  --favorites-supabase-background: #3ecf8e;
+  --favorites-supabase-color: var(--gray-800);
+  --favorites-figma-background: #a259ff;
+  --favorites-figma-color: var(--gray-800);
+  --favorites-git-background: #f05032;
+  --favorites-git-color: var(--gray-800);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-600);

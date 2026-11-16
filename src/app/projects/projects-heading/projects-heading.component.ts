@@ -2,8 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { CountTitleComponent } from 'src/app/shared/count-title/count-title.component';
+import { firstStartYear } from 'src/app/shared/first-start-year';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
-import { ListedProject } from '../listed-project.model';
 import { ProjectsService } from '../projects.service';
 
 /**
@@ -55,20 +55,4 @@ export class ProjectsHeadingComponent {
       firstStartYear(this.projectsService.selectedProjects()) ??
       this.firstYear()
   );
-}
-
-/**
- * Year the earliest of some projects started, null when none has a start date
- * @param projects projects to look at
- */
-function firstStartYear(projects: Array<ListedProject>): number | null {
-  const dates = projects
-    .map(project => project.start_date)
-    .filter(date => date !== null);
-  if (dates.length === 0) return null;
-
-  const first = dates.reduce((earliest, date) =>
-    date < earliest ? date : earliest
-  );
-  return Number(first.slice(0, 4));
 }

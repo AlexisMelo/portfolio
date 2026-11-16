@@ -158,9 +158,13 @@
     }
   },
   "skills": {
+    "heading": {
+      "skills": "{count, plural, =1 {techno} other {technos}}"
+    },
     "favorites": {
       "title": "Stack de prédilection",
-      "subtitle": "Pour créer des sites au top, de A à Z"
+      "listLabel": "Mes technos préférées",
+      "projectsLink": "{{name}}, voir les projets"
     },
     "keepLearning": {
       "title": "Continuer d'apprendre",

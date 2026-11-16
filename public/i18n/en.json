@@ -158,9 +158,13 @@
     }
   },
   "skills": {
+    "heading": {
+      "skills": "{count, plural, =1 {technology} other {technologies}}"
+    },
     "favorites": {
       "title": "My go-to stack",
-      "subtitle": "To build top-notch sites, from A to Z"
+      "listLabel": "My favourite tech",
+      "projectsLink": "{{name}}, see the projects"
     },
     "keepLearning": {
       "title": "Keep learning !",
