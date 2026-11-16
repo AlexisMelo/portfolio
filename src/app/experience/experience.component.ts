@@ -1,20 +1,22 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ResumeComponent } from '../home/resume/resume.component';
-import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { LanguageService } from '../shared/language.service';
 import { SupabaseService } from '../shared/supabase.service';
-import { ExperienceDescriptionComponent } from './experience-description/experience-description.component';
-import { ExperienceDurationComponent } from './experience-duration/experience-duration.component';
+import { ExperienceCardComponent } from './experience-card/experience-card.component';
 import { ExperienceFilteringComponent } from './experience-filtering/experience-filtering.component';
 import { ExperienceKind, experienceKind } from './experience-kind.model';
 import { ExperienceHeadingComponent } from './experience-heading/experience-heading.component';
-import { ExperienceProjectsComponent } from './experience-projects/experience-projects.component';
+import { ExperienceStopComponent } from './experience-stop/experience-stop.component';
 import { YourCompanyComponent } from './your-company/your-company.component';
 
+/**
+ * Experience page: the heading, the invitation to companies, the CV and the filters, then the
+ * timeline of the steps, the most recent first. Each step is two tiles: its stop on the rail, with
+ * its dates, and its card.
+ */
 @Component({
   selector: 'app-experience',
   imports: [
@@ -22,10 +24,8 @@ import { YourCompanyComponent } from './your-company/your-company.component';
     YourCompanyComponent,
     ResumeComponent,
     ExperienceFilteringComponent,
-    KeyHeaderComponent,
-    ExperienceDurationComponent,
-    ExperienceProjectsComponent,
-    ExperienceDescriptionComponent,
+    ExperienceStopComponent,
+    ExperienceCardComponent,
     GridEntranceDirective,
     GridDragDirective,
   ],
@@ -37,11 +37,6 @@ export class ExperienceComponent {
    * Handle database
    */
   private supabaseService = inject(SupabaseService);
-
-  /**
-   * Handle language
-   */
-  public languageService = inject(LanguageService);
 
   /**
    * Contexts to display

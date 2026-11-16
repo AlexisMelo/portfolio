@@ -1,8 +1,8 @@
 @use '../../styles/responsive.scss' as responsive;
 
 // Top of the page: the heading, then the invitation to companies and the CV, then the filters. One
-// under the other on phones; from medium screens up the filters sit under the heading, and from
-// large screens up the heading, the invitation and the CV share the first two rows.
+// under the other on phones; on medium screens two by two, the filters next to the CV; from large
+// screens up the heading, the invitation and the CV share the first two rows.
 app-experience-heading {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -27,7 +27,7 @@ app-resume {
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 4 / 6;
+    grid-row: 3 / 5;
   }
 
   @include responsive.responsive('large') {
@@ -41,44 +41,55 @@ app-experience-filtering {
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 3;
-  }
-}
-
-// The steps, three rows each, under the top of the page from medium screens up
-app-key-header {
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 3);
+    grid-row: 3 / 5;
     grid-column: 5 / 9;
   }
-}
 
-app-experience-duration {
-  grid-column: 3 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 4);
-    grid-column: 7 / 9;
+  @include responsive.responsive('large') {
+    grid-row: 3;
+    grid-column: 1 / 6;
   }
 }
 
-app-experience-projects {
-  grid-column: 3 / 5;
+// The timeline, one step per --index: a stop (node and dates) next to its card, as in mock-up E.
+// Below large screens the rail runs down the first column: 4 rows a step on phones, 3 on medium
+// screens. From large screens up the rail takes the two middle columns and the cards (5 x 3)
+// alternate sides, each overlapping the next one by a row. The stop takes the middle row of its
+// card, from the rail to the far side, where its dates fill the row the cards leave free. Every
+// tile then sits right under another one, so the drag directive's compaction keeps the layout.
+app-experience-stop {
+  grid-column: 1;
+  grid-row: calc(var(--index) * 4 + 7) / span 4;
 
   @include responsive.responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 5);
-    grid-column: 7 / 9;
+    grid-row: calc(var(--index) * 3 + 5) / span 3;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 1 / 8;
+    grid-row: calc(var(--index) * 2 + 4);
+
+    &.card-left {
+      grid-column: 6 / 13;
+    }
   }
 }
 
-app-experience-description {
-  grid-column: 1 / 3;
-  grid-row: span 2;
+app-experience-card {
+  grid-column: 2 / 5;
+  grid-row: calc(var(--index) * 4 + 7) / span 4;
 
   @include responsive.responsive('medium') {
-    grid-row: calc(var(--index) * 3 + 4) / span 2;
-    grid-column: 5 / 7;
+    grid-column: 2 / 9;
+    grid-row: calc(var(--index) * 3 + 5) / span 3;
+  }
+
+  @include responsive.responsive('large') {
+    grid-column: 8 / 13;
+    grid-row: calc(var(--index) * 2 + 3) / span 3;
+
+    &.left {
+      grid-column: 1 / 6;
+    }
   }
 }

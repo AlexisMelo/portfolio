@@ -10,6 +10,16 @@
   display: flex;
   align-items: center;
   overflow: visible;
+
+  // On medium screens the tile is two rows high next to the CV: the chips sit at its bottom, just
+  // above the timeline
+  @include responsive.responsive('medium') {
+    align-items: flex-end;
+  }
+
+  @include responsive.responsive('large') {
+    align-items: center;
+  }
   border: none;
   border-radius: 0;
   background: none;

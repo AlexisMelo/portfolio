@@ -207,20 +207,15 @@
       "subtitle": "Your company ?",
       "action": "Contact me"
     },
-    "duration": {
-      "future": {
-        "title": "Soon",
-        "subtitle": "Starting from {{month}}"
-      },
-      "now": {
-        "subtitle": "Since {{year}}"
-      },
-      "past": {
-        "subtitle": "Until {{year}}"
-      }
+    "dates": {
+      "from": "Starting",
+      "to": "to",
+      "today": "today"
+    },
+    "card": {
+      "projectsLabel": "{count, plural, =1 {See the project done at {label}} other {See the # projects done at {label}}}"
     },
     "projects": {
-      "title": "Projects",
       "count": "{count, plural, =0 {More to come !} =1 {1 project} other {# projects}}"
     }
   },

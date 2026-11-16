@@ -207,20 +207,15 @@
       "subtitle": "Votre entreprise ?",
       "action": "Me contacter"
     },
-    "duration": {
-      "future": {
-        "title": "Bientôt",
-        "subtitle": "À partir de {{month}}"
-      },
-      "now": {
-        "subtitle": "Depuis {{year}}"
-      },
-      "past": {
-        "subtitle": "Jusqu'en {{year}}"
-      }
+    "dates": {
+      "from": "À partir de",
+      "to": "à",
+      "today": "aujourd'hui"
+    },
+    "card": {
+      "projectsLabel": "{count, plural, =1 {Voir le projet réalisé chez {label}} other {Voir les # projets réalisés chez {label}}}"
     },
     "projects": {
-      "title": "Projets",
       "count": "{count, plural, =0 {Plus à venir !} =1 {1 projet} other {# projets}}"
     }
   },

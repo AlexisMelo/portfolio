@@ -4,7 +4,7 @@
     appGridEntrance
     staggerAddedTiles
     [replayKey]="shownKey()"
-    replaySelector="app-key-header, app-experience-description, app-experience-duration, app-experience-projects"
+    replaySelector="app-experience-stop, app-experience-card"
     appGridDrag>
     <app-experience-heading
       [contexts]="baseContexts()"
@@ -18,22 +18,18 @@
       [contexts]="baseContexts()"
       [(selectedKind)]="selectedKind"></app-experience-filtering>
 
+    <!-- From large screens up, the first card is on the right of the timeline, then they alternate -->
     @for (context of shownContexts(); track context.id) {
-      @let lang = languageService.currentLang();
-      <app-key-header
+      <app-experience-stop
         [style.--index]="$index"
-        [chips]="[context.localization]"
-        >{{ context.localizedLabel[lang] ?? context.label }}</app-key-header
-      >
-      <app-experience-description
+        [context]="context"
+        [cardSide]="$even ? 'right' : 'left'"
+        [first]="$first"
+        [last]="$last"></app-experience-stop>
+      <app-experience-card
         [style.--index]="$index"
-        [context]="context"></app-experience-description>
-      <app-experience-duration
-        [style.--index]="$index"
-        [context]="context"></app-experience-duration>
-      <app-experience-projects
-        [style.--index]="$index"
-        [context]="context"></app-experience-projects>
+        [context]="context"
+        [side]="$even ? 'right' : 'left'"></app-experience-card>
     }
   </div>
 </div>

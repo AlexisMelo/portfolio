@@ -1,0 +1,36 @@
+<header class="band">
+  <div class="top">
+    <h2 class="name">{{ label() }}</h2>
+    @if (projectsCount() > 0) {
+      <a
+        class="projects"
+        [routerLink]="[PROJECTS_ROUTE]"
+        [queryParams]="{ contexts: context().id }"
+        [attr.aria-label]="
+          'experience.card.projectsLabel'
+            | transloco: { count: projectsCount(), label: label() }
+        "
+        >{{
+          'experience.projects.count' | transloco: { count: projectsCount() }
+        }}</a
+      >
+    }
+  </div>
+  <p class="where">
+    {{ context().localization }}
+    @let duration = context().start_date | duration: context().end_date;
+    @if (duration) {
+      <span class="separator" aria-hidden="true">·</span>
+      <b>{{ duration }}</b>
+    }
+  </p>
+</header>
+
+<div class="body">
+  @if (job(); as job) {
+    <p class="job">{{ job }}</p>
+  }
+  @if (description(); as description) {
+    <p class="description">{{ description }}</p>
+  }
+</div>
