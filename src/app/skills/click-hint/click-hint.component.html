@@ -1,0 +1,37 @@
+<!-- The trailing spaces keep the words apart in the heading's text once each line is a block -->
+<h2>
+  <div>{{ 'skills.clickHint.line1' | transloco }}</div>
+  <div class="secondary">{{ 'skills.clickHint.line2' | transloco }}</div>
+</h2>
+
+<a [routerLink]="'/projects'" class="drawer" aria-hidden="true">
+  <div class="box-inside"></div>
+  <div class="folders">
+    <div class="folder folder-0"></div>
+    <div class="folder folder-1 folder-behind">
+      <span class="label" [class.label-long]="isLong(folderLabels()[0])">{{
+        folderLabels()[0]
+      }}</span>
+    </div>
+    <div class="folder folder-2 folder-current">
+      <span class="label" [class.label-long]="isLong(folderLabels()[1])">{{
+        folderLabels()[1]
+      }}</span>
+    </div>
+    <div class="folder folder-3 folder-front">
+      <span class="label" [class.label-long]="isLong(folderLabels()[2])">{{
+        folderLabels()[2]
+      }}</span>
+    </div>
+    <div class="folder folder-4"></div>
+  </div>
+  <div class="box-shadow"></div>
+  <div class="box">
+    <div class="box-front">
+      <span class="box-name">{{
+        'skills.clickHint.drawerLabel' | transloco
+      }}</span>
+    </div>
+    <div class="box-side"></div>
+  </div>
+</a>

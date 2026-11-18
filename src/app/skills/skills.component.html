@@ -4,8 +4,7 @@
       [count]="skillsCount()"
       [year]="firstYear()"></app-skills-heading>
     <app-favorites></app-favorites>
-    <app-all></app-all>
-    <app-keep-learning></app-keep-learning>
+    <app-click-hint [skills]="skills()"></app-click-hint>
     <app-skill-categories [skills]="skills()"></app-skill-categories>
     <app-contact-tile
       avatar="sitting"

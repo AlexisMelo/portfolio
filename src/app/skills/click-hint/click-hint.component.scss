@@ -1,0 +1,353 @@
+@use 'sass:math';
+@use '../../../styles/responsive.scss' as responsive;
+
+// How far a folder has risen out of the drawer, from 0 (down) to 1 (up); it moves the folder,
+// tilts it, turns it mustard and shows its label. Registered so the keyframes can animate it.
+@property --click-hint-lift {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+// The drawer, in em, seen from its front right corner: the front leans down to the right, the
+// side up to the right, and the folders stand parallel to the front, one behind the other along
+// the side
+$front-angle: 12deg;
+$side-angle: 30deg;
+$front-slope: math.tan($front-angle);
+$side-slope: math.tan($side-angle);
+$front-width: 9.4em;
+$side-width: 5.4em;
+$box-height: 6em;
+$box-left: 0.4em;
+// Bottom of the near corner, the lowest point of the box
+$near-bottom: 14.8em;
+
+$near-x: $box-left + $front-width;
+$near-top: $near-bottom - $box-height;
+$back-x: $near-x + $side-width;
+$front-left-top: $near-top - $front-width * $front-slope;
+$back-right-top: $near-top - $side-width * $side-slope;
+$back-left-top: $front-left-top - $side-width * $side-slope;
+
+// A folder is as tall as the part above the rim plus the box, so it ends on the floor, and
+// taller than that part plus the lift, so a raised folder still sits in the box
+$folder-width: 8.2em;
+$folder-rise: 1.6em;
+$folder-lift: 3em;
+$folder-height: 7em;
+// From the left wall, along the front
+$folder-inset: 0.6em;
+// Depth of the back folder, and between two folders, along the side
+$back-folder-depth: 4.4em;
+$folder-step: 0.95em;
+
+// The shadow, a flat ellipse on the ground centred a little left of the near corner, where the
+// box is lowest
+$shadow-width: 16em;
+$shadow-height: 6em;
+$shadow-center-x: $near-x - 1.4em;
+$shadow-center-y: $near-bottom - 2em;
+
+:host {
+  padding: 1.5rem;
+}
+
+h2 {
+  margin: 0;
+  color: var(--click-hint-color);
+  font-size: var(--text-xxxl);
+}
+
+.line {
+  display: block;
+}
+
+.secondary {
+  color: var(--click-hint-secondary-color);
+  opacity: 0.8;
+  font-size: var(--text-lg);
+  max-width: 50%;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xl);
+  }
+}
+
+// The whole drawer scales with its font size
+.drawer {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0.5rem;
+  width: $back-x + 0.4em;
+  height: $shadow-center-y + $shadow-height * 0.5 + 0.1em;
+  font-size: 9px;
+
+  @include responsive.responsive('medium') {
+    font-size: 10px;
+  }
+}
+
+// The opening, dark where no folder covers it
+.box-inside {
+  position: absolute;
+  inset: 0;
+  background-color: var(--click-hint-box-inside-color);
+  clip-path: polygon(
+    $box-left $front-left-top,
+    $near-x $near-top,
+    $back-x $back-right-top,
+    $box-left + $side-width $back-left-top
+  );
+}
+
+// Nothing of the folders shows below the box or beyond its sides, even while one is lifted
+.folders {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    $box-left -10em,
+    $back-x -10em,
+    $back-x $back-right-top + $box-height,
+    $near-x $near-bottom,
+    $box-left $front-left-top + $box-height
+  );
+}
+
+.folder {
+  --click-hint-folder-index: 0;
+  --click-hint-folder-depth: calc(
+    #{$back-folder-depth} - var(--click-hint-folder-index) * #{$folder-step}
+  );
+
+  position: absolute;
+  top: calc(
+    #{$front-left-top + $folder-inset * $front-slope -
+      $folder-rise} - var(--click-hint-folder-depth) * #{$side-slope}
+  );
+  left: calc(#{$box-left + $folder-inset} + var(--click-hint-folder-depth));
+  width: $folder-width;
+  height: $folder-height;
+  border: var(--grid-item-border);
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: color-mix(
+    in srgb,
+    var(--click-hint-folder-lifted-background)
+      clamp(0%, calc(var(--click-hint-lift) * 100%), 100%),
+    var(--click-hint-folder-background)
+  );
+  transform-origin: 0 0;
+  transform: skewY($front-angle);
+  translate: 0 calc(var(--click-hint-lift) * #{-$folder-lift});
+  rotate: calc(var(--click-hint-lift) * -1.5deg);
+
+  // The tab, over the folder's top border so that the two read as one shape
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: var(--click-hint-tab-left);
+    width: 3em;
+    height: 1.3em;
+    border: var(--grid-item-border);
+    border-bottom: none;
+    border-radius: 0.5em 0.5em 0 0;
+    background-color: inherit;
+  }
+}
+
+.folder-0 {
+  --click-hint-tab-left: 5em;
+}
+
+.folder-1 {
+  --click-hint-folder-index: 1;
+  --click-hint-tab-left: 0.6em;
+}
+
+.folder-2 {
+  --click-hint-folder-index: 2;
+  --click-hint-tab-left: 2.8em;
+}
+
+.folder-3 {
+  --click-hint-folder-index: 3;
+  --click-hint-tab-left: 5em;
+}
+
+.folder-4 {
+  --click-hint-folder-index: 4;
+  --click-hint-tab-left: 1.4em;
+}
+
+.label {
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+  left: 0.4em;
+  overflow: hidden;
+  color: var(--click-hint-folder-color);
+  font-family: var(--title-font-family);
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: var(--click-hint-lift);
+}
+
+.label-long {
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+// Drawn before the box, which hides its upper half
+.box-shadow {
+  position: absolute;
+  top: $shadow-center-y - $shadow-height * 0.5;
+  left: $shadow-center-x - $shadow-width * 0.5;
+  width: $shadow-width;
+  height: $shadow-height;
+  border-radius: 50%;
+  background-color: var(--click-hint-box-shadow-color);
+}
+
+.box {
+  position: absolute;
+  inset: 0;
+}
+
+.box-front,
+.box-side {
+  position: absolute;
+  top: $near-top;
+  height: $box-height;
+  border: var(--grid-item-border);
+  transform-origin: 0 0;
+}
+
+.box-front {
+  top: $front-left-top;
+  left: $box-left;
+  width: $front-width;
+  background-color: var(--click-hint-box-background);
+  transform: skewY($front-angle);
+}
+
+.box-side {
+  left: calc(#{$near-x} - 2px);
+  width: $side-width;
+  background-color: var(--click-hint-box-side-background);
+  transform: skewY(-$side-angle);
+}
+
+// Written at the bottom left of the front, leaning with it
+.box-name {
+  position: absolute;
+  bottom: 0.4em;
+  left: 0.6em;
+  color: var(--click-hint-box-name-color);
+  font-family: var(--title-font-family);
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+// The current folder is up, then the one in front of it, the current one again, and the one
+// behind it: each step lasts a quarter of the cycle, and the next folder rises while the last one
+// goes down. Rising overshoots a little, like a folder pulled out by hand.
+$rise: cubic-bezier(0.34, 1.56, 0.64, 1);
+$fall: ease-in;
+
+.folder-current {
+  animation: click-hint-current 8s infinite;
+}
+
+.folder-front {
+  animation: click-hint-front 8s infinite;
+}
+
+.folder-behind {
+  animation: click-hint-behind 8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folder {
+    animation: none;
+  }
+
+  .folder-current {
+    --click-hint-lift: 1;
+  }
+}
+
+@keyframes click-hint-current {
+  0% {
+    --click-hint-lift: 1;
+  }
+  18.75% {
+    --click-hint-lift: 1;
+    animation-timing-function: $fall;
+  }
+  25% {
+    --click-hint-lift: 0;
+  }
+  43.75% {
+    --click-hint-lift: 0;
+    animation-timing-function: $rise;
+  }
+  50% {
+    --click-hint-lift: 1;
+  }
+  68.75% {
+    --click-hint-lift: 1;
+    animation-timing-function: $fall;
+  }
+  75% {
+    --click-hint-lift: 0;
+  }
+  93.75% {
+    --click-hint-lift: 0;
+    animation-timing-function: $rise;
+  }
+  100% {
+    --click-hint-lift: 1;
+  }
+}
+
+@keyframes click-hint-front {
+  0%,
+  18.75% {
+    --click-hint-lift: 0;
+    animation-timing-function: $rise;
+  }
+  25% {
+    --click-hint-lift: 1;
+  }
+  43.75% {
+    --click-hint-lift: 1;
+    animation-timing-function: $fall;
+  }
+  50%,
+  100% {
+    --click-hint-lift: 0;
+  }
+}
+
+@keyframes click-hint-behind {
+  0%,
+  68.75% {
+    --click-hint-lift: 0;
+    animation-timing-function: $rise;
+  }
+  75% {
+    --click-hint-lift: 1;
+  }
+  93.75% {
+    --click-hint-lift: 1;
+    animation-timing-function: $fall;
+  }
+  100% {
+    --click-hint-lift: 0;
+  }
+}

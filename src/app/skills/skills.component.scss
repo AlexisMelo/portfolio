@@ -1,7 +1,5 @@
 @use '../../styles/responsive.scss' as responsive;
 
-// From medium screens up the heading and the favourites share the first two rows, the heading on
-// the left
 app-skills-heading {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -25,45 +23,47 @@ app-favorites {
   }
 }
 
-app-all {
-  grid-row: 4;
+app-click-hint {
+  grid-row: span 2;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 3;
-    grid-column: 5 / 9;
-  }
-}
-
-app-keep-learning {
-  grid-row: 5 / 8;
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 3 / 6;
-  }
-}
-
-// The categories set how many rows they need
-app-skill-categories {
-  grid-row: 8 / span var(--skill-categories-rows);
-  grid-column: 1 / 5;
-
-  @include responsive.responsive('medium') {
-    grid-row: 4 / span var(--skill-categories-rows);
-    grid-column: 5 / 9;
+    grid-row: 3 / 5;
+    grid-column: 1 / 5;
   }
 
   @include responsive.responsive('large') {
+    grid-column: 1 / 5;
+    grid-row: 6 / 8;
+  }
+}
+
+app-skill-categories {
+  grid-row: 7 / span var(--skill-categories-rows);
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 6 / span var(--skill-categories-rows);
+    grid-column: 1 / 9;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 4 / span var(--skill-categories-rows);
     grid-column: 5 / 13;
   }
 }
 
 app-contact-tile {
-  grid-row: span 3;
+  grid-row: 4 / 7;
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: 6 / 9;
+    grid-row: 3 / 6;
+    grid-column: 5 / 9;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 3 / 6;
+    grid-column: 1 / 5;
   }
 }

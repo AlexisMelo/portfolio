@@ -20,6 +20,18 @@
   // Focus ring, dark on the white tiles
   --chip-focus-color: var(--gray-800);
 
+  //click-hint
+  --click-hint-color: var(--styles-title-color);
+  --click-hint-secondary-color: var(--gray-500);
+  --click-hint-box-background: var(--primary-600);
+  --click-hint-box-side-background: var(--primary-800);
+  --click-hint-box-name-color: white;
+  --click-hint-box-inside-color: var(--grid-item-border-color);
+  --click-hint-box-shadow-color: var(--gray-200);
+  --click-hint-folder-background: var(--primary-200);
+  --click-hint-folder-lifted-background: var(--mustard-500);
+  --click-hint-folder-color: var(--gray-800);
+
   //background-grid
   --background-grid-color: rgba(0, 0, 0, 0.22);
   --background-grid-glow-color: color-mix(

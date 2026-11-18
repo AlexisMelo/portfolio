@@ -9,30 +9,28 @@ import {
   viewChild,
 } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { AllComponent } from '../projects/all/all.component';
 import { firstStartYear } from '../shared/first-start-year';
 import { ContactTileComponent } from '../shared/contact-tile/contact-tile.component';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { SupabaseService } from '../shared/supabase.service';
+import { ClickHintComponent } from './click-hint/click-hint.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { KeepLearningComponent } from './keep-learning/keep-learning.component';
 import { SkillCategoriesComponent } from './skill-categories/skill-categories.component';
 import { Skill } from './skill.model';
 import { SkillsHeadingComponent } from './skills-heading/skills-heading.component';
 
 /**
- * Skills page: how many technologies, the favourite ones, the ones being learnt, and every skill
- * by category
+ * Skills page: how many technologies, the favourite ones, and every skill by category, with a hint
+ * that clicking a skill opens its projects
  */
 @Component({
   selector: 'app-skills',
   imports: [
-    KeepLearningComponent,
     FavoritesComponent,
     SkillsHeadingComponent,
     SkillCategoriesComponent,
-    AllComponent,
+    ClickHintComponent,
     ContactTileComponent,
     TranslocoPipe,
     GridEntranceDirective,

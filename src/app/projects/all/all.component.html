@@ -1,7 +1,0 @@
-<h2>{{ 'projects.all.title' | transloco }}</h2>
-
-@if (count() !== undefined) {
-  <p>{{ 'projects.all.count' | transloco: { count: count() } }}</p>
-}
-
-<mat-icon [routerLink]="[PROJECTS_ROUTE]">call_made</mat-icon>

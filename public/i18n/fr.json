@@ -66,10 +66,6 @@
       "title": "Chercher par mot-clé",
       "placeholder": "Angular, site web..."
     },
-    "all": {
-      "title": "Tous les projets",
-      "count": "{count, plural, =0 {aucun projet} =1 {1 projet} other {# projets}}"
-    },
     "categoryFilter": {
       "label": "Filtrer les projets par catégorie",
       "all": "Tout",
@@ -166,10 +162,10 @@
       "listLabel": "Mes technos préférées",
       "projectsLink": "{{name}}, voir les projets"
     },
-    "keepLearning": {
-      "title": "Continuer d'apprendre",
-      "description": "Car chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre avec le temps, et reste ouvert aux propositions !",
-      "skillsTitle": "Montée en compétence"
+    "clickHint": {
+      "line1": "Cliquez",
+      "line2": "sur les compétences pour ouvrir les projets",
+      "drawerLabel": "Projets"
     },
     "contact": {
       "title": "Vous ne trouvez pas votre bonheur ?",
