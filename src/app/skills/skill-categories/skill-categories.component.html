@@ -5,8 +5,9 @@
         <h2>{{ 'skills.categories.' + category.key | transloco }}</h2>
 
         <ul class="skills">
-          @for (skill of category.skills; track skill.id) {
-            <li animate.enter="g-fade-in">
+          @for (chip of category.chips; track chip.key) {
+            @let skill = chip.skill;
+            <li animate.enter="skill-enter" [style.--skill-index]="$index">
               <a
                 [class]="'skill skill-' + skill.mastery"
                 [routerLink]="PROJECTS_ROUTE"

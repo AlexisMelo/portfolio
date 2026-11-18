@@ -45,9 +45,25 @@ interface SkillCategory {
   key: (typeof CATEGORIES)[number]['key'];
 
   /**
-   * Skills of the category, the best known first, then the most used in projects
+   * Chips of the category, the best known skill first, then the most used in projects
    */
-  skills: Array<Skill>;
+  chips: Array<SkillChip>;
+}
+
+/**
+ * Skill shown as a chip of a band
+ */
+interface SkillChip {
+  /**
+   * Identity of the chip, new each time the skills change, so that every chip enters again on
+   * each filter, including those that were already shown
+   */
+  key: string;
+
+  /**
+   * Skill of the chip
+   */
+  skill: Skill;
 }
 
 /**
@@ -78,20 +94,27 @@ export class SkillCategoriesComponent {
   public readonly filtered = input(false);
 
   /**
+   * Number of times the skills changed, part of the chips' keys
+   */
+  private version = 0;
+
+  /**
    * Bands of the tile, with their skills sorted by mastery, then by number of projects; skills of
    * the same mastery used in as many projects keep the alphabetical order of the database
    */
   protected readonly categories = computed<Array<SkillCategory>>(() => {
     const skills = this.skills() ?? [];
+    const version = ++this.version;
     return CATEGORIES.map(({ fieldId, key }) => ({
       key,
-      skills: skills
+      chips: skills
         .filter(skill => skill.skill_field.id === fieldId)
         .sort(
           (a, b) =>
             LEVELS.indexOf(a.mastery) - LEVELS.indexOf(b.mastery) ||
             b.projects.length - a.projects.length
-        ),
+        )
+        .map(skill => ({ key: `${version}-${skill.id}`, skill })),
     }));
   });
 

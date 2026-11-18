@@ -19,7 +19,7 @@
 
 .band {
   display: grid;
-  align-content: center;
+  align-content: start;
 
   & + & {
     border-top: var(--grid-item-border);
@@ -48,6 +48,23 @@ ul {
 
 li {
   line-height: normal;
+}
+
+// The chips of each band pop in one after another, the three bands at the same time
+.skill-enter {
+  animation: skill-enter 250ms ease-out backwards;
+  animation-delay: calc(var(--skill-index, 0) * 30ms);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes skill-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.8);
+  }
 }
 
 .skills {
@@ -134,6 +151,10 @@ li {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: subgrid;
+  }
+
+  .band {
+    align-content: center;
   }
 
   .band-content {
