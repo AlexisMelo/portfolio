@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, computed, inject, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
@@ -10,11 +11,16 @@ import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { experienceKind } from '../experience-kind.model';
+import {
+  EXPERIENCE_DESCRIPTION_DIALOG_TITLE_ID,
+  ExperienceDescriptionDialogComponent,
+  ExperienceDescriptionDialogData,
+} from './experience-description-dialog/experience-description-dialog.component';
 
 /**
  * Card of a step of the path: a band in the colour of its kind (teal for the jobs, mustard for the
- * schools) with the name, the end year, the place and the duration; then the job, the description
- * and a button opening the projects done there.
+ * schools) with the name, the end year, the place and the duration; then the job, the description,
+ * a button opening the whole description in a dialog and one opening the projects done there.
  */
 @Component({
   selector: 'app-experience-card',
@@ -94,4 +100,25 @@ export class ExperienceCardComponent {
   protected readonly projectsCount = computed(
     () => this.context().projects.length
   );
+
+  /**
+   * Opens dialogs above the page
+   */
+  private readonly dialog = inject(Dialog);
+
+  /**
+   * Opens a dialog with the whole description, which the card cuts after a few lines
+   */
+  protected openDescription() {
+    const description = this.description();
+    if (!description) return;
+
+    this.dialog.open<void, ExperienceDescriptionDialogData>(
+      ExperienceDescriptionDialogComponent,
+      {
+        ariaLabelledBy: EXPERIENCE_DESCRIPTION_DIALOG_TITLE_ID,
+        data: { title: this.label(), description, kind: this.kind() },
+      }
+    );
+  }
 }

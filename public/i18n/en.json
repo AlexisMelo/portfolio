@@ -217,7 +217,11 @@
     "card": {
       "see": "{count, plural, =1 {See 1 project} other {See # projects}}",
       "doneAt": "done at {label}",
-      "noProjects": "Projects to come"
+      "noProjects": "Projects to come",
+      "readDescription": "Read the whole description of {label}"
+    },
+    "dialog": {
+      "close": "Close"
     }
   },
   "duration": {

@@ -47,6 +47,16 @@
   }
 
   <div class="footer">
+    @if (description()) {
+      <button
+        type="button"
+        app-action-button
+        icon="visibility"
+        [attr.aria-label]="
+          'experience.card.readDescription' | transloco: { label: label() }
+        "
+        (click)="openDescription()"></button>
+    }
     @if (projectsCount() > 0) {
       <a
         app-action-button
