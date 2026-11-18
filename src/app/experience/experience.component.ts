@@ -13,8 +13,7 @@ import { ExperienceKind, experienceKind } from './experience-kind.model';
 import { ExperienceHeadingComponent } from './experience-heading/experience-heading.component';
 
 /**
- * Experience page: the heading, the CV and the filters, then a card for each step, the most recent
- * first, and the invitation to companies (in the top row from large screens up).
+ * Experience page
  */
 @Component({
   selector: 'app-experience',

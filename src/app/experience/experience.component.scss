@@ -1,8 +1,5 @@
 @use '../../styles/responsive.scss' as responsive;
 
-// Top of the page: the heading, the CV, then the filters. One under the other on phones; on medium
-// screens the heading and the CV side by side; from large screens up the invitation to companies
-// sits between them.
 app-experience-heading {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -22,7 +19,8 @@ app-resume {
   }
 
   @include responsive.responsive('large') {
-    grid-column: 9 / 13;
+    grid-row: 3 / 5;
+    grid-column: 1 / 5;
   }
 }
 
@@ -32,32 +30,50 @@ app-experience-filtering {
 
   @include responsive.responsive('medium') {
     grid-row: 3;
-    grid-column: 1 / 9;
   }
 
   @include responsive.responsive('large') {
-    grid-column: 1 / 13;
+    grid-row: 1;
+    grid-column: 5 / 9;
   }
 }
 
-// The cards are placed by the browser under the filters: one a row on phones, two on medium
-// screens, three from large screens up
-app-experience-card {
-  grid-column: span 4;
-  grid-row: span 3;
-}
-
-// Placed by the browser after the cards below large screens
 app-contact-tile {
-  grid-column: span 4;
-  grid-row: span 2;
+  grid-row: 5 / 7;
+  grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {
-    grid-row: span 3;
+    grid-row: 3 / 5;
+    grid-column: 5 / 9;
   }
 
   @include responsive.responsive('large') {
     grid-row: 1 / 3;
+    grid-column: 9 / 13;
+  }
+}
+
+app-experience-card {
+  grid-column: span 4;
+  grid-row: span 3;
+
+  @include responsive.responsive('medium') {
+    grid-column: 1 / 5;
+    grid-row: calc(var(--pair) * 3 + 4) / span 3;
+
+    &.odd {
+      grid-column: 5 / 9;
+      grid-row: calc(var(--pair) * 3 + 5) / span 3;
+    }
+  }
+
+  @include responsive.responsive('large') {
     grid-column: 5 / 9;
+    grid-row: calc(var(--pair) * 3 + 2) / span 3;
+
+    &.odd {
+      grid-column: 9 / 13;
+      grid-row: calc(var(--pair) * 3 + 3) / span 3;
+    }
   }
 }

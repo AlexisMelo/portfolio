@@ -15,13 +15,16 @@
     <app-experience-filtering
       [(selectedKind)]="selectedKind"></app-experience-filtering>
 
-    @for (context of shownContexts(); track context.id) {
-      <app-experience-card [context]="context"></app-experience-card>
-    }
-
     <app-contact-tile
       [heading]="'experience.yourCompany.title' | transloco"
       [subtitle]="'experience.yourCompany.subtitle' | transloco"
       [action]="'experience.yourCompany.action' | transloco"></app-contact-tile>
+
+    @for (context of shownContexts(); track context.id) {
+      <app-experience-card
+        [class.odd]="$odd"
+        [style.--pair]="$odd ? ($index - 1) / 2 : $index / 2"
+        [context]="context"></app-experience-card>
+    }
   </div>
 </div>
