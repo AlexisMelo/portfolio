@@ -4,34 +4,24 @@
     appGridEntrance
     staggerAddedTiles
     [replayKey]="shownKey()"
-    replaySelector="app-experience-stop, app-experience-card"
+    replaySelector="app-experience-card"
     appGridDrag>
     <app-experience-heading
       [contexts]="baseContexts()"
       [shownContexts]="shownContexts()"></app-experience-heading>
-
-    <app-contact-tile
-      [heading]="'experience.yourCompany.title' | transloco"
-      [subtitle]="'experience.yourCompany.subtitle' | transloco"
-      [action]="'experience.yourCompany.action' | transloco"></app-contact-tile>
 
     <app-resume></app-resume>
 
     <app-experience-filtering
       [(selectedKind)]="selectedKind"></app-experience-filtering>
 
-    <!-- From large screens up, the first card is on the right of the timeline, then they alternate -->
     @for (context of shownContexts(); track context.id) {
-      <app-experience-stop
-        [style.--index]="$index"
-        [context]="context"
-        [cardSide]="$even ? 'right' : 'left'"
-        [first]="$first"
-        [last]="$last"></app-experience-stop>
-      <app-experience-card
-        [style.--index]="$index"
-        [context]="context"
-        [side]="$even ? 'right' : 'left'"></app-experience-card>
+      <app-experience-card [context]="context"></app-experience-card>
     }
+
+    <app-contact-tile
+      [heading]="'experience.yourCompany.title' | transloco"
+      [subtitle]="'experience.yourCompany.subtitle' | transloco"
+      [action]="'experience.yourCompany.action' | transloco"></app-contact-tile>
   </div>
 </div>

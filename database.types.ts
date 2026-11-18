@@ -24,6 +24,7 @@ export type Database = {
           kind: Database["public"]["Enums"]["context_kind"]
           label: string
           localization: string
+          long_description: string | null
           start_date: string
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           kind: Database["public"]["Enums"]["context_kind"]
           label: string
           localization: string
+          long_description?: string | null
           start_date: string
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           kind?: Database["public"]["Enums"]["context_kind"]
           label?: string
           localization?: string
+          long_description?: string | null
           start_date?: string
         }
         Relationships: [
@@ -66,6 +69,13 @@ export type Database = {
           {
             foreignKeyName: "context_label_fkey"
             columns: ["label"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "context_long_description_fkey"
+            columns: ["long_description"]
             isOneToOne: false
             referencedRelation: "translations"
             referencedColumns: ["id"]

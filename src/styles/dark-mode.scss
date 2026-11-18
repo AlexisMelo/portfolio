@@ -96,27 +96,11 @@
 
   //experience-card
   // Teal band like the other teal backgrounds under white text; the schools keep the tiles' grey with
-  // their text in mustard, and the projects sticker with its text in coral (AA)
+  // their text in mustard (AA)
   --experience-card-pro-band-background: var(--primary-900);
   --experience-card-pro-band-color: white;
   --experience-card-school-band-background: var(--grid-item-default-bg);
   --experience-card-school-band-color: var(--mustard-500);
-  --experience-card-projects-background: var(--grid-item-default-bg);
-  --experience-card-projects-color: var(--coral-500);
-
-  //experience-stop
-  // Nodes like the bands of the cards. The rail is a line on the page, not a border: light grey, as
-  // black would vanish on the dark background (10:1 on it)
-  --experience-stop-pro-background: var(--primary-900);
-  --experience-stop-pro-color: white;
-  --experience-stop-school-background: var(--grid-item-default-bg);
-  --experience-stop-school-color: var(--mustard-500);
-  --experience-rail-color: var(--gray-300);
-
-  //experience-dates
-  // Title grey on the page background, which hides the rail behind the dates on small screens (AA)
-  --experience-dates-background: var(--styles-background-color);
-  --experience-dates-color: var(--styles-title-color);
 
   //experience-filtering
   // Teal like the other teal backgrounds under white text; the schools keep the tiles' grey with

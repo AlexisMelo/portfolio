@@ -1,15 +1,13 @@
 @use '../../../styles/responsive.scss' as responsive;
 
-// Sizes follow mock-up E: one set for phones, one from medium screens up.
+// Sizes follow mock-up D: one set for phones, one from medium screens up.
 
-// Visible overflow for the notch pointing to the timeline: the band rounds its own top corners
 :host {
   --band-background: var(--experience-card-pro-band-background);
   --band-color: var(--experience-card-pro-band-color);
 
   display: flex;
   flex-direction: column;
-  overflow: visible;
 }
 
 :host(.school) {
@@ -17,139 +15,75 @@
   --band-color: var(--experience-card-school-band-color);
 }
 
-// Notch on the side of the timeline, level with the node: on the left in the band on small screens,
-// in the middle of the side facing the timeline from large screens up. 9px is half its size.
-:host::after {
-  content: '';
-  position: absolute;
-  top: calc(var(--cell-size) / 2 - 9px);
-  left: -11px;
-  width: 18px;
-  height: 18px;
-  border-bottom: var(--grid-item-border);
-  border-left: var(--grid-item-border);
-  background-color: var(--band-background);
-  rotate: 45deg;
-
-  @include responsive.responsive('large') {
-    top: calc(50% - 9px);
-    background-color: var(--grid-item-default-bg);
-  }
-}
-
-:host(.left)::after {
-  @include responsive.responsive('large') {
-    left: auto;
-    right: -11px;
-    border: none;
-    border-top: var(--grid-item-border);
-    border-right: var(--grid-item-border);
-  }
-}
-
 .band {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 16px 18px 14px;
+  gap: 4px;
+  padding: 14px 16px 12px;
   border-bottom: var(--grid-item-border);
-  border-radius: 10px 10px 0 0;
   background-color: var(--band-background);
   color: var(--band-color);
 
   @include responsive.responsive('medium') {
-    padding: 22px 28px 18px;
+    padding: 14px 20px 12px;
   }
 }
 
 .top {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
-
-  @include responsive.responsive('medium') {
-    align-items: center;
-    gap: 12px;
-  }
+  gap: 12px;
 }
 
-// On one line from medium screens up, cut with an ellipsis
+// On one line, cut with an ellipsis
 .name {
-  flex: 1;
   min-width: 0;
   margin: 0;
+  overflow: hidden;
   color: inherit;
-  font-size: 21px;
+  font-size: 22px;
   line-height: 1.1;
   letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @include responsive.responsive('medium') {
-    overflow: hidden;
     font-size: var(--text-xxl);
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
 
-// Coral sticker, tilted the other way from the page stickers so it reads as stuck on the band
-.projects {
+.year {
   flex-shrink: 0;
-  padding: 2px 8px;
-  border: var(--grid-item-border);
-  border-radius: 8px;
-  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
-  background-color: var(--experience-card-projects-background);
-  color: var(--experience-card-projects-color);
+  margin: 0;
+  color: inherit;
   font-family: var(--title-font-family);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.35;
-  text-decoration: none;
   white-space: nowrap;
-  rotate: 2deg;
-  transition:
-    translate 200ms,
-    box-shadow 200ms;
-
-  &:hover {
-    translate: -1px -1px;
-    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--band-color);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
-
-  @include responsive.responsive('medium') {
-    padding: 2px 9px;
-    font-size: 13px;
-  }
 }
 
 .where {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
   margin: 0;
   color: inherit;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.4;
+  white-space: nowrap;
 
-  @include responsive.responsive('medium') {
-    font-size: 13.5px;
-    white-space: nowrap;
+  mat-icon {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
   }
 }
 
 .separator {
-  margin: 0 5px;
-
-  @include responsive.responsive('medium') {
-    margin: 0 6px;
-  }
+  margin: 0 2px;
 }
 
 .body {
@@ -158,12 +92,10 @@
   flex-direction: column;
   gap: 6px;
   min-height: 0;
-  padding: 14px 18px 18px;
-  overflow: hidden;
+  padding: 10px 16px 14px;
 
   @include responsive.responsive('medium') {
-    gap: 8px;
-    padding: 18px 28px 24px;
+    padding: 10px 20px 14px;
   }
 }
 
@@ -171,7 +103,7 @@
   margin: 0;
   color: var(--styles-title-color);
   font-family: var(--title-font-family);
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.25;
 
@@ -180,21 +112,36 @@
   }
 }
 
+// Takes the room left above the footer, cut after the lines that fit the card
 .description {
   display: -webkit-box;
+  flex: 1;
   min-height: 0;
   margin: 0;
   overflow: hidden;
   color: var(--styles-default-paragraph-color);
   font-size: var(--text-sm);
-  line-height: 1.45;
+  line-height: 1.5;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
-  line-clamp: 8;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
 
   @include responsive.responsive('medium') {
-    line-height: 1.55;
     -webkit-line-clamp: 5;
     line-clamp: 5;
   }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 2.5rem;
+  margin-top: 4px;
+}
+
+.no-projects {
+  margin: 0;
+  color: var(--styles-default-paragraph-color);
+  font-size: 13px;
 }

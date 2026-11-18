@@ -1,6 +1,9 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoDatePipe } from '@jsverse/transloco-locale';
+import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { ContextWithProjects } from 'src/app/projects/context-with-projects.model';
 import { DurationPipe } from 'src/app/projects/duration.pipe';
 import { PROJECTS_ROUTE } from 'src/app/route-paths';
@@ -9,18 +12,24 @@ import { LanguageService } from 'src/app/shared/language.service';
 import { experienceKind } from '../experience-kind.model';
 
 /**
- * Card of a step of the experience timeline: a band in the colour of its kind (teal for the jobs,
- * mustard for the schools) with the name, the place and the duration, and a coral sticker linking to
- * the projects done there; then the job and the description. A notch points to the timeline.
+ * Card of a step of the path: a band in the colour of its kind (teal for the jobs, mustard for the
+ * schools) with the name, the end year, the place and the duration; then the job, the description
+ * and a button opening the projects done there.
  */
 @Component({
   selector: 'app-experience-card',
-  imports: [DurationPipe, RouterLink, TranslocoPipe],
+  imports: [
+    ActionButtonComponent,
+    DurationPipe,
+    MatIcon,
+    RouterLink,
+    TranslocoDatePipe,
+    TranslocoPipe,
+  ],
   templateUrl: './experience-card.component.html',
   styleUrl: './experience-card.component.scss',
   host: {
     '[class.school]': "kind() === 'school'",
-    '[class.left]': "side() === 'left'",
   },
   hostDirectives: [GridItemDirective],
 })
@@ -36,12 +45,6 @@ export class ExperienceCardComponent {
   public readonly context = input.required<ContextWithProjects>();
 
   /**
-   * Side of the timeline the card sits on from large screens up; on smaller ones it is always on the
-   * right
-   */
-  public readonly side = input<'left' | 'right'>('right');
-
-  /**
    * Handle language
    */
   private readonly languageService = inject(LanguageService);
@@ -50,6 +53,13 @@ export class ExperienceCardComponent {
    * Kind of the step, which gives the colour of the band
    */
   protected readonly kind = computed(() => experienceKind(this.context()));
+
+  /**
+   * Whether the step has not started yet, its start year then showing instead of the end one
+   */
+  protected readonly upcoming = computed(
+    () => new Date(this.context().start_date) > new Date()
+  );
 
   /**
    * Name of the step in the current language
@@ -68,12 +78,15 @@ export class ExperienceCardComponent {
   );
 
   /**
-   * Description in the current language
+   * Long description in the current language, or the short one for a step without a long one
    */
-  protected readonly description = computed(
-    () =>
-      this.context().localizedDescription?.[this.languageService.currentLang()]
-  );
+  protected readonly description = computed(() => {
+    const lang = this.languageService.currentLang();
+    return (
+      this.context().localizedLongDescription?.[lang] ??
+      this.context().localizedDescription?.[lang]
+    );
+  });
 
   /**
    * Number of projects done during the step

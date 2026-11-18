@@ -135,7 +135,7 @@ export class SupabaseService {
     const { data } = await this.client
       .from('context')
       .select(
-        '*, projects:project(*), localizedDescription:translations!description(*), localizedLabel:translations!label(*), localizedJob:translations!job(*)'
+        '*, projects:project(*), localizedDescription:translations!description(*), localizedLongDescription:translations!long_description(*), localizedLabel:translations!label(*), localizedJob:translations!job(*)'
       )
       .order('end_date', { ascending: false })
       .order('start_date', { ascending: false })

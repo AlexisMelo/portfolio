@@ -11,12 +11,10 @@ import { ExperienceCardComponent } from './experience-card/experience-card.compo
 import { ExperienceFilteringComponent } from './experience-filtering/experience-filtering.component';
 import { ExperienceKind, experienceKind } from './experience-kind.model';
 import { ExperienceHeadingComponent } from './experience-heading/experience-heading.component';
-import { ExperienceStopComponent } from './experience-stop/experience-stop.component';
 
 /**
- * Experience page: the heading, the invitation to companies, the CV and the filters, then the
- * timeline of the steps, the most recent first. Each step is two tiles: its stop on the rail, with
- * its dates, and its card.
+ * Experience page: the heading, the CV and the filters, then a card for each step, the most recent
+ * first, and the invitation to companies (in the top row from large screens up).
  */
 @Component({
   selector: 'app-experience',
@@ -25,7 +23,6 @@ import { ExperienceStopComponent } from './experience-stop/experience-stop.compo
     ContactTileComponent,
     ResumeComponent,
     ExperienceFilteringComponent,
-    ExperienceStopComponent,
     ExperienceCardComponent,
     GridEntranceDirective,
     GridDragDirective,

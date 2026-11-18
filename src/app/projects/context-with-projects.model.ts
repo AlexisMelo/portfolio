@@ -12,6 +12,9 @@ export interface ContextWithProjects extends Tables<'context'> {
   /** Localized description resolved from the translations table. */
   localizedDescription: Tables<'translations'>;
 
+  /** Localized long description resolved from the translations table, null until one is written. */
+  localizedLongDescription: Tables<'translations'> | null;
+
   /** Localized label resolved from the translations table. */
   localizedLabel: Tables<'translations'>;
 

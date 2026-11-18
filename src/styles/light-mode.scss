@@ -90,26 +90,11 @@
 
   //experience-card
   // Band in the colour of the kind: teal for the jobs under white text, mustard for the schools
-  // under the darkest grey; coral projects sticker under the darkest grey (AA)
+  // under the darkest grey (AA)
   --experience-card-pro-band-background: var(--primary-600);
   --experience-card-pro-band-color: white;
   --experience-card-school-band-background: var(--mustard-500);
   --experience-card-school-band-color: var(--gray-800);
-  --experience-card-projects-background: var(--coral-500);
-  --experience-card-projects-color: var(--gray-800);
-
-  //experience-stop
-  // Nodes like the bands of the cards; the rail in the ink of the borders
-  --experience-stop-pro-background: var(--primary-600);
-  --experience-stop-pro-color: white;
-  --experience-stop-school-background: var(--mustard-500);
-  --experience-stop-school-color: var(--gray-800);
-  --experience-rail-color: var(--gray-800);
-
-  //experience-dates
-  // Title grey on the page background, which hides the rail behind the dates on small screens (AA)
-  --experience-dates-background: var(--styles-background-color);
-  --experience-dates-color: var(--styles-title-color);
 
   //experience-filtering
   // Selected chip in the colour of its kind: teal for every step and the jobs under white text,

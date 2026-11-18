@@ -215,10 +215,9 @@
       "today": "today"
     },
     "card": {
-      "projectsLabel": "{count, plural, =1 {See the project done at {label}} other {See the # projects done at {label}}}"
-    },
-    "projects": {
-      "count": "{count, plural, =0 {More to come !} =1 {1 project} other {# projects}}"
+      "see": "{count, plural, =1 {See 1 project} other {See # projects}}",
+      "doneAt": "done at {label}",
+      "noProjects": "Projects to come"
     }
   },
   "duration": {
