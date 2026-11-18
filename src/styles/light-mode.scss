@@ -74,6 +74,16 @@
   --skill-categories-explored-border-color: var(--gray-500);
   --skill-categories-focus-color: var(--gray-800);
 
+  //skill-level-filtering
+  --skill-level-filtering-selected-background: var(--primary-600);
+  --skill-level-filtering-selected-color: white;
+  --skill-level-filtering-learning-selected-background: var(--mustard-500);
+  --skill-level-filtering-learning-selected-color: var(--gray-800);
+  --skill-level-filtering-explored-selected-background: var(
+    --styles-title-color
+  );
+  --skill-level-filtering-explored-selected-color: var(--grid-item-default-bg);
+
   //skills-heading
   --skills-heading-background: var(--mustard-500);
   --skills-heading-color: var(--gray-800);

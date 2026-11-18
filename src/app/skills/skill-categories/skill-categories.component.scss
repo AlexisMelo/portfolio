@@ -119,6 +119,10 @@ li {
   }
 }
 
+.count {
+  font-weight: 400;
+}
+
 @container (min-width: 560px) {
   .bands {
     grid-template-columns: max-content minmax(0, 1fr);

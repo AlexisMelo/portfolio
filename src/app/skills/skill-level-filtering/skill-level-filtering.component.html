@@ -1,0 +1,23 @@
+<div
+  class="chips"
+  role="group"
+  [attr.aria-label]="'skills.filter.label' | transloco">
+  <button
+    type="button"
+    class="g-chip"
+    [attr.aria-pressed]="selectedLevel() === null"
+    (click)="selectedLevel.set(null)">
+    {{ 'skills.filter.all' | transloco }}
+  </button>
+
+  @for (level of levels; track level) {
+    <button
+      type="button"
+      class="g-chip"
+      [class]="level"
+      [attr.aria-pressed]="selectedLevel() === level"
+      (click)="selectedLevel.set(level)">
+      {{ 'skills.levels.' + level | transloco }}
+    </button>
+  }
+</div>

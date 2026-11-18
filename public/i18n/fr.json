@@ -155,7 +155,12 @@
   },
   "skills": {
     "heading": {
-      "skills": "{count, plural, =1 {techno} other {technos}}"
+      "skills": "{count, plural, =1 {techno} other {technos}}",
+      "shown": "{count, plural, =0 {Aucune techno affichée} =1 {1 techno affichée} other {# technos affichées}} sur {total}"
+    },
+    "filter": {
+      "label": "Filtrer les technos par niveau",
+      "all": "Tout"
     },
     "favorites": {
       "title": "Stack de prédilection",
@@ -179,12 +184,13 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "transverse": "Transverse",
-      "projectsLink": "{{name}}, {{level}}, voir les projets"
+      "projectsLink": "{{name}}, {{level}}, voir les projets",
+      "projectsCountLink": "{name} {count, plural, =0 {# projet} =1 {# projet} other {# projets}}, {level}, voir les projets"
     },
     "levels": {
-      "proficient": "Maîtrisé",
-      "learning": "En progression",
-      "explored": "Exploré"
+      "proficient": "Opérationnel",
+      "learning": "Montée en compétence",
+      "explored": "Déjà rencontré"
     }
   },
   "experience": {

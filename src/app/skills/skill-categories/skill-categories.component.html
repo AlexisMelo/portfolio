@@ -12,15 +12,22 @@
                 [routerLink]="PROJECTS_ROUTE"
                 [queryParams]="{ skills: skill.id }"
                 [attr.aria-label]="
-                  'skills.categories.projectsLink'
+                  (projectCountsShown()
+                    ? 'skills.categories.projectsCountLink'
+                    : 'skills.categories.projectsLink'
+                  )
                     | transloco
                       : {
                           name: skill.label,
+                          count: skill.projects.length,
                           level: ('skills.levels.' + skill.mastery | transloco),
                         }
                 "
-                >{{ skill.label }}</a
-              >
+                >{{ skill.label }}
+                @if (projectCountsShown()) {
+                  <span class="count">{{ skill.projects.length }}</span>
+                }
+              </a>
             </li>
           }
         </ul>

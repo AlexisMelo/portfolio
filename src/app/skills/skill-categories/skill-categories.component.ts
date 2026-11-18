@@ -68,6 +68,16 @@ export class SkillCategoriesComponent {
   public readonly skills = input.required<Array<Skill> | undefined>();
 
   /**
+   * Whether each chip shows how many projects use its skill
+   */
+  public readonly projectCountsShown = input(false);
+
+  /**
+   * Whether the skills are filtered
+   */
+  public readonly filtered = input(false);
+
+  /**
    * Bands of the tile, with their skills sorted by mastery, then by number of projects; skills of
    * the same mastery used in as many projects keep the alphabetical order of the database
    */
@@ -128,7 +138,7 @@ export class SkillCategoriesComponent {
   }
 
   /**
-   * Sets the number of grid rows the content needs, borders included
+   * Sets the number of grid rows the content needs
    */
   private measure() {
     const grid = this.host.parentElement;
@@ -148,7 +158,10 @@ export class SkillCategoriesComponent {
     });
 
     // a content that fits exactly must not take one more row because of rounding
-    const rows = Math.ceil((height + gap) / (cellSize + gap) - 0.01);
-    this.rows.set(Math.max(1, rows));
+    const rows = Math.max(
+      1,
+      Math.ceil((height + gap) / (cellSize + gap) - 0.01)
+    );
+    this.rows.set(this.filtered() ? Math.max(this.rows(), rows) : rows);
   }
 }

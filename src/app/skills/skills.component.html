@@ -1,11 +1,17 @@
 <div class="g-grid-container">
   <div class="g-grid" appGridEntrance appGridDrag>
     <app-skills-heading
-      [count]="skillsCount()"
+      [count]="shownSkills()?.length ?? 0"
+      [total]="skillsCount()"
       [year]="firstYear()"></app-skills-heading>
     <app-favorites></app-favorites>
     <app-click-hint [skills]="skills()"></app-click-hint>
-    <app-skill-categories [skills]="skills()"></app-skill-categories>
+    <app-skill-level-filtering
+      [(selectedLevel)]="selectedLevel"></app-skill-level-filtering>
+    <app-skill-categories
+      [skills]="shownSkills()"
+      [projectCountsShown]="selectedLevel() !== null"
+      [filtered]="selectedLevel() !== null"></app-skill-categories>
     <app-contact-tile
       avatar="sitting"
       [heading]="'skills.contact.title' | transloco"

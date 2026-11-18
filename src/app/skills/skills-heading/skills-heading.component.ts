@@ -16,9 +16,14 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 })
 export class SkillsHeadingComponent {
   /**
-   * Number of skills, 0 until they are loaded
+   * Number of skills the filter shows, 0 until they are loaded
    */
   public readonly count = input.required<number>();
+
+  /**
+   * Number of every skill, 0 until they are loaded
+   */
+  public readonly total = input.required<number>();
 
   /**
    * Year the first project started, null until the projects are loaded; the title waits for it so

@@ -9,6 +9,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { Enums } from 'database.types';
 import { firstStartYear } from '../shared/first-start-year';
 import { ContactTileComponent } from '../shared/contact-tile/contact-tile.component';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
@@ -17,12 +18,13 @@ import { SupabaseService } from '../shared/supabase.service';
 import { ClickHintComponent } from './click-hint/click-hint.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { SkillCategoriesComponent } from './skill-categories/skill-categories.component';
+import { SkillLevelFilteringComponent } from './skill-level-filtering/skill-level-filtering.component';
 import { Skill } from './skill.model';
 import { SkillsHeadingComponent } from './skills-heading/skills-heading.component';
 
 /**
- * Skills page: how many technologies, the favourite ones, and every skill by category, with a hint
- * that clicking a skill opens its projects
+ * Skills page: how many technologies, the favourite ones, and every skill by category, filtered by
+ * mastery level, with a hint that clicking a skill opens its projects
  */
 @Component({
   selector: 'app-skills',
@@ -31,6 +33,7 @@ import { SkillsHeadingComponent } from './skills-heading/skills-heading.componen
     SkillsHeadingComponent,
     SkillCategoriesComponent,
     ClickHintComponent,
+    SkillLevelFilteringComponent,
     ContactTileComponent,
     TranslocoPipe,
     GridEntranceDirective,
@@ -49,6 +52,22 @@ export class SkillsComponent implements OnInit {
    * Number of skills, 0 until they are loaded
    */
   protected readonly skillsCount = computed(() => this.skills()?.length ?? 0);
+
+  /**
+   * Mastery level of the skills shown, picked with the filter chips; null for all of them
+   */
+  protected readonly selectedLevel = signal<Enums<'skill_level'> | null>(null);
+
+  /**
+   * Skills of the selected level, undefined until they are loaded
+   */
+  protected readonly shownSkills = computed(() => {
+    const level = this.selectedLevel();
+    const skills = this.skills();
+    return level === null
+      ? skills
+      : skills?.filter(skill => skill.mastery === level);
+  });
 
   /**
    * Year the first project started, null until the projects are loaded

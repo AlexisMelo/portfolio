@@ -7,7 +7,6 @@ import { ListedProject, NumberedProject } from './listed-project.model';
 import {
   ALL_CATEGORIES_CHIP_ID,
   isProjectCategory,
-  PROJECT_CATEGORIES,
   PROJECT_TYPE_KEYS,
   ProjectCategory,
   projectIsInCategory,
@@ -154,28 +153,6 @@ export class ProjectsService {
     return category === null
       ? projects
       : projects.filter(project => projectIsInCategory(project, category));
-  });
-
-  /**
-   * Number of projects each category chip would show with the other filters kept, under "all"
-   * for the chip without a category
-   */
-  public readonly categoryCounts = computed(() => {
-    const projects = this.projectsOfAnyCategory();
-    const counts: Record<ProjectCategory | 'all', number> = {
-      all: projects.length,
-      featured: 0,
-      angular: 0,
-      company: 0,
-      personal: 0,
-    };
-
-    for (const project of projects) {
-      for (const category of PROJECT_CATEGORIES) {
-        if (projectIsInCategory(project, category)) counts[category]++;
-      }
-    }
-    return counts;
   });
 
   /**

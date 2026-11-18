@@ -38,8 +38,23 @@ app-click-hint {
   }
 }
 
+app-skill-level-filtering {
+  grid-row: 7;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 5;
+    grid-column: 1 / 5;
+  }
+
+  @include responsive.responsive('large') {
+    grid-row: 3;
+    grid-column: 5 / 13;
+  }
+}
+
 app-skill-categories {
-  grid-row: 7 / span var(--skill-categories-rows);
+  grid-row: 8 / span var(--skill-categories-rows);
   grid-column: 1 / 5;
 
   @include responsive.responsive('medium') {

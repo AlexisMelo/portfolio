@@ -1,0 +1,43 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+:host(.g-grid-item) {
+  --chip-pressed-background: var(--skill-level-filtering-selected-background);
+  --chip-pressed-color: var(--skill-level-filtering-selected-color);
+
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:host(.g-grid-item:hover),
+:host(.g-grid-item.g-grid-item-dragging) {
+  box-shadow: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  @include responsive.responsive('medium') {
+    gap: 0.75rem;
+  }
+}
+
+.learning {
+  --chip-pressed-background: var(
+    --skill-level-filtering-learning-selected-background
+  );
+  --chip-pressed-color: var(--skill-level-filtering-learning-selected-color);
+}
+
+.explored {
+  --chip-pressed-background: var(
+    --skill-level-filtering-explored-selected-background
+  );
+  --chip-pressed-color: var(--skill-level-filtering-explored-selected-color);
+}

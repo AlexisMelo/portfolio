@@ -9,9 +9,6 @@
     [attr.aria-pressed]="projectsService.selectedCategory() === null"
     (click)="projectsService.selectCategory(null)">
     {{ 'projects.categoryFilter.all' | transloco }}
-    @if (projectsService.loaded()) {
-      <span class="count">{{ projectsService.categoryCounts().all }}</span>
-    }
   </button>
 
   @for (category of categories; track category) {
@@ -21,11 +18,6 @@
       [attr.aria-pressed]="projectsService.selectedCategory() === category"
       (click)="projectsService.selectCategory(category)">
       {{ 'projects.categoryFilter.' + category | transloco }}
-      @if (projectsService.loaded()) {
-        <span class="count">{{
-          projectsService.categoryCounts()[category]
-        }}</span>
-      }
     </button>
   }
 </div>

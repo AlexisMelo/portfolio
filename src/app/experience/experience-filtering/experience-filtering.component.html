@@ -8,23 +8,16 @@
     [attr.aria-pressed]="selectedKind() === null"
     (click)="selectedKind.set(null)">
     {{ 'experience.filter.all' | transloco }}
-    @if (contexts().length > 0) {
-      <span class="count">{{ contexts().length }}</span>
-    }
   </button>
 
-  @for (chip of kinds(); track chip.kind) {
+  @for (kind of kinds; track kind) {
     <button
       type="button"
       class="g-chip"
-      [class]="chip.kind"
-      [attr.aria-pressed]="selectedKind() === chip.kind"
-      (click)="selectedKind.set(chip.kind)">
-      <mat-icon aria-hidden="true">{{ chip.icon }}</mat-icon>
-      {{ 'experience.filter.' + chip.kind | transloco }}
-      @if (contexts().length > 0) {
-        <span class="count">{{ chip.count }}</span>
-      }
+      [class]="kind"
+      [attr.aria-pressed]="selectedKind() === kind"
+      (click)="selectedKind.set(kind)">
+      {{ 'experience.filter.' + kind | transloco }}
     </button>
   }
 </div>
