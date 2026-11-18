@@ -34,6 +34,10 @@
   --companies-label-color: var(--gray-800);
   --companies-name-color: var(--gray-800);
 
+  //contact-tile
+  --contact-tile-background: var(--coral-500);
+  --contact-tile-color: var(--gray-800);
+
   //count-title
   // Coral badge of the total next to the number, like the abandoned status, under the darkest grey
   // (AA)
@@ -305,11 +309,6 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);
-
-  //your-company
-  // Coral call to action with the darkest grey text (AA)
-  --your-company-background: var(--coral-500);
-  --your-company-color: var(--gray-800);
 
   //your-project
   // Coral entry of the list with the darkest grey text (AA), its number on a white sticker

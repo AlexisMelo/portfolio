@@ -8,8 +8,10 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { AllComponent } from '../projects/all/all.component';
 import { firstStartYear } from '../shared/first-start-year';
+import { ContactTileComponent } from '../shared/contact-tile/contact-tile.component';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { SupabaseService } from '../shared/supabase.service';
@@ -31,6 +33,8 @@ import { SkillsHeadingComponent } from './skills-heading/skills-heading.componen
     SkillsHeadingComponent,
     SkillCategoriesComponent,
     AllComponent,
+    ContactTileComponent,
+    TranslocoPipe,
     GridEntranceDirective,
     GridDragDirective,
   ],

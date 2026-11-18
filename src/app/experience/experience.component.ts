@@ -1,7 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { environment } from 'src/environments/environment';
 import { ResumeComponent } from '../home/resume/resume.component';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
+import { ContactTileComponent } from '../shared/contact-tile/contact-tile.component';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
 import { SupabaseService } from '../shared/supabase.service';
@@ -10,7 +12,6 @@ import { ExperienceFilteringComponent } from './experience-filtering/experience-
 import { ExperienceKind, experienceKind } from './experience-kind.model';
 import { ExperienceHeadingComponent } from './experience-heading/experience-heading.component';
 import { ExperienceStopComponent } from './experience-stop/experience-stop.component';
-import { YourCompanyComponent } from './your-company/your-company.component';
 
 /**
  * Experience page: the heading, the invitation to companies, the CV and the filters, then the
@@ -21,13 +22,14 @@ import { YourCompanyComponent } from './your-company/your-company.component';
   selector: 'app-experience',
   imports: [
     ExperienceHeadingComponent,
-    YourCompanyComponent,
+    ContactTileComponent,
     ResumeComponent,
     ExperienceFilteringComponent,
     ExperienceStopComponent,
     ExperienceCardComponent,
     GridEntranceDirective,
     GridDragDirective,
+    TranslocoPipe,
   ],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',

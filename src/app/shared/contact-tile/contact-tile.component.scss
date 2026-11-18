@@ -1,0 +1,65 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+:host {
+  padding: var(--tile-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--contact-tile-background);
+
+  overflow: visible;
+}
+
+h2 {
+  margin: 0;
+  color: var(--contact-tile-color);
+  font-size: var(--text-xxxl);
+
+  .subtitle {
+    display: block;
+    color: var(--contact-tile-color);
+    font-size: var(--text-xxl);
+    opacity: 0.8;
+  }
+}
+
+img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 120px;
+  height: auto;
+  scale: -1 1;
+  rotate: 7deg;
+}
+
+// The whole avatar sits at the bottom right of the tile
+:host(.sitting) {
+  h2 {
+    position: relative;
+    font-size: var(--text-xxxl);
+
+    .subtitle {
+      margin-top: 0.4em;
+      font-size: var(--text-xxl);
+      text-wrap: balance;
+      max-width: 80%;
+    }
+  }
+
+  // Mirrored to face the text
+  img {
+    right: -5%;
+    bottom: -10%;
+    width: auto;
+    height: 84%;
+    rotate: none;
+
+    @include responsive.responsive('medium') {
+      right: -3.5%;
+      bottom: -11%;
+      height: 85%;
+    }
+  }
+}

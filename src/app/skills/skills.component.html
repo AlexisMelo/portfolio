@@ -7,5 +7,10 @@
     <app-all></app-all>
     <app-keep-learning></app-keep-learning>
     <app-skill-categories [skills]="skills()"></app-skill-categories>
+    <app-contact-tile
+      avatar="sitting"
+      [heading]="'skills.contact.title' | transloco"
+      [subtitle]="'skills.contact.subtitle' | transloco"
+      [action]="'skills.contact.action' | transloco"></app-contact-tile>
   </div>
 </div>

@@ -39,6 +39,10 @@
   --companies-label-color: var(--coral-500);
   --companies-name-color: var(--styles-title-color);
 
+  //contact-tile
+  --contact-tile-background: var(--grid-item-default-bg);
+  --contact-tile-color: var(--coral-500);
+
   //count-title
   // Badge of the total like the coral stickers: the tiles' grey with the text in coral (AA)
   --count-title-total-background: var(--grid-item-default-bg);
@@ -318,11 +322,6 @@
 
   //suggestion-chip
   --suggestion-chip-bg: var(--gray-500);
-
-  //your-company
-  // Like the coral tiles: the tiles' grey with coral text (AA)
-  --your-company-background: var(--grid-item-default-bg);
-  --your-company-color: var(--coral-500);
 
   //your-project
   // Like the coral tiles: the tiles' grey with coral text (AA), its number too

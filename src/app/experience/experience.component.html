@@ -10,7 +10,10 @@
       [contexts]="baseContexts()"
       [shownContexts]="shownContexts()"></app-experience-heading>
 
-    <app-your-company></app-your-company>
+    <app-contact-tile
+      [heading]="'experience.yourCompany.title' | transloco"
+      [subtitle]="'experience.yourCompany.subtitle' | transloco"
+      [action]="'experience.yourCompany.action' | transloco"></app-contact-tile>
 
     <app-resume></app-resume>
 

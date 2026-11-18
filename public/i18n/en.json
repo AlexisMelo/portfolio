@@ -171,6 +171,11 @@
       "description": "Because each project comes with its constraints and requirements. I keep learning over time, and remain open to new proposals !",
       "skillsTitle": "Leveling up"
     },
+    "contact": {
+      "title": "Not finding what you really need ?",
+      "subtitle": "Let's talk, I can learn fast !",
+      "action": "Contact me"
+    },
     "recap": {
       "iconAlt": "Icon of {{label}}"
     },

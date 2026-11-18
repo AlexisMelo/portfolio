@@ -171,6 +171,11 @@
       "description": "Car chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre avec le temps, et reste ouvert aux propositions !",
       "skillsTitle": "Montée en compétence"
     },
+    "contact": {
+      "title": "Vous ne trouvez pas votre bonheur ?",
+      "subtitle": "On peut en discuter, j'apprends vite !",
+      "action": "Me contacter"
+    },
     "recap": {
       "iconAlt": "Icône de {{label}}"
     },

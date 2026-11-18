@@ -58,3 +58,12 @@ app-skill-categories {
     grid-column: 5 / 13;
   }
 }
+
+app-contact-tile {
+  grid-row: span 3;
+  grid-column: 1 / 5;
+
+  @include responsive.responsive('medium') {
+    grid-row: 6 / 9;
+  }
+}
