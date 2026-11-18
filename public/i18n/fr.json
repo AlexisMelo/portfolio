@@ -101,8 +101,8 @@
       "empty": "Aucun projet ne correspond à ces filtres."
     },
     "yourProject": {
-      "title": "Ton projet, ici",
-      "subtitle": "Un rêve, une idée, une réalité !",
+      "title": "Votre projet, ici",
+      "subtitle": "Un projet à démarrer, une fonctionnalité à ajouter ou des corrections à apporter ?",
       "action": "Discutons-en !"
     }
   },
