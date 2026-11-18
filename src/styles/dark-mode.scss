@@ -48,14 +48,12 @@
   --coworker-info-color: var(--gray-400);
 
   //experience-heading
-  // Like the other teal backgrounds, under white text (AA)
-  --experience-heading-background: var(--primary-900);
-  --experience-heading-color: white;
+  --experience-heading-background: var(--grid-item-default-bg);
+  --experience-heading-color: var(--mustard-500);
 
   //skills-heading
-  // Like the other teal backgrounds, under white text (AA)
-  --skills-heading-background: var(--primary-900);
-  --skills-heading-color: white;
+  --skills-heading-background: var(--grid-item-default-bg);
+  --skills-heading-color: var(--mustard-500);
 
   //experience-card
   // Teal band like the other teal backgrounds under white text; the schools keep the tiles' grey with
@@ -86,16 +84,15 @@
   // their text in mustard (AA)
   --experience-filtering-selected-background: var(--primary-900);
   --experience-filtering-selected-color: white;
-  --experience-filtering-school-selected-background: var(--grid-item-default-bg);
+  --experience-filtering-school-selected-background: var(
+    --grid-item-default-bg
+  );
   --experience-filtering-school-selected-color: var(--mustard-500);
 
   //favorites
   --favorites-background: var(--grid-item-default-bg);
-  --favorites-color: var(--mustard-500);
-  // Focus ring of the stickers, light on the dark tile
+  --favorites-color: var(--styles-title-color);
   --favorites-focus-color: white;
-  // Stickers keep their brand colours on the dark tile: white text on Angular and .NET, the
-  // darkest grey on the lighter Supabase, Figma and Git ones (AA, Figma 4.6:1); white for the others
   --favorites-sticker-background: white;
   --favorites-sticker-color: var(--gray-800);
   --favorites-angular-background: #dd0031;
@@ -121,6 +118,9 @@
   --grid-item-border-color: black;
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-300);
+
+  //home
+  --home-image-background-color: var(--grid-item-default-bg);
 
   //image
   --image-background-color: var(--grid-item-default-bg);
@@ -156,9 +156,8 @@
   --map-location-icon-color: var(--mustard-500);
 
   //mail
-  --mail-background-color: var(--primary-900);
-  --mail-color: white;
-  --mail-project-color: var(--primary-200);
+  --mail-background-color: var(--grid-item-default-bg);
+  --mail-color: var(--coral-500);
 
   //navbar
   // In the mobile menu, the active link is a tile in the navbar colour
@@ -270,8 +269,8 @@
   --recommendations-focus-color: white;
 
   //resume
-  --resume-background-color: var(--grid-item-default-bg);
-  --resume-color: var(--mustard-500);
+  --resume-background-color: var(--primary-900);
+  --resume-color: white;
 
   //round-button
   --round-button-background: var(--grid-item-default-bg);

@@ -4,8 +4,7 @@ import { CountTitleComponent } from 'src/app/shared/count-title/count-title.comp
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 /**
- * Title tile of the skills page, in teal (the brand): how many technologies the portfolio lists and
- * the year the first project started. Empty until the skills arrive.
+ * Title tile of the skills page
  */
 @Component({
   selector: 'app-skills-heading',

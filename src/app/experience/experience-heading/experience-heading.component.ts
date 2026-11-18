@@ -6,10 +6,7 @@ import { firstStartYear } from 'src/app/shared/first-start-year';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 
 /**
- * Title tile of the experience page, in teal (the brand): how many steps (jobs, internships,
- * schools) the path holds and the year the first one started. When the filters hide some steps, the
- * number and the year count to those of the shown steps, and a badge gives the total. Empty until
- * the steps arrive.
+ * Title tile of the experience page
  */
 @Component({
   selector: 'app-experience-heading',

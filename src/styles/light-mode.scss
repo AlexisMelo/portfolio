@@ -44,14 +44,12 @@
   --coworker-info-color: var(--gray-600);
 
   //experience-heading
-  // Teal title tile, the brand, under white text (AA)
-  --experience-heading-background: var(--primary-600);
-  --experience-heading-color: white;
+  --experience-heading-background: var(--mustard-500);
+  --experience-heading-color: var(--gray-800);
 
   //skills-heading
-  // Teal title tile, the brand, under white text (AA)
-  --skills-heading-background: var(--primary-600);
-  --skills-heading-color: white;
+  --skills-heading-background: var(--mustard-500);
+  --skills-heading-color: var(--gray-800);
 
   //experience-card
   // Band in the colour of the kind: teal for the jobs under white text, mustard for the schools
@@ -85,12 +83,9 @@
   --experience-filtering-school-selected-color: var(--gray-800);
 
   //favorites
-  --favorites-background: var(--mustard-500);
-  --favorites-color: var(--gray-800);
-  // Focus ring of the stickers, dark on the mustard tile
+  --favorites-background: var(--grid-item-default-bg);
+  --favorites-color: var(--styles-title-color);
   --favorites-focus-color: var(--gray-800);
-  // Stickers in their brand colours: white text on Angular and .NET (the home page chips), the
-  // darkest grey on the lighter Supabase, Figma and Git ones (AA, Figma 4.6:1); white for the others
   --favorites-sticker-background: white;
   --favorites-sticker-color: var(--gray-800);
   --favorites-angular-background: #dd0031;
@@ -116,12 +111,13 @@
   --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-200);
 
+  //home
+  --home-image-background-color: var(--mustard-500);
+
   //image
   --image-background-color: var(--coral-500);
 
   //job
-  // Brand colours of the frameworks, under white text (AA). "& much more" in mustard, the colour
-  // of the skills favourites, under the darkest grey (AA)
   --job-framework-color: white;
   --job-angular-background: #dd0031;
   --job-dotnet-background: #512bd4;
@@ -141,7 +137,7 @@
   --linkedin-contour-bg: var(--gray-800);
 
   //map
-  // Disc behind my head in coral, like the tile of my photo
+  // Disc behind my head in teal
   --map-rayon-background: var(--primary-500);
   // Teal sticker with white text (AA) and a mustard pin (3:1 on teal)
   --map-location-background: var(--primary-600);
@@ -149,9 +145,8 @@
   --map-location-icon-color: var(--mustard-500);
 
   //mail
-  --mail-background-color: var(--primary-600);
-  --mail-color: white;
-  --mail-project-color: var(--primary-200);
+  --mail-background-color: var(--coral-500);
+  --mail-color: var(--gray-800);
 
   //navbar
   // In the mobile menu, the active link is a tile in the navbar colour
@@ -262,8 +257,8 @@
   --recommendations-focus-color: var(--gray-800);
 
   //resume
-  --resume-background-color: var(--mustard-500);
-  --resume-color: var(--gray-800);
+  --resume-background-color: var(--primary-600);
+  --resume-color: white;
 
   //round-button
   --round-button-background: var(--grid-item-default-bg);

@@ -24,8 +24,7 @@ interface FavoriteSticker {
 }
 
 /**
- * Mustard hero of the skills page: a big "my go-to stack" title and the loved skills as floating
- * brand-coloured stickers, each a link to the projects using it
+ * Hero of the skills page with my go-to stack
  */
 @Component({
   selector: 'app-favorites',
@@ -33,7 +32,6 @@ interface FavoriteSticker {
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [LovedPipe],
-  host: { class: 'g-grid-item-highlight' },
   hostDirectives: [GridItemDirective],
 })
 export class FavoritesComponent {

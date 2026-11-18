@@ -22,7 +22,7 @@ h2 {
   .projet {
     margin-top: 0.5rem;
     display: block;
-    color: var(--mail-project-color);
+    opacity: 0.8;
   }
 
   @include responsive.responsive('medium') {

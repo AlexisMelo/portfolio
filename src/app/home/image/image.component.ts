@@ -8,7 +8,7 @@ import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 export type AvatarPose = 'arms-crossed' | 'shrugging';
 
 /**
- * Coral tile of the avatar, leaning out of it
+ * Tile of the avatar
  */
 @Component({
   selector: 'app-image',
@@ -19,8 +19,7 @@ export type AvatarPose = 'arms-crossed' | 'shrugging';
 })
 export class ImageComponent extends GridItemDirective {
   /**
-   * Pose of the avatar: arms crossed on the home page, shrugging next to the speech bubble of the
-   * projects page
+   * Pose of the avatar, changing the image used
    */
   public readonly pose = input<AvatarPose>('arms-crossed');
 }
