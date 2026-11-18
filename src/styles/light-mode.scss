@@ -47,6 +47,17 @@
   --experience-heading-background: var(--mustard-500);
   --experience-heading-color: var(--gray-800);
 
+  //skill-categories
+  --skill-categories-proficient-background: var(--primary-600);
+  --skill-categories-proficient-color: white;
+  --skill-categories-learning-background: var(--mustard-500);
+  --skill-categories-learning-color: var(--gray-800);
+  --skill-categories-learning-border-color: var(--mustard-500);
+  --skill-categories-explored-background: var(--grid-item-default-bg);
+  --skill-categories-explored-color: var(--styles-title-color);
+  --skill-categories-explored-border-color: var(--gray-500);
+  --skill-categories-focus-color: var(--gray-800);
+
   //skills-heading
   --skills-heading-background: var(--mustard-500);
   --skills-heading-color: var(--gray-800);
@@ -125,12 +136,6 @@
   --job-more-color: var(--gray-800);
   // Focus ring of the chips, dark on the white tile
   --job-focus-color: var(--gray-800);
-
-  //key-header
-  --key-header-background: var(--primary-600);
-  --key-header-color: white;
-  --key-header-chips-background: white;
-  --key-header-chips-color: var(--key-header-background);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
@@ -275,12 +280,6 @@
   --skills-recap-counter-color: var(--gray-600);
   --skills-recap-separator: var(--gray-100);
   --skills-recap-background: var(--primary-200);
-
-  //skill-highlight
-  --skill-highlight-icon-color: var(--primary-600);
-
-  //skill-section-description
-  --skill-section-description-rule-color: var(--primary-600);
 
   //status-filtering
   // One palette colour per status, the one of the numbers in the list: the bars (faded after the

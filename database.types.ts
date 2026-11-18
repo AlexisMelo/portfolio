@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "12.2.3"
   }
   public: {
     Tables: {
@@ -19,8 +19,9 @@ export type Database = {
           description: string | null
           end_date: string | null
           id: number
-          is_company: boolean
+          is_company: boolean | null
           job: string | null
+          kind: Database["public"]["Enums"]["context_kind"]
           label: string
           localization: string
           start_date: string
@@ -29,8 +30,9 @@ export type Database = {
           description?: string | null
           end_date?: string | null
           id?: number
-          is_company?: boolean
+          is_company?: boolean | null
           job?: string | null
+          kind: Database["public"]["Enums"]["context_kind"]
           label: string
           localization: string
           start_date: string
@@ -39,8 +41,9 @@ export type Database = {
           description?: string | null
           end_date?: string | null
           id?: number
-          is_company?: boolean
+          is_company?: boolean | null
           job?: string | null
+          kind?: Database["public"]["Enums"]["context_kind"]
           label?: string
           localization?: string
           start_date?: string
@@ -345,7 +348,15 @@ export type Database = {
           id?: number
           label?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "project_type_label_fkey"
+            columns: ["label"]
+            isOneToOne: false
+            referencedRelation: "translations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       recommendations: {
         Row: {
@@ -423,7 +434,7 @@ export type Database = {
           landing_page: boolean
           loved: boolean
           main: boolean
-          mastery: number
+          mastery: Database["public"]["Enums"]["skill_level"]
           type: number
         }
         Insert: {
@@ -437,7 +448,7 @@ export type Database = {
           landing_page?: boolean
           loved?: boolean
           main?: boolean
-          mastery?: number
+          mastery?: Database["public"]["Enums"]["skill_level"]
           type: number
         }
         Update: {
@@ -451,7 +462,7 @@ export type Database = {
           landing_page?: boolean
           loved?: boolean
           main?: boolean
-          mastery?: number
+          mastery?: Database["public"]["Enums"]["skill_level"]
           type?: number
         }
         Relationships: [
@@ -548,7 +559,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      context_kind: "company" | "freelance" | "school" | "personal"
+      skill_level: "proficient" | "learning" | "explored"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -564,12 +576,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -593,11 +605,11 @@ export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -618,11 +630,11 @@ export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -643,11 +655,11 @@ export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -660,11 +672,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -675,6 +687,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      context_kind: ["company", "freelance", "school", "personal"],
+      skill_level: ["proficient", "learning", "explored"],
+    },
   },
 } as const

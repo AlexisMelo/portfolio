@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as responsive;
 
 // From medium screens up the heading and the favourites share the first two rows, the heading on
-// the left; the rest of the page stays on the first 8 columns
+// the left
 app-skills-heading {
   grid-row: 1;
   grid-column: 1 / 5;
@@ -44,162 +44,17 @@ app-keep-learning {
   }
 }
 
-app-key-header {
-  font-size: var(--text-xl);
+// The categories set how many rows they need
+app-skill-categories {
+  grid-row: 8 / span var(--skill-categories-rows);
+  grid-column: 1 / 5;
 
-  &.section-frontend {
-    grid-row: 8;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 4;
-      grid-column: 5 / 9;
-    }
+  @include responsive.responsive('medium') {
+    grid-row: 4 / span var(--skill-categories-rows);
+    grid-column: 5 / 9;
   }
 
-  &.section-backend {
-    grid-row: 16;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 9;
-      grid-column: 5 / 9;
-    }
-  }
-
-  &.section-general {
-    grid-row: 24;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 13;
-    }
-  }
-}
-
-app-skill-highlight {
-  &.section-frontend {
-    grid-row: 9 / 11;
-
-    @include responsive.responsive('medium') {
-      grid-row: 5 / 7;
-    }
-
-    &:nth-of-type(1) {
-      grid-column: 1 / 3;
-
-      @include responsive.responsive('medium') {
-        grid-column: 5 / 7;
-      }
-    }
-
-    &:nth-of-type(2) {
-      grid-column: 3 / 5;
-
-      @include responsive.responsive('medium') {
-        grid-column: 7 / 9;
-      }
-    }
-  }
-
-  &.section-backend {
-    grid-row: 17 / 19;
-
-    @include responsive.responsive('medium') {
-      grid-row: 9 / 11;
-    }
-
-    &:nth-of-type(3) {
-      grid-column: 1 / 3;
-    }
-
-    &:nth-of-type(4) {
-      grid-column: 3 / 5;
-    }
-  }
-
-  &.section-general {
-    grid-row: 25 / 27;
-
-    @include responsive.responsive('medium') {
-      grid-row: 13 / 15;
-    }
-
-    &:nth-of-type(5) {
-      grid-column: 1 / 3;
-
-      @include responsive.responsive('medium') {
-        grid-column: 5 / 7;
-      }
-    }
-
-    &:nth-of-type(6) {
-      grid-column: 3 / 5;
-
-      @include responsive.responsive('medium') {
-        grid-column: 7 / 9;
-      }
-    }
-  }
-}
-
-app-skill-section-description {
-  &.section-frontend {
-    grid-row: 11 / 13;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 7 / 9;
-      grid-column: 5 / 9;
-    }
-  }
-
-  &.section-backend {
-    grid-row: 19 / 21;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 11 / 13;
-    }
-  }
-
-  &.section-general {
-    grid-row: 27 / 29;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 15 / 17;
-      grid-column: 5 / 9;
-    }
-  }
-}
-
-app-skills-recap {
-  &.section-frontend {
-    grid-row: 13 / 16;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 6 / 9;
-    }
-  }
-
-  &.section-backend {
-    grid-row: 21 / 24;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 10 / 13;
-      grid-column: 5 / 9;
-    }
-  }
-
-  &.section-general {
-    grid-row: 29 / 32;
-    grid-column: 1 / 5;
-
-    @include responsive.responsive('medium') {
-      grid-row: 14 / 17;
-    }
+  @include responsive.responsive('large') {
+    grid-column: 5 / 13;
   }
 }

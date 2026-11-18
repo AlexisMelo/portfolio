@@ -1,0 +1,30 @@
+<div class="bands" [attr.aria-busy]="skills() === undefined">
+  @for (category of categories(); track category.key) {
+    <section class="band" #band>
+      <div class="band-content" #bandContent>
+        <h2>{{ 'skills.categories.' + category.key | transloco }}</h2>
+
+        <ul class="skills">
+          @for (skill of category.skills; track skill.id) {
+            <li animate.enter="g-fade-in">
+              <a
+                [class]="'skill skill-' + skill.mastery"
+                [routerLink]="PROJECTS_ROUTE"
+                [queryParams]="{ skills: skill.id }"
+                [attr.aria-label]="
+                  'skills.categories.projectsLink'
+                    | transloco
+                      : {
+                          name: skill.label,
+                          level: ('skills.levels.' + skill.mastery | transloco),
+                        }
+                "
+                >{{ skill.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+  }
+</div>

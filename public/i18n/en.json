@@ -174,25 +174,16 @@
     "recap": {
       "iconAlt": "Icon of {{label}}"
     },
-    "skillHighlight": {
-      "projects": "{count, plural, =1 {1 project} other {# projects}}"
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "transverse": "Transverse",
+      "projectsLink": "{{name}}, {{level}}, see the projects"
     },
-    "sections": {
-      "frontend": {
-        "heading": "Interface creation",
-        "subtitle": "Frontend",
-        "description": "Mockup creation, complex integration and accessibility ! Every day, I create interfaces that appeal to the widest audience"
-      },
-      "backend": {
-        "heading": "Data management",
-        "subtitle": "Backend",
-        "description": "Data is at the heart of most projects. I appreciate the challenges related to its collection, persistence and availability"
-      },
-      "general": {
-        "heading": "And much more",
-        "subtitle": "General",
-        "description": "Code is great ! But to be a complete developer, I'm also interested in project management, deployment and continuous integration"
-      }
+    "levels": {
+      "proficient": "Proficient",
+      "learning": "Leveling up",
+      "explored": "Explored"
     }
   },
   "experience": {

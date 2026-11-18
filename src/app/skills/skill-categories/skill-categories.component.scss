@@ -1,0 +1,138 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// A narrow tile (phones, medium screens) shows each band's title above its chips. From 560px wide
+// (8 columns on large screens), the title is on the left and the chips on the right, the chips of
+// every band starting at the same place. The width of the tile decides, not the window's, as the
+// visitor can resize it.
+:host {
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+}
+
+// The tile spans whole grid rows: the bands share the height left over by their content
+.bands {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.band {
+  display: grid;
+  align-content: center;
+
+  & + & {
+    border-top: var(--grid-item-border);
+  }
+}
+
+.band-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.4rem var(--tile-padding);
+}
+
+h2 {
+  font-size: var(--text-xxl);
+  line-height: 1.1;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  line-height: normal;
+}
+
+.skills {
+  gap: 8px;
+  font-size: 13px;
+  // One line of chips while they load, so that the bands keep their height when they arrive
+  min-height: calc(1.9em + 4px);
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-sm);
+  }
+}
+
+// Colours and border of each level
+.skill-proficient {
+  border: var(--grid-item-border);
+  background-color: var(--skill-categories-proficient-background);
+  color: var(--skill-categories-proficient-color);
+}
+
+.skill-learning {
+  border: 1px solid var(--skill-categories-learning-border-color);
+  background-color: var(--skill-categories-learning-background);
+  color: var(--skill-categories-learning-color);
+}
+
+.skill-explored {
+  border: 1px dashed var(--skill-categories-explored-border-color);
+  background-color: var(--skill-categories-explored-background);
+  color: var(--skill-categories-explored-color);
+}
+
+// Every chip has the same size: the 2px ink border of the proficient ones is 1px of border and 1px
+// of padding on the others. Only the proficient ones have a shadow until hovered.
+.skill {
+  display: block;
+  padding: calc(0.3em + 1px) calc(0.7em + 1px);
+  border-radius: 8px;
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    box-shadow 200ms,
+    translate 200ms;
+
+  &:hover {
+    translate: -1px -1px;
+    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--skill-categories-focus-color);
+    outline-offset: 3px;
+  }
+
+  &.skill-proficient {
+    padding: 0.3em 0.7em;
+    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+
+    &:hover {
+      box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+@container (min-width: 560px) {
+  .bands {
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 2.5rem;
+  }
+
+  .band,
+  .band-content {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  .band-content {
+    align-items: center;
+  }
+}

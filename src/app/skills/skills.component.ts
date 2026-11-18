@@ -1,36 +1,36 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {
+  afterRenderEffect,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { AllComponent } from '../projects/all/all.component';
-import { KeyHeaderComponent } from '../projects/key-header/key-header.component';
+import { firstStartYear } from '../shared/first-start-year';
 import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { firstStartYear } from '../shared/first-start-year';
-import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
-import { ThemeService } from '../shared/theme.service';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { KeepLearningComponent } from './keep-learning/keep-learning.component';
-import { LovedPipe } from './loved.pipe';
-import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
-import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
+import { SkillCategoriesComponent } from './skill-categories/skill-categories.component';
+import { Skill } from './skill.model';
 import { SkillsHeadingComponent } from './skills-heading/skills-heading.component';
-import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
-import { SkillsSection } from './skills-section.model';
 
+/**
+ * Skills page: how many technologies, the favourite ones, the ones being learnt, and every skill
+ * by category
+ */
 @Component({
   selector: 'app-skills',
   imports: [
-    SkillSectionDescriptionComponent,
-    SkillsRecapComponent,
-    LovedPipe,
-    SkillHighlightComponent,
-    RangePipe,
-    KeyHeaderComponent,
     KeepLearningComponent,
     FavoritesComponent,
     SkillsHeadingComponent,
+    SkillCategoriesComponent,
     AllComponent,
-    TranslocoPipe,
     GridEntranceDirective,
     GridDragDirective,
   ],
@@ -39,42 +39,14 @@ import { SkillsSection } from './skills-section.model';
 })
 export class SkillsComponent implements OnInit {
   /**
-   * Liste des sections à afficher
+   * Every skill, undefined until they are loaded
    */
-  protected readonly sections = signal<Array<SkillsSection>>([
-    {
-      id: 'section-frontend',
-      heading: 'skills.sections.frontend.heading',
-      subtitle: 'skills.sections.frontend.subtitle',
-      description: 'skills.sections.frontend.description',
-      skillFieldId: 1,
-      skills: [],
-      class: 'frontend-grid',
-    },
-    {
-      id: 'section-backend',
-      heading: 'skills.sections.backend.heading',
-      subtitle: 'skills.sections.backend.subtitle',
-      description: 'skills.sections.backend.description',
-      skillFieldId: 2,
-      skills: [],
-      class: 'backend-grid',
-    },
-    {
-      id: 'section-general',
-      heading: 'skills.sections.general.heading',
-      subtitle: 'skills.sections.general.subtitle',
-      description: 'skills.sections.general.description',
-      skillFieldId: 3,
-      skills: [],
-      class: 'general-grid',
-    },
-  ]);
+  protected readonly skills = signal<Array<Skill> | undefined>(undefined);
 
   /**
    * Number of skills, 0 until they are loaded
    */
-  protected readonly skillsCount = signal(0);
+  protected readonly skillsCount = computed(() => this.skills()?.length ?? 0);
 
   /**
    * Year the first project started, null until the projects are loaded
@@ -87,9 +59,22 @@ export class SkillsComponent implements OnInit {
   private supabaseService = inject(SupabaseService);
 
   /**
-   * Gestion du thème
+   * Drag and drop of the tiles
    */
-  public themeService = inject(ThemeService);
+  private readonly gridDrag = viewChild.required(GridDragDirective);
+
+  /**
+   * Constructor
+   */
+  constructor() {
+    // The skill categories grow when the skills arrive: tiles moved by the visitor before would keep
+    // them at their loading size, so the page goes back to the CSS layout. Not when the visitor
+    // resizes the categories, which would undo the resize.
+    afterRenderEffect(() => {
+      this.skills();
+      untracked(() => this.gridDrag().reset());
+    });
+  }
 
   /**
    * Implémentation de OnInit
@@ -99,14 +84,6 @@ export class SkillsComponent implements OnInit {
       .getProjects()
       .then(projects => this.firstYear.set(firstStartYear(projects)));
 
-    this.supabaseService.getSkills().then(skills => {
-      this.skillsCount.set(skills.length);
-      this.sections.update(sections =>
-        sections.map(section => ({
-          ...section,
-          skills: skills.filter(s => s.skill_field.id === section.skillFieldId),
-        }))
-      );
-    });
+    this.supabaseService.getSkills().then(skills => this.skills.set(skills));
   }
 }

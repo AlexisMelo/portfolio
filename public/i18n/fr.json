@@ -174,25 +174,16 @@
     "recap": {
       "iconAlt": "Icône de {{label}}"
     },
-    "skillHighlight": {
-      "projects": "{count, plural, =1 {1 projet} other {# projets}}"
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "transverse": "Transverse",
+      "projectsLink": "{{name}}, {{level}}, voir les projets"
     },
-    "sections": {
-      "frontend": {
-        "heading": "Création d'interfaces",
-        "subtitle": "Frontend",
-        "description": "Création de maquettes, intégration complexe et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien"
-      },
-      "backend": {
-        "heading": "Gestion de données",
-        "subtitle": "Backend",
-        "description": "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition"
-      },
-      "general": {
-        "heading": "Et bien plus",
-        "subtitle": "Général",
-        "description": "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse aussi la gestion de projet, le déploiement et l'intégration continue"
-      }
+    "levels": {
+      "proficient": "Maîtrisé",
+      "learning": "En progression",
+      "explored": "Exploré"
     }
   },
   "experience": {
