@@ -5,7 +5,12 @@ import {
   provideAppInitializer,
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import {
+  provideRouter,
+  TitleStrategy,
+  withViewTransitions,
+} from '@angular/router';
+import { PageTitleStrategy } from './shared/page-title.strategy';
 import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -17,6 +22,7 @@ import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withViewTransitions()),
+    { provide: TitleStrategy, useExisting: PageTitleStrategy },
     // Every <mat-icon> uses the Material Symbols subset loaded in index.html
     provideAppInitializer(() => {
       inject(MatIconRegistry).setDefaultFontSetClass(

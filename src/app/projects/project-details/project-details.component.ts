@@ -2,6 +2,8 @@ import {
   afterRenderEffect,
   Component,
   computed,
+  DestroyRef,
+  effect,
   inject,
   signal,
   untracked,
@@ -13,6 +15,7 @@ import { filter, switchMap } from 'rxjs';
 import { SocialLinkComponent } from 'src/app/home/social-link/social-link.component';
 import { GridDragDirective } from 'src/app/shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from 'src/app/shared/grid/grid-entrance.directive';
+import { PageTitleStrategy } from 'src/app/shared/page-title.strategy';
 import { SupabaseService } from 'src/app/shared/supabase.service';
 import { SkillCategoriesComponent } from 'src/app/skills/skill-categories/skill-categories.component';
 import { OpenLiveComponent } from './open-live/open-live.component';
@@ -95,6 +98,11 @@ export class ProjectDetailsComponent {
       this.skills();
       untracked(() => this.gridDrag()?.reset());
     });
+
+    // The tab title names the project instead of the projects page
+    const pageTitle = inject(PageTitleStrategy);
+    effect(() => pageTitle.detail.set(this.project()?.label));
+    inject(DestroyRef).onDestroy(() => pageTitle.detail.set(undefined));
   }
 
   /**

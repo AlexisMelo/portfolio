@@ -230,5 +230,11 @@
   },
   "footer": {
     "copyright": "© 2026 - Homemade 🏠 by Alexis Melo da Silva"
+  },
+  "seo": {
+    "about": "Alexis Melo da Silva, freelance fullstack web developer specialised in Angular, based in Caen, France. Projects, skills, experience and availability for your next project.",
+    "projects": "Every project of Alexis Melo da Silva, freelance Angular developer: web apps for companies, schools and personal projects, with their skills and stack.",
+    "skills": "Technologies mastered by Alexis Melo da Silva, freelance fullstack web developer: Angular and frontend, backend and transverse skills, each with its projects.",
+    "experience": "Professional experience of Alexis Melo da Silva, freelance fullstack web developer: companies, schools and the projects built there."
   }
 }

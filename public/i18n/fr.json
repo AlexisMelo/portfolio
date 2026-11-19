@@ -230,5 +230,11 @@
   },
   "footer": {
     "copyright": "© 2026 - Fait maison 🏠 par Alexis Melo da Silva"
+  },
+  "seo": {
+    "about": "Alexis Melo da Silva, développeur web fullstack freelance spécialisé en Angular, basé à Caen en Normandie. Projets, compétences, expérience et disponibilités pour votre prochain projet.",
+    "projects": "Tous les projets d'Alexis Melo da Silva, développeur Angular freelance : applications web pour des entreprises, des écoles et projets personnels, avec leurs compétences et leur stack.",
+    "skills": "Technologies maîtrisées par Alexis Melo da Silva, développeur web fullstack freelance : Angular et frontend, backend et compétences transverses, chacune avec ses projets.",
+    "experience": "Expérience professionnelle d'Alexis Melo da Silva, développeur web fullstack freelance : entreprises, écoles et projets qui y ont été réalisés."
   }
 }

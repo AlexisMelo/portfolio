@@ -23,6 +23,7 @@ export class LanguageService {
     effect(() => {
       const lang = this.currentLang();
       this.translocoService.setActiveLang(lang);
+      document.documentElement.lang = lang;
       localStorage.setItem('lang', lang);
     });
   }
