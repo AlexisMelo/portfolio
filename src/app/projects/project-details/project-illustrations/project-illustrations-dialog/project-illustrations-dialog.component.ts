@@ -1,12 +1,21 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, ElementRef, inject, signal } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import {
+  afterNextRender,
+  Component,
+  ElementRef,
+  inject,
+  signal,
+} from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { ActionButtonComponent } from 'src/app/home/action-button/action-button.component';
 import { ProjectIllustrationsDialogData } from './project-illustrations-dialog-data.model';
 
+/**
+ * Dialog showing the illustrations of a project in large, one at a time
+ */
 @Component({
   selector: 'app-project-illustrations-dialog',
-  imports: [MatIconModule, TranslocoPipe],
+  imports: [ActionButtonComponent, TranslocoPipe],
   templateUrl: './project-illustrations-dialog.component.html',
   styleUrl: './project-illustrations-dialog.component.scss',
   host: {
@@ -40,6 +49,13 @@ export class ProjectIllustrationsDialogComponent {
    * Index of the currently displayed slide
    */
   public currentSlide = this.data.slideShownOnOpen;
+
+  /**
+   * Opens on the illustration shown in the tile
+   */
+  constructor() {
+    afterNextRender(() => this.showSlide(this.currentSlide));
+  }
 
   /**
    * Shows the intended slide

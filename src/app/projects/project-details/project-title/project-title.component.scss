@@ -1,0 +1,60 @@
+@use '../../../../styles/responsive.scss' as responsive;
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0 var(--tile-padding);
+  background-color: var(--project-title-background);
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: var(--grid-item-border);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--project-title-logo-background);
+  rotate: -3deg;
+
+  img {
+    padding: 10px;
+    object-fit: contain;
+  }
+
+  @include responsive.responsive('medium') {
+    width: 84px;
+    height: 84px;
+  }
+}
+
+.initial {
+  color: var(--project-title-initial-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-xxxxl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+// Three lines at most, long words (mes_infos_processflow) breaking rather than overflowing
+h2 {
+  display: -webkit-box;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--project-title-color);
+  font-size: var(--text-xxxl);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}

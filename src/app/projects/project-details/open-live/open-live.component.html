@@ -1,24 +1,16 @@
-<h2>
-  @if (isLive()) {
-    <app-dot
-      color="var(--open-live-dot-color)"
-      [pulse]="isLive() !== null"></app-dot>
-    {{ 'projectDetails.openLive.online' | transloco }}
-  } @else {
-    {{ 'projectDetails.openLive.offline' | transloco }}
-  }
-</h2>
-
-<p>
-  @if (isLive()) {
-    {{ 'projectDetails.openLive.accessible' | transloco }}
-  } @else {
-    {{ 'projectDetails.openLive.private' | transloco }}
-  }
-</p>
-
-@if (isLive()) {
-  <mat-icon class="move"> call_made </mat-icon>
+@if (url(); as url) {
+  <a class="content" [href]="url" target="_blank" rel="noopener">
+    <h2>
+      <app-dot color="var(--open-live-dot-color)"></app-dot>
+      {{ 'projectDetails.openLive.online' | transloco }}
+    </h2>
+    <p>{{ 'projectDetails.openLive.accessible' | transloco }}</p>
+    <mat-icon class="move" aria-hidden="true">call_made</mat-icon>
+  </a>
 } @else {
-  <mat-icon> lock </mat-icon>
+  <div class="content">
+    <h2>{{ 'projectDetails.openLive.offline' | transloco }}</h2>
+    <p>{{ 'projectDetails.openLive.private' | transloco }}</p>
+    <mat-icon aria-hidden="true">lock</mat-icon>
+  </div>
 }

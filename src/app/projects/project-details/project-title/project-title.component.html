@@ -1,0 +1,16 @@
+<div class="logo">
+  @if (project().icon; as icon) {
+    <img
+      [ngSrc]="icon"
+      fill
+      [alt]="
+        'projectDetails.icon.alt' | transloco: { label: project().label }
+      " />
+  } @else {
+    <span class="initial" aria-hidden="true">{{
+      project().label.charAt(0)
+    }}</span>
+  }
+</div>
+
+<h2>{{ project().label }}</h2>

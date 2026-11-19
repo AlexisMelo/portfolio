@@ -1,5 +1,6 @@
 import {
-  afterNextRender,
+  afterRenderEffect,
+  booleanAttribute,
   Component,
   computed,
   DestroyRef,
@@ -94,6 +95,13 @@ export class SkillCategoriesComponent {
   public readonly filtered = input(false);
 
   /**
+   * Whether the bands without any skill are left out, for a project's skills
+   */
+  public readonly emptyBandsHidden = input(false, {
+    transform: booleanAttribute,
+  });
+
+  /**
    * Number of times the skills changed, part of the chips' keys
    */
   private version = 0;
@@ -105,7 +113,7 @@ export class SkillCategoriesComponent {
   protected readonly categories = computed<Array<SkillCategory>>(() => {
     const skills = this.skills() ?? [];
     const version = ++this.version;
-    return CATEGORIES.map(({ fieldId, key }) => ({
+    const categories = CATEGORIES.map(({ fieldId, key }) => ({
       key,
       chips: skills
         .filter(skill => skill.skill_field.id === fieldId)
@@ -116,12 +124,15 @@ export class SkillCategoriesComponent {
         )
         .map(skill => ({ key: `${version}-${skill.id}`, skill })),
     }));
+    return this.emptyBandsHidden()
+      ? categories.filter(category => category.chips.length > 0)
+      : categories;
   });
 
   /**
    * Number of grid rows the tile spans, set from the measured height of its content
    */
-  protected readonly rows = signal(DEFAULT_ROWS);
+  public readonly rows = signal(DEFAULT_ROWS);
 
   /**
    * Page the chips lead to, filtered on their skill
@@ -146,17 +157,17 @@ export class SkillCategoriesComponent {
 
   /**
    * Measures the content each time it changes size: when the chips arrive, when the fonts load and
-   * when the tile changes width
+   * when the tile changes width. Bands left out while empty are observed once they show.
    */
   constructor() {
-    const destroyRef = inject(DestroyRef);
+    let observer: ResizeObserver | undefined;
+    inject(DestroyRef).onDestroy(() => observer?.disconnect());
 
-    afterNextRender(() => {
-      const observer = new ResizeObserver(() => this.measure());
-      this.bandContents().forEach(content =>
-        observer.observe(content.nativeElement)
-      );
-      destroyRef.onDestroy(() => observer.disconnect());
+    afterRenderEffect(() => {
+      const contents = this.bandContents();
+      observer ??= new ResizeObserver(() => this.measure());
+      observer.disconnect();
+      contents.forEach(content => observer?.observe(content.nativeElement));
     });
   }
 

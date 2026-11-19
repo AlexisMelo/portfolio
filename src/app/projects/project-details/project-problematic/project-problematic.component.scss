@@ -1,16 +1,16 @@
 @use '../../../../styles/responsive.scss' as responsive;
 
 :host {
-  padding: 2rem;
+  padding: var(--tile-padding);
 }
 
 h2 {
+  margin-bottom: 0.8rem;
   font-size: var(--text-xxl);
-  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
-@include responsive.responsive('medium') {
-  p {
-    line-height: 170%;
-  }
+p {
+  font-size: var(--text-sm);
+  line-height: 1.6;
 }

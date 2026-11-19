@@ -1,44 +1,65 @@
+@use '../../../../../styles/responsive.scss' as responsive;
+
 :host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.9rem;
+  height: 100%;
+  padding: 3.2rem 1.25rem 0 0.75rem;
 }
 
-h3 {
-  font-size: var(--text-xl);
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-// Box of the fill-mode photo. Busts are 400px tall and up to 400px wide; the
-// width also fits the shrugging avatar (400x376) at full height.
+// Box of the fill-mode photo, anchored at its bottom. Busts are 400px tall and up to 400px wide;
+// the width also fits the shrugging avatar (400x376) at full height.
 .avatar-container {
   position: relative;
-  overflow: hidden;
-  height: 100px;
-  width: 110px;
+  align-self: end;
+  width: 96px;
+  height: 100%;
+  max-height: 110px;
 
   img {
-    transition: 1s;
     object-fit: contain;
+    object-position: bottom;
+    transform-origin: bottom center;
+    transition: rotate 1s;
   }
 }
 
-p {
-  color: var(--coworker-info-color);
-  text-align: center;
-  min-height: 2rem;
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-width: 0;
+  padding-bottom: 0.75rem;
 }
 
-// The link to the profile on the right of the name, which stays centred
 h3 {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.15;
 
-  .profile {
-    position: absolute;
-    right: -50px;
-    top: 50%;
-    transform: translateY(-50%);
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xl);
   }
+}
+
+.profile {
+  --action-button-size: 26px;
+  --action-button-icon-size: 14px;
+}
+
+// Two lines at most
+p {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--coworker-info-color);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }

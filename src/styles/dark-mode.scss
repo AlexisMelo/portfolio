@@ -63,6 +63,16 @@
   //coworker-info
   --coworker-info-color: var(--gray-400);
 
+  //project-coworkers
+  --project-coworkers-label-background: var(--primary-900);
+  --project-coworkers-label-color: white;
+
+  //project-title
+  --project-title-background: var(--grid-item-default-bg);
+  --project-title-color: var(--mustard-500);
+  --project-title-logo-background: white;
+  --project-title-initial-color: var(--primary-600);
+
   //experience-heading
   --experience-heading-background: var(--grid-item-default-bg);
   --experience-heading-color: var(--mustard-500);
@@ -206,7 +216,12 @@
   --project-context-color: white;
 
   //project-duration
-  --project-duration-color: var(--gray-500);
+  --project-duration-completed-background: var(--primary-900);
+  --project-duration-completed-color: white;
+  --project-duration-ongoing-background: var(--grid-item-default-bg);
+  --project-duration-ongoing-color: var(--mustard-500);
+  --project-duration-abandoned-background: var(--grid-item-default-bg);
+  --project-duration-abandoned-color: var(--coral-500);
 
   //project-filtering
   --project-filtering-tile-background: var(--primary-900);
@@ -216,11 +231,6 @@
   --project-filtering-background: var(--gray-800);
   --project-filtering-icon-color: var(--gray-300);
   --project-filtering-focus-color: white;
-
-  //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--gray-600);
-  --project-item-skill-list-skill-border: var(--gray-500);
-  --project-item-skill-list-color: var(--gray-200);
 
   //project-name-header
   --project-name-header-completed-background: var(--gray-500);
@@ -297,14 +307,6 @@
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-300);
   --robotic-arm-axes-fill: var(--gray-400);
-
-  //skill-recap
-  --skills-recap-general-bg: var(--gray-300);
-  --skills-recap-counter-bg: var(--gray-500);
-  --skills-recap-counter-color: var(--white);
-  --skills-recap-separator: var(--gray-400);
-  // Darkest palette colour: the skill labels use the light grey paragraph colour
-  --skills-recap-background: var(--primary-950);
 
   //status-filtering
   // Bars in the colours of the numbers in the list, the teal one lighter to stand out on the dark

@@ -59,6 +59,16 @@
   //coworker-info
   --coworker-info-color: var(--gray-600);
 
+  //project-coworkers
+  --project-coworkers-label-background: var(--primary-600);
+  --project-coworkers-label-color: white;
+
+  //project-title
+  --project-title-background: var(--mustard-500);
+  --project-title-color: var(--gray-800);
+  --project-title-logo-background: white;
+  --project-title-initial-color: var(--primary-600);
+
   //experience-heading
   --experience-heading-background: var(--mustard-500);
   --experience-heading-color: var(--gray-800);
@@ -196,7 +206,12 @@
   --project-context-color: white;
 
   //project-duration
-  --project-duration-color: var(--gray-600);
+  --project-duration-completed-background: var(--primary-600);
+  --project-duration-completed-color: white;
+  --project-duration-ongoing-background: var(--mustard-500);
+  --project-duration-ongoing-color: var(--gray-800);
+  --project-duration-abandoned-background: var(--coral-500);
+  --project-duration-abandoned-color: var(--gray-800);
 
   //project-filtering
   --project-filtering-tile-background: var(--primary-600);
@@ -207,11 +222,6 @@
   --project-filtering-icon-color: var(--gray-600);
   // White, as dark grey is too close to the teal tile to show the focus ring (3:1)
   --project-filtering-focus-color: white;
-
-  //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--primary-600);
-  --project-item-skill-list-skill-border: var(--primary-700);
-  --project-item-skill-list-color: white;
 
   //project-name-header
   --project-name-header-completed-color: white;
@@ -284,13 +294,6 @@
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-400);
   --robotic-arm-axes-fill: var(--gray-500);
-
-  //skills-recap
-  --skills-recap-general-bg: var(--gray-500);
-  --skills-recap-counter-bg: var(--gray-100);
-  --skills-recap-counter-color: var(--gray-600);
-  --skills-recap-separator: var(--gray-100);
-  --skills-recap-background: var(--primary-200);
 
   //status-filtering
   // One palette colour per status, the one of the numbers in the list: the bars (faded after the

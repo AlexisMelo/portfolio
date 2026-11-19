@@ -1,21 +1,20 @@
-import { Component, computed, HostListener, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { DotComponent } from 'src/app/shared/dot/dot.component';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { Project } from '../../project.model';
-import { StatusPipe } from '../../status/status.pipe';
-import { MatIconModule } from '@angular/material/icon';
-import { DotComponent } from 'src/app/shared/dot/dot.component';
 
+/**
+ * Coral tile opening the deployed project in a new tab, or saying it is private when it is not
+ * online
+ */
 @Component({
   selector: 'app-open-live',
   imports: [MatIconModule, DotComponent, TranslocoPipe],
   templateUrl: './open-live.component.html',
   styleUrl: './open-live.component.scss',
-  providers: [StatusPipe],
-  host: {
-    class: 'g-grid-item-highlight',
-    '[class.is-live]': 'isLive()',
-  },
+  host: { class: 'g-grid-item-highlight' },
 })
 export class OpenLiveComponent extends GridItemDirective {
   /**
@@ -24,18 +23,7 @@ export class OpenLiveComponent extends GridItemDirective {
   public project = input.required<Project>();
 
   /**
-   * Returns live url or null if project is unavailable
+   * Address of the deployed project, null when it is not online
    */
-  protected isLive = computed(() => {
-    return this.project().deployment;
-  });
-
-  /**
-   * Open project on click
-   */
-  @HostListener('click') onClick() {
-    const url = this.isLive();
-    if (!url) return;
-    window.open(url, '_blank');
-  }
+  protected url = computed(() => this.project().deployment);
 }

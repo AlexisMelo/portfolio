@@ -103,10 +103,6 @@
     }
   },
   "projectDetails": {
-    "skills": {
-      "title": "Compétences",
-      "tooltip": "{count, plural, =1 {1 projet} other {# projets}}"
-    },
     "openLive": {
       "online": "En ligne",
       "offline": "Hors ligne",
@@ -130,6 +126,7 @@
       "title": "Problématique"
     },
     "coworkers": {
+      "title": "L'équipe",
       "solo": "Moi-même",
       "noCoworker": "Pas de collaborateur sur ce projet !",
       "photoAlt": "Photo de {{name}}",
@@ -176,9 +173,6 @@
       "title": "Vous ne trouvez pas votre bonheur ?",
       "subtitle": "On peut en discuter, j'apprends vite !",
       "action": "Me contacter"
-    },
-    "recap": {
-      "iconAlt": "Icône de {{label}}"
     },
     "categories": {
       "frontend": "Frontend",
