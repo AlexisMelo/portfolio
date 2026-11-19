@@ -1,0 +1,70 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The title on top, the field at the bottom of the tile
+:host {
+  padding: 0.6rem 0.8rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.3rem;
+  background-color: var(--project-filtering-tile-background);
+
+  @include responsive.responsive('medium') {
+    padding: 0.7rem 1rem 0.8rem;
+  }
+}
+
+.title {
+  color: var(--project-filtering-tile-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.2;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
+}
+
+// Field bordered like the small elements of the tiles, its shadow growing while typing in it
+.search-bar {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 0.35rem 0.6rem 0.35rem 1.9rem;
+    border: var(--grid-item-border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+    background-color: var(--project-filtering-background);
+    color: var(--styles-text-color);
+    font-family: var(--body-font-family);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+    transition: box-shadow 200ms;
+
+    &:focus {
+      outline: none;
+      box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--project-filtering-focus-color);
+      outline-offset: 2px;
+    }
+
+    &::placeholder {
+      color: var(--project-filtering-placeholder-color);
+    }
+  }
+
+  mat-icon {
+    position: absolute;
+    left: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--project-filtering-icon-color);
+    pointer-events: none;
+  }
+}

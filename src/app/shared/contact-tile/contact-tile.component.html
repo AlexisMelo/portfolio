@@ -1,0 +1,27 @@
+<h2>
+  <span>{{ heading() }}</span>
+  <br />
+  <span class="subtitle">{{ subtitle() }}</span>
+</h2>
+
+<a app-action-button icon="mail" [href]="'mailto:' + contentService.mail">
+  {{ action() }}
+</a>
+
+<!-- Both can be the largest element in view (top row of the experience page, as big as the
+  favourites title of the skills page): priority -->
+@if (avatar() === 'sitting') {
+  <img
+    ngSrc="photos/avatar-sitting.webp"
+    width="246"
+    height="361"
+    priority
+    alt="" />
+} @else {
+  <img
+    ngSrc="photos/avatar-face-smiling.webp"
+    width="400"
+    height="350"
+    priority
+    alt="" />
+}

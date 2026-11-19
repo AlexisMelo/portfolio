@@ -1,0 +1,154 @@
+@use '../../../styles/responsive.scss' as responsive;
+@use '../project-entry';
+
+// Fills its entry of the list: a whole row on medium screens and up, a whole card on phones
+:host {
+  display: block;
+  height: 100%;
+}
+
+// Phones: the number and the name on top, the description, then the type and the date.
+// Medium screens and up: one column each, like a table.
+.row {
+  @include project-entry.layout(
+    'number name' 'description description' 'meta meta',
+    'number name description type date',
+    var(--project-row-focus-color)
+  );
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: var(--project-row-hover-background);
+  }
+}
+
+/* Number */
+
+// Sticker in the colour of the status, like the status chips
+.number {
+  @include project-entry.number;
+
+  &.completed {
+    background-color: var(--project-row-completed-background);
+    color: var(--project-row-completed-color);
+  }
+
+  &.ongoing {
+    background-color: var(--project-row-ongoing-background);
+    color: var(--project-row-ongoing-color);
+  }
+
+  &.abandoned {
+    background-color: var(--project-row-abandoned-background);
+    color: var(--project-row-abandoned-color);
+  }
+}
+
+/* Name and description */
+
+// Phone cards: big, on one line cut by an ellipsis. Rows: two lines at most, long words
+// (Minecraft/Raspberry) breaking rather than overflowing.
+.name {
+  grid-area: name;
+  align-self: center;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--text-xxl);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include responsive.responsive('medium') {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: var(--text-lg);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+// Three lines at most, ended by an ellipsis
+.description {
+  display: -webkit-box;
+  grid-area: description;
+  align-self: start;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--text-md);
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  @include responsive.responsive('medium') {
+    align-self: center;
+    font-size: var(--text-sm);
+  }
+}
+
+/* Type and date */
+
+// On phones, the type and the date together at the end of the card's last line, on the same
+// baseline, a dot between them. From medium up, the type and the date are columns of the row.
+.meta {
+  grid-area: meta;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.4rem;
+
+  @include responsive.responsive('medium') {
+    display: contents;
+  }
+}
+
+.separator {
+  color: var(--styles-default-paragraph-color);
+  font-size: var(--text-sm);
+
+  @include responsive.responsive('medium') {
+    display: none;
+  }
+}
+
+.type {
+  grid-area: type;
+  color: var(--styles-default-paragraph-color);
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.date {
+  grid-area: date;
+  justify-self: end;
+  color: var(--styles-title-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+
+  // Label in the colour of the ongoing status, tilted the other way from the number
+  &.ongoing {
+    padding: 0.1em 0.5em;
+    border: var(--grid-item-border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+    background-color: var(--project-row-ongoing-background);
+    color: var(--project-row-ongoing-color);
+    font-size: var(--text-sm);
+    rotate: 2deg;
+
+    @include responsive.responsive('medium') {
+      font-size: var(--text-xs);
+    }
+  }
+
+  @include responsive.responsive('medium') {
+    width: 100%; //to center align span
+  }
+}

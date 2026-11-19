@@ -1,39 +1,21 @@
 <div class="g-grid-container">
-  <div class="g-grid" appGridEntrance>
+  <div class="g-grid" appGridEntrance appGridDrag>
+    <app-skills-heading
+      [count]="shownSkills()?.length ?? 0"
+      [total]="skillsCount()"
+      [year]="firstYear()"></app-skills-heading>
     <app-favorites></app-favorites>
-    <app-all></app-all>
-    <app-keep-learning></app-keep-learning>
-
-    @for (section of sections(); track section.heading) {
-      <app-key-header [class]="section.id + ' g-grid-item-shadow'">
-        {{ section.subtitle | transloco }}
-      </app-key-header>
-
-      @for (i of 2 | range; track i) {
-        @if (
-          (section.skills | loved).length === 0 ||
-          (section.skills | loved)[i] !== undefined
-        ) {
-          <app-skill-highlight
-            [class]="section.id + ' loved'"
-            [attr.data-index]="i"
-            [skill]="(section.skills | loved)[i]"
-            [loading]="
-              (section.skills | loved).length === 0
-            "></app-skill-highlight>
-        }
-      }
-
-      <app-skill-section-description
-        [class]="section.id"
-        [mainText]="section.heading | transloco"
-        [secondaryText]="
-          section.description | transloco
-        "></app-skill-section-description>
-
-      <app-skills-recap
-        [class]="section.id"
-        [skills]="section.skills"></app-skills-recap>
-    }
+    <app-click-hint [skills]="skills()"></app-click-hint>
+    <app-skill-level-filtering
+      [(selectedLevel)]="selectedLevel"></app-skill-level-filtering>
+    <app-skill-categories
+      [skills]="shownSkills()"
+      [projectCountsShown]="selectedLevel() !== null"
+      [filtered]="selectedLevel() !== null"></app-skill-categories>
+    <app-contact-tile
+      avatar="sitting"
+      [heading]="'skills.contact.title' | transloco"
+      [subtitle]="'skills.contact.subtitle' | transloco"
+      [action]="'skills.contact.action' | transloco"></app-contact-tile>
   </div>
 </div>

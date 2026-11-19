@@ -1,0 +1,37 @@
+<div
+  class="rows"
+  role="group"
+  [attr.aria-label]="'projects.statusFilter.label' | transloco">
+  @for (bar of bars(); track bar.status) {
+    @let pressed = projectsService.selectedStatus() === bar.status;
+    <button
+      type="button"
+      class="row"
+      [class]="bar.status"
+      [class.dimmed]="projectsService.selectedStatus() !== null && !pressed"
+      [attr.aria-pressed]="pressed"
+      (click)="toggle(bar.status)">
+      <span class="track">
+        <span
+          class="fill"
+          [class.empty]="bar.count === 0"
+          [style.flex-basis.%]="bar.fill"></span>
+        @if (projectsService.loaded()) {
+          <span class="count" aria-hidden="true">{{ bar.count }}</span>
+        }
+        <span class="tag">
+          {{ 'projects.statusFilter.' + bar.status | transloco }}
+        </span>
+      </span>
+
+      @if (projectsService.loaded()) {
+        <span class="g-visually-hidden">
+          {{
+            'projects.statusFilter.count'
+              | transloco: { count: bar.count, total: total() }
+          }}
+        </span>
+      }
+    </button>
+  }
+</div>

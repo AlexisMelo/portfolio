@@ -1,0 +1,148 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The page places the tile, which spans --project-list-rows grid rows from medium up (one per
+// entry) and --project-list-card-rows on phones (two per entry).
+//
+// Phones: the tile is only a frame for its entries, which are cards with the look of the tiles.
+// Picking up one of them moves the whole list (GridDragDirective).
+:host(.g-grid-item) {
+  display: block;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+
+  // Medium screens and up: a tile holding every row
+  @include responsive.responsive('medium') {
+    overflow: hidden;
+    border: var(--grid-item-border);
+    border-radius: 12px;
+    background-color: var(--grid-item-default-bg);
+    box-shadow: 2px 2px 0 0 var(--grid-item-border-color);
+  }
+}
+
+:host(.g-grid-item:hover) {
+  box-shadow: none;
+
+  @include responsive.responsive('medium') {
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+}
+
+// Lifted like any dragged tile
+:host(.g-grid-item.g-grid-item-dragging) {
+  @include responsive.responsive('medium') {
+    box-shadow: 8px 8px 0 0 var(--grid-item-border-color);
+  }
+}
+
+// Every grid row the tile spans is shared between the entries: two rows and the gap between them
+// for a card, one row for a row
+.entries {
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
+  row-gap: var(--gap);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include responsive.responsive('medium') {
+    row-gap: 0;
+  }
+}
+
+/* Entries */
+
+// Phones: a card, white like the tiles, the "your project" one coloured and standing out like the
+// coloured tiles
+.entry {
+  grid-row: span 2;
+  overflow: hidden;
+  border: var(--grid-item-border);
+  border-radius: 12px;
+  background-color: var(--grid-item-default-bg);
+  box-shadow: 2px 2px 0 0 var(--grid-item-border-color);
+  transition: box-shadow 300ms;
+
+  &:hover {
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  &.yourProject {
+    border-width: 3px;
+    box-shadow: 4px 4px 0 0 var(--grid-item-border-color);
+
+    &:hover {
+      box-shadow: 6px 6px 0 0 var(--grid-item-border-color);
+    }
+  }
+
+  // Medium screens and up: rows of the tile, split by lines of ink
+  @include responsive.responsive('medium') {
+    grid-row: auto;
+    border: none;
+    border-radius: 0;
+    background: none;
+
+    &,
+    &:hover,
+    &.yourProject,
+    &.yourProject:hover {
+      box-shadow: none;
+    }
+
+    & + & {
+      border-top: var(--grid-item-border);
+    }
+  }
+}
+
+// Each time the results change, the entries enter one after another, slightly tilted like
+// stickers being laid down
+.entering {
+  animation: project-list-entry 350ms ease-out backwards;
+  animation-delay: calc(min(var(--entry-index, 0), 12) * 40ms);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes project-list-entry {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(-1deg);
+  }
+}
+
+/* No project matching the filters */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 0.75rem 1rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: var(--text-sm);
+  }
+
+  @include responsive.responsive('medium') {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Loading */
+
+app-loader {
+  --loader-color: var(--project-list-loader-color);
+}

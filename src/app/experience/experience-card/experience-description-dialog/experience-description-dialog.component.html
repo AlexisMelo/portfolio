@@ -1,0 +1,11 @@
+<header class="band">
+  <h2 class="title" [id]="TITLE_ID">{{ data.title }}</h2>
+  <button
+    type="button"
+    app-action-button
+    icon="close"
+    [attr.aria-label]="'experience.dialog.close' | transloco"
+    (click)="close()"></button>
+</header>
+
+<p class="description">{{ data.description }}</p>

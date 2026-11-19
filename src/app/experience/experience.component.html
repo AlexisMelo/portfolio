@@ -1,27 +1,30 @@
 <div class="g-grid-container">
-  <div class="g-grid" appGridEntrance staggerAddedTiles>
+  <div
+    class="g-grid"
+    appGridEntrance
+    staggerAddedTiles
+    [replayKey]="shownKey()"
+    replaySelector="app-experience-card"
+    appGridDrag>
+    <app-experience-heading
+      [contexts]="baseContexts()"
+      [shownContexts]="shownContexts()"></app-experience-heading>
+
     <app-resume></app-resume>
 
-    <app-availability></app-availability>
+    <app-experience-filtering
+      [(selectedKind)]="selectedKind"></app-experience-filtering>
 
-    @for (context of baseContexts(); track context.id) {
-      @let lang = languageService.currentLang();
-      <app-key-header
-        [style.--index]="$index"
-        class="g-grid-item-shadow"
-        [chips]="[context.localization]"
-        >{{ context.localizedLabel[lang] ?? context.label }}</app-key-header
-      >
-      <app-experience-description
-        [style.--index]="$index"
-        [context]="context"></app-experience-description>
-      <app-experience-duration
-        [style.--index]="$index"
-        [context]="context"></app-experience-duration>
-      <app-experience-projects
-        [style.--index]="$index"
-        [class.g-grid-item-shadow]="context.projects.length > 0"
-        [context]="context"></app-experience-projects>
+    <app-contact-tile
+      [heading]="'experience.yourCompany.title' | transloco"
+      [subtitle]="'experience.yourCompany.subtitle' | transloco"
+      [action]="'experience.yourCompany.action' | transloco"></app-contact-tile>
+
+    @for (context of shownContexts(); track context.id) {
+      <app-experience-card
+        [class.odd]="$odd"
+        [style.--pair]="$odd ? ($index - 1) / 2 : $index / 2"
+        [context]="context"></app-experience-card>
     }
   </div>
 </div>

@@ -29,14 +29,4 @@ export class CoworkerInfoComponent {
    * Lien vers un linkedin, site web, ...
    */
   @Input() url?: string | null;
-
-  /**
-   * Ouvre l'url associée au profil
-   * @returns
-   */
-  public openInfos() {
-    if (!this.url) return;
-
-    window.open(this.url, '_blank');
-  }
 }

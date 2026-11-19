@@ -1,0 +1,39 @@
+<div class="header">
+  <!-- Year the project ended, or "ongoing" when it has no end date yet -->
+  @if (project().end_date; as endDate) {
+    <span>{{ endDate | translocoDate: { year: 'numeric' } }}</span>
+  } @else {
+    <span>{{ 'projects.status.ongoing' | transloco }}</span>
+  }
+</div>
+
+<div class="illustration-area">
+  <div class="illustration">
+    @if (illustration(); as illustration) {
+      <img [ngSrc]="illustration.url" [alt]="illustration.alt" fill />
+    } @else {
+      <!-- No illustration: the icon of the project, or its initial -->
+      @if (project().icon; as icon) {
+        <img class="icon" [ngSrc]="icon" alt="" fill />
+      } @else {
+        <span class="initial" aria-hidden="true">{{
+          project().label.charAt(0)
+        }}</span>
+      }
+    }
+  </div>
+</div>
+
+<h2>{{ project().label }}</h2>
+<p class="description">{{ description() }}</p>
+
+<div class="footer">
+  <span class="context">{{ context() }}</span>
+  <a
+    app-action-button
+    icon="call_made"
+    [routerLink]="[PROJECTS_ROUTE, project().url]"
+    [attr.aria-label]="
+      'projectCard.details' | transloco: { label: project().label }
+    "></a>
+</div>

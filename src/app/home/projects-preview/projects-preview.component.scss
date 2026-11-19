@@ -1,0 +1,246 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The tile only lays out its parts: the box of the project on the left, the tabs on its right, like
+// the dividers of a notebook, and the label overflowing from its top left corner. The box carries
+// the border, background and shadow tiles usually have.
+:host(.g-grid-item) {
+  // Width of a tab, beyond the box
+  --tab-width: calc(var(--cell-size) * 0.8);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--tab-width);
+  grid-template-rows: minmax(0, 1fr);
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:host(.g-grid-item:hover),
+:host(.g-grid-item.g-grid-item-dragging) {
+  box-shadow: none;
+}
+
+/* Label */
+
+// Slightly tilted, half out of the tile
+.label {
+  position: absolute;
+  top: -0.3rem;
+  left: -0.5rem;
+  z-index: 3;
+  margin: 0;
+  padding: 0.5rem 2rem;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--projects-preview-label-background);
+  color: var(--projects-preview-label-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  rotate: -2deg;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+/* Displayed project */
+
+// The box, above the tabs that are not selected. The panels are stacked in it, only the selected
+// one is visible. The next project slides in from the tabs, on the right, and pushes the displayed
+// one out to the left: the panels are clipped to the box.
+.details {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+  overflow: clip;
+  border: var(--grid-item-border);
+  border-radius: 12px;
+  background-color: var(--projects-preview-background);
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  transition: box-shadow 300ms;
+
+  :host(:hover) & {
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  // Lifted like any dragged tile
+  :host(.g-grid-item-dragging) & {
+    box-shadow: 8px 8px 0 0 var(--grid-item-border-color);
+  }
+}
+
+// Its project card fills it. The component slides the panels when the displayed project changes.
+.panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+  visibility: hidden;
+
+  &.selected {
+    visibility: visible;
+  }
+
+  // The first project displayed, once the projects are loaded, fades in from the right
+  &.entering {
+    animation: projects-preview-panel 300ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes projects-preview-panel {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+/* Tabs: one per project, then the link to every project, spaced along the box's right side */
+
+.selector {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  row-gap: 0.5rem;
+  padding-block: 1rem;
+  min-height: 0;
+
+  @include responsive.responsive('medium') {
+    row-gap: 0.6rem;
+    padding-block: 1.3rem;
+  }
+}
+
+.tabs {
+  grid-row: 1 / 4;
+  display: grid;
+  grid-template-rows: subgrid;
+}
+
+// Rounded on the right, open on the left: they start on the box's border, which the tabs below the
+// box keep, and the selected one, above it, covers
+.tab,
+.all-projects {
+  position: relative;
+  // The width of the box's border
+  margin-left: -2px;
+  border: var(--grid-item-border);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  transition: box-shadow 200ms;
+
+  &:hover {
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  // Inside the tab
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -6px;
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: var(--projects-preview-tab-background);
+  color: var(--projects-preview-tab-color);
+  cursor: pointer;
+
+  &:hover .icon {
+    transform: scale(1.08);
+  }
+
+  // Above the box and in its colour, like an open divider. Its colour is the one of the focus
+  // outline.
+  &[aria-selected='true'] {
+    z-index: 2;
+    background-color: var(--projects-preview-selected-background);
+    color: var(--projects-preview-selected-color);
+    cursor: default;
+
+    .icon {
+      transform: scale(1.12);
+    }
+  }
+}
+
+// Project icon in a white disc, which the icons are made for
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: var(--grid-item-border);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--projects-preview-icon-background);
+  color: var(--projects-preview-icon-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  transition: transform 200ms;
+
+  img {
+    padding: 18%;
+    object-fit: contain;
+  }
+
+  @include responsive.responsive('medium') {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+// A tab in its own colour, so that it reads as a link and not as a project
+.all-projects {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.4rem 0.8rem 0.5rem;
+  background-color: var(--projects-preview-all-background);
+  color: var(--projects-preview-all-color);
+  text-decoration: none;
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  line-height: 1.15;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+// The arrow bounces towards the top right corner, like the one of the all projects tile
+.arrow {
+  align-self: flex-end;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  animation: projects-preview-arrow 2s infinite ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes projects-preview-arrow {
+  50% {
+    transform: translate(4px, -4px);
+  }
+}

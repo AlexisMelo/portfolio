@@ -1,0 +1,152 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+:host {
+  // Space between two names, and between the two lists
+  --companies-gap: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+
+  @include responsive.responsive('medium') {
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+}
+
+// Slightly tilted sticker with an ink border and a hard shadow, like the label of the projects
+// preview
+.label {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--companies-label-background);
+  color: var(--companies-label-color);
+  font-family: var(--title-font-family);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  rotate: -4deg;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+// As tall as the tile, so that it does not cut the focus outline of the names
+.marquee {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  display: flex;
+  gap: var(--companies-gap);
+  overflow: hidden;
+  // The names fade in and out at both ends
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+
+  // With the keyboard, the names go back to their place, without the fades, and stay still: the
+  // browser scrolls the marquee to the focused one
+  &:has(:focus-visible) {
+    mask-image: none;
+
+    .group {
+      animation: none;
+    }
+  }
+}
+
+// At least as wide as the marquee, so that the second list follows the first without a gap
+.group {
+  flex-shrink: 0;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--companies-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: companies-scroll var(--companies-loop-duration, 20s) linear
+    infinite;
+
+  :host(:hover) & {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes companies-scroll {
+  to {
+    transform: translateX(calc(-100% - var(--companies-gap)));
+  }
+}
+
+// The name in bold ink, the end date of the context under it. Only the name is underlined when
+// hovered.
+a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.1rem 0.25rem;
+  color: var(--companies-name-color);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 4px;
+
+  &:hover .name {
+    text-decoration-line: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.name {
+  font-family: var(--title-font-family);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xl);
+  }
+}
+
+.date {
+  font-size: var(--text-xs);
+  line-height: 1.4;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-sm);
+  }
+}
+
+// No movement: one still list, which scrolls when it is wider than the tile
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .group {
+    animation: none;
+
+    &[aria-hidden='true'] {
+      display: none;
+    }
+  }
+}

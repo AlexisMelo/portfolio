@@ -1,18 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>Portfolio</title>
+    <title>Alexis Melo da Silva | Développeur web fullstack freelance</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- Text fonts: only the weights in use (Grandstander titles 400 and 700, Poppins body 400 and 700), no italics -->
+    <!-- Search and link previews: the French texts match the default language; PageTitleStrategy rewrites them per page and language -->
+    <meta
+      name="description"
+      content="Alexis Melo da Silva, développeur web fullstack freelance spécialisé en Angular, basé à Caen en Normandie. Projets, compétences, expérience et disponibilités pour votre prochain projet." />
+    <meta name="author" content="Alexis Melo da Silva" />
+    <link rel="canonical" href="https://amelo.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Alexis Melo da Silva" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://amelo.dev/" />
+    <meta
+      property="og:title"
+      content="Alexis Melo da Silva | Développeur web fullstack freelance" />
+    <meta
+      property="og:description"
+      content="Alexis Melo da Silva, développeur web fullstack freelance spécialisé en Angular, basé à Caen en Normandie. Projets, compétences, expérience et disponibilités pour votre prochain projet." />
+    <meta property="og:image" content="https://amelo.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Avatar d'Alexis Melo da Silva, développeur web fullstack freelance" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Grandstander:wght@400..700&amp;family=Poppins:wght@400;700&amp;display=swap"
+      rel="icon"
+      type="image/x-icon"
+      href="favicon.ico"
+      sizes="16x16 32x32 48x48 64x64" />
+    <link rel="icon" type="image/png" href="favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alexis Melo da Silva",
+        "jobTitle": "Développeur web fullstack freelance",
+        "url": "https://amelo.dev/",
+        "image": "https://amelo.dev/og-image.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Caen",
+          "addressCountry": "FR"
+        },
+        "knowsAbout": ["Angular", "TypeScript", "Développement web fullstack"],
+        "sameAs": [
+          "https://www.linkedin.com/in/alexis-melo-da-silva/",
+          "https://github.com/AlexisMelo"
+        ]
+      }
+    </script>
+    <!-- Text fonts: only the weights in use (Bricolage Grotesque titles 400 to 700 at optical size 32, Geist body 400 and 700), no italics -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@32,400..700&amp;family=Geist:wght@400;700&amp;display=swap"
       rel="stylesheet" />
     <!-- Icon font subset: add every new <mat-icon> name to icon_names, in alphabetical order -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&amp;icon_names=add,arrow_drop_down,call_made,check,check_circle,chevron_left,chevron_right,close,crop_free,dark_mode,delete,favorite,light_mode,link,lock,menu,release_alert,remove,school,search,settings,trending_down,trending_up&amp;display=block"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&amp;icon_names=add,arrow_drop_down,call_made,check,chevron_left,chevron_right,close,crop_free,dark_mode,delete,drag_pan,favorite,light_mode,link,location_on,lock,mail,menu,remove,school,search,settings,trending_down,trending_up,undo,visibility,work&amp;display=block"
       rel="stylesheet" />
     <!-- Home page LCP image: discovered here instead of after main-*.js has rendered app-image -->
     <link
@@ -21,12 +71,22 @@
       href="photos/avatar-bust-arms-crossed.webp"
       fetchpriority="high" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#1976d2" />
+    <meta name="theme-color" content="#1f6f68" />
   </head>
   <body>
     <app-root></app-root>
-    <noscript
-      >Please enable JavaScript to continue using this application.</noscript
-    >
+    <!-- Read by visitors without JavaScript and by search engines before rendering, which used to show the old one-line message as the snippet -->
+    <noscript>
+      <h1>Alexis Melo da Silva, développeur web fullstack freelance</h1>
+      <p>
+        Développeur web fullstack spécialisé en Angular, basé à Caen en
+        Normandie. Ce portfolio présente mes projets, mes compétences et mon
+        expérience ; activez JavaScript pour le parcourir.
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/alexis-melo-da-silva/">LinkedIn</a>
+        - <a href="https://github.com/AlexisMelo">GitHub</a>
+      </p>
+    </noscript>
   </body>
 </html>

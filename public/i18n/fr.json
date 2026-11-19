@@ -1,74 +1,117 @@
 {
   "navbar": {
     "about": "À propos",
-    "projects": "Réalisations",
+    "projects": "Projets",
     "skills": "Compétences",
     "experience": "Expérience",
     "avatarAlt": "Avatar",
-    "projectsIllustrationAlt": "Illustration des réalisations",
-    "skillsIllustrationAlt": "Illustration des compétences",
-    "experienceIllustrationAlt": "Illustration de l'expérience"
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "home": {
-    "description": {
-      "title": "Développeur Web Fullstack",
-      "subtitle": "Spécialisé sur Angular"
-    },
-    "freelanceSince": {
-      "since": "Depuis 2026"
+    "job": {
+      "title": "Développeur web fullstack",
+      "more": "& bien plus",
+      "skillsLink": "{{name}}, voir mes compétences"
     },
     "mail": {
       "question_pt1": "Une",
-      "question_pt2": "question ?",
+      "question_pt2": "question ?",
       "project_pt1": "Un",
-      "project_pt2": "projet ?",
+      "project_pt2": "projet ?",
       "contact": "Me contacter"
     },
     "map": {
       "alt": "Carte centrée sur Caen, en Normandie, France",
+      "location": "Caen, France",
       "zoomIn": "Zoomer sur la carte",
       "zoomOut": "Dézoomer la carte"
     },
-    "now": {
-      "title": "En train de ..."
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
     },
     "resume": {
       "download": "Télécharger",
       "open": "Ouvrir un aperçu de mon CV",
       "screenshot": "Capture d'écran de mon CV"
+    },
+    "projectsPreview": {
+      "title": "Projets à la une",
+      "all": "Tous",
+      "allLabel": "Voir tous les projets"
+    },
+    "companies": {
+      "title": "Passé par",
+      "ongoing": "Aujourd'hui"
+    },
+    "recommendations": {
+      "title": "Recommandé par",
+      "read": "Lire en entier",
+      "readLabel": "Lire en entier : la recommandation de {{name}} sur LinkedIn"
     }
   },
+  "projectCard": {
+    "details": "Voir le projet {{label}}"
+  },
   "projects": {
-    "all": {
-      "title": "Archives",
-      "count": "{count, plural, =0 {aucun project} =1 {1 projet} other {# projets}}"
+    "heading": {
+      "projects": "{count, plural, =0 {projet} =1 {projet} other {projets}}",
+      "shown": "{count, plural, =0 {Aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
     },
-    "ongoing": {
-      "status": "En cours"
+    "intro": {
+      "quote": "Ils sont tous là ! Les meilleurs comme les moins bons font de moi le développeur que je suis aujourd'hui"
     },
-    "withSkill": {
-      "title": "Avec Angular",
-      "count": "{count, plural, =0 {aucun projet} =1 {1 projet} other {# projets}}"
+    "filtering": {
+      "title": "Chercher par mot-clé",
+      "placeholder": "Angular, site web..."
+    },
+    "categoryFilter": {
+      "label": "Filtrer les projets par catégorie",
+      "all": "Tout",
+      "featured": "À la une",
+      "angular": "Angular",
+      "company": "Entreprise",
+      "personal": "Personnel"
+    },
+    "statusFilter": {
+      "label": "Filtrer par statut",
+      "completed": "Terminés",
+      "ongoing": "En cours",
+      "abandoned": "Abandonnés",
+      "count": "{count, plural, =0 {aucun projet affiché} =1 {1 projet affiché} other {# projets affichés}} sur {total}"
+    },
+    "status": {
+      "ongoing": "En cours",
+      "abandoned": "Abandonné"
+    },
+    "types": {
+      "website": "Site web",
+      "desktop": "Application bureau",
+      "other": "Autre"
+    },
+    "clearFilters": "Effacer les filtres",
+    "list": {
+      "label": "Projets, du plus récent au plus ancien",
+      "number": "N°{{number}}",
+      "empty": "Aucun projet ne correspond à ces filtres."
     },
     "yourProject": {
-      "title": "Ton projet, ici",
-      "subtitle": "Un rêve, une idée, une réalité !",
+      "title": "Votre projet, ici",
+      "subtitle": "Un projet à démarrer, une fonctionnalité à ajouter ou des corrections à apporter ?",
       "action": "Discutons-en !"
     }
   },
   "projectDetails": {
-    "skills": {
-      "title": "Compétences",
-      "tooltip": "{count, plural, =1 {1 réalisation} other {# réalisations}}"
-    },
     "openLive": {
       "online": "En ligne",
       "offline": "Hors ligne",
       "accessible": "Ce projet est accessible",
       "private": "Ce projet est privé"
     },
+    "sourceCode": "Code source sur GitHub",
     "context": {
-      "moreProjects": "Voir d'autres réalisations"
+      "moreProjects": "Voir d'autres projets"
     },
     "duration": {
       "abandoned": "Abandonné",
@@ -83,13 +126,20 @@
       "title": "Problématique"
     },
     "coworkers": {
+      "title": "L'équipe",
       "solo": "Moi-même",
       "noCoworker": "Pas de collaborateur sur ce projet !",
-      "photoAlt": "Photo de {{name}}"
+      "photoAlt": "Photo de {{name}}",
+      "previous": "Collaborateur précédent",
+      "next": "Collaborateur suivant",
+      "profile": "Voir le profil de {{name}}"
     },
     "illustrations": {
       "noIllustrations": "Pas encore d'illustrations !",
-      "noIllustrationsAlt": "Aucune illustration disponible"
+      "noIllustrationsAlt": "Aucune illustration disponible",
+      "previous": "Illustration précédente",
+      "next": "Illustration suivante",
+      "open": "Agrandir les illustrations"
     },
     "icon": {
       "alt": "Icône du projet {{label}}"
@@ -100,68 +150,72 @@
       "next": "Suivante"
     }
   },
-  "archives": {
-    "heading": "Aventurier depuis 2017",
-    "description": "Tous mes projets sont ici, triables selon pleins de critères ! Les meilleurs et les moins bons forment, ensemble, le développeur que je suis aujourd'hui :)",
-    "chips": "{count, plural, =1 {1 réalisation} other {# réalisations}}",
-    "filtering": {
-      "title": "Chercher par mot-clé",
-      "placeholder": "Angular, site web..."
-    },
-    "order": {
-      "label": "Date"
-    }
-  },
   "skills": {
+    "heading": {
+      "skills": "{count, plural, =1 {techno} other {technos}}",
+      "shown": "{count, plural, =0 {Aucune techno affichée} =1 {1 techno affichée} other {# technos affichées}} sur {total}"
+    },
+    "filter": {
+      "label": "Filtrer les technos par niveau",
+      "all": "Tout"
+    },
     "favorites": {
       "title": "Stack de prédilection",
-      "subtitle": "Pour créer des sites au top, de A à Z"
+      "listLabel": "Mes technos préférées",
+      "projectsLink": "{{name}}, voir les projets"
     },
-    "keepLearning": {
-      "title": "Continuer d'apprendre",
-      "description": "Car chaque projet vient avec ses contraintes et exigences. Je continue d'apprendre avec le temps, et reste ouvert aux propositions !",
-      "skillsTitle": "Montée en compétence"
+    "clickHint": {
+      "line1": "Cliquez",
+      "line2": "sur les compétences pour ouvrir les projets",
+      "drawerLabel": "Projets"
     },
-    "recap": {
-      "iconAlt": "Icône de {{label}}"
+    "contact": {
+      "title": "Vous ne trouvez pas votre bonheur ?",
+      "subtitle": "On peut en discuter, j'apprends vite !",
+      "action": "Me contacter"
     },
-    "skillHighlight": {
-      "projects": "{count, plural, =1 {1 réalisation} other {# réalisations}}"
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "transverse": "Transverse",
+      "projectsLink": "{{name}}, {{level}}, voir les projets",
+      "projectsCountLink": "{name} {count, plural, =0 {# projet} =1 {# projet} other {# projets}}, {level}, voir les projets"
     },
-    "sections": {
-      "frontend": {
-        "heading": "Création d'interfaces",
-        "subtitle": "Frontend",
-        "description": "Création de maquettes, intégration complexe et accessibilité ! Je crée des interfaces qui plaisent au plus grand nombre, au quotidien"
-      },
-      "backend": {
-        "heading": "Gestion de données",
-        "subtitle": "Backend",
-        "description": "La donnée est le coeur de métier de la plupart des projets. J'apprécie les problématiques liées à sa collecte, persistance et mise à disposition"
-      },
-      "general": {
-        "heading": "Et bien plus",
-        "subtitle": "Général",
-        "description": "Le code, c'est super ! Mais pour être un développeur complet, je m'intéresse aussi la gestion de projet, le déploiement et l'intégration continue"
-      }
+    "levels": {
+      "proficient": "Opérationnel",
+      "learning": "Montée en compétence",
+      "explored": "Déjà rencontré"
     }
   },
   "experience": {
-    "duration": {
-      "future": {
-        "title": "Bientôt",
-        "subtitle": "À partir de {{month}}"
-      },
-      "now": {
-        "subtitle": "Depuis {{year}}"
-      },
-      "past": {
-        "subtitle": "Jusqu'en {{year}}"
-      }
+    "heading": {
+      "steps": "{count, plural, =0 {étape} =1 {étape} other {étapes}}",
+      "shown": "{count, plural, =0 {Aucune étape affichée} =1 {1 étape affichée} other {# étapes affichées}} sur {total}"
     },
-    "projects": {
-      "title": "Réalisations",
-      "count": "{count, plural, =0 {Plus à venir !} =1 {1 projet} other {# projets}}"
+    "filter": {
+      "label": "Filtrer le parcours",
+      "all": "Tout",
+      "pro": "Pro",
+      "school": "Formation"
+    },
+    "yourCompany": {
+      "title": "Prochaine étape :",
+      "subtitle": "Votre entreprise ?",
+      "action": "Me contacter"
+    },
+    "dates": {
+      "from": "À partir de",
+      "to": "à",
+      "today": "aujourd'hui"
+    },
+    "card": {
+      "see": "{count, plural, =1 {Voir 1 projet} other {Voir # projets}}",
+      "doneAt": "{count, plural, =1 {réalisé chez {label}} other {réalisés chez {label}}}",
+      "noProjects": "Projets à venir",
+      "readDescription": "Lire toute la description de {label}"
+    },
+    "dialog": {
+      "close": "Fermer"
     }
   },
   "duration": {
@@ -171,7 +225,16 @@
     "days": "{count, plural, =1 {1 journée} other {# jours}}",
     "and": "et"
   },
+  "countTitle": {
+    "since": "depuis"
+  },
   "footer": {
     "copyright": "© 2026 - Fait maison 🏠 par Alexis Melo da Silva"
+  },
+  "seo": {
+    "about": "Alexis Melo da Silva, développeur web fullstack freelance spécialisé en Angular, basé à Caen en Normandie. Projets, compétences, expérience et disponibilités pour votre prochain projet.",
+    "projects": "Tous les projets d'Alexis Melo da Silva, développeur Angular freelance : applications web pour des entreprises, des écoles et projets personnels, avec leurs compétences et leur stack.",
+    "skills": "Technologies maîtrisées par Alexis Melo da Silva, développeur web fullstack freelance : Angular et frontend, backend et compétences transverses, chacune avec ses projets.",
+    "experience": "Expérience professionnelle d'Alexis Melo da Silva, développeur web fullstack freelance : entreprises, écoles et projets qui y ont été réalisés."
   }
 }

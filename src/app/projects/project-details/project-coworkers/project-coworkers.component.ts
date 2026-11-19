@@ -4,6 +4,7 @@ import {
   inject,
   Input,
   AfterViewInit,
+  OnDestroy,
   signal,
 } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -17,12 +18,18 @@ import { CoworkerInfoComponent } from './coworker-info/coworker-info.component';
   imports: [ActionButtonComponent, CoworkerInfoComponent, TranslocoPipe],
   templateUrl: './project-coworkers.component.html',
   styleUrl: './project-coworkers.component.scss',
-  host: { class: 'g-grid-item-start-aligned' },
 })
 export class ProjectCoworkersComponent
   extends GridItemDirective
-  implements AfterViewInit
+  implements AfterViewInit, OnDestroy
 {
+  /**
+   * Stops the automatic slide when leaving the page
+   */
+  ngOnDestroy() {
+    clearInterval(this.autoSlideInterval);
+  }
+
   /**
    * Projet à afficher
    */

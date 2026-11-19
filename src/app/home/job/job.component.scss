@@ -1,0 +1,76 @@
+@use '../../../styles/responsive.scss' as responsive;
+@use '../../shared/floating-sticker';
+
+@include floating-sticker.keyframes;
+
+// Title and chips centred in the tile
+:host {
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-align: center;
+
+  @include responsive.responsive('medium') {
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+  }
+}
+
+// The biggest size of the design system, on two balanced lines
+h2 {
+  margin: 0;
+  font-size: var(--text-xxxl);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xxxxl);
+  }
+}
+
+.frameworks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.framework {
+  @include floating-sticker.sticker;
+  color: var(--job-framework-color);
+  font-size: var(--text-md);
+
+  &:focus-visible {
+    outline: 2px solid var(--job-focus-color);
+    outline-offset: 3px;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
+}
+
+.angular {
+  background-color: var(--job-angular-background);
+  rotate: -3deg;
+}
+
+.dotnet {
+  background-color: var(--job-dotnet-background);
+  rotate: 2deg;
+  animation-delay: -0.87s;
+}
+
+.more {
+  background-color: var(--job-more-background);
+  color: var(--job-more-color);
+  rotate: -1deg;
+  animation-delay: -1.73s;
+}

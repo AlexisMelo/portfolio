@@ -1,20 +1,19 @@
 <div class="g-grid-container">
-  <div class="g-grid" appGridEntrance>
-    <div class="github" appGridItem>
-      <app-github [link]="contentService.github"></app-github>
-    </div>
-    <app-all></app-all>
+  <div class="g-grid" appGridEntrance appGridDrag>
+    <app-projects-heading></app-projects-heading>
 
-    @for (i of 3 | range; track i) {
-      <app-project-item
-        [class]="'project__' + (i + 1)"
-        [project]="pinnedProjects()[i]"
-        [priority]="i === 0"></app-project-item>
-    }
+    <app-projects-intro></app-projects-intro>
 
-    <app-ongoing></app-ongoing>
-    <app-with-skill></app-with-skill>
+    <app-image pose="shrugging"></app-image>
 
-    <app-your-project></app-your-project>
+    <app-project-filtering></app-project-filtering>
+
+    <app-status-filtering></app-status-filtering>
+
+    <app-category-filtering></app-category-filtering>
+
+    <app-social-link class="github" network="github" iconOnly></app-social-link>
+
+    <app-project-list></app-project-list>
   </div>
 </div>

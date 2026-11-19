@@ -1,21 +1,9 @@
 @if (project | status; as projectStatus) {
-  <h2 [ngClass]="projectStatus">
-    {{ project.start_date | duration: project.end_date }}
-  </h2>
+  <h2>{{ project.start_date | duration: project.end_date }}</h2>
 
-  <div class="duration-badge">
-    @switch (projectStatus) {
-      @case ('abandoned') {
-        <span>{{ 'projectDetails.duration.abandoned' | transloco }}</span>
-      }
-      @case ('ongoing') {
-        <span>{{ 'projectDetails.duration.ongoing' | transloco }}</span>
-      }
-      @case ('completed') {
-        <span>{{ 'projectDetails.duration.completed' | transloco }}</span>
-      }
-    }
-  </div>
+  <span class="status" [class]="projectStatus">
+    {{ 'projectDetails.duration.' + projectStatus | transloco }}
+  </span>
 }
 
 @if (project.start_date) {

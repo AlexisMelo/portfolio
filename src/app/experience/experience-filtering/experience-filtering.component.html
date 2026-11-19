@@ -1,0 +1,23 @@
+<div
+  class="chips"
+  role="group"
+  [attr.aria-label]="'experience.filter.label' | transloco">
+  <button
+    type="button"
+    class="g-chip"
+    [attr.aria-pressed]="selectedKind() === null"
+    (click)="selectedKind.set(null)">
+    {{ 'experience.filter.all' | transloco }}
+  </button>
+
+  @for (kind of kinds; track kind) {
+    <button
+      type="button"
+      class="g-chip"
+      [class]="kind"
+      [attr.aria-pressed]="selectedKind() === kind"
+      (click)="selectedKind.set(kind)">
+      {{ 'experience.filter.' + kind | transloco }}
+    </button>
+  }
+</div>

@@ -1,58 +1,47 @@
 @use '../../../styles/responsive.scss' as responsive;
 
+:host {
+  overflow: visible;
+  background-color: var(--image-background-color);
+}
+
 img {
   position: absolute;
-  width: 100px;
+  width: 130px;
   height: auto;
-  right: 0;
-  bottom: 0;
-  object-fit: contain;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
-  z-index: 10;
-
-  @include responsive.responsive('medium') {
-    width: 120px;
-    margin-right: 2rem;
-    margin-bottom: 3rem;
-  }
-}
-
-#sun,
-#moon {
-  position: absolute;
-}
-
-#sun {
-  top: -2rem;
-  left: -2rem;
-
-  @include responsive.responsive('medium') {
-    top: 0.5rem;
-    left: 0.5rem;
-  }
-}
-
-#moon {
-  top: 0.5rem;
-  left: 0.5rem;
-  transform: scale(0.8);
-
-  @include responsive.responsive('medium') {
-    top: 1rem;
-    left: 1rem;
-    transform: scale(1);
-  }
-}
-
-#tree {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-#bush {
-  position: absolute;
   left: 0;
   bottom: 0;
+  object-fit: contain;
+  margin-bottom: -15px;
+  z-index: 10;
+  rotate: -3deg;
+
+  @include responsive.responsive('medium') {
+    width: 190px;
+    margin-left: -25px;
+    margin-bottom: -15px;
+  }
+
+  @include responsive.responsive('large') {
+    width: 210px;
+    margin-left: -45px;
+    margin-bottom: -20px;
+  }
+}
+
+// One cell next to the speech bubble on its left: mirrored to face it, leaning out of the bottom
+// right corner
+:host(.shrugging) img {
+  left: auto;
+  right: -16px;
+  width: 108px;
+  margin: 0 0 -14px;
+  scale: -1 1;
+  rotate: 5deg;
+
+  @include responsive.responsive('medium') {
+    right: -26px;
+    width: 118px;
+    margin: 0 0 -14px;
+  }
 }

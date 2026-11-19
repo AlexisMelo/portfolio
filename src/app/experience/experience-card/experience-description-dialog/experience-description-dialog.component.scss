@@ -1,0 +1,76 @@
+@use '../../../../styles/responsive.scss' as responsive;
+
+:host {
+  --band-background: var(--experience-card-pro-band-background);
+  --band-color: var(--experience-card-pro-band-color);
+
+  display: flex;
+  flex-direction: column;
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  border: var(--grid-item-border);
+  border-width: 3px;
+  border-radius: 12px;
+  background-color: var(--grid-item-default-bg);
+  box-shadow: 6px 6px 0 0 var(--grid-item-border-color);
+}
+
+:host(.school) {
+  --band-background: var(--experience-card-school-band-background);
+  --band-color: var(--experience-card-school-band-color);
+}
+
+// set by animate.enter while the dialog opens
+:host(.dialog-enter) {
+  animation: dialog-enter 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+}
+
+.band {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: var(--grid-item-border);
+  background-color: var(--band-background);
+  color: var(--band-color);
+
+  @include responsive.responsive('medium') {
+    padding: 14px 20px;
+  }
+}
+
+.title {
+  margin: 0;
+  color: inherit;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xxl);
+  }
+}
+
+// Scrolls on its own when the text is taller than the screen, the band staying in view
+.description {
+  margin: 0;
+  padding: 16px;
+  overflow-y: auto;
+  color: var(--styles-default-paragraph-color);
+  font-size: var(--text-md);
+  line-height: 1.6;
+
+  @include responsive.responsive('medium') {
+    padding: 18px 20px 22px;
+  }
+}

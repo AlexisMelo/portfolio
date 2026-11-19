@@ -1,0 +1,71 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// Its tail crosses the gap towards the avatar tile on its right, level with the middle of its first
+// row. The tail is a square turned on its corner, its two outer sides bordered, hiding the bubble's
+// border where it starts.
+:host(.g-grid-item) {
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding: 0.5rem 0.9rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--cell-size) / 2 - 8px);
+    right: -10px;
+    width: 16px;
+    height: 16px;
+    border-top: var(--grid-item-border);
+    border-right: var(--grid-item-border);
+    background-color: var(--grid-item-default-bg);
+    rotate: 45deg;
+  }
+
+  @include responsive.responsive('medium') {
+    padding: 1.2rem 1.4rem;
+  }
+}
+
+blockquote {
+  margin: 0;
+}
+
+p {
+  color: var(--styles-title-color);
+  font-family: var(--title-font-family);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: pretty;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-lg);
+  }
+
+  @include responsive.responsive('large') {
+    font-size: var(--text-xl);
+  }
+}
+
+// Bigger than the text, hollow: filled with the bubble's colour, outlined in the text colour, with a
+// hard shadow like the stickers. Without line height, they do not push the lines apart.
+.mark {
+  display: inline-block;
+  color: var(--grid-item-default-bg);
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 0;
+  vertical-align: -0.47em;
+  -webkit-text-stroke: 4px var(--styles-title-color);
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 var(--grid-item-border-color);
+
+  &:first-child {
+    margin-inline-end: 0.12em;
+  }
+
+  &:last-child {
+    margin-inline-start: 0.12em;
+  }
+}

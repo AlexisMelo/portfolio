@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @use 'sass:map';
 @use '_functions' as functions;
 @use './responsive.scss' as responsive;
@@ -11,9 +10,10 @@
   --grid-width: 356px; //pour que ça fonctionne même sur petit téléphone
   --columns: 4;
   --gap: 12px;
-  --body-font-family: 'Poppins', sans-serif;
-  --title-font-family: 'Grandstander', cursive;
+  --body-font-family: 'Geist', system-ui, sans-serif;
+  --title-font-family: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif;
   font-size: var(--text-xs);
+  --tile-padding: 1.7rem;
 
   --cell-size: #{functions.getCellSize(
       var(--grid-width),
@@ -28,18 +28,16 @@
     --gap: 14px;
   }
 
-  // @include responsive.responsive('large') {
-  //   --grid-width: calc(#{map-get(responsive.$sizes, 'large')} - 20px);
-  //   --columns: 12;
-  //   --gap: 16px;
-  // }
+  @include responsive.responsive('large') {
+    --grid-width: calc(#{map.get(responsive.$sizes, 'large')} - 20px);
+    --columns: 12;
+  }
 }
 
 .cdk-overlay-backdrop {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-//https://www.magicpattern.design/tools/grid-background-pattern-generator
 body {
   background-color: var(--styles-background-color);
 
@@ -56,7 +54,7 @@ body {
 html {
   @include design.design-system();
   box-sizing: border-box;
-  height: 100vh; //So the modals
+  height: 100vh;
 }
 
 *,
@@ -78,11 +76,6 @@ html {
 h2,
 p {
   margin: 0;
-}
-
-h2,
-h3 {
-  padding-top: 0.2em;
 }
 
 p,
@@ -197,10 +190,13 @@ h3 {
 
 /* Others */
 
+// Every tile has a strong solid border and a small hard shadow on its bottom-right side, which
+// grows when hovered
 .g-grid-item {
-  border-radius: 15px;
+  border-radius: 12px;
   background-color: var(--grid-item-default-bg);
   border: var(--grid-item-border);
+  box-shadow: 2px 2px 0 0 var(--grid-item-border-color);
   position: relative;
   overflow: hidden;
   transition:
@@ -209,13 +205,140 @@ h3 {
     transform 500ms;
 
   &:hover {
-    box-shadow: rgba(100, 111, 101, 0.2) 0px 5px 24px 0px;
-    // transform: scale(1.02);
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
   }
 }
 
-.g-grid-item-shadow {
-  box-shadow: -3px 3px 7px 0 var(--grid-item-shadow-color);
+// Tile that stands out (the coloured ones): thicker border, and a hard offset shadow
+// in the border colour that makes its right and bottom sides look larger
+.g-grid-item-highlight {
+  border-width: 3px;
+  box-shadow: 4px 4px 0 0 var(--grid-item-border-color);
+
+  &:hover {
+    box-shadow: 6px 6px 0 0 var(--grid-item-border-color);
+  }
+}
+
+/* Chips */
+
+// Toggle button on a tile (the filters of the projects page): bordered like the small elements of
+// the tiles, lifted on hover, pressed in when selected (aria-pressed). Components give the selected
+// colours with --chip-pressed-background and --chip-pressed-color.
+.g-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.35em 0.9em;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--chip-background);
+  color: var(--chip-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    box-shadow 200ms,
+    translate 200ms,
+    background-color 200ms,
+    color 200ms;
+
+  &:hover {
+    translate: -1px -1px;
+    box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--chip-focus-color);
+    outline-offset: 3px;
+  }
+
+  // Pushed into the tile: its shadow almost gone
+  &[aria-pressed='true'] {
+    translate: 2px 2px;
+    box-shadow: 1px 1px 0 0 var(--grid-item-border-color);
+    background-color: var(--chip-pressed-background, var(--chip-background));
+    color: var(--chip-pressed-color, var(--chip-color));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
+  }
+}
+
+// Hidden on screen, read by assistive technologies
+.g-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Drag and drop of the tiles (GridDragDirective) */
+
+// Tiles that do nothing on click show they can be grabbed; clickable ones keep their own cursor
+.g-grid-drag > * {
+  cursor: grab;
+
+  // A long press picks a tile up: it must not select text or open the link preview
+  @media (pointer: coarse) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    :is(input, textarea) {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+  }
+}
+
+// The dragged tile looks lifted, with a larger hard shadow (after the hover shadows, which it replaces)
+.g-grid-drag > .g-grid-item-dragging {
+  box-shadow: 8px 8px 0 0 var(--grid-item-border-color);
+}
+
+// Where the dragged tile lands
+.g-grid-drop-placeholder {
+  border: 2px dashed var(--styles-default-paragraph-color);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+// While a tile is dragged, the whole page shows the grabbing hand and no text gets selected
+.g-grid-dragging,
+.g-grid-dragging * {
+  cursor: grabbing !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+// Over the edge or corner of a tile, the resize cursor of that edge (set by GridDragDirective) replaces
+// the grabbing hand and the cursors of the content
+.g-grid-drag.g-grid-resize-hover,
+.g-grid-drag.g-grid-resize-hover * {
+  cursor: var(--g-grid-resize-cursor) !important;
+}
+
+// While a tile is resized, the whole page shows the resize cursor and no text gets selected
+.g-grid-resizing,
+.g-grid-resizing * {
+  cursor: var(--g-grid-resize-cursor) !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 p,

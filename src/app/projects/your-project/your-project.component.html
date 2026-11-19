@@ -1,10 +1,14 @@
-<h2>{{ 'projects.yourProject.title' | transloco }}</h2>
-<p>{{ 'projects.yourProject.subtitle' | transloco }}</p>
+<a class="row" [href]="'mailto:' + contentService.mail">
+  <span class="number">{{
+    'projects.list.number' | transloco: { number: number() }
+  }}</span>
 
-<app-action-button
-  class="contact"
-  [text]="'projects.yourProject.action' | transloco"
-  [unfold]="true"
-  (click)="sendEmail()"
-  [positionAbsolute]="true"
-  [position]="'center-right'"></app-action-button>
+  <h2 class="title">{{ 'projects.yourProject.title' | transloco }}</h2>
+
+  <p class="subtitle">{{ 'projects.yourProject.subtitle' | transloco }}</p>
+
+  <!-- Only the look of a button: the whole row is the link -->
+  <span class="action" app-action-button icon="mail">
+    {{ 'projects.yourProject.action' | transloco }}
+  </span>
+</a>

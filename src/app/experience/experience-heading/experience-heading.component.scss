@@ -1,0 +1,18 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// The title in one row on phones, on a single row of cells; from medium screens up, a poster at the
+// bottom left of a 4 x 2 tile
+:host {
+  display: flex;
+  align-items: center;
+  padding: 0 1.2rem;
+  background-color: var(--experience-heading-background);
+  color: var(--experience-heading-color);
+
+  @include responsive.responsive('medium') {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    padding: var(--tile-padding);
+  }
+}

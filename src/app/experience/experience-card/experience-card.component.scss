@@ -1,0 +1,148 @@
+@use '../../../styles/responsive.scss' as responsive;
+
+// Sizes follow mock-up D: one set for phones, one from medium screens up.
+
+:host {
+  --band-background: var(--experience-card-pro-band-background);
+  --band-color: var(--experience-card-pro-band-color);
+
+  display: flex;
+  flex-direction: column;
+}
+
+:host(.school) {
+  --band-background: var(--experience-card-school-band-background);
+  --band-color: var(--experience-card-school-band-color);
+}
+
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 12px;
+  border-bottom: var(--grid-item-border);
+  background-color: var(--band-background);
+  color: var(--band-color);
+
+  @include responsive.responsive('medium') {
+    padding: 14px 20px 12px;
+  }
+}
+
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+// On one line, cut with an ellipsis
+.name {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-xxl);
+  }
+}
+
+.year {
+  flex-shrink: 0;
+  margin: 0;
+  color: inherit;
+  font-family: var(--title-font-family);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.where {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  color: inherit;
+  font-size: 13.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+
+  mat-icon {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+  }
+}
+
+.separator {
+  margin: 0 2px;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+  padding: 10px 16px 14px;
+
+  @include responsive.responsive('medium') {
+    padding: 10px 20px 14px;
+  }
+}
+
+.job {
+  margin: 0;
+  color: var(--styles-title-color);
+  font-family: var(--title-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+
+  @include responsive.responsive('medium') {
+    font-size: 17px;
+  }
+}
+
+// Takes the room left above the footer, cut after the lines that fit the card
+.description {
+  display: -webkit-box;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--styles-default-paragraph-color);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+
+  @include responsive.responsive('medium') {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  margin-top: 4px;
+}
+
+.no-projects {
+  margin: 0;
+  color: var(--styles-default-paragraph-color);
+  font-size: 13px;
+}

@@ -55,12 +55,13 @@ export default [
     },
 
     rules: {
+      // Attributes too, for the components put on a native element (button[app-action-button])
       '@angular-eslint/component-selector': [
         'error',
         {
           prefix: 'app',
           style: 'kebab-case',
-          type: 'element',
+          type: ['element', 'attribute'],
         },
       ],
 

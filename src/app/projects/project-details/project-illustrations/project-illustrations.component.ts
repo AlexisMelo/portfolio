@@ -11,7 +11,6 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
@@ -27,7 +26,6 @@ import { Tables } from 'database.types';
   selector: 'app-project-illustrations',
   imports: [
     ActionButtonComponent,
-    MatIconModule,
     DialogModule,
     TranslocoPipe,
     NgOptimizedImage,

@@ -1,42 +1,58 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ContentService } from '../shared/content.service';
-import { DescriptionComponent } from './description/description.component';
-import { GithubComponent } from './github/github.component';
-import { LinkedinComponent } from './linkedin/linkedin.component';
+import { GridDragDirective } from '../shared/grid/grid-drag.directive';
+import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
+import { SupabaseService } from '../shared/supabase.service';
+import { CompaniesComponent } from './companies/companies.component';
+import { ImageComponent } from './image/image.component';
+import { JobComponent } from './job/job.component';
 import { MailComponent } from './mail/mail.component';
 import { MapComponent } from './map/map.component';
-import { NowComponent } from './now/now.component';
+import { PlayHintComponent } from './play-hint/play-hint.component';
+import { ProjectCard } from './projects-preview/project-card/project-card.model';
+import { ProjectsPreviewComponent } from './projects-preview/projects-preview.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { ResumeComponent } from './resume/resume.component';
-import { AvailabilityComponent } from './availability/availability.component';
-import { ImageComponent } from './image/image.component';
-import { FreelanceSinceComponent } from './freelance-since/freelance-since.component';
-import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { GridItemDirective } from '../shared/grid/grid-item.directive';
+import { SocialLinkComponent } from './social-link/social-link.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     MatIconModule,
-    LinkedinComponent,
-    GithubComponent,
+    SocialLinkComponent,
     MailComponent,
-    DescriptionComponent,
+    JobComponent,
     ResumeComponent,
     MapComponent,
-    NowComponent,
-    AvailabilityComponent,
     ImageComponent,
-    FreelanceSinceComponent,
-    GridItemDirective,
+    ProjectsPreviewComponent,
+    CompaniesComponent,
+    RecommendationsComponent,
+    PlayHintComponent,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   /**
-   * Gestion du contenu
+   * Projects pinned in the database, for the projects preview. Empty until they are loaded: the
+   * preview shows a loader meanwhile
    */
-  public contentService = inject(ContentService);
+  protected readonly pinnedProjects = signal<Array<ProjectCard>>([]);
+
+  /**
+   * Gestion de la base de donnée
+   */
+  private supabaseService = inject(SupabaseService);
+
+  /**
+   * Loads the pinned projects
+   */
+  ngOnInit() {
+    this.supabaseService
+      .getPinnedProjects()
+      .then(projects => this.pinnedProjects.set(projects));
+  }
 }

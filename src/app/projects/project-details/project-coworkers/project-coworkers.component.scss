@@ -1,18 +1,57 @@
-:host {
-  padding: 2rem;
+@use '../../../../styles/responsive.scss' as responsive;
 
-  &:hover {
-    ::ng-deep {
-      img {
-        rotate: -5deg;
-      }
-    }
+// Two rows high: the label and the controls along the top, the displayed person filling the tile
+// under them
+:host:hover ::ng-deep img {
+  rotate: -4deg;
+}
+
+// Teal sticker like the label of the recommendations, coming out of the left side
+.label {
+  position: absolute;
+  top: 0.75rem;
+  left: -0.5rem;
+  z-index: 1;
+  margin: 0;
+  padding: 0.25rem 1.4rem 0.25rem 1.6rem;
+  border: var(--grid-item-border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+  background-color: var(--project-coworkers-label-background);
+  color: var(--project-coworkers-label-color);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  rotate: -2deg;
+
+  @include responsive.responsive('medium') {
+    font-size: var(--text-md);
   }
 }
 
-.carousel {
-  height: 100%;
-  width: 100%;
+// The counter and the buttons at the top right
+.controls {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.counter {
+  margin-right: 4px;
+  color: var(--styles-title-color);
+  font-family: var(--title-font-family);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .carousel-items {
@@ -22,21 +61,12 @@
   width: 100%;
 
   .carousel-item {
-    position: relative;
     min-width: 100%;
     max-width: 100%;
-    height: 100%;
-    transition: all 0.5s linear;
-  }
-}
+    transition: transform 0.5s ease;
 
-.counter {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--action-button-background);
-  padding: 0.5rem 1rem;
-  border-radius: 16px;
-  border: 1px solid var(--grid-item-border);
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
 }

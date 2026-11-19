@@ -1,42 +1,138 @@
+@use '../../../styles/responsive.scss' as responsive;
+@use '../../shared/floating-sticker';
+
+@include floating-sticker.keyframes;
+
+// On phones and medium screens, where the tile is 4 columns wide, the title sits above three
+// columns of stickers; on large screens, the title on the left and two columns of stickers on the
+// right
 :host {
-  padding: 2rem 2.5rem;
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  padding: 18px;
+  background-color: var(--favorites-background);
+  color: var(--favorites-color);
+
+  @include responsive.responsive('large') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 28px 46px 28px 38px;
+  }
 }
 
 h2 {
-  font-size: var(--text-xxl);
-  margin-bottom: 1rem;
-}
+  position: relative;
+  margin: 0;
+  color: inherit;
+  font-size: var(--text-xxxl);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 
-p {
-  line-height: 180%;
-  flex-grow: 1;
+  @include responsive.responsive('large') {
+    text-wrap: balance;
+    flex: 1;
+    min-width: 0;
+    font-size: 60px;
+  }
 }
 
 ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  padding: 0;
+  grid-template-columns: repeat(3, max-content);
+  align-items: center;
+  justify-items: center;
+  gap: 12px 10px;
   margin: 0;
+  padding: 0;
+  list-style: none;
 
-  li {
-    // list-style: none;
-    margin-left: 1.5rem;
-    text-align: start;
+  @include responsive.responsive('large') {
+    grid-template-columns: repeat(2, max-content);
+    gap: 16px 24px;
   }
 }
 
-mat-icon {
-  position: absolute;
-  right: 2.5rem;
-  top: 2rem;
+li {
+  line-height: normal;
 }
 
-p,
-ul,
-h2 {
-  position: relative; //for z-index to work ??
+// Each sticker has its own tilt so the six look stuck by hand, and floats out of step with the
+// others
+.sticker {
+  @include floating-sticker.sticker;
+  padding: 0.15em 0.5em;
+  background-color: var(--favorites-sticker-background);
+  color: var(--favorites-sticker-color);
+  font-size: 15px;
+
+  &:focus-visible {
+    outline: 2px solid var(--favorites-focus-color);
+    outline-offset: 3px;
+  }
+
+  @include responsive.responsive('large') {
+    padding: 0.16em 0.62em;
+    font-size: 21px;
+  }
+
+  li:nth-child(1) & {
+    rotate: -3deg;
+  }
+
+  li:nth-child(2) & {
+    rotate: 2deg;
+    animation-delay: -0.87s;
+  }
+
+  li:nth-child(3) & {
+    rotate: 1deg;
+    animation-delay: -1.73s;
+  }
+
+  li:nth-child(4) & {
+    rotate: -2deg;
+    animation-delay: -0.43s;
+  }
+
+  li:nth-child(5) & {
+    rotate: 2deg;
+    animation-delay: -1.3s;
+  }
+
+  li:nth-child(6) & {
+    rotate: -1deg;
+    animation-delay: -2.16s;
+  }
+}
+
+.sticker-angular {
+  background-color: var(--favorites-angular-background);
+  color: var(--favorites-angular-color);
+}
+
+.sticker-netcore {
+  background-color: var(--favorites-dotnet-background);
+  color: var(--favorites-dotnet-color);
+}
+
+.sticker-supabase {
+  background-color: var(--favorites-supabase-background);
+  color: var(--favorites-supabase-color);
+}
+
+.sticker-figma {
+  background-color: var(--favorites-figma-background);
+  color: var(--favorites-figma-color);
+}
+
+.sticker-git {
+  background-color: var(--favorites-git-background);
+  color: var(--favorites-git-color);
 }

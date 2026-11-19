@@ -65,26 +65,35 @@ export class LeafletMapComponent implements OnDestroy {
    */
   private tileLayer?: L.TileLayer;
 
+  /**
+   * Tells Leaflet the new size of the map when visitors resize its tile (GridDragDirective).
+   * Leaflet only follows the window size by itself.
+   */
+  private resizeObserver?: ResizeObserver;
+
   constructor() {
     const host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
-    afterNextRender(() =>
-      this.map.set(
-        // The zoom buttons are the only way to move the map
-        L.map(host, {
-          center: this.position,
-          zoom: this.startZoom,
-          attributionControl: false,
-          scrollWheelZoom: false,
-          zoomControl: false,
-          dragging: false,
-          doubleClickZoom: false,
-          touchZoom: false,
-          boxZoom: false,
-          keyboard: false,
-        })
-      )
-    );
+    afterNextRender(() => {
+      // The zoom buttons are the only way to move the map
+      const map = L.map(host, {
+        center: this.position,
+        zoom: this.startZoom,
+        attributionControl: false,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        dragging: false,
+        doubleClickZoom: false,
+        touchZoom: false,
+        boxZoom: false,
+        keyboard: false,
+      });
+      this.map.set(map);
+
+      // the centre stays where it is, under the marker in the middle of the tile
+      this.resizeObserver = new ResizeObserver(() => map.invalidateSize());
+      this.resizeObserver.observe(host);
+    });
 
     effect(() => {
       const map = this.map();
@@ -103,6 +112,7 @@ export class LeafletMapComponent implements OnDestroy {
    * Implémentation de OnDestroy
    */
   ngOnDestroy() {
+    this.resizeObserver?.disconnect();
     this.map()?.remove();
   }
 

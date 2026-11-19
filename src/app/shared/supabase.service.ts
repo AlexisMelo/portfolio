@@ -1,10 +1,11 @@
-import { inject, Injectable } from '@angular/core';
-import { TranslocoService } from '@jsverse/transloco';
+import { Injectable } from '@angular/core';
 import { PostgrestClient } from '@supabase/postgrest-js';
 import { environment } from '../../environments/environment';
-import { ArchivedProject } from '../projects/archives/archived-project.model';
 import { ContextWithProjects } from '../projects/context-with-projects.model';
-import { ProjectItem } from '../projects/project-item/project-item.model';
+import { ListedProject } from '../projects/listed-project.model';
+import { Company } from '../home/companies/company.model';
+import { ProjectCard } from '../home/projects-preview/project-card/project-card.model';
+import { Recommendation } from '../home/recommendations/recommendation.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
 import { Language } from './language.type';
@@ -19,11 +20,6 @@ export class SupabaseService {
    * Client for the Supabase tables
    */
   public client: PostgrestClient;
-
-  /**
-   * Translation service
-   */
-  private translocoService = inject(TranslocoService);
 
   /**
    * Request to get a project with all its details
@@ -48,14 +44,13 @@ export class SupabaseService {
         )`;
 
   /**
-   * Request to get only what the archives display and filter on
+   * Request to get only what the projects page displays and filters on
    */
-  private readonly ARCHIVED_PROJECT_REQUEST = `id, label, url, description, end_date, abandoned,
+  private readonly LISTED_PROJECT_REQUEST = `id, label, url, start_date, end_date, abandoned, pinned,
         localizedDescription:translations!description(en, fr),
-        illustrations:project_illustration(url, alt, position),
-        project_type(label),
+        project_type(id, label),
         project_context:context(id, label),
-        project_skills:project_skill(highlight, skill(id, label))`;
+        project_skills:project_skill(skill(id, label))`;
 
   /**
    * Constructeur
@@ -65,22 +60,6 @@ export class SupabaseService {
     this.client = new PostgrestClient(`${environment.supabaseUrl}/rest/v1`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` },
     });
-  }
-
-  /**
-   * Obtient le nombre de projets en cours
-   * @returns
-   */
-  public async countOngoingProjects(): Promise<number> {
-    const { count, error } = await this.client
-      .from('project')
-      .select('*', { count: 'exact', head: true })
-      .is('end_date', null)
-      .is('abandoned', false);
-
-    if (error || count === null)
-      return Promise.reject('Error when getting project count');
-    return count;
   }
 
   /**
@@ -98,33 +77,38 @@ export class SupabaseService {
   }
 
   /**
-   * Gets every project, with only the fields used by the archives
+   * Gets every project, with only the fields used by the projects page
    * @returns
    */
-  public async getProjects(): Promise<Array<ArchivedProject>> {
+  public async getProjects(): Promise<Array<ListedProject>> {
     const { data, error } = await this.client
       .from('project')
-      .select(this.ARCHIVED_PROJECT_REQUEST)
-      .overrideTypes<Array<ArchivedProject>, { merge: false }>();
+      .select(this.LISTED_PROJECT_REQUEST)
+      .overrideTypes<Array<ListedProject>, { merge: false }>();
 
     if (error) return Promise.reject(error);
     return data;
   }
 
   /**
-   * Obtient la liste des projets épinglés
+   * Obtient la liste des projets épinglés, the most recent first (ongoing ones before the others)
    * @returns
    */
-  public async getPinnedProjects(): Promise<Array<ProjectItem>> {
+  public async getPinnedProjects(): Promise<Array<ProjectCard>> {
     const { data, error } = await this.client
       .from('project')
       .select(
-        '*, localizedDescription:translations!description(*), illustrations:project_illustration(*), project_skills:project_skill(*, skill:skill(*))'
+        `id, label, url, end_date, icon,
+        localizedDescription:translations!description(en, fr),
+        illustrations:project_illustration(url, alt, position),
+        project_context:context(localizedLabel:translations!label(en, fr))`
       )
-      .eq('pinned', true);
+      .eq('pinned', true)
+      .order('end_date', { ascending: false, nullsFirst: true })
+      .overrideTypes<Array<ProjectCard>, { merge: false }>();
 
     if (error) return Promise.reject(error);
-    return data as Array<ProjectItem>;
+    return data;
   }
 
   /**
@@ -151,13 +135,39 @@ export class SupabaseService {
     const { data } = await this.client
       .from('context')
       .select(
-        '*, projects:project(*), localizedDescription:translations!description(*), localizedLabel:translations!label(*), localizedJob:translations!job(*)'
+        '*, projects:project(*), localizedDescription:translations!description(*), localizedLongDescription:translations!long_description(*), localizedLabel:translations!label(*), localizedJob:translations!job(*)'
       )
       .order('end_date', { ascending: false })
       .order('start_date', { ascending: false })
       .returns<Array<ContextWithProjects>>();
 
     return data ?? [];
+  }
+
+  /**
+   * Companies I worked at (contexts flagged is_company), with the end date of each context, most
+   * recent first
+   * @param locale language of the names
+   */
+  public async getCompanies(locale: Language): Promise<Company[]> {
+    const { data, error } = await this.client
+      .from('context')
+      .select(`end_date, localizedLabel:translations!label(${locale})`)
+      .eq('is_company', true)
+      .order('start_date', { ascending: false })
+      .overrideTypes<
+        Array<{
+          end_date: string | null;
+          localizedLabel: Partial<Record<Language, string | null>>;
+        }>,
+        { merge: false }
+      >();
+
+    if (error) return Promise.reject(error);
+    return data.flatMap(company => {
+      const name = company.localizedLabel[locale];
+      return name ? [{ name, endDate: company.end_date }] : [];
+    });
   }
 
   /**
@@ -174,6 +184,25 @@ export class SupabaseService {
 
     if (error) return Promise.reject(error);
     return data as Array<Skill>;
+  }
+
+  /**
+   * Gets the LinkedIn recommendations, with their text in every language and their author, the
+   * most recent first
+   */
+  public async getRecommendations(): Promise<Array<Recommendation>> {
+    const { data, error } = await this.client
+      .from('recommendations')
+      .select(
+        `id, link,
+        localizedText:translations!text(en, fr),
+        coworker(firstname, lastname, avatar_head)`
+      )
+      .order('date', { ascending: false, nullsFirst: false })
+      .overrideTypes<Array<Recommendation>, { merge: false }>();
+
+    if (error) return Promise.reject(error);
+    return data;
   }
 
   /**
@@ -229,35 +258,6 @@ export class SupabaseService {
   }
 
   /**
-   * Returns "now" items translated in the currently active language.
-   */
-  public async getNowItems(): Promise<string[]> {
-    const locale = this.translocoService.getActiveLang();
-    const { data: infos, error: infosError } = await this.client
-      .from('personal_infos')
-      .select('label, value')
-      .like('label', 'now%')
-      .order('label');
-
-    if (infosError) return Promise.reject(infosError);
-    if (!infos?.length) return [];
-
-    const translationKeys = infos.map(info => info.value);
-
-    const { data: translations, error: translationsError } = await this.client
-      .from('translations')
-      .select('id, en, fr')
-      .in('id', translationKeys);
-
-    if (translationsError) return Promise.reject(translationsError);
-
-    const col = locale as Language;
-    return infos
-      .map(info => translations?.find(t => t.id === info.value)?.[col] ?? null)
-      .filter((text): text is string => text != null);
-  }
-
-  /**
    * Returns availability text (current situation and next date) in the active language.
    */
   public async getAvailabilityItems(locale: Language): Promise<{
@@ -294,21 +294,5 @@ export class SupabaseService {
       current: find('availability_current'),
       next: find('availability_next'),
     };
-  }
-
-  /**
-   * Count number of projects per skill
-   * @param skillId
-   * @returns
-   */
-  public async countProjectsBySkill(skillId: number) {
-    const { count, error } = await this.client
-      .from('project_skill')
-      .select('*', { count: 'exact', head: true })
-      .eq('skill_id', skillId);
-
-    if (error || count === null)
-      return Promise.reject('Error when getting project count');
-    return count;
   }
 }

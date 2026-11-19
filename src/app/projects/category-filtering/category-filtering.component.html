@@ -1,0 +1,23 @@
+<div
+  class="chips"
+  role="group"
+  [attr.aria-label]="'projects.categoryFilter.label' | transloco">
+  <button
+    type="button"
+    class="g-chip"
+    [id]="allChipId"
+    [attr.aria-pressed]="projectsService.selectedCategory() === null"
+    (click)="projectsService.selectCategory(null)">
+    {{ 'projects.categoryFilter.all' | transloco }}
+  </button>
+
+  @for (category of categories; track category) {
+    <button
+      type="button"
+      class="g-chip"
+      [attr.aria-pressed]="projectsService.selectedCategory() === category"
+      (click)="projectsService.selectCategory(category)">
+      {{ 'projects.categoryFilter.' + category | transloco }}
+    </button>
+  }
+</div>

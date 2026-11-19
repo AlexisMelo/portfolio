@@ -82,14 +82,14 @@ export class TooltipDirective implements OnDestroy {
    * @returns
    */
   private initializeTooltip() {
-    if (!(this.componentRef === null)) return; //si le composant existe déjà, on ne l'ajoute pas de nouveau
+    if (!(this.componentRef === null)) return;
 
     this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
 
     const domElem = (
       this.componentRef.hostView as EmbeddedViewRef<TooltipComponent>
     ).rootNodes[0] as HTMLElement;
-    document.body.appendChild(domElem); //real dom
+    document.body.appendChild(domElem);
     this.setTooltipComponentProperties();
     this.showTimeout = window.setTimeout(
       () => this.showTooltip(),

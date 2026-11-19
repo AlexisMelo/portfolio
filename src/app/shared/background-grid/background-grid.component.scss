@@ -1,0 +1,58 @@
+// Radius of the faded area around the cursor, registered so that it can be transitioned.
+// Inherited, so that the grid and glow layers below follow the host's transition
+@property --background-grid-hole {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+// Fixed behind every element of the page, it does not scroll with the content
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: --background-grid-hole 400ms ease-out;
+
+  // The faded area grows when the mouse enters the page, and shrinks when it leaves
+  &.cursor-inside {
+    --background-grid-hole: 220px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  // Soft tint of the palette colour where the grid fades out
+  &::before {
+    background-image: radial-gradient(
+      circle var(--background-grid-hole) at var(--cursor-x, -100vw)
+        var(--cursor-y, -100vh),
+      var(--background-grid-glow-color) 0%,
+      transparent 100%
+    );
+  }
+
+  // The grid of dots, faded out towards the cursor
+  &::after {
+    background-image: radial-gradient(
+      circle,
+      var(--background-grid-color) 1px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+    mask-image: radial-gradient(
+      circle var(--background-grid-hole) at var(--cursor-x, -100vw)
+        var(--cursor-y, -100vh),
+      transparent 0%,
+      black 100%
+    );
+  }
+}

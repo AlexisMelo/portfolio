@@ -1,18 +1,15 @@
 <div class="g-grid-container">
-  <div class="g-grid" appGridEntrance>
+  <div class="g-grid" appGridEntrance appGridDrag>
+    <app-job></app-job>
     <app-image></app-image>
-    <app-freelance-since></app-freelance-since>
-    <div class="linkedin" appGridItem>
-      <app-linkedin></app-linkedin>
-    </div>
-    <div class="github" appGridItem>
-      <app-github [link]="contentService.github"></app-github>
-    </div>
-    <app-description></app-description>
+    <app-social-link class="linkedin" network="linkedin"></app-social-link>
+    <app-social-link class="github" network="github"></app-social-link>
     <app-mail></app-mail>
     <app-map></app-map>
-    <app-availability></app-availability>
     <app-resume></app-resume>
-    <app-now></app-now>
+    <app-projects-preview [projects]="pinnedProjects()"></app-projects-preview>
+    <app-companies></app-companies>
+    <app-recommendations></app-recommendations>
+    <app-play-hint></app-play-hint>
   </div>
 </div>

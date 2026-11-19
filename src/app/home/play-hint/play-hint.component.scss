@@ -1,0 +1,123 @@
+// Length of one loop of the idle animation: the drag icon wiggles, then the arrows push out of the
+// corners twice, then everything rests
+$cycle: 6s;
+
+// Distance an arrow moves out of its corner
+$push: 4px;
+
+// Distance between an arrow and the corner of the tile
+$corner-offset: 6px;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--play-hint-color);
+
+  // Hovered, the tile looks ready to move: the icon grows and the arrows stay out of the corners
+  &:hover {
+    .drag {
+      animation: none;
+      scale: 1.15;
+    }
+
+    .arrow {
+      animation: none;
+      translate: calc(var(--out-x) * #{$push}) calc(var(--out-y) * #{$push});
+    }
+  }
+}
+
+.drag {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  animation: play-hint-wiggle $cycle ease-in-out 1s infinite;
+  transition: scale 300ms;
+}
+
+// call_made points to the top right corner; each arrow is turned towards its own corner, and
+// --out-x / --out-y (-1 or 1) give the direction it moves out of it
+.arrow {
+  position: absolute;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  animation: play-hint-push $cycle ease-in-out 1s infinite;
+  transition: translate 300ms;
+
+  &.top-left {
+    top: $corner-offset;
+    left: $corner-offset;
+    rotate: -90deg;
+    --out-x: -1;
+    --out-y: -1;
+  }
+
+  &.top-right {
+    top: $corner-offset;
+    right: $corner-offset;
+    --out-x: 1;
+    --out-y: -1;
+  }
+
+  &.bottom-right {
+    bottom: $corner-offset;
+    right: $corner-offset;
+    rotate: 90deg;
+    --out-x: 1;
+    --out-y: 1;
+  }
+
+  &.bottom-left {
+    bottom: $corner-offset;
+    left: $corner-offset;
+    rotate: 180deg;
+    --out-x: -1;
+    --out-y: 1;
+  }
+}
+
+// Like an app icon waiting to be moved
+@keyframes play-hint-wiggle {
+  0%,
+  16%,
+  100% {
+    rotate: 0deg;
+  }
+
+  4% {
+    rotate: -12deg;
+  }
+
+  8% {
+    rotate: 10deg;
+  }
+
+  12% {
+    rotate: -6deg;
+  }
+}
+
+// Two pushes out of the corner, after the wiggle
+@keyframes play-hint-push {
+  0%,
+  18%,
+  24%,
+  30%,
+  100% {
+    translate: 0 0;
+  }
+
+  21%,
+  27% {
+    translate: calc(var(--out-x) * #{$push}) calc(var(--out-y) * #{$push});
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drag,
+  .arrow {
+    animation: none;
+  }
+}

@@ -1,0 +1,18 @@
+<p class="g-visually-hidden" aria-live="polite">
+  @if (total() > 0) {
+    {{
+      'experience.heading.shown' | transloco: { count: count(), total: total() }
+    }}
+  }
+</p>
+
+@if (total() > 0) {
+  <app-count-title
+    animate.enter="g-fade-in"
+    [count]="count()"
+    [total]="total()"
+    [year]="shownYear()"
+    [noun]="
+      'experience.heading.steps' | transloco: { count: count() }
+    "></app-count-title>
+}

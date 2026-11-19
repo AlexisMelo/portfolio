@@ -1,0 +1,29 @@
+<p class="g-visually-hidden" aria-live="polite">
+  @if (projectsService.loaded()) {
+    {{
+      'projects.heading.shown' | transloco: { count: count(), total: total() }
+    }}
+  }
+</p>
+
+@if (projectsService.loaded()) {
+  <app-count-title
+    animate.enter="g-fade-in"
+    [count]="count()"
+    [total]="total()"
+    [year]="shownYear()"
+    [noun]="
+      'projects.heading.projects' | transloco: { count: count() }
+    "></app-count-title>
+}
+
+@if (projectsService.hasFilters()) {
+  <button
+    type="button"
+    app-action-button
+    icon="undo"
+    position="top-right"
+    animate.enter="g-fade-in"
+    [attr.aria-label]="'projects.clearFilters' | transloco"
+    (click)="projectsService.clearFiltering()"></button>
+}

@@ -52,7 +52,12 @@ $top-padding: 40px;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    transition: height $transition-duration ease-out;
+    // Hidden once closed: its top padding would otherwise cover the background grid,
+    // and its links stay out of the keyboard focus order
+    visibility: hidden;
+    transition:
+      height $transition-duration ease-out,
+      visibility 0s $transition-duration;
     width: 100%;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -61,15 +66,28 @@ $top-padding: 40px;
     padding-top: $top-padding;
 
     &.opened {
+      visibility: visible;
+      transition: height $transition-duration ease-out;
       height: 100vh;
       width: 100%;
       touch-action: none; //on peut toujours scroll avec la souris mais bon...
     }
   }
 
+  // Button with only the icon in it
   .open-menu {
+    display: flex;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: none;
     color: var(--navbar-open-menu-color);
     cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
   }
 
   @include responsive.responsive('medium') {
@@ -102,6 +120,10 @@ app-language-selector,
 app-theme-selector {
   color: var(--navbar-language-selector-color);
   font-weight: bold;
+
+  @include responsive.responsive('medium') {
+    margin: 0 0.5rem;
+  }
 }
 
 nav {
@@ -133,9 +155,6 @@ nav {
   h1 {
     color: var(--navbar-logo-name);
     font-size: var(--text-xxxxl);
-    margin: 0;
-    padding-left: 10px;
-    padding-top: 0.2em;
   }
 }
 
@@ -160,6 +179,11 @@ a {
       height: 100%;
       width: auto;
     }
+  }
+
+  // Active link: a coloured tile in the mobile menu, a white rounded area in the wide-screen navbar
+  &.is-active {
+    background-color: var(--navbar-active-link-background);
   }
 
   &.is-active h2 {
@@ -227,19 +251,6 @@ a {
   }
 }
 
-app-github,
-app-linkedin {
-  width: 24px;
-  height: 24px;
-}
-
-.github,
-.linkedin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .github {
   grid-row: 2;
   grid-column: 2;
@@ -283,19 +294,38 @@ app-linkedin {
   .separator {
     height: 30px;
     width: 1px;
+    margin: 0 0.5rem;
     background-color: var(--gray-300);
     border-radius: 50%;
   }
 
-  a:hover:not(.is-active) {
-    opacity: 0.7;
+  // The active link is a rounded area with its text in the navbar colour. Every link has
+  // that area's padding, so the active one does not move the others, and hovering an
+  // inactive one underlines it
+  a {
+    width: auto;
+    height: auto;
+    padding: 0.3rem 0.6rem;
+    border-radius: 10px;
+    transition: background-color 200ms;
+  }
+
+  a h2 {
+    white-space: nowrap;
+    text-decoration: underline 2px transparent;
+    text-underline-offset: 5px;
+    transition: text-decoration-color 200ms;
+  }
+
+  a:hover:not(.is-active) h2 {
+    text-decoration-color: currentColor;
   }
 
   @include responsive.responsive('medium') {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 0.25rem;
     font-family: var(--title-font-family);
   }
 }

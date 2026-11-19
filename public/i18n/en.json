@@ -5,68 +5,111 @@
     "skills": "Skills",
     "experience": "Experience",
     "avatarAlt": "Avatar",
-    "projectsIllustrationAlt": "Projects illustration",
-    "skillsIllustrationAlt": "Skills illustration",
-    "experienceIllustrationAlt": "Experience illustration"
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu"
   },
   "home": {
-    "description": {
+    "job": {
       "title": "Fullstack Web Developer",
-      "subtitle": "Angular Specialist"
-    },
-    "freelanceSince": {
-      "since": "Since 2026"
+      "more": "& much more",
+      "skillsLink": "{{name}}, see my skills"
     },
     "mail": {
       "question_pt1": "Any",
-      "question_pt2": "question ?",
+      "question_pt2": "question ?",
       "project_pt1": "A new",
-      "project_pt2": "project ?",
+      "project_pt2": "project ?",
       "contact": "Contact me"
     },
     "map": {
       "alt": "Map centred on Caen, in Normandy, France",
+      "location": "Caen, France",
       "zoomIn": "Zoom in on the map",
       "zoomOut": "Zoom out of the map"
     },
-    "now": {
-      "title": "Currently..."
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
     },
     "resume": {
       "download": "Download",
       "open": "Open a preview of my CV",
       "screenshot": "Screenshot of my CV"
+    },
+    "projectsPreview": {
+      "title": "Featured projects",
+      "all": "All",
+      "allLabel": "See all projects"
+    },
+    "companies": {
+      "title": "Worked at",
+      "ongoing": "Today"
+    },
+    "recommendations": {
+      "title": "Recommended by",
+      "read": "Read it all",
+      "readLabel": "Read it all: {{name}}'s recommendation on LinkedIn"
     }
   },
+  "projectCard": {
+    "details": "See the {{label}} project"
+  },
   "projects": {
-    "all": {
-      "title": "Archives",
-      "count": "{count, plural, =0 {no projects} =1 {1 project} other {# projects}}"
+    "heading": {
+      "projects": "{count, plural, =1 {project} other {projects}}",
+      "shown": "{count, plural, =0 {No project shown} =1 {1 project shown} other {# projects shown}} out of {total}"
     },
-    "ongoing": {
-      "status": "Ongoing"
+    "intro": {
+      "quote": "They're all here! The best and the not-so-good ones made me the developer I am today"
     },
-    "withSkill": {
-      "title": "With Angular",
-      "count": "{count, plural, =0 {no projects} =1 {1 project} other {# projects}}"
+    "filtering": {
+      "title": "Search by keyword",
+      "placeholder": "Angular, website..."
+    },
+    "categoryFilter": {
+      "label": "Filter the projects by category",
+      "all": "All",
+      "featured": "Featured",
+      "angular": "Angular",
+      "company": "Company",
+      "personal": "Personal"
+    },
+    "statusFilter": {
+      "label": "Filter by status",
+      "completed": "Completed",
+      "ongoing": "Ongoing",
+      "abandoned": "Abandoned",
+      "count": "{count, plural, =0 {no project shown} =1 {1 project shown} other {# projects shown}} out of {total}"
+    },
+    "status": {
+      "ongoing": "Ongoing",
+      "abandoned": "Abandoned"
+    },
+    "types": {
+      "website": "Website",
+      "desktop": "Desktop app",
+      "other": "Other"
+    },
+    "clearFilters": "Clear the filters",
+    "list": {
+      "label": "Projects, the most recent first",
+      "number": "N°{{number}}",
+      "empty": "No project matches these filters."
     },
     "yourProject": {
       "title": "Your project, here",
-      "subtitle": "A dream, an idea, a reality !",
+      "subtitle": "A project to start, a feature to add or some fixes to make ?",
       "action": "Let's discuss it !"
     }
   },
   "projectDetails": {
-    "skills": {
-      "title": "Skills",
-      "tooltip": "{count, plural, =1 {1 achievement} other {# achievements}}"
-    },
     "openLive": {
       "online": "Online",
       "offline": "Offline",
       "accessible": "This project is accessible",
       "private": "This project is private"
     },
+    "sourceCode": "Source code on GitHub",
     "context": {
       "moreProjects": "See more projects"
     },
@@ -83,13 +126,20 @@
       "title": "Problem"
     },
     "coworkers": {
+      "title": "The team",
       "solo": "Me, myself and I",
       "noCoworker": "No collaborator on this project !",
-      "photoAlt": "Photo of {{name}}"
+      "photoAlt": "Photo of {{name}}",
+      "previous": "Previous collaborator",
+      "next": "Next collaborator",
+      "profile": "See {{name}}'s profile"
     },
     "illustrations": {
       "noIllustrations": "No illustrations yet!",
-      "noIllustrationsAlt": "No illustration available"
+      "noIllustrationsAlt": "No illustration available",
+      "previous": "Previous illustration",
+      "next": "Next illustration",
+      "open": "Enlarge the illustrations"
     },
     "icon": {
       "alt": "Icon of {{label}}"
@@ -100,68 +150,72 @@
       "next": "Next"
     }
   },
-  "archives": {
-    "heading": "Adventurer since 2017",
-    "description": "All my projects are here, sortable by many criteria ! Both the best and the worst form, together, the developer I am today :)",
-    "chips": "{count, plural, =1 {1 achievement} other {# achievements}}",
-    "filtering": {
-      "title": "Search by keyword",
-      "placeholder": "Angular, website..."
-    },
-    "order": {
-      "label": "Date"
-    }
-  },
   "skills": {
+    "heading": {
+      "skills": "{count, plural, =1 {skill} other {skills}}",
+      "shown": "{count, plural, =0 {No skill shown} =1 {1 skill shown} other {# skills shown}} out of {total}"
+    },
+    "filter": {
+      "label": "Filter the skills by level",
+      "all": "All"
+    },
     "favorites": {
       "title": "My go-to stack",
-      "subtitle": "To build top-notch sites, from A to Z"
+      "listLabel": "My favourite tech",
+      "projectsLink": "{{name}}, see the projects"
     },
-    "keepLearning": {
-      "title": "Keep learning !",
-      "description": "Because each project comes with its constraints and requirements. I keep learning over time, and remain open to new proposals !",
-      "skillsTitle": "Leveling up"
+    "clickHint": {
+      "line1": "Click",
+      "line2": "on the skills to browse corresponding projects",
+      "drawerLabel": "Projects"
     },
-    "recap": {
-      "iconAlt": "Icon of {{label}}"
+    "contact": {
+      "title": "Not finding what you really need ?",
+      "subtitle": "Let's talk, I can learn fast !",
+      "action": "Contact me"
     },
-    "skillHighlight": {
-      "projects": "{count, plural, =1 {1 achievement} other {# achievements}}"
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "transverse": "Transverse",
+      "projectsLink": "{{name}}, {{level}}, see the projects",
+      "projectsCountLink": "{name} {count, plural, =0 {# projects} =1 {# project} other {# projects}}, {level}, see the projects"
     },
-    "sections": {
-      "frontend": {
-        "heading": "Interface creation",
-        "subtitle": "Frontend",
-        "description": "Mockup creation, complex integration and accessibility ! Every day, I create interfaces that appeal to the widest audience"
-      },
-      "backend": {
-        "heading": "Data management",
-        "subtitle": "Backend",
-        "description": "Data is at the heart of most projects. I appreciate the challenges related to its collection, persistence and availability"
-      },
-      "general": {
-        "heading": "And much more",
-        "subtitle": "General",
-        "description": "Code is great ! But to be a complete developer, I'm also interested in project management, deployment and continuous integration"
-      }
+    "levels": {
+      "proficient": "Operational",
+      "learning": "Leveling up",
+      "explored": "Already encountered"
     }
   },
   "experience": {
-    "duration": {
-      "future": {
-        "title": "Soon",
-        "subtitle": "Starting from {{month}}"
-      },
-      "now": {
-        "subtitle": "Since {{year}}"
-      },
-      "past": {
-        "subtitle": "Until {{year}}"
-      }
+    "heading": {
+      "steps": "{count, plural, =1 {step} other {steps}}",
+      "shown": "{count, plural, =0 {No step shown} =1 {1 step shown} other {# steps shown}} out of {total}"
     },
-    "projects": {
-      "title": "Achievements",
-      "count": "{count, plural, =0 {More to come !} =1 {1 project} other {# projects}}"
+    "filter": {
+      "label": "Filter the timeline",
+      "all": "All",
+      "pro": "Work",
+      "school": "Education"
+    },
+    "yourCompany": {
+      "title": "Next step :",
+      "subtitle": "Your company ?",
+      "action": "Contact me"
+    },
+    "dates": {
+      "from": "Starting",
+      "to": "to",
+      "today": "today"
+    },
+    "card": {
+      "see": "{count, plural, =1 {See 1 project} other {See # projects}}",
+      "doneAt": "done at {label}",
+      "noProjects": "Projects to come",
+      "readDescription": "Read the whole description of {label}"
+    },
+    "dialog": {
+      "close": "Close"
     }
   },
   "duration": {
@@ -171,7 +225,16 @@
     "days": "{count, plural, =1 {1 day} other {# days}}",
     "and": "and"
   },
+  "countTitle": {
+    "since": "since"
+  },
   "footer": {
     "copyright": "© 2026 - Homemade 🏠 by Alexis Melo da Silva"
+  },
+  "seo": {
+    "about": "Alexis Melo da Silva, freelance fullstack web developer specialised in Angular, based in Caen, France. Projects, skills, experience and availability for your next project.",
+    "projects": "Every project of Alexis Melo da Silva, freelance Angular developer: web apps for companies, schools and personal projects, with their skills and stack.",
+    "skills": "Technologies mastered by Alexis Melo da Silva, freelance fullstack web developer: Angular and frontend, backend and transverse skills, each with its projects.",
+    "experience": "Professional experience of Alexis Melo da Silva, freelance fullstack web developer: companies, schools and the projects built there."
   }
 }

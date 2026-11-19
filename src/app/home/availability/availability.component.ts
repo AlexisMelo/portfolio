@@ -11,7 +11,7 @@ import { GridItemDirective } from '../../shared/grid/grid-item.directive';
   imports: [DotComponent],
   templateUrl: './availability.component.html',
   styleUrl: './availability.component.scss',
-  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
+  host: { class: 'g-grid-item-start-aligned' },
 })
 export class AvailabilityComponent extends GridItemDirective {
   /**

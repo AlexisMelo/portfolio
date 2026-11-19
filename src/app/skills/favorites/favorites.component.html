@@ -1,11 +1,18 @@
 <h2>{{ 'skills.favorites.title' | transloco }}</h2>
 
-<mat-icon>favorite</mat-icon>
-
-<p>{{ 'skills.favorites.subtitle' | transloco }}</p>
-
-<ul>
-  @for (skill of skills(); track skill.id) {
-    <li>{{ skill.label }}</li>
+<ul [attr.aria-label]="'skills.favorites.listLabel' | transloco">
+  @for (sticker of stickers(); track sticker.skill.id) {
+    <li>
+      <a
+        [class]="'sticker ' + sticker.brandClass"
+        [routerLink]="PROJECTS_ROUTE"
+        [queryParams]="{ skills: sticker.skill.id }"
+        [attr.aria-label]="
+          'skills.favorites.projectsLink'
+            | transloco: { name: sticker.skill.label }
+        "
+        >{{ sticker.skill.label }}</a
+      >
+    </li>
   }
 </ul>

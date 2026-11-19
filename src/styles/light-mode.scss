@@ -3,21 +3,133 @@
 @mixin light-mode() {
   //action-button
   --action-button-background: var(--white);
-  --action-button-color: var(--primary-500);
+  --action-button-color: var(--primary-600);
   --action-button-border-color: var(--primary-200);
-
-  //archives
-  --archives-header-color: var(--white);
 
   //availability
   --availability-dot-color: var(--gray-800);
 
-  //description
-  --description-icon-color: var(--primary-500);
-  --description-rectangle-1-background-color: var(--primary-800);
-  --description-rectangle-2-background-color: var(--primary-700);
-  --description-rectangle-3-background-color: var(--primary-500);
-  --description-illustration-icon-color: var(--primary-200);
+  //category-filtering
+  // Selected chip in teal, the colour of the selectors, under white text (AA)
+  --category-filtering-selected-background: var(--primary-600);
+  --category-filtering-selected-color: white;
+
+  //chip
+  --chip-background: var(--grid-item-default-bg);
+  --chip-color: var(--styles-title-color);
+  // Focus ring, dark on the white tiles
+  --chip-focus-color: var(--gray-800);
+
+  //click-hint
+  --click-hint-color: var(--styles-title-color);
+  --click-hint-secondary-color: var(--gray-500);
+  --click-hint-box-background: var(--primary-600);
+  --click-hint-box-side-background: var(--primary-800);
+  --click-hint-box-name-color: white;
+  --click-hint-box-inside-color: var(--grid-item-border-color);
+  --click-hint-box-shadow-color: var(--gray-200);
+  --click-hint-folder-background: var(--primary-200);
+  --click-hint-folder-lifted-background: var(--mustard-500);
+  --click-hint-folder-color: var(--gray-800);
+
+  //background-grid
+  --background-grid-color: rgba(0, 0, 0, 0.22);
+  --background-grid-glow-color: color-mix(
+    in srgb,
+    var(--primary-300) 14%,
+    transparent
+  );
+
+  //companies
+  // Label in coral, like the one of the projects preview; names and dates in the darkest grey (AA)
+  --companies-label-background: var(--coral-500);
+  --companies-label-color: var(--gray-800);
+  --companies-name-color: var(--gray-800);
+
+  //contact-tile
+  --contact-tile-background: var(--coral-500);
+  --contact-tile-color: var(--gray-800);
+
+  //count-title
+  // Coral badge of the total next to the number, like the abandoned status, under the darkest grey
+  // (AA)
+  --count-title-total-background: var(--coral-500);
+  --count-title-total-color: var(--gray-800);
+
+  //coworker-info
+  --coworker-info-color: var(--gray-600);
+
+  //project-coworkers
+  --project-coworkers-label-background: var(--primary-600);
+  --project-coworkers-label-color: white;
+
+  //project-title
+  --project-title-background: var(--mustard-500);
+  --project-title-color: var(--gray-800);
+  --project-title-logo-background: white;
+  --project-title-initial-color: var(--primary-600);
+
+  //experience-heading
+  --experience-heading-background: var(--mustard-500);
+  --experience-heading-color: var(--gray-800);
+
+  //skill-categories
+  --skill-categories-proficient-background: var(--primary-600);
+  --skill-categories-proficient-color: white;
+  --skill-categories-learning-background: var(--mustard-500);
+  --skill-categories-learning-color: var(--gray-800);
+  --skill-categories-learning-border-color: var(--mustard-500);
+  --skill-categories-explored-background: var(--grid-item-default-bg);
+  --skill-categories-explored-color: var(--styles-title-color);
+  --skill-categories-explored-border-color: var(--gray-500);
+  --skill-categories-focus-color: var(--gray-800);
+
+  //skill-level-filtering
+  --skill-level-filtering-selected-background: var(--primary-600);
+  --skill-level-filtering-selected-color: white;
+  --skill-level-filtering-learning-selected-background: var(--mustard-500);
+  --skill-level-filtering-learning-selected-color: var(--gray-800);
+  --skill-level-filtering-explored-selected-background: var(
+    --styles-title-color
+  );
+  --skill-level-filtering-explored-selected-color: var(--grid-item-default-bg);
+
+  //skills-heading
+  --skills-heading-background: var(--mustard-500);
+  --skills-heading-color: var(--gray-800);
+
+  //experience-card
+  // Band in the colour of the kind: teal for the jobs under white text, mustard for the schools
+  // under the darkest grey (AA)
+  --experience-card-pro-band-background: var(--primary-600);
+  --experience-card-pro-band-color: white;
+  --experience-card-school-band-background: var(--mustard-500);
+  --experience-card-school-band-color: var(--gray-800);
+
+  //experience-filtering
+  // Selected chip in the colour of its kind: teal for every step and the jobs under white text,
+  // mustard for the schools under dark text (AA)
+  --experience-filtering-selected-background: var(--primary-600);
+  --experience-filtering-selected-color: white;
+  --experience-filtering-school-selected-background: var(--mustard-500);
+  --experience-filtering-school-selected-color: var(--gray-800);
+
+  //favorites
+  --favorites-background: var(--grid-item-default-bg);
+  --favorites-color: var(--styles-title-color);
+  --favorites-focus-color: var(--gray-800);
+  --favorites-sticker-background: white;
+  --favorites-sticker-color: var(--gray-800);
+  --favorites-angular-background: #dd0031;
+  --favorites-angular-color: white;
+  --favorites-dotnet-background: #512bd4;
+  --favorites-dotnet-color: white;
+  --favorites-supabase-background: #3ecf8e;
+  --favorites-supabase-color: var(--gray-800);
+  --favorites-figma-background: #a259ff;
+  --favorites-figma-color: var(--gray-800);
+  --favorites-git-background: #f05032;
+  --favorites-git-color: var(--gray-800);
 
   //filter-chip
   --filter-chip-border-color: var(--gray-300);
@@ -25,84 +137,91 @@
   --filter-chip-details-menu-background-color: var(--white);
   --filter-chip-hover-option-background-color: var(--gray-100);
 
-  //github
-  --github-icon-color: white;
-
   //grid-item
   --grid-item-default-bg: white;
-  --grid-item-border: 1px solid var(--gray-200);
+  --grid-item-border-color: var(--gray-800);
+  --grid-item-border: 2px solid var(--grid-item-border-color);
   --grid-item-bottom-text-color: var(--gray-200);
-  --grid-item-shadow-color: rgba(27, 110, 41, 0.1);
 
   //home
-  --home-github-background-color: var(--primary-500);
-  --home-github-icon-color: white;
+  --home-image-background-color: var(--mustard-500);
 
   //image
-  --image-svg-color: var(--primary-200);
+  --image-background-color: var(--coral-500);
 
-  //key-header
-  --key-header-background: var(--primary-500);
-  --key-header-color: white;
-  --key-header-svg-color: var(--primary-200);
-  --key-header-chips-background: var(--primary-700);
-  --key-header-chips-color: white;
-  --key-header-chips-border: var(--primary-800);
+  //job
+  --job-framework-color: white;
+  --job-angular-background: #dd0031;
+  --job-dotnet-background: #512bd4;
+  --job-more-background: var(--mustard-500);
+  --job-more-color: var(--gray-800);
+  // Focus ring of the chips, dark on the white tile
+  --job-focus-color: var(--gray-800);
 
   //linkedin
   --linkedin-letters-color: var(--grid-item-default-bg);
   --linkedin-contour-bg: var(--gray-800);
 
   //map
-  --map-rayon-background: var(--gray-200);
-  --map-rayon-border: var(--primary-500);
+  // Disc behind my head in teal
+  --map-rayon-background: var(--primary-500);
+  // Teal sticker with white text (AA) and a mustard pin (3:1 on teal)
+  --map-location-background: var(--primary-600);
+  --map-location-color: white;
+  --map-location-icon-color: var(--mustard-500);
 
   //mail
-  --mail-background-color: var(--primary-500);
-  --mail-color: white;
-
-  //mosaique-svg-color
-  --mosaique-svg-color: var(--primary-100);
+  --mail-background-color: var(--coral-500);
+  --mail-color: var(--gray-800);
 
   //navbar
-  --navbar-active-link-color: var(--primary-500);
-  --navbar-inactive-link-color: var(--gray-300);
+  // In the mobile menu, the active link is a tile in the navbar colour
+  --navbar-active-link-color: white;
+  --navbar-active-link-background: var(--navbar-background-color);
+  --navbar-inactive-link-color: var(--gray-600);
   --navbar-logo-name: white;
-  --navbar-background-color: var(--primary-500);
+  --navbar-background-color: var(--primary-600);
   --navbar-language-selector-color: var(--gray-800);
   --navbar-open-menu-color: white;
 
-  //now
-  --now-icon-color: var(--primary-500);
-  --now-link-color: var(--primary-800);
-
-  //ongoing
-  --ongoing-background: var(--primary-500);
-  --ongoing-color: white;
-
   //open-live
-  --open-live-background-color: var(--primary-500);
-  --open-live-color: white;
-  --open-live-dot-color: var(--primary-700);
+  --open-live-background-color: var(--coral-500);
+  --open-live-color: var(--gray-800);
+  --open-live-dot-color: var(--gray-800);
+
+  //play-hint
+  // Icons in the title colour of the white tile (AA)
+  --play-hint-color: var(--styles-title-color);
+
+  //project-card
+  // On the mustard of the projects preview: every text in the darkest grey, no lighter one
+  --project-card-text-color: var(--gray-800);
+  --project-card-title-color: var(--gray-800);
+  // Behind the icon of a project without illustration, which icons are made for
+  --project-card-illustration-background: white;
+  --project-card-initial-color: var(--primary-600);
 
   //project-context
-  --project-context-background: var(--primary-500);
+  --project-context-background: var(--primary-600);
   --project-context-color: white;
 
-  //projects
-  --projects-github-bg: var(--primary-500);
-  --projects-github-icon-color: white;
+  //project-duration
+  --project-duration-completed-background: var(--primary-600);
+  --project-duration-completed-color: white;
+  --project-duration-ongoing-background: var(--mustard-500);
+  --project-duration-ongoing-color: var(--gray-800);
+  --project-duration-abandoned-background: var(--coral-500);
+  --project-duration-abandoned-color: var(--gray-800);
 
-  //project-item
-  --project-item-completed-color: white;
-  --project-item-abandoned-background: var(--gray-500);
-  --project-item-abandoned-color: white;
-  --project-item-ongoing-color: white;
-
-  //project-item-skill-list
-  --project-item-skill-list-skill-background: var(--primary-500);
-  --project-item-skill-list-skill-border: var(--primary-700);
-  --project-item-skill-list-color: white;
+  //project-filtering
+  --project-filtering-tile-background: var(--primary-600);
+  --project-filtering-tile-color: white;
+  // Placeholder of the search field, readable on white (AA)
+  --project-filtering-placeholder-color: var(--gray-500);
+  --project-filtering-background: white;
+  --project-filtering-icon-color: var(--gray-600);
+  // White, as dark grey is too close to the teal tile to show the focus ring (3:1)
+  --project-filtering-focus-color: white;
 
   //project-name-header
   --project-name-header-completed-color: white;
@@ -110,39 +229,84 @@
   --project-name-header-abandoned-color: white;
   --project-name-header-ongoing-color: white;
 
+  //project-list
+  --project-list-loader-color: var(--gray-400);
+
+  //project-row
+  // Numbers in the colour of their status, like the status chips: teal under white text, mustard
+  // and coral under the darkest grey (AA). Hovered rows in the lightest teal tint.
+  --project-row-completed-background: var(--primary-600);
+  --project-row-completed-color: white;
+  --project-row-ongoing-background: var(--mustard-500);
+  --project-row-ongoing-color: var(--gray-800);
+  --project-row-abandoned-background: var(--coral-500);
+  --project-row-abandoned-color: var(--gray-800);
+  --project-row-hover-background: var(--primary-100);
+  // Focus ring, dark on the white rows
+  --project-row-focus-color: var(--gray-800);
+
   //projects-by-context
   --projects-by-context-icons-color: var(--white);
 
-  //reset-button
-  --reset-button-color: var(--gray-700);
+  //projects-heading
+  // Mustard title tile, the accent, under the darkest grey (AA)
+  --projects-heading-background: var(--mustard-500);
+  --projects-heading-color: var(--gray-800);
+
+  //projects-preview
+  // Box of the displayed project in mustard, and the selected tab with it; the other tabs white;
+  // the link to every project and the label in coral. Dark text everywhere (AA).
+  --projects-preview-background: var(--mustard-500);
+  --projects-preview-tab-background: white;
+  --projects-preview-tab-color: var(--gray-800);
+  --projects-preview-selected-background: var(--mustard-500);
+  --projects-preview-selected-color: var(--gray-800);
+  --projects-preview-all-background: var(--coral-500);
+  --projects-preview-all-color: var(--gray-800);
+  --projects-preview-label-background: var(--coral-500);
+  --projects-preview-label-color: var(--gray-800);
+  --projects-preview-icon-background: white;
+  --projects-preview-icon-color: var(--gray-800);
+
+  //recommendations
+  // Teal sticker with white text (AA); the link to LinkedIn is a coral call to action under the
+  // darkest grey (AA). The heads are drawn with black outlines: white discs, the selected one in
+  // mustard.
+  --recommendations-label-background: var(--primary-600);
+  --recommendations-label-color: white;
+  --recommendations-tab-background: white;
+  --recommendations-selected-background: var(--mustard-500);
+  --recommendations-name-color: var(--styles-title-color);
+  --recommendations-read-background: var(--coral-500);
+  --recommendations-read-color: var(--gray-800);
+  // Focus ring of the tabs and panels, dark on the white tile
+  --recommendations-focus-color: var(--gray-800);
 
   //resume
-  --resume-background-color: var(--primary-500);
+  --resume-background-color: var(--primary-600);
   --resume-color: white;
+
+  //round-button
+  --round-button-background: var(--grid-item-default-bg);
+  --round-button-color: var(--styles-title-color);
+  --round-button-border-color: var(--grid-item-border-color);
 
   //robotic-arm
   --robotic-arm-arms-fill: var(--gray-400);
   --robotic-arm-axes-fill: var(--gray-500);
 
-  //skills-recap
-  --skills-recap-general-bg: var(--gray-500);
-  --skills-recap-counter-bg: var(--gray-100);
-  --skills-recap-counter-color: var(--gray-500);
-  --skills-recap-separator: var(--gray-100);
-  --skills-recap-background: var(--primary-200);
-
-  //skill-highlight
-  --skill-highlight-icon-color: var(--primary-500);
-
-  //skill-section-description
-  --skill-section-description-svg-color: var(--primary-200);
-
   //status-filtering
-  --status-filtering-completed: var(--primary-800);
-  --status-filtering-ongoing: var(--primary-700);
-  --status-filtering-abandoned: var(--primary-500);
-  --status-filtering-selected: var(--primary-500);
-  --status-filtering-not-selected: var(--gray-400);
+  // One palette colour per status, the one of the numbers in the list: the bars (faded after the
+  // shown projects), and the tags, with dark text on the light ones (AA)
+  --status-filtering-completed: var(--primary-600);
+  --status-filtering-completed-tag: var(--primary-600);
+  --status-filtering-completed-tag-color: white;
+  --status-filtering-ongoing: var(--mustard-500);
+  --status-filtering-ongoing-tag: var(--mustard-500);
+  --status-filtering-ongoing-tag-color: var(--gray-800);
+  --status-filtering-abandoned: var(--coral-500);
+  --status-filtering-abandoned-tag: var(--coral-500);
+  --status-filtering-abandoned-tag-color: var(--gray-800);
 
   //styles
   --styles-title-color: var(--gray-700);
@@ -150,18 +314,25 @@
   --styles-background-color: var(--gray-100);
   --styles-paragraph-highlight-bg-color: rgb(241, 241, 241);
   --styles-thumbnail-border: var(--gray-300);
-  --styles-default-paragraph-color: var(--gray-500);
+  // Dark enough to read easily on the white tiles
+  --styles-default-paragraph-color: var(--gray-600);
 
   //suggestion-chip
   --suggestion-chip-bg: var(--white);
 
   //your-project
-  --your-project-background: var(--primary-500);
-  --your-project-color: white;
+  // Coral entry of the list with the darkest grey text (AA), its number on a white sticker
+  --your-project-background: var(--coral-500);
+  --your-project-color: var(--gray-800);
+  --your-project-number-background: white;
+  --your-project-number-color: var(--gray-800);
 
+  // From medium up, the links sit on the navbar background instead of white tiles: they are white,
+  // and the active one is a white rounded area with its text in the navbar colour
   @include responsive.responsive('medium') {
-    --navbar-active-link-color: white;
-    --navbar-inactive-link-color: var(--primary-800);
+    --navbar-active-link-color: var(--navbar-background-color);
+    --navbar-active-link-background: white;
+    --navbar-inactive-link-color: white;
     --navbar-language-selector-color: white;
   }
 }

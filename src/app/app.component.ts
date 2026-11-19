@@ -2,11 +2,17 @@ import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BackgroundGridComponent } from './shared/background-grid/background-grid.component';
 import { ContentService } from './shared/content.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [
+    RouterOutlet,
+    BackgroundGridComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [

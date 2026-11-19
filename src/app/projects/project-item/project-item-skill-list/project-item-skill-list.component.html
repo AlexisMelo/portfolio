@@ -1,8 +1,0 @@
-@for (skill of skills; track skill.id) {
-  <div
-    [routerLink]="[ARCHIVES_ROUTE]"
-    [queryParams]="{ skills: skill.id }"
-    class="skill">
-    {{ skill.label }}
-  </div>
-}

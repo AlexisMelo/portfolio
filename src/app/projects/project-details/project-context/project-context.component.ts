@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ARCHIVES_ROUTE } from 'src/app/route-paths';
+import { PROJECTS_ROUTE } from 'src/app/route-paths';
 import { GridItemDirective } from 'src/app/shared/grid/grid-item.directive';
 import { LanguageService } from 'src/app/shared/language.service';
 import { ActionButtonComponent } from '../../../home/action-button/action-button.component';
@@ -9,10 +9,10 @@ import { Project } from '../../project.model';
 
 @Component({
   selector: 'app-project-context',
-  imports: [ActionButtonComponent, TranslocoPipe],
+  imports: [ActionButtonComponent, RouterLink, TranslocoPipe],
   templateUrl: './project-context.component.html',
   styleUrl: './project-context.component.scss',
-  host: { class: 'g-grid-item-start-aligned g-grid-item-shadow' },
+  host: { class: 'g-grid-item-start-aligned g-grid-item-highlight' },
 })
 export class ProjectContextComponent extends GridItemDirective {
   /**
@@ -21,9 +21,9 @@ export class ProjectContextComponent extends GridItemDirective {
   public project = input.required<Project>();
 
   /**
-   * Gestion du routeur
+   * Path of the projects page, which the link opens filtered on the context
    */
-  private router = inject(Router);
+  protected readonly PROJECTS_ROUTE = PROJECTS_ROUTE;
 
   /** Handle language */
   private languageService = inject(LanguageService);
@@ -43,15 +43,4 @@ export class ProjectContextComponent extends GridItemDirective {
         this.languageService.currentLang()
       ]
   );
-
-  /**
-   * Ouvre plus de projets du même contexte
-   */
-  public moreProjects() {
-    this.router.navigate([ARCHIVES_ROUTE], {
-      queryParams: {
-        contexts: this.project().project_context.id,
-      },
-    });
-  }
 }

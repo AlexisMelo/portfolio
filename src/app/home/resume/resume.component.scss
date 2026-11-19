@@ -1,34 +1,24 @@
 @use '../../../styles/responsive.scss' as responsive;
 
 :host {
-  padding: 2rem;
+  padding: var(--tile-padding);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  // Clipped without being scrollable: the sheet goes past the bottom, and focusing it would
+  // otherwise scroll the tile's content up, hiding the title
+  overflow: clip;
   background-color: var(--resume-background-color);
 
-  &:hover {
+  &:hover,
+  &:has(.illustration-container:focus-visible) {
     .illustration-container {
-      transform: translateY(5%);
-      box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 15px 0px;
-      rotate: -5deg;
-
-      img {
-        filter: none;
-      }
+      transform: translateY(-12%);
+      box-shadow: 3px 3px 0 0 var(--grid-item-border-color);
+      rotate: none;
     }
-  }
-}
-
-#svg-background-decoration {
-  position: absolute;
-  right: 10%;
-  bottom: 5%;
-
-  @include responsive.responsive('medium') {
-    width: 200px;
   }
 }
 
@@ -40,38 +30,40 @@ h2 {
 }
 
 @keyframes slideInFromBottom {
-  0% {
+  from {
     transform: translateY(30%);
-  }
-
-  100% {
-    transform: translateY(0%);
   }
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .illustration-container {
-  // button reset, the image starts at the top like the former div
   display: flex;
   align-items: flex-start;
   padding: 0;
-  border: none;
+  border: var(--grid-item-border);
   background: none;
   width: 120px;
   height: 100%;
   position: absolute;
   right: 5%;
   top: 40%;
-  border-radius: 20px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: rgba(165, 187, 155, 0.3) 0px 0px 20px 0px;
+  transform: translateY(5%);
+  rotate: -5deg;
+  box-shadow: 5px 5px 0 0 var(--grid-item-border-color);
   animation: slideInFromBottom 1s;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: zoom-in;
 
   img {
     height: auto;
     width: 100%;
-    // filter: grayscale(50%) brightness(150%);
   }
 
   @include responsive.responsive('medium') {
@@ -187,8 +179,12 @@ h2 {
   }
 }
 
+// At its own size, scaled down to fit the screen: with both dimensions auto, the limits keep the
+// proportions of the CV instead of the width and height attributes stretching it
 .modal-img {
   display: block;
+  width: auto;
+  height: auto;
   max-width: 90vw;
   max-height: 90vh;
 }

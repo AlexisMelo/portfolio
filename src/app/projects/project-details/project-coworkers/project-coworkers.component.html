@@ -1,49 +1,54 @@
+<h2 class="label">{{ 'projectDetails.coworkers.title' | transloco }}</h2>
+
 @if (project.coworkers.length > 0) {
-  <div class="carousel">
-    <div class="carousel-items">
-      @for (
-        project_coworker of project.coworkers;
-        track project_coworker.coworker_id
-      ) {
-        <app-coworker-info
-          class="carousel-item"
-          [image]="
-            project_coworker.coworker.avatar_bust ?? 'photos/empty-avatar.png'
-          "
-          [name]="
-            project_coworker.coworker.firstname +
-            ' ' +
-            project_coworker.coworker.lastname
-          "
-          [description]="project_coworker.role"
-          [url]="project_coworker.coworker.url"></app-coworker-info>
-      }
-    </div>
+  <div class="carousel-items">
+    @for (
+      project_coworker of project.coworkers;
+      track project_coworker.coworker_id
+    ) {
+      <app-coworker-info
+        class="carousel-item"
+        [image]="
+          project_coworker.coworker.avatar_bust ?? 'photos/empty-avatar.webp'
+        "
+        [name]="
+          project_coworker.coworker.firstname +
+          ' ' +
+          project_coworker.coworker.lastname
+        "
+        [description]="project_coworker.role"
+        [url]="project_coworker.coworker.url"></app-coworker-info>
+    }
   </div>
 
   @if (project.coworkers.length > 1) {
-    @if (currentSlide() > 0) {
-      <app-action-button icon="chevron_left" (click)="nextSlide(-1)">
-      </app-action-button>
-    }
+    <div class="controls">
+      <p class="counter">
+        {{ currentSlide() + 1 }} / {{ project.coworkers.length }}
+      </p>
 
-    @if (currentSlide() < project.coworkers.length - 1) {
-      <app-action-button
-        [position]="'bottom-left-2'"
+      <button
+        type="button"
+        app-action-button
+        icon="chevron_left"
+        [disabled]="currentSlide() === 0"
+        [attr.aria-label]="'projectDetails.coworkers.previous' | transloco"
+        (click)="nextSlide(-1)"></button>
+
+      <button
+        type="button"
+        app-action-button
         icon="chevron_right"
-        (click)="nextSlide(1)">
-      </app-action-button>
-    }
-
-    <div class="counter">
-      {{ currentSlide() + 1 }} / {{ project.coworkers.length }}
+        [disabled]="currentSlide() === project.coworkers.length - 1"
+        [attr.aria-label]="'projectDetails.coworkers.next' | transloco"
+        (click)="nextSlide(1)"></button>
     </div>
   }
 } @else {
   <div class="carousel-items">
     <app-coworker-info
       class="carousel-item"
-      [image]="'photos/avatar-bust-shrugging.png'"
+      [image]="'photos/avatar-bust-shrugging.webp'"
       [name]="'projectDetails.coworkers.solo' | transloco"
       [description]="
         'projectDetails.coworkers.noCoworker' | transloco

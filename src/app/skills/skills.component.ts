@@ -1,70 +1,78 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  afterRenderEffect,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { AllComponent } from '../projects/all/all.component';
-import { KeyHeaderComponent } from '../projects/archives/key-header/key-header.component';
+import { Enums } from 'database.types';
+import { firstStartYear } from '../shared/first-start-year';
+import { ContactTileComponent } from '../shared/contact-tile/contact-tile.component';
+import { GridDragDirective } from '../shared/grid/grid-drag.directive';
 import { GridEntranceDirective } from '../shared/grid/grid-entrance.directive';
-import { RangePipe } from '../shared/pipes/range.pipe';
 import { SupabaseService } from '../shared/supabase.service';
-import { ThemeService } from '../shared/theme.service';
+import { ClickHintComponent } from './click-hint/click-hint.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { KeepLearningComponent } from './keep-learning/keep-learning.component';
-import { LovedPipe } from './loved.pipe';
-import { SkillHighlightComponent } from './skill-highlight/skill-highlight.component';
-import { SkillSectionDescriptionComponent } from './skill-section-description/skill-section-description.component';
-import { SkillsRecapComponent } from './skills-recap/skills-recap.component';
-import { SkillsSection } from './skills-section.model';
+import { SkillCategoriesComponent } from './skill-categories/skill-categories.component';
+import { SkillLevelFilteringComponent } from './skill-level-filtering/skill-level-filtering.component';
+import { Skill } from './skill.model';
+import { SkillsHeadingComponent } from './skills-heading/skills-heading.component';
 
+/**
+ * Skills page: how many technologies, the favourite ones, and every skill by category, filtered by
+ * mastery level, with a hint that clicking a skill opens its projects
+ */
 @Component({
   selector: 'app-skills',
   imports: [
-    SkillSectionDescriptionComponent,
-    SkillsRecapComponent,
-    LovedPipe,
-    SkillHighlightComponent,
-    RangePipe,
-    KeyHeaderComponent,
-    KeepLearningComponent,
     FavoritesComponent,
-    AllComponent,
+    SkillsHeadingComponent,
+    SkillCategoriesComponent,
+    ClickHintComponent,
+    SkillLevelFilteringComponent,
+    ContactTileComponent,
     TranslocoPipe,
     GridEntranceDirective,
+    GridDragDirective,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })
 export class SkillsComponent implements OnInit {
   /**
-   * Liste des sections à afficher
+   * Every skill, undefined until they are loaded
    */
-  protected readonly sections = signal<Array<SkillsSection>>([
-    {
-      id: 'section-frontend',
-      heading: 'skills.sections.frontend.heading',
-      subtitle: 'skills.sections.frontend.subtitle',
-      description: 'skills.sections.frontend.description',
-      skillFieldId: 1,
-      skills: [],
-      class: 'frontend-grid',
-    },
-    {
-      id: 'section-backend',
-      heading: 'skills.sections.backend.heading',
-      subtitle: 'skills.sections.backend.subtitle',
-      description: 'skills.sections.backend.description',
-      skillFieldId: 2,
-      skills: [],
-      class: 'backend-grid',
-    },
-    {
-      id: 'section-general',
-      heading: 'skills.sections.general.heading',
-      subtitle: 'skills.sections.general.subtitle',
-      description: 'skills.sections.general.description',
-      skillFieldId: 3,
-      skills: [],
-      class: 'general-grid',
-    },
-  ]);
+  protected readonly skills = signal<Array<Skill> | undefined>(undefined);
+
+  /**
+   * Number of skills, 0 until they are loaded
+   */
+  protected readonly skillsCount = computed(() => this.skills()?.length ?? 0);
+
+  /**
+   * Mastery level of the skills shown, picked with the filter chips; null for all of them
+   */
+  protected readonly selectedLevel = signal<Enums<'skill_level'> | null>(null);
+
+  /**
+   * Skills of the selected level, undefined until they are loaded
+   */
+  protected readonly shownSkills = computed(() => {
+    const level = this.selectedLevel();
+    const skills = this.skills();
+    return level === null
+      ? skills
+      : skills?.filter(skill => skill.mastery === level);
+  });
+
+  /**
+   * Year the first project started, null until the projects are loaded
+   */
+  protected readonly firstYear = signal<number | null>(null);
 
   /**
    * Accès à la base de données
@@ -72,21 +80,31 @@ export class SkillsComponent implements OnInit {
   private supabaseService = inject(SupabaseService);
 
   /**
-   * Gestion du thème
+   * Drag and drop of the tiles
    */
-  public themeService = inject(ThemeService);
+  private readonly gridDrag = viewChild.required(GridDragDirective);
+
+  /**
+   * Constructor
+   */
+  constructor() {
+    // The skill categories grow when the skills arrive: tiles moved by the visitor before would keep
+    // them at their loading size, so the page goes back to the CSS layout. Not when the visitor
+    // resizes the categories, which would undo the resize.
+    afterRenderEffect(() => {
+      this.skills();
+      untracked(() => this.gridDrag().reset());
+    });
+  }
 
   /**
    * Implémentation de OnInit
    */
   ngOnInit() {
-    this.supabaseService.getSkills().then(skills => {
-      this.sections.update(sections =>
-        sections.map(section => ({
-          ...section,
-          skills: skills.filter(s => s.skill_field.id === section.skillFieldId),
-        }))
-      );
-    });
+    this.supabaseService
+      .getProjects()
+      .then(projects => this.firstYear.set(firstStartYear(projects)));
+
+    this.supabaseService.getSkills().then(skills => this.skills.set(skills));
   }
 }

@@ -1,7 +1,4 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SupabaseService } from './supabase.service';
-import { LanguageService } from './language.service';
+import { Injectable } from '@angular/core';
 
 /**
  * Service pour gérer le contenu configurable de l'appli
@@ -12,36 +9,6 @@ import { LanguageService } from './language.service';
   providedIn: 'root',
 })
 export class ContentService {
-  /**
-   * Sanitizer
-   */
-  private sanitizer = inject(DomSanitizer);
-
-  /**
-   * Accès à supabase
-   */
-  private supabase = inject(SupabaseService);
-
-  /**
-   * Language service — single source of truth for the active language
-   */
-  private languageService = inject(LanguageService);
-
-  /**
-   * Activité actuelle
-   */
-  public now = signal<SafeHtml[]>([]);
-
-  /**
-   * Constructeur
-   */
-  constructor() {
-    effect(() => {
-      this.languageService.currentLang(); // track language changes
-      this.updateNow();
-    });
-  }
-
   /**
    * Adresse mail
    */
@@ -75,15 +42,5 @@ export class ContentService {
    */
   get locale() {
     return 'fr-FR';
-  }
-
-  /**
-   * Fetches "now" items from Supabase and updates the signal.
-   */
-  private async updateNow() {
-    const items = await this.supabase.getNowItems();
-    this.now.set(
-      items.map(item => this.sanitizer.bypassSecurityTrustHtml(item))
-    );
   }
 }

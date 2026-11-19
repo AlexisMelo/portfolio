@@ -1,0 +1,13 @@
+<label class="title" for="projects-search">{{
+  'projects.filtering.title' | transloco
+}}</label>
+
+<div class="search-bar">
+  <mat-icon class="small" aria-hidden="true">search</mat-icon>
+  <input
+    id="projects-search"
+    type="search"
+    autocomplete="off"
+    [placeholder]="'projects.filtering.placeholder' | transloco"
+    [formControl]="filterFormControl" />
+</div>
