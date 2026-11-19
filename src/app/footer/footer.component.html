@@ -1,1 +1,11 @@
-<footer class="copyright">{{ 'footer.copyright' | transloco }}</footer>
+<footer>
+  <div>
+    {{ 'footer.homemade' | transloco }}
+  </div>
+  <div>
+    {{ 'footer.copyright' | transloco }}
+    <a class="legal" [routerLink]="LEGAL_ROUTE">{{
+      'footer.legal' | transloco
+    }}</a>
+  </div>
+</footer>

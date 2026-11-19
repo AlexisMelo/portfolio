@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: var(--tile-padding);
+  line-height: 1.5;
+}
+
+h3 {
+  margin: 0;
+  font-size: var(--text-xxl);
+}

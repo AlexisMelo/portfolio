@@ -1,0 +1,104 @@
+<div class="g-grid-container">
+  <div class="g-grid" appGridEntrance appGridDrag>
+    <div class="heading g-grid-item-highlight" appGridItem>
+      <h2>{{ 'legal.title' | transloco }}</h2>
+      @if (info().legal_updated; as date) {
+        <p>{{ 'legal.updated' | transloco: { date } }}</p>
+      }
+    </div>
+
+    <app-legal-section
+      class="publisher"
+      [heading]="'legal.publisher.title' | transloco">
+      <dl>
+        <div>
+          <dt>{{ 'legal.publisher.name' | transloco }}</dt>
+          <dd>
+            {{ info().legal_name }}, {{ 'legal.publisher.status' | transloco }}
+          </dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.address' | transloco }}</dt>
+          <dd>{{ info().legal_address }}</dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.phone' | transloco }}</dt>
+          <dd>
+            <a [href]="'tel:' + contentService.phone">{{
+              contentService.phone
+            }}</a>
+          </dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.mail' | transloco }}</dt>
+          <dd>
+            <a [href]="'mailto:' + contentService.mail">{{
+              contentService.mail
+            }}</a>
+          </dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.publisher.siret' | transloco }}</dt>
+          <dd>{{ info().legal_siret }}</dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.publisher.vat' | transloco }}</dt>
+          <dd>
+            {{ info().legal_vat || ('legal.publisher.vatExempt' | transloco) }}
+          </dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.publisher.director' | transloco }}</dt>
+          <dd>{{ info().legal_name }}</dd>
+        </div>
+      </dl>
+    </app-legal-section>
+
+    <app-legal-section class="host" [heading]="'legal.host.title' | transloco">
+      <dl>
+        <div>
+          <dt>{{ 'legal.host.name' | transloco }}</dt>
+          <dd>{{ info().legal_host_name }}</dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.address' | transloco }}</dt>
+          <dd>{{ info().legal_host_address }}</dd>
+        </div>
+        <div>
+          <dt>{{ 'legal.host.website' | transloco }}</dt>
+          <dd>
+            @if (info().legal_host_website; as website) {
+              <a [href]="website" target="_blank" rel="noopener">{{
+                website
+              }}</a>
+            }
+          </dd>
+        </div>
+      </dl>
+    </app-legal-section>
+
+    <app-legal-section
+      class="privacy"
+      [heading]="'legal.privacy.title' | transloco">
+      <p>
+        {{
+          'legal.privacy.controller' | transloco: { name: info().legal_name }
+        }}
+      </p>
+      <p>{{ 'legal.privacy.analytics' | transloco }}</p>
+      <p>{{ 'legal.privacy.thirdParties' | transloco }}</p>
+      <ul>
+        <li>{{ 'legal.privacy.fonts' | transloco }}</li>
+        <li>{{ 'legal.privacy.content' | transloco }}</li>
+        <li>{{ 'legal.privacy.map' | transloco }}</li>
+        <li>{{ 'legal.privacy.umami' | transloco }}</li>
+      </ul>
+    </app-legal-section>
+
+    <app-legal-section
+      class="cookies"
+      [heading]="'legal.cookies.title' | transloco">
+      <p>{{ 'legal.cookies.text' | transloco }}</p>
+    </app-legal-section>
+  </div>
+</div>

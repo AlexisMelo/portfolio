@@ -2,13 +2,12 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {
   RELATIVE_EXPERIENCE_ROUTE,
+  RELATIVE_LEGAL_ROUTE,
   RELATIVE_PROJECTS_ROUTE,
   RELATIVE_SKILLS_ROUTE,
 } from './route-paths';
 import { DESCRIPTION_KEY } from './shared/page-title.strategy';
 
-// The landing page is eager, the other pages are loaded on navigation.
-// Titles and descriptions are translation keys, read by PageTitleStrategy.
 export const routes: Routes = [
   {
     path: '',
@@ -48,6 +47,12 @@ export const routes: Routes = [
     // Replaced by the project's name once it is loaded
     title: 'navbar.projects',
     data: { [DESCRIPTION_KEY]: 'seo.projects' },
+  },
+  {
+    path: RELATIVE_LEGAL_ROUTE,
+    loadComponent: () => import('./legal/legal').then(m => m.Legal),
+    title: 'legal.title',
+    data: { [DESCRIPTION_KEY]: 'seo.legal' },
   },
   {
     path: '**',

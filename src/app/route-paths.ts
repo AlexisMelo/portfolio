@@ -30,3 +30,13 @@ export const RELATIVE_PROJECTS_ROUTE = 'projects';
  * Absolute path of the list of every project, for navigation
  */
 export const PROJECTS_ROUTE = '/' + RELATIVE_PROJECTS_ROUTE;
+
+/**
+ * Legal page path, relative to the root route
+ */
+export const RELATIVE_LEGAL_ROUTE = 'legal';
+
+/**
+ * Absolute legal page path, for navigation
+ */
+export const LEGAL_ROUTE = '/' + RELATIVE_LEGAL_ROUTE;

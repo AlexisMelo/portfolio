@@ -229,12 +229,51 @@
     "since": "since"
   },
   "footer": {
-    "copyright": "© 2026 - Homemade 🏠 by Alexis Melo da Silva"
+    "copyright": "© 2026",
+    "legal": "Legal notice",
+    "homemade": "Homemade 🏠 by Alexis Melo da Silva"
+  },
+  "legal": {
+    "title": "Legal notice",
+    "updated": "Last updated: {{date}}",
+    "address": "Address",
+    "phone": "Phone",
+    "mail": "Email",
+    "publisher": {
+      "title": "Publisher",
+      "name": "Name",
+      "status": "sole trader (EI)",
+      "siret": "SIRET",
+      "vat": "VAT number",
+      "vatExempt": "VAT not applicable, article 293 B of the French tax code",
+      "director": "Publication director"
+    },
+    "host": {
+      "title": "Hosting",
+      "name": "Host",
+      "website": "Website"
+    },
+    "privacy": {
+      "title": "Personal data",
+      "controller": "The data controller is {{name}}. The site has no form and no account: you get in touch through your own email, and the messages received are only used to answer you.",
+      "logs": "Like any web server, the site's server records the IP address, the requested page and the browser of each visit, for security and to keep the site running.",
+      "analytics": "Visits are counted with Umami, without cookies and without storing anything that identifies you: only anonymous statistics are kept (pages viewed, country, type of device).",
+      "thirdParties": "To show the site, your browser also contacts these services, which receive your IP address:",
+      "fonts": "Google Fonts (Google LLC), for the fonts and icons",
+      "content": "Supabase (Supabase, Inc.), for the content and the images of the projects",
+      "map": "OpenStreetMap and Stadia Maps, for the map of the home page",
+      "umami": "Umami Cloud (Umami Software, Inc.), for the visit statistics"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "The site sets no cookie. It only keeps the theme and the language you pick in your browser (local storage); these preferences never leave your device."
+    }
   },
   "seo": {
     "about": "Alexis Melo da Silva, freelance fullstack web developer specialised in Angular, based in Caen, France. Projects, skills, experience and availability for your next project.",
     "projects": "Every project of Alexis Melo da Silva, freelance Angular developer: web apps for companies, schools and personal projects, with their skills and stack.",
     "skills": "Technologies mastered by Alexis Melo da Silva, freelance fullstack web developer: Angular and frontend, backend and transverse skills, each with its projects.",
-    "experience": "Professional experience of Alexis Melo da Silva, freelance fullstack web developer: companies, schools and the projects built there."
+    "experience": "Professional experience of Alexis Melo da Silva, freelance fullstack web developer: companies, schools and the projects built there.",
+    "legal": "Legal notice of the portfolio of Alexis Melo da Silva, freelance fullstack web developer: publisher, host, personal data and cookies."
   }
 }

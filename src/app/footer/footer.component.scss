@@ -1,15 +1,29 @@
+@use '../../styles/responsive.scss' as responsive;
+
 :host {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
-  line-height: 200%;
+  justify-content: center;
   padding: 20px 0;
 }
 
-.copyright {
+footer {
   display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  white-space: nowrap;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+
+  div {
+    text-align: center;
+    width: 100%;
+  }
+
+  @include responsive.responsive('medium') {
+    flex-direction: row;
+  }
+}
+
+.legal {
+  color: inherit;
 }

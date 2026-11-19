@@ -8,6 +8,7 @@ import { ProjectCard } from '../home/projects-preview/project-card/project-card.
 import { Recommendation } from '../home/recommendations/recommendation.model';
 import { Project } from '../projects/project.model';
 import { Skill } from '../skills/skill.model';
+import { LEGAL_INFO_LABELS, LegalInfos } from '../legal/legal-info';
 import { Language } from './language.type';
 
 type Translation = { id: string } & Record<Language, string | null>; //so the data is typed and does not throw an error later on
@@ -255,6 +256,37 @@ export class SupabaseService {
     return downloadAs
       ? `${url}?download=${encodeURIComponent(downloadAs)}`
       : url;
+  }
+
+  /**
+   * Returns the information of the legal page in the given language: the `personal_infos` rows of
+   * its labels, each value replaced by its translation when it is the id of a `translations` row
+   */
+  public async getLegalInfos(locale: Language): Promise<LegalInfos> {
+    const { data: infos, error: infosError } = await this.client
+      .from('personal_infos')
+      .select('label, value')
+      .in('label', LEGAL_INFO_LABELS);
+
+    if (infosError) return Promise.reject(infosError);
+
+    const { data: translations, error: translationsError } = await this.client
+      .from('translations')
+      .select(`id, ${locale}`)
+      .in(
+        'id',
+        infos.map(info => info.value)
+      )
+      .overrideTypes<Array<Translation>, { merge: false }>();
+
+    if (translationsError) return Promise.reject(translationsError);
+
+    return Object.fromEntries(
+      infos.map(({ label, value }) => [
+        label,
+        translations.find(t => t.id === value)?.[locale] ?? value,
+      ])
+    );
   }
 
   /**

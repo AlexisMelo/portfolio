@@ -229,12 +229,51 @@
     "since": "depuis"
   },
   "footer": {
-    "copyright": "© 2026 - Fait maison 🏠 par Alexis Melo da Silva"
+    "copyright": "© 2026",
+    "legal": "Mentions légales",
+    "homemade": "Fait maison 🏠 par Alexis Melo da Silva"
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "updated": "Dernière mise à jour : {{date}}",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "mail": "E-mail",
+    "publisher": {
+      "title": "Éditeur du site",
+      "name": "Nom",
+      "status": "entrepreneur individuel (EI)",
+      "siret": "SIRET",
+      "vat": "Numéro de TVA",
+      "vatExempt": "TVA non applicable, art. 293 B du CGI",
+      "director": "Directeur de la publication"
+    },
+    "host": {
+      "title": "Hébergement",
+      "name": "Hébergeur",
+      "website": "Site web"
+    },
+    "privacy": {
+      "title": "Données personnelles",
+      "controller": "Le responsable du traitement est {{name}}. Le site n'a ni formulaire ni compte : la prise de contact passe par votre propre messagerie, et les messages reçus servent uniquement à vous répondre.",
+      "logs": "Comme tout serveur web, celui du site enregistre l'adresse IP, la page demandée et le navigateur de chaque visite, pour la sécurité et le bon fonctionnement du site.",
+      "analytics": "La fréquentation est mesurée avec Umami, sans cookie et sans rien conserver qui permette de vous identifier : seules des statistiques anonymes sont gardées (pages vues, pays, type d'appareil).",
+      "thirdParties": "Pour afficher le site, votre navigateur contacte aussi ces services, qui reçoivent votre adresse IP :",
+      "fonts": "Google Fonts (Google LLC), pour les polices et les icônes",
+      "content": "Supabase (Supabase, Inc.), pour le contenu et les images des projets",
+      "map": "OpenStreetMap et Stadia Maps, pour la carte de la page d'accueil",
+      "umami": "Umami Cloud (Umami Software, Inc.), pour les statistiques de visite"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "Le site ne dépose aucun cookie. Il garde seulement dans votre navigateur (stockage local) le thème et la langue que vous choisissez ; ces préférences ne quittent pas votre appareil."
+    }
   },
   "seo": {
     "about": "Alexis Melo da Silva, développeur web fullstack freelance spécialisé en Angular, basé à Caen en Normandie. Projets, compétences, expérience et disponibilités pour votre prochain projet.",
     "projects": "Tous les projets d'Alexis Melo da Silva, développeur Angular freelance : applications web pour des entreprises, des écoles et projets personnels, avec leurs compétences et leur stack.",
     "skills": "Technologies maîtrisées par Alexis Melo da Silva, développeur web fullstack freelance : Angular et frontend, backend et compétences transverses, chacune avec ses projets.",
-    "experience": "Expérience professionnelle d'Alexis Melo da Silva, développeur web fullstack freelance : entreprises, écoles et projets qui y ont été réalisés."
+    "experience": "Expérience professionnelle d'Alexis Melo da Silva, développeur web fullstack freelance : entreprises, écoles et projets qui y ont été réalisés.",
+    "legal": "Mentions légales du portfolio d'Alexis Melo da Silva, développeur web fullstack freelance : éditeur, hébergeur, données personnelles et cookies."
   }
 }
