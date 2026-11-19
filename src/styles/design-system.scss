@@ -17,10 +17,12 @@
   --primary-100: #edf6f5;
 
   // The two other palette colours: coral for the calls to action and the projects, mustard as
-  // the accent. Both are light: in light mode they are tile backgrounds under dark text, in dark
-  // mode text colours on the dark tiles (AA)
+  // the accent. Both are light backgrounds under dark text; the 700 shades are their darker dark
+  // mode version, still under gray-800 (5.2:1 and 7.5:1, AA)
   --coral-500: #ff7d5e;
+  --coral-700: #e06548;
   --mustard-500: #ffc93c;
+  --mustard-700: #d4a020;
 
   //neutral grays
   --gray-800: #181818;

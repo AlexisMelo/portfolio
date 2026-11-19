@@ -45,7 +45,7 @@ Every new or restyled element follows it, in both themes.
   - Coral `--coral-500` #ff7d5e, calls to action and projects: mail and contact tiles, avatar tile of the projects page, "your project here" entry, open live, projects preview label and all-projects link, total badge of the count titles, abandoned status. `--gray-800` text on it.
   - Mustard `--mustard-500` #ffc93c, the accent: count titles of the projects, experience and skills pages, title tile of the project details, avatar tile of the home page, projects preview box, ongoing status, skill chips being learnt. `--gray-800` text on it.
   - Other tiles are white (`--grid-item-default-bg`) on the `--gray-100` page. `--primary-500` #4baba1 is the teal for text and icons on dark tiles; `--primary-200` / `--primary-100` are light teal tints.
-- Dark mode: teal backgrounds become `--primary-900` #285461 with white text. Coral and mustard tiles become the default dark grey (`--grid-item-default-bg`, `--gray-700`) with their text in coral or mustard; without text they are plain grey. Don't introduce darker coral or mustard shades for dark mode.
+- Dark mode: the palette colours stay at the same spots as in light mode, in darker shades: teal backgrounds become `--primary-900` #285461 with white text, coral ones `--coral-700` #e06548 and mustard ones `--mustard-700` #d4a020, both still under `--gray-800` text.
 - Component styles never hold raw colours: each colour is a `--<component>-<role>` variable set in both theme files from the palette variables, with a comment when the choice depends on contrast. Check AA contrast of every text and icon on its background in both themes.
 
 ## Rules the skill does not cover
